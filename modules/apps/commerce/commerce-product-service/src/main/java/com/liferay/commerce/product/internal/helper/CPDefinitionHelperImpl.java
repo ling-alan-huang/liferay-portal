@@ -33,6 +33,7 @@ import com.liferay.commerce.product.service.CommerceChannelLocalService;
 import com.liferay.commerce.product.url.CPFriendlyURL;
 import com.liferay.friendly.url.model.FriendlyURLEntry;
 import com.liferay.friendly.url.service.FriendlyURLEntryLocalService;
+import com.liferay.petra.function.transform.TransformUtil;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.configuration.module.configuration.ConfigurationProvider;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -58,7 +59,6 @@ import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.Validator;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -153,19 +153,14 @@ public class CPDefinitionHelperImpl implements CPDefinitionHelper {
 			int start, int end)
 		throws PortalException {
 
-		List<CPCatalogEntry> cpCatalogEntries = new ArrayList<>();
-
 		CPDefinitionSearcher cpDefinitionSearcher = _getCPDefinitionSearcher(
 			new long[] {groupId}, searchContext, cpQuery, start, end);
 
 		Hits hits = cpDefinitionSearcher.search(searchContext);
 
-		Document[] documents = hits.getDocs();
-
-		for (Document document : documents) {
-			cpCatalogEntries.add(
-				getCPCatalogEntry(document, searchContext.getLocale()));
-		}
+		List<CPCatalogEntry> cpCatalogEntries = TransformUtil.transformToList(
+			hits.getDocs(),
+			document -> getCPCatalogEntry(document, searchContext.getLocale()));
 
 		return new CPDataSourceResult(cpCatalogEntries, hits.getLength());
 	}
@@ -205,54 +200,39 @@ public class CPDefinitionHelperImpl implements CPDefinitionHelper {
 			int start, int end)
 		throws PortalException {
 
-		List<CPDefinition> cpDefinitions = new ArrayList<>();
-
 		CPDefinitionSearcher cpDefinitionSearcher = _getCPDefinitionSearcher(
 			groupIds, searchContext, cpQuery, start, end);
 
 		Hits hits = cpDefinitionSearcher.search(searchContext);
 
-		Document[] documents = hits.getDocs();
-
-		for (Document document : documents) {
-			CPDefinition cpDefinition =
-				_cpDefinitionLocalService.fetchCPDefinition(
-					GetterUtil.getLong(document.get(Field.ENTRY_CLASS_PK)));
-
-			if (cpDefinition != null) {
-				cpDefinitions.add(cpDefinition);
-			}
-		}
-
-		return cpDefinitions;
+		return TransformUtil.transformToList(
+			hits.getDocs(),
+			document -> _cpDefinitionLocalService.fetchCPDefinition(
+				GetterUtil.getLong(document.get(Field.ENTRY_CLASS_PK))));
 	}
 
 	private long[] _checkChannelGroupIds(long[] groupIds) {
-		List<Long> channelGroupIds = new ArrayList<>();
+		List<Long> channelGroupIds = TransformUtil.transformToList(
+			groupIds,
+			groupId -> {
+				Group group = _groupLocalService.fetchGroup(groupId);
 
-		for (long groupId : groupIds) {
-			Group group = _groupLocalService.fetchGroup(groupId);
+				String className = group.getClassName();
 
-			String className = group.getClassName();
+				if (className.equals(CommerceChannel.class.getName())) {
+					return groupId;
+				}
 
-			if (className.equals(CommerceChannel.class.getName())) {
-				channelGroupIds.add(groupId);
+				CommerceChannel commerceChannel =
+					_commerceChannelLocalService.
+						fetchCommerceChannelBySiteGroupId(groupId);
 
-				continue;
-			}
+				if (commerceChannel != null) {
+					return commerceChannel.getGroupId();
+				}
 
-			CommerceChannel commerceChannel =
-				_commerceChannelLocalService.fetchCommerceChannelBySiteGroupId(
-					groupId);
-
-			if (commerceChannel != null) {
-				channelGroupIds.add(commerceChannel.getGroupId());
-
-				continue;
-			}
-
-			channelGroupIds.add(groupId);
-		}
+				return groupId;
+			});
 
 		return ArrayUtil.toLongArray(channelGroupIds);
 	}
