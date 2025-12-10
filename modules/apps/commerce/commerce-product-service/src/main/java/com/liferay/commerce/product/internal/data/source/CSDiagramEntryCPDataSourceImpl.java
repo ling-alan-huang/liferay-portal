@@ -16,6 +16,7 @@ import com.liferay.commerce.product.permission.CommerceProductViewPermission;
 import com.liferay.commerce.shop.by.diagram.model.CSDiagramEntry;
 import com.liferay.commerce.shop.by.diagram.service.CSDiagramEntryLocalService;
 import com.liferay.commerce.util.CommerceUtil;
+import com.liferay.petra.function.transform.TransformUtil;
 import com.liferay.portal.kernel.language.Language;
 import com.liferay.portal.kernel.security.permission.PermissionThreadLocal;
 import com.liferay.portal.kernel.util.Portal;
@@ -64,8 +65,6 @@ public class CSDiagramEntryCPDataSourceImpl implements CPDataSource {
 			return new CPDataSourceResult(new ArrayList<>(), 0);
 		}
 
-		List<CPCatalogEntry> cpCatalogEntries = new ArrayList<>();
-
 		CommerceContext commerceContext =
 			(CommerceContext)httpServletRequest.getAttribute(
 				CommerceWebKeys.COMMERCE_CONTEXT);
@@ -77,21 +76,24 @@ public class CSDiagramEntryCPDataSourceImpl implements CPDataSource {
 			_csDiagramEntryLocalService.getCPDefinitionRelatedCSDiagramEntries(
 				cpCatalogEntry.getCPDefinitionId());
 
-		for (CSDiagramEntry csDiagramEntry : csDiagramEntries) {
-			if (_commerceProductViewPermission.contains(
-					PermissionThreadLocal.getPermissionChecker(),
-					commerceAccountId,
-					commerceContext.getCommerceChannelGroupId(),
-					csDiagramEntry.getCPDefinitionId())) {
-
-				cpCatalogEntries.add(
-					_cpDefinitionHelper.getCPCatalogEntry(
+		List<CPCatalogEntry> cpCatalogEntries = TransformUtil.transform(
+			csDiagramEntries,
+			csDiagramEntry -> {
+				if (!_commerceProductViewPermission.contains(
+						PermissionThreadLocal.getPermissionChecker(),
 						commerceAccountId,
 						commerceContext.getCommerceChannelGroupId(),
-						csDiagramEntry.getCPDefinitionId(),
-						_portal.getLocale(httpServletRequest), false));
-			}
-		}
+						csDiagramEntry.getCPDefinitionId())) {
+
+					return null;
+				}
+
+				return _cpDefinitionHelper.getCPCatalogEntry(
+					commerceAccountId,
+					commerceContext.getCommerceChannelGroupId(),
+					csDiagramEntry.getCPDefinitionId(),
+					_portal.getLocale(httpServletRequest), false);
+			});
 
 		if (cpCatalogEntries.size() > end) {
 			cpCatalogEntries = cpCatalogEntries.subList(start, end);

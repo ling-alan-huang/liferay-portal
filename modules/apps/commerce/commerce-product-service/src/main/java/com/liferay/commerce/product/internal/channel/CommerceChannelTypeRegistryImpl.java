@@ -12,11 +12,11 @@ import com.liferay.osgi.service.tracker.collections.map.ServiceTrackerCustomizer
 import com.liferay.osgi.service.tracker.collections.map.ServiceTrackerCustomizerFactory.ServiceWrapper;
 import com.liferay.osgi.service.tracker.collections.map.ServiceTrackerMap;
 import com.liferay.osgi.service.tracker.collections.map.ServiceTrackerMapFactory;
+import com.liferay.petra.function.transform.TransformUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -51,8 +51,6 @@ public class CommerceChannelTypeRegistryImpl
 
 	@Override
 	public List<CommerceChannelType> getCommerceChannelTypes() {
-		List<CommerceChannelType> commerceChannelTypes = new ArrayList<>();
-
 		List<ServiceWrapper<CommerceChannelType>>
 			commerceChannelTypeServiceWrappers = ListUtil.fromCollection(
 				_serviceTrackerMap.values());
@@ -61,15 +59,11 @@ public class CommerceChannelTypeRegistryImpl
 			commerceChannelTypeServiceWrappers,
 			_commerceChannelTypeServiceWrapperOrderComparator);
 
-		for (ServiceWrapper<CommerceChannelType>
-				commerceChannelTypeServiceWrapper :
-					commerceChannelTypeServiceWrappers) {
-
-			commerceChannelTypes.add(
-				commerceChannelTypeServiceWrapper.getService());
-		}
-
-		return Collections.unmodifiableList(commerceChannelTypes);
+		return Collections.unmodifiableList(
+			TransformUtil.transform(
+				commerceChannelTypeServiceWrappers,
+				commerceChannelTypeServiceWrapper ->
+					commerceChannelTypeServiceWrapper.getService()));
 	}
 
 	@Activate

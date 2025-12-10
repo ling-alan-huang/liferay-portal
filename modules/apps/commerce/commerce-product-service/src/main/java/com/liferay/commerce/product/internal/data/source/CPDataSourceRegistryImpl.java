@@ -9,11 +9,11 @@ import com.liferay.commerce.product.data.source.CPDataSource;
 import com.liferay.commerce.product.data.source.CPDataSourceRegistry;
 import com.liferay.osgi.service.tracker.collections.list.ServiceTrackerList;
 import com.liferay.osgi.service.tracker.collections.list.ServiceTrackerListFactory;
+import com.liferay.petra.function.transform.TransformUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.Validator;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -50,15 +50,16 @@ public class CPDataSourceRegistryImpl implements CPDataSourceRegistry {
 
 	@Override
 	public List<CPDataSource> getCPDataSources() {
-		List<CPDataSource> cpDataSources = new ArrayList<>();
+		return Collections.unmodifiableList(
+			TransformUtil.transform(
+				(List<CPDataSource>)_serviceTrackerList,
+				cpDataSource -> {
+					if (Validator.isNotNull(cpDataSource.getName())) {
+						return cpDataSource;
+					}
 
-		for (CPDataSource cpDataSource : _serviceTrackerList) {
-			if (Validator.isNotNull(cpDataSource.getName())) {
-				cpDataSources.add(cpDataSource);
-			}
-		}
-
-		return Collections.unmodifiableList(cpDataSources);
+					return null;
+				}));
 	}
 
 	@Activate
