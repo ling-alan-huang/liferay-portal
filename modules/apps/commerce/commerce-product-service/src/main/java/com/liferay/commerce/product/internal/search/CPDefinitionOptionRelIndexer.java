@@ -9,6 +9,7 @@ import com.liferay.commerce.product.constants.CPField;
 import com.liferay.commerce.product.model.CPDefinitionOptionRel;
 import com.liferay.commerce.product.model.CPDefinitionOptionValueRel;
 import com.liferay.commerce.product.service.CPDefinitionOptionRelLocalService;
+import com.liferay.petra.function.transform.TransformUtil;
 import com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
@@ -29,7 +30,6 @@ import com.liferay.portal.kernel.util.Validator;
 import jakarta.portlet.PortletRequest;
 import jakarta.portlet.PortletResponse;
 
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
@@ -142,22 +142,16 @@ public class CPDefinitionOptionRelIndexer
 				languageId);
 			String name = cpDefinitionOptionRel.getName(languageId);
 
-			List<String> cpDefinitionOptionValueRelNamesList =
-				new ArrayList<>();
-
-			for (CPDefinitionOptionValueRel cpDefinitionOptionValueRel :
-					cpDefinitionOptionValueRels) {
-
-				cpDefinitionOptionValueRelNamesList.add(
-					cpDefinitionOptionValueRel.getName(languageId));
-			}
-
 			document.addKeyword(
 				CPField.CP_DEFINITION_ID,
 				cpDefinitionOptionRel.getCPDefinitionId());
 
 			String[] cpDefinitionOptionValueRelNames =
-				cpDefinitionOptionValueRelNamesList.toArray(new String[0]);
+				TransformUtil.transformToArray(
+					cpDefinitionOptionValueRels,
+					cpDefinitionOptionValueRel ->
+						cpDefinitionOptionValueRel.getName(languageId),
+					String.class);
 
 			document.addText(
 				_localization.getLocalizedName(

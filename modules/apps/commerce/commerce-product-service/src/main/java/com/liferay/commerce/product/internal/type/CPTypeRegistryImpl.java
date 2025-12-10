@@ -12,12 +12,12 @@ import com.liferay.osgi.service.tracker.collections.map.ServiceTrackerCustomizer
 import com.liferay.osgi.service.tracker.collections.map.ServiceTrackerCustomizerFactory.ServiceWrapper;
 import com.liferay.osgi.service.tracker.collections.map.ServiceTrackerMap;
 import com.liferay.osgi.service.tracker.collections.map.ServiceTrackerMapFactory;
+import com.liferay.petra.function.transform.TransformUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.Validator;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -62,25 +62,24 @@ public class CPTypeRegistryImpl implements CPTypeRegistry {
 
 	@Override
 	public List<CPType> getCPTypes() {
-		List<CPType> cpTypes = new ArrayList<>();
-
 		List<ServiceWrapper<CPType>> cpTypeServiceWrappers =
 			ListUtil.fromCollection(_serviceTrackerMap.values());
 
 		Collections.sort(
 			cpTypeServiceWrappers, _cpTypeServiceWrapperDisplayOrderComparator);
 
-		for (ServiceWrapper<CPType> cpTypeServiceWrapper :
-				cpTypeServiceWrappers) {
+		return Collections.unmodifiableList(
+			TransformUtil.transform(
+				cpTypeServiceWrappers,
+				cpTypeServiceWrapper -> {
+					CPType cpType = cpTypeServiceWrapper.getService();
 
-			CPType cpType = cpTypeServiceWrapper.getService();
+					if (cpType.isActive()) {
+						return cpType;
+					}
 
-			if (cpType.isActive()) {
-				cpTypes.add(cpType);
-			}
-		}
-
-		return Collections.unmodifiableList(cpTypes);
+					return null;
+				}));
 	}
 
 	@Activate

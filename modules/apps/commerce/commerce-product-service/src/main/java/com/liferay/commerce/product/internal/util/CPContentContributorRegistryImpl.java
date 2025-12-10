@@ -11,12 +11,12 @@ import com.liferay.osgi.service.tracker.collections.map.ServiceTrackerCustomizer
 import com.liferay.osgi.service.tracker.collections.map.ServiceTrackerCustomizerFactory.ServiceWrapper;
 import com.liferay.osgi.service.tracker.collections.map.ServiceTrackerMap;
 import com.liferay.osgi.service.tracker.collections.map.ServiceTrackerMapFactory;
+import com.liferay.petra.function.transform.TransformUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.Validator;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -57,21 +57,11 @@ public class CPContentContributorRegistryImpl
 
 	@Override
 	public List<CPContentContributor> getCPContentContributors() {
-		List<CPContentContributor> cpContentContributors = new ArrayList<>();
-
-		List<ServiceWrapper<CPContentContributor>>
-			cpContentContributorServiceWrappers = ListUtil.fromCollection(
-				_serviceTrackerMap.values());
-
-		for (ServiceWrapper<CPContentContributor>
-				cpContentContributorServiceWrapper :
-					cpContentContributorServiceWrappers) {
-
-			cpContentContributors.add(
-				cpContentContributorServiceWrapper.getService());
-		}
-
-		return Collections.unmodifiableList(cpContentContributors);
+		return Collections.unmodifiableList(
+			TransformUtil.transform(
+				ListUtil.fromCollection(_serviceTrackerMap.values()),
+				cpContentContributorServiceWrapper ->
+					cpContentContributorServiceWrapper.getService()));
 	}
 
 	@Activate

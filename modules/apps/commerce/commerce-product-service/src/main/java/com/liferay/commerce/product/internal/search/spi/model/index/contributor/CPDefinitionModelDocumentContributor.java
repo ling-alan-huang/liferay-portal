@@ -653,17 +653,11 @@ public class CPDefinitionModelDocumentContributor
 			_cpDefinitionLinkLocalService.getReverseCPDefinitionLinks(
 				cProductId, type, WorkflowConstants.STATUS_APPROVED);
 
-		String[] reverseCPDefinitionIdsArray =
-			new String[cpDefinitionLinks.size()];
-
-		List<String> reverseCPDefinitionIds = new ArrayList<>();
-
-		for (CPDefinitionLink cpDefinitionLink : cpDefinitionLinks) {
-			reverseCPDefinitionIds.add(
-				String.valueOf(cpDefinitionLink.getCPDefinitionId()));
-		}
-
-		return reverseCPDefinitionIds.toArray(reverseCPDefinitionIdsArray);
+		return TransformUtil.transformToArray(
+			cpDefinitionLinks,
+			cpDefinitionLink -> String.valueOf(
+				cpDefinitionLink.getCPDefinitionId()),
+			String.class);
 	}
 
 	private boolean _isHidden(CPDefinition cpDefinition, CProduct cProduct) {

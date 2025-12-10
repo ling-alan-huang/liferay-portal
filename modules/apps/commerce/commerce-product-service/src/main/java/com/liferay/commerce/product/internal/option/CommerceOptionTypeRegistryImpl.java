@@ -12,12 +12,12 @@ import com.liferay.osgi.service.tracker.collections.map.ServiceTrackerCustomizer
 import com.liferay.osgi.service.tracker.collections.map.ServiceTrackerCustomizerFactory.ServiceWrapper;
 import com.liferay.osgi.service.tracker.collections.map.ServiceTrackerMap;
 import com.liferay.osgi.service.tracker.collections.map.ServiceTrackerMapFactory;
+import com.liferay.petra.function.transform.TransformUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.Validator;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -70,8 +70,6 @@ public class CommerceOptionTypeRegistryImpl
 
 	@Override
 	public List<CommerceOptionType> getCommerceOptionTypes() {
-		List<CommerceOptionType> commerceOptionTypes = new ArrayList<>();
-
 		List<ServiceWrapper<CommerceOptionType>>
 			commerceOptionTypeServiceWrappers = ListUtil.fromCollection(
 				_serviceTrackerMap.values());
@@ -80,19 +78,19 @@ public class CommerceOptionTypeRegistryImpl
 			commerceOptionTypeServiceWrappers,
 			_commerceOptionTypeServiceWrapperDisplayOrderComparator);
 
-		for (ServiceWrapper<CommerceOptionType>
-				commerceOptionTypeServiceWrapper :
-					commerceOptionTypeServiceWrappers) {
+		return Collections.unmodifiableList(
+			TransformUtil.transform(
+				commerceOptionTypeServiceWrappers,
+				commerceOptionTypeServiceWrapper -> {
+					CommerceOptionType commerceOptionType =
+						commerceOptionTypeServiceWrapper.getService();
 
-			CommerceOptionType commerceOptionType =
-				commerceOptionTypeServiceWrapper.getService();
+					if (commerceOptionType.isActive()) {
+						return commerceOptionType;
+					}
 
-			if (commerceOptionType.isActive()) {
-				commerceOptionTypes.add(commerceOptionType);
-			}
-		}
-
-		return Collections.unmodifiableList(commerceOptionTypes);
+					return null;
+				}));
 	}
 
 	@Activate

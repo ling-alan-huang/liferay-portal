@@ -25,6 +25,7 @@ import com.liferay.commerce.product.service.CPInstanceService;
 import com.liferay.commerce.product.service.CPInstanceUnitOfMeasureService;
 import com.liferay.commerce.product.type.CPType;
 import com.liferay.commerce.product.type.CPTypeRegistry;
+import com.liferay.petra.function.transform.TransformUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.servlet.ServletResponseUtil;
 import com.liferay.portal.kernel.util.ContentTypes;
@@ -38,7 +39,6 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.osgi.service.component.annotations.Component;
@@ -56,22 +56,11 @@ public class ActionHelperImpl implements ActionHelper {
 			PortletRequest portletRequest)
 		throws PortalException {
 
-		List<CPAttachmentFileEntry> cpAttachmentFileEntries = new ArrayList<>();
-
-		long[] cpAttachmentFileEntryIds = ParamUtil.getLongValues(
-			portletRequest, "rowIds");
-
-		for (long cpAttachmentFileEntryId : cpAttachmentFileEntryIds) {
-			CPAttachmentFileEntry cpAttachmentFileEntry =
+		return TransformUtil.transformToList(
+			ParamUtil.getLongValues(portletRequest, "rowIds"),
+			cpAttachmentFileEntryId ->
 				_cpAttachmentFileEntryService.fetchCPAttachmentFileEntry(
-					cpAttachmentFileEntryId);
-
-			if (cpAttachmentFileEntry != null) {
-				cpAttachmentFileEntries.add(cpAttachmentFileEntry);
-			}
-		}
-
-		return cpAttachmentFileEntries;
+					cpAttachmentFileEntryId));
 	}
 
 	@Override
@@ -160,18 +149,10 @@ public class ActionHelperImpl implements ActionHelper {
 			PortletRequest portletRequest)
 		throws PortalException {
 
-		List<CPDefinitionLink> cpDefinitionLinks = new ArrayList<>();
-
-		long[] cpDefinitionLinkIds = ParamUtil.getLongValues(
-			portletRequest, "rowIds");
-
-		for (long cpDefinitionLinkId : cpDefinitionLinkIds) {
-			cpDefinitionLinks.add(
-				_cpDefinitionLinkService.getCPDefinitionLink(
-					cpDefinitionLinkId));
-		}
-
-		return cpDefinitionLinks;
+		return TransformUtil.transformToList(
+			ParamUtil.getLongValues(portletRequest, "rowIds"),
+			cpDefinitionLinkId -> _cpDefinitionLinkService.getCPDefinitionLink(
+				cpDefinitionLinkId));
 	}
 
 	@Override
@@ -219,18 +200,11 @@ public class ActionHelperImpl implements ActionHelper {
 			PortletRequest portletRequest)
 		throws PortalException {
 
-		List<CPDefinitionOptionRel> cpDefinitionOptionRels = new ArrayList<>();
-
-		long[] cpDefinitionOptionRelIds = ParamUtil.getLongValues(
-			portletRequest, "rowIds");
-
-		for (long cpDefinitionOptionRelId : cpDefinitionOptionRelIds) {
-			cpDefinitionOptionRels.add(
+		return TransformUtil.transformToList(
+			ParamUtil.getLongValues(portletRequest, "rowIds"),
+			cpDefinitionOptionRelId ->
 				_cpDefinitionOptionRelService.getCPDefinitionOptionRel(
 					cpDefinitionOptionRelId));
-		}
-
-		return cpDefinitionOptionRels;
 	}
 
 	@Override
@@ -283,39 +257,22 @@ public class ActionHelperImpl implements ActionHelper {
 			PortletRequest portletRequest)
 		throws PortalException {
 
-		List<CPDefinitionOptionValueRel> cpDefinitionOptionValueRels =
-			new ArrayList<>();
-
-		long[] cpDefinitionOptionValueRelIds = ParamUtil.getLongValues(
-			portletRequest, "rowIds");
-
-		for (long cpDefinitionOptionValueRelId :
-				cpDefinitionOptionValueRelIds) {
-
-			cpDefinitionOptionValueRels.add(
+		return TransformUtil.transformToList(
+			ParamUtil.getLongValues(portletRequest, "rowIds"),
+			cpDefinitionOptionValueRelId ->
 				_cpDefinitionOptionValueRelService.
 					getCPDefinitionOptionValueRel(
 						cpDefinitionOptionValueRelId));
-		}
-
-		return cpDefinitionOptionValueRels;
 	}
 
 	@Override
 	public List<CPDefinition> getCPDefinitions(PortletRequest portletRequest)
 		throws PortalException {
 
-		List<CPDefinition> cpDefinitions = new ArrayList<>();
-
-		long[] cpDefinitionIds = ParamUtil.getLongValues(
-			portletRequest, "rowIds");
-
-		for (long cpDefinitionId : cpDefinitionIds) {
-			cpDefinitions.add(
-				_cpDefinitionService.getCPDefinition(cpDefinitionId));
-		}
-
-		return cpDefinitions;
+		return TransformUtil.transformToList(
+			ParamUtil.getLongValues(portletRequest, "rowIds"),
+			cpDefinitionId -> _cpDefinitionService.getCPDefinition(
+				cpDefinitionId));
 	}
 
 	@Override
@@ -359,22 +316,12 @@ public class ActionHelperImpl implements ActionHelper {
 				PortletRequest portletRequest)
 		throws PortalException {
 
-		List<CPDefinitionSpecificationOptionValue>
-			cpDefinitionSpecificationOptionValues = new ArrayList<>();
-
-		long[] cpDefinitionSpecificationOptionValueIds =
-			ParamUtil.getLongValues(portletRequest, "rowIds");
-
-		for (long cpDefinitionSpecificationOptionValueId :
-				cpDefinitionSpecificationOptionValueIds) {
-
-			cpDefinitionSpecificationOptionValues.add(
+		return TransformUtil.transformToList(
+			ParamUtil.getLongValues(portletRequest, "rowIds"),
+			cpDefinitionSpecificationOptionValueId ->
 				_cpDefinitionSpecificationOptionValueService.
 					getCPDefinitionSpecificationOptionValue(
 						cpDefinitionSpecificationOptionValueId));
-		}
-
-		return cpDefinitionSpecificationOptionValues;
 	}
 
 	@Override
@@ -405,16 +352,9 @@ public class ActionHelperImpl implements ActionHelper {
 	public List<CPInstance> getCPInstances(PortletRequest portletRequest)
 		throws PortalException {
 
-		List<CPInstance> cpInstances = new ArrayList<>();
-
-		long[] cpInstanceIds = ParamUtil.getLongValues(
-			portletRequest, "rowIds");
-
-		for (long cpInstanceId : cpInstanceIds) {
-			cpInstances.add(_cpInstanceService.getCPInstance(cpInstanceId));
-		}
-
-		return cpInstances;
+		return TransformUtil.transformToList(
+			ParamUtil.getLongValues(portletRequest, "rowIds"),
+			cpInstanceId -> _cpInstanceService.getCPInstance(cpInstanceId));
 	}
 
 	@Override

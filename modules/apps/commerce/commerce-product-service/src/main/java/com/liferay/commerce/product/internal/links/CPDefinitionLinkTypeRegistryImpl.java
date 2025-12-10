@@ -9,11 +9,11 @@ import com.liferay.commerce.product.links.CPDefinitionLinkType;
 import com.liferay.commerce.product.links.CPDefinitionLinkTypeRegistry;
 import com.liferay.osgi.service.tracker.collections.list.ServiceTrackerList;
 import com.liferay.osgi.service.tracker.collections.list.ServiceTrackerListFactory;
+import com.liferay.petra.function.transform.TransformUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.Validator;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.osgi.framework.BundleContext;
@@ -66,15 +66,15 @@ public class CPDefinitionLinkTypeRegistryImpl
 
 	@Override
 	public List<String> getTypes() {
-		List<String> types = new ArrayList<>();
+		return TransformUtil.transform(
+			(List<CPDefinitionLinkType>)_serviceTrackerList,
+			cpDefinitionLinkType -> {
+				if (cpDefinitionLinkType.isActive()) {
+					return cpDefinitionLinkType.getType();
+				}
 
-		for (CPDefinitionLinkType cpDefinitionLinkType : _serviceTrackerList) {
-			if (cpDefinitionLinkType.isActive()) {
-				types.add(cpDefinitionLinkType.getType());
-			}
-		}
-
-		return types;
+				return null;
+			});
 	}
 
 	@Activate

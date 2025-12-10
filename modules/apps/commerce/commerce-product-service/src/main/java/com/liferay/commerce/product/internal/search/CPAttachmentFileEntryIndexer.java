@@ -12,6 +12,7 @@ import com.liferay.commerce.product.model.CPDefinitionOptionRel;
 import com.liferay.commerce.product.model.CPDefinitionOptionValueRel;
 import com.liferay.commerce.product.model.CPOption;
 import com.liferay.commerce.product.service.CPAttachmentFileEntryLocalService;
+import com.liferay.petra.function.transform.TransformUtil;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -38,7 +39,6 @@ import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import jakarta.portlet.PortletRequest;
 import jakarta.portlet.PortletResponse;
 
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
@@ -230,13 +230,10 @@ public class CPAttachmentFileEntryIndexer
 
 			CPOption cpOption = cpDefinitionOptionRel.getCPOption();
 
-			List<String> optionValueIds = new ArrayList<>();
-
-			for (CPDefinitionOptionValueRel cpDefinitionOptionValueRel :
-					cpDefinitionOptionValueRelListMapEntry.getValue()) {
-
-				optionValueIds.add(cpDefinitionOptionValueRel.getKey());
-			}
+			List<String> optionValueIds = TransformUtil.transform(
+				cpDefinitionOptionValueRelListMapEntry.getValue(),
+				cpDefinitionOptionValueRel ->
+					cpDefinitionOptionValueRel.getKey());
 
 			document.addText(
 				"ATTRIBUTE_" + cpOption.getKey() + "_VALUES_IDS",
