@@ -14,13 +14,13 @@ import com.liferay.commerce.product.util.CommerceOptionTypeUtil;
 import com.liferay.frontend.data.set.filter.BaseSelectionFDSFilter;
 import com.liferay.frontend.data.set.filter.FDSFilter;
 import com.liferay.frontend.data.set.filter.SelectionFDSFilterItem;
+import com.liferay.petra.function.transform.TransformUtil;
 import com.liferay.portal.configuration.module.configuration.ConfigurationProvider;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.module.configuration.ConfigurationException;
 import com.liferay.portal.kernel.settings.SystemSettingsLocator;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -72,17 +72,11 @@ public class CommerceOptionFieldTypeFDSFilter extends BaseSelectionFDSFilter {
 	public List<SelectionFDSFilterItem> getSelectionFDSFilterItems(
 		Locale locale) {
 
-		List<SelectionFDSFilterItem> selectionFDSFilterItems =
-			new ArrayList<>();
-
-		for (CommerceOptionType commerceOptionType : getCommerceOptionTypes()) {
-			selectionFDSFilterItems.add(
-				new SelectionFDSFilterItem(
-					commerceOptionType.getLabel(locale),
-					commerceOptionType.getKey()));
-		}
-
-		return selectionFDSFilterItems;
+		return TransformUtil.transform(
+			getCommerceOptionTypes(),
+			commerceOptionType -> new SelectionFDSFilterItem(
+				commerceOptionType.getLabel(locale),
+				commerceOptionType.getKey()));
 	}
 
 	@Override

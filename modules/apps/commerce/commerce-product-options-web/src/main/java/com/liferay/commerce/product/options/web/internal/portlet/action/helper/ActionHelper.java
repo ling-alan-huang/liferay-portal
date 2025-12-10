@@ -14,13 +14,13 @@ import com.liferay.commerce.product.service.CPOptionCategoryService;
 import com.liferay.commerce.product.service.CPOptionService;
 import com.liferay.commerce.product.service.CPOptionValueService;
 import com.liferay.commerce.product.service.CPSpecificationOptionService;
+import com.liferay.petra.function.transform.TransformUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.util.ParamUtil;
 
 import jakarta.portlet.RenderRequest;
 import jakarta.portlet.ResourceRequest;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.osgi.service.component.annotations.Component;
@@ -67,32 +67,18 @@ public class ActionHelper {
 			ResourceRequest resourceRequest)
 		throws PortalException {
 
-		List<CPOptionCategory> cpOptionCategories = new ArrayList<>();
-
-		long[] cpOptionCategoryIds = ParamUtil.getLongValues(
-			resourceRequest, "rowIds");
-
-		for (long cpOptionCategoryId : cpOptionCategoryIds) {
-			cpOptionCategories.add(
-				_cpOptionCategoryService.getCPOptionCategory(
-					cpOptionCategoryId));
-		}
-
-		return cpOptionCategories;
+		return TransformUtil.transformToList(
+			ParamUtil.getLongValues(resourceRequest, "rowIds"),
+			cpOptionCategoryId -> _cpOptionCategoryService.getCPOptionCategory(
+				cpOptionCategoryId));
 	}
 
 	public List<CPOption> getCPOptions(ResourceRequest resourceRequest)
 		throws PortalException {
 
-		List<CPOption> cpOptions = new ArrayList<>();
-
-		long[] cpOptionIds = ParamUtil.getLongValues(resourceRequest, "rowIds");
-
-		for (long cpOptionId : cpOptionIds) {
-			cpOptions.add(_cpOptionService.getCPOption(cpOptionId));
-		}
-
-		return cpOptions;
+		return TransformUtil.transformToList(
+			ParamUtil.getLongValues(resourceRequest, "rowIds"),
+			cpOptionId -> _cpOptionService.getCPOption(cpOptionId));
 	}
 
 	public CPOptionValue getCPOptionValue(RenderRequest renderRequest)
@@ -125,35 +111,21 @@ public class ActionHelper {
 			ResourceRequest resourceRequest)
 		throws PortalException {
 
-		List<CPOptionValue> cpOptionValues = new ArrayList<>();
-
-		long[] cpOptionValuesIds = ParamUtil.getLongValues(
-			resourceRequest, "rowIds");
-
-		for (long cpOptionValuesId : cpOptionValuesIds) {
-			cpOptionValues.add(
-				_cpOptionValueService.getCPOptionValue(cpOptionValuesId));
-		}
-
-		return cpOptionValues;
+		return TransformUtil.transformToList(
+			ParamUtil.getLongValues(resourceRequest, "rowIds"),
+			cpOptionValuesId -> _cpOptionValueService.getCPOptionValue(
+				cpOptionValuesId));
 	}
 
 	public List<CPSpecificationOption> getCPSpecificationOptions(
 			ResourceRequest resourceRequest)
 		throws PortalException {
 
-		List<CPSpecificationOption> cpSpecificationOptions = new ArrayList<>();
-
-		long[] cpSpecificationOptionIds = ParamUtil.getLongValues(
-			resourceRequest, "rowIds");
-
-		for (long cpSpecificationOptionId : cpSpecificationOptionIds) {
-			cpSpecificationOptions.add(
+		return TransformUtil.transformToList(
+			ParamUtil.getLongValues(resourceRequest, "rowIds"),
+			cpSpecificationOptionId ->
 				_cpSpecificationOptionService.getCPSpecificationOption(
 					cpSpecificationOptionId));
-		}
-
-		return cpSpecificationOptions;
 	}
 
 	@Reference
