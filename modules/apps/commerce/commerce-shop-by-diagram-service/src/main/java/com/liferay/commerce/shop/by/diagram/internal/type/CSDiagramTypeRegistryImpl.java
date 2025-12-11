@@ -12,11 +12,11 @@ import com.liferay.osgi.service.tracker.collections.map.ServiceTrackerCustomizer
 import com.liferay.osgi.service.tracker.collections.map.ServiceTrackerCustomizerFactory.ServiceWrapper;
 import com.liferay.osgi.service.tracker.collections.map.ServiceTrackerMap;
 import com.liferay.osgi.service.tracker.collections.map.ServiceTrackerMapFactory;
+import com.liferay.petra.function.transform.TransformUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -52,8 +52,6 @@ public class CSDiagramTypeRegistryImpl implements CSDiagramTypeRegistry {
 
 	@Override
 	public List<CSDiagramType> getCSDiagramTypes() {
-		List<CSDiagramType> csDiagramTypes = new ArrayList<>();
-
 		List<ServiceWrapper<CSDiagramType>> csDiagramTypeServiceWrappers =
 			ListUtil.fromCollection(_serviceTrackerMap.values());
 
@@ -61,13 +59,11 @@ public class CSDiagramTypeRegistryImpl implements CSDiagramTypeRegistry {
 			csDiagramTypeServiceWrappers,
 			_csDiagramTypeServiceWrapperOrderComparator);
 
-		for (ServiceWrapper<CSDiagramType> csDiagramTypeServiceWrapper :
-				csDiagramTypeServiceWrappers) {
-
-			csDiagramTypes.add(csDiagramTypeServiceWrapper.getService());
-		}
-
-		return Collections.unmodifiableList(csDiagramTypes);
+		return Collections.unmodifiableList(
+			TransformUtil.transform(
+				csDiagramTypeServiceWrappers,
+				csDiagramTypeServiceWrapper ->
+					csDiagramTypeServiceWrapper.getService()));
 	}
 
 	@Activate
