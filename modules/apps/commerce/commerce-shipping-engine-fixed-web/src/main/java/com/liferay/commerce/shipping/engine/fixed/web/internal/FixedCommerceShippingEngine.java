@@ -25,6 +25,7 @@ import com.liferay.commerce.shipping.engine.fixed.service.CommerceShippingFixedO
 import com.liferay.commerce.shipping.engine.fixed.util.comparator.CommerceShippingFixedOptionPriorityComparator;
 import com.liferay.commerce.shipping.engine.fixed.web.internal.util.CommerceShippingFixedOptionEngineUtil;
 import com.liferay.commerce.util.comparator.CommerceShippingOptionPriorityComparator;
+import com.liferay.petra.function.transform.TransformUtil;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -156,17 +157,6 @@ public class FixedCommerceShippingEngine implements CommerceShippingEngine {
 			Locale locale)
 		throws PortalException {
 
-		List<CommerceShippingOption> commerceShippingOptions =
-			new ArrayList<>();
-
-		long commerceCountryId = 0;
-
-		CommerceAddress commerceAddress = commerceOrder.getShippingAddress();
-
-		if (commerceAddress != null) {
-			commerceCountryId = commerceAddress.getCountryId();
-		}
-
 		List<CommerceShippingFixedOption> commerceShippingFixedOptions = null;
 
 		if (checkEligibility) {
@@ -183,65 +173,71 @@ public class FixedCommerceShippingEngine implements CommerceShippingEngine {
 				commerceOrder.getGroupId());
 		}
 
-		for (CommerceShippingFixedOption commerceShippingFixedOption :
-				commerceShippingFixedOptions) {
-
-			boolean restricted =
-				_commerceAddressRestrictionLocalService.
-					isCommerceShippingMethodRestricted(
-						commerceShippingFixedOption.
-							getCommerceShippingMethodId(),
-						commerceCountryId);
-
-			if (restricted) {
-				continue;
-			}
-
-			String key = commerceShippingFixedOption.getKey();
-			String name = commerceShippingFixedOption.getName(locale);
-			double priority = commerceShippingFixedOption.getPriority();
-
-			if (_commerceShippingHelper.isFreeShipping(commerceOrder)) {
-				commerceShippingOptions.add(
-					new CommerceShippingOption(
-						BigDecimal.ZERO, KEY, key, name, priority));
-
-				continue;
-			}
-
-			BigDecimal amount = commerceShippingFixedOption.getAmount();
-
-			CommerceChannel commerceChannel =
-				_commerceChannelLocalService.getCommerceChannelByOrderGroupId(
-					commerceOrder.getGroupId());
-
-			CommerceCurrency commerceCurrency =
-				commerceOrder.getCommerceCurrency();
-
-			String commerceCurrencyCode = commerceCurrency.getCode();
-
-			if (!commerceCurrencyCode.equals(
-					commerceChannel.getCommerceCurrencyCode())) {
-
-				CommerceCurrency commerceChannelCommerceCurrency =
-					_commerceCurrencyLocalService.getCommerceCurrency(
-						commerceOrder.getCompanyId(),
-						commerceChannel.getCommerceCurrencyCode());
-
-				amount = amount.divide(
-					commerceChannelCommerceCurrency.getRate(),
-					RoundingMode.valueOf(
-						commerceChannelCommerceCurrency.getRoundingMode()));
-
-				amount = amount.multiply(commerceCurrency.getRate());
-			}
-
-			commerceShippingOptions.add(
-				new CommerceShippingOption(amount, KEY, key, name, priority));
-		}
-
 		return ListUtil.sort(
-			commerceShippingOptions,
+			TransformUtil.transform(
+				commerceShippingFixedOptions,
+				commerceShippingFixedOption -> {
+					long commerceCountryId = 0;
+
+					CommerceAddress commerceAddress =
+						commerceOrder.getShippingAddress();
+
+					if (commerceAddress != null) {
+						commerceCountryId = commerceAddress.getCountryId();
+					}
+
+					boolean restricted =
+						_commerceAddressRestrictionLocalService.
+							isCommerceShippingMethodRestricted(
+								commerceShippingFixedOption.
+									getCommerceShippingMethodId(),
+								commerceCountryId);
+
+					if (restricted) {
+						return null;
+					}
+
+					String key = commerceShippingFixedOption.getKey();
+					String name = commerceShippingFixedOption.getName(locale);
+					double priority = commerceShippingFixedOption.getPriority();
+
+					if (_commerceShippingHelper.isFreeShipping(commerceOrder)) {
+						return new CommerceShippingOption(
+							BigDecimal.ZERO, KEY, key, name, priority);
+					}
+
+					BigDecimal amount = commerceShippingFixedOption.getAmount();
+
+					CommerceChannel commerceChannel =
+						_commerceChannelLocalService.
+							getCommerceChannelByOrderGroupId(
+								commerceOrder.getGroupId());
+
+					CommerceCurrency commerceCurrency =
+						commerceOrder.getCommerceCurrency();
+
+					String commerceCurrencyCode = commerceCurrency.getCode();
+
+					if (!commerceCurrencyCode.equals(
+							commerceChannel.getCommerceCurrencyCode())) {
+
+						CommerceCurrency commerceChannelCommerceCurrency =
+							_commerceCurrencyLocalService.getCommerceCurrency(
+								commerceOrder.getCompanyId(),
+								commerceChannel.getCommerceCurrencyCode());
+
+						amount = amount.divide(
+							commerceChannelCommerceCurrency.getRate(),
+							RoundingMode.valueOf(
+								commerceChannelCommerceCurrency.
+									getRoundingMode()));
+
+						amount = amount.multiply(commerceCurrency.getRate());
+					}
+
+					return new CommerceShippingOption(
+						amount, KEY, key, name, priority);
+				}),
 			new CommerceShippingOptionPriorityComparator());
 	}
 

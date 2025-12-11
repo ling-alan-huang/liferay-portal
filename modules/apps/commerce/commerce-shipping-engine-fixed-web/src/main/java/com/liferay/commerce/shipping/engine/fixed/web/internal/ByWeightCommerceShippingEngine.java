@@ -28,6 +28,7 @@ import com.liferay.commerce.shipping.engine.fixed.service.CommerceShippingFixedO
 import com.liferay.commerce.shipping.engine.fixed.util.comparator.CommerceShippingFixedOptionPriorityComparator;
 import com.liferay.commerce.shipping.engine.fixed.web.internal.util.CommerceShippingFixedOptionEngineUtil;
 import com.liferay.commerce.util.comparator.CommerceShippingOptionPriorityComparator;
+import com.liferay.petra.function.transform.TransformUtil;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -243,17 +244,6 @@ public class ByWeightCommerceShippingEngine implements CommerceShippingEngine {
 			Locale locale)
 		throws PortalException {
 
-		List<CommerceShippingOption> commerceShippingOptions =
-			new ArrayList<>();
-
-		long commerceCountryId = 0;
-
-		CommerceAddress commerceAddress = commerceOrder.getShippingAddress();
-
-		if (commerceAddress != null) {
-			commerceCountryId = commerceAddress.getCountryId();
-		}
-
 		List<CommerceShippingFixedOption> commerceShippingFixedOptions = null;
 
 		if (checkEligibility) {
@@ -270,32 +260,41 @@ public class ByWeightCommerceShippingEngine implements CommerceShippingEngine {
 				commerceOrder.getGroupId());
 		}
 
-		for (CommerceShippingFixedOption commerceShippingFixedOption :
-				commerceShippingFixedOptions) {
-
-			boolean restricted =
-				_commerceAddressRestrictionLocalService.
-					isCommerceShippingMethodRestricted(
-						commerceShippingFixedOption.
-							getCommerceShippingMethodId(),
-						commerceCountryId);
-
-			if (restricted) {
-				continue;
-			}
-
-			CommerceShippingOption commerceShippingOption =
-				_getCommerceShippingOption(
-					commerceOrder, locale, commerceAddress,
-					commerceShippingFixedOption);
-
-			if (commerceShippingOption != null) {
-				commerceShippingOptions.add(commerceShippingOption);
-			}
-		}
-
 		return ListUtil.sort(
-			commerceShippingOptions,
+			TransformUtil.transform(
+				commerceShippingFixedOptions,
+				commerceShippingFixedOption -> {
+					long commerceCountryId = 0;
+
+					CommerceAddress commerceAddress =
+						commerceOrder.getShippingAddress();
+
+					if (commerceAddress != null) {
+						commerceCountryId = commerceAddress.getCountryId();
+					}
+
+					boolean restricted =
+						_commerceAddressRestrictionLocalService.
+							isCommerceShippingMethodRestricted(
+								commerceShippingFixedOption.
+									getCommerceShippingMethodId(),
+								commerceCountryId);
+
+					if (restricted) {
+						return null;
+					}
+
+					CommerceShippingOption commerceShippingOption =
+						_getCommerceShippingOption(
+							commerceOrder, locale, commerceAddress,
+							commerceShippingFixedOption);
+
+					if (commerceShippingOption != null) {
+						return commerceShippingOption;
+					}
+
+					return null;
+				}),
 			new CommerceShippingOptionPriorityComparator());
 	}
 
