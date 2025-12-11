@@ -12,12 +12,12 @@ import com.liferay.commerce.model.CPDefinitionInventory;
 import com.liferay.osgi.service.tracker.collections.map.ServiceTrackerCustomizerFactory;
 import com.liferay.osgi.service.tracker.collections.map.ServiceTrackerMap;
 import com.liferay.osgi.service.tracker.collections.map.ServiceTrackerMapFactory;
+import com.liferay.petra.function.transform.TransformUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.Validator;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -78,9 +78,6 @@ public class CPDefinitionInventoryEngineRegistryImpl
 
 	@Override
 	public List<CPDefinitionInventoryEngine> getCPDefinitionInventoryEngines() {
-		List<CPDefinitionInventoryEngine> cpDefinitionInventoryEngines =
-			new ArrayList<>();
-
 		List
 			<ServiceTrackerCustomizerFactory.ServiceWrapper
 				<CPDefinitionInventoryEngine>>
@@ -91,16 +88,11 @@ public class CPDefinitionInventoryEngineRegistryImpl
 			cpDefinitionInventoryEngineServiceWrappers,
 			_cpDefinitionInventoryEngineServiceWrapperPriorityComparator);
 
-		for (ServiceTrackerCustomizerFactory.ServiceWrapper
-				<CPDefinitionInventoryEngine>
-					cpDefinitionInventoryEngineServiceWrapper :
-						cpDefinitionInventoryEngineServiceWrappers) {
-
-			cpDefinitionInventoryEngines.add(
-				cpDefinitionInventoryEngineServiceWrapper.getService());
-		}
-
-		return Collections.unmodifiableList(cpDefinitionInventoryEngines);
+		return Collections.unmodifiableList(
+			TransformUtil.transform(
+				cpDefinitionInventoryEngineServiceWrappers,
+				cpDefinitionInventoryEngineServiceWrapper ->
+					cpDefinitionInventoryEngineServiceWrapper.getService()));
 	}
 
 	@Activate

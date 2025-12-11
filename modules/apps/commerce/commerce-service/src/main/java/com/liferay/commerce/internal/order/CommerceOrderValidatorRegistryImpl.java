@@ -84,29 +84,28 @@ public class CommerceOrderValidatorRegistryImpl
 			commerceOrder.getCommerceOrderItems();
 
 		for (CommerceOrderItem commerceOrderItem : commerceOrderItems) {
+			long commerceOrderItemId1 =
+				commerceOrderItem.getCommerceOrderItemId();
+
 			List<CommerceOrderValidatorResult>
-				filteredCommerceOrderValidatorResults = new ArrayList<>();
+				filteredCommerceOrderValidatorResults = TransformUtil.transform(
+					validate(locale, commerceOrderItem),
+					commerceOrderValidatorResult -> {
+						long commerceOrderItemId2 =
+							commerceOrderValidatorResult.
+								getCommerceOrderItemId();
 
-			List<CommerceOrderValidatorResult> commerceOrderValidatorResults =
-				validate(locale, commerceOrderItem);
+						if ((commerceOrderItemId1 == commerceOrderItemId2) &&
+							(commerceOrderItemId2 > 0)) {
 
-			for (CommerceOrderValidatorResult commerceOrderValidatorResult :
-					commerceOrderValidatorResults) {
+							return commerceOrderValidatorResult;
+						}
 
-				if ((commerceOrderValidatorResult.getCommerceOrderItemId() >
-						0) &&
-					(commerceOrderItem.getCommerceOrderItemId() ==
-						commerceOrderValidatorResult.
-							getCommerceOrderItemId())) {
-
-					filteredCommerceOrderValidatorResults.add(
-						commerceOrderValidatorResult);
-				}
-			}
+						return null;
+					});
 
 			commerceOrderValidatorResultsMap.put(
-				commerceOrderItem.getCommerceOrderItemId(),
-				filteredCommerceOrderValidatorResults);
+				commerceOrderItemId1, filteredCommerceOrderValidatorResults);
 		}
 
 		return commerceOrderValidatorResultsMap;
@@ -114,9 +113,6 @@ public class CommerceOrderValidatorRegistryImpl
 
 	@Override
 	public List<CommerceOrderValidator> getCommerceOrderValidators() {
-		List<CommerceOrderValidator> commerceOrderValidators =
-			new ArrayList<>();
-
 		List<ServiceWrapper<CommerceOrderValidator>>
 			commerceOrderValidatorServiceWrappers = ListUtil.fromCollection(
 				_serviceTrackerMap.values());
@@ -125,15 +121,11 @@ public class CommerceOrderValidatorRegistryImpl
 			commerceOrderValidatorServiceWrappers,
 			_commerceOrderValidatorServiceWrapperPriorityComparator);
 
-		for (ServiceWrapper<CommerceOrderValidator>
-				commerceOrderValidatorServiceWrapper :
-					commerceOrderValidatorServiceWrappers) {
-
-			commerceOrderValidators.add(
-				commerceOrderValidatorServiceWrapper.getService());
-		}
-
-		return Collections.unmodifiableList(commerceOrderValidators);
+		return Collections.unmodifiableList(
+			TransformUtil.transform(
+				commerceOrderValidatorServiceWrappers,
+				commerceOrderValidatorServiceWrapper ->
+					commerceOrderValidatorServiceWrapper.getService()));
 	}
 
 	@Override
@@ -158,21 +150,18 @@ public class CommerceOrderValidatorRegistryImpl
 		throws PortalException {
 
 		List<CommerceOrderValidatorResult> commerceOrderValidatorResults =
-			new ArrayList<>();
+			TransformUtil.transform(
+				getCommerceOrderValidators(),
+				commerceOrderValidator -> {
+					CommerceOrderValidatorResult commerceOrderValidatorResult =
+						commerceOrderValidator.validate(locale, commerceOrder);
 
-		List<CommerceOrderValidator> commerceOrderValidators =
-			getCommerceOrderValidators();
+					if (!commerceOrderValidatorResult.isValid()) {
+						return commerceOrderValidatorResult;
+					}
 
-		for (CommerceOrderValidator commerceOrderValidator :
-				commerceOrderValidators) {
-
-			CommerceOrderValidatorResult commerceOrderValidatorResult =
-				commerceOrderValidator.validate(locale, commerceOrder);
-
-			if (!commerceOrderValidatorResult.isValid()) {
-				commerceOrderValidatorResults.add(commerceOrderValidatorResult);
-			}
-		}
+					return null;
+				});
 
 		for (CommerceOrderItem commerceOrderItem :
 				commerceOrder.getCommerceOrderItems()) {

@@ -12,12 +12,12 @@ import com.liferay.osgi.service.tracker.collections.map.ServiceTrackerCustomizer
 import com.liferay.osgi.service.tracker.collections.map.ServiceTrackerCustomizerFactory.ServiceWrapper;
 import com.liferay.osgi.service.tracker.collections.map.ServiceTrackerMap;
 import com.liferay.osgi.service.tracker.collections.map.ServiceTrackerMapFactory;
+import com.liferay.petra.function.transform.TransformUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -57,26 +57,19 @@ public class CommerceOrderImporterTypeRegistryImpl
 			CommerceOrder commerceOrder)
 		throws PortalException {
 
-		List<CommerceOrderImporterType> commerceOrderImporterTypes =
-			new ArrayList<>();
+		return Collections.unmodifiableList(
+			TransformUtil.transform(
+				ListUtil.fromCollection(_serviceTrackerMap.values()),
+				commerceOrderImporterTypeServiceWrapper -> {
+					CommerceOrderImporterType commerceOrderImporterType =
+						commerceOrderImporterTypeServiceWrapper.getService();
 
-		List<ServiceWrapper<CommerceOrderImporterType>>
-			commerceOrderImporterTypeServiceWrappers = ListUtil.fromCollection(
-				_serviceTrackerMap.values());
+					if (commerceOrderImporterType.isActive(commerceOrder)) {
+						return commerceOrderImporterType;
+					}
 
-		for (ServiceWrapper<CommerceOrderImporterType>
-				commerceOrderImporterTypeServiceWrapper :
-					commerceOrderImporterTypeServiceWrappers) {
-
-			CommerceOrderImporterType commerceOrderImporterType =
-				commerceOrderImporterTypeServiceWrapper.getService();
-
-			if (commerceOrderImporterType.isActive(commerceOrder)) {
-				commerceOrderImporterTypes.add(commerceOrderImporterType);
-			}
-		}
-
-		return Collections.unmodifiableList(commerceOrderImporterTypes);
+					return null;
+				}));
 	}
 
 	@Activate

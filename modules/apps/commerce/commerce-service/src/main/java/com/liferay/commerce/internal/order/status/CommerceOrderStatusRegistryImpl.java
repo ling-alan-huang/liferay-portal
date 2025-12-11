@@ -13,12 +13,12 @@ import com.liferay.osgi.service.tracker.collections.map.ServiceTrackerCustomizer
 import com.liferay.osgi.service.tracker.collections.map.ServiceTrackerCustomizerFactory.ServiceWrapper;
 import com.liferay.osgi.service.tracker.collections.map.ServiceTrackerMap;
 import com.liferay.osgi.service.tracker.collections.map.ServiceTrackerMapFactory;
+import com.liferay.petra.function.transform.TransformUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -60,8 +60,6 @@ public class CommerceOrderStatusRegistryImpl
 	public List<CommerceOrderStatus> getCommerceOrderStatuses(
 		CommerceOrder commerceOrder) {
 
-		List<CommerceOrderStatus> commerceOrderStatuses = new ArrayList<>();
-
 		List<ServiceWrapper<CommerceOrderStatus>>
 			commerceOrderStatusServiceWrappers = ListUtil.fromCollection(
 				_serviceTrackerMap.values());
@@ -70,29 +68,29 @@ public class CommerceOrderStatusRegistryImpl
 			commerceOrderStatusServiceWrappers,
 			_commerceOrderStatusServiceWrapperOrderComparator);
 
-		for (ServiceWrapper<CommerceOrderStatus>
-				commerceOrderStatusServiceWrapper :
-					commerceOrderStatusServiceWrappers) {
+		return Collections.unmodifiableList(
+			TransformUtil.transform(
+				commerceOrderStatusServiceWrappers,
+				commerceOrderStatusServiceWrapper -> {
+					CommerceOrderStatus commerceOrderStatus =
+						commerceOrderStatusServiceWrapper.getService();
 
-			CommerceOrderStatus commerceOrderStatus =
-				commerceOrderStatusServiceWrapper.getService();
+					try {
+						if ((commerceOrder == null) ||
+							commerceOrderStatus.isEnabled(commerceOrder)) {
 
-			try {
-				if ((commerceOrder == null) ||
-					commerceOrderStatus.isEnabled(commerceOrder)) {
+							return commerceOrderStatusServiceWrapper.
+								getService();
+						}
+					}
+					catch (PortalException portalException) {
+						if (_log.isDebugEnabled()) {
+							_log.debug(portalException);
+						}
+					}
 
-					commerceOrderStatuses.add(
-						commerceOrderStatusServiceWrapper.getService());
-				}
-			}
-			catch (PortalException portalException) {
-				if (_log.isDebugEnabled()) {
-					_log.debug(portalException);
-				}
-			}
-		}
-
-		return Collections.unmodifiableList(commerceOrderStatuses);
+					return null;
+				}));
 	}
 
 	@Activate

@@ -14,6 +14,7 @@ import com.liferay.commerce.model.CommerceOrderType;
 import com.liferay.commerce.product.model.CommerceChannel;
 import com.liferay.commerce.product.service.CommerceChannelLocalService;
 import com.liferay.commerce.service.CommerceOrderTypeLocalService;
+import com.liferay.petra.function.transform.TransformUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.language.Language;
 import com.liferay.portal.kernel.log.Log;
@@ -218,35 +219,30 @@ public class CommerceOrderModelDocumentContributor
 		for (Locale locale :
 				_language.getAvailableLocales(commerceOrder.getGroupId())) {
 
-			for (CommerceOrderItem commerceOrderItem :
-					commerceOrder.getCommerceOrderItems()) {
+			commerceOrderItemNamesList.addAll(
+				TransformUtil.transform(
+					commerceOrder.getCommerceOrderItems(),
+					commerceOrderItem -> {
+						String commerceOrderItemName =
+							commerceOrderItem.getName(locale);
 
-				String commerceOrderItemName = commerceOrderItem.getName(
-					locale);
+						if (Validator.isNull(commerceOrderItemName)) {
+							commerceOrderItemName =
+								_localization.getDefaultLanguageId(
+									commerceOrderItem.getName());
+						}
 
-				if (Validator.isNull(commerceOrderItemName)) {
-					commerceOrderItemName = _localization.getDefaultLanguageId(
-						commerceOrderItem.getName());
-				}
-
-				commerceOrderItemNamesList.add(commerceOrderItemName);
-			}
+						return commerceOrderItemName;
+					}));
 		}
 
 		return commerceOrderItemNamesList.toArray(new String[0]);
 	}
 
 	private String[] _getCommerceOrderItemSKUs(CommerceOrder commerceOrder) {
-		List<String> commerceOrderItemSKUsList = new ArrayList<>();
-
-		List<CommerceOrderItem> commerceOrderItems =
-			commerceOrder.getCommerceOrderItems();
-
-		for (CommerceOrderItem commerceOrderItem : commerceOrderItems) {
-			commerceOrderItemSKUsList.add(commerceOrderItem.getSku());
-		}
-
-		return commerceOrderItemSKUsList.toArray(new String[0]);
+		return TransformUtil.transformToArray(
+			commerceOrder.getCommerceOrderItems(),
+			commerceOrderItem -> commerceOrderItem.getSku(), String.class);
 	}
 
 	private BigDecimal _getItemsQuantity(CommerceOrder commerceOrder) {

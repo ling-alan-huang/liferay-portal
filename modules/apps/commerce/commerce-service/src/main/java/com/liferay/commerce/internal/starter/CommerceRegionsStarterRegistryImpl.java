@@ -9,9 +9,9 @@ import com.liferay.commerce.starter.CommerceRegionsStarter;
 import com.liferay.commerce.starter.CommerceRegionsStarterRegistry;
 import com.liferay.osgi.service.tracker.collections.map.ServiceTrackerMap;
 import com.liferay.osgi.service.tracker.collections.map.ServiceTrackerMapFactory;
+import com.liferay.petra.function.transform.TransformUtil;
 import com.liferay.portal.kernel.util.Validator;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -38,14 +38,10 @@ public class CommerceRegionsStarterRegistryImpl
 
 	@Override
 	public List<CommerceRegionsStarter> getCommerceRegionsStarters() {
-		List<CommerceRegionsStarter> commerceRegionsStarters =
-			new ArrayList<>();
-
-		for (String key : _serviceTrackerMap.keySet()) {
-			commerceRegionsStarters.add(_serviceTrackerMap.getService(key));
-		}
-
-		return Collections.unmodifiableList(commerceRegionsStarters);
+		return Collections.unmodifiableList(
+			TransformUtil.transform(
+				_serviceTrackerMap.keySet(),
+				key -> _serviceTrackerMap.getService(key)));
 	}
 
 	@Activate

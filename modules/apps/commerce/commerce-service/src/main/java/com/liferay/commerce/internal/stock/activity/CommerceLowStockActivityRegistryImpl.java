@@ -12,12 +12,12 @@ import com.liferay.commerce.stock.activity.CommerceLowStockActivityRegistry;
 import com.liferay.osgi.service.tracker.collections.map.ServiceTrackerCustomizerFactory;
 import com.liferay.osgi.service.tracker.collections.map.ServiceTrackerMap;
 import com.liferay.osgi.service.tracker.collections.map.ServiceTrackerMapFactory;
+import com.liferay.petra.function.transform.TransformUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.Validator;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -36,9 +36,6 @@ public class CommerceLowStockActivityRegistryImpl
 
 	@Override
 	public List<CommerceLowStockActivity> getCommerceLowStockActivities() {
-		List<CommerceLowStockActivity> commerceLowStockActivities =
-			new ArrayList<>();
-
 		List
 			<ServiceTrackerCustomizerFactory.ServiceWrapper
 				<CommerceLowStockActivity>>
@@ -49,16 +46,11 @@ public class CommerceLowStockActivityRegistryImpl
 			commerceLowStockActivityServiceWrappers,
 			_commerceLowStockActivityServiceWrapperPriorityComparator);
 
-		for (ServiceTrackerCustomizerFactory.ServiceWrapper
-				<CommerceLowStockActivity>
-					commerceLowStockActivityServiceWrapper :
-						commerceLowStockActivityServiceWrappers) {
-
-			commerceLowStockActivities.add(
-				commerceLowStockActivityServiceWrapper.getService());
-		}
-
-		return Collections.unmodifiableList(commerceLowStockActivities);
+		return Collections.unmodifiableList(
+			TransformUtil.transform(
+				commerceLowStockActivityServiceWrappers,
+				commerceLowStockActivityServiceWrapper ->
+					commerceLowStockActivityServiceWrapper.getService()));
 	}
 
 	@Override

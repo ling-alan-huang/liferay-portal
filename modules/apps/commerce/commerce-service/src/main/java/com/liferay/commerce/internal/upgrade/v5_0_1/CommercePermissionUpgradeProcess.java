@@ -5,6 +5,7 @@
 
 package com.liferay.commerce.internal.upgrade.v5_0_1;
 
+import com.liferay.petra.function.transform.TransformUtil;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.model.ResourceAction;
@@ -16,7 +17,6 @@ import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -114,22 +114,18 @@ public class CommercePermissionUpgradeProcess extends UpgradeProcess {
 	private List<String> _getResourceActionIds(
 		long actionIds, String resourcePermissionName) {
 
-		List<String> resourceActionIds = new ArrayList<>();
+		return TransformUtil.transform(
+			_resourceActionLocalService.getResourceActions(
+				resourcePermissionName),
+			resourceAction -> {
+				long bitwiseValue = resourceAction.getBitwiseValue();
 
-		for (ResourceAction resourceAction :
-				_resourceActionLocalService.getResourceActions(
-					resourcePermissionName)) {
+				if ((actionIds & bitwiseValue) != bitwiseValue) {
+					return null;
+				}
 
-			long bitwiseValue = resourceAction.getBitwiseValue();
-
-			if ((actionIds & bitwiseValue) != bitwiseValue) {
-				continue;
-			}
-
-			resourceActionIds.add(resourceAction.getActionId());
-		}
-
-		return resourceActionIds;
+				return resourceAction.getActionId();
+			});
 	}
 
 	private Map<String, String> _getResourceActionNames() throws Exception {
