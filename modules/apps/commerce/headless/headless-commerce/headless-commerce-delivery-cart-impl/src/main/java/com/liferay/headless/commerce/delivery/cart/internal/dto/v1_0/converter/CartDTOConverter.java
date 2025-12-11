@@ -57,8 +57,6 @@ import com.liferay.portal.vulcan.dto.converter.DTOConverterContext;
 
 import java.math.BigDecimal;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 import java.util.ResourceBundle;
@@ -367,14 +365,10 @@ public class CartDTOConverter implements DTOConverter<CommerceOrder, Cart> {
 			BigDecimal[] discountPercentages, Locale locale)
 		throws Exception {
 
-		List<String> formattedDiscountPercentages = new ArrayList<>();
-
-		for (BigDecimal percentage : discountPercentages) {
-			formattedDiscountPercentages.add(
-				_commercePriceFormatter.format(percentage, locale));
-		}
-
-		return formattedDiscountPercentages.toArray(new String[0]);
+		return TransformUtil.transform(
+			discountPercentages,
+			percentage -> _commercePriceFormatter.format(percentage, locale),
+			String.class);
 	}
 
 	private Status _getOrderStatusInfo(
