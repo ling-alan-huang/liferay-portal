@@ -27,6 +27,7 @@ import com.liferay.commerce.service.CommerceOrderService;
 import com.liferay.commerce.test.util.CommerceInventoryTestUtil;
 import com.liferay.commerce.test.util.CommerceTestUtil;
 import com.liferay.commerce.util.CommerceGroupThreadLocal;
+import com.liferay.petra.function.transform.TransformUtil;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.configuration.module.configuration.ConfigurationProvider;
 import com.liferay.portal.kernel.model.Address;
@@ -35,7 +36,6 @@ import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.Region;
 import com.liferay.portal.kernel.model.Role;
 import com.liferay.portal.kernel.model.User;
-import com.liferay.portal.kernel.search.Document;
 import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.kernel.search.Hits;
 import com.liferay.portal.kernel.search.Indexer;
@@ -65,7 +65,6 @@ import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 import com.liferay.portal.test.rule.PermissionCheckerMethodTestRule;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -357,17 +356,10 @@ public class CommerceOrderIndexerTest {
 	}
 
 	private List<CommerceOrder> _getCommerceOrders(Hits hits) throws Exception {
-		Document[] documents = hits.getDocs();
-
-		List<CommerceOrder> commerceOrders = new ArrayList<>(documents.length);
-
-		for (Document document : documents) {
-			commerceOrders.add(
-				_commerceOrderLocalService.getCommerceOrder(
-					GetterUtil.getLong(document.get(Field.ENTRY_CLASS_PK))));
-		}
-
-		return commerceOrders;
+		return TransformUtil.transformToList(
+			hits.getDocs(),
+			document -> _commerceOrderLocalService.getCommerceOrder(
+				GetterUtil.getLong(document.get(Field.ENTRY_CLASS_PK))));
 	}
 
 	private SearchContext _getSearchContext() {

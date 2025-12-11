@@ -21,6 +21,7 @@ import com.liferay.commerce.subscription.web.internal.model.SubscriptionEntry;
 import com.liferay.frontend.data.set.provider.FDSDataProvider;
 import com.liferay.frontend.data.set.provider.search.FDSKeywords;
 import com.liferay.frontend.data.set.provider.search.FDSPagination;
+import com.liferay.petra.function.transform.TransformUtil;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.portlet.PortletProvider;
@@ -36,7 +37,6 @@ import jakarta.portlet.PortletRequest;
 
 import jakarta.servlet.http.HttpServletRequest;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -60,47 +60,37 @@ public class CommerceSubscriptionEntryFDSDataProvider
 			HttpServletRequest httpServletRequest, Sort sort)
 		throws PortalException {
 
-		List<SubscriptionEntry> subscriptionEntries = new ArrayList<>();
-
 		BaseModelSearchResult<CommerceSubscriptionEntry> baseModelSearchResult =
 			_getBaseModelSearchResult(
 				fdsKeywords, fdsPagination, httpServletRequest, sort);
 
-		for (CommerceSubscriptionEntry commerceSubscriptionEntry :
-				baseModelSearchResult.getBaseModels()) {
+		return TransformUtil.transform(
+			baseModelSearchResult.getBaseModels(),
+			commerceSubscriptionEntry -> {
+				CommerceOrderItem commerceOrderItem =
+					_commerceOrderItemService.getCommerceOrderItem(
+						commerceSubscriptionEntry.getCommerceOrderItemId());
 
-			CommerceOrderItem commerceOrderItem =
-				_commerceOrderItemService.getCommerceOrderItem(
-					commerceSubscriptionEntry.getCommerceOrderItemId());
+				CommerceOrder commerceOrder =
+					commerceOrderItem.getCommerceOrder();
 
-			String commerceOrderIdString = String.valueOf(
-				commerceOrderItem.getCommerceOrderId());
+				AccountEntry accountEntry = commerceOrder.getAccountEntry();
 
-			CommerceOrder commerceOrder = commerceOrderItem.getCommerceOrder();
-
-			AccountEntry accountEntry = commerceOrder.getAccountEntry();
-
-			String accountEntryIdString = String.valueOf(
-				accountEntry.getAccountEntryId());
-
-			SubscriptionEntry subscriptionEntry = new SubscriptionEntry(
-				commerceSubscriptionEntry.getCommerceSubscriptionEntryId(),
-				new Link(
-					commerceOrderIdString,
-					_getEditCommerceOrderURL(
-						commerceOrder.getCommerceOrderId(),
-						httpServletRequest)),
-				new Link(
-					accountEntryIdString,
-					_getEditAccountURL(
-						accountEntry.getAccountEntryId(), httpServletRequest)),
-				_getSubscriptionStatus(commerceSubscriptionEntry),
-				accountEntry.getName());
-
-			subscriptionEntries.add(subscriptionEntry);
-		}
-
-		return subscriptionEntries;
+				return new SubscriptionEntry(
+					commerceSubscriptionEntry.getCommerceSubscriptionEntryId(),
+					new Link(
+						String.valueOf(commerceOrderItem.getCommerceOrderId()),
+						_getEditCommerceOrderURL(
+							commerceOrder.getCommerceOrderId(),
+							httpServletRequest)),
+					new Link(
+						String.valueOf(accountEntry.getAccountEntryId()),
+						_getEditAccountURL(
+							accountEntry.getAccountEntryId(),
+							httpServletRequest)),
+					_getSubscriptionStatus(commerceSubscriptionEntry),
+					accountEntry.getName());
+			});
 	}
 
 	@Override

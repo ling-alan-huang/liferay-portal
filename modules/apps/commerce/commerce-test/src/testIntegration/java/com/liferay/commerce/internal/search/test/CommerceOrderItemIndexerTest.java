@@ -17,6 +17,7 @@ import com.liferay.commerce.product.test.util.CPTestUtil;
 import com.liferay.commerce.service.CommerceOrderItemLocalService;
 import com.liferay.commerce.service.CommerceOrderLocalService;
 import com.liferay.commerce.test.util.CommerceTestUtil;
+import com.liferay.petra.function.transform.TransformUtil;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.User;
@@ -41,7 +42,6 @@ import com.liferay.portal.test.rule.PermissionCheckerMethodTestRule;
 
 import java.math.BigDecimal;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -242,16 +242,8 @@ public class CommerceOrderItemIndexerTest {
 	private List<CommerceOrderItem> _getCommerceOrderItems(Hits hits)
 		throws Exception {
 
-		Document[] documents = hits.getDocs();
-
-		List<CommerceOrderItem> commerceOrderItems = new ArrayList<>(
-			documents.length);
-
-		for (Document document : documents) {
-			commerceOrderItems.add(_getCommerceOrderItem(document));
-		}
-
-		return commerceOrderItems;
+		return TransformUtil.transformToList(
+			hits.getDocs(), document -> _getCommerceOrderItem(document));
 	}
 
 	private SearchContext _getSearchContext(long commerceOrderId) {

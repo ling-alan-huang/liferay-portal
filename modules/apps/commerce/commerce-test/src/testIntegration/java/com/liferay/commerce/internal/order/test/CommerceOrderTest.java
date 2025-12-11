@@ -432,10 +432,13 @@ public class CommerceOrderTest {
 
 		// Checkout a random number of orders
 
-		List<CommerceOrder> placedCommerceOrders = new ArrayList<>();
+		List<CommerceOrder> placedCommerceOrders = TransformUtil.transform(
+			randomOrders,
+			commerceOrder -> {
+				if (!RandomTestUtil.randomBoolean()) {
+					return null;
+				}
 
-		for (CommerceOrder commerceOrder : randomOrders) {
-			if (RandomTestUtil.randomBoolean()) {
 				CommerceAddress commerceAddress = _addAddressToAccount(
 					commerceOrder.getCommerceAccountId());
 
@@ -447,11 +450,9 @@ public class CommerceOrderTest {
 				commerceOrder = _commerceOrderLocalService.updateCommerceOrder(
 					commerceOrder);
 
-				placedCommerceOrders.add(
-					_commerceOrderEngine.checkoutCommerceOrder(
-						commerceOrder, _user.getUserId()));
-			}
-		}
+				return _commerceOrderEngine.checkoutCommerceOrder(
+					commerceOrder, _user.getUserId());
+			});
 
 		ordersCount = _commerceOrderService.getUserPlacedCommerceOrdersCount(
 			_group.getCompanyId(), commerceChannelGroupId, StringPool.BLANK);
