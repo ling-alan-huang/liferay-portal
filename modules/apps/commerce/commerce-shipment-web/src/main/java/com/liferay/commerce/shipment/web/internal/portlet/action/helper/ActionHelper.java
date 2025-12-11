@@ -10,6 +10,7 @@ import com.liferay.commerce.model.CommerceShipment;
 import com.liferay.commerce.model.CommerceShipmentItem;
 import com.liferay.commerce.service.CommerceShipmentItemLocalService;
 import com.liferay.commerce.service.CommerceShipmentLocalService;
+import com.liferay.petra.function.transform.TransformUtil;
 import com.liferay.portal.kernel.dao.search.RowChecker;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.util.ParamUtil;
@@ -17,7 +18,6 @@ import com.liferay.portal.kernel.util.ParamUtil;
 import jakarta.portlet.RenderRequest;
 import jakarta.portlet.ResourceRequest;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.osgi.service.component.annotations.Component;
@@ -90,36 +90,22 @@ public class ActionHelper {
 			ResourceRequest resourceRequest)
 		throws PortalException {
 
-		List<CommerceShipmentItem> commerceShipmentItems = new ArrayList<>();
-
-		long[] commerceShipmentItemIds = ParamUtil.getLongValues(
-			resourceRequest, RowChecker.ROW_IDS);
-
-		for (long commerceShipmentItemId : commerceShipmentItemIds) {
-			commerceShipmentItems.add(
+		return TransformUtil.transformToList(
+			ParamUtil.getLongValues(resourceRequest, RowChecker.ROW_IDS),
+			commerceShipmentItemId ->
 				_commerceShipmentItemLocalService.getCommerceShipmentItem(
 					commerceShipmentItemId));
-		}
-
-		return commerceShipmentItems;
 	}
 
 	public List<CommerceShipment> getCommerceShipments(
 			ResourceRequest resourceRequest)
 		throws PortalException {
 
-		List<CommerceShipment> commerceShipments = new ArrayList<>();
-
-		long[] commerceShipmentIds = ParamUtil.getLongValues(
-			resourceRequest, RowChecker.ROW_IDS);
-
-		for (long commerceShipmentId : commerceShipmentIds) {
-			commerceShipments.add(
+		return TransformUtil.transformToList(
+			ParamUtil.getLongValues(resourceRequest, RowChecker.ROW_IDS),
+			commerceShipmentId ->
 				_commerceShipmentLocalService.getCommerceShipment(
 					commerceShipmentId));
-		}
-
-		return commerceShipments;
 	}
 
 	@Reference

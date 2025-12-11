@@ -233,74 +233,73 @@ public class CommerceShipmentDisplayContext
 	public List<HeaderActionModel> getHeaderActionModels()
 		throws PortalException {
 
-		List<HeaderActionModel> headerActionModels = new ArrayList<>();
-
 		CommerceShipment commerceShipment = getCommerceShipment();
 
 		int currentShipmentStatus = commerceShipment.getStatus();
 
-		if (currentShipmentStatus !=
+		if (currentShipmentStatus ==
 				CommerceShipmentConstants.SHIPMENT_STATUS_DELIVERED) {
 
-			int[] shipmentStatuses =
-				CommerceShipmentConstants.SHIPMENT_STATUSES;
+			return Collections.emptyList();
+		}
 
-			int[] availableShipmentStatuses = new int[0];
+		int[] shipmentStatuses = CommerceShipmentConstants.SHIPMENT_STATUSES;
 
-			if (currentShipmentStatus ==
-					CommerceShipmentConstants.
-						SHIPMENT_STATUS_READY_TO_BE_SHIPPED) {
+		int[] availableShipmentStatuses = new int[0];
 
-				availableShipmentStatuses = ArrayUtil.append(
-					availableShipmentStatuses,
-					CommerceShipmentConstants.SHIPMENT_STATUS_PROCESSING);
-			}
+		if (currentShipmentStatus ==
+				CommerceShipmentConstants.SHIPMENT_STATUS_READY_TO_BE_SHIPPED) {
 
 			availableShipmentStatuses = ArrayUtil.append(
 				availableShipmentStatuses,
-				shipmentStatuses[currentShipmentStatus + 1]);
+				CommerceShipmentConstants.SHIPMENT_STATUS_PROCESSING);
+		}
 
-			for (int shipmentStatus : availableShipmentStatuses) {
+		availableShipmentStatuses = ArrayUtil.append(
+			availableShipmentStatuses,
+			shipmentStatuses[currentShipmentStatus + 1]);
+
+		int[] newAvailableShipmentStatuses = availableShipmentStatuses;
+
+		return TransformUtil.transformToList(
+			newAvailableShipmentStatuses,
+			shipmentStatus -> {
 				String label =
 					CommerceShipmentConstants.getShipmentTransitionLabel(
 						shipmentStatus);
 
 				String buttonClass = "btn-primary";
 
-				int availableStatusesLength = availableShipmentStatuses.length;
+				int availableStatusesLength =
+					newAvailableShipmentStatuses.length;
 
 				if ((availableStatusesLength > 1) &&
-					(shipmentStatus !=
-						availableShipmentStatuses
-							[availableStatusesLength - 1])) {
+					(shipmentStatus != newAvailableShipmentStatuses
+						[availableStatusesLength - 1])) {
 
 					buttonClass = "btn-secondary";
 				}
 
-				headerActionModels.add(
-					new HeaderActionModel(
-						buttonClass, null,
-						PortletURLBuilder.create(
-							PortalUtil.getControlPanelPortletURL(
-								httpServletRequest,
-								CommercePortletKeys.COMMERCE_SHIPMENT,
-								PortletRequest.ACTION_PHASE)
-						).setActionName(
-							"/commerce_shipment/edit_commerce_shipment"
-						).setCMD(
-							"transition"
-						).setRedirect(
-							PortalUtil.getCurrentURL(httpServletRequest)
-						).setParameter(
-							"commerceShipmentId", getCommerceShipmentId()
-						).setParameter(
-							"transitionName", shipmentStatus
-						).buildString(),
-						null, label));
-			}
-		}
-
-		return headerActionModels;
+				return new HeaderActionModel(
+					buttonClass, null,
+					PortletURLBuilder.create(
+						PortalUtil.getControlPanelPortletURL(
+							httpServletRequest,
+							CommercePortletKeys.COMMERCE_SHIPMENT,
+							PortletRequest.ACTION_PHASE)
+					).setActionName(
+						"/commerce_shipment/edit_commerce_shipment"
+					).setCMD(
+						"transition"
+					).setRedirect(
+						PortalUtil.getCurrentURL(httpServletRequest)
+					).setParameter(
+						"commerceShipmentId", getCommerceShipmentId()
+					).setParameter(
+						"transitionName", shipmentStatus
+					).buildString(),
+					null, label);
+			});
 	}
 
 	public String getNavigation() {
@@ -378,38 +377,37 @@ public class CommerceShipmentDisplayContext
 	public List<StepModel> getShipmentSteps() throws PortalException {
 		CommerceShipment commerceShipment = getCommerceShipment();
 
-		List<StepModel> steps = new ArrayList<>();
+		return TransformUtil.transformToList(
+			CommerceShipmentConstants.SHIPMENT_STATUSES,
+			shipmentStatus -> {
+				StepModel step = new StepModel();
 
-		for (int shipmentStatus : CommerceShipmentConstants.SHIPMENT_STATUSES) {
-			StepModel step = new StepModel();
+				step.setId(String.valueOf(shipmentStatus));
+				step.setLabel(
+					LanguageUtil.get(
+						httpServletRequest,
+						CommerceShipmentConstants.getShipmentStatusLabel(
+							shipmentStatus)));
 
-			step.setId(String.valueOf(shipmentStatus));
-			step.setLabel(
-				LanguageUtil.get(
-					httpServletRequest,
-					CommerceShipmentConstants.getShipmentStatusLabel(
-						shipmentStatus)));
+				if ((commerceShipment.getStatus() == shipmentStatus) &&
+					(shipmentStatus !=
+						CommerceShipmentConstants.SHIPMENT_STATUS_DELIVERED)) {
 
-			if ((commerceShipment.getStatus() == shipmentStatus) &&
-				(shipmentStatus !=
-					CommerceShipmentConstants.SHIPMENT_STATUS_DELIVERED)) {
+					step.setState("active");
+				}
+				else if ((commerceShipment.getStatus() > shipmentStatus) ||
+						 (commerceShipment.getStatus() ==
+							 CommerceShipmentConstants.
+								 SHIPMENT_STATUS_DELIVERED)) {
 
-				step.setState("active");
-			}
-			else if ((commerceShipment.getStatus() > shipmentStatus) ||
-					 (commerceShipment.getStatus() ==
-						 CommerceShipmentConstants.SHIPMENT_STATUS_DELIVERED)) {
+					step.setState("completed");
+				}
+				else {
+					step.setState("inactive");
+				}
 
-				step.setState("completed");
-			}
-			else {
-				step.setState("inactive");
-			}
-
-			steps.add(step);
-		}
-
-		return steps;
+				return step;
+			});
 	}
 
 	public CommerceAddress getShippingAddress() throws PortalException {
