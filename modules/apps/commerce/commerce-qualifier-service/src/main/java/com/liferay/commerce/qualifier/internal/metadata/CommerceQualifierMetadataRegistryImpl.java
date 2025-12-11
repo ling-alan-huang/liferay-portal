@@ -9,8 +9,8 @@ import com.liferay.commerce.qualifier.metadata.CommerceQualifierMetadata;
 import com.liferay.commerce.qualifier.metadata.CommerceQualifierMetadataRegistry;
 import com.liferay.osgi.service.tracker.collections.map.ServiceTrackerMap;
 import com.liferay.osgi.service.tracker.collections.map.ServiceTrackerMapFactory;
+import com.liferay.petra.function.transform.TransformUtil;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
@@ -53,17 +53,10 @@ public class CommerceQualifierMetadataRegistryImpl
 
 	@Override
 	public List<CommerceQualifierMetadata> getCommerceQualifierMetadatas() {
-		List<CommerceQualifierMetadata> commerceQualifierMetadatas =
-			new ArrayList<>();
-
-		for (String key : _serviceTrackerMap.keySet()) {
-			CommerceQualifierMetadata commerceQualifierMetadata =
-				_serviceTrackerMap.getService(key);
-
-			commerceQualifierMetadatas.add(commerceQualifierMetadata);
-		}
-
-		return Collections.unmodifiableList(commerceQualifierMetadatas);
+		return Collections.unmodifiableList(
+			TransformUtil.transform(
+				_serviceTrackerMap.keySet(),
+				key -> _serviceTrackerMap.getService(key)));
 	}
 
 	@Activate
