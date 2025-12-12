@@ -376,6 +376,8 @@ public class CartDTOConverter implements DTOConverter<CommerceOrder, Cart> {
 
 		return formattedDiscountPercentages.toArray(new String[0]);
 	}
+	
+	
 
 	private Status _getOrderStatusInfo(
 		int orderStatus, String commerceOrderStatusLabel,
