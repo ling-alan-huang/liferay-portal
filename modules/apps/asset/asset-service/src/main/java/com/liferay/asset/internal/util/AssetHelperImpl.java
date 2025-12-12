@@ -499,6 +499,8 @@ public class AssetHelperImpl implements AssetHelper {
 			assetEntryQuery);
 
 		return baseSearcher.search(searchContext);
+		
+		
 	}
 
 	@Override
