@@ -284,16 +284,9 @@ public class ByWeightCommerceShippingEngine implements CommerceShippingEngine {
 						return null;
 					}
 
-					CommerceShippingOption commerceShippingOption =
-						_getCommerceShippingOption(
-							commerceOrder, locale, commerceAddress,
-							commerceShippingFixedOption);
-
-					if (commerceShippingOption != null) {
-						return commerceShippingOption;
-					}
-
-					return null;
+					return _getCommerceShippingOption(
+						commerceOrder, locale, commerceAddress,
+						commerceShippingFixedOption);
 				}),
 			new CommerceShippingOptionPriorityComparator());
 	}
