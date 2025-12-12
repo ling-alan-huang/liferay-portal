@@ -243,25 +243,21 @@ public class CommerceShipmentDisplayContext
 			return Collections.emptyList();
 		}
 
-		int[] availableShipmentStatuses = new int[0];
+		List<Integer> availableShipmentStatuses = new ArrayList<>();
 
 		if (currentShipmentStatus ==
 				CommerceShipmentConstants.SHIPMENT_STATUS_READY_TO_BE_SHIPPED) {
 
-			availableShipmentStatuses = ArrayUtil.append(
-				availableShipmentStatuses,
+			availableShipmentStatuses.add(
 				CommerceShipmentConstants.SHIPMENT_STATUS_PROCESSING);
 		}
 
-		availableShipmentStatuses = ArrayUtil.append(
-			availableShipmentStatuses,
+		availableShipmentStatuses.add(
 			CommerceShipmentConstants.SHIPMENT_STATUSES
 				[currentShipmentStatus + 1]);
 
-		int[] newAvailableShipmentStatuses = availableShipmentStatuses;
-
-		return TransformUtil.transformToList(
-			newAvailableShipmentStatuses,
+		return TransformUtil.transform(
+			availableShipmentStatuses,
 			shipmentStatus -> {
 				String label =
 					CommerceShipmentConstants.getShipmentTransitionLabel(
@@ -269,12 +265,12 @@ public class CommerceShipmentDisplayContext
 
 				String buttonClass = "btn-primary";
 
-				int availableStatusesLength =
-					newAvailableShipmentStatuses.length;
+				int availableStatusesLength = availableShipmentStatuses.size();
 
 				if ((availableStatusesLength > 1) &&
-					(shipmentStatus != newAvailableShipmentStatuses
-						[availableStatusesLength - 1])) {
+					!shipmentStatus.equals(
+						availableShipmentStatuses.get(
+							availableStatusesLength - 1))) {
 
 					buttonClass = "btn-secondary";
 				}
