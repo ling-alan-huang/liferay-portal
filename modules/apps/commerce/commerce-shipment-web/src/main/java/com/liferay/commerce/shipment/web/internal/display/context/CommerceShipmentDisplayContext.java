@@ -243,8 +243,6 @@ public class CommerceShipmentDisplayContext
 			return Collections.emptyList();
 		}
 
-		int[] shipmentStatuses = CommerceShipmentConstants.SHIPMENT_STATUSES;
-
 		int[] availableShipmentStatuses = new int[0];
 
 		if (currentShipmentStatus ==
@@ -257,7 +255,8 @@ public class CommerceShipmentDisplayContext
 
 		availableShipmentStatuses = ArrayUtil.append(
 			availableShipmentStatuses,
-			shipmentStatuses[currentShipmentStatus + 1]);
+			CommerceShipmentConstants.SHIPMENT_STATUSES
+				[currentShipmentStatus + 1]);
 
 		int[] newAvailableShipmentStatuses = availableShipmentStatuses;
 
