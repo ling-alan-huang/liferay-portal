@@ -226,13 +226,12 @@ public class CommerceOrderModelDocumentContributor
 						String commerceOrderItemName =
 							commerceOrderItem.getName(locale);
 
-						if (Validator.isNull(commerceOrderItemName)) {
-							commerceOrderItemName =
-								_localization.getDefaultLanguageId(
-									commerceOrderItem.getName());
+						if (Validator.isNotNull(commerceOrderItemName)) {
+							return commerceOrderItemName;
 						}
 
-						return commerceOrderItemName;
+						return _localization.getDefaultLanguageId(
+							commerceOrderItem.getName());
 					}));
 		}
 
