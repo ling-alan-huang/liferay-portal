@@ -478,6 +478,7 @@ public class DocumentConversionImpl implements DocumentConversion {
 						documentFormatRegistry.getFormatByFileExtension(
 							targetExtension);
 
+					
 					if (targetDocumentFormat == null) {
 						if (_log.isWarnEnabled()) {
 							_log.warn(
