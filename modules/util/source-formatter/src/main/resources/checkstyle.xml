@@ -443,6 +443,7 @@
 		<module name="com.liferay.source.formatter.checkstyle.check.FilterGetCompanyIdCheck">
 			<property name="category" value="Bug Prevention" />
 			<property name="description" value="Checks that `PortalImpl.getCompanyId`, `PortalInstances.getCompany` or `PortalUtil.getCompanyId` is used in `LiferayFilter` classes." />
+			<message key="get.company.call.avoid" value="Do not use &quot;{0}&quot;, use &quot;CompanyThreadLocal.getCompanyId&quot; instead" />
 			<message key="get.company.id.call.avoid" value="Do not use &quot;{0}&quot;, use &quot;CompanyThreadLocal.getCompanyId&quot; instead" />
 		</module>
 		<module name="com.liferay.source.formatter.checkstyle.check.FilterStringWhitespaceCheck">
