@@ -90,8 +90,31 @@ public class ChainingCheck extends BaseCheck {
 
 			int chainSize = chainedMethodNames.size();
 
+			if (chainSize == 1) {
+				continue;
+			}
+
+			if (chainSize == 2) {
+				DetailAST elistDetailAST = methodCallDetailAST.findFirstToken(
+					TokenTypes.ELIST);
+
+				if ((elistDetailAST.getChildCount() == 0) &&
+					(dotDetailAST == null)) {
+
+					continue;
+				}
+			}
+
 			if (chainSize > 3) {
 				_checkChainOrder(methodCallDetailAST, chainedMethodNames);
+			}
+
+			for (int i = 0; i < (chainSize - 1); i++) {
+				String chainedMethodName = chainedMethodNames.get(i);
+
+				if (chainedMethodName.matches("_?get[A-Z_].*")) {
+					log(methodCallDetailAST, _MSG_AVOID_GET_CALL_CHAINING);
+				}
 			}
 		}
 	}
@@ -364,6 +387,9 @@ public class ChainingCheck extends BaseCheck {
 	}
 
 	private static final String _APPLY_TO_TYPE_CAST_KEY = "applyToTypeCast";
+
+	private static final String _MSG_AVOID_GET_CALL_CHAINING =
+		"chaining.avoid.get.call";
 
 	private static final String _MSG_AVOID_PARENTHESES_CHAINING =
 		"chaining.avoid.parentheses";
