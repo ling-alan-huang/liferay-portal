@@ -390,6 +390,7 @@ public class DataRecordResourceImpl extends BaseDataRecordResourceImpl {
 		}
 	}
 
+	
 	private BooleanFilter _getBooleanFilter(
 			Long dataListViewId, DDLRecordSet ddlRecordSet)
 		throws Exception {
