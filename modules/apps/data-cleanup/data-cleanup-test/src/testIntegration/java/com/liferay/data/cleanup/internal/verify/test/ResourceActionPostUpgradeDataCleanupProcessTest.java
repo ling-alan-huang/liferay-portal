@@ -186,7 +186,8 @@ public class ResourceActionPostUpgradeDataCleanupProcessTest
 	@Test
 	public void testVerifyDoesNotRunIfModulesNotStarted() throws Exception {
 		AtomicReference<Bundle> bundleAtomicReference = new AtomicReference<>();
-
+ 
+		
 		test(
 			logCapture -> {
 				List<String> messages = logCapture.getMessages();
