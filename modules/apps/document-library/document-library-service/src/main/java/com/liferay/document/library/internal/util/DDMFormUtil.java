@@ -43,7 +43,7 @@ public class DDMFormUtil {
 			ddmFormField.setRepeatable(false);
 			ddmFormField.setRequired(false);
 			ddmFormField.setShowLabel(true);
-
+  
 			LocalizedValue label = ddmFormField.getLabel();
 
 			label.addString(

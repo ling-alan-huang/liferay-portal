@@ -18,7 +18,7 @@ import java.util.function.Predicate;
  * @author Adolfo Pérez
  */
 public class DLFileEntryTypePermissionUtil {
-
+ 
 	public static Map<Long, String[]> getRoleIdsToActionIds(
 		List<ResourceAction> resourceActions,
 		List<ResourcePermission> resourcePermissions,
