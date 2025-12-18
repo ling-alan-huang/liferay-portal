@@ -183,12 +183,7 @@ public class TransformUtilCheck extends BaseCheck {
 //			if (hasParentWithTokenType(methodCallDetailAST, TokenTypes.METHOD_CALL)) {
 //				continue;
 //			}
-			parentDetailAST = getParentWithTokenType(methodCallDetailAST, TokenTypes.METHOD_CALL);
-			
-			if (parentDetailAST != null && parentDetailAST.getLineNo() > forEachClauseDetailAST.getLineNo()) {
-				continue;
-			}
-			
+			int a = 0;
 			DetailAST dotDetailAST = methodCallDetailAST.findFirstToken(
 				TokenTypes.DOT);
 
@@ -217,8 +212,22 @@ public class TransformUtilCheck extends BaseCheck {
 //				return;
 //			}
 			if (methodCallClassName.equals(variableName)) {
-				if (methodCallMethodName.equals("add") &&
-						_isLastExpressionInForEachBody(methodCallDetailAST, nextSiblingDetailAST,
+				if(!methodCallMethodName.equals("add")) {
+					return;
+				}
+				
+				parentDetailAST = getParentWithTokenType(methodCallDetailAST, TokenTypes.LAMBDA);
+
+				if (parentDetailAST != null && parentDetailAST.getLineNo() > forEachClauseDetailAST.getLineNo()) {
+					return;
+				}
+//				parentDetailAST = getParentWithTokenType(methodCallDetailAST, TokenTypes.METHOD_CALL);
+//
+//				if (parentDetailAST != null && parentDetailAST.getLineNo() > forEachClauseDetailAST.getLineNo()) {
+//					continue;
+//				}
+				
+				if (_isLastExpressionInForEachBody(methodCallDetailAST, nextSiblingDetailAST,
 								nextSiblingDetailAST.getLastChild())) {
 					continue;
 				}
