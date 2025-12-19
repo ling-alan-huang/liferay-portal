@@ -32,6 +32,7 @@ import com.liferay.dynamic.data.mapping.util.DDM;
 import com.liferay.dynamic.data.mapping.util.DDMFormValuesToFieldsConverter;
 import com.liferay.dynamic.data.mapping.util.FieldsToDDMFormValuesConverter;
 import com.liferay.expando.kernel.model.ExpandoBridge;
+import com.liferay.petra.function.transform.TransformUtil;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.aop.AopService;
@@ -43,7 +44,6 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.SystemEventConstants;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.search.BaseModelSearchResult;
-import com.liferay.portal.kernel.search.Document;
 import com.liferay.portal.kernel.search.Hits;
 import com.liferay.portal.kernel.search.Indexable;
 import com.liferay.portal.kernel.search.IndexableType;
@@ -1086,35 +1086,35 @@ public class DDLRecordLocalServiceImpl extends DDLRecordLocalServiceBaseImpl {
 	}
 
 	protected List<DDLRecord> getRecords(Hits hits) throws PortalException {
-		List<DDLRecord> ddlRecords = new ArrayList<>();
-
-		for (Document document : hits.toList()) {
-			long recordId = GetterUtil.getLong(
-				document.get(
-					com.liferay.portal.kernel.search.Field.ENTRY_CLASS_PK));
-
-			try {
-				ddlRecords.add(getRecord(recordId));
-			}
-			catch (NoSuchRecordException noSuchRecordException) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(
-						"DDL record index is stale and contains record " +
-							recordId,
-						noSuchRecordException);
-				}
-
-				long companyId = GetterUtil.getLong(
+		return TransformUtil.transform(
+			hits.toList(),
+			document -> {
+				long recordId = GetterUtil.getLong(
 					document.get(
-						com.liferay.portal.kernel.search.Field.COMPANY_ID));
+						com.liferay.portal.kernel.search.Field.ENTRY_CLASS_PK));
 
-				Indexer<DDLRecord> indexer = getDDLRecordIndexer();
+				try {
+					return getRecord(recordId);
+				}
+				catch (NoSuchRecordException noSuchRecordException) {
+					if (_log.isWarnEnabled()) {
+						_log.warn(
+							"DDL record index is stale and contains record " +
+								recordId,
+							noSuchRecordException);
+					}
 
-				indexer.delete(companyId, document.getUID());
-			}
-		}
+					long companyId = GetterUtil.getLong(
+						document.get(
+							com.liferay.portal.kernel.search.Field.COMPANY_ID));
 
-		return ddlRecords;
+					Indexer<DDLRecord> indexer = getDDLRecordIndexer();
+
+					indexer.delete(companyId, document.getUID());
+
+					return null;
+				}
+			});
 	}
 
 	protected String getWorkflowAssetClassName(DDLRecordSet recordSet) {
