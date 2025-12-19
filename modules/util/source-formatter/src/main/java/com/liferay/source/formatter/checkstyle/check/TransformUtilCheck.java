@@ -247,6 +247,7 @@ public class TransformUtilCheck extends BaseCheck {
 
 				if (methodCallMethodName.startsWith("add") ||
 						methodCallMethodName.startsWith("compute") ||
+						methodCallMethodName.startsWith("delete") ||
 						methodCallMethodName.startsWith("remove") ||
 						methodCallMethodName.startsWith("put") ||
 						methodCallMethodName.startsWith("set")) {
