@@ -7,7 +7,9 @@ package com.liferay.dynamic.data.lists.service.impl;
 
 import com.liferay.dynamic.data.mapping.storage.Field;
 import com.liferay.dynamic.data.mapping.storage.Fields;
+import com.liferay.petra.function.transform.TransformUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
+import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -237,33 +239,18 @@ public class DDLRecordLocalServiceImplTest {
 	}
 
 	protected List<Serializable> toList(boolean[] fieldValues) {
-		List<Serializable> values = new ArrayList<>();
-
-		for (boolean fieldValue : fieldValues) {
-			values.add(fieldValue);
-		}
-
-		return values;
+		return TransformUtil.transformToList(
+			ArrayUtil.toArray(fieldValues), fieldValue -> fieldValue);
 	}
 
 	protected List<Serializable> toList(int[] fieldValues) {
-		List<Serializable> values = new ArrayList<>();
-
-		for (int fieldValue : fieldValues) {
-			values.add(fieldValue);
-		}
-
-		return values;
+		return TransformUtil.transformToList(
+			fieldValues, fieldValue -> fieldValue);
 	}
 
 	protected List<Serializable> toList(String[] fieldValues) {
-		List<Serializable> values = new ArrayList<>();
-
-		for (String fieldValue : fieldValues) {
-			values.add(fieldValue);
-		}
-
-		return values;
+		return TransformUtil.transformToList(
+			fieldValues, fieldValue -> fieldValue);
 	}
 
 	private final DDLRecordLocalServiceImpl _ddlRecordLocalServiceImpl =
