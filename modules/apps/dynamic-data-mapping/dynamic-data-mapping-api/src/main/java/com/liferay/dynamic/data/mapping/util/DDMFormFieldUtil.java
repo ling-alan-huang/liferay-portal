@@ -7,6 +7,7 @@ package com.liferay.dynamic.data.mapping.util;
 
 import com.liferay.dynamic.data.mapping.form.field.type.constants.DDMFormFieldTypeConstants;
 import com.liferay.dynamic.data.mapping.model.DDMFormField;
+import com.liferay.petra.function.transform.TransformUtil;
 import com.liferay.petra.string.CharPool;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
@@ -95,27 +96,28 @@ public class DDMFormFieldUtil {
 					JSONObject columnJSONObject =
 						columnsJSONArray.getJSONObject(j);
 
-					for (String fieldName :
+					sortedNestedDDMFormFields.addAll(
+						TransformUtil.transform(
 							JSONUtil.toStringList(
-								columnJSONObject.getJSONArray("fields"))) {
+								columnJSONObject.getJSONArray("fields")),
+							fieldName -> {
+								DDMFormField nestedDDMFormField =
+									nestedDDMFormFieldsMap.get(fieldName);
 
-						DDMFormField nestedDDMFormField =
-							nestedDDMFormFieldsMap.get(fieldName);
+								if (nestedDDMFormField == null) {
+									return null;
+								}
 
-						if (nestedDDMFormField == null) {
-							continue;
-						}
+								if (StringUtil.equals(
+										nestedDDMFormField.getType(),
+										DDMFormFieldTypeConstants.FIELDSET)) {
 
-						if (StringUtil.equals(
-								nestedDDMFormField.getType(),
-								DDMFormFieldTypeConstants.FIELDSET)) {
+									sortNestedDDMFormFields(
+										ListUtil.toList(nestedDDMFormField));
+								}
 
-							sortNestedDDMFormFields(
-								ListUtil.toList(nestedDDMFormField));
-						}
-
-						sortedNestedDDMFormFields.add(nestedDDMFormField);
-					}
+								return nestedDDMFormField;
+							}));
 				}
 			}
 

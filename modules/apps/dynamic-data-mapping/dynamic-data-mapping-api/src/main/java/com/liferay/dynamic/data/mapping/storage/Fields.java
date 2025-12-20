@@ -5,12 +5,12 @@
 
 package com.liferay.dynamic.data.mapping.storage;
 
+import com.liferay.petra.function.transform.TransformUtil;
 import com.liferay.petra.lang.HashUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 
 import java.io.Serializable;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -151,17 +151,15 @@ public class Fields implements Iterable<Field>, Serializable {
 	}
 
 	protected List<Field> getFieldsList(boolean includePrivateFields) {
-		List<Field> fields = new ArrayList<>();
+		return TransformUtil.transform(
+			_fieldsMap.values(),
+			field -> {
+				if (!includePrivateFields && field.isPrivate()) {
+					return null;
+				}
 
-		for (Field field : _fieldsMap.values()) {
-			if (!includePrivateFields && field.isPrivate()) {
-				continue;
-			}
-
-			fields.add(field);
-		}
-
-		return fields;
+				return field;
+			});
 	}
 
 	private final Map<String, Field> _fieldsMap = new HashMap<>();
