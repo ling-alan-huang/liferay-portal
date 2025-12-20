@@ -8,10 +8,10 @@ package com.liferay.dynamic.data.mapping.data.provider.instance.internal;
 import com.liferay.dynamic.data.mapping.data.provider.DDMDataProviderRequest;
 import com.liferay.dynamic.data.mapping.data.provider.DDMDataProviderResponse;
 import com.liferay.dynamic.data.mapping.storage.DDMStorageAdapterRegistry;
+import com.liferay.petra.function.transform.TransformUtil;
 import com.liferay.portal.kernel.util.KeyValuePair;
 import com.liferay.portal.test.rule.LiferayUnitTestRule;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
@@ -78,15 +78,16 @@ public class DDMStorageTypesDataProviderTest {
 			expectedStorageTypes
 		);
 
-		List<KeyValuePair> expectedKeyValuePairs = new ArrayList<>();
+		List<KeyValuePair> expectedKeyValuePairs = TransformUtil.transform(
+			expectedStorageTypes,
+			expectedStorageType -> {
+				if (expectedStorageType.equals("json")) {
+					return null;
+				}
 
-		for (String type : expectedStorageTypes) {
-			if (type.equals("json")) {
-				continue;
-			}
-
-			expectedKeyValuePairs.add(new KeyValuePair(type, type));
-		}
+				return new KeyValuePair(
+					expectedStorageType, expectedStorageType);
+			});
 
 		DDMDataProviderRequest.Builder builder =
 			DDMDataProviderRequest.Builder.newBuilder();

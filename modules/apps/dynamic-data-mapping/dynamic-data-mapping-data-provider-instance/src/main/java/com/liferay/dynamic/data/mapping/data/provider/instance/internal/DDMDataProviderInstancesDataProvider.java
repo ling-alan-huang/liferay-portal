@@ -8,8 +8,8 @@ package com.liferay.dynamic.data.mapping.data.provider.instance.internal;
 import com.liferay.dynamic.data.mapping.data.provider.DDMDataProvider;
 import com.liferay.dynamic.data.mapping.data.provider.DDMDataProviderRequest;
 import com.liferay.dynamic.data.mapping.data.provider.DDMDataProviderResponse;
-import com.liferay.dynamic.data.mapping.model.DDMDataProviderInstance;
 import com.liferay.dynamic.data.mapping.service.DDMDataProviderInstanceLocalService;
+import com.liferay.petra.function.transform.TransformUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.KeyValuePair;
@@ -41,21 +41,17 @@ public class DDMDataProviderInstancesDataProvider implements DDMDataProvider {
 			long[] groupIds = portal.getCurrentAndAncestorSiteGroupIds(
 				ddmDataProviderRequest.getGroupId());
 
-			List<DDMDataProviderInstance> ddmDataProviderInstances =
+			keyValuePairs = TransformUtil.transform(
 				ddmDataProviderInstanceLocalService.getDataProviderInstances(
-					groupIds);
+					groupIds),
+				ddmDataProviderInstance -> {
+					long value =
+						ddmDataProviderInstance.getDataProviderInstanceId();
+					String label = ddmDataProviderInstance.getName(
+						LocaleThreadLocal.getThemeDisplayLocale());
 
-			for (DDMDataProviderInstance ddmDataProviderInstance :
-					ddmDataProviderInstances) {
-
-				long value =
-					ddmDataProviderInstance.getDataProviderInstanceId();
-				String label = ddmDataProviderInstance.getName(
-					LocaleThreadLocal.getThemeDisplayLocale());
-
-				keyValuePairs.add(
-					new KeyValuePair(String.valueOf(value), label));
-			}
+					return new KeyValuePair(String.valueOf(value), label);
+				});
 		}
 		catch (Exception exception) {
 			if (_log.isDebugEnabled()) {

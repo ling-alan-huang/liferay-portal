@@ -10,14 +10,13 @@ import com.liferay.dynamic.data.mapping.data.provider.DDMDataProviderRequest;
 import com.liferay.dynamic.data.mapping.data.provider.DDMDataProviderResponse;
 import com.liferay.dynamic.data.mapping.storage.DDMStorageAdapterRegistry;
 import com.liferay.dynamic.data.mapping.storage.StorageType;
+import com.liferay.petra.function.transform.TransformUtil;
 import com.liferay.portal.kernel.language.Language;
 import com.liferay.portal.kernel.util.KeyValuePair;
 
 import jakarta.servlet.http.HttpServletRequest;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -35,33 +34,30 @@ public class DDMStorageTypesDataProvider implements DDMDataProvider {
 	public DDMDataProviderResponse getData(
 		DDMDataProviderRequest ddmDataProviderRequest) {
 
-		List<KeyValuePair> keyValuePairs = new ArrayList<>();
-
-		Set<String> storageTypes =
-			ddmStorageAdapterRegistry.getDDMStorageAdapterTypes();
-
 		HttpServletRequest httpServletRequest =
 			ddmDataProviderRequest.getParameter(
 				"httpServletRequest", HttpServletRequest.class);
 
-		for (String storageType : storageTypes) {
-			if (storageType.equals(StorageType.JSON.getValue())) {
-				continue;
-			}
+		List<KeyValuePair> keyValuePairs = TransformUtil.transform(
+			ddmStorageAdapterRegistry.getDDMStorageAdapterTypes(),
+			ddmStorageAdapterType -> {
+				if (ddmStorageAdapterType.equals(StorageType.JSON.getValue())) {
+					return null;
+				}
 
-			if (httpServletRequest == null) {
-				keyValuePairs.add(new KeyValuePair(storageType, storageType));
+				if (httpServletRequest == null) {
+					return new KeyValuePair(
+						ddmStorageAdapterType, ddmStorageAdapterType);
+				}
 
-				continue;
-			}
-
-			keyValuePairs.add(
-				new KeyValuePair(
-					storageType,
+				return new KeyValuePair(
+					ddmStorageAdapterType,
 					_language.get(
-						httpServletRequest, storageType + "[stands-for]",
-						_language.get(httpServletRequest, storageType))));
-		}
+						httpServletRequest,
+						ddmStorageAdapterType + "[stands-for]",
+						_language.get(
+							httpServletRequest, ddmStorageAdapterType)));
+			});
 
 		DDMDataProviderResponse.Builder builder =
 			DDMDataProviderResponse.Builder.newBuilder();
