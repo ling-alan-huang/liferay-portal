@@ -401,7 +401,7 @@ public class LayoutUtilityPageEntryLocalServiceImpl
 		layoutUtilityPageEntry.setModifiedDate(new Date());
 		layoutUtilityPageEntry.setPreviewFileEntryId(previewFileEntryId);
 
-		layoutUtilityPageEntry =  layoutUtilityPageEntryPersistence.update(
+		layoutUtilityPageEntry = layoutUtilityPageEntryPersistence.update(
 			layoutUtilityPageEntry);
 
 		long previousPreviewFileEntryId =
