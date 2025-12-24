@@ -34,6 +34,7 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -467,12 +468,12 @@ public class AssetSearcher extends BaseSearcher {
 	private long[] _filterCategoryIdsByVisibilityType(
 		long[] assetCategoryIds, String fieldName) {
 
-		List<Long> filteredCategoryIds = TransformUtil.transformToList(
-			assetCategoryIds,
+		return TransformUtil.transformToLongArray(
+			Arrays.asList(assetCategoryIds),
 			assetCategoryId -> {
 				AssetCategory assetCategory =
 					AssetCategoryLocalServiceUtil.fetchAssetCategory(
-						assetCategoryId);
+						GetterUtil.getLong(assetCategoryId));
 
 				if (assetCategory == null) {
 					return null;
@@ -496,8 +497,6 @@ public class AssetSearcher extends BaseSearcher {
 
 				return assetCategoryId;
 			});
-
-		return ArrayUtil.toArray(filteredCategoryIds.toArray(new Long[0]));
 	}
 
 	private BooleanFilter _getCategoryIdsBooleanFilter(
