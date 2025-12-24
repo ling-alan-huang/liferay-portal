@@ -12,7 +12,6 @@ import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.theme.PortletDisplay;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
-import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -23,6 +22,7 @@ import jakarta.portlet.PortletURL;
 
 import jakarta.servlet.http.HttpServletRequest;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -100,11 +100,12 @@ public class AssetCategoryUtil {
 	public static long[] filterCategoryIds(
 		long vocabularyId, long[] categoryIds) {
 
-		List<Long> filteredCategoryIds = TransformUtil.transformToList(
-			categoryIds,
+		return TransformUtil.transformToLongArray(
+			Arrays.asList(categoryIds),
 			categoryId -> {
 				AssetCategory category =
-					AssetCategoryLocalServiceUtil.fetchCategory(categoryId);
+					AssetCategoryLocalServiceUtil.fetchCategory(
+						GetterUtil.getLong(categoryId));
 
 				if ((category == null) ||
 					(category.getVocabularyId() != vocabularyId)) {
@@ -114,8 +115,6 @@ public class AssetCategoryUtil {
 
 				return category.getCategoryId();
 			});
-
-		return ArrayUtil.toArray(filteredCategoryIds.toArray(new Long[0]));
 	}
 
 	public static String[] getCategoryIdsTitles(
