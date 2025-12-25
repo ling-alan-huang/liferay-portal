@@ -477,6 +477,8 @@ public class AssetSearcher extends BaseSearcher {
 				continue;
 			}
 
+			
+
 			AssetVocabulary assetVocabulary =
 				AssetVocabularyLocalServiceUtil.fetchAssetVocabulary(
 					assetCategory.getVocabularyId());
