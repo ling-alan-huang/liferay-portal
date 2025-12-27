@@ -307,6 +307,7 @@ public class PortletDataContextImpl implements PortletDataContext {
 			ExportImportPermissionUtil.getRoleIdsToActionIds(
 				_companyId, resourceName, resourcePK);
 
+
 		List<KeyValuePair> permissionKeyValuePairs = new ArrayList<>();
 
 		for (Map.Entry<Long, Set<String>> entry :

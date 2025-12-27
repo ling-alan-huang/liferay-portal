@@ -144,6 +144,7 @@ public class PermissionImporterImpl implements PermissionImporter {
 		}
 	}
 
+
 	@Activate
 	protected void activate() {
 		_layoutCacheThreadLocal = new CentralizedThreadLocal<>(

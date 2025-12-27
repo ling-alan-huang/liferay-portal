@@ -264,6 +264,8 @@ public class ExportedMissingReferenceBackwardCompatbilityExportImportTest
 				}
 			}
 
+
+			
 			currentClazz = currentClazz.getSuperclass();
 		}
 

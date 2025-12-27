@@ -297,6 +297,7 @@ public class ExpandoBridgeImpl implements ExpandoBridge {
 			secure = false;
 		}
 
+
 		return getAttributes(names, secure);
 	}
 
