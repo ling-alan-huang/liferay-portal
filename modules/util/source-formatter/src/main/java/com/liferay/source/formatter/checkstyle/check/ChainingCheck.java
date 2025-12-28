@@ -225,12 +225,23 @@ public class ChainingCheck extends BaseCheck {
 				!isExcludedPath(RUN_OUTSIDE_PORTAL_EXCLUDES)) {
 
 				log(methodCallDetailAST, _MSG_AVOID_TOO_MANY_CONCAT);
+
+				return;
 			}
-			else {
-				log(
-					methodCallDetailAST, _MSG_AVOID_METHOD_CHAINING,
-					getMethodName(methodCallDetailAST));
+
+			for (int i = 0; i < (chainSize - 1); i++) {
+				String chainedMethodName = chainedMethodNames.get(i);
+
+				if (!chainedMethodName.matches("_?get[A-Z_].*")) {
+					continue;
+				}
+
+				log(methodCallDetailAST, _MSG_AVOID_GET_CALL_CHAINING);
 			}
+
+			//				log(
+			//					methodCallDetailAST, _MSG_AVOID_METHOD_CHAINING,
+			//					getMethodName(methodCallDetailAST));
 		}
 	}
 
@@ -800,6 +811,9 @@ public class ChainingCheck extends BaseCheck {
 	private static final String _APPLY_TO_TYPE_CAST_KEY = "applyToTypeCast";
 
 	private static final String _MSG_ALLOWED_CHAINING = "chaining.allowed";
+
+	private static final String _MSG_AVOID_GET_CALL_CHAINING =
+		"chaining.avoid.get.call";
 
 	private static final String _MSG_AVOID_METHOD_CHAINING =
 		"chaining.avoid.method";
