@@ -36,6 +36,7 @@ public class YearlyCPSubscriptionTypeDisplayContext {
 			httpServletRequest);
 	}
 
+
 	public List<Integer> getCalendarMonths() {
 		List<Integer> calendarMonths = new ArrayList<>();
 

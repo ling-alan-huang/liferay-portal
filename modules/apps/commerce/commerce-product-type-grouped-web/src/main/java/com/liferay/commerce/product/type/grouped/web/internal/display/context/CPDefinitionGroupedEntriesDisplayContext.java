@@ -48,6 +48,7 @@ public class CPDefinitionGroupedEntriesDisplayContext
 	extends BaseCPDefinitionsSearchContainerDisplayContext
 		<CPDefinitionGroupedEntry> {
 
+	
 	public CPDefinitionGroupedEntriesDisplayContext(
 		ActionHelper actionHelper, HttpServletRequest httpServletRequest,
 		CPDefinitionGroupedEntryService cpDefinitionGroupedEntryService,

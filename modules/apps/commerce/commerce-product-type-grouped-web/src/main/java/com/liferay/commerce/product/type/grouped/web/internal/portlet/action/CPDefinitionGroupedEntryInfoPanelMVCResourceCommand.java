@@ -45,6 +45,7 @@ public class CPDefinitionGroupedEntryInfoPanelMVCResourceCommand
 			_getCPDefinitionGroupedEntries(resourceRequest));
 
 		include(
+
 			resourceRequest, resourceResponse,
 			"/cp_definition_grouped_entry_info_panel.jsp");
 	}

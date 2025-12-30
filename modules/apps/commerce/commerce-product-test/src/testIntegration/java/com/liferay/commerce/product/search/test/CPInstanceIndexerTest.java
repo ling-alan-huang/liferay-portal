@@ -64,6 +64,7 @@ public class CPInstanceIndexerTest {
 
 		_user = UserTestUtil.addUser();
 
+
 		_indexer = _indexerRegistry.getIndexer(CPInstance.class);
 	}
 

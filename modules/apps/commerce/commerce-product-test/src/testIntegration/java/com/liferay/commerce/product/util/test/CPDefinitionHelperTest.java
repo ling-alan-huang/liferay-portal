@@ -74,6 +74,7 @@ public class CPDefinitionHelperTest {
 			ServiceContextTestUtil.getServiceContext(_company.getGroupId()));
 	}
 
+
 	@After
 	public void tearDown() throws Exception {
 		List<CPDefinition> cpDefinitions =
