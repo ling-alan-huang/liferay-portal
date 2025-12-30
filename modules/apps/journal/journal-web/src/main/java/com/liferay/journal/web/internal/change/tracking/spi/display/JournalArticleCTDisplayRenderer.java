@@ -252,6 +252,8 @@ public class JournalArticleCTDisplayRenderer
 		);
 	}
 
+
+
 	@Reference
 	private AssetDisplayPageFriendlyURLProvider
 		_assetDisplayPageFriendlyURLProvider;

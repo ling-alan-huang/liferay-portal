@@ -80,6 +80,8 @@ import org.osgi.service.component.annotations.Reference;
 	},
 	service = MVCResourceCommand.class
 )
+
+
 public class AutoSaveArticleMVCResourceCommand extends BaseMVCResourceCommand {
 
 	@Override

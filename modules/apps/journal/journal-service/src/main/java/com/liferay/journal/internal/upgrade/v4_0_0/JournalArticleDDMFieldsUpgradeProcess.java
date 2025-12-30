@@ -153,6 +153,7 @@ public class JournalArticleDDMFieldsUpgradeProcess extends UpgradeProcess {
 			new DOMSource(document), new StreamResult(stringWriter));
 
 		return stringWriter.getBuffer(
+
 		).toString();
 	}
 

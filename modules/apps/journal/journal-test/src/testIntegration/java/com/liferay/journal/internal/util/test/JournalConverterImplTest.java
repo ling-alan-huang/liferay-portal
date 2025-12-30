@@ -846,6 +846,8 @@ public class JournalConverterImplTest {
 			else {
 				Field actualFieldsDisplayField = actualFields.get(name);
 
+
+
 				String actualFieldsDisplayValues =
 					(String)actualFieldsDisplayField.getValue();
 
