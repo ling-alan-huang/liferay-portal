@@ -110,6 +110,7 @@ public class AssetCategoryUtil {
 				continue;
 			}
 
+
 			if (category.getVocabularyId() == vocabularyId) {
 				filteredCategoryIds.add(category.getCategoryId());
 			}
