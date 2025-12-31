@@ -59,6 +59,7 @@ public class CommercePaymentEntryAuditTypeRegistryImpl
 		List<CommercePaymentEntryAuditType> commercePaymentEntryAuditTypes =
 			new ArrayList<>();
 
+		
 		List
 			<ServiceTrackerCustomizerFactory.ServiceWrapper
 				<CommercePaymentEntryAuditType>>

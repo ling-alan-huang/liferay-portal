@@ -116,6 +116,7 @@ public class PayPalCommercePaymentMethod implements CommercePaymentMethod {
 			_payPalDecimalFormat.getDecimalFormatSymbols();
 
 		decimalFormatSymbols.setDecimalSeparator(CharPool.PERIOD);
+
 		decimalFormatSymbols.setGroupingSeparator(CharPool.COMMA);
 
 		_payPalDecimalFormat.setDecimalFormatSymbols(decimalFormatSymbols);

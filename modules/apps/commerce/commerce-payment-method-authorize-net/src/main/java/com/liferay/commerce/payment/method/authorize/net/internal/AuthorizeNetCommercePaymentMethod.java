@@ -69,6 +69,7 @@ public class AuthorizeNetCommercePaymentMethod
 
 	@Override
 	public CommercePaymentResult cancelPayment(
+
 			CommercePaymentRequest commercePaymentRequest)
 		throws Exception {
 

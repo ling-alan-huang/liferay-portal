@@ -56,6 +56,7 @@ public class CommercePaymentRestrictionsPageFDSDataProvider
 
 		ThemeDisplay themeDisplay =
 			(ThemeDisplay)httpServletRequest.getAttribute(
+
 				WebKeys.THEME_DISPLAY);
 
 		List<PaymentRestriction> paymentRestrictions = new ArrayList<>();

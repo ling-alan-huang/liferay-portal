@@ -41,6 +41,7 @@ public class CommercePaymentEntryRefundTypeRegistryImpl
 
 		if (Validator.isNull(key)) {
 			return null;
+
 		}
 
 		CommercePaymentEntryRefundType commercePaymentEntryRefundType =

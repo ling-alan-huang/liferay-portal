@@ -46,6 +46,7 @@ public class CommerceRefundReasonSelectionFDSFilter
 		return "refund-reason";
 	}
 
+
 	@Override
 	public List<SelectionFDSFilterItem> getSelectionFDSFilterItems(
 		Locale locale) {
