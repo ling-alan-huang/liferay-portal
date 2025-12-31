@@ -3836,6 +3836,7 @@ public class DefaultObjectEntryManagerImplTest
 		AssertUtils.assertFailure(
 			RequiredObjectEntryVersionException.MustNotDeleteLatestVersion.
 				class,
+			
 			"The latest version cannot be deleted",
 			() -> _defaultObjectEntryManager.deleteObjectEntryByVersion(
 				_objectDefinition1, objectEntry1.getId(), 2));
