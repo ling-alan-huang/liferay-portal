@@ -172,6 +172,7 @@ public class CompanyLocalServiceTest {
 			new LiferayIntegrationTestRule(),
 			PermissionCheckerMethodTestRule.INSTANCE);
 
+
 	@BeforeClass
 	public static void setUpClass() throws Exception {
 		Bundle bundle = FrameworkUtil.getBundle(
