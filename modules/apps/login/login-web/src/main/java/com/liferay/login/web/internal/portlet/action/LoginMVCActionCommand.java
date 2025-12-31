@@ -280,6 +280,7 @@ public class LoginMVCActionCommand extends BaseMVCActionCommand {
 		if (Validator.isNotNull(redirect)) {
 			actionResponse.sendRedirect(redirect);
 		}
+
 		else {
 			boolean doActionAfterLogin = ParamUtil.getBoolean(
 				actionRequest, "doActionAfterLogin");

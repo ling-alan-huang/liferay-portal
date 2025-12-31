@@ -75,6 +75,7 @@ public class StagedLayoutSetStagedModelDataHandlerTest
 	public void testCleanStagedModelDataHandler() throws Exception {
 	}
 
+
 	@Test
 	public void testClientExtensionEntries() throws Exception {
 		_testClientExtensionEntries(

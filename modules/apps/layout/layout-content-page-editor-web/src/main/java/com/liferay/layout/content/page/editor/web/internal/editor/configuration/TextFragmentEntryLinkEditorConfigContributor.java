@@ -97,6 +97,7 @@ public class TextFragmentEntryLinkEditorConfigContributor
 		}
 	}
 
+
 	protected String getExtraPluginsLists() {
 		return "autolink,ae_dragresize,ae_addimages,ae_imagealignment," +
 			"ae_placeholder,ae_selectionregion,ae_tableresize," +

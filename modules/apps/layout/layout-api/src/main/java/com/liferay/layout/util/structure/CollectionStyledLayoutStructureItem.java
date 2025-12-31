@@ -449,6 +449,7 @@ public class CollectionStyledLayoutStructureItem
 		}
 
 		if (itemConfigJSONObject.has("collection")) {
+
 			setCollectionJSONObject(
 				itemConfigJSONObject.getJSONObject("collection"));
 		}

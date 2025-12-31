@@ -328,6 +328,7 @@ public class StagedLayoutSetStagedModelDataHandler
 					layout, ServiceContextThreadLocal.getServiceContext());
 			}
 		}
+
 	}
 
 	private void _deleteMissingLayouts(

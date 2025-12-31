@@ -105,6 +105,7 @@ public class ColumnLayoutStructureItem extends LayoutStructureItem {
 			_viewportConfigurationJSONObjects.getOrDefault(
 				viewportSizeId, JSONFactoryUtil.createJSONObject()
 			).put(
+					
 				"size",
 				() -> {
 					if (configurationJSONObject.has("size")) {
