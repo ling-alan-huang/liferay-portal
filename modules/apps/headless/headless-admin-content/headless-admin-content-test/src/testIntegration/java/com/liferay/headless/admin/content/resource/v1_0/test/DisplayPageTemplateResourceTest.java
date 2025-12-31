@@ -118,6 +118,7 @@ public class DisplayPageTemplateResourceTest
 			page.fetchFirstItem(
 			).getCreator(
 			).getProfileURL());
+
 		assertValid(page);
 
 		displayPageTemplateResource = DisplayPageTemplateResource.builder(

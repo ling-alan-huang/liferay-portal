@@ -32,6 +32,7 @@ public class FragmentViewportUtil {
 
 		List<FragmentViewport> fragmentViewports = new ArrayList<>() {
 			{
+
 				FragmentViewport fragmentViewport = _toFragmentViewport(
 					FragmentViewport.Id.DESKTOP, jsonObject);
 

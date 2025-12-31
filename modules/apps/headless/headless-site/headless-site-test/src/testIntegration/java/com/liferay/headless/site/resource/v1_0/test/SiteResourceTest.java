@@ -95,6 +95,7 @@ public class SiteResourceTest extends BaseSiteResourceTestCase {
 	public void setUp() throws Exception {
 		super.setUp();
 
+		
 		_originalName = PrincipalThreadLocal.getName();
 
 		PrincipalThreadLocal.setName(TestPropsValues.getUserId());

@@ -160,6 +160,7 @@ public class StructuredContentResourceTest
 		PrincipalThreadLocal.setName(TestPropsValues.getUserId());
 
 		_blogsEntry = BlogsTestUtil.addEntryWithWorkflow(
+
 			TestPropsValues.getUserId(), RandomTestUtil.randomString(), true,
 			ServiceContextTestUtil.getServiceContext(testGroup.getGroupId()));
 

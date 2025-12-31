@@ -47,6 +47,7 @@ public class DocumentMetadataSetResourceTest
 	@Override
 	protected DocumentMetadataSet randomDocumentMetadataSet() throws Exception {
 		return _randomDocumentMetadataSet(testGroup);
+
 	}
 
 	@Override
