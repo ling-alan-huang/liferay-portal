@@ -59,6 +59,7 @@ public class AssetTagsDisplayContext {
 
 		_themeDisplay = (ThemeDisplay)httpServletRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
+
 	}
 
 	public List<DropdownItem> getAssetTagActionDropdownItems(AssetTag tag) {

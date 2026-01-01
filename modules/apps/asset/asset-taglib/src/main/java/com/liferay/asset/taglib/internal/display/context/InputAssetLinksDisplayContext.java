@@ -74,6 +74,7 @@ public class InputAssetLinksDisplayContext {
 
 		_assetEntryId = GetterUtil.getLong(
 			(String)_httpServletRequest.getAttribute(
+
 				"liferay-asset:input-asset-links:assetEntryId"));
 		_className = GetterUtil.getString(
 			_httpServletRequest.getAttribute(

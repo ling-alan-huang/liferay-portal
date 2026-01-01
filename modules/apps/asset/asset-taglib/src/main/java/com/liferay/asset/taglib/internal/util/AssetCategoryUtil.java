@@ -97,6 +97,7 @@ public class AssetCategoryUtil {
 			portletURL.toString(), null, portletBreadcrumbEntry);
 	}
 
+
 	public static long[] filterCategoryIds(
 		long vocabularyId, long[] categoryIds) {
 
