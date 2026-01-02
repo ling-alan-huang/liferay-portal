@@ -1001,18 +1001,16 @@ public class ObjectDefinitionDeployerImpl implements ObjectDefinitionDeployer {
 				ObjectDefinition objectDefinition, ThemeDisplay themeDisplay)
 			throws PortalException {
 
-			long groupId = themeDisplay.getScopeGroupId();
-
-			if (Objects.equals(
+			if (!Objects.equals(
 					ObjectDefinitionConstants.SCOPE_COMPANY,
 					objectDefinition.getScope())) {
 
-				Company company = themeDisplay.getCompany();
-
-				groupId = company.getGroupId();
+				return themeDisplay.getScopeGroupId();
 			}
 
-			return groupId;
+			Company company = themeDisplay.getCompany();
+
+			return company.getGroupId();
 		}
 
 	}
