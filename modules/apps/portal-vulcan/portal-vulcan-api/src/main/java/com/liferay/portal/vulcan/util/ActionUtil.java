@@ -285,6 +285,7 @@ public class ActionUtil {
 			() -> {
 				UriBuilder uriBuilder = uriBuilderSupplier.get();
 
+
 				if (clazz.getSuperclass(
 					).isAnnotationPresent(
 						Path.class

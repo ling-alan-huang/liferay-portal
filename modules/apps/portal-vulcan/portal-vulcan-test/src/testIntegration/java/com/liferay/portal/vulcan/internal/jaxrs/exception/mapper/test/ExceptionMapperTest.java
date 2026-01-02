@@ -136,6 +136,7 @@ public class ExceptionMapperTest {
 					"Accept-Language",
 					LocaleUtil.getDefault(
 					).toLanguageTag()
+						
 				).build(),
 				Http.Method.POST
 			).getString(

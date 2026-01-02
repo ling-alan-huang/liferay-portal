@@ -73,6 +73,7 @@ public class FilterableFieldsOpenAPIContributor implements OpenAPIContributor {
 		}
 
 		Map<String, Map<String, Object>> schemaNameFilterableFields =
+
 			new HashMap<>();
 
 		for (Schema schema : schemas.values()) {

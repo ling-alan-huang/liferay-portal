@@ -157,6 +157,7 @@ public class OpenAPIResourceImpl implements OpenAPIResource {
 			));
 	}
 
+
 	@Override
 	public Map<String, Schema> getSchemas(Set<Class<?>> resourceClasses)
 		throws Exception {
