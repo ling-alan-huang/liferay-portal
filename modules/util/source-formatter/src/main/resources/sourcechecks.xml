@@ -845,6 +845,10 @@
 			<category name="Bug Prevention" />
 			<description name="Performs several checks on `*JSPDynamicInclude` class." />
 		</check>
+		<check name="JavaLiferayFilterGetCompanyIdCheck">
+			<category name="Bug Prevention" />
+			<description name="" />
+		</check>
 		<check name="JavaLogClassNameCheck">
 			<category name="Bug Prevention" />
 			<description name="Checks the name of the class that is passed in `LogFactoryUtil.getLog`." />
