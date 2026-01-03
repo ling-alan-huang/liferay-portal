@@ -7,11 +7,9 @@ package com.liferay.source.formatter.check;
 
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.tools.ToolsUtil;
 import com.liferay.source.formatter.check.util.JavaSourceUtil;
-import com.liferay.source.formatter.parser.JavaClass;
-import com.liferay.source.formatter.parser.JavaParameter;
-import com.liferay.source.formatter.parser.JavaSignature;
-import com.liferay.source.formatter.parser.JavaTerm;
+import com.liferay.source.formatter.parser.*;
 
 import java.util.List;
 import java.util.regex.Matcher;
@@ -27,48 +25,50 @@ public class JavaLiferayFilterGetCompanyAndGetCompanyIdCallsCheck extends BaseJa
 		return true;
 	}
 
+	protected boolean isLiferayFilter(String absolutePath, String content) {
+		return _isDerivedFrom(
+				absolutePath, content,
+				"com.liferay.portal.kernel.servlet.BaseFilter");
+	}
+
 	@Override
 	protected String doProcess(
 		String fileName, String absolutePath, JavaTerm javaTerm,
 		String fileContent) {
 
-		if (!fileName.endsWith("Filter.java")) {
+		if (!fileName.endsWith("Filter.java") ||
+				!isLiferayFilter(absolutePath, fileContent)) {
 			return javaTerm.getContent();
 		}
 
-		_checkGetCompanyCall("PortalUtil.getCompany");
-		_checkGetCompanyCall("_portal.getCompany");
+		_checkGetCompanyCall(fileName, fileContent, "PortalUtil.getCompany");
 
-		_checkGetCompanyIdCall("PortalInstances.getCompanyId");
-		_checkGetCompanyIdCall("PortalUtil.getCompanyId");
-		_checkGetCompanyIdCall("_portal.getCompanyId");
+		_checkGetCompanyIdCall(fileName, fileContent, "PortalInstances.getCompanyId");
+		_checkGetCompanyIdCall(fileName, fileContent, "PortalUtil.getCompanyId");
 
-		int pos = fileContent.indexOf(matcher.group());
+		JavaClass javaClass = (JavaClass)javaTerm;
 
-		JavaClass parentJavaClass = javaTerm.getParentJavaClass();
+		for (JavaTerm childJavaTerm : javaClass.getChildJavaTerms()) {
+			if (!childJavaTerm.isJavaVariable()) {
+				continue;
+			}
 
-		if (parentJavaClass.getParentJavaClass() != null) {
-			return javaTerm.getContent();
+			JavaVariable javaVariable = (JavaVariable)childJavaTerm;
+
+			String variableName = javaVariable.getName();
+
+			String variableTypeName = getVariableTypeName(
+					javaVariable.getContent(), childJavaTerm, fileContent, fileName,
+					variableName, true, false);
+
+			if (!variableTypeName.equals("Portal")) {
+				continue;
+			}
+
+			_checkGetCompanyCall(fileName, fileContent, variableName + ".getCompany");
+			_checkGetCompanyIdCall(fileName, fileContent, variableName + ".getCompanyId");
+
 		}
-
-		if (javaTerm.isPublic()) {
-			_checkAnnotationForMethod(
-				fileName, javaTerm, "^tearDown(?!Class)", false, "After",
-				"AfterEach");
-			_checkAnnotationForMethod(
-				fileName, javaTerm, "^tearDownClass", true, "AfterAll",
-				"AfterClass");
-			_checkAnnotationForMethod(
-				fileName, javaTerm, "^setUp(?!Class)", false, "Before",
-				"BeforeEach");
-			_checkAnnotationForMethod(
-				fileName, javaTerm, "^setUpClass", true, "BeforeAll",
-				"BeforeClass");
-			_checkAnnotationForMethod(
-				fileName, javaTerm, "^test", false, "Test");
-		}
-
-		_checkFeatureFlagsAnnotation(fileName, javaTerm);
 
 		return javaTerm.getContent();
 	}
@@ -78,10 +78,46 @@ public class JavaLiferayFilterGetCompanyAndGetCompanyIdCallsCheck extends BaseJa
 		return new String[] {JAVA_CLASS};
 	}
 
-	private void _checkGetCompanyCall() {
+	private void _checkGetCompanyCall(String fileName, String content, String methodCall) {
+		int x = -1;
 
+		while (true) {
+			x = content.indexOf(methodCall + "(", x + 1);
+
+			if (x == -1) {
+				return;
+			}
+
+			if (ToolsUtil.isInsideQuotes(content, x)) {
+				continue;
+			}
+
+			addMessage(
+					fileName,
+					"Use \"PortalInstances.getCompanyId\" and \"CompanyLocalServiceUtil.fetchCompanyById\" instead of \"" + methodCall + "\"",
+					getLineNumber(content, x));
+		}
 	}
-	private void _checkGetCompanyIdCall() {
+	private void _checkGetCompanyIdCall(String fileName, String content, String methodCall) {
+
+		int x = -1;
+
+		while (true) {
+			x = content.indexOf(methodCall + "(", x + 1);
+
+			if (x == -1) {
+				return;
+			}
+
+			if (ToolsUtil.isInsideQuotes(content, x)) {
+				continue;
+			}
+
+			addMessage(
+					fileName,
+					"Use \"PortalInstances.getCompanyId\" instead of \"" + methodCall + "\"",
+					getLineNumber(content, x));
+		}
 
 	}
 	private void _checkAnnotationForMethod(
