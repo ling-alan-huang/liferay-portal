@@ -194,19 +194,19 @@ public class UpgradePartitionedConfigurationTableTest
 					ConfigurationEntry configurationEntry =
 						configurationEntryEntry.getValue();
 
+					ExtendedObjectClassDefinition.Scope scope = configurationEntry.getScope();
+
 					Assert.assertTrue(
 						logMessage,
 						logMessage.contains(
 							StringBundler.concat(
 								StringUtil.upperCaseFirstLetter(
-									configurationEntry.getScope(
-									).getValue()),
+									scope.getValue()),
 								" scope configuration with ID ",
 								configurationEntry.getPid(),
 								" has been removed because the ",
-								configurationEntry.getScope(
-								).getValue(),
-								" ID ", configurationEntryEntry.getKey(),
+								scope.getValue(), " ID ",
+								configurationEntryEntry.getKey(),
 								" does not exist")));
 				}
 			}
