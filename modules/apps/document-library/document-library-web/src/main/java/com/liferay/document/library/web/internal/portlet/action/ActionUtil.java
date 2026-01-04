@@ -60,6 +60,7 @@ public class ActionUtil {
 		long[] fileEntryIds = ParamUtil.getLongValues(
 			httpServletRequest, "rowIdsFileEntry");
 
+		
 		for (long fileEntryId : fileEntryIds) {
 			try {
 				fileEntries.add(DLAppServiceUtil.getFileEntry(fileEntryId));

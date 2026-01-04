@@ -73,6 +73,7 @@ public class BasicDocumentSingleFormVariationInfoCollectionProvider
 	public InfoPage<FileEntry> getCollectionInfoPage(
 		CollectionQuery collectionQuery) {
 
+
 		return _getFileEntryInfoPage(collectionQuery);
 	}
 

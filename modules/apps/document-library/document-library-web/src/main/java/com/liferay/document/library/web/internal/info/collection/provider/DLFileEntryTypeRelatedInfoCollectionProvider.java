@@ -58,6 +58,7 @@ public class DLFileEntryTypeRelatedInfoCollectionProvider
 		_dlFileEntryType = dlFileEntryType;
 	}
 
+
 	@Override
 	public InfoPage<FileEntry> getCollectionInfoPage(
 		CollectionQuery collectionQuery) {
