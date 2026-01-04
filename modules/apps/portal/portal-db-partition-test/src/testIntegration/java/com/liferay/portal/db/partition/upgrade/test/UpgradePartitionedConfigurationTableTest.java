@@ -194,7 +194,8 @@ public class UpgradePartitionedConfigurationTableTest
 					ConfigurationEntry configurationEntry =
 						configurationEntryEntry.getValue();
 
-					ExtendedObjectClassDefinition.Scope scope = configurationEntry.getScope();
+					ExtendedObjectClassDefinition.Scope scope =
+						configurationEntry.getScope();
 
 					Assert.assertTrue(
 						logMessage,
