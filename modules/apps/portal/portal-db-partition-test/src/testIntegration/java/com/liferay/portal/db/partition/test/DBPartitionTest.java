@@ -697,6 +697,7 @@ public class DBPartitionTest extends BaseDBPartitionTestCase {
 				).get()));
 	}
 
+
 	@Test
 	public void testGetResourceAction() throws Exception {
 		Set<ResourceAction> resourceActions = new CopyOnWriteArraySet<>();

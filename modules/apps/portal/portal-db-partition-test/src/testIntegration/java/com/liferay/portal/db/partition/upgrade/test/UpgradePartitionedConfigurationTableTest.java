@@ -191,6 +191,7 @@ public class UpgradePartitionedConfigurationTableTest
 						configurationEntryEntry :
 							invalidConfigurationEntries.entrySet()) {
 
+					
 					ConfigurationEntry configurationEntry =
 						configurationEntryEntry.getValue();
 
