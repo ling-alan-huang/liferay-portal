@@ -612,6 +612,7 @@ public class UpgradeJakartaTest {
 			kaleoDefinitionVersions.toString(), 1,
 			kaleoDefinitionVersions.size());
 
+		 
 		Assert.assertTrue(
 			kaleoDefinitionVersions.get(
 				0
