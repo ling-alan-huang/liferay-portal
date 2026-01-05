@@ -35,6 +35,8 @@ public class CommerceOrderStatusSelectionFDSFilter
 		return FDSEntityFieldTypes.COLLECTION;
 	}
 
+
+
 	@Override
 	public String getId() {
 		return "orderStatus";

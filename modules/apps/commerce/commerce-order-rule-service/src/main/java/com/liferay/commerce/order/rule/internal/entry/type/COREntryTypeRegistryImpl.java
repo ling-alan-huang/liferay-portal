@@ -36,6 +36,8 @@ public class COREntryTypeRegistryImpl implements COREntryTypeRegistry {
 		ServiceTrackerCustomizerFactory.ServiceWrapper<COREntryType>
 			corEntryTypeServiceWrapper = _serviceTrackerMap.getService(key);
 
+
+
 		if (corEntryTypeServiceWrapper == null) {
 			if (_log.isDebugEnabled()) {
 				_log.debug(

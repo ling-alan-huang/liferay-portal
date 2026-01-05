@@ -33,6 +33,8 @@ public class COREntryTypeJSPContributorRegistryImpl
 		return _serviceTrackerMap.getService(key);
 	}
 
+
+
 	@Override
 	public List<COREntryTypeJSPContributor> getCOREntryTypeJSPContributors() {
 		List<COREntryTypeJSPContributor> corEntryTypeJSPContributors =
