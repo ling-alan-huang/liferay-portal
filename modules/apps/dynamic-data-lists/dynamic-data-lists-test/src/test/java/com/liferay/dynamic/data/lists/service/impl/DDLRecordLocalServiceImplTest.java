@@ -5,6 +5,7 @@
 
 package com.liferay.dynamic.data.lists.service.impl;
 
+
 import com.liferay.dynamic.data.mapping.storage.Field;
 import com.liferay.dynamic.data.mapping.storage.Fields;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
