@@ -28,7 +28,7 @@ public class JavaLiferayFilterGetCompanyAndGetCompanyIdCallsCheck
 		String fileContent) {
 
 		if (!fileName.endsWith("Filter.java") ||
-			!isLiferayFilter(absolutePath, fileContent)) {
+			!_isLiferayFilter(absolutePath, fileContent)) {
 
 			return javaTerm.getContent();
 		}
@@ -70,12 +70,6 @@ public class JavaLiferayFilterGetCompanyAndGetCompanyIdCallsCheck
 		return new String[] {JAVA_CLASS};
 	}
 
-	protected boolean isLiferayFilter(String absolutePath, String content) {
-		return _isDerivedFrom(
-			absolutePath, content,
-			"com.liferay.portal.kernel.servlet.BaseFilter");
-	}
-
 	private void _checkMethodCall(
 		String fileName, String content, String methodCall) {
 
@@ -89,7 +83,7 @@ public class JavaLiferayFilterGetCompanyAndGetCompanyIdCallsCheck
 
 		sb.append("instead of \"");
 		sb.append(methodCall);
-		sb.append("\"");
+		sb.append("\", see LPD-69643");
 
 		int x = -1;
 
@@ -106,6 +100,12 @@ public class JavaLiferayFilterGetCompanyAndGetCompanyIdCallsCheck
 
 			addMessage(fileName, sb.toString(), getLineNumber(content, x));
 		}
+	}
+
+	private boolean _isLiferayFilter(String absolutePath, String content) {
+		return _isDerivedFrom(
+			absolutePath, content,
+			"com.liferay.portal.kernel.servlet.BaseFilter");
 	}
 
 }
