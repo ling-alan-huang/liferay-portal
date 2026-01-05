@@ -109,6 +109,8 @@ import org.osgi.service.component.annotations.Reference;
 )
 public class PayPalCommercePaymentMethod implements CommercePaymentMethod {
 
+
+
 	public static final String KEY = "paypal";
 
 	public PayPalCommercePaymentMethod() {

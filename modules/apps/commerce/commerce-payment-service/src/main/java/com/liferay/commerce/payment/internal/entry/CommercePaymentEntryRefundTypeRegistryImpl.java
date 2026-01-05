@@ -43,6 +43,8 @@ public class CommercePaymentEntryRefundTypeRegistryImpl
 			return null;
 		}
 
+
+
 		CommercePaymentEntryRefundType commercePaymentEntryRefundType =
 			_serviceTrackerMap.getService(new ScopedKey(companyId, key));
 

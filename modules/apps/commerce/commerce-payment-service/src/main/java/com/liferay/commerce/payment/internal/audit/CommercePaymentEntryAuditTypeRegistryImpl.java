@@ -39,6 +39,8 @@ public class CommercePaymentEntryAuditTypeRegistryImpl
 				commercePaymentEntryAuditTypeServiceWrapper =
 					_serviceTrackerMap.getService(key);
 
+
+
 		if (commercePaymentEntryAuditTypeServiceWrapper == null) {
 			if (_log.isDebugEnabled()) {
 				_log.debug(
