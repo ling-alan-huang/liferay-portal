@@ -55,7 +55,7 @@ public class CommercePaymentRestrictionsPageFDSDataProvider
 		throws PortalException {
 
 
-		
+
 		ThemeDisplay themeDisplay =
 			(ThemeDisplay)httpServletRequest.getAttribute(
 				WebKeys.THEME_DISPLAY);

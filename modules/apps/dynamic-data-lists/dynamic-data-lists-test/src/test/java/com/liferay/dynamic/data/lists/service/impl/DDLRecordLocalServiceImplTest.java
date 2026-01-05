@@ -37,6 +37,7 @@ public class DDLRecordLocalServiceImplTest {
 	public static final LiferayUnitTestRule liferayUnitTestRule =
 		LiferayUnitTestRule.INSTANCE;
 
+
 	@Test
 	public void testToFieldWithBoolean() throws Exception {
 		boolean fieldValue = RandomTestUtil.randomBoolean();

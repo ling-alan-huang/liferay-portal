@@ -92,6 +92,7 @@ import org.osgi.service.component.annotations.Reference;
 )
 public class DDLRecordLocalServiceImpl extends DDLRecordLocalServiceBaseImpl {
 
+
 	/**
 	 * Adds a record referencing the record set.
 	 *
