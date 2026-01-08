@@ -229,6 +229,7 @@ public class NavigationMenuResourceImpl
 		if (!FeatureFlagManagerUtil.isEnabled(
 				contextCompany.getCompanyId(), "LPD-66179")) {
 
+			 
 			throw new UnsupportedOperationException();
 		}
 
