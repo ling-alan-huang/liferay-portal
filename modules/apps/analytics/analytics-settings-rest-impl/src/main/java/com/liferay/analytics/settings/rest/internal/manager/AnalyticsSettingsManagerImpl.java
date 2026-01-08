@@ -103,7 +103,7 @@ public class AnalyticsSettingsManagerImpl implements AnalyticsSettingsManager {
 		AnalyticsConfiguration analyticsConfiguration =
 			getAnalyticsConfiguration(companyId);
 
-		List<Long> commerceChannelIds = TransformUtil.transformToList(
+		return TransformUtil.transform(
 			analyticsConfiguration.syncedCommerceChannelIds(),
 			commerceChannelId -> {
 				Group group = _groupLocalService.fetchGroup(
@@ -126,9 +126,8 @@ public class AnalyticsSettingsManagerImpl implements AnalyticsSettingsManager {
 				}
 
 				return null;
-			});
-
-		return commerceChannelIds.toArray(new Long[0]);
+			},
+			Long.class);
 	}
 
 	@Override
@@ -138,7 +137,7 @@ public class AnalyticsSettingsManagerImpl implements AnalyticsSettingsManager {
 		AnalyticsConfiguration analyticsConfiguration =
 			getAnalyticsConfiguration(companyId);
 
-		List<Long> groupIds = TransformUtil.transformToList(
+		return TransformUtil.transform(
 			analyticsConfiguration.syncedGroupIds(),
 			groupId -> {
 				Group group = _groupLocalService.fetchGroup(
@@ -167,9 +166,8 @@ public class AnalyticsSettingsManagerImpl implements AnalyticsSettingsManager {
 				}
 
 				return null;
-			});
-
-		return groupIds.toArray(new Long[0]);
+			},
+			Long.class);
 	}
 
 	@Override

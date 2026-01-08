@@ -286,7 +286,7 @@ public class DXPEntityDTOConverterImpl implements DXPEntityDTOConverter {
 		Map<String, Serializable> attributes = _getAttributes(
 			baseModel.getExpandoBridge(), includeAttributeNames);
 
-		List<ExpandoField> expandoFields = TransformUtil.transform(
+		return TransformUtil.transformToArray(
 			attributes.entrySet(),
 			entry -> {
 				String key = entry.getKey();
@@ -308,9 +308,8 @@ public class DXPEntityDTOConverterImpl implements DXPEntityDTOConverter {
 						setValue(() -> _parseValue(entry.getValue()));
 					}
 				};
-			});
-
-		return expandoFields.toArray(new ExpandoField[0]);
+			},
+			ExpandoField.class);
 	}
 
 	private Field[] _getFields(BaseModel<?> baseModel) throws Exception {
