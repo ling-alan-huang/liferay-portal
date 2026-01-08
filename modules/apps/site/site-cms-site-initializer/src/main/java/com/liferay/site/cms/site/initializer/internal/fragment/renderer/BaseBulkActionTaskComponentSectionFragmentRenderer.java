@@ -57,6 +57,7 @@ public abstract class BaseBulkActionTaskComponentSectionFragmentRenderer
 				getObjectDefinitionByExternalReferenceCode(
 					"L_CMS_BULK_ACTION_TASK", themeDisplay.getCompanyId());
 
+		
 		List<ObjectEntry> objectEntries = ListUtil.filter(
 			objectEntryLocalService.getOneToManyObjectEntries(
 				cmsBulkActionTaskObjectEntry.getGroupId(),

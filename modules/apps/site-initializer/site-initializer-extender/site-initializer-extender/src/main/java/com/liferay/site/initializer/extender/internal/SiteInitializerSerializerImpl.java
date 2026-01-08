@@ -609,6 +609,7 @@ public class SiteInitializerSerializerImpl
 				);
 			});
 
+
 		_addZipEntry(
 			"object-definitions/" +
 				_normalize(objectDefinition.getLabel(LocaleUtil.US)),

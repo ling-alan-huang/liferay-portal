@@ -3845,6 +3845,7 @@ public class BundleSiteInitializerTest {
 				_group.getGroupId()));
 	}
 
+
 	private void _assertSiteNavigationMenu1() {
 		SiteNavigationMenu siteNavigationMenu =
 			_siteNavigationMenuLocalService.

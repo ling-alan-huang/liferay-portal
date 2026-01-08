@@ -1035,6 +1035,7 @@ public class BundleSiteInitializer implements SiteInitializer {
 						null, null
 					).fetchFirstItem();
 
+
 					groupId = serviceContext.getScopeGroupId();
 				}
 
