@@ -271,6 +271,7 @@ public class LocalStagingPublishParentLayoutsByDefaultTest
 			));
 	}
 
+
 	@Test
 	@TestInfo("LPD-6808: AC4")
 	public void testStagingWithCheckedConfigurationAndModifiedContentAndNonexistingParentAndChildLayoutsOnLive()
