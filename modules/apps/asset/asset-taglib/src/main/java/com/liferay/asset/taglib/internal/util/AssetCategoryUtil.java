@@ -89,6 +89,7 @@ public class AssetCategoryUtil {
 				portletURL.toString(), null, portletBreadcrumbEntry);
 		}
 
+		
 		portletURL.setParameter("categoryId", String.valueOf(assetCategoryId));
 
 		PortalUtil.addPortletBreadcrumbEntry(
