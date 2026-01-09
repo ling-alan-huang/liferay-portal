@@ -84,6 +84,7 @@ public class AssetTagLocalServiceTest {
 		_serviceContext = ServiceContextTestUtil.getServiceContext(
 			_group.getGroupId(), TestPropsValues.getUserId());
 
+		
 		ServiceContextThreadLocal.pushServiceContext(_serviceContext);
 	}
 

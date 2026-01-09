@@ -347,6 +347,7 @@ public class AssetTagsDisplayContext {
 			showTagsActions = false;
 		}
 
+
 		_showTagsActions = showTagsActions;
 
 		return _showTagsActions;
