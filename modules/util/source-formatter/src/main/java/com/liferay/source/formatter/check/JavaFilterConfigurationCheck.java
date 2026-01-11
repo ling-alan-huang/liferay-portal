@@ -7,15 +7,18 @@ package com.liferay.source.formatter.check;
 
 import com.liferay.portal.kernel.util.PropertiesUtil;
 import com.liferay.source.formatter.check.util.JavaSourceUtil;
+import com.liferay.source.formatter.parser.JavaClass;
+import com.liferay.source.formatter.parser.JavaTerm;
 
 import java.io.IOException;
 
+import java.util.List;
 import java.util.Properties;
 
 /**
  * @author Alan Huang
  */
-public class JavaFilterConfigurationCheck extends BaseFileCheck {
+public class JavaFilterConfigurationCheck extends BaseJavaTermCheck {
 
 	@Override
 	public boolean isLiferaySourceCheck() {
@@ -24,17 +27,20 @@ public class JavaFilterConfigurationCheck extends BaseFileCheck {
 
 	@Override
 	protected String doProcess(
-			String fileName, String absolutePath, String content)
+			String fileName, String absolutePath, JavaTerm javaTerm,
+			String fileContent)
 		throws IOException {
 
 		if (!fileName.endsWith("Filter.java")) {
-			return content;
+			return javaTerm.getContent();
 		}
 
-		String packageName = JavaSourceUtil.getPackageName(content);
+		JavaClass javaClass = (JavaClass)javaTerm;
+
+		String packageName = javaClass.getPackageName();
 
 		if (!packageName.startsWith("com.liferay.")) {
-			return content;
+			return javaTerm.getContent();
 		}
 
 		String fullyQualifiedClassName =
@@ -47,9 +53,9 @@ public class JavaFilterConfigurationCheck extends BaseFileCheck {
 			getPortalContent(
 				"portal-impl/src/portal.properties", absolutePath));
 
-		if (isDerivedFrom(
-				absolutePath, content,
-				"com.liferay.portal.kernel.servlet.BaseFilter") &&
+		List<String> extendedClassNames = javaClass.getExtendedClassNames();
+
+		if (extendedClassNames.contains("BaseFilter") &&
 			(properties.getProperty(fullyQualifiedClassName) != null)) {
 
 			addMessage(
@@ -57,12 +63,10 @@ public class JavaFilterConfigurationCheck extends BaseFileCheck {
 				"Do not add property \"" + fullyQualifiedClassName +
 					"\" in portal.properties, see LPD-69645");
 
-			return content;
+			return javaTerm.getContent();
 		}
 
-		if (isDerivedFrom(
-				absolutePath, content,
-				"com.liferay.portal.servlet.filters.BasePortalFilter") &&
+		if (extendedClassNames.contains("BasePortalFilter") &&
 			(properties.getProperty(fullyQualifiedClassName) == null)) {
 
 			addMessage(
@@ -70,10 +74,15 @@ public class JavaFilterConfigurationCheck extends BaseFileCheck {
 				"Missing property \"" + fullyQualifiedClassName +
 					"\" in portal.properties, see LPD-69645");
 
-			return content;
+			return javaTerm.getContent();
 		}
 
-		return content;
+		return javaTerm.getContent();
+	}
+
+	@Override
+	protected String[] getCheckableJavaTermNames() {
+		return new String[] {JAVA_CLASS};
 	}
 
 }
