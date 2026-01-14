@@ -96,6 +96,7 @@ public class UploadAttachmentMVCActionCommandTest {
 			new LiferayIntegrationTestRule(),
 			PermissionCheckerMethodTestRule.INSTANCE);
 
+
 	@Before
 	public void setUp() throws Exception {
 		ObjectDefinition objectDefinition =

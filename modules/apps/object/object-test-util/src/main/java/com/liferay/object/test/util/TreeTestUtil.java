@@ -52,6 +52,7 @@ import org.junit.Assert;
  */
 public class TreeTestUtil {
 
+
 	public static void assertObjectDefinitionTree(
 			Map<String, String[]> expectedMap, Tree actualTree,
 			ObjectDefinitionLocalService objectDefinitionLocalService)
