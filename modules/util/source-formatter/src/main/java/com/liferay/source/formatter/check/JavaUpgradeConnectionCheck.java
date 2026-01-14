@@ -5,11 +5,15 @@
 
 package com.liferay.source.formatter.check;
 
-import com.liferay.source.formatter.parser.JavaClass;
-import com.liferay.source.formatter.parser.JavaMethod;
+import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.source.formatter.check.util.JavaSourceUtil;
 import com.liferay.source.formatter.parser.JavaTerm;
 
 import java.io.IOException;
+
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @author Peter Shin
@@ -35,48 +39,72 @@ public class JavaUpgradeConnectionCheck extends BaseJavaTermCheck {
 			return javaTerm.getContent();
 		}
 
-		JavaClass javaClass = (JavaClass)javaTerm;
+		String content = javaTerm.getContent();
 
-		if (javaClass.getParentJavaClass() != null) {
-			return javaTerm.getContent();
+		Matcher matcher = _runSQLPattern.matcher(content);
+
+		while (matcher.find()) {
+			String matched = matcher.group(1);
+
+			if (matched != null) {
+				String variableName = matched.substring(
+					0, matched.length() - 1);
+
+				if (!StringUtil.equals(
+						getVariableTypeName(
+							content, null, content, fileName, variableName),
+						"DB")) {
+
+					continue;
+				}
+			}
+
+			List<String> parameterList = JavaSourceUtil.getParameterList(
+				content.substring(matcher.start()));
+
+			if (parameterList.size() != 1) {
+				continue;
+			}
+
+			String newContent = StringUtil.insert(
+				content, "connection, ", matcher.end());
+
+			if (!content.equals(newContent)) {
+				return newContent;
+			}
 		}
 
-		for (JavaTerm childJavaTerm : javaClass.getChildJavaTerms()) {
-			if (!childJavaTerm.isJavaMethod()) {
-				continue;
-			}
+		String methodName = javaTerm.getName();
 
-			JavaMethod javaMethod = (JavaMethod)childJavaTerm;
+		if (methodName.equals("upgrade") &&
+			javaTerm.hasAnnotation("Override")) {
 
-			String methodName = javaMethod.getName();
-
-			if (methodName.equals("upgrade") &&
-				javaMethod.hasAnnotation("Override")) {
-
-				continue;
-			}
-
-			String methodContent = javaMethod.getContent();
-
-			int x = methodContent.indexOf("DataAccess.getConnection(");
-
-			if (x == -1) {
-				continue;
-			}
-
-			addMessage(
-				fileName,
-				"Use existing connection field instead of calling DataAccess." +
-					"getConnection",
-				getLineNumber(fileContent, x));
+			return content;
 		}
+
+		String methodContent = javaTerm.getContent();
+
+		int x = methodContent.indexOf("DataAccess.getConnection(");
+
+		if (x == -1) {
+			return content;
+		}
+
+		addMessage(
+			fileName,
+			"Use existing connection field instead of calling DataAccess." +
+				"getConnection",
+			getLineNumber(fileContent, x));
 
 		return javaTerm.getContent();
 	}
 
 	@Override
 	protected String[] getCheckableJavaTermNames() {
-		return new String[] {JAVA_CLASS};
+		return new String[] {JAVA_METHOD};
 	}
+
+	private static final Pattern _runSQLPattern = Pattern.compile(
+		"\\b(\\w+\\.)?runSQL\\(");
 
 }
