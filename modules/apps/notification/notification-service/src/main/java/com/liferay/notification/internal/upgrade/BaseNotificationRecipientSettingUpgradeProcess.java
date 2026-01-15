@@ -32,42 +32,47 @@ public abstract class BaseNotificationRecipientSettingUpgradeProcess
 					"NotificationRecipient inner join NotificationQueueEntry ",
 					"on NotificationRecipient.classPK = ",
 					"NotificationQueueEntry.notificationQueueEntryId where ",
-					"NotificationQueueEntry.type_ = '",
-					NotificationConstants.TYPE_EMAIL, "'"));
-			ResultSet resultSet1 = preparedStatement1.executeQuery();
-			PreparedStatement preparedStatement2 = connection.prepareStatement(
+					"NotificationQueueEntry.type_ = ?"));
+			 PreparedStatement preparedStatement2 = connection.prepareStatement(
 				StringBundler.concat(
-					"select NotificationRecipient.notificationRecipientId, ",
-					"NotificationRecipient.companyId, ",
-					"NotificationRecipient.userId, ",
-					"NotificationRecipient.userName from ",
-					"NotificationRecipient inner join NotificationTemplate on ",
-					"NotificationRecipient.classPK = ",
-					"NotificationTemplate.notificationTemplateId where ",
-					"NotificationTemplate.type_ = '",
-					NotificationConstants.TYPE_EMAIL, "'"));
-			ResultSet resultSet2 = preparedStatement2.executeQuery();
-			PreparedStatement preparedStatement3 =
-				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
-					connection,
-					StringBundler.concat(
-						"insert into NotificationRecipientSetting (uuid_, ",
-						"notificationRecipientSettingId, companyId, userId, ",
-						"userName, createDate, modifiedDate, ",
-						"notificationRecipientId, name, value) values (?, ?, ",
-						"?, ?, ?, ?, ?, ?, ?, ?)"))) {
+					 "select NotificationRecipient.notificationRecipientId, ",
+					 "NotificationRecipient.companyId, ",
+					 "NotificationRecipient.userId, ",
+					 "NotificationRecipient.userName from ",
+					 "NotificationRecipient inner join NotificationTemplate ",
+					 "on NotificationRecipient.classPK = ",
+					 "NotificationTemplate.notificationTemplateId where ",
+					 "NotificationTemplate.type_ = ?"))
 
-			while (resultSet1.next()) {
-				_insertNotificationRecipientSetting(
-					preparedStatement3, resultSet1);
+		) {
+
+			preparedStatement1.setString(1, NotificationConstants.TYPE_EMAIL);
+			preparedStatement2.setString(1, NotificationConstants.TYPE_EMAIL);
+
+			try (ResultSet resultSet1 = preparedStatement1.executeQuery();
+				ResultSet resultSet2 = preparedStatement2.executeQuery();
+				PreparedStatement preparedStatement3 =
+					AutoBatchPreparedStatementUtil.concurrentAutoBatch(
+						connection,
+						StringBundler.concat(
+							"insert into NotificationRecipientSetting (uuid_, ",
+							"notificationRecipientSettingId, companyId, ",
+							"userId, userName, createDate, modifiedDate, ",
+							"notificationRecipientId, name, value) values (?, ",
+							"?, ?, ?, ?, ?, ?, ?, ?, ?)"))) {
+
+				while (resultSet1.next()) {
+					_insertNotificationRecipientSetting(
+						preparedStatement3, resultSet1);
+				}
+
+				while (resultSet2.next()) {
+					_insertNotificationRecipientSetting(
+						preparedStatement3, resultSet2);
+				}
+
+				preparedStatement3.executeBatch();
 			}
-
-			while (resultSet2.next()) {
-				_insertNotificationRecipientSetting(
-					preparedStatement3, resultSet2);
-			}
-
-			preparedStatement3.executeBatch();
 		}
 	}
 
