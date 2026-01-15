@@ -27,6 +27,7 @@ public class PollsToDDMUpgradeProcess extends UpgradeProcess {
 						"select ctCollectionId, resourcePermissionId from ",
 						"ResourcePermission where name = '", _CLASS_NAME_POLLS,
 						"'")));
+
 			PreparedStatement preparedStatement2 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection,

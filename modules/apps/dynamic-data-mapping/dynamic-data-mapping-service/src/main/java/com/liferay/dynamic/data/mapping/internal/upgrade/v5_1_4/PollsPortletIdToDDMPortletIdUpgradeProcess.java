@@ -25,6 +25,7 @@ public class PollsPortletIdToDDMPortletIdUpgradeProcess
 			StringBundler.concat(
 				"delete from Portlet where portletId = '", _PORTLET_ID_POLLS,
 				"' OR portletId = '", _PORTLET_ID_POLLS_DISPLAY, "'"));
+
 		runSQL(
 			StringBundler.concat(
 				"delete from ResourcePermission where name = '",
