@@ -49,9 +49,7 @@ public abstract class BaseNotificationRecipientSettingUpgradeProcess
 			preparedStatement1.setString(1, NotificationConstants.TYPE_EMAIL);
 			preparedStatement2.setString(1, NotificationConstants.TYPE_EMAIL);
 
-			try (ResultSet resultSet1 = preparedStatement1.executeQuery();
-				ResultSet resultSet2 = preparedStatement2.executeQuery();
-				PreparedStatement preparedStatement3 =
+			try (PreparedStatement preparedStatement3 =
 					AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 						connection,
 						StringBundler.concat(
@@ -59,7 +57,9 @@ public abstract class BaseNotificationRecipientSettingUpgradeProcess
 							"notificationRecipientSettingId, companyId, ",
 							"userId, userName, createDate, modifiedDate, ",
 							"notificationRecipientId, name, value) values (?, ",
-							"?, ?, ?, ?, ?, ?, ?, ?, ?)"))) {
+							"?, ?, ?, ?, ?, ?, ?, ?, ?)"));
+				ResultSet resultSet1 = preparedStatement1.executeQuery();
+				ResultSet resultSet2 = preparedStatement2.executeQuery()) {
 
 				while (resultSet1.next()) {
 					_insertNotificationRecipientSetting(
