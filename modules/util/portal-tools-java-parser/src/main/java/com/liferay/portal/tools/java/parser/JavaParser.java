@@ -355,11 +355,7 @@ public class JavaParser {
 			fileContents, startLineNumber, endLineNumber);
 
 		if (!actualJavaTermContent.startsWith(expectedJavaTermContent) &&
-			!_isExcludedJavaTerm(parsedJavaTerm) &&
-			(!actualJavaTermContent.contains("\n\n") ||
-			 !Objects.equals(
-				 parsedJavaTerm.getClassName(),
-				 JavaTryStatement.class.getName()))) {
+			!_isExcludedJavaTerm(parsedJavaTerm)) {
 
 			contentModifications.addReplaceContent(
 				parsedJavaTerm.getContent(), startPosition.getLineNumber(),
