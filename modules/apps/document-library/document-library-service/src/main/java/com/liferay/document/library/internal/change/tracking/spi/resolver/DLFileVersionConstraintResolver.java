@@ -132,6 +132,7 @@ public class DLFileVersionConstraintResolver
 				sb.append(latestVersionParts[1] + 1);
 			}
 			else {
+				
 				int[] previousVersionParts = StringUtil.split(
 					previousFileVersion, StringPool.PERIOD, 0);
 
