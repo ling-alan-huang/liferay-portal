@@ -48,7 +48,8 @@ public class KaleoDefinitionVersionUpgradeProcess extends UpgradeProcess {
 						1,
 						WorkflowDefinitionConstants.
 							NAME_MESSAGE_BOARDS_USER_STATS_MODERATION);
-				}
+				} 
+				
 				else {
 					preparedStatement2.setString(
 						1, WorkflowDefinitionConstants.NAME_SINGLE_APPROVER);

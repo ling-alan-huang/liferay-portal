@@ -20,6 +20,7 @@ import java.sql.ResultSet;
  */
 public class KaleoDefinitionUpgradeProcess extends UpgradeProcess {
 
+	
 	@Override
 	protected void doUpgrade() throws Exception {
 		try (PreparedStatement preparedStatement1 = connection.prepareStatement(
