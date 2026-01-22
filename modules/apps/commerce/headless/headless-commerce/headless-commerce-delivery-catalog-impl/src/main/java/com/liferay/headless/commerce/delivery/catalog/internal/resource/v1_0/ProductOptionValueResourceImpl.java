@@ -246,6 +246,9 @@ public class ProductOptionValueResourceImpl
 	private AccountEntryLocalService _accountEntryLocalService;
 
 	@Reference
+	private CProductLocalService _cProductLocalService;
+
+	@Reference
 	private CommerceAccountHelper _commerceAccountHelper;
 
 	@Reference
@@ -266,9 +269,6 @@ public class ProductOptionValueResourceImpl
 
 	@Reference
 	private CPOptionLocalService _cpOptionLocalService;
-
-	@Reference
-	private CProductLocalService _cProductLocalService;
 
 	@Reference(
 		target = DTOConverterConstants.PRODUCT_OPTION_VALUE_DTO_CONVERTER

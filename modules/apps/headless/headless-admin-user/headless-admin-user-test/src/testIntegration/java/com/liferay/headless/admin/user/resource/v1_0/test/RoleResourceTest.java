@@ -793,6 +793,39 @@ public class RoleResourceTest extends BaseRoleResourceTestCase {
 		return role.getId();
 	}
 
+	private void _testGetRoleWithNestedFields() throws Exception {
+		Role postRole = testGetRole_addRole();
+
+		com.liferay.portal.kernel.model.Role role = RoleTestUtil.addRole(
+			RoleConstants.TYPE_REGULAR);
+
+		_resourcePermissionLocalService.setResourcePermissions(
+			TestPropsValues.getCompanyId(),
+			com.liferay.portal.kernel.model.Role.class.getName(),
+			ResourceConstants.SCOPE_INDIVIDUAL,
+			String.valueOf(postRole.getId()), role.getRoleId(),
+			new String[] {ActionKeys.DELETE});
+
+		RoleResource roleResource = RoleResource.builder(
+		).authentication(
+			"test@liferay.com", PropsValues.DEFAULT_ADMIN_PASSWORD
+		).locale(
+			LocaleUtil.getDefault()
+		).parameters(
+			"nestedFields", "permissions"
+		).build();
+
+		Role getRole = roleResource.getRole(postRole.getId());
+
+		Assert.assertTrue(
+			ArrayUtil.exists(
+				getRole.getPermissions(),
+				permission ->
+					Objects.equals(permission.getRoleName(), role.getName()) &&
+					(permission.getActionIds().length == 1) &&
+					Objects.equals(permission.getActionIds()[0], "DELETE")));
+	}
+
 	private void _testGetRolesPageWithFilter() throws Exception {
 		Page<Role> page = roleResource.getRolesPage(
 			null, null, null, Pagination.of(1, 100));
@@ -925,39 +958,6 @@ public class RoleResourceTest extends BaseRoleResourceTestCase {
 			ListUtil.exists(
 				(List<Role>)page.getItems(),
 				role -> role.getId() == serviceBuilderRole.getRoleId()));
-	}
-
-	private void _testGetRoleWithNestedFields() throws Exception {
-		Role postRole = testGetRole_addRole();
-
-		com.liferay.portal.kernel.model.Role role = RoleTestUtil.addRole(
-			RoleConstants.TYPE_REGULAR);
-
-		_resourcePermissionLocalService.setResourcePermissions(
-			TestPropsValues.getCompanyId(),
-			com.liferay.portal.kernel.model.Role.class.getName(),
-			ResourceConstants.SCOPE_INDIVIDUAL,
-			String.valueOf(postRole.getId()), role.getRoleId(),
-			new String[] {ActionKeys.DELETE});
-
-		RoleResource roleResource = RoleResource.builder(
-		).authentication(
-			"test@liferay.com", PropsValues.DEFAULT_ADMIN_PASSWORD
-		).locale(
-			LocaleUtil.getDefault()
-		).parameters(
-			"nestedFields", "permissions"
-		).build();
-
-		Role getRole = roleResource.getRole(postRole.getId());
-
-		Assert.assertTrue(
-			ArrayUtil.exists(
-				getRole.getPermissions(),
-				permission ->
-					Objects.equals(permission.getRoleName(), role.getName()) &&
-					(permission.getActionIds().length == 1) &&
-					Objects.equals(permission.getActionIds()[0], "DELETE")));
 	}
 
 	private void _testPostRoleBatch() throws Exception {

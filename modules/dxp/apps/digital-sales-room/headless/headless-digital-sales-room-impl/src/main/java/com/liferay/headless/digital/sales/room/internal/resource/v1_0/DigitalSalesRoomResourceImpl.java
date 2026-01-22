@@ -142,6 +142,15 @@ public class DigitalSalesRoomResourceImpl
 	}
 
 	@Override
+	public Page<DigitalSalesRoom>
+			getDigitalSalesRoomTemplateDigitalSalesRoomsPage(
+				Long digitalSalesRoomTemplateId)
+		throws Exception {
+
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
 	public Page<DigitalSalesRoom> getDigitalSalesRoomsPage(
 			String search, Pagination pagination)
 		throws Exception {
@@ -186,15 +195,6 @@ public class DigitalSalesRoomResourceImpl
 			pagination,
 			_groupService.searchCount(
 				contextCompany.getCompanyId(), classNameIds, search, params));
-	}
-
-	@Override
-	public Page<DigitalSalesRoom>
-			getDigitalSalesRoomTemplateDigitalSalesRoomsPage(
-				Long digitalSalesRoomTemplateId)
-		throws Exception {
-
-		throw new UnsupportedOperationException();
 	}
 
 	@Override

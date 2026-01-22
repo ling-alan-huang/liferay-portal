@@ -20,16 +20,6 @@ public abstract class BaseJobComparatorEntity
 	extends BaseEntity implements Comparator<JobEntity>, JobComparatorEntity {
 
 	@Override
-	public JobPrioritizerEntity getJobPrioritizerEntity() {
-		return _jobPrioritizerEntity;
-	}
-
-	@Override
-	public long getJobPrioritizerEntityId() {
-		return _jobPrioritizerEntityId;
-	}
-
-	@Override
 	public JSONObject getJSONObject() {
 		JSONObject jsonObject = super.getJSONObject();
 
@@ -50,6 +40,16 @@ public abstract class BaseJobComparatorEntity
 	}
 
 	@Override
+	public JobPrioritizerEntity getJobPrioritizerEntity() {
+		return _jobPrioritizerEntity;
+	}
+
+	@Override
+	public long getJobPrioritizerEntityId() {
+		return _jobPrioritizerEntityId;
+	}
+
+	@Override
 	public int getPosition() {
 		return _position;
 	}
@@ -65,6 +65,17 @@ public abstract class BaseJobComparatorEntity
 	}
 
 	@Override
+	public void setJSONObject(JSONObject jsonObject) {
+		super.setJSONObject(jsonObject);
+
+		_position = jsonObject.getInt("position");
+		_jobPrioritizerEntityId = jsonObject.optLong(
+			"r_jobPrioritizerToJobComparators_c_jobPrioritizerId");
+		_type = Type.get(jsonObject.getJSONObject("type"));
+		_value = jsonObject.optString("value");
+	}
+
+	@Override
 	public void setJobPrioritizerEntity(
 		JobPrioritizerEntity jobPrioritizerEntity) {
 
@@ -76,17 +87,6 @@ public abstract class BaseJobComparatorEntity
 		else {
 			_jobPrioritizerEntityId = 0;
 		}
-	}
-
-	@Override
-	public void setJSONObject(JSONObject jsonObject) {
-		super.setJSONObject(jsonObject);
-
-		_position = jsonObject.getInt("position");
-		_jobPrioritizerEntityId = jsonObject.optLong(
-			"r_jobPrioritizerToJobComparators_c_jobPrioritizerId");
-		_type = Type.get(jsonObject.getJSONObject("type"));
-		_value = jsonObject.optString("value");
 	}
 
 	@Override

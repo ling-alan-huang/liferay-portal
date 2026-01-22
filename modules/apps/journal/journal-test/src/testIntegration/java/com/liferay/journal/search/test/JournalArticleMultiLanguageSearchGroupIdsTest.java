@@ -334,13 +334,13 @@ public class JournalArticleMultiLanguageSearchGroupIdsTest {
 	private List<Group> _groups;
 
 	private Indexer<JournalArticle> _indexer;
+	private JournalArticleSearchFixture _journalArticleSearchFixture;
 
 	@DeleteAfterTestRun
 	private List<JournalArticle> _journalArticles;
 
-	private JournalArticleSearchFixture _journalArticleSearchFixture;
 	private Group _jpGroup;
-	private UserSearchFixture _userSearchFixture;
 	private Group _usGroup;
+	private UserSearchFixture _userSearchFixture;
 
 }

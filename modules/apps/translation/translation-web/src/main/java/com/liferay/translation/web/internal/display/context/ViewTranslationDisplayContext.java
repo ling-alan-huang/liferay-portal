@@ -63,6 +63,22 @@ public class ViewTranslationDisplayContext {
 			PortalUtil.getLocale(_httpServletRequest));
 	}
 
+	public List<InfoFieldSetEntry> getInfoFieldSetEntries() {
+		return _infoForm.getInfoFieldSetEntries();
+	}
+
+	public String getInfoFieldSetLabel(
+		InfoFieldSetEntry infoFieldSetEntry, Locale locale) {
+
+		if (infoFieldSetEntry instanceof InfoFieldSet) {
+			InfoFieldSet infoFieldSet = (InfoFieldSet)infoFieldSetEntry;
+
+			return infoFieldSet.getLabel(locale);
+		}
+
+		return null;
+	}
+
 	public List<InfoField> getInfoFields(InfoFieldSetEntry infoFieldSetEntry) {
 		if (infoFieldSetEntry instanceof InfoField) {
 			InfoField infoField = (InfoField)infoFieldSetEntry;
@@ -80,22 +96,6 @@ public class ViewTranslationDisplayContext {
 		}
 
 		return Collections.emptyList();
-	}
-
-	public List<InfoFieldSetEntry> getInfoFieldSetEntries() {
-		return _infoForm.getInfoFieldSetEntries();
-	}
-
-	public String getInfoFieldSetLabel(
-		InfoFieldSetEntry infoFieldSetEntry, Locale locale) {
-
-		if (infoFieldSetEntry instanceof InfoFieldSet) {
-			InfoFieldSet infoFieldSet = (InfoFieldSet)infoFieldSetEntry;
-
-			return infoFieldSet.getLabel(locale);
-		}
-
-		return null;
 	}
 
 	public String getLanguageIdTitle(String languageId) {

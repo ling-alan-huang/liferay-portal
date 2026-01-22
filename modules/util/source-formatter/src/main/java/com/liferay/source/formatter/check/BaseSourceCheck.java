@@ -262,10 +262,6 @@ public abstract class BaseSourceCheck implements SourceCheck {
 			absolutePath, _baseDirName);
 	}
 
-	protected String getBaseDirName() {
-		return _baseDirName;
-	}
-
 	protected BNDSettings getBNDSettings(String fileName) throws IOException {
 		String bndFileLocation = fileName;
 
@@ -298,6 +294,10 @@ public abstract class BaseSourceCheck implements SourceCheck {
 			bndFileLocation = StringUtil.replaceLast(
 				bndFileLocation, CharPool.SLASH, StringPool.BLANK);
 		}
+	}
+
+	protected String getBaseDirName() {
+		return _baseDirName;
 	}
 
 	protected String getBuildGradleContent(String absolutePath)
@@ -1056,11 +1056,11 @@ public abstract class BaseSourceCheck implements SourceCheck {
 	private static final Log _log = LogFactoryUtil.getLog(
 		BaseSourceCheck.class);
 
-	private JSONObject _attributesJSONObject = new JSONObjectImpl();
 	private final Map<String, String> _attributeValueMap =
 		new ConcurrentHashMap<>();
 	private final Map<String, List<String>> _attributeValuesMap =
 		new ConcurrentHashMap<>();
+	private JSONObject _attributesJSONObject = new JSONObjectImpl();
 	private String _baseDirName;
 	private final Map<String, BNDSettings> _bndSettingsMap =
 		new ConcurrentHashMap<>();

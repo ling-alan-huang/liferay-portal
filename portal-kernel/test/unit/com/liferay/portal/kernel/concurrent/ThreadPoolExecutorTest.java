@@ -509,6 +509,23 @@ public class ThreadPoolExecutorTest {
 	}
 
 	@Test
+	public void testAwaitTerminationWithZeroWaitTime()
+		throws InterruptedException {
+
+		ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(
+			1, 2, TestUtil.KEEPALIVE_TIME, TimeUnit.MILLISECONDS, true, 3);
+
+		long startTime = System.currentTimeMillis();
+
+		Assert.assertFalse(
+			threadPoolExecutor.awaitTermination(0, TimeUnit.MILLISECONDS));
+
+		long waitTime = System.currentTimeMillis() - startTime;
+
+		Assert.assertTrue(waitTime < TestUtil.SHORT_WAIT);
+	}
+
+	@Test
 	public void testAwaitTerminationWithoutShutdown()
 		throws InterruptedException {
 
@@ -525,23 +542,6 @@ public class ThreadPoolExecutorTest {
 
 		Assert.assertTrue(
 			waitTime >= TimeUnit.MILLISECONDS.toNanos(TestUtil.KEEPALIVE_TIME));
-	}
-
-	@Test
-	public void testAwaitTerminationWithZeroWaitTime()
-		throws InterruptedException {
-
-		ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(
-			1, 2, TestUtil.KEEPALIVE_TIME, TimeUnit.MILLISECONDS, true, 3);
-
-		long startTime = System.currentTimeMillis();
-
-		Assert.assertFalse(
-			threadPoolExecutor.awaitTermination(0, TimeUnit.MILLISECONDS));
-
-		long waitTime = System.currentTimeMillis() - startTime;
-
-		Assert.assertTrue(waitTime < TestUtil.SHORT_WAIT);
 	}
 
 	@Test

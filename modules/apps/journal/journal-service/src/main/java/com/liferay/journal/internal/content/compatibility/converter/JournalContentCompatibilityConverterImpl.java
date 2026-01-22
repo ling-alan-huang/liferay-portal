@@ -94,22 +94,6 @@ public class JournalContentCompatibilityConverterImpl
 		return document;
 	}
 
-	private void _convertDDMFields(Locale defaultLocale, Element element) {
-		String type = element.attributeValue("type");
-
-		if (Validator.isNotNull(type)) {
-			element.addAttribute("type", _convertDDMFieldType(type));
-		}
-
-		_convertDDMFieldValue(element, type, defaultLocale);
-
-		List<Element> dynamicElements = element.elements("dynamic-element");
-
-		for (Element dynamicElement : dynamicElements) {
-			_convertDDMFields(defaultLocale, dynamicElement);
-		}
-	}
-
 	private String _convertDDMFieldType(String ddmFieldType) {
 		if (Objects.equals(ddmFieldType, "boolean")) {
 			return DDMFormFieldTypeConstants.CHECKBOX;
@@ -209,6 +193,22 @@ public class JournalContentCompatibilityConverterImpl
 		}
 
 		return value;
+	}
+
+	private void _convertDDMFields(Locale defaultLocale, Element element) {
+		String type = element.attributeValue("type");
+
+		if (Validator.isNotNull(type)) {
+			element.addAttribute("type", _convertDDMFieldType(type));
+		}
+
+		_convertDDMFieldValue(element, type, defaultLocale);
+
+		List<Element> dynamicElements = element.elements("dynamic-element");
+
+		for (Element dynamicElement : dynamicElements) {
+			_convertDDMFields(defaultLocale, dynamicElement);
+		}
 	}
 
 	private String _convertLinkToLayoutValue(

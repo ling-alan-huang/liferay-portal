@@ -400,6 +400,9 @@ public class CPDefinitionSystemObjectDefinitionManager
 	}
 
 	@Reference
+	private CProductLocalService _cProductLocalService;
+
+	@Reference
 	private CommerceCatalogLocalService _commerceCatalogLocalService;
 
 	@Reference(
@@ -410,9 +413,6 @@ public class CPDefinitionSystemObjectDefinitionManager
 
 	@Reference
 	private CPDefinitionLocalService _cpDefinitionLocalService;
-
-	@Reference
-	private CProductLocalService _cProductLocalService;
 
 	@Reference
 	private ProductResource.Factory _productResourceFactory;

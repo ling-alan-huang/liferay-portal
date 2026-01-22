@@ -334,29 +334,6 @@ public class DLFileEntryConfigurationUpgradeProcessTest {
 	}
 
 	@Test
-	public void testUpgradeWithoutAnyConfiguration() throws Exception {
-		try (LogCapture logCapture = LoggerTestUtil.configureLog4JLogger(
-				_CLASS_NAME_UPGRADE_PROCESS, LoggerTestUtil.OFF)) {
-
-			UpgradeProcess upgradeProcess = _getUpgradeProcess();
-
-			upgradeProcess.upgrade();
-		}
-
-		Assert.assertNull(
-			_getConfigurations(_CLASS_NAME_PDF_PREVIEW_CONFIGURATION));
-		Assert.assertNull(
-			_getDLFileEntryConfiguration(
-				ExtendedObjectClassDefinition.Scope.COMPANY));
-		Assert.assertNull(
-			_getDLFileEntryConfiguration(
-				ExtendedObjectClassDefinition.Scope.GROUP));
-		Assert.assertNull(
-			_getDLFileEntryConfiguration(
-				ExtendedObjectClassDefinition.Scope.SYSTEM));
-	}
-
-	@Test
 	public void testUpgradeWithSystemDLFileEntryConfigurationOnly()
 		throws Exception {
 
@@ -428,6 +405,29 @@ public class DLFileEntryConfigurationUpgradeProcessTest {
 			_deleteConfigurations(_CLASS_NAME_DL_FILE_ENTRY_CONFIGURATION);
 			_deleteConfigurations(_CLASS_NAME_PDF_PREVIEW_CONFIGURATION);
 		}
+	}
+
+	@Test
+	public void testUpgradeWithoutAnyConfiguration() throws Exception {
+		try (LogCapture logCapture = LoggerTestUtil.configureLog4JLogger(
+				_CLASS_NAME_UPGRADE_PROCESS, LoggerTestUtil.OFF)) {
+
+			UpgradeProcess upgradeProcess = _getUpgradeProcess();
+
+			upgradeProcess.upgrade();
+		}
+
+		Assert.assertNull(
+			_getConfigurations(_CLASS_NAME_PDF_PREVIEW_CONFIGURATION));
+		Assert.assertNull(
+			_getDLFileEntryConfiguration(
+				ExtendedObjectClassDefinition.Scope.COMPANY));
+		Assert.assertNull(
+			_getDLFileEntryConfiguration(
+				ExtendedObjectClassDefinition.Scope.GROUP));
+		Assert.assertNull(
+			_getDLFileEntryConfiguration(
+				ExtendedObjectClassDefinition.Scope.SYSTEM));
 	}
 
 	private void _assertConfigurationValuesEquals(

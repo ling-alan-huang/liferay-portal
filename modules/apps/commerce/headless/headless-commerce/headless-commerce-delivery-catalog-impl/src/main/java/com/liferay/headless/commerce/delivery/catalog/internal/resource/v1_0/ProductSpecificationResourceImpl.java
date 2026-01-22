@@ -116,6 +116,9 @@ public class ProductSpecificationResourceImpl
 	}
 
 	@Reference
+	private CProductLocalService _cProductLocalService;
+
+	@Reference
 	private CommerceChannelLocalService _commerceChannelLocalService;
 
 	@Reference
@@ -124,9 +127,6 @@ public class ProductSpecificationResourceImpl
 	@Reference
 	private CPDefinitionSpecificationOptionValueLocalService
 		_cpDefinitionSpecificationOptionValueLocalService;
-
-	@Reference
-	private CProductLocalService _cProductLocalService;
 
 	@Reference(
 		target = "(component.name=com.liferay.headless.commerce.delivery.catalog.internal.dto.v1_0.converter.ProductSpecificationDTOConverter)"

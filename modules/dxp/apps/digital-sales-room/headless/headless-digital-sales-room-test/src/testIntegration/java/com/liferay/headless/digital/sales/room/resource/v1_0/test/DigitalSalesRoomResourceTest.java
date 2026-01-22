@@ -106,14 +106,6 @@ public class DigitalSalesRoomResourceTest
 		_testGetDigitalSalesRoomWithPermission();
 	}
 
-	@Override
-	@Test
-	public void testGetDigitalSalesRoomsPage() throws Exception {
-		super.testGetDigitalSalesRoomsPage();
-
-		_testGetDigitalSalesRoomsPageWithPermission();
-	}
-
 	@Ignore
 	@Override
 	@Test
@@ -121,6 +113,14 @@ public class DigitalSalesRoomResourceTest
 		throws Exception {
 
 		super.testGetDigitalSalesRoomTemplateDigitalSalesRoomsPage();
+	}
+
+	@Override
+	@Test
+	public void testGetDigitalSalesRoomsPage() throws Exception {
+		super.testGetDigitalSalesRoomsPage();
+
+		_testGetDigitalSalesRoomsPageWithPermission();
 	}
 
 	@Override
@@ -384,43 +384,6 @@ public class DigitalSalesRoomResourceTest
 				digitalSalesRoom.getId()));
 	}
 
-	private void _testGetDigitalSalesRoomsPageWithPermission()
-		throws Exception {
-
-		User user = UserTestUtil.addUser(
-			TestPropsValues.getCompanyId(), TestPropsValues.getUserId(), "test",
-			RandomTestUtil.randomString() + "@liferay.com",
-			RandomTestUtil.randomString(), LocaleUtil.getDefault(),
-			RandomTestUtil.randomString(), RandomTestUtil.randomString(), null,
-			ServiceContextTestUtil.getServiceContext());
-
-		DigitalSalesRoomResource digitalSalesRoomResource =
-			DigitalSalesRoomResource.builder(
-			).authentication(
-				user.getEmailAddress(), "test"
-			).build();
-
-		Page<DigitalSalesRoom> digitalSalesRoomsPage =
-			digitalSalesRoomResource.getDigitalSalesRoomsPage(
-				null, Pagination.of(1, 10));
-
-		Map<String, Map<String, String>> actions =
-			digitalSalesRoomsPage.getActions();
-
-		Assert.assertTrue(actions.isEmpty());
-
-		_addUserRole(
-			new String[] {ObjectActionKeys.ADD_OBJECT_ENTRY}, user.getUserId());
-
-		digitalSalesRoomsPage =
-			digitalSalesRoomResource.getDigitalSalesRoomsPage(
-				null, Pagination.of(1, 10));
-
-		actions = digitalSalesRoomsPage.getActions();
-
-		Assert.assertNotNull(actions.get("create"));
-	}
-
 	private void _testGetDigitalSalesRoomWithPermission() throws Exception {
 		User user = UserTestUtil.addUser(
 			TestPropsValues.getCompanyId(), TestPropsValues.getUserId(), "test",
@@ -476,6 +439,43 @@ public class DigitalSalesRoomResourceTest
 
 		Assert.assertNotNull(actions.get("delete"));
 		Assert.assertNotNull(actions.get("update"));
+	}
+
+	private void _testGetDigitalSalesRoomsPageWithPermission()
+		throws Exception {
+
+		User user = UserTestUtil.addUser(
+			TestPropsValues.getCompanyId(), TestPropsValues.getUserId(), "test",
+			RandomTestUtil.randomString() + "@liferay.com",
+			RandomTestUtil.randomString(), LocaleUtil.getDefault(),
+			RandomTestUtil.randomString(), RandomTestUtil.randomString(), null,
+			ServiceContextTestUtil.getServiceContext());
+
+		DigitalSalesRoomResource digitalSalesRoomResource =
+			DigitalSalesRoomResource.builder(
+			).authentication(
+				user.getEmailAddress(), "test"
+			).build();
+
+		Page<DigitalSalesRoom> digitalSalesRoomsPage =
+			digitalSalesRoomResource.getDigitalSalesRoomsPage(
+				null, Pagination.of(1, 10));
+
+		Map<String, Map<String, String>> actions =
+			digitalSalesRoomsPage.getActions();
+
+		Assert.assertTrue(actions.isEmpty());
+
+		_addUserRole(
+			new String[] {ObjectActionKeys.ADD_OBJECT_ENTRY}, user.getUserId());
+
+		digitalSalesRoomsPage =
+			digitalSalesRoomResource.getDigitalSalesRoomsPage(
+				null, Pagination.of(1, 10));
+
+		actions = digitalSalesRoomsPage.getActions();
+
+		Assert.assertNotNull(actions.get("create"));
 	}
 
 	private void _testPatchDigitalSalesRoomWithPermission() throws Exception {

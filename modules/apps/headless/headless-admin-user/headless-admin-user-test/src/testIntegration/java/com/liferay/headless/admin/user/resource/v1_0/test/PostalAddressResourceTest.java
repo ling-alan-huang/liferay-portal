@@ -456,22 +456,6 @@ public class PostalAddressResourceTest
 						postalAddress.getId(), patchPostalAddress.getId())));
 	}
 
-	private void _testPatchPostalAddressWithoutListType() throws Exception {
-		PostalAddress randomPostalAddress = randomPostalAddress();
-
-		randomPostalAddress = _addPostalAddress(
-			randomPostalAddress, Contact.class.getName(), _user.getContactId(),
-			ListTypeConstants.CONTACT_ADDRESS);
-
-		randomPostalAddress.setAddressType(StringPool.BLANK);
-
-		PostalAddress patchPostalAddress =
-			postalAddressResource.patchPostalAddress(
-				randomPostalAddress.getId(), randomPostalAddress);
-
-		Assert.assertEquals("business", patchPostalAddress.getAddressType());
-	}
-
 	private void _testPatchPostalAddressWithSubtype() throws Exception {
 		PostalAddress postalAddress = testPatchPostalAddress_addPostalAddress();
 
@@ -512,6 +496,22 @@ public class PostalAddressResourceTest
 			Assert.assertEquals(
 				listTypeEntry.getKey(), postalAddress.getAddressSubtype());
 		}
+	}
+
+	private void _testPatchPostalAddressWithoutListType() throws Exception {
+		PostalAddress randomPostalAddress = randomPostalAddress();
+
+		randomPostalAddress = _addPostalAddress(
+			randomPostalAddress, Contact.class.getName(), _user.getContactId(),
+			ListTypeConstants.CONTACT_ADDRESS);
+
+		randomPostalAddress.setAddressType(StringPool.BLANK);
+
+		PostalAddress patchPostalAddress =
+			postalAddressResource.patchPostalAddress(
+				randomPostalAddress.getId(), randomPostalAddress);
+
+		Assert.assertEquals("business", patchPostalAddress.getAddressType());
 	}
 
 	private void _testPostAccountPostalAddressWithSubtype() throws Exception {

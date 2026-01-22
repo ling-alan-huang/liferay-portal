@@ -43,11 +43,6 @@ public abstract class BaseEnvironmentEntity
 	}
 
 	@Override
-	public String getJavaVersion() {
-		return _javaVersion;
-	}
-
-	@Override
 	public JSONObject getJSONObject() {
 		JSONObject jsonObject = super.getJSONObject();
 
@@ -73,6 +68,11 @@ public abstract class BaseEnvironmentEntity
 		);
 
 		return jsonObject;
+	}
+
+	@Override
+	public String getJavaVersion() {
+		return _javaVersion;
 	}
 
 	@Override
@@ -121,11 +121,6 @@ public abstract class BaseEnvironmentEntity
 	}
 
 	@Override
-	public void setJavaVersion(String javaVersion) {
-		_javaVersion = javaVersion;
-	}
-
-	@Override
 	public void setJSONObject(JSONObject jsonObject) {
 		super.setJSONObject(jsonObject);
 
@@ -138,6 +133,11 @@ public abstract class BaseEnvironmentEntity
 		_liferayPortalBranch = LiferayPortalBranch.get(
 			jsonObject.get("liferayPortalBranch"));
 		_operatingSystem = jsonObject.getString("operatingSystem");
+	}
+
+	@Override
+	public void setJavaVersion(String javaVersion) {
+		_javaVersion = javaVersion;
 	}
 
 	@Override

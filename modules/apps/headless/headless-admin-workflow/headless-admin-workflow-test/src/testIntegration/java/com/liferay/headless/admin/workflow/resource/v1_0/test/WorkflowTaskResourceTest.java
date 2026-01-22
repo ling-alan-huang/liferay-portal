@@ -837,6 +837,28 @@ public class WorkflowTaskResourceTest extends BaseWorkflowTaskResourceTestCase {
 
 	@Override
 	@Test
+	public void testPostWorkflowTaskUpdateDueDate() throws Exception {
+		WorkflowTask workflowTask = testGetWorkflowTask_addWorkflowTask();
+
+		Assert.assertNull(workflowTask.getDateDue());
+
+		WorkflowTask postWorkflowTask =
+			workflowTaskResource.postWorkflowTaskUpdateDueDate(
+				workflowTask.getId(),
+				new WorkflowTaskAssignToMe() {
+					{
+						dueDate = new Date(
+							System.currentTimeMillis() + (2 * Time.DAY));
+					}
+				});
+
+		assertEquals(workflowTask, postWorkflowTask);
+		assertValid(postWorkflowTask);
+		Assert.assertNotNull(postWorkflowTask.getDateDue());
+	}
+
+	@Override
+	@Test
 	public void testPostWorkflowTasksPage() throws Exception {
 		WorkflowTask workflowTask1 = testGetWorkflowTask_addWorkflowTask();
 
@@ -870,28 +892,6 @@ public class WorkflowTaskResourceTest extends BaseWorkflowTaskResourceTestCase {
 		assertEqualsIgnoringOrder(
 			Arrays.asList(workflowTask2), (List<WorkflowTask>)page.getItems());
 		assertValid(page);
-	}
-
-	@Override
-	@Test
-	public void testPostWorkflowTaskUpdateDueDate() throws Exception {
-		WorkflowTask workflowTask = testGetWorkflowTask_addWorkflowTask();
-
-		Assert.assertNull(workflowTask.getDateDue());
-
-		WorkflowTask postWorkflowTask =
-			workflowTaskResource.postWorkflowTaskUpdateDueDate(
-				workflowTask.getId(),
-				new WorkflowTaskAssignToMe() {
-					{
-						dueDate = new Date(
-							System.currentTimeMillis() + (2 * Time.DAY));
-					}
-				});
-
-		assertEquals(workflowTask, postWorkflowTask);
-		assertValid(postWorkflowTask);
-		Assert.assertNotNull(postWorkflowTask.getDateDue());
 	}
 
 	@Override

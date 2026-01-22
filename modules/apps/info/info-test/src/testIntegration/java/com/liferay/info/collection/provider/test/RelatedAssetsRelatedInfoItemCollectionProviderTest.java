@@ -350,18 +350,6 @@ public class RelatedAssetsRelatedInfoItemCollectionProviderTest {
 			new String[0], StringPool.BLANK, null, null, _serviceContext);
 	}
 
-	private Layout _addDefaultDisplayPageTemplateLayout(
-			long classNameId, long classTypeId)
-		throws Exception {
-
-		LayoutPageTemplateEntry layoutPageTemplateEntry =
-			DisplayPageTemplateTestUtil.addDisplayPageTemplate(
-				_group.getGroupId(), classNameId, classTypeId, true,
-				WorkflowConstants.STATUS_APPROVED);
-
-		return _layoutLocalService.getLayout(layoutPageTemplateEntry.getPlid());
-	}
-
 	private DLFileEntry _addDLFileEntry() throws Exception {
 		FileEntry fileEntry = _dlAppService.addFileEntry(
 			null, _group.getGroupId(),
@@ -372,6 +360,18 @@ public class RelatedAssetsRelatedInfoItemCollectionProviderTest {
 
 		return _dlFileEntryLocalService.getFileEntry(
 			fileEntry.getFileEntryId());
+	}
+
+	private Layout _addDefaultDisplayPageTemplateLayout(
+			long classNameId, long classTypeId)
+		throws Exception {
+
+		LayoutPageTemplateEntry layoutPageTemplateEntry =
+			DisplayPageTemplateTestUtil.addDisplayPageTemplate(
+				_group.getGroupId(), classNameId, classTypeId, true,
+				WorkflowConstants.STATUS_APPROVED);
+
+		return _layoutLocalService.getLayout(layoutPageTemplateEntry.getPlid());
 	}
 
 	private FragmentEntry _addFragmentEntry() throws Exception {

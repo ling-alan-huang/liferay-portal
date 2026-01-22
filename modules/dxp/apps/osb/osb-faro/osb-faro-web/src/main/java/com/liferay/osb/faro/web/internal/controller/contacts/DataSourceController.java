@@ -372,6 +372,38 @@ public class DataSourceController extends BaseFaroController {
 		return new FaroResultsDisplay(results, function);
 	}
 
+	@Path("/{id}/groups_by_ids")
+	@POST
+	@RolesAllowed(RoleConstants.SITE_MEMBER)
+	public List<DXPGroupDisplay> getDXPGroupDisplays(
+			@PathParam("groupId") long groupId, @PathParam("id") String id,
+			@DefaultValue(StringPool.BLANK) @FormParam("groupIds") FaroParam
+				<List<Long>> groupIdsFaroParam)
+		throws Exception {
+
+		return TransformUtil.transform(
+			contactsEngineClient.getDataSourceDXPGroups(
+				faroProjectLocalService.getFaroProjectByGroupId(groupId), id,
+				groupIdsFaroParam.getValue()),
+			DXPGroupDisplay::new);
+	}
+
+	@Path("/{id}/user_groups_by_ids")
+	@POST
+	@RolesAllowed(RoleConstants.SITE_MEMBER)
+	public List<DXPUserGroupDisplay> getDXPUserGroupDisplays(
+			@PathParam("groupId") long groupId, @PathParam("id") String id,
+			@DefaultValue(StringPool.BLANK) @FormParam("userGroupIds") FaroParam
+				<List<Long>> userGroupIdsFaroParam)
+		throws Exception {
+
+		return TransformUtil.transform(
+			contactsEngineClient.getDataSourceDXPUserGroups(
+				faroProjectLocalService.getFaroProjectByGroupId(groupId), id,
+				userGroupIdsFaroParam.getValue()),
+			DXPUserGroupDisplay::new);
+	}
+
 	@GET
 	@Path("/{id}")
 	@RolesAllowed(RoleConstants.SITE_MEMBER)
@@ -722,38 +754,6 @@ public class DataSourceController extends BaseFaroController {
 				return individualSegmentResults.getTotal();
 			}
 		).build();
-	}
-
-	@Path("/{id}/groups_by_ids")
-	@POST
-	@RolesAllowed(RoleConstants.SITE_MEMBER)
-	public List<DXPGroupDisplay> getDXPGroupDisplays(
-			@PathParam("groupId") long groupId, @PathParam("id") String id,
-			@DefaultValue(StringPool.BLANK) @FormParam("groupIds") FaroParam
-				<List<Long>> groupIdsFaroParam)
-		throws Exception {
-
-		return TransformUtil.transform(
-			contactsEngineClient.getDataSourceDXPGroups(
-				faroProjectLocalService.getFaroProjectByGroupId(groupId), id,
-				groupIdsFaroParam.getValue()),
-			DXPGroupDisplay::new);
-	}
-
-	@Path("/{id}/user_groups_by_ids")
-	@POST
-	@RolesAllowed(RoleConstants.SITE_MEMBER)
-	public List<DXPUserGroupDisplay> getDXPUserGroupDisplays(
-			@PathParam("groupId") long groupId, @PathParam("id") String id,
-			@DefaultValue(StringPool.BLANK) @FormParam("userGroupIds") FaroParam
-				<List<Long>> userGroupIdsFaroParam)
-		throws Exception {
-
-		return TransformUtil.transform(
-			contactsEngineClient.getDataSourceDXPUserGroups(
-				faroProjectLocalService.getFaroProjectByGroupId(groupId), id,
-				userGroupIdsFaroParam.getValue()),
-			DXPUserGroupDisplay::new);
 	}
 
 	@Override

@@ -555,11 +555,11 @@ public class JournalServiceUpgradeStepRegistrator
 	private PortletFileRepository _portletFileRepository;
 
 	@Reference
-	private PortletPreferencesLocalService _portletPreferencesLocalService;
-
-	@Reference
 	private PortletPreferenceValueLocalService
 		_portletPreferenceValueLocalService;
+
+	@Reference
+	private PortletPreferencesLocalService _portletPreferencesLocalService;
 
 	@Reference
 	private PrefsPropsToConfigurationUpgradeHelper

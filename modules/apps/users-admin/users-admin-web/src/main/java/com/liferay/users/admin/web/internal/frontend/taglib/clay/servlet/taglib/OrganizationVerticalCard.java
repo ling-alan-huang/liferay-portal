@@ -65,17 +65,6 @@ public class OrganizationVerticalCard extends BaseVerticalCard {
 	}
 
 	@Override
-	public List<LabelItem> getLabels() {
-		if (FeatureFlagManagerUtil.isEnabled("LPD-35914")) {
-			return LabelItemListBuilder.add(
-				labelItem -> labelItem.setStatus(_organization.getStatus())
-			).build();
-		}
-
-		return Collections.emptyList();
-	}
-
-	@Override
 	public Map<String, String> getLabelStylesMap() {
 		if (FeatureFlagManagerUtil.isEnabled("LPD-35914")) {
 			return HashMapBuilder.put(
@@ -85,6 +74,17 @@ public class OrganizationVerticalCard extends BaseVerticalCard {
 		}
 
 		return Collections.emptyMap();
+	}
+
+	@Override
+	public List<LabelItem> getLabels() {
+		if (FeatureFlagManagerUtil.isEnabled("LPD-35914")) {
+			return LabelItemListBuilder.add(
+				labelItem -> labelItem.setStatus(_organization.getStatus())
+			).build();
+		}
+
+		return Collections.emptyList();
 	}
 
 	@Override

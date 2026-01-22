@@ -3678,450 +3678,6 @@ public class ServiceBuilder {
 		ToolsUtil.writeFileRaw(propsFile, content, _modifiedFileNames);
 	}
 
-	private void _createService(Entity entity, int sessionType)
-		throws Exception {
-
-		Set<String> imports = new HashSet<>();
-
-		JavaClass javaClass = _getJavaClass(
-			StringBundler.concat(
-				_outputPath, "/service/impl/", entity.getName(),
-				_getSessionTypeName(sessionType), "ServiceImpl.java"));
-
-		JavaSource javaSource = javaClass.getSource();
-
-		imports.addAll(javaSource.getImports());
-
-		List<JavaMethod> methods = _getMethods(javaClass);
-
-		JavaType superClass = javaClass.getSuperClass();
-
-		String superClassValue = superClass.getValue();
-
-		if (superClassValue.endsWith(
-				entity.getName() + _getSessionTypeName(sessionType) +
-					"ServiceBaseImpl")) {
-
-			JavaClass parentJavaClass = _getJavaClass(
-				StringBundler.concat(
-					_outputPath, "/service/base/", entity.getName(),
-					_getSessionTypeName(sessionType), "ServiceBaseImpl.java"));
-
-			methods = _mergeMethods(
-				methods, parentJavaClass.getMethods(), true);
-
-			JavaSource parentJavaSource = parentJavaClass.getSource();
-
-			Map<String, String> importsMap = new HashMap<>();
-
-			for (String childImport : imports) {
-				int x = childImport.lastIndexOf('.');
-
-				importsMap.put(childImport.substring(x + 1), childImport);
-			}
-
-			for (String parentImport : parentJavaSource.getImports()) {
-				int x = parentImport.lastIndexOf('.');
-
-				String simpleName = parentImport.substring(x + 1);
-
-				String conflictingImport = importsMap.get(simpleName);
-
-				if (conflictingImport == null) {
-					imports.add(parentImport);
-				}
-				else if (!conflictingImport.equals(parentImport)) {
-					for (JavaMethod method : methods) {
-						String signature = method.getDeclarationSignature(
-							false);
-
-						if (signature.contains(conflictingImport)) {
-							break;
-						}
-
-						if (signature.contains(parentImport)) {
-							imports.remove(conflictingImport);
-
-							imports.add(parentImport);
-
-							break;
-						}
-					}
-				}
-			}
-		}
-
-		Map<String, Object> context = _getContext();
-
-		context.put("entity", entity);
-		context.put("imports", imports);
-		context.put("methods", methods);
-		context.put("sessionTypeName", _getSessionTypeName(sessionType));
-
-		context = _putDeprecatedKeys(context, javaClass);
-
-		String content = _processTemplate(_tplService, context);
-
-		File file = new File(
-			StringBundler.concat(
-				_serviceOutputPath, "/service/", entity.getName(),
-				_getSessionTypeName(sessionType), "Service.java"));
-
-		_write(file, content, _modifiedFileNames);
-	}
-
-	private void _createServiceBaseImpl(Entity entity, int sessionType)
-		throws Exception {
-
-		JavaClass javaClass = _getJavaClass(
-			StringBundler.concat(
-				_outputPath, "/service/impl/", entity.getName(),
-				(sessionType != _SESSION_TYPE_REMOTE) ? "Local" : "",
-				"ServiceImpl.java"));
-
-		List<JavaMethod> methods = _getMethods(javaClass);
-
-		Map<String, Object> context = _getContext();
-
-		context.put("entity", entity);
-		context.put("methods", methods);
-		context.put("referenceEntities", _mergeReferenceEntities(entity));
-		context.put("sessionTypeName", _getSessionTypeName(sessionType));
-
-		context = _putDeprecatedKeys(context, javaClass);
-
-		String content = _processTemplate(_tplServiceBaseImpl, context);
-
-		File file = new File(
-			StringBundler.concat(
-				_outputPath, "/service/base/", entity.getName(),
-				_getSessionTypeName(sessionType), "ServiceBaseImpl.java"));
-
-		_write(file, content, _modifiedFileNames);
-	}
-
-	private void _createServiceFactory(Entity entity, int sessionType) {
-		File file = new File(
-			StringBundler.concat(
-				_oldServiceOutputPath, "/service/", entity.getName(),
-				_getSessionTypeName(sessionType), "ServiceFactory.java"));
-
-		if (file.exists()) {
-			System.out.println("Removing deprecated " + file);
-
-			file.delete();
-		}
-
-		file = new File(
-			StringBundler.concat(
-				_outputPath, "/service/", entity.getName(),
-				_getSessionTypeName(sessionType), "ServiceFactory.java"));
-
-		if (file.exists()) {
-			System.out.println("Removing deprecated " + file);
-
-			file.delete();
-		}
-	}
-
-	private void _createServiceHttp(Entity entity) throws Exception {
-		JavaClass javaClass = _getJavaClass(
-			StringBundler.concat(
-				_outputPath, "/service/impl/", entity.getName(),
-				"ServiceImpl.java"));
-
-		Map<String, Object> context = _getContext();
-
-		context.put("entity", entity);
-		context.put("hasHttpMethods", _hasHttpMethods(javaClass));
-		context.put("methods", _getMethods(javaClass));
-
-		context = _putDeprecatedKeys(context, javaClass);
-
-		String content = _processTemplate(_tplServiceHttp, context);
-
-		File file = new File(
-			StringBundler.concat(
-				_outputPath, "/service/http/", entity.getName(),
-				"ServiceHttp.java"));
-
-		_write(file, content, _modifiedFileNames);
-	}
-
-	private void _createServiceImpl(Entity entity, int sessionType)
-		throws Exception {
-
-		File file = new File(
-			StringBundler.concat(
-				_outputPath, "/service/impl/", entity.getName(),
-				_getSessionTypeName(sessionType), "ServiceImpl.java"));
-
-		if (file.exists()) {
-			return;
-		}
-
-		Map<String, Object> context = _getContext();
-
-		context.put("entity", entity);
-		context.put("sessionTypeName", _getSessionTypeName(sessionType));
-
-		String content = _processTemplate(_tplServiceImpl, context);
-
-		_write(file, content, _modifiedFileNames);
-	}
-
-	private void _createServicePropsUtil() throws Exception {
-		if (!_osgiModule) {
-			return;
-		}
-
-		File file = new File(
-			StringBundler.concat(
-				_implDirName, "/", StringUtil.replace(_propsUtil, '.', '/'),
-				".java"));
-
-		if (_dependencyInjectorDS) {
-			if (file.exists()) {
-				file.delete();
-
-				System.out.println("Removing " + file);
-			}
-
-			return;
-		}
-
-		Map<String, Object> context = _getContext();
-
-		int index = _propsUtil.lastIndexOf(".");
-
-		context.put(
-			"servicePropsUtilClassName", _propsUtil.substring(index + 1));
-		context.put(
-			"servicePropsUtilPackagePath", _propsUtil.substring(0, index));
-
-		String content = _processTemplate(_tplServicePropsUtil, context);
-
-		_write(file, content, _modifiedFileNames);
-	}
-
-	private void _createServiceSoap(Entity entity) throws Exception {
-		JavaClass javaClass = _getJavaClass(
-			StringBundler.concat(
-				_outputPath, "/service/impl/", entity.getName(),
-				"ServiceImpl.java"));
-
-		Map<String, Object> context = _getContext();
-
-		context.put("entity", entity);
-		context.put("methods", _getMethods(javaClass));
-
-		context = _putDeprecatedKeys(context, javaClass);
-
-		String content = _processTemplate(_tplServiceSoap, context);
-
-		File file = new File(
-			StringBundler.concat(
-				_outputPath, "/service/http/", entity.getName(),
-				"ServiceSoap.java"));
-
-		_write(file, content, _modifiedFileNames);
-	}
-
-	private void _createServiceUtil(Entity entity, int sessionType)
-		throws Exception {
-
-		JavaClass javaClass = _getJavaClass(
-			StringBundler.concat(
-				_serviceOutputPath, "/service/", entity.getName(),
-				_getSessionTypeName(sessionType), "Service.java"));
-
-		Map<String, Object> context = _getContext();
-
-		context.put("entity", entity);
-		context.put("methods", _getMethods(javaClass));
-		context.put("sessionTypeName", _getSessionTypeName(sessionType));
-
-		context = _putDeprecatedKeys(context, javaClass);
-
-		String content = _processTemplate(_tplServiceUtil, context);
-
-		File file = new File(
-			StringBundler.concat(
-				_serviceOutputPath, "/service/", entity.getName(),
-				_getSessionTypeName(sessionType), "ServiceUtil.java"));
-
-		_write(file, content, _modifiedFileNames);
-	}
-
-	private void _createServiceWrapper(Entity entity, int sessionType)
-		throws Exception {
-
-		JavaClass javaClass = _getJavaClass(
-			StringBundler.concat(
-				_serviceOutputPath, "/service/", entity.getName(),
-				_getSessionTypeName(sessionType), "Service.java"));
-
-		Map<String, Object> context = _getContext();
-
-		context.put("entity", entity);
-		context.put("methods", _getMethods(javaClass));
-		context.put("sessionTypeName", _getSessionTypeName(sessionType));
-
-		context = _putDeprecatedKeys(context, javaClass);
-
-		String content = _processTemplate(_tplServiceWrapper, context);
-
-		File file = new File(
-			StringBundler.concat(
-				_serviceOutputPath, "/service/", entity.getName(),
-				_getSessionTypeName(sessionType), "ServiceWrapper.java"));
-
-		_write(file, content, _modifiedFileNames);
-	}
-
-	private void _createServletContextUtil() throws Exception {
-		if (Validator.isNull(_pluginName)) {
-			return;
-		}
-
-		String content = _processTemplate(
-			_TPL_SERVLET_CONTEXT_UTIL, _getContext());
-
-		File file = new File(
-			_serviceOutputPath + "/service/ServletContextUtil.java");
-
-		_write(file, content, _modifiedFileNames);
-	}
-
-	private void _createSpringXml() throws Exception {
-		if (_packagePath.equals("com.liferay.counter")) {
-			return;
-		}
-
-		File xmlFile = new File(_springFileName);
-
-		if (_dependencyInjectorDS) {
-			if (xmlFile.exists()) {
-				xmlFile.delete();
-
-				System.out.println("Removing " + xmlFile);
-			}
-
-			return;
-		}
-
-		Map<String, Object> context = _getContext();
-
-		context.put("entities", _entities);
-
-		String content = _processTemplate(_tplSpringXml, context);
-
-		StringBundler sb = new StringBundler(11);
-
-		sb.append("<?xml version=\"1.0\"?>\n\n");
-		sb.append("<beans\n");
-		sb.append("\tdefault-destroy-method=\"destroy\"\n");
-		sb.append("\tdefault-init-method=\"afterPropertiesSet\"\n");
-		sb.append(_getSpringNamespacesDeclarations());
-		sb.append("\txmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"");
-		sb.append("\n");
-		sb.append("\txsi:schemaLocation=\"");
-		sb.append(StringUtil.trim(_getSpringSchemaLocations()));
-		sb.append("\">\n");
-		sb.append("</beans>");
-
-		String xml = sb.toString();
-
-		if (!xmlFile.exists()) {
-			_write(xmlFile, xml);
-		}
-
-		String oldContent = _read(xmlFile);
-
-		if (Validator.isNotNull(_pluginName) &&
-			oldContent.contains("DOCTYPE beans PUBLIC")) {
-
-			oldContent = xml;
-		}
-
-		String newContent = _fixSpringXml(oldContent);
-
-		int x = oldContent.indexOf("<beans");
-		int y = oldContent.lastIndexOf("</beans>");
-
-		int firstSession = newContent.indexOf(
-			"<bean class=\"" + _packagePath + ".service.", x);
-
-		int lastSession = newContent.lastIndexOf(
-			"<bean class=\"" + _packagePath + ".service.", y);
-
-		if (firstSession == -1) {
-			firstSession = newContent.indexOf(
-				"<bean class=\"" + _apiPackagePath + ".service.", x);
-
-			lastSession = newContent.lastIndexOf(
-				"<bean class=\"" + _apiPackagePath + ".service.", y);
-		}
-
-		if ((firstSession == -1) || (firstSession > y)) {
-			x = newContent.indexOf("</beans>");
-
-			newContent =
-				newContent.substring(0, x) + content + newContent.substring(x);
-		}
-		else {
-			firstSession = newContent.lastIndexOf("<bean", firstSession) - 1;
-
-			int tempLastSession = newContent.indexOf(
-				"<bean class=\"", lastSession + 1);
-
-			if (tempLastSession == -1) {
-				tempLastSession = newContent.indexOf("</beans>", lastSession);
-			}
-
-			lastSession = tempLastSession;
-
-			newContent =
-				newContent.substring(0, firstSession) + content +
-					newContent.substring(lastSession);
-		}
-
-		newContent = _formatXml(newContent);
-
-		Matcher matcher = _beansPattern.matcher(newContent);
-
-		if (matcher.find()) {
-			String beans = matcher.group();
-			Map<String, String> beansAttributes = new TreeMap<>(
-				String.CASE_INSENSITIVE_ORDER);
-
-			matcher = _beansAttributePattern.matcher(beans);
-
-			while (matcher.find()) {
-				String beanAttribute = StringBundler.concat(
-					StringUtil.trim(matcher.group(1)), "=\"",
-					StringUtil.trim(matcher.group(2)), "\"");
-
-				beansAttributes.put(
-					StringUtil.trim(matcher.group(1)), beanAttribute);
-			}
-
-			sb.setIndex(0);
-
-			for (Map.Entry<String, String> beanAttribute :
-					beansAttributes.entrySet()) {
-
-				sb.append("\n\t");
-				sb.append(beanAttribute.getValue());
-			}
-
-			newContent = StringUtil.replaceFirst(
-				newContent, beans, "<beans" + sb.toString() + "\n>");
-		}
-
-		ToolsUtil.writeFileRaw(xmlFile, newContent, _modifiedFileNames);
-	}
-
 	private void _createSQLIndexes() throws Exception {
 		File sqlDir = new File(_sqlDirName);
 
@@ -4572,6 +4128,450 @@ public class ServiceBuilder {
 					sqlFile, sb.toString(), _modifiedFileNames);
 			}
 		}
+	}
+
+	private void _createService(Entity entity, int sessionType)
+		throws Exception {
+
+		Set<String> imports = new HashSet<>();
+
+		JavaClass javaClass = _getJavaClass(
+			StringBundler.concat(
+				_outputPath, "/service/impl/", entity.getName(),
+				_getSessionTypeName(sessionType), "ServiceImpl.java"));
+
+		JavaSource javaSource = javaClass.getSource();
+
+		imports.addAll(javaSource.getImports());
+
+		List<JavaMethod> methods = _getMethods(javaClass);
+
+		JavaType superClass = javaClass.getSuperClass();
+
+		String superClassValue = superClass.getValue();
+
+		if (superClassValue.endsWith(
+				entity.getName() + _getSessionTypeName(sessionType) +
+					"ServiceBaseImpl")) {
+
+			JavaClass parentJavaClass = _getJavaClass(
+				StringBundler.concat(
+					_outputPath, "/service/base/", entity.getName(),
+					_getSessionTypeName(sessionType), "ServiceBaseImpl.java"));
+
+			methods = _mergeMethods(
+				methods, parentJavaClass.getMethods(), true);
+
+			JavaSource parentJavaSource = parentJavaClass.getSource();
+
+			Map<String, String> importsMap = new HashMap<>();
+
+			for (String childImport : imports) {
+				int x = childImport.lastIndexOf('.');
+
+				importsMap.put(childImport.substring(x + 1), childImport);
+			}
+
+			for (String parentImport : parentJavaSource.getImports()) {
+				int x = parentImport.lastIndexOf('.');
+
+				String simpleName = parentImport.substring(x + 1);
+
+				String conflictingImport = importsMap.get(simpleName);
+
+				if (conflictingImport == null) {
+					imports.add(parentImport);
+				}
+				else if (!conflictingImport.equals(parentImport)) {
+					for (JavaMethod method : methods) {
+						String signature = method.getDeclarationSignature(
+							false);
+
+						if (signature.contains(conflictingImport)) {
+							break;
+						}
+
+						if (signature.contains(parentImport)) {
+							imports.remove(conflictingImport);
+
+							imports.add(parentImport);
+
+							break;
+						}
+					}
+				}
+			}
+		}
+
+		Map<String, Object> context = _getContext();
+
+		context.put("entity", entity);
+		context.put("imports", imports);
+		context.put("methods", methods);
+		context.put("sessionTypeName", _getSessionTypeName(sessionType));
+
+		context = _putDeprecatedKeys(context, javaClass);
+
+		String content = _processTemplate(_tplService, context);
+
+		File file = new File(
+			StringBundler.concat(
+				_serviceOutputPath, "/service/", entity.getName(),
+				_getSessionTypeName(sessionType), "Service.java"));
+
+		_write(file, content, _modifiedFileNames);
+	}
+
+	private void _createServiceBaseImpl(Entity entity, int sessionType)
+		throws Exception {
+
+		JavaClass javaClass = _getJavaClass(
+			StringBundler.concat(
+				_outputPath, "/service/impl/", entity.getName(),
+				(sessionType != _SESSION_TYPE_REMOTE) ? "Local" : "",
+				"ServiceImpl.java"));
+
+		List<JavaMethod> methods = _getMethods(javaClass);
+
+		Map<String, Object> context = _getContext();
+
+		context.put("entity", entity);
+		context.put("methods", methods);
+		context.put("referenceEntities", _mergeReferenceEntities(entity));
+		context.put("sessionTypeName", _getSessionTypeName(sessionType));
+
+		context = _putDeprecatedKeys(context, javaClass);
+
+		String content = _processTemplate(_tplServiceBaseImpl, context);
+
+		File file = new File(
+			StringBundler.concat(
+				_outputPath, "/service/base/", entity.getName(),
+				_getSessionTypeName(sessionType), "ServiceBaseImpl.java"));
+
+		_write(file, content, _modifiedFileNames);
+	}
+
+	private void _createServiceFactory(Entity entity, int sessionType) {
+		File file = new File(
+			StringBundler.concat(
+				_oldServiceOutputPath, "/service/", entity.getName(),
+				_getSessionTypeName(sessionType), "ServiceFactory.java"));
+
+		if (file.exists()) {
+			System.out.println("Removing deprecated " + file);
+
+			file.delete();
+		}
+
+		file = new File(
+			StringBundler.concat(
+				_outputPath, "/service/", entity.getName(),
+				_getSessionTypeName(sessionType), "ServiceFactory.java"));
+
+		if (file.exists()) {
+			System.out.println("Removing deprecated " + file);
+
+			file.delete();
+		}
+	}
+
+	private void _createServiceHttp(Entity entity) throws Exception {
+		JavaClass javaClass = _getJavaClass(
+			StringBundler.concat(
+				_outputPath, "/service/impl/", entity.getName(),
+				"ServiceImpl.java"));
+
+		Map<String, Object> context = _getContext();
+
+		context.put("entity", entity);
+		context.put("hasHttpMethods", _hasHttpMethods(javaClass));
+		context.put("methods", _getMethods(javaClass));
+
+		context = _putDeprecatedKeys(context, javaClass);
+
+		String content = _processTemplate(_tplServiceHttp, context);
+
+		File file = new File(
+			StringBundler.concat(
+				_outputPath, "/service/http/", entity.getName(),
+				"ServiceHttp.java"));
+
+		_write(file, content, _modifiedFileNames);
+	}
+
+	private void _createServiceImpl(Entity entity, int sessionType)
+		throws Exception {
+
+		File file = new File(
+			StringBundler.concat(
+				_outputPath, "/service/impl/", entity.getName(),
+				_getSessionTypeName(sessionType), "ServiceImpl.java"));
+
+		if (file.exists()) {
+			return;
+		}
+
+		Map<String, Object> context = _getContext();
+
+		context.put("entity", entity);
+		context.put("sessionTypeName", _getSessionTypeName(sessionType));
+
+		String content = _processTemplate(_tplServiceImpl, context);
+
+		_write(file, content, _modifiedFileNames);
+	}
+
+	private void _createServicePropsUtil() throws Exception {
+		if (!_osgiModule) {
+			return;
+		}
+
+		File file = new File(
+			StringBundler.concat(
+				_implDirName, "/", StringUtil.replace(_propsUtil, '.', '/'),
+				".java"));
+
+		if (_dependencyInjectorDS) {
+			if (file.exists()) {
+				file.delete();
+
+				System.out.println("Removing " + file);
+			}
+
+			return;
+		}
+
+		Map<String, Object> context = _getContext();
+
+		int index = _propsUtil.lastIndexOf(".");
+
+		context.put(
+			"servicePropsUtilClassName", _propsUtil.substring(index + 1));
+		context.put(
+			"servicePropsUtilPackagePath", _propsUtil.substring(0, index));
+
+		String content = _processTemplate(_tplServicePropsUtil, context);
+
+		_write(file, content, _modifiedFileNames);
+	}
+
+	private void _createServiceSoap(Entity entity) throws Exception {
+		JavaClass javaClass = _getJavaClass(
+			StringBundler.concat(
+				_outputPath, "/service/impl/", entity.getName(),
+				"ServiceImpl.java"));
+
+		Map<String, Object> context = _getContext();
+
+		context.put("entity", entity);
+		context.put("methods", _getMethods(javaClass));
+
+		context = _putDeprecatedKeys(context, javaClass);
+
+		String content = _processTemplate(_tplServiceSoap, context);
+
+		File file = new File(
+			StringBundler.concat(
+				_outputPath, "/service/http/", entity.getName(),
+				"ServiceSoap.java"));
+
+		_write(file, content, _modifiedFileNames);
+	}
+
+	private void _createServiceUtil(Entity entity, int sessionType)
+		throws Exception {
+
+		JavaClass javaClass = _getJavaClass(
+			StringBundler.concat(
+				_serviceOutputPath, "/service/", entity.getName(),
+				_getSessionTypeName(sessionType), "Service.java"));
+
+		Map<String, Object> context = _getContext();
+
+		context.put("entity", entity);
+		context.put("methods", _getMethods(javaClass));
+		context.put("sessionTypeName", _getSessionTypeName(sessionType));
+
+		context = _putDeprecatedKeys(context, javaClass);
+
+		String content = _processTemplate(_tplServiceUtil, context);
+
+		File file = new File(
+			StringBundler.concat(
+				_serviceOutputPath, "/service/", entity.getName(),
+				_getSessionTypeName(sessionType), "ServiceUtil.java"));
+
+		_write(file, content, _modifiedFileNames);
+	}
+
+	private void _createServiceWrapper(Entity entity, int sessionType)
+		throws Exception {
+
+		JavaClass javaClass = _getJavaClass(
+			StringBundler.concat(
+				_serviceOutputPath, "/service/", entity.getName(),
+				_getSessionTypeName(sessionType), "Service.java"));
+
+		Map<String, Object> context = _getContext();
+
+		context.put("entity", entity);
+		context.put("methods", _getMethods(javaClass));
+		context.put("sessionTypeName", _getSessionTypeName(sessionType));
+
+		context = _putDeprecatedKeys(context, javaClass);
+
+		String content = _processTemplate(_tplServiceWrapper, context);
+
+		File file = new File(
+			StringBundler.concat(
+				_serviceOutputPath, "/service/", entity.getName(),
+				_getSessionTypeName(sessionType), "ServiceWrapper.java"));
+
+		_write(file, content, _modifiedFileNames);
+	}
+
+	private void _createServletContextUtil() throws Exception {
+		if (Validator.isNull(_pluginName)) {
+			return;
+		}
+
+		String content = _processTemplate(
+			_TPL_SERVLET_CONTEXT_UTIL, _getContext());
+
+		File file = new File(
+			_serviceOutputPath + "/service/ServletContextUtil.java");
+
+		_write(file, content, _modifiedFileNames);
+	}
+
+	private void _createSpringXml() throws Exception {
+		if (_packagePath.equals("com.liferay.counter")) {
+			return;
+		}
+
+		File xmlFile = new File(_springFileName);
+
+		if (_dependencyInjectorDS) {
+			if (xmlFile.exists()) {
+				xmlFile.delete();
+
+				System.out.println("Removing " + xmlFile);
+			}
+
+			return;
+		}
+
+		Map<String, Object> context = _getContext();
+
+		context.put("entities", _entities);
+
+		String content = _processTemplate(_tplSpringXml, context);
+
+		StringBundler sb = new StringBundler(11);
+
+		sb.append("<?xml version=\"1.0\"?>\n\n");
+		sb.append("<beans\n");
+		sb.append("\tdefault-destroy-method=\"destroy\"\n");
+		sb.append("\tdefault-init-method=\"afterPropertiesSet\"\n");
+		sb.append(_getSpringNamespacesDeclarations());
+		sb.append("\txmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"");
+		sb.append("\n");
+		sb.append("\txsi:schemaLocation=\"");
+		sb.append(StringUtil.trim(_getSpringSchemaLocations()));
+		sb.append("\">\n");
+		sb.append("</beans>");
+
+		String xml = sb.toString();
+
+		if (!xmlFile.exists()) {
+			_write(xmlFile, xml);
+		}
+
+		String oldContent = _read(xmlFile);
+
+		if (Validator.isNotNull(_pluginName) &&
+			oldContent.contains("DOCTYPE beans PUBLIC")) {
+
+			oldContent = xml;
+		}
+
+		String newContent = _fixSpringXml(oldContent);
+
+		int x = oldContent.indexOf("<beans");
+		int y = oldContent.lastIndexOf("</beans>");
+
+		int firstSession = newContent.indexOf(
+			"<bean class=\"" + _packagePath + ".service.", x);
+
+		int lastSession = newContent.lastIndexOf(
+			"<bean class=\"" + _packagePath + ".service.", y);
+
+		if (firstSession == -1) {
+			firstSession = newContent.indexOf(
+				"<bean class=\"" + _apiPackagePath + ".service.", x);
+
+			lastSession = newContent.lastIndexOf(
+				"<bean class=\"" + _apiPackagePath + ".service.", y);
+		}
+
+		if ((firstSession == -1) || (firstSession > y)) {
+			x = newContent.indexOf("</beans>");
+
+			newContent =
+				newContent.substring(0, x) + content + newContent.substring(x);
+		}
+		else {
+			firstSession = newContent.lastIndexOf("<bean", firstSession) - 1;
+
+			int tempLastSession = newContent.indexOf(
+				"<bean class=\"", lastSession + 1);
+
+			if (tempLastSession == -1) {
+				tempLastSession = newContent.indexOf("</beans>", lastSession);
+			}
+
+			lastSession = tempLastSession;
+
+			newContent =
+				newContent.substring(0, firstSession) + content +
+					newContent.substring(lastSession);
+		}
+
+		newContent = _formatXml(newContent);
+
+		Matcher matcher = _beansPattern.matcher(newContent);
+
+		if (matcher.find()) {
+			String beans = matcher.group();
+			Map<String, String> beansAttributes = new TreeMap<>(
+				String.CASE_INSENSITIVE_ORDER);
+
+			matcher = _beansAttributePattern.matcher(beans);
+
+			while (matcher.find()) {
+				String beanAttribute = StringBundler.concat(
+					StringUtil.trim(matcher.group(1)), "=\"",
+					StringUtil.trim(matcher.group(2)), "\"");
+
+				beansAttributes.put(
+					StringUtil.trim(matcher.group(1)), beanAttribute);
+			}
+
+			sb.setIndex(0);
+
+			for (Map.Entry<String, String> beanAttribute :
+					beansAttributes.entrySet()) {
+
+				sb.append("\n\t");
+				sb.append(beanAttribute.getValue());
+			}
+
+			newContent = StringUtil.replaceFirst(
+				newContent, beans, "<beans" + sb.toString() + "\n>");
+		}
+
+		ToolsUtil.writeFileRaw(xmlFile, newContent, _modifiedFileNames);
 	}
 
 	private void _createUADAnonymizer(Entity entity) throws Exception {
@@ -5645,6 +5645,40 @@ public class ServiceBuilder {
 		return sb.toString();
 	}
 
+	private String _getMethodSignature(
+		JavaMethod method, boolean useFullyQualifiedNames) {
+
+		StringBundler sb = new StringBundler();
+
+		sb.append(method.getName());
+		sb.append(StringPool.OPEN_PARENTHESIS);
+
+		for (JavaParameter parameter : method.getParameters()) {
+			JavaType type = parameter.getType();
+
+			String parameterValue = type.getFullyQualifiedName();
+
+			if (!useFullyQualifiedNames) {
+				int pos = parameterValue.lastIndexOf(CharPool.PERIOD);
+
+				if (pos != -1) {
+					parameterValue = parameterValue.substring(pos + 1);
+				}
+			}
+
+			sb.append(parameterValue);
+			sb.append(StringPool.COMMA);
+		}
+
+		if (sb.index() > 2) {
+			sb.setIndex(sb.index() - 1);
+		}
+
+		sb.append(StringPool.CLOSE_PARENTHESIS);
+
+		return sb.toString();
+	}
+
 	private List<JavaMethod> _getMethods(JavaClass javaClass) {
 		List<JavaMethod> methods = new ArrayList<>();
 
@@ -5696,40 +5730,6 @@ public class ServiceBuilder {
 		}
 
 		return methods;
-	}
-
-	private String _getMethodSignature(
-		JavaMethod method, boolean useFullyQualifiedNames) {
-
-		StringBundler sb = new StringBundler();
-
-		sb.append(method.getName());
-		sb.append(StringPool.OPEN_PARENTHESIS);
-
-		for (JavaParameter parameter : method.getParameters()) {
-			JavaType type = parameter.getType();
-
-			String parameterValue = type.getFullyQualifiedName();
-
-			if (!useFullyQualifiedNames) {
-				int pos = parameterValue.lastIndexOf(CharPool.PERIOD);
-
-				if (pos != -1) {
-					parameterValue = parameterValue.substring(pos + 1);
-				}
-			}
-
-			sb.append(parameterValue);
-			sb.append(StringPool.COMMA);
-		}
-
-		if (sb.index() > 2) {
-			sb.setIndex(sb.index() - 1);
-		}
-
-		sb.append(StringPool.CLOSE_PARENTHESIS);
-
-		return sb.toString();
 	}
 
 	private String _getSessionTypeName(int sessionType) {

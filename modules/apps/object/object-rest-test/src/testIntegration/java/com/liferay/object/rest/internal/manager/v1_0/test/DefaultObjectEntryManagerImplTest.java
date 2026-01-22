@@ -11869,8 +11869,8 @@ public class DefaultObjectEntryManagerImplTest
 
 	private static String _originalName;
 	private static PermissionChecker _originalPermissionChecker;
-	private static DateFormat _simpleDateFormat;
 	private static DTOConverterContext _simpleDTOConverterContext;
+	private static DateFormat _simpleDateFormat;
 	private static ObjectDefinition _siteObjectDefinitionA;
 	private static ObjectDefinition _siteObjectDefinitionAA;
 	private static ObjectDefinition _siteObjectDefinitionB;
@@ -12018,10 +12018,10 @@ public class DefaultObjectEntryManagerImplTest
 	private ObjectDefinition _rootObjectDefinition;
 
 	@Inject
-	private Searcher _searcher;
+	private SearchRequestBuilderFactory _searchRequestBuilderFactory;
 
 	@Inject
-	private SearchRequestBuilderFactory _searchRequestBuilderFactory;
+	private Searcher _searcher;
 
 	@Inject
 	private SubscriptionLocalService _subscriptionLocalService;

@@ -27,15 +27,6 @@ public class PortalEnvironmentJob
 	}
 
 	@Override
-	public List<String> getJobPropertyOptions() {
-		List<String> jobPropertyOptions = super.getJobPropertyOptions();
-
-		jobPropertyOptions.add(_portalUpstreamBranchName);
-
-		return jobPropertyOptions;
-	}
-
-	@Override
 	public JSONObject getJSONObject() {
 		if (jsonObject != null) {
 			return jsonObject;
@@ -47,6 +38,15 @@ public class PortalEnvironmentJob
 			"portal_upstream_branch_name", _portalUpstreamBranchName);
 
 		return jsonObject;
+	}
+
+	@Override
+	public List<String> getJobPropertyOptions() {
+		List<String> jobPropertyOptions = super.getJobPropertyOptions();
+
+		jobPropertyOptions.add(_portalUpstreamBranchName);
+
+		return jobPropertyOptions;
 	}
 
 	@Override

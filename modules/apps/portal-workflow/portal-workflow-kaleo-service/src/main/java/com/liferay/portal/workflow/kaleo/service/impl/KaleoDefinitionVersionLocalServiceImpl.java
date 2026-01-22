@@ -568,9 +568,6 @@ public class KaleoDefinitionVersionLocalServiceImpl
 	private ResourceLocalService _resourceLocalService;
 
 	@Reference
-	private Searcher _searcher;
-
-	@Reference
 	private SearchLocalizationHelper _searchLocalizationHelper;
 
 	@Reference
@@ -578,6 +575,9 @@ public class KaleoDefinitionVersionLocalServiceImpl
 
 	@Reference
 	private SearchRequestExecutor _searchRequestExecutor;
+
+	@Reference
+	private Searcher _searcher;
 
 	@Reference
 	private Sorts _sorts;

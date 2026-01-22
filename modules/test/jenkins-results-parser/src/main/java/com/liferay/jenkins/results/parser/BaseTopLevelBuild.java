@@ -604,11 +604,6 @@ public abstract class BaseTopLevelBuild
 	}
 
 	@Override
-	public synchronized List<URL> getTestrayAttachmentURLs() {
-		return _testrayAttachmentURLs;
-	}
-
-	@Override
 	public JSONObject getTestReportJSONObject(boolean cache) {
 		return null;
 	}
@@ -622,6 +617,11 @@ public abstract class BaseTopLevelBuild
 		}
 
 		return testSuiteName;
+	}
+
+	@Override
+	public synchronized List<URL> getTestrayAttachmentURLs() {
+		return _testrayAttachmentURLs;
 	}
 
 	public TimelineData getTimelineData() {

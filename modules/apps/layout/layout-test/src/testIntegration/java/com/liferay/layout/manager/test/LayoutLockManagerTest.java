@@ -76,37 +76,6 @@ public class LayoutLockManagerTest {
 		Assert.assertNotNull(lock);
 	}
 
-	@Test
-	public void testGetLockedLayouts() throws Exception {
-		long[] layoutPlids = {};
-
-		Layout draftLayout1 = _getDraftLayout();
-
-		layoutPlids = ArrayUtil.append(layoutPlids, draftLayout1.getPlid());
-
-		_lockLayout(draftLayout1, _user);
-
-		Layout draftLayout2 = _getDraftLayout();
-
-		layoutPlids = ArrayUtil.append(layoutPlids, draftLayout2.getPlid());
-
-		_lockLayout(draftLayout2, _user);
-
-		LayoutTestUtil.addTypePortletLayout(_group);
-		LayoutTestUtil.addTypeContentLayout(_group);
-
-		List<LockedLayout> lockedLayouts = _layoutLockManager.getLockedLayouts(
-			TestPropsValues.getCompanyId(), _group.getGroupId(),
-			LocaleUtil.getDefault());
-
-		Assert.assertEquals(lockedLayouts.toString(), 2, lockedLayouts.size());
-
-		for (LockedLayout lockedLayout : lockedLayouts) {
-			Assert.assertTrue(
-				ArrayUtil.contains(layoutPlids, lockedLayout.getPlid()));
-		}
-	}
-
 	@Test(expected = LockedLayoutException.class)
 	public void testGetLockWithDifferentUser() throws Exception {
 		Layout draftLayout = _getDraftLayout();
@@ -158,6 +127,37 @@ public class LayoutLockManagerTest {
 			ReflectionTestUtil.setFieldValue(
 				_layoutLockManager, "_lockExpirationTime",
 				originalLockExpirationTime);
+		}
+	}
+
+	@Test
+	public void testGetLockedLayouts() throws Exception {
+		long[] layoutPlids = {};
+
+		Layout draftLayout1 = _getDraftLayout();
+
+		layoutPlids = ArrayUtil.append(layoutPlids, draftLayout1.getPlid());
+
+		_lockLayout(draftLayout1, _user);
+
+		Layout draftLayout2 = _getDraftLayout();
+
+		layoutPlids = ArrayUtil.append(layoutPlids, draftLayout2.getPlid());
+
+		_lockLayout(draftLayout2, _user);
+
+		LayoutTestUtil.addTypePortletLayout(_group);
+		LayoutTestUtil.addTypeContentLayout(_group);
+
+		List<LockedLayout> lockedLayouts = _layoutLockManager.getLockedLayouts(
+			TestPropsValues.getCompanyId(), _group.getGroupId(),
+			LocaleUtil.getDefault());
+
+		Assert.assertEquals(lockedLayouts.toString(), 2, lockedLayouts.size());
+
+		for (LockedLayout lockedLayout : lockedLayouts) {
+			Assert.assertTrue(
+				ArrayUtil.contains(layoutPlids, lockedLayout.getPlid()));
 		}
 	}
 

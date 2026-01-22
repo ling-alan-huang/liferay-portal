@@ -41,6 +41,11 @@ public abstract class BasePortalUpstreamJobEntity
 	}
 
 	@Override
+	public String getTestSuiteName() {
+		return getParameterValue("testSuiteName");
+	}
+
+	@Override
 	public String getTestrayBuildName() {
 		return getParameterValue("testrayBuildName");
 	}
@@ -53,11 +58,6 @@ public abstract class BasePortalUpstreamJobEntity
 	@Override
 	public String getTestrayRoutineName() {
 		return getParameterValue("testrayRoutineName");
-	}
-
-	@Override
-	public String getTestSuiteName() {
-		return getParameterValue("testSuiteName");
 	}
 
 	@Override
@@ -81,6 +81,11 @@ public abstract class BasePortalUpstreamJobEntity
 	}
 
 	@Override
+	public void setTestSuiteName(String testSuiteName) {
+		setParameterValue("testSuiteName", testSuiteName);
+	}
+
+	@Override
 	public void setTestrayBuildName(String testrayBuildName) {
 		setParameterValue("testrayBuildName", testrayBuildName);
 	}
@@ -93,11 +98,6 @@ public abstract class BasePortalUpstreamJobEntity
 	@Override
 	public void setTestrayRoutineName(String testrayRoutineName) {
 		setParameterValue("testrayRoutineName", testrayRoutineName);
-	}
-
-	@Override
-	public void setTestSuiteName(String testSuiteName) {
-		setParameterValue("testSuiteName", testSuiteName);
 	}
 
 	@Override

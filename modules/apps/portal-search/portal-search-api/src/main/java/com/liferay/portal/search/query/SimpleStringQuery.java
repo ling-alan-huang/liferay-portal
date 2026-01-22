@@ -28,9 +28,9 @@ public interface SimpleStringQuery extends Query {
 
 	public void addFields(String... fields);
 
-	public String getAnalyzer();
-
 	public Boolean getAnalyzeWildcard();
+
+	public String getAnalyzer();
 
 	public Boolean getAutoGenerateSynonymsPhraseQuery();
 
@@ -50,9 +50,9 @@ public interface SimpleStringQuery extends Query {
 
 	public String getQuoteFieldSuffix();
 
-	public void setAnalyzer(String analyzer);
-
 	public void setAnalyzeWildcard(Boolean analyzeWildcard);
+
+	public void setAnalyzer(String analyzer);
 
 	public void setAutoGenerateSynonymsPhraseQuery(
 		Boolean autoGenerateSynonymsPhraseQuery);

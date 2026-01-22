@@ -162,10 +162,9 @@ public class UpdateByQueryDocumentRequestExecutorImpl
 	private final QueryTranslator<QueryVariant> _queryTranslator =
 		new com.liferay.portal.search.elasticsearch8.internal.query.
 			ElasticsearchQueryTranslator();
+	private final ScriptTranslator _scriptTranslator = new ScriptTranslator();
 
 	@Reference
 	private Scripts _scripts;
-
-	private final ScriptTranslator _scriptTranslator = new ScriptTranslator();
 
 }

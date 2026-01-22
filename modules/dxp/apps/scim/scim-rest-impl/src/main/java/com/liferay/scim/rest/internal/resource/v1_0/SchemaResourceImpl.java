@@ -53,42 +53,6 @@ public class SchemaResourceImpl extends BaseSchemaResourceImpl {
 		return getV2SchemaById(null);
 	}
 
-	private String _getSchemaJSON(String id) throws AbstractCharonException {
-		if (_schemaFileNames.containsKey(id)) {
-			JSONObject schemaJSONObject = _read(_schemaFileNames.get(id));
-
-			return schemaJSONObject.toString();
-		}
-
-		throw new NotFoundException("No schema found with schema ID " + id);
-	}
-
-	private String _getSchemasJSON() throws AbstractCharonException {
-		return JSONUtil.put(
-			"itemsPerPage", 3
-		).put(
-			"Resources",
-			() -> {
-				JSONArray jsonArray = _jsonFactory.createJSONArray();
-
-				for (Map.Entry<String, String> entry :
-						_schemaFileNames.entrySet()) {
-
-					jsonArray.put(_read(entry.getValue()));
-				}
-
-				return jsonArray;
-			}
-		).put(
-			"schemas",
-			JSONUtil.put("urn:ietf:params:scim:api:messages:2.0:ListResponse")
-		).put(
-			"startIndex", 1
-		).put(
-			"totalResults", _schemaFileNames.size()
-		).toString();
-	}
-
 	private SCIMResponse _getSCIMResponse(String id) {
 		try {
 			ScimUtil.getScimClientOAuth2ApplicationConfiguration(
@@ -123,6 +87,42 @@ public class SchemaResourceImpl extends BaseSchemaResourceImpl {
 
 			throw exception;
 		}
+	}
+
+	private String _getSchemaJSON(String id) throws AbstractCharonException {
+		if (_schemaFileNames.containsKey(id)) {
+			JSONObject schemaJSONObject = _read(_schemaFileNames.get(id));
+
+			return schemaJSONObject.toString();
+		}
+
+		throw new NotFoundException("No schema found with schema ID " + id);
+	}
+
+	private String _getSchemasJSON() throws AbstractCharonException {
+		return JSONUtil.put(
+			"itemsPerPage", 3
+		).put(
+			"Resources",
+			() -> {
+				JSONArray jsonArray = _jsonFactory.createJSONArray();
+
+				for (Map.Entry<String, String> entry :
+						_schemaFileNames.entrySet()) {
+
+					jsonArray.put(_read(entry.getValue()));
+				}
+
+				return jsonArray;
+			}
+		).put(
+			"schemas",
+			JSONUtil.put("urn:ietf:params:scim:api:messages:2.0:ListResponse")
+		).put(
+			"startIndex", 1
+		).put(
+			"totalResults", _schemaFileNames.size()
+		).toString();
 	}
 
 	private JSONObject _read(String fileName) throws InternalErrorException {

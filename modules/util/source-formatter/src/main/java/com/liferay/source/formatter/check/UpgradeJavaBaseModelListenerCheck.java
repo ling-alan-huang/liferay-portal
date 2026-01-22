@@ -69,27 +69,6 @@ public class UpgradeJavaBaseModelListenerCheck extends BaseUpgradeCheck {
 		return _formatMethodDefinitionWithoutParameterUpgrade(javaMethod);
 	}
 
-	private String _formatMethodDefinitionWithoutParameterUpgrade(
-		JavaMethod javaMethod) {
-
-		String javaMethodContent = javaMethod.getContent();
-
-		Matcher matcher = _superMethodPattern.matcher(javaMethodContent);
-
-		if (!matcher.find()) {
-			return javaMethodContent;
-		}
-
-		String methodCall = JavaSourceUtil.getMethodCall(
-			javaMethodContent, matcher.start());
-
-		methodCall = methodCall.trim();
-
-		return StringUtil.replace(
-			javaMethodContent, methodCall,
-			_formatSuperMethod(methodCall, false));
-	}
-
 	private String _formatMethodDefinitionWithParameterUpgrade(
 		JavaMethod javaMethod) {
 
@@ -122,6 +101,27 @@ public class UpgradeJavaBaseModelListenerCheck extends BaseUpgradeCheck {
 		return StringUtil.replace(
 			javaMethodContent, JavaSourceUtil.getParameters(javaMethodContent),
 			newParameters);
+	}
+
+	private String _formatMethodDefinitionWithoutParameterUpgrade(
+		JavaMethod javaMethod) {
+
+		String javaMethodContent = javaMethod.getContent();
+
+		Matcher matcher = _superMethodPattern.matcher(javaMethodContent);
+
+		if (!matcher.find()) {
+			return javaMethodContent;
+		}
+
+		String methodCall = JavaSourceUtil.getMethodCall(
+			javaMethodContent, matcher.start());
+
+		methodCall = methodCall.trim();
+
+		return StringUtil.replace(
+			javaMethodContent, methodCall,
+			_formatSuperMethod(methodCall, false));
 	}
 
 	private String _formatSuperMethod(

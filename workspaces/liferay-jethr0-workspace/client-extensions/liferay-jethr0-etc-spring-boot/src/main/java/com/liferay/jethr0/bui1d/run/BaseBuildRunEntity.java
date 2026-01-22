@@ -93,11 +93,6 @@ public abstract class BaseBuildRunEntity
 	}
 
 	@Override
-	public URL getJenkinsBuildURL() {
-		return _jenkinsBuildURL;
-	}
-
-	@Override
 	public JSONObject getJSONObject() {
 		JSONObject jsonObject = super.getJSONObject();
 
@@ -119,6 +114,11 @@ public abstract class BaseBuildRunEntity
 		jsonObject.put("state", state.getJSONObject());
 
 		return jsonObject;
+	}
+
+	@Override
+	public URL getJenkinsBuildURL() {
+		return _jenkinsBuildURL;
 	}
 
 	@Override
@@ -171,11 +171,6 @@ public abstract class BaseBuildRunEntity
 	}
 
 	@Override
-	public void setJenkinsBuildURL(URL jenkinsBuildURL) {
-		_jenkinsBuildURL = jenkinsBuildURL;
-	}
-
-	@Override
 	public void setJSONObject(JSONObject jsonObject) {
 		super.setJSONObject(jsonObject);
 
@@ -192,6 +187,11 @@ public abstract class BaseBuildRunEntity
 
 		_result = Result.get(jsonObject.opt("result"));
 		_state = State.get(jsonObject.get("state"));
+	}
+
+	@Override
+	public void setJenkinsBuildURL(URL jenkinsBuildURL) {
+		_jenkinsBuildURL = jenkinsBuildURL;
 	}
 
 	@Override

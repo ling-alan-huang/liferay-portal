@@ -1282,11 +1282,11 @@ public class StagingLocalServiceImpl extends StagingLocalServiceBaseImpl {
 	@BeanReference(type = LayoutSetBranchLocalService.class)
 	private LayoutSetBranchLocalService _layoutSetBranchLocalService;
 
-	@BeanReference(type = PortletPreferencesLocalService.class)
-	private PortletPreferencesLocalService _portletPreferencesLocalService;
-
 	@BeanReference(type = PortletPreferenceValueLocalService.class)
 	private PortletPreferenceValueLocalService
 		_portletPreferenceValueLocalService;
+
+	@BeanReference(type = PortletPreferencesLocalService.class)
+	private PortletPreferencesLocalService _portletPreferencesLocalService;
 
 }

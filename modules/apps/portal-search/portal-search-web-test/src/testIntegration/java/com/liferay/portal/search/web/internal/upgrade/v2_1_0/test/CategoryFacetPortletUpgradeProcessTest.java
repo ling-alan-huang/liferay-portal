@@ -166,15 +166,15 @@ public class CategoryFacetPortletUpgradeProcessTest {
 	@Inject
 	private MultiVMPool _multiVMPool;
 
+	@Inject
+	private PortletPreferenceValueLocalService
+		_portletPreferenceValueLocalService;
+
 	@DeleteAfterTestRun
 	private PortletPreferences _portletPreferences;
 
 	@Inject
 	private PortletPreferencesLocalService _portletPreferencesLocalService;
-
-	@Inject
-	private PortletPreferenceValueLocalService
-		_portletPreferenceValueLocalService;
 
 	@Inject(
 		filter = "component.name=com.liferay.portal.search.web.internal.upgrade.registry.SearchWebUpgradeStepRegistrator"

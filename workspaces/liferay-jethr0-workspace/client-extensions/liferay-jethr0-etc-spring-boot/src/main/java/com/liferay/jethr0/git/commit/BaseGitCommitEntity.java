@@ -51,11 +51,6 @@ public abstract class BaseGitCommitEntity
 	}
 
 	@Override
-	public Set<JobEntity> getJobEntities() {
-		return getRelatedEntities(JobEntity.class);
-	}
-
-	@Override
 	public JSONObject getJSONObject() {
 		JSONObject jsonObject = super.getJSONObject();
 
@@ -66,6 +61,11 @@ public abstract class BaseGitCommitEntity
 		);
 
 		return jsonObject;
+	}
+
+	@Override
+	public Set<JobEntity> getJobEntities() {
+		return getRelatedEntities(JobEntity.class);
 	}
 
 	@Override

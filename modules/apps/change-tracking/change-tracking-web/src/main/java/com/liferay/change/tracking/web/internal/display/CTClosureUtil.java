@@ -61,6 +61,20 @@ public class CTClosureUtil {
 		return familyPKsMap;
 	}
 
+	public static Set<Long> getPKs(CTClosure ctClosure, long classNameId) {
+		Set<Long> primaryKeys = new HashSet<>();
+
+		_navigateCTClosure(
+			ctClosure,
+			(entry, childEntry) -> {
+				if (childEntry.getKey() == classNameId) {
+					primaryKeys.addAll(childEntry.getValue());
+				}
+			});
+
+		return primaryKeys;
+	}
+
 	public static Set<Long> getParentClassNameIds(
 		CTClosure ctClosure, long classNameId) {
 
@@ -75,20 +89,6 @@ public class CTClosureUtil {
 			});
 
 		return parentClassNameIds;
-	}
-
-	public static Set<Long> getPKs(CTClosure ctClosure, long classNameId) {
-		Set<Long> primaryKeys = new HashSet<>();
-
-		_navigateCTClosure(
-			ctClosure,
-			(entry, childEntry) -> {
-				if (childEntry.getKey() == classNameId) {
-					primaryKeys.addAll(childEntry.getValue());
-				}
-			});
-
-		return primaryKeys;
 	}
 
 	private static void _navigateCTClosure(

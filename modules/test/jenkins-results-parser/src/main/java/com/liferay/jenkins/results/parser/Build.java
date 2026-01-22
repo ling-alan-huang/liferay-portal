@@ -123,9 +123,9 @@ public interface Build {
 
 	public int getMinimumSlaveRAM();
 
-	public Map<String, String> getParameters();
-
 	public String getParameterValue(String name);
+
+	public Map<String, String> getParameters();
 
 	public Build getParentBuild();
 
@@ -151,10 +151,6 @@ public interface Build {
 
 	public List<TestClassResult> getTestClassResults();
 
-	public List<URL> getTestrayAttachmentURLs();
-
-	public String getTestrayBuildDateString();
-
 	public JSONObject getTestReportJSONObject(boolean checkCache);
 
 	public List<TestResult> getTestResults();
@@ -162,6 +158,10 @@ public interface Build {
 	public List<TestResult> getTestResults(String testStatus);
 
 	public String getTestSuiteName();
+
+	public List<URL> getTestrayAttachmentURLs();
+
+	public String getTestrayBuildDateString();
 
 	public TopLevelBuild getTopLevelBuild();
 

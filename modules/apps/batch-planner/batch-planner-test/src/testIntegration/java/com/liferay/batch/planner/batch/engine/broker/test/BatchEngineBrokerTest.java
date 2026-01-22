@@ -910,12 +910,6 @@ public class BatchEngineBrokerTest {
 			batchPlannerPlan.getBatchPlannerPlanId());
 	}
 
-	private List<CSVRecord> _getCSVRecords(String csvString) throws Exception {
-		CSVParser csvParser = CSVParser.parse(csvString, _csvFormat);
-
-		return csvParser.getRecords();
-	}
-
 	private Map<String, List<String>> _getCSVRecordStringsMap(
 		List<CSVRecord> csvRecords, int index) {
 
@@ -934,6 +928,12 @@ public class BatchEngineBrokerTest {
 		}
 
 		return csvRecordStringsMap;
+	}
+
+	private List<CSVRecord> _getCSVRecords(String csvString) throws Exception {
+		CSVParser csvParser = CSVParser.parse(csvString, _csvFormat);
+
+		return csvParser.getRecords();
 	}
 
 	private String _getCSVString(

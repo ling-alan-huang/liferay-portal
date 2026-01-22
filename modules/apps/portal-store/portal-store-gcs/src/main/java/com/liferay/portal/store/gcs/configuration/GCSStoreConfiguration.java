@@ -20,29 +20,38 @@ import com.liferay.portal.configuration.metatype.annotations.ExtendedObjectClass
 )
 public interface GCSStoreConfiguration {
 
-	@ExtendedAttributeDefinition(
-		descriptionArguments = "https://cloud.google.com/iam/docs/creating-managing-service-account-keys"
-	)
 	@Meta.AD(
-		description = "service-account-key-help", name = "service-account-key",
+		deflt = "", description = "aes256-key-help", name = "aes256-key",
 		required = false
 	)
-	public String serviceAccountKey();
+	public String aes256Key();
 
 	@Meta.AD(description = "bucket-name-help[gcs]", name = "bucket-name")
 	public String bucketName();
 
 	@Meta.AD(
-		deflt = "5", description = "max-retry-attempts-help",
-		name = "max-retry-attempts", required = false
+		deflt = "120000", description = "initial-rpc-timeout-help",
+		name = "initial-rpc-timeout", required = false
 	)
-	public int maxRetryAttempts();
+	public int initialRPCTimeout();
 
 	@Meta.AD(
 		deflt = "400", description = "initial-retry-delay-help",
 		name = "initial-retry-delay", required = false
 	)
 	public int initialRetryDelay();
+
+	@Meta.AD(
+		deflt = "600000", description = "max-rpc-timeout-help",
+		name = "max-rpc-timeout", required = false
+	)
+	public int maxRPCTimeout();
+
+	@Meta.AD(
+		deflt = "5", description = "max-retry-attempts-help",
+		name = "max-retry-attempts", required = false
+	)
+	public int maxRetryAttempts();
 
 	@Meta.AD(
 		deflt = "10000", description = "max-retry-delay-help",
@@ -57,16 +66,10 @@ public interface GCSStoreConfiguration {
 	public double retryDelayMultiplier();
 
 	@Meta.AD(
-		deflt = "120000", description = "initial-rpc-timeout-help",
-		name = "initial-rpc-timeout", required = false
+		deflt = "false", description = "retry-jitter-help",
+		name = "retry-jitter", required = false
 	)
-	public int initialRPCTimeout();
-
-	@Meta.AD(
-		deflt = "600000", description = "max-rpc-timeout-help",
-		name = "max-rpc-timeout", required = false
-	)
-	public int maxRPCTimeout();
+	public boolean retryJitter();
 
 	@Meta.AD(
 		deflt = "1.0", description = "rpc-timeout-multiplier-help",
@@ -74,16 +77,13 @@ public interface GCSStoreConfiguration {
 	)
 	public double rpcTimeoutMultiplier();
 
-	@Meta.AD(
-		deflt = "false", description = "retry-jitter-help",
-		name = "retry-jitter", required = false
+	@ExtendedAttributeDefinition(
+		descriptionArguments = "https://cloud.google.com/iam/docs/creating-managing-service-account-keys"
 	)
-	public boolean retryJitter();
-
 	@Meta.AD(
-		deflt = "", description = "aes256-key-help", name = "aes256-key",
+		description = "service-account-key-help", name = "service-account-key",
 		required = false
 	)
-	public String aes256Key();
+	public String serviceAccountKey();
 
 }

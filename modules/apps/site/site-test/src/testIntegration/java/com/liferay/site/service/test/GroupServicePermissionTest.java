@@ -366,11 +366,11 @@ public class GroupServicePermissionTest {
 	@Inject
 	private GroupLocalService _groupLocalService;
 
-	@DeleteAfterTestRun
-	private final LinkedList<Group> _groups = new LinkedList<>();
-
 	@Inject
 	private GroupService _groupService;
+
+	@DeleteAfterTestRun
+	private final LinkedList<Group> _groups = new LinkedList<>();
 
 	private String _name;
 

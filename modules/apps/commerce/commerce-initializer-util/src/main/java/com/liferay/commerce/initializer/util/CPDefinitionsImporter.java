@@ -1111,10 +1111,6 @@ public class CPDefinitionsImporter {
 	private CPConfigurationEntryLocalService _cpConfigurationEntryLocalService;
 
 	@Reference
-	private CPDAvailabilityEstimateLocalService
-		_cpdAvailabilityEstimateLocalService;
-
-	@Reference
 	private CPDefinitionInventoryLocalService
 		_cpDefinitionInventoryLocalService;
 
@@ -1151,6 +1147,10 @@ public class CPDefinitionsImporter {
 
 	@Reference
 	private CPTaxCategoryLocalService _cpTaxCategoryLocalService;
+
+	@Reference
+	private CPDAvailabilityEstimateLocalService
+		_cpdAvailabilityEstimateLocalService;
 
 	@Reference
 	private FriendlyURLNormalizer _friendlyURLNormalizer;

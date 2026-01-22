@@ -878,6 +878,22 @@ public class JiraService extends BaseService {
 	@Value("${liferay.customer.jira.security.vulnerability.field.affects}")
 	private String _jiraSecurityVulnerabilityFieldAffects;
 
+	@Value("${liferay.customer.jira.security.vulnerability.field.cve.ids}")
+	private String _jiraSecurityVulnerabilityFieldCVEIds;
+
+	@Value(
+		"${liferay.customer.jira.security.vulnerability.field.cvss.base.score}"
+	)
+	private String _jiraSecurityVulnerabilityFieldCVSSBaseScore;
+
+	@Value(
+		"${liferay.customer.jira.security.vulnerability.field.cvss.vector.string}"
+	)
+	private String _jiraSecurityVulnerabilityFieldCVSSVectorString;
+
+	@Value("${liferay.customer.jira.security.vulnerability.field.cwe.ids}")
+	private String _jiraSecurityVulnerabilityFieldCWEIds;
+
 	@Value("${liferay.customer.jira.security.vulnerability.field.categories}")
 	private String _jiraSecurityVulnerabilityFieldCategories;
 
@@ -895,22 +911,6 @@ public class JiraService extends BaseService {
 		"${liferay.customer.jira.security.vulnerability.field.customer.publishing.date}"
 	)
 	private String _jiraSecurityVulnerabilityFieldCustomerPublishingDate;
-
-	@Value("${liferay.customer.jira.security.vulnerability.field.cve.ids}")
-	private String _jiraSecurityVulnerabilityFieldCVEIds;
-
-	@Value(
-		"${liferay.customer.jira.security.vulnerability.field.cvss.base.score}"
-	)
-	private String _jiraSecurityVulnerabilityFieldCVSSBaseScore;
-
-	@Value(
-		"${liferay.customer.jira.security.vulnerability.field.cvss.vector.string}"
-	)
-	private String _jiraSecurityVulnerabilityFieldCVSSVectorString;
-
-	@Value("${liferay.customer.jira.security.vulnerability.field.cwe.ids}")
-	private String _jiraSecurityVulnerabilityFieldCWEIds;
 
 	@Value("${liferay.customer.jira.security.vulnerability.field.fix.versions}")
 	private String _jiraSecurityVulnerabilityFieldFixVersions;

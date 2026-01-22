@@ -731,26 +731,6 @@ public class ObjectEntryDTOConverter
 			serviceBuilderObjectEntry);
 	}
 
-	private String _getDateString(
-		ObjectField objectField, Timestamp timestamp) {
-
-		String pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS";
-
-		if (objectField.compareBusinessType(
-				ObjectFieldConstants.BUSINESS_TYPE_DATE) ||
-			StringUtil.equals(
-				ObjectFieldSettingUtil.getValue(
-					ObjectFieldSettingConstants.NAME_TIME_STORAGE, objectField),
-				ObjectFieldSettingConstants.VALUE_CONVERT_TO_UTC)) {
-
-			pattern += "'Z'";
-		}
-
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
-
-		return simpleDateFormat.format(timestamp);
-	}
-
 	private DTOConverterContext _getDTOConverterContext(
 		DTOConverterContext dtoConverterContext, long objectEntryId) {
 
@@ -775,6 +755,26 @@ public class ObjectEntryDTOConverter
 		}
 
 		return defaultDTOConverterContext;
+	}
+
+	private String _getDateString(
+		ObjectField objectField, Timestamp timestamp) {
+
+		String pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS";
+
+		if (objectField.compareBusinessType(
+				ObjectFieldConstants.BUSINESS_TYPE_DATE) ||
+			StringUtil.equals(
+				ObjectFieldSettingUtil.getValue(
+					ObjectFieldSettingConstants.NAME_TIME_STORAGE, objectField),
+				ObjectFieldSettingConstants.VALUE_CONVERT_TO_UTC)) {
+
+			pattern += "'Z'";
+		}
+
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+
+		return simpleDateFormat.format(timestamp);
 	}
 
 	private FileEntry _getFileEntry(
@@ -1726,6 +1726,9 @@ public class ObjectEntryDTOConverter
 	private CommentManager _commentManager;
 
 	@Reference
+	private DLFileEntryLocalService _dLFileEntryLocalService;
+
+	@Reference
 	private DiscussionPermission _discussionPermission;
 
 	@Reference
@@ -1733,9 +1736,6 @@ public class ObjectEntryDTOConverter
 
 	@Reference
 	private DLAppService _dlAppService;
-
-	@Reference
-	private DLFileEntryLocalService _dLFileEntryLocalService;
 
 	@Reference
 	private DLURLHelper _dlURLHelper;

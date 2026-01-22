@@ -100,11 +100,11 @@ public final class CompanyLogRoutingAppender extends AbstractAppender {
 		@PluginBuilderAttribute("append")
 		private boolean _append = true;
 
-		@PluginBuilderAttribute("bufferedIo")
-		private boolean _bufferedIo = true;
-
 		@PluginBuilderAttribute("bufferSize")
 		private int _bufferSize = Constants.ENCODER_BYTE_BUFFER_SIZE;
+
+		@PluginBuilderAttribute("bufferedIo")
+		private boolean _bufferedIo = true;
 
 		@PluginElement("FilePattern")
 		@Required
@@ -285,8 +285,8 @@ public final class CompanyLogRoutingAppender extends AbstractAppender {
 	private final boolean _append;
 	private final Map<Long, List<Appender>> _appenders =
 		new ConcurrentHashMap<>();
-	private final boolean _bufferedIo;
 	private final int _bufferSize;
+	private final boolean _bufferedIo;
 	private final CompanyLogRoutingFilePattern[] _companyLogRoutingFilePatterns;
 	private final boolean _createOnDemand;
 	private final String _dirPattern;

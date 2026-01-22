@@ -146,6 +146,18 @@ public class FragmentInstancePageElementDefinitionDTOConverter
 		return jsonObject.getBoolean(key);
 	}
 
+	private DTOConverterContext _getDTOConverterContext(
+		long companyId, long scopeGroupId) {
+
+		DTOConverterContext dtoConverterContext =
+			new DefaultDTOConverterContext(null, null, null, null, null);
+
+		dtoConverterContext.setAttribute("companyId", companyId);
+		dtoConverterContext.setAttribute("scopeGroupId", scopeGroupId);
+
+		return dtoConverterContext;
+	}
+
 	private String _getDraftFragmentInstanceExternalReferenceCode(
 		FragmentEntryLink fragmentEntryLink) {
 
@@ -167,18 +179,6 @@ public class FragmentInstancePageElementDefinitionDTOConverter
 		}
 
 		return originalFragmentEntryLink.getExternalReferenceCode();
-	}
-
-	private DTOConverterContext _getDTOConverterContext(
-		long companyId, long scopeGroupId) {
-
-		DTOConverterContext dtoConverterContext =
-			new DefaultDTOConverterContext(null, null, null, null, null);
-
-		dtoConverterContext.setAttribute("companyId", companyId);
-		dtoConverterContext.setAttribute("scopeGroupId", scopeGroupId);
-
-		return dtoConverterContext;
 	}
 
 	private Map<String, FragmentConfigurationFieldValue>

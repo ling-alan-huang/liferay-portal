@@ -52,6 +52,36 @@ public class FragmentDisplayContextTest {
 	}
 
 	@Test
+	public void testGetAvailableActionsForMarketplaceFragmentCompositionWithPermissions() {
+		_setUpFragmentPermission(true);
+
+		FragmentDisplayContext fragmentDisplayContext =
+			new FragmentDisplayContext(
+				_httpServletRequest, _renderRequest, _renderResponse);
+
+		Mockito.when(
+			_fragmentComposition.isMarketplace()
+		).thenReturn(
+			true
+		);
+
+		String availableActions = fragmentDisplayContext.getAvailableActions(
+			_fragmentComposition);
+
+		Assert.assertFalse(
+			availableActions.contains("copySelectedFragmentEntries"));
+		Assert.assertTrue(
+			availableActions.contains(
+				"deleteFragmentCompositionsAndFragmentEntries"));
+		Assert.assertFalse(
+			availableActions.contains(
+				"exportFragmentCompositionsAndFragmentEntries"));
+		Assert.assertTrue(
+			availableActions.contains(
+				"moveFragmentCompositionsAndFragmentEntries"));
+	}
+
+	@Test
 	public void testGetAvailableActionsForMarketplaceFragmentCompositionWithoutPermissions() {
 		_setUpFragmentPermission(false);
 
@@ -72,7 +102,7 @@ public class FragmentDisplayContextTest {
 	}
 
 	@Test
-	public void testGetAvailableActionsForMarketplaceFragmentCompositionWithPermissions() {
+	public void testGetAvailableActionsForMarketplaceFragmentEntryWithPermissions() {
 		_setUpFragmentPermission(true);
 
 		FragmentDisplayContext fragmentDisplayContext =
@@ -80,13 +110,13 @@ public class FragmentDisplayContextTest {
 				_httpServletRequest, _renderRequest, _renderResponse);
 
 		Mockito.when(
-			_fragmentComposition.isMarketplace()
+			_fragmentEntry.isMarketplace()
 		).thenReturn(
 			true
 		);
 
 		String availableActions = fragmentDisplayContext.getAvailableActions(
-			_fragmentComposition);
+			_fragmentEntry);
 
 		Assert.assertFalse(
 			availableActions.contains("copySelectedFragmentEntries"));
@@ -118,36 +148,6 @@ public class FragmentDisplayContextTest {
 		Assert.assertTrue(
 			Validator.isNull(
 				fragmentDisplayContext.getAvailableActions(_fragmentEntry)));
-	}
-
-	@Test
-	public void testGetAvailableActionsForMarketplaceFragmentEntryWithPermissions() {
-		_setUpFragmentPermission(true);
-
-		FragmentDisplayContext fragmentDisplayContext =
-			new FragmentDisplayContext(
-				_httpServletRequest, _renderRequest, _renderResponse);
-
-		Mockito.when(
-			_fragmentEntry.isMarketplace()
-		).thenReturn(
-			true
-		);
-
-		String availableActions = fragmentDisplayContext.getAvailableActions(
-			_fragmentEntry);
-
-		Assert.assertFalse(
-			availableActions.contains("copySelectedFragmentEntries"));
-		Assert.assertTrue(
-			availableActions.contains(
-				"deleteFragmentCompositionsAndFragmentEntries"));
-		Assert.assertFalse(
-			availableActions.contains(
-				"exportFragmentCompositionsAndFragmentEntries"));
-		Assert.assertTrue(
-			availableActions.contains(
-				"moveFragmentCompositionsAndFragmentEntries"));
 	}
 
 	private void _setUpFragmentPermission(boolean condition) {

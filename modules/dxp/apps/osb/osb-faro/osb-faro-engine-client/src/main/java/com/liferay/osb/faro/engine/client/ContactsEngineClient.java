@@ -60,12 +60,12 @@ public interface ContactsEngineClient {
 	public Results<BlockedKeyword> addBlockedKeywords(
 		FaroProject faroProject, List<String> keywords);
 
-	public Channel addChannel(FaroProject faroProject, Channel channel);
-
 	public void addCSVIndividuals(
 			FaroProject faroProject, List<Map<String, Object>> fieldsMaps,
 			String dataSourceId, List<String> individualSegmentIds)
 		throws Exception;
+
+	public Channel addChannel(FaroProject faroProject, Channel channel);
 
 	public void addData(
 		FaroProject faroProject, String weDeployDataServiceName,
@@ -236,6 +236,8 @@ public interface ContactsEngineClient {
 		List<String> fields, int cur, int delta,
 		List<OrderByField> orderByFields);
 
+	public long getDXPUsersCount(FaroProject faroProject, String id);
+
 	public DataSource getDataSource(FaroProject faroProject, String id)
 		throws FaroEngineClientException;
 
@@ -282,8 +284,6 @@ public interface ContactsEngineClient {
 		String providerType, List<String> states, int cur, int delta,
 		List<OrderByField> orderByFields);
 
-	public long getDXPUsersCount(FaroProject faroProject, String id);
-
 	public Long getEnrichedProfilesCount(
 		FaroProject faroProject, Long channelId);
 
@@ -315,6 +315,10 @@ public interface ContactsEngineClient {
 		FaroProject faroProject, List<String> labels, String ownerType,
 		List<Object> valuesList);
 
+	public Results<Object> getFieldValues(
+		FaroProject faroProject, Long channelId, String query,
+		String fieldMappingFieldName, int cur, int delta);
+
 	public Results<Field> getFields(
 		FaroProject faroProject, int cur, int delta,
 		List<OrderByField> orderByFields);
@@ -332,10 +336,6 @@ public interface ContactsEngineClient {
 		FaroProject faroProject, String context, List<String> names, int cur,
 		int delta, List<OrderByField> orderByFields);
 
-	public Results<Object> getFieldValues(
-		FaroProject faroProject, Long channelId, String query,
-		String fieldMappingFieldName, int cur, int delta);
-
 	public long getIdentitiesCount(FaroProject faroProject);
 
 	public Individual getIndividual(
@@ -348,6 +348,45 @@ public interface ContactsEngineClient {
 	public Results<IndividualSegment> getIndividualIndividualSegments(
 		FaroProject faroProject, String channelId, String individualId,
 		String query, String status, int cur, int delta,
+		List<OrderByField> orderByFields);
+
+	public IndividualSegment getIndividualSegment(
+		FaroProject faroProject, String id, boolean includeReferencedObjects);
+
+	public IndividualSegmentMembership getIndividualSegmentMembership(
+		FaroProject faroProject, String individualSegmentId,
+		String individualId);
+
+	public Results<IndividualSegmentMembershipChangeAggregation>
+		getIndividualSegmentMembershipChangeAggregations(
+			FaroProject faroProject, String individualSegmentId,
+			String interval, int delta);
+
+	public Results<IndividualSegmentMembershipChange>
+		getIndividualSegmentMembershipChanges(
+			FaroProject faroProject, String individualSegmentId, String query,
+			Date startDate, Date endDate, int cur, int delta,
+			List<OrderByField> orderByFields);
+
+	public Results<IndividualSegmentMembership> getIndividualSegmentMemberships(
+		FaroProject faroProject, String individualSegmentId, int cur, int delta,
+		List<OrderByField> orderByFields);
+
+	public Results<IndividualSegmentRealTimeMembership>
+		getIndividualSegmentRealTimeMemberships(
+			FaroProject faroProject, String day, String individualSegmentId,
+			List<String> profileTypes, String query, List<String> types,
+			int cur, int delta, List<OrderByField> orderByFields);
+
+	public Results<IndividualSegment> getIndividualSegments(
+		FaroProject faroProject, String channelId, String dataSourceId,
+		String query, List<String> fields, String name,
+		List<String> segmentTypes, String state, String status, int cur,
+		int delta, List<OrderByField> orderByFields);
+
+	public Results<IndividualTransformation> getIndividualTransformations(
+		FaroProject faroProject, String individualSegmentId, String query,
+		List<String> fields, String fieldMappingFieldName, int cur, int delta,
 		List<OrderByField> orderByFields);
 
 	public Results<Individual> getIndividuals(
@@ -390,45 +429,6 @@ public interface ContactsEngineClient {
 		String individualSegmentId, int count, int numberOfBins,
 		List<OrderByField> orderByFields);
 
-	public IndividualSegment getIndividualSegment(
-		FaroProject faroProject, String id, boolean includeReferencedObjects);
-
-	public IndividualSegmentMembership getIndividualSegmentMembership(
-		FaroProject faroProject, String individualSegmentId,
-		String individualId);
-
-	public Results<IndividualSegmentMembershipChangeAggregation>
-		getIndividualSegmentMembershipChangeAggregations(
-			FaroProject faroProject, String individualSegmentId,
-			String interval, int delta);
-
-	public Results<IndividualSegmentMembershipChange>
-		getIndividualSegmentMembershipChanges(
-			FaroProject faroProject, String individualSegmentId, String query,
-			Date startDate, Date endDate, int cur, int delta,
-			List<OrderByField> orderByFields);
-
-	public Results<IndividualSegmentMembership> getIndividualSegmentMemberships(
-		FaroProject faroProject, String individualSegmentId, int cur, int delta,
-		List<OrderByField> orderByFields);
-
-	public Results<IndividualSegmentRealTimeMembership>
-		getIndividualSegmentRealTimeMemberships(
-			FaroProject faroProject, String day, String individualSegmentId,
-			List<String> profileTypes, String query, List<String> types,
-			int cur, int delta, List<OrderByField> orderByFields);
-
-	public Results<IndividualSegment> getIndividualSegments(
-		FaroProject faroProject, String channelId, String dataSourceId,
-		String query, List<String> fields, String name,
-		List<String> segmentTypes, String state, String status, int cur,
-		int delta, List<OrderByField> orderByFields);
-
-	public Results<IndividualTransformation> getIndividualTransformations(
-		FaroProject faroProject, String individualSegmentId, String query,
-		List<String> fields, String fieldMappingFieldName, int cur, int delta,
-		List<OrderByField> orderByFields);
-
 	public Results<String> getInterestKeywords(
 		String channelId, FaroProject faroProject, String query, int cur,
 		int delta);
@@ -440,13 +440,13 @@ public interface ContactsEngineClient {
 
 	public Date getLastSeenDate(FaroProject faroProject);
 
+	public PageVisited getPageVisited(FaroProject faroProject, String id);
+
 	public Results<PageVisited> getPagesVisited(
 		FaroProject faroProject, String channelId, String ownerId,
 		String ownerType, String query, String interestName, Date startDate,
 		Date endDate, boolean visitedPages, int cur, int delta,
 		List<OrderByField> orderByFields);
-
-	public PageVisited getPageVisited(FaroProject faroProject, String id);
 
 	public Results<ProjectUsageMetric> getProjectUsageMetrics(
 		FaroProject faroProject, Date sinceDate);

@@ -109,6 +109,10 @@ public abstract class BaseSectionDisplayContext {
 			objectEntryFolderModelResourcePermission, portal);
 	}
 
+	public String getAPIURL() {
+		return "/o/search/v1.0/search?" + getAdditionalAPIURLParameters();
+	}
+
 	public String getAdditionalAPIURLParameters() {
 		return _sectionDisplayContextHelper.getAdditionalAPIURLParameters(
 			getCMSSectionFilterString(), httpServletRequest,
@@ -297,10 +301,6 @@ public abstract class BaseSectionDisplayContext {
 		).put(
 			"redirect", themeDisplay.getURLCurrent()
 		).build();
-	}
-
-	public String getAPIURL() {
-		return "/o/search/v1.0/search?" + getAdditionalAPIURLParameters();
 	}
 
 	public Map<String, Object> getBreadcrumbProps() throws PortalException {

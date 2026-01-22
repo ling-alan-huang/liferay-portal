@@ -73,6 +73,10 @@ public class Jethr0ContextUtil {
 		return _gitUserEntityRepository;
 	}
 
+	public static JRPEventProcessor getJRPEventProcessor() {
+		return _jrpEventProcessor;
+	}
+
 	public static JenkinsClient getJenkinsClient() {
 		return _jenkinsClient;
 	}
@@ -119,10 +123,6 @@ public class Jethr0ContextUtil {
 
 	public static JobQueue getJobQueue() {
 		return _jobQueue;
-	}
-
-	public static JRPEventProcessor getJRPEventProcessor() {
-		return _jrpEventProcessor;
 	}
 
 	public static URL getLiferayPortalURL() {
@@ -185,6 +185,12 @@ public class Jethr0ContextUtil {
 		_gitUserEntityRepository = gitUserEntityRepository;
 	}
 
+	public static void setJRPEventProcessor(
+		JRPEventProcessor jrpEventProcessor) {
+
+		_jrpEventProcessor = jrpEventProcessor;
+	}
+
 	public static void setJenkinsClient(JenkinsClient jenkinsClient) {
 		_jenkinsClient = jenkinsClient;
 	}
@@ -237,12 +243,6 @@ public class Jethr0ContextUtil {
 
 	public static void setJobQueue(JobQueue jobQueue) {
 		_jobQueue = jobQueue;
-	}
-
-	public static void setJRPEventProcessor(
-		JRPEventProcessor jrpEventProcessor) {
-
-		_jrpEventProcessor = jrpEventProcessor;
 	}
 
 	public static void setLiferayPortalURL(URL liferayPortalURL) {

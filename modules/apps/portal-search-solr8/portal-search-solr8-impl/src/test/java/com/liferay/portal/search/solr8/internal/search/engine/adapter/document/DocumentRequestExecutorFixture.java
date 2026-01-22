@@ -29,21 +29,6 @@ public class DocumentRequestExecutorFixture {
 			_queryTranslator, _solrClientManager, _solrDocumentFactory);
 	}
 
-	protected static BulkableDocumentRequestTranslator
-		createBulkableDocumentRequestTranslator(
-			SolrDocumentFactory solrDocumentFactory) {
-
-		SolrBulkableDocumentRequestTranslator
-			solrBulkableDocumentRequestTranslator =
-				new SolrBulkableDocumentRequestTranslator();
-
-		ReflectionTestUtil.setFieldValue(
-			solrBulkableDocumentRequestTranslator, "_solrDocumentFactory",
-			solrDocumentFactory);
-
-		return solrBulkableDocumentRequestTranslator;
-	}
-
 	protected static BulkDocumentRequestExecutor
 		createBulkDocumentRequestExecutor(
 			SolrClientManager solrClientManager,
@@ -64,6 +49,21 @@ public class DocumentRequestExecutorFixture {
 			solrDocumentFactory);
 
 		return bulkDocumentRequestExecutorImpl;
+	}
+
+	protected static BulkableDocumentRequestTranslator
+		createBulkableDocumentRequestTranslator(
+			SolrDocumentFactory solrDocumentFactory) {
+
+		SolrBulkableDocumentRequestTranslator
+			solrBulkableDocumentRequestTranslator =
+				new SolrBulkableDocumentRequestTranslator();
+
+		ReflectionTestUtil.setFieldValue(
+			solrBulkableDocumentRequestTranslator, "_solrDocumentFactory",
+			solrDocumentFactory);
+
+		return solrBulkableDocumentRequestTranslator;
 	}
 
 	protected static DeleteByQueryDocumentRequestExecutor

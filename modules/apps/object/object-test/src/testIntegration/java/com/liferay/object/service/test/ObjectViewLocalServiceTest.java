@@ -611,6 +611,20 @@ public class ObjectViewLocalServiceTest {
 				).build()));
 	}
 
+	private ObjectViewColumn
+			_createObjectViewColumnWithNonexistentObjectFieldName()
+		throws Exception {
+
+		ObjectViewColumn objectViewColumn = _createObjectViewColumn(
+			RandomTestUtil.randomString(),
+			StringUtil.toLowerCase(RandomStringUtils.randomAlphabetic(5)),
+			false);
+
+		objectViewColumn.setObjectFieldName("zebra");
+
+		return objectViewColumn;
+	}
+
 	private List<ObjectViewColumn>
 			_createObjectViewColumnsWithDuplicateObjectFieldName()
 		throws Exception {
@@ -639,20 +653,6 @@ public class ObjectViewLocalServiceTest {
 		objectViewColumn.setLabelMap(LocalizedMapUtil.getLocalizedMap(""));
 
 		return ListUtil.fromArray(objectViewColumn);
-	}
-
-	private ObjectViewColumn
-			_createObjectViewColumnWithNonexistentObjectFieldName()
-		throws Exception {
-
-		ObjectViewColumn objectViewColumn = _createObjectViewColumn(
-			RandomTestUtil.randomString(),
-			StringUtil.toLowerCase(RandomStringUtils.randomAlphabetic(5)),
-			false);
-
-		objectViewColumn.setObjectFieldName("zebra");
-
-		return objectViewColumn;
 	}
 
 	private ObjectViewFilterColumn _createObjectViewFilterColumn(

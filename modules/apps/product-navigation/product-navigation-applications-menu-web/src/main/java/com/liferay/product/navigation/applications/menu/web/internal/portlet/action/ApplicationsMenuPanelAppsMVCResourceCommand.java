@@ -179,59 +179,6 @@ public class ApplicationsMenuPanelAppsMVCResourceCommand
 			Pagination.of(1, 5), assetLibrariesPage.getTotalCount());
 	}
 
-	private JSONArray _getChildPanelCategoriesJSONArray(
-			HttpServletRequest httpServletRequest, String key,
-			ThemeDisplay themeDisplay)
-		throws Exception {
-
-		JSONArray childPanelCategoriesJSONArray =
-			_jsonFactory.createJSONArray();
-
-		List<PanelCategory> childPanelCategories =
-			_panelCategoryHelper.getChildPanelCategories(key, themeDisplay);
-
-		for (PanelCategory childPanelCategory : childPanelCategories) {
-			JSONArray panelAppsJSONArray = _getPanelAppsJSONArray(
-				httpServletRequest, childPanelCategory.getKey(), themeDisplay);
-
-			if ((panelAppsJSONArray == null) ||
-				(panelAppsJSONArray.length() <= 0)) {
-
-				continue;
-			}
-
-			childPanelCategoriesJSONArray.put(
-				JSONUtil.put(
-					"key", childPanelCategory.getKey()
-				).put(
-					"label",
-					childPanelCategory.getLabel(themeDisplay.getLocale())
-				).put(
-					"panelApps", panelAppsJSONArray
-				));
-		}
-
-		List<PanelApp> panelApps = _panelAppRegistry.getPanelApps(
-			key, themeDisplay.getPermissionChecker(),
-			themeDisplay.getScopeGroup());
-
-		for (PanelApp panelApp : panelApps) {
-			childPanelCategoriesJSONArray.put(
-				JSONUtil.put(
-					"key", panelApp.getKey()
-				).put(
-					"label", panelApp.getLabel(themeDisplay.getLocale())
-				).put(
-					"panelApps",
-					JSONUtil.putAll(
-						_getPanelAppJSONObject(
-							httpServletRequest, panelApp, themeDisplay))
-				));
-		}
-
-		return childPanelCategoriesJSONArray;
-	}
-
 	private JSONObject _getCMSJSONObject(
 			HttpServletRequest httpServletRequest, ThemeDisplay themeDisplay)
 		throws Exception {
@@ -345,6 +292,59 @@ public class ApplicationsMenuPanelAppsMVCResourceCommand
 		}
 
 		return 0;
+	}
+
+	private JSONArray _getChildPanelCategoriesJSONArray(
+			HttpServletRequest httpServletRequest, String key,
+			ThemeDisplay themeDisplay)
+		throws Exception {
+
+		JSONArray childPanelCategoriesJSONArray =
+			_jsonFactory.createJSONArray();
+
+		List<PanelCategory> childPanelCategories =
+			_panelCategoryHelper.getChildPanelCategories(key, themeDisplay);
+
+		for (PanelCategory childPanelCategory : childPanelCategories) {
+			JSONArray panelAppsJSONArray = _getPanelAppsJSONArray(
+				httpServletRequest, childPanelCategory.getKey(), themeDisplay);
+
+			if ((panelAppsJSONArray == null) ||
+				(panelAppsJSONArray.length() <= 0)) {
+
+				continue;
+			}
+
+			childPanelCategoriesJSONArray.put(
+				JSONUtil.put(
+					"key", childPanelCategory.getKey()
+				).put(
+					"label",
+					childPanelCategory.getLabel(themeDisplay.getLocale())
+				).put(
+					"panelApps", panelAppsJSONArray
+				));
+		}
+
+		List<PanelApp> panelApps = _panelAppRegistry.getPanelApps(
+			key, themeDisplay.getPermissionChecker(),
+			themeDisplay.getScopeGroup());
+
+		for (PanelApp panelApp : panelApps) {
+			childPanelCategoriesJSONArray.put(
+				JSONUtil.put(
+					"key", panelApp.getKey()
+				).put(
+					"label", panelApp.getLabel(themeDisplay.getLocale())
+				).put(
+					"panelApps",
+					JSONUtil.putAll(
+						_getPanelAppJSONObject(
+							httpServletRequest, panelApp, themeDisplay))
+				));
+		}
+
+		return childPanelCategoriesJSONArray;
 	}
 
 	private String _getNewSpaceCreationURL(

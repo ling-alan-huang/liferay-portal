@@ -57,6 +57,22 @@ public class CPTaxCategoryDisplayContext {
 			PortalUtil.getHttpServletRequest(renderRequest));
 	}
 
+	public CPTaxCategory getCPTaxCategory() throws PortalException {
+		if (_cpTaxCategory != null) {
+			return _cpTaxCategory;
+		}
+
+		long cpTaxCategoryId = ParamUtil.getLong(
+			_renderRequest, "cpTaxCategoryId");
+
+		if (cpTaxCategoryId > 0) {
+			_cpTaxCategory = _cpTaxCategoryService.getCPTaxCategory(
+				cpTaxCategoryId);
+		}
+
+		return _cpTaxCategory;
+	}
+
 	public CommerceTaxMethod getCommerceTaxMethod() throws PortalException {
 		if (_commerceTaxMethod != null) {
 			return _commerceTaxMethod;
@@ -81,22 +97,6 @@ public class CPTaxCategoryDisplayContext {
 		}
 
 		return commerceTaxMethod.getCommerceTaxMethodId();
-	}
-
-	public CPTaxCategory getCPTaxCategory() throws PortalException {
-		if (_cpTaxCategory != null) {
-			return _cpTaxCategory;
-		}
-
-		long cpTaxCategoryId = ParamUtil.getLong(
-			_renderRequest, "cpTaxCategoryId");
-
-		if (cpTaxCategoryId > 0) {
-			_cpTaxCategory = _cpTaxCategoryService.getCPTaxCategory(
-				cpTaxCategoryId);
-		}
-
-		return _cpTaxCategory;
 	}
 
 	public List<HeaderActionModel> getHeaderActionModels() {

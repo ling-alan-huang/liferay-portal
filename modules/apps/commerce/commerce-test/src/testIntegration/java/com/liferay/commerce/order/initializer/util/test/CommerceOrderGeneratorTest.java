@@ -168,11 +168,11 @@ public class CommerceOrderGeneratorTest {
 	@DeleteAfterTestRun
 	private List<AccountEntry> _accountEntries = new ArrayList<>();
 
-	@DeleteAfterTestRun
-	private List<Address> _addresses = new ArrayList<>();
-
 	@Inject
 	private AddressLocalService _addressLocalService;
+
+	@DeleteAfterTestRun
+	private List<Address> _addresses = new ArrayList<>();
 
 	private CommerceCatalog _commerceCatalog;
 

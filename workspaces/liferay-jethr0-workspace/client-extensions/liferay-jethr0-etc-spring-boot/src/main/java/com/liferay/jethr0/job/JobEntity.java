@@ -64,9 +64,9 @@ public interface JobEntity extends Entity {
 
 	public String getName();
 
-	public Map<String, String> getParameters();
-
 	public String getParameterValue(String name);
+
+	public Map<String, String> getParameters();
 
 	public int getPriority();
 
@@ -110,9 +110,9 @@ public interface JobEntity extends Entity {
 
 	public void setName(String name);
 
-	public void setParameters(Map<String, String> parameters);
-
 	public void setParameterValue(String name, String value);
+
+	public void setParameters(Map<String, String> parameters);
 
 	public void setPriority(int priority);
 

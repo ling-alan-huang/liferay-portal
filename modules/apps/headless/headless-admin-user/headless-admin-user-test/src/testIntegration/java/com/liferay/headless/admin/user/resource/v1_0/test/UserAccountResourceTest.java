@@ -2115,136 +2115,6 @@ public class UserAccountResourceTest extends BaseUserAccountResourceTestCase {
 		).build();
 	}
 
-	private void _testGetUserAccountsPage(
-			String filterString, UserAccount... expectedUserAccounts)
-		throws Exception {
-
-		Page<UserAccount> page = userAccountResource.getUserAccountsPage(
-			null, filterString,
-			Pagination.of(1, expectedUserAccounts.length + 1), null);
-
-		Assert.assertEquals(expectedUserAccounts.length, page.getTotalCount());
-
-		assertEqualsIgnoringOrder(
-			Arrays.asList(expectedUserAccounts),
-			(List<UserAccount>)page.getItems());
-
-		if (expectedUserAccounts.length > 0) {
-			assertValid(page);
-		}
-	}
-
-	private void _testGetUserAccountsPageWithBirthDateFilter()
-		throws Exception {
-
-		UserAccount userAccount1 = randomUserAccount();
-
-		Calendar calendar = CalendarFactoryUtil.getCalendar();
-
-		calendar.set(Calendar.YEAR, 1990);
-
-		userAccount1.setBirthDate(calendar.getTime());
-
-		userAccount1 = testGetUserAccountsPage_addUserAccount(userAccount1);
-
-		testGetUserAccountsPage_addUserAccount(randomUserAccount());
-
-		DateFormat dateFormat = DateFormatFactoryUtil.getSimpleDateFormat(
-			"yyyy-MM-dd");
-
-		_testGetUserAccountsPage("(birthDate eq 1979-01-01)");
-		_testGetUserAccountsPage(
-			StringBundler.concat(
-				"(birthDate eq ", dateFormat.format(calendar.getTime()), ")"),
-			userAccount1);
-	}
-
-	private void _testGetUserAccountsPageWithCustomFields() throws Exception {
-		ExpandoTable expandoTable = _expandoTableLocalService.addTable(
-			testGroup.getCompanyId(),
-			_classNameLocalService.getClassNameId(User.class), "CUSTOM_FIELDS");
-
-		ExpandoColumn expandoColumn = _expandoColumnLocalService.addColumn(
-			expandoTable.getTableId(), "A" + RandomTestUtil.randomString(),
-			ExpandoColumnConstants.STRING);
-
-		UnicodeProperties unicodeProperties =
-			expandoColumn.getTypeSettingsProperties();
-
-		unicodeProperties.setProperty(
-			ExpandoColumnConstants.INDEX_TYPE,
-			String.valueOf(ExpandoColumnConstants.INDEX_TYPE_KEYWORD));
-
-		expandoColumn.setTypeSettingsProperties(unicodeProperties);
-
-		_expandoColumnLocalService.updateExpandoColumn(expandoColumn);
-
-		UserAccount userAccount = randomUserAccount();
-
-		String value = RandomTestUtil.randomString();
-
-		userAccount.setCustomFields(
-			() -> new CustomField[] {
-				new CustomField() {
-					{
-						customValue = new CustomValue() {
-							{
-								data = value;
-							}
-						};
-						dataType = "Text";
-						name = expandoColumn.getName();
-					}
-				}
-			});
-
-		userAccount = testGetUserAccountsPage_addUserAccount(userAccount);
-
-		_testGetUserAccountsPage(
-			StringBundler.concat(
-				"(customFields/", expandoColumn.getName(), " eq '",
-				RandomTestUtil.randomString(), "')"));
-		_testGetUserAccountsPage(
-			StringBundler.concat(
-				"(customFields/", expandoColumn.getName(), " eq '", value,
-				"')"),
-			userAccount);
-	}
-
-	private void _testGetUserAccountsPageWithSortFullName() throws Exception {
-		List<UserAccount> userAccounts = new ArrayList<>();
-		String domain = StringUtil.randomString() + ".com";
-
-		userAccounts.add(
-			userAccountResource.postUserAccount(
-				null, null,
-				_randomUserAccount(
-					userAccount -> {
-						userAccount.setGivenName("aaa");
-						userAccount.setEmailAddress("aaa@" + domain);
-					})));
-		userAccounts.add(
-			userAccountResource.postUserAccount(
-				null, null,
-				_randomUserAccount(
-					userAccount -> {
-						userAccount.setGivenName("bbb");
-						userAccount.setEmailAddress("bbb@" + domain);
-					})));
-
-		Page<UserAccount> page = userAccountResource.getUserAccountsPage(
-			domain, null, Pagination.of(1, 10), "name:asc");
-
-		assertEquals(userAccounts, (List<UserAccount>)page.getItems());
-
-		Collections.reverse(userAccounts);
-
-		page = userAccountResource.getUserAccountsPage(
-			domain, null, Pagination.of(1, 10), "name:desc");
-
-		assertEquals(userAccounts, (List<UserAccount>)page.getItems());
-	}
-
 	private void _testGetUserAccountWithGender() throws Exception {
 		PortletPreferences portletPreferences = PrefsPropsUtil.getPreferences(
 			testCompany.getCompanyId());
@@ -2489,6 +2359,136 @@ public class UserAccountResourceTest extends BaseUserAccountResourceTestCase {
 		for (Role role : roles) {
 			Assert.assertFalse(_hasRole(role, roleBriefs));
 		}
+	}
+
+	private void _testGetUserAccountsPage(
+			String filterString, UserAccount... expectedUserAccounts)
+		throws Exception {
+
+		Page<UserAccount> page = userAccountResource.getUserAccountsPage(
+			null, filterString,
+			Pagination.of(1, expectedUserAccounts.length + 1), null);
+
+		Assert.assertEquals(expectedUserAccounts.length, page.getTotalCount());
+
+		assertEqualsIgnoringOrder(
+			Arrays.asList(expectedUserAccounts),
+			(List<UserAccount>)page.getItems());
+
+		if (expectedUserAccounts.length > 0) {
+			assertValid(page);
+		}
+	}
+
+	private void _testGetUserAccountsPageWithBirthDateFilter()
+		throws Exception {
+
+		UserAccount userAccount1 = randomUserAccount();
+
+		Calendar calendar = CalendarFactoryUtil.getCalendar();
+
+		calendar.set(Calendar.YEAR, 1990);
+
+		userAccount1.setBirthDate(calendar.getTime());
+
+		userAccount1 = testGetUserAccountsPage_addUserAccount(userAccount1);
+
+		testGetUserAccountsPage_addUserAccount(randomUserAccount());
+
+		DateFormat dateFormat = DateFormatFactoryUtil.getSimpleDateFormat(
+			"yyyy-MM-dd");
+
+		_testGetUserAccountsPage("(birthDate eq 1979-01-01)");
+		_testGetUserAccountsPage(
+			StringBundler.concat(
+				"(birthDate eq ", dateFormat.format(calendar.getTime()), ")"),
+			userAccount1);
+	}
+
+	private void _testGetUserAccountsPageWithCustomFields() throws Exception {
+		ExpandoTable expandoTable = _expandoTableLocalService.addTable(
+			testGroup.getCompanyId(),
+			_classNameLocalService.getClassNameId(User.class), "CUSTOM_FIELDS");
+
+		ExpandoColumn expandoColumn = _expandoColumnLocalService.addColumn(
+			expandoTable.getTableId(), "A" + RandomTestUtil.randomString(),
+			ExpandoColumnConstants.STRING);
+
+		UnicodeProperties unicodeProperties =
+			expandoColumn.getTypeSettingsProperties();
+
+		unicodeProperties.setProperty(
+			ExpandoColumnConstants.INDEX_TYPE,
+			String.valueOf(ExpandoColumnConstants.INDEX_TYPE_KEYWORD));
+
+		expandoColumn.setTypeSettingsProperties(unicodeProperties);
+
+		_expandoColumnLocalService.updateExpandoColumn(expandoColumn);
+
+		UserAccount userAccount = randomUserAccount();
+
+		String value = RandomTestUtil.randomString();
+
+		userAccount.setCustomFields(
+			() -> new CustomField[] {
+				new CustomField() {
+					{
+						customValue = new CustomValue() {
+							{
+								data = value;
+							}
+						};
+						dataType = "Text";
+						name = expandoColumn.getName();
+					}
+				}
+			});
+
+		userAccount = testGetUserAccountsPage_addUserAccount(userAccount);
+
+		_testGetUserAccountsPage(
+			StringBundler.concat(
+				"(customFields/", expandoColumn.getName(), " eq '",
+				RandomTestUtil.randomString(), "')"));
+		_testGetUserAccountsPage(
+			StringBundler.concat(
+				"(customFields/", expandoColumn.getName(), " eq '", value,
+				"')"),
+			userAccount);
+	}
+
+	private void _testGetUserAccountsPageWithSortFullName() throws Exception {
+		List<UserAccount> userAccounts = new ArrayList<>();
+		String domain = StringUtil.randomString() + ".com";
+
+		userAccounts.add(
+			userAccountResource.postUserAccount(
+				null, null,
+				_randomUserAccount(
+					userAccount -> {
+						userAccount.setGivenName("aaa");
+						userAccount.setEmailAddress("aaa@" + domain);
+					})));
+		userAccounts.add(
+			userAccountResource.postUserAccount(
+				null, null,
+				_randomUserAccount(
+					userAccount -> {
+						userAccount.setGivenName("bbb");
+						userAccount.setEmailAddress("bbb@" + domain);
+					})));
+
+		Page<UserAccount> page = userAccountResource.getUserAccountsPage(
+			domain, null, Pagination.of(1, 10), "name:asc");
+
+		assertEquals(userAccounts, (List<UserAccount>)page.getItems());
+
+		Collections.reverse(userAccounts);
+
+		page = userAccountResource.getUserAccountsPage(
+			domain, null, Pagination.of(1, 10), "name:desc");
+
+		assertEquals(userAccounts, (List<UserAccount>)page.getItems());
 	}
 
 	private void _testPatchUserAccountWithGender() throws Exception {

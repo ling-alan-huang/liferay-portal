@@ -82,8 +82,8 @@ public class UserModelIndexerWriterContributor
 
 	private final DynamicQueryBatchIndexingActionableFactory
 		_dynamicQueryBatchIndexingActionableFactory;
-	private final IndexerDocumentBuilder _indexerDocumentBuilder;
 	private final IndexWriterHelper _indexWriterHelper;
+	private final IndexerDocumentBuilder _indexerDocumentBuilder;
 	private final UserLocalService _userLocalService;
 
 }

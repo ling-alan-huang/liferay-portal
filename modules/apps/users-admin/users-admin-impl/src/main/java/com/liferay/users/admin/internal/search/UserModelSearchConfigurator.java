@@ -70,13 +70,13 @@ public class UserModelSearchConfigurator
 	private DynamicQueryBatchIndexingActionableFactory
 		_dynamicQueryBatchIndexingActionableFactory;
 
+	@Reference
+	private IndexWriterHelper _indexWriterHelper;
+
 	@Reference(
 		target = "(indexer.class.name=com.liferay.portal.kernel.model.Contact)"
 	)
 	private IndexerDocumentBuilder _indexerDocumentBuilder;
-
-	@Reference
-	private IndexWriterHelper _indexWriterHelper;
 
 	private ModelIndexerWriterContributor<User> _modelIndexWriterContributor;
 	private final ModelSummaryContributor _modelSummaryContributor =

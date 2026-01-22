@@ -1296,13 +1296,13 @@ public class CTStoreTest {
 	@Inject
 	private static CTCollectionLocalService _ctCollectionLocalService;
 
-	@Inject
-	private static CTSContentLocalService _ctsContentLocalService;
-
 	private static Store _ctStore;
 
 	@Inject
 	private static CTStoreFactory _ctStoreFactory;
+
+	@Inject
+	private static CTSContentLocalService _ctsContentLocalService;
 
 	@Inject(filter = "store.type=" + _STORE_TYPE)
 	private static Store _fileSystemStore;

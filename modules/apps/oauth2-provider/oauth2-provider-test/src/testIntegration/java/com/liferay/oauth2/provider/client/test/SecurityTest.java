@@ -54,25 +54,6 @@ public class SecurityTest extends BaseClientTestCase {
 	}
 
 	/**
-	 * OAUTH2-99
-	 */
-	@Test
-	public void testPreventClickJacking() {
-		Assert.assertEquals(
-			"SAMEORIGIN",
-			parseXFrameOptionsHeader(
-				getCodeResponse(
-					_user.getEmailAddress(), PropsValues.DEFAULT_ADMIN_PASSWORD,
-					null,
-					getCodeFunction(
-						webTarget -> webTarget.queryParam(
-							"client_id", "oauthTestApplicationCode"
-						).queryParam(
-							"response_type", "code"
-						)))));
-	}
-
-	/**
 	 * OAUTH2-96
 	 */
 	@Ignore
@@ -142,6 +123,25 @@ public class SecurityTest extends BaseClientTestCase {
 					))));
 
 		Assert.assertEquals(state, responseState);
+	}
+
+	/**
+	 * OAUTH2-99
+	 */
+	@Test
+	public void testPreventClickJacking() {
+		Assert.assertEquals(
+			"SAMEORIGIN",
+			parseXFrameOptionsHeader(
+				getCodeResponse(
+					_user.getEmailAddress(), PropsValues.DEFAULT_ADMIN_PASSWORD,
+					null,
+					getCodeFunction(
+						webTarget -> webTarget.queryParam(
+							"client_id", "oauthTestApplicationCode"
+						).queryParam(
+							"response_type", "code"
+						)))));
 	}
 
 	/**

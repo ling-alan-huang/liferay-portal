@@ -421,10 +421,10 @@ public abstract class BaseNotificationType implements NotificationType {
 	@Reference
 	protected UserGroupLocalService userGroupLocalService;
 
-	protected Locale userLocale;
-
 	@Reference
 	protected UserLocalService userLocalService;
+
+	protected Locale userLocale;
 
 	private void _addNotificationRecipientSetting(
 		Map.Entry<String, Object> entry, long notificationRecipientId,

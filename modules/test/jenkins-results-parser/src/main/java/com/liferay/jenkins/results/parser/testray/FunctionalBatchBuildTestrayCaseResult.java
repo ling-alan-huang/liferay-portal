@@ -104,23 +104,6 @@ public class FunctionalBatchBuildTestrayCaseResult
 	}
 
 	@Override
-	public List<TestrayAttachment> getTestrayAttachments() {
-		List<TestrayAttachment> testrayAttachments =
-			super.getTestrayAttachments();
-
-		testrayAttachments.addAll(getLiferayLogTestrayAttachments());
-		testrayAttachments.addAll(getLiferayOSGiLogTestrayAttachments());
-
-		testrayAttachments.add(_getPoshiConsoleTestrayAttachment());
-		testrayAttachments.add(_getPoshiReportTestrayAttachment());
-		testrayAttachments.add(_getPoshiSummaryTestrayAttachment());
-
-		testrayAttachments.removeAll(Collections.singleton(null));
-
-		return testrayAttachments;
-	}
-
-	@Override
 	public TestReport getTestReport() {
 		FunctionalTestClass functionalTestClass = getTestClass();
 
@@ -147,6 +130,23 @@ public class FunctionalBatchBuildTestrayCaseResult
 		}
 
 		return null;
+	}
+
+	@Override
+	public List<TestrayAttachment> getTestrayAttachments() {
+		List<TestrayAttachment> testrayAttachments =
+			super.getTestrayAttachments();
+
+		testrayAttachments.addAll(getLiferayLogTestrayAttachments());
+		testrayAttachments.addAll(getLiferayOSGiLogTestrayAttachments());
+
+		testrayAttachments.add(_getPoshiConsoleTestrayAttachment());
+		testrayAttachments.add(_getPoshiReportTestrayAttachment());
+		testrayAttachments.add(_getPoshiSummaryTestrayAttachment());
+
+		testrayAttachments.removeAll(Collections.singleton(null));
+
+		return testrayAttachments;
 	}
 
 	@Override

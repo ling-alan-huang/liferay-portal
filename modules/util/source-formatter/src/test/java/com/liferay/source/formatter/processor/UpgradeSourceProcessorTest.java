@@ -69,6 +69,11 @@ public class UpgradeSourceProcessorTest extends BaseSourceProcessorTestCase {
 	}
 
 	@Test
+	public void testUpgradeJSPFieldSetGroupCheck() throws Exception {
+		test("upgrade/UpgradeJSPFieldSetGroupCheck.testjsp");
+	}
+
+	@Test
 	public void testUpgradeJavaAssetEntryAssetCategoriesCheck()
 		throws Exception {
 
@@ -104,11 +109,6 @@ public class UpgradeSourceProcessorTest extends BaseSourceProcessorTestCase {
 	}
 
 	@Test
-	public void testUpgradeJavaFacetedSearcherCheck() throws Exception {
-		test("upgrade/UpgradeJavaFacetedSearcherCheck.testjava");
-	}
-
-	@Test
 	public void testUpgradeJavaFDSActionProviderCheck() throws Exception {
 		test("upgrade/UpgradeJavaFDSActionProviderCheck.testjava");
 	}
@@ -117,6 +117,11 @@ public class UpgradeSourceProcessorTest extends BaseSourceProcessorTestCase {
 	public void testUpgradeJavaFDSDataProviderCheck() throws Exception {
 		test("upgrade/UpgradeJavaCommerceDataSetDataProviderCheck.testjava");
 		test("upgrade/UpgradeJavaClayDataSetDataProviderCheck.testjava");
+	}
+
+	@Test
+	public void testUpgradeJavaFacetedSearcherCheck() throws Exception {
+		test("upgrade/UpgradeJavaFacetedSearcherCheck.testjava");
 	}
 
 	@Test
@@ -221,11 +226,6 @@ public class UpgradeSourceProcessorTest extends BaseSourceProcessorTestCase {
 	@Test
 	public void testUpgradeJavaStorageTypeAwareCheck() throws Exception {
 		test("upgrade/UpgradeJavaStorageTypeAwareCheck.testjava");
-	}
-
-	@Test
-	public void testUpgradeJSPFieldSetGroupCheck() throws Exception {
-		test("upgrade/UpgradeJSPFieldSetGroupCheck.testjsp");
 	}
 
 	@Test

@@ -585,6 +585,16 @@ public class SkuResourceImpl extends BaseSkuResourceImpl {
 			sorts, transformUnsafeFunction);
 	}
 
+	private List<Sku> _toSKUs(List<CPInstance> cpInstances, Locale locale)
+		throws Exception {
+
+		return transform(
+			cpInstances,
+			cpInstance -> _skuDTOConverter.toDTO(
+				new DefaultDTOConverterContext(
+					cpInstance.getCPInstanceId(), locale)));
+	}
+
 	private Sku _toSku(
 			Long cpInstanceId, CPInstanceUnitOfMeasure cpInstanceUnitOfMeasure)
 		throws Exception {
@@ -600,16 +610,6 @@ public class SkuResourceImpl extends BaseSkuResourceImpl {
 			"cpInstanceUnitOfMeasure", cpInstanceUnitOfMeasure);
 
 		return _skuDTOConverter.toDTO(defaultDTOConverterContext);
-	}
-
-	private List<Sku> _toSKUs(List<CPInstance> cpInstances, Locale locale)
-		throws Exception {
-
-		return transform(
-			cpInstances,
-			cpInstance -> _skuDTOConverter.toDTO(
-				new DefaultDTOConverterContext(
-					cpInstance.getCPInstanceId(), locale)));
 	}
 
 	private Page<Sku> _toUnitOfMeasureSkusPage(Page<Long> cpInstanceIdsPage)
@@ -957,10 +957,6 @@ public class SkuResourceImpl extends BaseSkuResourceImpl {
 		_cpDefinitionVirtualSettingService;
 
 	@Reference
-	private CPDVirtualSettingFileEntryService
-		_cpdVirtualSettingFileEntryService;
-
-	@Reference
 	private CPInstanceService _cpInstanceService;
 
 	@Reference
@@ -968,6 +964,10 @@ public class SkuResourceImpl extends BaseSkuResourceImpl {
 
 	@Reference
 	private CPTypeRegistry _cpTypeRegistry;
+
+	@Reference
+	private CPDVirtualSettingFileEntryService
+		_cpdVirtualSettingFileEntryService;
 
 	@Reference
 	private DLAppService _dlAppService;

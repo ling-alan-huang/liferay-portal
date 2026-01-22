@@ -48,13 +48,13 @@ public class CIJethr0Client extends BaseJethr0Client {
 	}
 
 	@Override
-	protected String getJMSJethr0ToJRPQueueName() {
-		return _jmsJethr0ToJRPQueueName;
+	protected String getJMSJRPToJethr0QueueName() {
+		return _jmsJRPToJethr0QueueName;
 	}
 
 	@Override
-	protected String getJMSJRPToJethr0QueueName() {
-		return _jmsJRPToJethr0QueueName;
+	protected String getJMSJethr0ToJRPQueueName() {
+		return _jmsJethr0ToJRPQueueName;
 	}
 
 	@Override
@@ -130,8 +130,8 @@ public class CIJethr0Client extends BaseJethr0Client {
 	private String _1PasswordVaultName;
 	private final String _jmsBrokerURL;
 	private final String _jmsGitHubToJethr0QueueName;
-	private final String _jmsJethr0ToJRPQueueName;
 	private final String _jmsJRPToJethr0QueueName;
+	private final String _jmsJethr0ToJRPQueueName;
 	private final String _jmsUserName;
 	private final String _jmsUserPassword;
 	private final URL _liferayDXPURL;

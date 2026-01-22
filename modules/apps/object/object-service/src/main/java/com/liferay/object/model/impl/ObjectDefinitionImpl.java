@@ -90,6 +90,16 @@ public class ObjectDefinitionImpl extends ObjectDefinitionBaseImpl {
 	}
 
 	@Override
+	public String getOSGiJaxRsName() {
+		return getOSGiJaxRsName(StringPool.BLANK);
+	}
+
+	@Override
+	public String getOSGiJaxRsName(String className) {
+		return StringUtil.toLowerCase(getName()) + className;
+	}
+
+	@Override
 	public List<ObjectDefinitionSetting> getObjectDefinitionSettings() {
 		if (_objectDefinitionSettings == null) {
 			_objectDefinitionSettings =
@@ -135,31 +145,12 @@ public class ObjectDefinitionImpl extends ObjectDefinitionBaseImpl {
 	}
 
 	@Override
-	public String getOSGiJaxRsName() {
-		return getOSGiJaxRsName(StringPool.BLANK);
-	}
-
-	@Override
-	public String getOSGiJaxRsName(String className) {
-		return StringUtil.toLowerCase(getName()) + className;
-	}
-
-	@Override
 	public String getPortletId() {
 		if (isUnmodifiableSystemObject()) {
 			throw new UnsupportedOperationException();
 		}
 
 		return ObjectDefinitionUtil.getPortletId(getClassName());
-	}
-
-	@Override
-	public String getResourceName() {
-		if (isUnmodifiableSystemObject()) {
-			throw new UnsupportedOperationException();
-		}
-
-		return "com.liferay.object#" + getObjectDefinitionId();
 	}
 
 	@Override
@@ -175,6 +166,15 @@ public class ObjectDefinitionImpl extends ObjectDefinitionBaseImpl {
 
 		return "/c/" +
 			TextFormatter.formatPlural(StringUtil.toLowerCase(getShortName()));
+	}
+
+	@Override
+	public String getResourceName() {
+		if (isUnmodifiableSystemObject()) {
+			throw new UnsupportedOperationException();
+		}
+
+		return "com.liferay.object#" + getObjectDefinitionId();
 	}
 
 	@Override

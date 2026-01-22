@@ -206,17 +206,17 @@ public class ConfigurationModel implements ExtendedObjectClassDefinition {
 	}
 
 	@Override
-	public InputStream getIcon(int size) throws IOException {
-		return _extendedObjectClassDefinition.getIcon(size);
-	}
-
-	@Override
 	public String getID() {
 		if (_configuration != null) {
 			return _configuration.getPid();
 		}
 
 		return _extendedObjectClassDefinition.getID();
+	}
+
+	@Override
+	public InputStream getIcon(int size) throws IOException {
+		return _extendedObjectClassDefinition.getIcon(size);
 	}
 
 	public String getLabel() {
@@ -279,11 +279,6 @@ public class ConfigurationModel implements ExtendedObjectClassDefinition {
 		return _configurationOverrideProperties.containsKey(key);
 	}
 
-	@Override
-	public int hashCode() {
-		return HashUtil.hash(0, getID());
-	}
-
 	public boolean hasScopeConfiguration(Scope scope) {
 		if (!hasConfiguration()) {
 			return false;
@@ -318,6 +313,11 @@ public class ConfigurationModel implements ExtendedObjectClassDefinition {
 		}
 
 		return false;
+	}
+
+	@Override
+	public int hashCode() {
+		return HashUtil.hash(0, getID());
 	}
 
 	public boolean isCompanyFactory() {

@@ -510,6 +510,68 @@ public class TransactionalPortalCacheTest {
 	}
 
 	@Test
+	public void testTransactionLifecycleListenerEnabledWithBarrier() {
+		_setEnableTransactionalCache(true);
+
+		_testTransactionLifecycleListenerEnabledWithBarrier(
+			Propagation.NOT_SUPPORTED);
+		_testTransactionLifecycleListenerEnabledWithBarrier(Propagation.NEVER);
+		_testTransactionLifecycleListenerEnabledWithBarrier(Propagation.NESTED);
+	}
+
+	@Test
+	public void testTransactionLifecycleListenerEnabledWithExistTransaction() {
+		_setEnableTransactionalCache(true);
+
+		Assert.assertEquals(0, _getTransactionStackSize());
+
+		TransactionLifecycleListener transactionLifecycleListener =
+			TransactionalPortalCacheUtil.TRANSACTION_LIFECYCLE_LISTENER;
+
+		TransactionAttribute.Builder builder =
+			new TransactionAttribute.Builder();
+
+		TransactionAttribute transactionAttribute = builder.build();
+
+		TransactionStatus transactionStatus = new TestTrasactionStatus(
+			false, false, false);
+
+		transactionLifecycleListener.created(
+			transactionAttribute, transactionStatus);
+
+		Assert.assertEquals(0, _getTransactionStackSize());
+
+		transactionLifecycleListener.committed(
+			transactionAttribute, transactionStatus);
+
+		Assert.assertEquals(0, _getTransactionStackSize());
+
+		transactionLifecycleListener.created(
+			transactionAttribute, transactionStatus);
+
+		Assert.assertEquals(0, _getTransactionStackSize());
+
+		transactionLifecycleListener.rollbacked(
+			transactionAttribute, transactionStatus, null);
+
+		Assert.assertEquals(0, _getTransactionStackSize());
+	}
+
+	@Test
+	public void testTransactionLifecycleListenerEnabledWithoutBarrier() {
+		_setEnableTransactionalCache(true);
+
+		_testTransactionLifecycleListenerEnabledWithoutBarrier(
+			Propagation.REQUIRED);
+		_testTransactionLifecycleListenerEnabledWithoutBarrier(
+			Propagation.SUPPORTS);
+		_testTransactionLifecycleListenerEnabledWithoutBarrier(
+			Propagation.MANDATORY);
+		_testTransactionLifecycleListenerEnabledWithoutBarrier(
+			Propagation.REQUIRES_NEW);
+	}
+
+	@Test
 	public void testTransactionalCache() {
 		_setEnableTransactionalCache(true);
 
@@ -695,68 +757,6 @@ public class TransactionalPortalCacheTest {
 		TransactionalPortalCacheUtil.commit(false);
 
 		Assert.assertSame(nullMVCCModel, transactionalPortalCache.get(_KEY_1));
-	}
-
-	@Test
-	public void testTransactionLifecycleListenerEnabledWithBarrier() {
-		_setEnableTransactionalCache(true);
-
-		_testTransactionLifecycleListenerEnabledWithBarrier(
-			Propagation.NOT_SUPPORTED);
-		_testTransactionLifecycleListenerEnabledWithBarrier(Propagation.NEVER);
-		_testTransactionLifecycleListenerEnabledWithBarrier(Propagation.NESTED);
-	}
-
-	@Test
-	public void testTransactionLifecycleListenerEnabledWithExistTransaction() {
-		_setEnableTransactionalCache(true);
-
-		Assert.assertEquals(0, _getTransactionStackSize());
-
-		TransactionLifecycleListener transactionLifecycleListener =
-			TransactionalPortalCacheUtil.TRANSACTION_LIFECYCLE_LISTENER;
-
-		TransactionAttribute.Builder builder =
-			new TransactionAttribute.Builder();
-
-		TransactionAttribute transactionAttribute = builder.build();
-
-		TransactionStatus transactionStatus = new TestTrasactionStatus(
-			false, false, false);
-
-		transactionLifecycleListener.created(
-			transactionAttribute, transactionStatus);
-
-		Assert.assertEquals(0, _getTransactionStackSize());
-
-		transactionLifecycleListener.committed(
-			transactionAttribute, transactionStatus);
-
-		Assert.assertEquals(0, _getTransactionStackSize());
-
-		transactionLifecycleListener.created(
-			transactionAttribute, transactionStatus);
-
-		Assert.assertEquals(0, _getTransactionStackSize());
-
-		transactionLifecycleListener.rollbacked(
-			transactionAttribute, transactionStatus, null);
-
-		Assert.assertEquals(0, _getTransactionStackSize());
-	}
-
-	@Test
-	public void testTransactionLifecycleListenerEnabledWithoutBarrier() {
-		_setEnableTransactionalCache(true);
-
-		_testTransactionLifecycleListenerEnabledWithoutBarrier(
-			Propagation.REQUIRED);
-		_testTransactionLifecycleListenerEnabledWithoutBarrier(
-			Propagation.SUPPORTS);
-		_testTransactionLifecycleListenerEnabledWithoutBarrier(
-			Propagation.MANDATORY);
-		_testTransactionLifecycleListenerEnabledWithoutBarrier(
-			Propagation.REQUIRES_NEW);
 	}
 
 	private int _getTransactionStackSize() {
@@ -1131,6 +1131,195 @@ public class TransactionalPortalCacheTest {
 		Assert.assertNull(_portalCache.get(_KEY_2));
 	}
 
+	private void _testTransactionLifecycleListenerEnabledWithBarrier(
+		Propagation propagation) {
+
+		Assert.assertEquals(0, _getTransactionStackSize());
+
+		TransactionLifecycleListener transactionLifecycleListener =
+			TransactionalPortalCacheUtil.TRANSACTION_LIFECYCLE_LISTENER;
+
+		// Start parent transaction
+
+		TransactionAttribute.Builder parentBuilder =
+			new TransactionAttribute.Builder();
+
+		TransactionAttribute parentTransactionAttribute = parentBuilder.build();
+
+		TransactionStatus parentTransactionStatus = new TestTrasactionStatus(
+			true, false, false);
+
+		transactionLifecycleListener.created(
+			parentTransactionAttribute, parentTransactionStatus);
+
+		Assert.assertEquals(1, _getTransactionStackSize());
+
+		// Start child transaction with barrier
+
+		TransactionAttribute.Builder childBuilder =
+			new TransactionAttribute.Builder();
+
+		childBuilder.setPropagation(propagation);
+
+		TransactionAttribute childTransactionAttribute = childBuilder.build();
+
+		TransactionStatus childTransactionStatus = new TestTrasactionStatus(
+			true, false, false);
+
+		transactionLifecycleListener.created(
+			childTransactionAttribute, childTransactionStatus);
+
+		Assert.assertEquals(0, _getTransactionStackSize());
+
+		// Start grandchild transaction
+
+		TransactionAttribute.Builder grandchildBuilder =
+			new TransactionAttribute.Builder();
+
+		TransactionAttribute grandchildTransactionAttribute =
+			grandchildBuilder.build();
+
+		TransactionStatus grandchildTransactionStatus =
+			new TestTrasactionStatus(true, false, false);
+
+		transactionLifecycleListener.created(
+			grandchildTransactionAttribute, grandchildTransactionStatus);
+
+		Assert.assertEquals(1, _getTransactionStackSize());
+
+		// Commit grandchild transaction
+
+		transactionLifecycleListener.committed(
+			grandchildTransactionAttribute, grandchildTransactionStatus);
+
+		Assert.assertEquals(0, _getTransactionStackSize());
+
+		// Start grandchild transaction again
+
+		transactionLifecycleListener.created(
+			grandchildTransactionAttribute, grandchildTransactionStatus);
+
+		Assert.assertEquals(1, _getTransactionStackSize());
+
+		// Rollback grandchild transaction
+
+		transactionLifecycleListener.rollbacked(
+			grandchildTransactionAttribute, grandchildTransactionStatus, null);
+
+		Assert.assertEquals(0, _getTransactionStackSize());
+
+		// Commit child transaction
+
+		transactionLifecycleListener.committed(
+			childTransactionAttribute, childTransactionStatus);
+
+		Assert.assertEquals(1, _getTransactionStackSize());
+
+		// Start child transaction with barrier with barrier again
+
+		transactionLifecycleListener.created(
+			childTransactionAttribute, childTransactionStatus);
+
+		Assert.assertEquals(0, _getTransactionStackSize());
+
+		// Rollback child transaction
+
+		transactionLifecycleListener.rollbacked(
+			childTransactionAttribute, childTransactionStatus, null);
+
+		Assert.assertEquals(1, _getTransactionStackSize());
+
+		// Commit parent transaction
+
+		transactionLifecycleListener.committed(
+			parentTransactionAttribute, parentTransactionStatus);
+
+		Assert.assertEquals(0, _getTransactionStackSize());
+	}
+
+	private void _testTransactionLifecycleListenerEnabledWithoutBarrier(
+		Propagation propagation) {
+
+		Assert.assertEquals(0, _getTransactionStackSize());
+
+		TransactionLifecycleListener transactionLifecycleListener =
+			TransactionalPortalCacheUtil.TRANSACTION_LIFECYCLE_LISTENER;
+
+		// Start parent transaction
+
+		TransactionAttribute.Builder parentBuilder =
+			new TransactionAttribute.Builder();
+
+		TransactionAttribute parentTransactionAttribute = parentBuilder.build();
+
+		TransactionStatus parentTransactionStatus = new TestTrasactionStatus(
+			true, false, false);
+
+		transactionLifecycleListener.created(
+			parentTransactionAttribute, parentTransactionStatus);
+
+		Assert.assertEquals(1, _getTransactionStackSize());
+
+		// Start child transaction
+
+		TransactionAttribute.Builder childBuilder =
+			new TransactionAttribute.Builder();
+
+		childBuilder.setPropagation(propagation);
+
+		TransactionAttribute childTransactionAttribute = parentBuilder.build();
+
+		TransactionStatus childTransactionStatus = new TestTrasactionStatus(
+			true, false, false);
+
+		transactionLifecycleListener.created(
+			childTransactionAttribute, childTransactionStatus);
+
+		Assert.assertEquals(2, _getTransactionStackSize());
+
+		// Commit child transaction
+
+		transactionLifecycleListener.committed(
+			childTransactionAttribute, childTransactionStatus);
+
+		Assert.assertEquals(1, _getTransactionStackSize());
+
+		// Start child transaction again
+
+		transactionLifecycleListener.created(
+			childTransactionAttribute, childTransactionStatus);
+
+		Assert.assertEquals(2, _getTransactionStackSize());
+
+		// Rollback child transaction
+
+		transactionLifecycleListener.rollbacked(
+			childTransactionAttribute, childTransactionStatus, null);
+
+		Assert.assertEquals(1, _getTransactionStackSize());
+
+		// Commit parent transaction
+
+		transactionLifecycleListener.committed(
+			parentTransactionAttribute, parentTransactionStatus);
+
+		Assert.assertEquals(0, _getTransactionStackSize());
+
+		// Start parent transaction again
+
+		transactionLifecycleListener.created(
+			parentTransactionAttribute, parentTransactionStatus);
+
+		Assert.assertEquals(1, _getTransactionStackSize());
+
+		// Rollback parent transaction
+
+		transactionLifecycleListener.rollbacked(
+			parentTransactionAttribute, parentTransactionStatus, null);
+
+		Assert.assertEquals(0, _getTransactionStackSize());
+	}
+
 	private void _testTransactionalPortalCache(
 		TransactionalPortalCache<String, String> transactionalPortalCache,
 		boolean ttl, boolean mvcc) {
@@ -1442,195 +1631,6 @@ public class TransactionalPortalCacheTest {
 
 		_testCacheListener.reset();
 		_testCacheReplicator.reset();
-	}
-
-	private void _testTransactionLifecycleListenerEnabledWithBarrier(
-		Propagation propagation) {
-
-		Assert.assertEquals(0, _getTransactionStackSize());
-
-		TransactionLifecycleListener transactionLifecycleListener =
-			TransactionalPortalCacheUtil.TRANSACTION_LIFECYCLE_LISTENER;
-
-		// Start parent transaction
-
-		TransactionAttribute.Builder parentBuilder =
-			new TransactionAttribute.Builder();
-
-		TransactionAttribute parentTransactionAttribute = parentBuilder.build();
-
-		TransactionStatus parentTransactionStatus = new TestTrasactionStatus(
-			true, false, false);
-
-		transactionLifecycleListener.created(
-			parentTransactionAttribute, parentTransactionStatus);
-
-		Assert.assertEquals(1, _getTransactionStackSize());
-
-		// Start child transaction with barrier
-
-		TransactionAttribute.Builder childBuilder =
-			new TransactionAttribute.Builder();
-
-		childBuilder.setPropagation(propagation);
-
-		TransactionAttribute childTransactionAttribute = childBuilder.build();
-
-		TransactionStatus childTransactionStatus = new TestTrasactionStatus(
-			true, false, false);
-
-		transactionLifecycleListener.created(
-			childTransactionAttribute, childTransactionStatus);
-
-		Assert.assertEquals(0, _getTransactionStackSize());
-
-		// Start grandchild transaction
-
-		TransactionAttribute.Builder grandchildBuilder =
-			new TransactionAttribute.Builder();
-
-		TransactionAttribute grandchildTransactionAttribute =
-			grandchildBuilder.build();
-
-		TransactionStatus grandchildTransactionStatus =
-			new TestTrasactionStatus(true, false, false);
-
-		transactionLifecycleListener.created(
-			grandchildTransactionAttribute, grandchildTransactionStatus);
-
-		Assert.assertEquals(1, _getTransactionStackSize());
-
-		// Commit grandchild transaction
-
-		transactionLifecycleListener.committed(
-			grandchildTransactionAttribute, grandchildTransactionStatus);
-
-		Assert.assertEquals(0, _getTransactionStackSize());
-
-		// Start grandchild transaction again
-
-		transactionLifecycleListener.created(
-			grandchildTransactionAttribute, grandchildTransactionStatus);
-
-		Assert.assertEquals(1, _getTransactionStackSize());
-
-		// Rollback grandchild transaction
-
-		transactionLifecycleListener.rollbacked(
-			grandchildTransactionAttribute, grandchildTransactionStatus, null);
-
-		Assert.assertEquals(0, _getTransactionStackSize());
-
-		// Commit child transaction
-
-		transactionLifecycleListener.committed(
-			childTransactionAttribute, childTransactionStatus);
-
-		Assert.assertEquals(1, _getTransactionStackSize());
-
-		// Start child transaction with barrier with barrier again
-
-		transactionLifecycleListener.created(
-			childTransactionAttribute, childTransactionStatus);
-
-		Assert.assertEquals(0, _getTransactionStackSize());
-
-		// Rollback child transaction
-
-		transactionLifecycleListener.rollbacked(
-			childTransactionAttribute, childTransactionStatus, null);
-
-		Assert.assertEquals(1, _getTransactionStackSize());
-
-		// Commit parent transaction
-
-		transactionLifecycleListener.committed(
-			parentTransactionAttribute, parentTransactionStatus);
-
-		Assert.assertEquals(0, _getTransactionStackSize());
-	}
-
-	private void _testTransactionLifecycleListenerEnabledWithoutBarrier(
-		Propagation propagation) {
-
-		Assert.assertEquals(0, _getTransactionStackSize());
-
-		TransactionLifecycleListener transactionLifecycleListener =
-			TransactionalPortalCacheUtil.TRANSACTION_LIFECYCLE_LISTENER;
-
-		// Start parent transaction
-
-		TransactionAttribute.Builder parentBuilder =
-			new TransactionAttribute.Builder();
-
-		TransactionAttribute parentTransactionAttribute = parentBuilder.build();
-
-		TransactionStatus parentTransactionStatus = new TestTrasactionStatus(
-			true, false, false);
-
-		transactionLifecycleListener.created(
-			parentTransactionAttribute, parentTransactionStatus);
-
-		Assert.assertEquals(1, _getTransactionStackSize());
-
-		// Start child transaction
-
-		TransactionAttribute.Builder childBuilder =
-			new TransactionAttribute.Builder();
-
-		childBuilder.setPropagation(propagation);
-
-		TransactionAttribute childTransactionAttribute = parentBuilder.build();
-
-		TransactionStatus childTransactionStatus = new TestTrasactionStatus(
-			true, false, false);
-
-		transactionLifecycleListener.created(
-			childTransactionAttribute, childTransactionStatus);
-
-		Assert.assertEquals(2, _getTransactionStackSize());
-
-		// Commit child transaction
-
-		transactionLifecycleListener.committed(
-			childTransactionAttribute, childTransactionStatus);
-
-		Assert.assertEquals(1, _getTransactionStackSize());
-
-		// Start child transaction again
-
-		transactionLifecycleListener.created(
-			childTransactionAttribute, childTransactionStatus);
-
-		Assert.assertEquals(2, _getTransactionStackSize());
-
-		// Rollback child transaction
-
-		transactionLifecycleListener.rollbacked(
-			childTransactionAttribute, childTransactionStatus, null);
-
-		Assert.assertEquals(1, _getTransactionStackSize());
-
-		// Commit parent transaction
-
-		transactionLifecycleListener.committed(
-			parentTransactionAttribute, parentTransactionStatus);
-
-		Assert.assertEquals(0, _getTransactionStackSize());
-
-		// Start parent transaction again
-
-		transactionLifecycleListener.created(
-			parentTransactionAttribute, parentTransactionStatus);
-
-		Assert.assertEquals(1, _getTransactionStackSize());
-
-		// Rollback parent transaction
-
-		transactionLifecycleListener.rollbacked(
-			parentTransactionAttribute, parentTransactionStatus, null);
-
-		Assert.assertEquals(0, _getTransactionStackSize());
 	}
 
 	private static final String _KEY_1 = "KEY_1";

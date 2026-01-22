@@ -165,10 +165,6 @@ public class EntityColumn implements Cloneable, Comparable<EntityColumn> {
 		return _arrayableOperator;
 	}
 
-	public String getComparator() {
-		return _comparator;
-	}
-
 	public CTColumnResolutionType getCTColumnResolutionType() {
 		return _ctColumnResolutionType;
 	}
@@ -178,6 +174,10 @@ public class EntityColumn implements Cloneable, Comparable<EntityColumn> {
 			_ctColumnResolutionType.toString());
 
 		return StringUtil.upperCaseFirstLetter(name);
+	}
+
+	public String getComparator() {
+		return _comparator;
 	}
 
 	public String getDBName() {

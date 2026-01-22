@@ -39,6 +39,10 @@ public class RelevantTestSuite {
 			portalAcceptancePullRequestJob);
 	}
 
+	public Set<JobProperty> getTestBatchNamesJobProperties() {
+		return _testBatchNamesJobProperties;
+	}
+
 	public List<TestBatch> getTestBatches(boolean validateAllRules) {
 		File baseTestPropertiesFile = new File(
 			_relevantRuleEngine.getBaseDir(), "test.properties");
@@ -124,10 +128,6 @@ public class RelevantTestSuite {
 		Collections.sort(testBatches);
 
 		return testBatches;
-	}
-
-	public Set<JobProperty> getTestBatchNamesJobProperties() {
-		return _testBatchNamesJobProperties;
 	}
 
 	public Boolean isValidTestBatch(

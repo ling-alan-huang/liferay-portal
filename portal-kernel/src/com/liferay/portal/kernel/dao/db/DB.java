@@ -88,8 +88,6 @@ public interface DB {
 
 	public String getDefaultValue(String columnDef);
 
-	public List<Index> getIndexes(Connection connection) throws SQLException;
-
 	public List<IndexMetadata> getIndexMetadatas(
 			Connection connection, String tableName, String columnName,
 			boolean onlyUnique)
@@ -98,6 +96,8 @@ public interface DB {
 	public ResultSet getIndexResultSet(
 			Connection connection, String tableName, boolean onlyUnique)
 		throws SQLException;
+
+	public List<Index> getIndexes(Connection connection) throws SQLException;
 
 	public int getMajorVersion();
 

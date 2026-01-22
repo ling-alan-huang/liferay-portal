@@ -94,18 +94,18 @@ public class IndexableActionableDynamicQueryTest {
 	protected Document document1 = Mockito.mock(Document.class);
 	protected Document document2 = Mockito.mock(Document.class);
 	protected Document document3 = Mockito.mock(Document.class);
-	protected IndexableActionableDynamicQuery indexableActionableDynamicQuery =
-		new IndexableActionableDynamicQuery();
 	protected IndexWriterHelper indexWriterHelper = Mockito.mock(
 		IndexWriterHelper.class);
+	protected IndexableActionableDynamicQuery indexableActionableDynamicQuery =
+		new IndexableActionableDynamicQuery();
 
 	private static final BundleContext _bundleContext =
 		SystemBundleUtil.getBundleContext();
 
-	private ServiceRegistration<IndexerRegistry>
-		_indexerRegistryServiceRegistration;
 	private ServiceRegistration<IndexWriterHelper>
 		_indexWriterHelperServiceRegistration;
+	private ServiceRegistration<IndexerRegistry>
+		_indexerRegistryServiceRegistration;
 	private ServiceRegistration<PortalExecutorManager>
 		_portalExecutorManagerServiceRegistration;
 

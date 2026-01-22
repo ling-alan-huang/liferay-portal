@@ -762,45 +762,6 @@ public class StringBundlerTest {
 
 	@NewEnv(type = NewEnv.Type.CLASSLOADER)
 	@Test
-	public void testToStringWithoutThreadLocalBufferMaxValueLimit() {
-		String propertyKey =
-			StringBundler.class.getName() + ".threadlocal.buffer.limit";
-
-		String propertyValue = SystemProperties.get(propertyKey);
-
-		System.setProperty(propertyKey, String.valueOf(Integer.MAX_VALUE));
-
-		testToStringWithoutThreadLocalBuffer(propertyKey, propertyValue);
-	}
-
-	@NewEnv(type = NewEnv.Type.CLASSLOADER)
-	@Test
-	public void testToStringWithoutThreadLocalBufferNoSetting() {
-		String propertyKey =
-			StringBundler.class.getName() + ".threadlocal.buffer.limit";
-
-		String propertyValue = SystemProperties.get(propertyKey);
-
-		System.clearProperty(propertyKey);
-
-		testToStringWithoutThreadLocalBuffer(propertyKey, propertyValue);
-	}
-
-	@NewEnv(type = NewEnv.Type.CLASSLOADER)
-	@Test
-	public void testToStringWithoutThreadLocalBufferZeroLimit() {
-		String propertyKey =
-			StringBundler.class.getName() + ".threadlocal.buffer.limit";
-
-		String propertyValue = SystemProperties.get(propertyKey);
-
-		System.setProperty(propertyKey, "0");
-
-		testToStringWithoutThreadLocalBuffer(propertyKey, propertyValue);
-	}
-
-	@NewEnv(type = NewEnv.Type.CLASSLOADER)
-	@Test
 	public void testToStringWithThreadLocalBuffer() throws Exception {
 		int threadLocalBufferLimit = 3;
 
@@ -869,6 +830,45 @@ public class StringBundlerTest {
 				System.setProperty(propertyKey, propertyValue);
 			}
 		}
+	}
+
+	@NewEnv(type = NewEnv.Type.CLASSLOADER)
+	@Test
+	public void testToStringWithoutThreadLocalBufferMaxValueLimit() {
+		String propertyKey =
+			StringBundler.class.getName() + ".threadlocal.buffer.limit";
+
+		String propertyValue = SystemProperties.get(propertyKey);
+
+		System.setProperty(propertyKey, String.valueOf(Integer.MAX_VALUE));
+
+		testToStringWithoutThreadLocalBuffer(propertyKey, propertyValue);
+	}
+
+	@NewEnv(type = NewEnv.Type.CLASSLOADER)
+	@Test
+	public void testToStringWithoutThreadLocalBufferNoSetting() {
+		String propertyKey =
+			StringBundler.class.getName() + ".threadlocal.buffer.limit";
+
+		String propertyValue = SystemProperties.get(propertyKey);
+
+		System.clearProperty(propertyKey);
+
+		testToStringWithoutThreadLocalBuffer(propertyKey, propertyValue);
+	}
+
+	@NewEnv(type = NewEnv.Type.CLASSLOADER)
+	@Test
+	public void testToStringWithoutThreadLocalBufferZeroLimit() {
+		String propertyKey =
+			StringBundler.class.getName() + ".threadlocal.buffer.limit";
+
+		String propertyValue = SystemProperties.get(propertyKey);
+
+		System.setProperty(propertyKey, "0");
+
+		testToStringWithoutThreadLocalBuffer(propertyKey, propertyValue);
 	}
 
 	@Test

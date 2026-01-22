@@ -254,13 +254,6 @@ public class PoshiContext {
 		return _namespaceClassCommandNamePattern;
 	}
 
-	public static Properties getNamespacedClassCommandNameProperties(
-		String testCaseNamespacedClassCommandName) {
-
-		return _namespacedClassCommandNamePropertiesMap.get(
-			testCaseNamespacedClassCommandName);
-	}
-
 	public static String getNamespaceFromFilePath(String filePath) {
 		if (Validator.isNull(filePath)) {
 			return _DEFAULT_NAMESPACE;
@@ -279,6 +272,13 @@ public class PoshiContext {
 		}
 
 		return _DEFAULT_NAMESPACE;
+	}
+
+	public static Properties getNamespacedClassCommandNameProperties(
+		String testCaseNamespacedClassCommandName) {
+
+		return _namespacedClassCommandNamePropertiesMap.get(
+			testCaseNamespacedClassCommandName);
 	}
 
 	public static List<String> getNamespaces() {

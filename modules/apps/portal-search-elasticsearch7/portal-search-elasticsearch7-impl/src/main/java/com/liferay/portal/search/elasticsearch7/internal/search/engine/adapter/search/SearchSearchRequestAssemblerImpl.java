@@ -347,10 +347,10 @@ public class SearchSearchRequestAssemblerImpl
 
 	private final GroupByTranslator _groupByTranslator =
 		new GroupByTranslator();
-	private final HighlighterTranslator _highlighterTranslator =
-		new HighlighterTranslator();
 	private final HighlightTranslator _highlightTranslator =
 		new HighlightTranslator();
+	private final HighlighterTranslator _highlighterTranslator =
+		new HighlighterTranslator();
 	private final QueryTranslator<QueryBuilder> _queryTranslator =
 		new ElasticsearchQueryTranslator();
 	private final SortFieldTranslator<SortBuilder<?>> _sortFieldTranslator =

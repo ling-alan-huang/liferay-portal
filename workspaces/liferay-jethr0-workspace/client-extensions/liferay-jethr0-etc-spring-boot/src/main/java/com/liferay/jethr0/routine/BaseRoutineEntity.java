@@ -65,36 +65,6 @@ public abstract class BaseRoutineEntity
 	}
 
 	@Override
-	public Set<JobEntity> getJobEntities() {
-		return getRelatedEntities(JobEntity.class);
-	}
-
-	@Override
-	public String getJobName() {
-		return _jobName;
-	}
-
-	@Override
-	public Map<String, String> getJobParameters() {
-		return _jobParameters;
-	}
-
-	@Override
-	public String getJobParameterValue(String name) {
-		return _jobParameters.get(name);
-	}
-
-	@Override
-	public int getJobPriority() {
-		return _jobPriority;
-	}
-
-	@Override
-	public JobEntity.Type getJobType() {
-		return _jobType;
-	}
-
-	@Override
 	public JSONObject getJSONObject() {
 		JSONObject jsonObject = super.getJSONObject();
 
@@ -120,6 +90,36 @@ public abstract class BaseRoutineEntity
 		);
 
 		return jsonObject;
+	}
+
+	@Override
+	public Set<JobEntity> getJobEntities() {
+		return getRelatedEntities(JobEntity.class);
+	}
+
+	@Override
+	public String getJobName() {
+		return _jobName;
+	}
+
+	@Override
+	public String getJobParameterValue(String name) {
+		return _jobParameters.get(name);
+	}
+
+	@Override
+	public Map<String, String> getJobParameters() {
+		return _jobParameters;
+	}
+
+	@Override
+	public int getJobPriority() {
+		return _jobPriority;
+	}
+
+	@Override
+	public JobEntity.Type getJobType() {
+		return _jobType;
 	}
 
 	@Override
@@ -157,26 +157,6 @@ public abstract class BaseRoutineEntity
 		else {
 			_gitBranchEntityId = 0;
 		}
-	}
-
-	@Override
-	public void setJobName(String jobName) {
-		_jobName = jobName;
-	}
-
-	@Override
-	public void setJobParameterValue(String name, String value) {
-		_jobParameters.put(name, value);
-	}
-
-	@Override
-	public void setJobPriority(int jobPriority) {
-		_jobPriority = jobPriority;
-	}
-
-	@Override
-	public void setJobType(JobEntity.Type jobType) {
-		_jobType = jobType;
 	}
 
 	@Override
@@ -219,6 +199,26 @@ public abstract class BaseRoutineEntity
 				_log.warn(jsonException);
 			}
 		}
+	}
+
+	@Override
+	public void setJobName(String jobName) {
+		_jobName = jobName;
+	}
+
+	@Override
+	public void setJobParameterValue(String name, String value) {
+		_jobParameters.put(name, value);
+	}
+
+	@Override
+	public void setJobPriority(int jobPriority) {
+		_jobPriority = jobPriority;
+	}
+
+	@Override
+	public void setJobType(JobEntity.Type jobType) {
+		_jobType = jobType;
 	}
 
 	@Override

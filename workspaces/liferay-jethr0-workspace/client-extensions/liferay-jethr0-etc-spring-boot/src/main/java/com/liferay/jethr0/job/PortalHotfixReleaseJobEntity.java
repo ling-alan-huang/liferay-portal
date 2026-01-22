@@ -44,6 +44,16 @@ public class PortalHotfixReleaseJobEntity extends BaseJobEntity {
 		return StringUtil.toURL(portalHotfixReleaseURL);
 	}
 
+	public URL getPortalPatchTicketURL() {
+		String portalPatchTicketURL = getParameterValue("portalPatchTicketURL");
+
+		if (StringUtil.isNullOrEmpty(portalPatchTicketURL)) {
+			return null;
+		}
+
+		return StringUtil.toURL(portalPatchTicketURL);
+	}
+
 	public String getPortalPatcherBuildID() {
 		return getParameterValue("portalPatcherBuildID");
 	}
@@ -54,16 +64,6 @@ public class PortalHotfixReleaseJobEntity extends BaseJobEntity {
 
 	public String getPortalPatcherUserID() {
 		return getParameterValue("portalPatcherUserID");
-	}
-
-	public URL getPortalPatchTicketURL() {
-		String portalPatchTicketURL = getParameterValue("portalPatchTicketURL");
-
-		if (StringUtil.isNullOrEmpty(portalPatchTicketURL)) {
-			return null;
-		}
-
-		return StringUtil.toURL(portalPatchTicketURL);
 	}
 
 	public String getPortalReleaseVersion() {
@@ -87,6 +87,11 @@ public class PortalHotfixReleaseJobEntity extends BaseJobEntity {
 			"portalHotfixReleaseURL", String.valueOf(portalHotfixReleaseURL));
 	}
 
+	public void setPortalPatchTicketURL(URL portalPatchTicketURL) {
+		setParameterValue(
+			"portalPatchTicketURL", String.valueOf(portalPatchTicketURL));
+	}
+
 	public void setPortalPatcherBuildID(String portalPatcherBuildID) {
 		setParameterValue("portalPatcherBuildID", portalPatcherBuildID);
 	}
@@ -97,11 +102,6 @@ public class PortalHotfixReleaseJobEntity extends BaseJobEntity {
 
 	public void setPortalPatcherUserID(String portalPatcherUserID) {
 		setParameterValue("portalPatcherUserID", portalPatcherUserID);
-	}
-
-	public void setPortalPatchTicketURL(URL portalPatchTicketURL) {
-		setParameterValue(
-			"portalPatchTicketURL", String.valueOf(portalPatchTicketURL));
 	}
 
 	public void setPortalReleaseVersion(String portalReleaseVersion) {

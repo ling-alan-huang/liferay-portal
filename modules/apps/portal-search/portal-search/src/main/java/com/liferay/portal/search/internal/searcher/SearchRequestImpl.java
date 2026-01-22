@@ -222,6 +222,11 @@ public class SearchRequestImpl implements SearchRequest, Serializable {
 			Arrays.asList(queryConfig.getSelectedIndexNames()));
 	}
 
+	@Override
+	public List<String> getModelIndexerClassNames() {
+		return _modelIndexerClassNames;
+	}
+
 	/**
 	 * @deprecated As of Athanasius (7.3.x), replaced by {@link
 	 *             #getModelIndexerClassNames()}
@@ -230,11 +235,6 @@ public class SearchRequestImpl implements SearchRequest, Serializable {
 	@Override
 	public List<Class<?>> getModelIndexerClasses() {
 		return Collections.emptyList();
-	}
-
-	@Override
-	public List<String> getModelIndexerClassNames() {
-		return _modelIndexerClassNames;
 	}
 
 	@Override

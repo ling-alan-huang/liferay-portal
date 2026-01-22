@@ -61,11 +61,6 @@ public class BaseTaskEntity extends BaseEntity implements TaskEntity {
 	}
 
 	@Override
-	public JobEntity getJobEntity() {
-		return _jobEntity;
-	}
-
-	@Override
 	public JSONObject getJSONObject() {
 		JSONObject jsonObject = super.getJSONObject();
 
@@ -78,6 +73,11 @@ public class BaseTaskEntity extends BaseEntity implements TaskEntity {
 		);
 
 		return jsonObject;
+	}
+
+	@Override
+	public JobEntity getJobEntity() {
+		return _jobEntity;
 	}
 
 	@Override
@@ -118,15 +118,15 @@ public class BaseTaskEntity extends BaseEntity implements TaskEntity {
 	}
 
 	@Override
-	public void setJobEntity(JobEntity jobEntity) {
-		_jobEntity = jobEntity;
-	}
-
-	@Override
 	public void setJSONObject(JSONObject jsonObject) {
 		super.setJSONObject(jsonObject);
 
 		_name = jsonObject.getString("name");
+	}
+
+	@Override
+	public void setJobEntity(JobEntity jobEntity) {
+		_jobEntity = jobEntity;
 	}
 
 	@Override

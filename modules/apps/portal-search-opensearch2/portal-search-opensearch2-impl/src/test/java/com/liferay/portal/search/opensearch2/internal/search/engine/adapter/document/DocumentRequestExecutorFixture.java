@@ -42,24 +42,6 @@ public class DocumentRequestExecutorFixture {
 		_openSearchDocumentFactory = openSearchDocumentFactory;
 	}
 
-	private OpenSearchBulkableDocumentRequestTranslator
-		_createBulkableDocumentRequestTranslator(
-			OpenSearchDocumentFactory openSearchDocumentFactory) {
-
-		OpenSearchBulkableDocumentRequestTranslator
-			openSearchBulkableDocumentRequestTranslator =
-				new OpenSearchBulkableDocumentRequestTranslatorImpl();
-
-		ReflectionTestUtil.setFieldValue(
-			openSearchBulkableDocumentRequestTranslator,
-			"openSearchDocumentFactory", openSearchDocumentFactory);
-		ReflectionTestUtil.setFieldValue(
-			openSearchBulkableDocumentRequestTranslator, "_scriptTranslator",
-			new ScriptTranslator());
-
-		return openSearchBulkableDocumentRequestTranslator;
-	}
-
 	private BulkDocumentRequestExecutor _createBulkDocumentRequestExecutor(
 		OpenSearchBulkableDocumentRequestTranslator
 			openSearchBulkableDocumentRequestTranslator,
@@ -77,6 +59,24 @@ public class DocumentRequestExecutorFixture {
 			openSearchConnectionManager);
 
 		return bulkDocumentRequestExecutor;
+	}
+
+	private OpenSearchBulkableDocumentRequestTranslator
+		_createBulkableDocumentRequestTranslator(
+			OpenSearchDocumentFactory openSearchDocumentFactory) {
+
+		OpenSearchBulkableDocumentRequestTranslator
+			openSearchBulkableDocumentRequestTranslator =
+				new OpenSearchBulkableDocumentRequestTranslatorImpl();
+
+		ReflectionTestUtil.setFieldValue(
+			openSearchBulkableDocumentRequestTranslator,
+			"openSearchDocumentFactory", openSearchDocumentFactory);
+		ReflectionTestUtil.setFieldValue(
+			openSearchBulkableDocumentRequestTranslator, "_scriptTranslator",
+			new ScriptTranslator());
+
+		return openSearchBulkableDocumentRequestTranslator;
 	}
 
 	private DeleteByQueryDocumentRequestExecutor

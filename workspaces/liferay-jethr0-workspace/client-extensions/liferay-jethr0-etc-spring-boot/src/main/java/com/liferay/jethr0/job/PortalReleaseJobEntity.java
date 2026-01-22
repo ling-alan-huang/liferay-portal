@@ -112,16 +112,16 @@ public class PortalReleaseJobEntity extends BaseJobEntity {
 		return getParameterValue("portalUpstreamBranchName");
 	}
 
+	public String getTestSuiteName() {
+		return getParameterValue("testSuiteName");
+	}
+
 	public String getTestrayBuildName() {
 		return getParameterValue("testrayBuildName");
 	}
 
 	public String getTestrayRoutineName() {
 		return getParameterValue("testrayRoutineName");
-	}
-
-	public String getTestSuiteName() {
-		return getParameterValue("testSuiteName");
 	}
 
 	public void setPortalBranchSHA(String portalBranchSHA) {
@@ -177,16 +177,16 @@ public class PortalReleaseJobEntity extends BaseJobEntity {
 		setParameterValue("portalUpstreamBranchName", portalUpstreamBranchName);
 	}
 
+	public void setTestSuiteName(String testSuiteName) {
+		setParameterValue("testSuiteName", testSuiteName);
+	}
+
 	public void setTestrayBuildName(String testrayBuildName) {
 		setParameterValue("testrayBuildName", testrayBuildName);
 	}
 
 	public void setTestrayRoutineName(String testrayRoutineName) {
 		setParameterValue("testrayRoutineName", testrayRoutineName);
-	}
-
-	public void setTestSuiteName(String testSuiteName) {
-		setParameterValue("testSuiteName", testSuiteName);
 	}
 
 	protected PortalReleaseJobEntity(JSONObject jsonObject) {

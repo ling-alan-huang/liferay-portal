@@ -263,48 +263,6 @@ public class LayoutSetPrototypeStagedModelDataHandler
 		}
 	}
 
-	private void _exportLayouts(
-			LayoutSetPrototype layoutSetPrototype,
-			PortletDataContext portletDataContext)
-		throws Exception {
-
-		File file = null;
-
-		try {
-			file = _exportLayoutSetPrototype(
-				layoutSetPrototype, new ServiceContext());
-
-			try (InputStream inputStream = new FileInputStream(file)) {
-				String layoutSetPrototypeLARPath =
-					ExportImportPathUtil.getModelPath(
-						layoutSetPrototype,
-						getLayoutSetPrototypeLARFileName(layoutSetPrototype));
-
-				portletDataContext.addZipEntry(
-					layoutSetPrototypeLARPath, inputStream);
-			}
-
-			List<Layout> layoutSetPrototypeLayouts =
-				_layoutLocalService.getLayouts(
-					layoutSetPrototype.getGroupId(), true);
-
-			Element layoutSetPrototypeElement =
-				portletDataContext.getExportDataElement(layoutSetPrototype);
-
-			for (Layout layoutSetPrototypeLayout : layoutSetPrototypeLayouts) {
-				portletDataContext.addReferenceElement(
-					layoutSetPrototype, layoutSetPrototypeElement,
-					layoutSetPrototypeLayout,
-					PortletDataContext.REFERENCE_TYPE_EMBEDDED, false);
-			}
-		}
-		finally {
-			if (file != null) {
-				file.delete();
-			}
-		}
-	}
-
 	private File _exportLayoutSetPrototype(
 			LayoutSetPrototype layoutSetPrototype,
 			ServiceContext serviceContext)
@@ -354,6 +312,48 @@ public class LayoutSetPrototypeStagedModelDataHandler
 
 		return _exportImportLocalService.exportLayoutsAsFile(
 			exportImportConfiguration);
+	}
+
+	private void _exportLayouts(
+			LayoutSetPrototype layoutSetPrototype,
+			PortletDataContext portletDataContext)
+		throws Exception {
+
+		File file = null;
+
+		try {
+			file = _exportLayoutSetPrototype(
+				layoutSetPrototype, new ServiceContext());
+
+			try (InputStream inputStream = new FileInputStream(file)) {
+				String layoutSetPrototypeLARPath =
+					ExportImportPathUtil.getModelPath(
+						layoutSetPrototype,
+						getLayoutSetPrototypeLARFileName(layoutSetPrototype));
+
+				portletDataContext.addZipEntry(
+					layoutSetPrototypeLARPath, inputStream);
+			}
+
+			List<Layout> layoutSetPrototypeLayouts =
+				_layoutLocalService.getLayouts(
+					layoutSetPrototype.getGroupId(), true);
+
+			Element layoutSetPrototypeElement =
+				portletDataContext.getExportDataElement(layoutSetPrototype);
+
+			for (Layout layoutSetPrototypeLayout : layoutSetPrototypeLayouts) {
+				portletDataContext.addReferenceElement(
+					layoutSetPrototype, layoutSetPrototypeElement,
+					layoutSetPrototypeLayout,
+					PortletDataContext.REFERENCE_TYPE_EMBEDDED, false);
+			}
+		}
+		finally {
+			if (file != null) {
+				file.delete();
+			}
+		}
 	}
 
 	private Map<String, String[]> _getLayoutSetPrototypeParameters() {
@@ -431,31 +431,6 @@ public class LayoutSetPrototypeStagedModelDataHandler
 		}
 	}
 
-	private void _importLayouts(
-			PortletDataContext portletDataContext,
-			LayoutSetPrototype layoutSetPrototype,
-			LayoutSetPrototype importedLayoutSetPrototype,
-			ServiceContext serviceContext)
-		throws Exception {
-
-		String layoutSetPrototypeLARPath = ExportImportPathUtil.getModelPath(
-			layoutSetPrototype,
-			getLayoutSetPrototypeLARFileName(layoutSetPrototype));
-
-		try (InputStream inputStream =
-				portletDataContext.getZipEntryAsInputStream(
-					layoutSetPrototypeLARPath)) {
-
-			_importLayoutSetPrototype(
-				importedLayoutSetPrototype, inputStream, serviceContext);
-		}
-		catch (IOException ioException) {
-			if (_log.isWarnEnabled()) {
-				_log.warn(ioException);
-			}
-		}
-	}
-
 	private void _importLayoutSetPrototype(
 			LayoutSetPrototype layoutSetPrototype, InputStream inputStream,
 			ServiceContext serviceContext)
@@ -505,6 +480,31 @@ public class LayoutSetPrototypeStagedModelDataHandler
 
 		_exportImportService.importLayouts(
 			exportImportConfiguration, inputStream);
+	}
+
+	private void _importLayouts(
+			PortletDataContext portletDataContext,
+			LayoutSetPrototype layoutSetPrototype,
+			LayoutSetPrototype importedLayoutSetPrototype,
+			ServiceContext serviceContext)
+		throws Exception {
+
+		String layoutSetPrototypeLARPath = ExportImportPathUtil.getModelPath(
+			layoutSetPrototype,
+			getLayoutSetPrototypeLARFileName(layoutSetPrototype));
+
+		try (InputStream inputStream =
+				portletDataContext.getZipEntryAsInputStream(
+					layoutSetPrototypeLARPath)) {
+
+			_importLayoutSetPrototype(
+				importedLayoutSetPrototype, inputStream, serviceContext);
+		}
+		catch (IOException ioException) {
+			if (_log.isWarnEnabled()) {
+				_log.warn(ioException);
+			}
+		}
 	}
 
 	private void _setLayoutSetPrototypeLinkEnabledParameter(

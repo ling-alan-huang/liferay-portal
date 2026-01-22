@@ -110,16 +110,16 @@ public class PanelTag extends IncludeTag {
 		return _bodyClasses;
 	}
 
-	public boolean getCollapsed() {
-		return _collapsed;
-	}
-
 	public String getCollapseLabel() {
 		return _collapseLabel;
 	}
 
 	public String getCollapseSwitchName() {
 		return _collapseSwitchName;
+	}
+
+	public boolean getCollapsed() {
+		return _collapsed;
 	}
 
 	public boolean getCollapsible() {
@@ -170,16 +170,16 @@ public class PanelTag extends IncludeTag {
 		_bodyClasses = bodyClasses;
 	}
 
-	public void setCollapsed(boolean collapsed) {
-		_collapsed = collapsed;
-	}
-
 	public void setCollapseLabel(String collapseLabel) {
 		_collapseLabel = collapseLabel;
 	}
 
 	public void setCollapseSwitchName(String collapseSwitchName) {
 		_collapseSwitchName = collapseSwitchName;
+	}
+
+	public void setCollapsed(boolean collapsed) {
+		_collapsed = collapsed;
 	}
 
 	public void setCollapsible(boolean collapsible) {
@@ -257,9 +257,9 @@ public class PanelTag extends IncludeTag {
 	private String _actionTargetId;
 	private String _actionUrl;
 	private String _bodyClasses;
-	private boolean _collapsed;
 	private String _collapseLabel;
 	private String _collapseSwitchName;
+	private boolean _collapsed;
 	private boolean _collapsible;
 	private String _elementClasses;
 	private String _showMoreId;

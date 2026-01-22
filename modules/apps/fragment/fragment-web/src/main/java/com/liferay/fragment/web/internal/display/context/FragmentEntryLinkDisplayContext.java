@@ -227,16 +227,6 @@ public class FragmentEntryLinkDisplayContext {
 		return _orderByType;
 	}
 
-	public int getPagesUsageCount() throws PortalException {
-		FragmentEntry fragmentEntry = getFragmentEntry();
-
-		return FragmentEntryLinkLocalServiceUtil.
-			getLayoutFragmentEntryLinksCountByFragmentEntryERC(
-				fragmentEntry.getGroupId(),
-				fragmentEntry.getExternalReferenceCode(),
-				fragmentEntry.getScopeERC());
-	}
-
 	public int getPageTemplatesUsageCount() throws PortalException {
 		FragmentEntry fragmentEntry = getFragmentEntry();
 
@@ -246,6 +236,16 @@ public class FragmentEntryLinkDisplayContext {
 				fragmentEntry.getExternalReferenceCode(),
 				fragmentEntry.getScopeERC(),
 				LayoutPageTemplateEntryTypeConstants.BASIC);
+	}
+
+	public int getPagesUsageCount() throws PortalException {
+		FragmentEntry fragmentEntry = getFragmentEntry();
+
+		return FragmentEntryLinkLocalServiceUtil.
+			getLayoutFragmentEntryLinksCountByFragmentEntryERC(
+				fragmentEntry.getGroupId(),
+				fragmentEntry.getExternalReferenceCode(),
+				fragmentEntry.getScopeERC());
 	}
 
 	public PortletURL getPortletURL() {

@@ -187,8 +187,8 @@ public abstract class SXPBlueprintInfoCollectionProvider<T>
 	}
 
 	protected final AssetHelper assetHelper;
-	protected final Searcher searcher;
 	protected final SearchRequestBuilderFactory searchRequestBuilderFactory;
+	protected final Searcher searcher;
 	protected final SXPBlueprint sxpBlueprint;
 
 }

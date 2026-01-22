@@ -157,14 +157,14 @@ public class UserReindexerPerformanceOfLargeUserGroupInManySitesTest {
 		return groupSearchFixture.addGroup(new GroupBlueprint());
 	}
 
+	protected void addGroupUserGroup(Group group, UserGroup userGroup) {
+		_userGroupLocalService.addGroupUserGroup(group.getGroupId(), userGroup);
+	}
+
 	protected void addGroups(int groupsCount, List<Group> groups) {
 		for (int i = 0; i < groupsCount; i++) {
 			groups.add(addGroup());
 		}
-	}
-
-	protected void addGroupUserGroup(Group group, UserGroup userGroup) {
-		_userGroupLocalService.addGroupUserGroup(group.getGroupId(), userGroup);
 	}
 
 	protected User addUser() {
@@ -367,10 +367,10 @@ public class UserReindexerPerformanceOfLargeUserGroupInManySitesTest {
 	private static Reindexer _reindexer;
 
 	@Inject
-	private static Searcher _searcher;
+	private static SearchRequestBuilderFactory _searchRequestBuilderFactory;
 
 	@Inject
-	private static SearchRequestBuilderFactory _searchRequestBuilderFactory;
+	private static Searcher _searcher;
 
 	@Inject
 	private static UserGroupLocalService _userGroupLocalService;

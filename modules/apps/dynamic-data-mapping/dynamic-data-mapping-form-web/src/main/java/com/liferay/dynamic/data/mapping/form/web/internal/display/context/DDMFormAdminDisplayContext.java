@@ -292,6 +292,10 @@ public class DDMFormAdminDisplayContext {
 			locale -> _getLocaleJSONObject(locale), _log);
 	}
 
+	public String getCSVExport() {
+		return _ddmFormWebConfiguration.csvExport();
+	}
+
 	public String getClearResultsURL() throws PortletException {
 		return PortletURLBuilder.create(
 			PortletURLUtil.clone(getPortletURL(), renderResponse)
@@ -312,31 +316,6 @@ public class DDMFormAdminDisplayContext {
 		return CreationMenuBuilder.addPrimaryDropdownItem(
 			_getAddFormDropdownItem()
 		).build();
-	}
-
-	public String getCSVExport() {
-		return _ddmFormWebConfiguration.csvExport();
-	}
-
-	public String getDataEngineModule() {
-		return _npmResolver.resolveModuleName("data-engine-js-components-web");
-	}
-
-	public String getDataProviderInstanceParameterSettingsURL()
-		throws PortalException {
-
-		DDMFormBuilderSettingsResponse ddmFormBuilderSettingsResponse =
-			_getDDMFormBuilderSettingsResponse();
-
-		return ddmFormBuilderSettingsResponse.
-			getDataProviderInstanceParameterSettingsURL();
-	}
-
-	public String getDataProviderInstancesURL() throws PortalException {
-		DDMFormBuilderSettingsResponse ddmFormBuilderSettingsResponse =
-			_getDDMFormBuilderSettingsResponse();
-
-		return ddmFormBuilderSettingsResponse.getDataProviderInstancesURL();
 	}
 
 	public Map<String, Object> getDDMFormContext(RenderRequest renderRequest)
@@ -554,6 +533,27 @@ public class DDMFormAdminDisplayContext {
 		}
 
 		return structure.getStructureId();
+	}
+
+	public String getDataEngineModule() {
+		return _npmResolver.resolveModuleName("data-engine-js-components-web");
+	}
+
+	public String getDataProviderInstanceParameterSettingsURL()
+		throws PortalException {
+
+		DDMFormBuilderSettingsResponse ddmFormBuilderSettingsResponse =
+			_getDDMFormBuilderSettingsResponse();
+
+		return ddmFormBuilderSettingsResponse.
+			getDataProviderInstanceParameterSettingsURL();
+	}
+
+	public String getDataProviderInstancesURL() throws PortalException {
+		DDMFormBuilderSettingsResponse ddmFormBuilderSettingsResponse =
+			_getDDMFormBuilderSettingsResponse();
+
+		return ddmFormBuilderSettingsResponse.getDataProviderInstancesURL();
 	}
 
 	public String getDefaultLanguageId() {
@@ -1126,11 +1126,6 @@ public class DDMFormAdminDisplayContext {
 		return "formInstance";
 	}
 
-	public String getSharedFormURL() {
-		return DDMLayoutUtil.getFormLayoutURL(
-			ddmFormAdminRequestHelper.getThemeDisplay());
-	}
-
 	public String getShareFormInstanceURL(DDMFormInstance ddmFormInstance) {
 		if (ddmFormInstance == null) {
 			return StringPool.BLANK;
@@ -1150,6 +1145,11 @@ public class DDMFormAdminDisplayContext {
 				return null;
 			}
 		).buildString();
+	}
+
+	public String getSharedFormURL() {
+		return DDMLayoutUtil.getFormLayoutURL(
+			ddmFormAdminRequestHelper.getThemeDisplay());
 	}
 
 	public String getSortingURL() throws Exception {

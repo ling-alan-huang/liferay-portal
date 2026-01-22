@@ -335,10 +335,10 @@ public class JournalArticleExpandoGeolocationSearchTest {
 	protected Queries queries;
 
 	@Inject
-	protected Searcher searcher;
+	protected SearchRequestBuilderFactory searchRequestBuilderFactory;
 
 	@Inject
-	protected SearchRequestBuilderFactory searchRequestBuilderFactory;
+	protected Searcher searcher;
 
 	private boolean _isSearchEngine(String engine) {
 		SearchEngine searchEngine = searchEngineHelper.getSearchEngine();
@@ -367,18 +367,19 @@ public class JournalArticleExpandoGeolocationSearchTest {
 	@DeleteAfterTestRun
 	private List<ExpandoColumn> _expandoColumns;
 
+	private ExpandoTableSearchFixture _expandoTableSearchFixture;
+
 	@DeleteAfterTestRun
 	private List<ExpandoTable> _expandoTables;
 
-	private ExpandoTableSearchFixture _expandoTableSearchFixture;
 	private Group _group;
 
 	@DeleteAfterTestRun
 	private List<Group> _groups;
 
+	private JournalArticleSearchFixture _journalArticleSearchFixture;
+
 	@DeleteAfterTestRun
 	private List<JournalArticle> _journalArticles;
-
-	private JournalArticleSearchFixture _journalArticleSearchFixture;
 
 }

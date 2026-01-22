@@ -375,6 +375,18 @@ public class SiteResourceTest extends BaseSiteResourceTestCase {
 			site.getName(), group.getName(LocaleUtil.getDefault()));
 	}
 
+	private void _testGetSiteWithDollar() throws Exception {
+		Site postSite = siteResource.putSiteSiteInitializer(
+			RandomTestUtil.randomString() + StringPool.DOLLAR, randomSite(),
+			getMultipartFiles());
+
+		Site getSite = siteResource.getSite(
+			postSite.getExternalReferenceCode());
+
+		assertEquals(postSite, getSite);
+		assertValid(getSite);
+	}
+
 	private void _testGetSitesPageWithActiveAndInactiveSites()
 		throws Exception {
 
@@ -463,23 +475,6 @@ public class SiteResourceTest extends BaseSiteResourceTestCase {
 		}
 	}
 
-	private void _testGetSitesPageWithoutAuthentication() throws Exception {
-		SiteResource.Builder builder = SiteResource.builder();
-
-		SiteResource siteResource = builder.build();
-
-		try {
-			siteResource.getSitesPage(true, null, Pagination.of(1, 1));
-
-			Assert.fail();
-		}
-		catch (Problem.ProblemException problemException) {
-			Problem problem = problemException.getProblem();
-
-			Assert.assertEquals("403", problem.getStatus());
-		}
-	}
-
 	private void _testGetSitesPageWithSearch() throws Exception {
 		String name = RandomTestUtil.randomString();
 
@@ -499,16 +494,21 @@ public class SiteResourceTest extends BaseSiteResourceTestCase {
 		assertEquals(postSite, items.get(0));
 	}
 
-	private void _testGetSiteWithDollar() throws Exception {
-		Site postSite = siteResource.putSiteSiteInitializer(
-			RandomTestUtil.randomString() + StringPool.DOLLAR, randomSite(),
-			getMultipartFiles());
+	private void _testGetSitesPageWithoutAuthentication() throws Exception {
+		SiteResource.Builder builder = SiteResource.builder();
 
-		Site getSite = siteResource.getSite(
-			postSite.getExternalReferenceCode());
+		SiteResource siteResource = builder.build();
 
-		assertEquals(postSite, getSite);
-		assertValid(getSite);
+		try {
+			siteResource.getSitesPage(true, null, Pagination.of(1, 1));
+
+			Assert.fail();
+		}
+		catch (Problem.ProblemException problemException) {
+			Problem problem = problemException.getProblem();
+
+			Assert.assertEquals("403", problem.getStatus());
+		}
 	}
 
 	private Site _testPostSite_addSite(Site site) throws Exception {
@@ -982,23 +982,6 @@ public class SiteResourceTest extends BaseSiteResourceTestCase {
 		Assert.assertArrayEquals(postSite.getLocales(), locales);
 	}
 
-	private void _testPostSiteWithoutAuthentication() throws Exception {
-		SiteResource.Builder builder = SiteResource.builder();
-
-		SiteResource siteResource = builder.build();
-
-		try {
-			siteResource.postSite(randomSite());
-
-			Assert.fail();
-		}
-		catch (Problem.ProblemException problemException) {
-			Problem problem = problemException.getProblem();
-
-			Assert.assertEquals("403", problem.getStatus());
-		}
-	}
-
 	private void _testPostSiteWithParentSiteExternalReferenceCode()
 		throws Exception {
 
@@ -1090,6 +1073,23 @@ public class SiteResourceTest extends BaseSiteResourceTestCase {
 		Assert.assertNotNull(postSite.getLocales());
 
 		assertEquals(randomSite, postSite);
+	}
+
+	private void _testPostSiteWithoutAuthentication() throws Exception {
+		SiteResource.Builder builder = SiteResource.builder();
+
+		SiteResource siteResource = builder.build();
+
+		try {
+			siteResource.postSite(randomSite());
+
+			Assert.fail();
+		}
+		catch (Problem.ProblemException problemException) {
+			Problem problem = problemException.getProblem();
+
+			Assert.assertEquals("403", problem.getStatus());
+		}
 	}
 
 	private void _testPutSiteBatch() throws Exception {

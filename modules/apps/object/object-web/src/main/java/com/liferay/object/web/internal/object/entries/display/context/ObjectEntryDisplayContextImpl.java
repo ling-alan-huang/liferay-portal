@@ -1443,6 +1443,13 @@ public class ObjectEntryDisplayContextImpl
 		return ddmFormValues;
 	}
 
+	private DTOConverterContext _getDTOConverterContext() {
+		return new DefaultDTOConverterContext(
+			false, null, null, _objectRequestHelper.getRequest(), null,
+			_themeDisplay.getSiteDefaultLocale(), null,
+			_themeDisplay.getUser());
+	}
+
 	private Object _getDisplayContextValue(
 			ObjectField objectField, Map<String, Object> values)
 		throws PortalException {
@@ -1452,13 +1459,6 @@ public class ObjectEntryDisplayContextImpl
 
 		return objectFieldBusinessType.getDisplayContextValue(
 			objectField, _objectRequestHelper.getUserId(), values);
-	}
-
-	private DTOConverterContext _getDTOConverterContext() {
-		return new DefaultDTOConverterContext(
-			false, null, null, _objectRequestHelper.getRequest(), null,
-			_themeDisplay.getSiteDefaultLocale(), null,
-			_themeDisplay.getUser());
 	}
 
 	private long _getGroupId() {

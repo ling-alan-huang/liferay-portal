@@ -99,21 +99,21 @@ public class DefaultDLViewFileVersionDisplayContextTest {
 	}
 
 	@Test
-	public void testCreateViewUsageDropdownItemWithoutUsage() throws Exception {
-		DropdownItem dropdownItem = _getViewUsageDropdownItem(_fileEntry);
-
-		Assert.assertTrue((Boolean)dropdownItem.get("disabled"));
-		Assert.assertEquals("list-ul", dropdownItem.get("icon"));
-		Assert.assertEquals("View Usages", dropdownItem.get("label"));
-	}
-
-	@Test
 	public void testCreateViewUsageDropdownItemWithUsage() throws Exception {
 		_addLayoutClassedModelUsage(_fileEntry);
 
 		DropdownItem dropdownItem = _getViewUsageDropdownItem(_fileEntry);
 
 		Assert.assertFalse((Boolean)dropdownItem.get("disabled"));
+		Assert.assertEquals("list-ul", dropdownItem.get("icon"));
+		Assert.assertEquals("View Usages", dropdownItem.get("label"));
+	}
+
+	@Test
+	public void testCreateViewUsageDropdownItemWithoutUsage() throws Exception {
+		DropdownItem dropdownItem = _getViewUsageDropdownItem(_fileEntry);
+
+		Assert.assertTrue((Boolean)dropdownItem.get("disabled"));
 		Assert.assertEquals("list-ul", dropdownItem.get("icon"));
 		Assert.assertEquals("View Usages", dropdownItem.get("label"));
 	}
@@ -270,14 +270,14 @@ public class DefaultDLViewFileVersionDisplayContextTest {
 	@Inject
 	private CompanyLocalService _companyLocalService;
 
-	@Inject
-	private DLAppLocalService _dlAppLocalService;
-
 	@Inject(
 		filter = "component.name=com.liferay.document.library.web.internal.display.context.DLDisplayContextProviderImpl",
 		type = Inject.NoType.class
 	)
 	private DLDisplayContextProvider _dLDisplayContextProvider;
+
+	@Inject
+	private DLAppLocalService _dlAppLocalService;
 
 	@Inject
 	private DLFolderService _dlFolderService;

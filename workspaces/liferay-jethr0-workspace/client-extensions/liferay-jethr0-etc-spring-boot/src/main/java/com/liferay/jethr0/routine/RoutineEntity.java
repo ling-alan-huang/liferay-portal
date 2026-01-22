@@ -35,9 +35,9 @@ public interface RoutineEntity extends Entity {
 
 	public String getJobName();
 
-	public Map<String, String> getJobParameters();
-
 	public String getJobParameterValue(String name);
+
+	public Map<String, String> getJobParameters();
 
 	public int getJobPriority();
 

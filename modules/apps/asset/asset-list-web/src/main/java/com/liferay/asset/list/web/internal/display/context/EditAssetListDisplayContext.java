@@ -658,6 +658,46 @@ public class EditAssetListDisplayContext {
 			unicodeProperties, className, availableClassTypeIds);
 	}
 
+	public String getDDMStructureDisplayFieldValue() throws Exception {
+		if (_ddmStructureDisplayFieldValue != null) {
+			return _ddmStructureDisplayFieldValue;
+		}
+
+		_setDDMStructure();
+
+		return _ddmStructureDisplayFieldValue;
+	}
+
+	public String getDDMStructureFieldLabel() throws Exception {
+		if (_ddmStructureFieldLabel != null) {
+			return _ddmStructureFieldLabel;
+		}
+
+		_setDDMStructure();
+
+		return _ddmStructureFieldLabel;
+	}
+
+	public String getDDMStructureFieldName() throws Exception {
+		if (_ddmStructureFieldName != null) {
+			return _ddmStructureFieldName;
+		}
+
+		_setDDMStructure();
+
+		return _ddmStructureFieldName;
+	}
+
+	public String getDDMStructureFieldValue() throws Exception {
+		if (_ddmStructureFieldValue != null) {
+			return _ddmStructureFieldValue;
+		}
+
+		_setDDMStructure();
+
+		return _ddmStructureFieldValue;
+	}
+
 	public Map<String, Object> getData() {
 		return HashMapBuilder.<String, Object>put(
 			"assetListEntrySegmentsEntryRels",
@@ -705,46 +745,6 @@ public class EditAssetListDisplayContext {
 				).buildString();
 			}
 		).build();
-	}
-
-	public String getDDMStructureDisplayFieldValue() throws Exception {
-		if (_ddmStructureDisplayFieldValue != null) {
-			return _ddmStructureDisplayFieldValue;
-		}
-
-		_setDDMStructure();
-
-		return _ddmStructureDisplayFieldValue;
-	}
-
-	public String getDDMStructureFieldLabel() throws Exception {
-		if (_ddmStructureFieldLabel != null) {
-			return _ddmStructureFieldLabel;
-		}
-
-		_setDDMStructure();
-
-		return _ddmStructureFieldLabel;
-	}
-
-	public String getDDMStructureFieldName() throws Exception {
-		if (_ddmStructureFieldName != null) {
-			return _ddmStructureFieldName;
-		}
-
-		_setDDMStructure();
-
-		return _ddmStructureFieldName;
-	}
-
-	public String getDDMStructureFieldValue() throws Exception {
-		if (_ddmStructureFieldValue != null) {
-			return _ddmStructureFieldValue;
-		}
-
-		_setDDMStructure();
-
-		return _ddmStructureFieldValue;
 	}
 
 	public String getGroupItemSelectorURL() {
@@ -898,43 +898,6 @@ public class EditAssetListDisplayContext {
 		return segmentsEntry.getName(locale);
 	}
 
-	public long[] getSelectedGroupIds() throws PortalException {
-		return TransformUtil.transformToLongArray(
-			getSelectedGroups(), Group::getGroupId);
-	}
-
-	public List<Group> getSelectedGroups() throws PortalException {
-		long[] groupIds = GetterUtil.getLongValues(
-			StringUtil.split(
-				PropertiesParamUtil.getString(
-					_unicodeProperties, _httpServletRequest, "groupIds")));
-
-		if (ArrayUtil.isEmpty(groupIds)) {
-			return Collections.singletonList(_themeDisplay.getScopeGroup());
-		}
-
-		return GroupLocalServiceUtil.getGroups(groupIds);
-	}
-
-	public long[] getSelectedSegmentsEntryIds() {
-		if (_selectedSegmentsEntryIds != null) {
-			return _selectedSegmentsEntryIds;
-		}
-
-		List<AssetListEntrySegmentsEntryRel> assetListEntrySegmentsEntryRels =
-			getAssetListEntrySegmentsEntryRels();
-
-		if (assetListEntrySegmentsEntryRels == null) {
-			return null;
-		}
-
-		_selectedSegmentsEntryIds = TransformUtil.transformToLongArray(
-			assetListEntrySegmentsEntryRels,
-			AssetListEntrySegmentsEntryRel::getSegmentsEntryId);
-
-		return _selectedSegmentsEntryIds;
-	}
-
 	public String getSelectGroupEventName() {
 		return _portletResponse.getNamespace() + "_selectSite";
 	}
@@ -973,6 +936,43 @@ public class EditAssetListDisplayContext {
 				segmentsEntryItemSelectorCriterion));
 
 		return _selectSegmentsEntryURL;
+	}
+
+	public long[] getSelectedGroupIds() throws PortalException {
+		return TransformUtil.transformToLongArray(
+			getSelectedGroups(), Group::getGroupId);
+	}
+
+	public List<Group> getSelectedGroups() throws PortalException {
+		long[] groupIds = GetterUtil.getLongValues(
+			StringUtil.split(
+				PropertiesParamUtil.getString(
+					_unicodeProperties, _httpServletRequest, "groupIds")));
+
+		if (ArrayUtil.isEmpty(groupIds)) {
+			return Collections.singletonList(_themeDisplay.getScopeGroup());
+		}
+
+		return GroupLocalServiceUtil.getGroups(groupIds);
+	}
+
+	public long[] getSelectedSegmentsEntryIds() {
+		if (_selectedSegmentsEntryIds != null) {
+			return _selectedSegmentsEntryIds;
+		}
+
+		List<AssetListEntrySegmentsEntryRel> assetListEntrySegmentsEntryRels =
+			getAssetListEntrySegmentsEntryRels();
+
+		if (assetListEntrySegmentsEntryRels == null) {
+			return null;
+		}
+
+		_selectedSegmentsEntryIds = TransformUtil.transformToLongArray(
+			assetListEntrySegmentsEntryRels,
+			AssetListEntrySegmentsEntryRel::getSegmentsEntryId);
+
+		return _selectedSegmentsEntryIds;
 	}
 
 	public String getTagSelectorURL() throws Exception {
@@ -1249,37 +1249,6 @@ public class EditAssetListDisplayContext {
 			_log);
 	}
 
-	private Long[] _getClassTypeIds(
-		UnicodeProperties unicodeProperties, String className,
-		Long[] availableClassTypeIds) {
-
-		if (GetterUtil.getBoolean(
-				unicodeProperties.getProperty(
-					"anyClassType" + className, Boolean.TRUE.toString()))) {
-
-			return availableClassTypeIds;
-		}
-
-		long defaultClassTypeId = GetterUtil.getLong(
-			unicodeProperties.getProperty("anyClassType" + className, null),
-			-1);
-
-		if (defaultClassTypeId > -1) {
-			return new Long[] {defaultClassTypeId};
-		}
-
-		Long[] classTypeIds = ArrayUtil.toArray(
-			StringUtil.split(
-				unicodeProperties.getProperty("classTypeIds" + className, null),
-				0L));
-
-		if (classTypeIds != null) {
-			return classTypeIds;
-		}
-
-		return availableClassTypeIds;
-	}
-
 	private UnsafeConsumer<DropdownItem, Exception>
 		_getClassTypeIdUnsafeConsumer(
 			AssetRendererFactory<?> assetRendererFactory,
@@ -1311,6 +1280,37 @@ public class EditAssetListDisplayContext {
 		return _getUnsafeConsumer(
 			assetRendererFactory, classType.getClassTypeId(),
 			classType.getName());
+	}
+
+	private Long[] _getClassTypeIds(
+		UnicodeProperties unicodeProperties, String className,
+		Long[] availableClassTypeIds) {
+
+		if (GetterUtil.getBoolean(
+				unicodeProperties.getProperty(
+					"anyClassType" + className, Boolean.TRUE.toString()))) {
+
+			return availableClassTypeIds;
+		}
+
+		long defaultClassTypeId = GetterUtil.getLong(
+			unicodeProperties.getProperty("anyClassType" + className, null),
+			-1);
+
+		if (defaultClassTypeId > -1) {
+			return new Long[] {defaultClassTypeId};
+		}
+
+		Long[] classTypeIds = ArrayUtil.toArray(
+			StringUtil.split(
+				unicodeProperties.getProperty("classTypeIds" + className, null),
+				0L));
+
+		if (classTypeIds != null) {
+			return classTypeIds;
+		}
+
+		return availableClassTypeIds;
 	}
 
 	private long[] _getDefaultClassNameIds() {
@@ -1494,8 +1494,8 @@ public class EditAssetListDisplayContext {
 	private SearchContainer<AssetListEntryAssetEntryRel> _searchContainer;
 	private final SegmentsConfigurationProvider _segmentsConfigurationProvider;
 	private Long _segmentsEntryId;
-	private long[] _selectedSegmentsEntryIds;
 	private String _selectSegmentsEntryURL;
+	private long[] _selectedSegmentsEntryIds;
 	private Boolean _subtypeFieldsFilterEnabled;
 	private final ThemeDisplay _themeDisplay;
 	private final UnicodeProperties _unicodeProperties;

@@ -1694,6 +1694,29 @@ public class CPDefinitionLocalServiceImpl
 	}
 
 	@Override
+	public Map<Locale, String> getCPDefinitionShortDescriptionMap(
+		long cpDefinitionId) {
+
+		Map<Locale, String> cpDefinitionLocalizationShortDescriptionMap =
+			new HashMap<>();
+
+		List<CPDefinitionLocalization> cpDefinitionLocalizationList =
+			cpDefinitionLocalizationPersistence.findByCPDefinitionId(
+				cpDefinitionId);
+
+		for (CPDefinitionLocalization cpDefinitionLocalization :
+				cpDefinitionLocalizationList) {
+
+			cpDefinitionLocalizationShortDescriptionMap.put(
+				LocaleUtil.fromLanguageId(
+					cpDefinitionLocalization.getLanguageId()),
+				cpDefinitionLocalization.getShortDescription());
+		}
+
+		return cpDefinitionLocalizationShortDescriptionMap;
+	}
+
+	@Override
 	public List<CPDefinition> getCPDefinitions(
 		long groupId, boolean subscriptionEnabled) {
 
@@ -1740,29 +1763,6 @@ public class CPDefinitionLocalServiceImpl
 		}
 
 		return cpDefinitionPersistence.countByG_S(groupId, status);
-	}
-
-	@Override
-	public Map<Locale, String> getCPDefinitionShortDescriptionMap(
-		long cpDefinitionId) {
-
-		Map<Locale, String> cpDefinitionLocalizationShortDescriptionMap =
-			new HashMap<>();
-
-		List<CPDefinitionLocalization> cpDefinitionLocalizationList =
-			cpDefinitionLocalizationPersistence.findByCPDefinitionId(
-				cpDefinitionId);
-
-		for (CPDefinitionLocalization cpDefinitionLocalization :
-				cpDefinitionLocalizationList) {
-
-			cpDefinitionLocalizationShortDescriptionMap.put(
-				LocaleUtil.fromLanguageId(
-					cpDefinitionLocalization.getLanguageId()),
-				cpDefinitionLocalization.getShortDescription());
-		}
-
-		return cpDefinitionLocalizationShortDescriptionMap;
 	}
 
 	@Override
@@ -2659,40 +2659,6 @@ public class CPDefinitionLocalServiceImpl
 		return cpDefinitionPersistence.update(cpDefinition);
 	}
 
-	private void _addCommercePriceEntry(
-			CPInstance cpInstance, String cpInstanceUuid, String type,
-			ServiceContext serviceContext)
-		throws PortalException {
-
-		CommercePriceEntryLocalService commercePriceEntryLocalService =
-			_commercePriceEntryLocalServiceSnapshot.get();
-
-		CommercePriceListLocalService commercePriceListLocalService =
-			_commercePriceListLocalServiceSnapshot.get();
-
-		CommercePriceList commercePriceList =
-			commercePriceListLocalService.getCatalogBaseCommercePriceListByType(
-				cpInstance.getGroupId(), type);
-
-		CommercePriceEntry commercePriceEntry =
-			commercePriceEntryLocalService.fetchCommercePriceEntry(
-				commercePriceList.getCommercePriceListId(), cpInstanceUuid,
-				StringPool.BLANK);
-
-		if (commercePriceEntry == null) {
-			return;
-		}
-
-		CPDefinition cpDefinition = cpInstance.getCPDefinition();
-
-		commercePriceEntryLocalService.addCommercePriceEntry(
-			null, cpDefinition.getCProductId(), cpInstance.getCPInstanceUuid(),
-			commercePriceList.getCommercePriceListId(),
-			commercePriceEntry.getPrice(),
-			commercePriceEntry.isPriceOnApplication(), null, StringPool.BLANK,
-			serviceContext);
-	}
-
 	private List<CPDefinitionLocalization> _addCPDefinitionLocalizedFields(
 			long companyId, long cpDefinitionId, long cProductId,
 			Map<Locale, String> nameMap,
@@ -2814,6 +2780,40 @@ public class CPDefinitionLocalServiceImpl
 
 		return cpDefinitionLocalizationPersistence.update(
 			cpDefinitionLocalization);
+	}
+
+	private void _addCommercePriceEntry(
+			CPInstance cpInstance, String cpInstanceUuid, String type,
+			ServiceContext serviceContext)
+		throws PortalException {
+
+		CommercePriceEntryLocalService commercePriceEntryLocalService =
+			_commercePriceEntryLocalServiceSnapshot.get();
+
+		CommercePriceListLocalService commercePriceListLocalService =
+			_commercePriceListLocalServiceSnapshot.get();
+
+		CommercePriceList commercePriceList =
+			commercePriceListLocalService.getCatalogBaseCommercePriceListByType(
+				cpInstance.getGroupId(), type);
+
+		CommercePriceEntry commercePriceEntry =
+			commercePriceEntryLocalService.fetchCommercePriceEntry(
+				commercePriceList.getCommercePriceListId(), cpInstanceUuid,
+				StringPool.BLANK);
+
+		if (commercePriceEntry == null) {
+			return;
+		}
+
+		CPDefinition cpDefinition = cpInstance.getCPDefinition();
+
+		commercePriceEntryLocalService.addCommercePriceEntry(
+			null, cpDefinition.getCProductId(), cpInstance.getCPInstanceUuid(),
+			commercePriceList.getCommercePriceListId(),
+			commercePriceEntry.getPrice(),
+			commercePriceEntry.isPriceOnApplication(), null, StringPool.BLANK,
+			serviceContext);
 	}
 
 	private void _addFriendlyURLEntries(
@@ -3370,6 +3370,12 @@ public class CPDefinitionLocalServiceImpl
 	private AssetLinkLocalService _assetLinkLocalService;
 
 	@Reference
+	private CProductLocalService _cProductLocalService;
+
+	@Reference
+	private CProductPersistence _cProductPersistence;
+
+	@Reference
 	private ClassNameLocalService _classNameLocalService;
 
 	@Reference
@@ -3432,12 +3438,6 @@ public class CPDefinitionLocalServiceImpl
 
 	@Reference
 	private CPInstancePersistence _cpInstancePersistence;
-
-	@Reference
-	private CProductLocalService _cProductLocalService;
-
-	@Reference
-	private CProductPersistence _cProductPersistence;
 
 	@Reference
 	private CPSubscriptionTypeRegistry _cpSubscriptionTypeRegistry;

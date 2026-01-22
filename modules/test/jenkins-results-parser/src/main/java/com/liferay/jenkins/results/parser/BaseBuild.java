@@ -1046,13 +1046,13 @@ public abstract class BaseBuild implements Build {
 	}
 
 	@Override
-	public Map<String, String> getParameters() {
-		return new HashMap<>(_parameters);
+	public String getParameterValue(String name) {
+		return _parameters.get(name);
 	}
 
 	@Override
-	public String getParameterValue(String name) {
-		return _parameters.get(name);
+	public Map<String, String> getParameters() {
+		return new HashMap<>(_parameters);
 	}
 
 	@Override
@@ -1294,43 +1294,6 @@ public abstract class BaseBuild implements Build {
 	}
 
 	@Override
-	public synchronized List<URL> getTestrayAttachmentURLs() {
-		if (!Objects.equals(getStatus(), "completed") ||
-			_testrayAttachmentURLsFound) {
-
-			return _testrayAttachmentURLs;
-		}
-
-		String consoleText = getConsoleText();
-
-		for (String line : consoleText.split("\\n")) {
-			Matcher matcher = _testrayCloudObjectURLPattern.matcher(line);
-
-			if (!matcher.find()) {
-				continue;
-			}
-
-			try {
-				addTestrayAttachmentURL(new URL(matcher.group("url")));
-			}
-			catch (MalformedURLException malformedURLException) {
-				throw new RuntimeException(malformedURLException);
-			}
-		}
-
-		_testrayAttachmentURLsFound = true;
-
-		return _testrayAttachmentURLs;
-	}
-
-	@Override
-	public String getTestrayBuildDateString() {
-		return JenkinsResultsParserUtil.toDateString(
-			new Date(getStartTime()), "yyyy-MM-dd HH:mm:ss",
-			"America/Los_Angeles");
-	}
-
-	@Override
 	public JSONObject getTestReportJSONObject(boolean checkCache) {
 		if (_testReportJSONObject != null) {
 			return _testReportJSONObject;
@@ -1395,6 +1358,43 @@ public abstract class BaseBuild implements Build {
 		}
 
 		return parentBuild.getTestSuiteName();
+	}
+
+	@Override
+	public synchronized List<URL> getTestrayAttachmentURLs() {
+		if (!Objects.equals(getStatus(), "completed") ||
+			_testrayAttachmentURLsFound) {
+
+			return _testrayAttachmentURLs;
+		}
+
+		String consoleText = getConsoleText();
+
+		for (String line : consoleText.split("\\n")) {
+			Matcher matcher = _testrayCloudObjectURLPattern.matcher(line);
+
+			if (!matcher.find()) {
+				continue;
+			}
+
+			try {
+				addTestrayAttachmentURL(new URL(matcher.group("url")));
+			}
+			catch (MalformedURLException malformedURLException) {
+				throw new RuntimeException(malformedURLException);
+			}
+		}
+
+		_testrayAttachmentURLsFound = true;
+
+		return _testrayAttachmentURLs;
+	}
+
+	@Override
+	public String getTestrayBuildDateString() {
+		return JenkinsResultsParserUtil.toDateString(
+			new Date(getStartTime()), "yyyy-MM-dd HH:mm:ss",
+			"America/Los_Angeles");
 	}
 
 	@Override
@@ -1484,17 +1484,6 @@ public abstract class BaseBuild implements Build {
 	}
 
 	@Override
-	public int hashCode() {
-		String key = getBuildURL();
-
-		if (key != null) {
-			return key.hashCode();
-		}
-
-		return super.hashCode();
-	}
-
-	@Override
 	public boolean hasMaximumInvocationCount() {
 		Map<ReinvokeRule, Integer> invocationCounts = new HashMap<>();
 
@@ -1532,6 +1521,17 @@ public abstract class BaseBuild implements Build {
 		}
 
 		return false;
+	}
+
+	@Override
+	public int hashCode() {
+		String key = getBuildURL();
+
+		if (key != null) {
+			return key.hashCode();
+		}
+
+		return super.hashCode();
 	}
 
 	@Override
@@ -3639,8 +3639,8 @@ public abstract class BaseBuild implements Build {
 	private String _buildDescription;
 	private Boolean _buildDurationsEnabled;
 	private JSONObject _buildJSONObject;
-	private final BuildUpdater _buildUpdater;
 	private String _buildURL;
+	private final BuildUpdater _buildUpdater;
 	private final DownstreamBuildReport _cachedDownstreamBuildReport;
 	private Long _duration;
 	private Element _gitHubMessageElement;
@@ -3663,8 +3663,8 @@ public abstract class BaseBuild implements Build {
 	private long _statusModifiedTime;
 	private StopWatchRecordsGroup _stopWatchRecordsGroup;
 	private Map<String, TestClassResult> _testClassResults;
+	private JSONObject _testReportJSONObject;
 	private final List<URL> _testrayAttachmentURLs = new ArrayList<>();
 	private boolean _testrayAttachmentURLsFound;
-	private JSONObject _testReportJSONObject;
 
 }

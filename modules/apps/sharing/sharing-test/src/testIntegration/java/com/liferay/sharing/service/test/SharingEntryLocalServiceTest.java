@@ -403,16 +403,6 @@ public class SharingEntryLocalServiceTest {
 			externalReferenceCode, sharingEntry.getExternalReferenceCode());
 	}
 
-	@Test(expected = InvalidSharingEntryActionException.class)
-	public void testAddSharingEntryWithoutViewSharingEntryAction()
-		throws Exception {
-
-		_sharingEntryLocalService.addSharingEntry(
-			null, _fromUser.getUserId(), 0, _toUser.getUserId(), _classNameId,
-			_group.getGroupId(), _group.getGroupId(), true,
-			Arrays.asList(SharingEntryAction.UPDATE), null, _serviceContext);
-	}
-
 	@Test(expected = InvalidSharingEntryUserException.class)
 	public void testAddSharingEntryWithSameFromUserAndToUser()
 		throws Exception {
@@ -443,6 +433,16 @@ public class SharingEntryLocalServiceTest {
 			_group.getGroupId(), _group.getGroupId(), true,
 			Arrays.asList(new SharingEntryAction[] {null}), null,
 			_serviceContext);
+	}
+
+	@Test(expected = InvalidSharingEntryActionException.class)
+	public void testAddSharingEntryWithoutViewSharingEntryAction()
+		throws Exception {
+
+		_sharingEntryLocalService.addSharingEntry(
+			null, _fromUser.getUserId(), 0, _toUser.getUserId(), _classNameId,
+			_group.getGroupId(), _group.getGroupId(), true,
+			Arrays.asList(SharingEntryAction.UPDATE), null, _serviceContext);
 	}
 
 	@Test
@@ -1197,21 +1197,6 @@ public class SharingEntryLocalServiceTest {
 	}
 
 	@Test(expected = InvalidSharingEntryActionException.class)
-	public void testUpdateSharingEntryWithoutViewSharingEntryAction()
-		throws Exception {
-
-		SharingEntry sharingEntry = _sharingEntryLocalService.addSharingEntry(
-			null, _fromUser.getUserId(), 0, _toUser.getUserId(), _classNameId,
-			_group.getGroupId(), _group.getGroupId(), true,
-			Arrays.asList(SharingEntryAction.VIEW), null, _serviceContext);
-
-		_sharingEntryLocalService.updateSharingEntry(
-			_fromUser.getUserId(), sharingEntry.getSharingEntryId(),
-			Arrays.asList(SharingEntryAction.UPDATE), true, null,
-			_serviceContext);
-	}
-
-	@Test(expected = InvalidSharingEntryActionException.class)
 	public void testUpdateSharingEntryWithSharingEntryActionsContainingOneNullElement()
 		throws Exception {
 
@@ -1242,6 +1227,21 @@ public class SharingEntryLocalServiceTest {
 		_sharingEntryLocalService.updateSharingEntry(
 			_fromUser.getUserId(), sharingEntry.getSharingEntryId(),
 			ListUtil.fromArray((SharingEntryAction[])null), true, null,
+			_serviceContext);
+	}
+
+	@Test(expected = InvalidSharingEntryActionException.class)
+	public void testUpdateSharingEntryWithoutViewSharingEntryAction()
+		throws Exception {
+
+		SharingEntry sharingEntry = _sharingEntryLocalService.addSharingEntry(
+			null, _fromUser.getUserId(), 0, _toUser.getUserId(), _classNameId,
+			_group.getGroupId(), _group.getGroupId(), true,
+			Arrays.asList(SharingEntryAction.VIEW), null, _serviceContext);
+
+		_sharingEntryLocalService.updateSharingEntry(
+			_fromUser.getUserId(), sharingEntry.getSharingEntryId(),
+			Arrays.asList(SharingEntryAction.UPDATE), true, null,
 			_serviceContext);
 	}
 

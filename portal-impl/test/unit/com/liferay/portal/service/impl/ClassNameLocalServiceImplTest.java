@@ -54,30 +54,6 @@ public class ClassNameLocalServiceImplTest {
 	}
 
 	@Test
-	public void testGetClassNameIdsSupplier() {
-		Assert.assertArrayEquals(
-			new long[] {_CLASS_NAME_ID_1, _CLASS_NAME_ID_2},
-			_classNameLocalServiceImpl.getClassNameIdsSupplier(
-				new String[] {_CLASS_NAME_VALUE1, _CLASS_NAME_VALUE2}
-			).get());
-
-		_assertSupplier(
-			() -> {
-				Supplier<long[]> classNameIdsSupplier =
-					_classNameLocalServiceImpl.getClassNameIdsSupplier(
-						new String[] {RandomTestUtil.randomString()});
-
-				Mockito.verify(
-					_classNamePersistence, Mockito.never()
-				).create(
-					Mockito.anyLong()
-				);
-
-				classNameIdsSupplier.get();
-			});
-	}
-
-	@Test
 	public void testGetClassNameIdSupplier() {
 		Assert.assertEquals(
 			_CLASS_NAME_ID_1,
@@ -98,6 +74,30 @@ public class ClassNameLocalServiceImplTest {
 				);
 
 				classNameIdSupplier.get();
+			});
+	}
+
+	@Test
+	public void testGetClassNameIdsSupplier() {
+		Assert.assertArrayEquals(
+			new long[] {_CLASS_NAME_ID_1, _CLASS_NAME_ID_2},
+			_classNameLocalServiceImpl.getClassNameIdsSupplier(
+				new String[] {_CLASS_NAME_VALUE1, _CLASS_NAME_VALUE2}
+			).get());
+
+		_assertSupplier(
+			() -> {
+				Supplier<long[]> classNameIdsSupplier =
+					_classNameLocalServiceImpl.getClassNameIdsSupplier(
+						new String[] {RandomTestUtil.randomString()});
+
+				Mockito.verify(
+					_classNamePersistence, Mockito.never()
+				).create(
+					Mockito.anyLong()
+				);
+
+				classNameIdsSupplier.get();
 			});
 	}
 

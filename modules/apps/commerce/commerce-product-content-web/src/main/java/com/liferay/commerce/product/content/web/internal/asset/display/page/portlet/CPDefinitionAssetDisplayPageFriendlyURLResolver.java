@@ -560,6 +560,9 @@ public class CPDefinitionAssetDisplayPageFriendlyURLResolver
 	private AssetTagLocalService _assetTagLocalService;
 
 	@Reference
+	private CProductLocalService _cProductLocalService;
+
+	@Reference
 	private CommerceAccountHelper _commerceAccountHelper;
 
 	@Reference
@@ -582,9 +585,6 @@ public class CPDefinitionAssetDisplayPageFriendlyURLResolver
 
 	@Reference
 	private CPFriendlyURL _cpFriendlyURL;
-
-	@Reference
-	private CProductLocalService _cProductLocalService;
 
 	@Reference
 	private FriendlyURLEntryLocalService _friendlyURLEntryLocalService;

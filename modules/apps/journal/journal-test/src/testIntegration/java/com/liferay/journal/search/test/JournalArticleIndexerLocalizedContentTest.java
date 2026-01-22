@@ -409,11 +409,10 @@ public class JournalArticleIndexerLocalizedContentTest {
 	private Group _group;
 
 	private IndexerFixture<JournalArticle> _indexerFixture;
+	private JournalArticleSearchFixture _journalArticleSearchFixture;
 
 	@DeleteAfterTestRun
 	private List<JournalArticle> _journalArticles;
-
-	private JournalArticleSearchFixture _journalArticleSearchFixture;
 
 	@Inject
 	private Language _language;

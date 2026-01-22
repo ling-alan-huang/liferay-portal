@@ -321,10 +321,10 @@ public class IndexerWriterImpl<T extends BaseModel<?>>
 	private final BaseModelRetriever _baseModelRetriever;
 	private final BatchIndexingHelper _batchIndexingHelper;
 	private final CTCollectionLocalService _ctCollectionLocalService;
-	private final IndexerDocumentBuilder _indexerDocumentBuilder;
-	private Boolean _indexerEnabled;
 	private final IndexStatusManager _indexStatusManager;
 	private final IndexWriterHelper _indexWriterHelper;
+	private final IndexerDocumentBuilder _indexerDocumentBuilder;
+	private Boolean _indexerEnabled;
 	private final ModelIndexerWriterContributor<T>
 		_modelIndexerWriterContributor;
 	private final ModelSearchSettings _modelSearchSettings;

@@ -634,6 +634,9 @@ public class CPDefinitionServiceImpl extends CPDefinitionServiceBaseImpl {
 	}
 
 	@Reference
+	private CProductLocalService _cProductLocalService;
+
+	@Reference
 	private CommerceCatalogLocalService _commerceCatalogLocalService;
 
 	@Reference(
@@ -644,8 +647,5 @@ public class CPDefinitionServiceImpl extends CPDefinitionServiceBaseImpl {
 
 	@Reference
 	private CommerceCatalogService _commerceCatalogService;
-
-	@Reference
-	private CProductLocalService _cProductLocalService;
 
 }

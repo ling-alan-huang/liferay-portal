@@ -156,6 +156,11 @@ public class ClassNameLocalServiceImpl
 	}
 
 	@Override
+	public Supplier<Long> getClassNameIdSupplier(String className) {
+		return () -> getClassNameId(className);
+	}
+
+	@Override
 	public Supplier<long[]> getClassNameIdsSupplier(String[] classNames) {
 		Map<Long, long[]> classNameIds = new ConcurrentHashMap<>();
 
@@ -164,11 +169,6 @@ public class ClassNameLocalServiceImpl
 			key -> TransformUtil.transformToLongArray(
 				ListUtil.fromArray(classNames),
 				className -> getClassNameId(className)));
-	}
-
-	@Override
-	public Supplier<Long> getClassNameIdSupplier(String className) {
-		return () -> getClassNameId(className);
 	}
 
 	@Override

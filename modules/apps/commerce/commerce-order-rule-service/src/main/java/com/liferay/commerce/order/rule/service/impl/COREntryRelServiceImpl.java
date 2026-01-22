@@ -137,6 +137,51 @@ public class COREntryRelServiceImpl extends COREntryRelServiceBaseImpl {
 	}
 
 	@Override
+	public COREntryRel getCOREntryRel(long corEntryRelId)
+		throws PortalException {
+
+		COREntryRel corEntryRel = corEntryRelLocalService.getCOREntryRel(
+			corEntryRelId);
+
+		_corEntryModelResourcePermission.check(
+			getPermissionChecker(), corEntryRel.getCOREntryId(),
+			ActionKeys.VIEW);
+
+		return corEntryRel;
+	}
+
+	@Override
+	public List<COREntryRel> getCOREntryRels(long corEntryId)
+		throws PortalException {
+
+		_corEntryModelResourcePermission.check(
+			getPermissionChecker(), corEntryId, ActionKeys.VIEW);
+
+		return corEntryRelLocalService.getCOREntryRels(corEntryId);
+	}
+
+	@Override
+	public List<COREntryRel> getCOREntryRels(
+			long corEntryId, int start, int end,
+			OrderByComparator<COREntryRel> orderByComparator)
+		throws PortalException {
+
+		_corEntryModelResourcePermission.check(
+			getPermissionChecker(), corEntryId, ActionKeys.VIEW);
+
+		return corEntryRelLocalService.getCOREntryRels(
+			corEntryId, start, end, orderByComparator);
+	}
+
+	@Override
+	public int getCOREntryRelsCount(long corEntryId) throws PortalException {
+		_corEntryModelResourcePermission.check(
+			getPermissionChecker(), corEntryId, ActionKeys.VIEW);
+
+		return corEntryRelLocalService.getCOREntryRelsCount(corEntryId);
+	}
+
+	@Override
 	public List<COREntryRel> getCommerceChannelCOREntryRels(
 			long corEntryId, String keywords, int start, int end)
 		throws PortalException {
@@ -182,51 +227,6 @@ public class COREntryRelServiceImpl extends COREntryRelServiceBaseImpl {
 
 		return corEntryRelLocalService.getCommerceOrderTypeCOREntryRelsCount(
 			corEntryId, keywords);
-	}
-
-	@Override
-	public COREntryRel getCOREntryRel(long corEntryRelId)
-		throws PortalException {
-
-		COREntryRel corEntryRel = corEntryRelLocalService.getCOREntryRel(
-			corEntryRelId);
-
-		_corEntryModelResourcePermission.check(
-			getPermissionChecker(), corEntryRel.getCOREntryId(),
-			ActionKeys.VIEW);
-
-		return corEntryRel;
-	}
-
-	@Override
-	public List<COREntryRel> getCOREntryRels(long corEntryId)
-		throws PortalException {
-
-		_corEntryModelResourcePermission.check(
-			getPermissionChecker(), corEntryId, ActionKeys.VIEW);
-
-		return corEntryRelLocalService.getCOREntryRels(corEntryId);
-	}
-
-	@Override
-	public List<COREntryRel> getCOREntryRels(
-			long corEntryId, int start, int end,
-			OrderByComparator<COREntryRel> orderByComparator)
-		throws PortalException {
-
-		_corEntryModelResourcePermission.check(
-			getPermissionChecker(), corEntryId, ActionKeys.VIEW);
-
-		return corEntryRelLocalService.getCOREntryRels(
-			corEntryId, start, end, orderByComparator);
-	}
-
-	@Override
-	public int getCOREntryRelsCount(long corEntryId) throws PortalException {
-		_corEntryModelResourcePermission.check(
-			getPermissionChecker(), corEntryId, ActionKeys.VIEW);
-
-		return corEntryRelLocalService.getCOREntryRelsCount(corEntryId);
 	}
 
 	@Reference(

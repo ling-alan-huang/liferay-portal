@@ -495,10 +495,10 @@ public class SearchCTTest {
 	private static LayoutLocalService _layoutLocalService;
 
 	@Inject
-	private static Searcher _searcher;
+	private static SearchRequestBuilderFactory _searchRequestBuilderFactory;
 
 	@Inject
-	private static SearchRequestBuilderFactory _searchRequestBuilderFactory;
+	private static Searcher _searcher;
 
 	@Inject
 	private static UIDFactory _uidFactory;

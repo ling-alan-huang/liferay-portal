@@ -932,6 +932,29 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 	}
 
 	@Override
+	public List<KBArticle> getKBArticleVersions(
+		long resourcePrimKey, int status, int start, int end,
+		OrderByComparator<KBArticle> orderByComparator) {
+
+		if (status == WorkflowConstants.STATUS_ANY) {
+			return kbArticlePersistence.findByResourcePrimKey(
+				resourcePrimKey, start, end, orderByComparator);
+		}
+
+		return kbArticlePersistence.findByR_S(
+			resourcePrimKey, status, start, end, orderByComparator);
+	}
+
+	@Override
+	public int getKBArticleVersionsCount(long resourcePrimKey, int status) {
+		if (status == WorkflowConstants.STATUS_ANY) {
+			return kbArticlePersistence.countByResourcePrimKey(resourcePrimKey);
+		}
+
+		return kbArticlePersistence.countByR_S(resourcePrimKey, status);
+	}
+
+	@Override
 	public List<KBArticle> getKBArticles(
 		long groupId, long parentResourcePrimKey, int status, int start,
 		int end, OrderByComparator<KBArticle> orderByComparator) {
@@ -1011,29 +1034,6 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 		return kbArticlePersistence.countByG_P_S(
 			groupId, parentResourcePrimKey, status);
-	}
-
-	@Override
-	public List<KBArticle> getKBArticleVersions(
-		long resourcePrimKey, int status, int start, int end,
-		OrderByComparator<KBArticle> orderByComparator) {
-
-		if (status == WorkflowConstants.STATUS_ANY) {
-			return kbArticlePersistence.findByResourcePrimKey(
-				resourcePrimKey, start, end, orderByComparator);
-		}
-
-		return kbArticlePersistence.findByR_S(
-			resourcePrimKey, status, start, end, orderByComparator);
-	}
-
-	@Override
-	public int getKBArticleVersionsCount(long resourcePrimKey, int status) {
-		if (status == WorkflowConstants.STATUS_ANY) {
-			return kbArticlePersistence.countByResourcePrimKey(resourcePrimKey);
-		}
-
-		return kbArticlePersistence.countByR_S(resourcePrimKey, status);
 	}
 
 	@Override
@@ -1266,6 +1266,17 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 	}
 
 	@Override
+	public void moveDependentKBArticleToTrash(
+			KBArticle kbArticle, long trashEntryId)
+		throws PortalException {
+
+		_moveDependentKBArticleToTrash(kbArticle, trashEntryId);
+
+		moveDependentKBArticlesToTrash(
+			kbArticle.getResourcePrimKey(), trashEntryId);
+	}
+
+	@Override
 	public void moveDependentKBArticlesToTrash(
 			long parentResourcePrimKey, long trashEntryId)
 		throws PortalException {
@@ -1276,17 +1287,6 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		for (KBArticle descendantKBArticle : allDescendantKBArticles) {
 			_moveDependentKBArticleToTrash(descendantKBArticle, trashEntryId);
 		}
-	}
-
-	@Override
-	public void moveDependentKBArticleToTrash(
-			KBArticle kbArticle, long trashEntryId)
-		throws PortalException {
-
-		_moveDependentKBArticleToTrash(kbArticle, trashEntryId);
-
-		moveDependentKBArticlesToTrash(
-			kbArticle.getResourcePrimKey(), trashEntryId);
 	}
 
 	@Override
@@ -2359,6 +2359,36 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		return _kbServiceConfiguration.checkInterval();
 	}
 
+	private String _getKBArticleURL(KBArticle kbArticle)
+		throws PortalException {
+
+		String controlPanelFullURL = _portal.getControlPanelFullURL(
+			kbArticle.getGroupId(), KBPortletKeys.KNOWLEDGE_BASE_ADMIN, null);
+		String namespace = _portal.getPortletNamespace(
+			KBPortletKeys.KNOWLEDGE_BASE_ADMIN);
+
+		String kbArticleURL = HttpComponentsUtil.addParameter(
+			controlPanelFullURL, namespace + "mvcRenderCommandName",
+			"/knowledge_base/view_kb_article");
+
+		kbArticleURL = HttpComponentsUtil.addParameter(
+			kbArticleURL, namespace + "redirect",
+			HttpComponentsUtil.addParameter(
+				controlPanelFullURL, namespace + "mvcRenderCommandName",
+				"/knowledge_base/view"));
+		kbArticleURL = HttpComponentsUtil.addParameter(
+			kbArticleURL, namespace + "resourceClassNameId",
+			kbArticle.getClassNameId());
+		kbArticleURL = HttpComponentsUtil.addParameter(
+			kbArticleURL, namespace + "resourcePrimKey",
+			kbArticle.getResourcePrimKey());
+		kbArticleURL = HttpComponentsUtil.addParameter(
+			kbArticleURL, namespace + "selectedItemId",
+			kbArticle.getResourcePrimKey());
+
+		return kbArticleURL;
+	}
+
 	private List<KBArticle> _getKBArticlesByCompanyIdAndDisplayDate(
 		long companyId, Date displayDate) {
 
@@ -2439,36 +2469,6 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 					KBArticleTable.INSTANCE.reviewDate.lte(reviewDateLTE)
 				)
 			));
-	}
-
-	private String _getKBArticleURL(KBArticle kbArticle)
-		throws PortalException {
-
-		String controlPanelFullURL = _portal.getControlPanelFullURL(
-			kbArticle.getGroupId(), KBPortletKeys.KNOWLEDGE_BASE_ADMIN, null);
-		String namespace = _portal.getPortletNamespace(
-			KBPortletKeys.KNOWLEDGE_BASE_ADMIN);
-
-		String kbArticleURL = HttpComponentsUtil.addParameter(
-			controlPanelFullURL, namespace + "mvcRenderCommandName",
-			"/knowledge_base/view_kb_article");
-
-		kbArticleURL = HttpComponentsUtil.addParameter(
-			kbArticleURL, namespace + "redirect",
-			HttpComponentsUtil.addParameter(
-				controlPanelFullURL, namespace + "mvcRenderCommandName",
-				"/knowledge_base/view"));
-		kbArticleURL = HttpComponentsUtil.addParameter(
-			kbArticleURL, namespace + "resourceClassNameId",
-			kbArticle.getClassNameId());
-		kbArticleURL = HttpComponentsUtil.addParameter(
-			kbArticleURL, namespace + "resourcePrimKey",
-			kbArticle.getResourcePrimKey());
-		kbArticleURL = HttpComponentsUtil.addParameter(
-			kbArticleURL, namespace + "selectedItemId",
-			kbArticle.getResourcePrimKey());
-
-		return kbArticleURL;
 	}
 
 	private KBGroupServiceConfiguration _getKBGroupServiceConfiguration(
@@ -3183,10 +3183,10 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 	private HtmlParser _htmlParser;
 
 	@Reference
-	private IndexerRegistry _indexerRegistry;
+	private IndexWriterHelper _indexWriterHelper;
 
 	@Reference
-	private IndexWriterHelper _indexWriterHelper;
+	private IndexerRegistry _indexerRegistry;
 
 	@Reference
 	private KBCommentPersistence _kbCommentPersistence;

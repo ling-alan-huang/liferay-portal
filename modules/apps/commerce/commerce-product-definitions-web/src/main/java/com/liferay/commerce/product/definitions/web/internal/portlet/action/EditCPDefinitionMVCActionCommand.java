@@ -335,19 +335,6 @@ public class EditCPDefinitionMVCActionCommand extends BaseMVCActionCommand {
 		_reindexCPDefinition(cpDefinitionId);
 	}
 
-	private void _deleteChannel(
-			ActionRequest actionRequest, long cpDefinitionId)
-		throws PortalException {
-
-		long commerceChannelRelId = ParamUtil.getLong(
-			actionRequest, "commerceChannelRelId");
-
-		_commerceChannelRelService.deleteCommerceChannelRel(
-			commerceChannelRelId);
-
-		_reindexCPDefinition(cpDefinitionId);
-	}
-
 	private void _deleteCPDefinitions(ActionRequest actionRequest)
 		throws Exception {
 
@@ -367,6 +354,19 @@ public class EditCPDefinitionMVCActionCommand extends BaseMVCActionCommand {
 		for (long deleteCPDefinitionId : deleteCPDefinitionIds) {
 			_cpDefinitionService.deleteCPDefinition(deleteCPDefinitionId);
 		}
+	}
+
+	private void _deleteChannel(
+			ActionRequest actionRequest, long cpDefinitionId)
+		throws PortalException {
+
+		long commerceChannelRelId = ParamUtil.getLong(
+			actionRequest, "commerceChannelRelId");
+
+		_commerceChannelRelService.deleteCommerceChannelRel(
+			commerceChannelRelId);
+
+		_reindexCPDefinition(cpDefinitionId);
 	}
 
 	private CPDefinition _getCPDefinition(ActionRequest actionRequest)
@@ -994,9 +994,6 @@ public class EditCPDefinitionMVCActionCommand extends BaseMVCActionCommand {
 	private CPConfigurationEntryService _cpConfigurationEntryService;
 
 	@Reference
-	private CPDAvailabilityEstimateService _cpdAvailabilityEstimateService;
-
-	@Reference
 	private CPDefinitionInventoryService _cpDefinitionInventoryService;
 
 	@Reference
@@ -1004,6 +1001,9 @@ public class EditCPDefinitionMVCActionCommand extends BaseMVCActionCommand {
 
 	@Reference
 	private CPInstanceLocalService _cpInstanceLocalService;
+
+	@Reference
+	private CPDAvailabilityEstimateService _cpdAvailabilityEstimateService;
 
 	@Reference
 	private Localization _localization;

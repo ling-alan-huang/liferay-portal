@@ -51,13 +51,13 @@ public class SimpleStringQueryImpl
 	}
 
 	@Override
-	public String getAnalyzer() {
-		return _analyzer;
+	public Boolean getAnalyzeWildcard() {
+		return _analyzeWildcard;
 	}
 
 	@Override
-	public Boolean getAnalyzeWildcard() {
-		return _analyzeWildcard;
+	public String getAnalyzer() {
+		return _analyzer;
 	}
 
 	@Override
@@ -106,13 +106,13 @@ public class SimpleStringQueryImpl
 	}
 
 	@Override
-	public void setAnalyzer(String analyzer) {
-		_analyzer = analyzer;
+	public void setAnalyzeWildcard(Boolean analyzeWildcard) {
+		_analyzeWildcard = analyzeWildcard;
 	}
 
 	@Override
-	public void setAnalyzeWildcard(Boolean analyzeWildcard) {
-		_analyzeWildcard = analyzeWildcard;
+	public void setAnalyzer(String analyzer) {
+		_analyzer = analyzer;
 	}
 
 	@Override
@@ -171,8 +171,8 @@ public class SimpleStringQueryImpl
 
 	private static final long serialVersionUID = 1L;
 
-	private String _analyzer;
 	private Boolean _analyzeWildcard;
+	private String _analyzer;
 	private Boolean _autoGenerateSynonymsPhraseQuery;
 	private Operator _defaultOperator;
 	private final Map<String, Float> _fieldBoostMap = new HashMap<>();

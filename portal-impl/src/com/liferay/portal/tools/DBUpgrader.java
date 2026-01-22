@@ -281,11 +281,6 @@ public class DBUpgrader {
 				}
 
 				@Override
-				public String getServletContextName() {
-					return ReleaseConstants.DEFAULT_SERVLET_CONTEXT_NAME;
-				}
-
-				@Override
 				public InputStream getSQLIndexesInputStream() {
 					return _classLoader.getResourceAsStream(
 						"com/liferay/portal/tools/sql/dependencies" +
@@ -304,6 +299,11 @@ public class DBUpgrader {
 					return _classLoader.getResourceAsStream(
 						"com/liferay/portal/tools/sql/dependencies" +
 							"/portal-tables.sql");
+				}
+
+				@Override
+				public String getServletContextName() {
+					return ReleaseConstants.DEFAULT_SERVLET_CONTEXT_NAME;
 				}
 
 				private final ClassLoader _classLoader =

@@ -716,12 +716,12 @@ public class EditRankingMVCActionCommand extends BaseMVCActionCommand {
 			return _resultsRankingUid;
 		}
 
-		public String getStatus() {
-			return _status;
-		}
-
 		public String getSXPBlueprintExternalReferenceCode() {
 			return _sxpBlueprintExternalReferenceCode;
+		}
+
+		public String getStatus() {
+			return _status;
 		}
 
 		public boolean isCmd(String cmd) {

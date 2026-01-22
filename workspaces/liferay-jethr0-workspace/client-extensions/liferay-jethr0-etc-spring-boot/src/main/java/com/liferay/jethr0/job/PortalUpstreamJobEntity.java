@@ -22,13 +22,13 @@ public interface PortalUpstreamJobEntity extends JobEntity {
 
 	public String getPortalUpstreamBranchName();
 
+	public String getTestSuiteName();
+
 	public String getTestrayBuildName();
 
 	public String getTestrayProjectName();
 
 	public String getTestrayRoutineName();
-
-	public String getTestSuiteName();
 
 	public void setOSBAsahBranchURL(URL osbAsahBranchURL);
 
@@ -38,13 +38,13 @@ public interface PortalUpstreamJobEntity extends JobEntity {
 
 	public void setPortalBuildProfile(String portalBuildProfile);
 
+	public void setTestSuiteName(String testSuiteName);
+
 	public void setTestrayBuildName(String testrayBuildName);
 
 	public void setTestrayProjectName(String testrayProjectName);
 
 	public void setTestrayRoutineName(String testrayRoutineName);
-
-	public void setTestSuiteName(String testSuiteName);
 
 	public void setUpstreamPortalBranchName(String portalUpstreamBranchName);
 

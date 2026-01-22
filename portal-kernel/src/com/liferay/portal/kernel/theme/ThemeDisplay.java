@@ -483,19 +483,6 @@ public class ThemeDisplay
 	}
 
 	/**
-	 * Returns the site's top-level pages.
-	 *
-	 * <p>
-	 * Layout is Liferay's technical name for a page.
-	 * </p>
-	 *
-	 * @return the site's top-level pages
-	 */
-	public List<Layout> getLayouts() {
-		return _layouts;
-	}
-
-	/**
 	 * Returns the current layout set, being either a public layout set or a
 	 * private layout set.
 	 *
@@ -524,6 +511,19 @@ public class ThemeDisplay
 
 	public LayoutTypePortlet getLayoutTypePortlet() {
 		return _layoutTypePortlet;
+	}
+
+	/**
+	 * Returns the site's top-level pages.
+	 *
+	 * <p>
+	 * Layout is Liferay's technical name for a page.
+	 * </p>
+	 *
+	 * @return the site's top-level pages
+	 */
+	public List<Layout> getLayouts() {
+		return _layouts;
 	}
 
 	/**
@@ -1065,10 +1065,6 @@ public class ThemeDisplay
 		return _timeZone;
 	}
 
-	public List<Layout> getUnfilteredLayouts() {
-		return _unfilteredLayouts;
-	}
-
 	public String getURLControlPanel() {
 		return _urlControlPanel;
 	}
@@ -1110,6 +1106,10 @@ public class ThemeDisplay
 
 	public String getURLSignOut() {
 		return _urlSignOut;
+	}
+
+	public List<Layout> getUnfilteredLayouts() {
+		return _unfilteredLayouts;
 	}
 
 	/**
@@ -1178,6 +1178,10 @@ public class ThemeDisplay
 		return true;
 	}
 
+	public boolean isIncludePortletCssJs() {
+		return _includePortletCssJs;
+	}
+
 	public boolean isIncludedJs(String js) {
 		String path = getPathJavaScript();
 
@@ -1188,10 +1192,6 @@ public class ThemeDisplay
 		}
 
 		return false;
-	}
-
-	public boolean isIncludePortletCssJs() {
-		return _includePortletCssJs;
 	}
 
 	public boolean isIsolated() {
@@ -1450,10 +1450,6 @@ public class ThemeDisplay
 		_layout = layout;
 	}
 
-	public void setLayouts(List<Layout> layouts) {
-		_layouts = layouts;
-	}
-
 	public void setLayoutSet(LayoutSet layoutSet) {
 		_layoutSet = layoutSet;
 	}
@@ -1464,6 +1460,10 @@ public class ThemeDisplay
 
 	public void setLayoutTypePortlet(LayoutTypePortlet layoutTypePortlet) {
 		_layoutTypePortlet = layoutTypePortlet;
+	}
+
+	public void setLayouts(List<Layout> layouts) {
+		_layouts = layouts;
 	}
 
 	public void setLifecycle(String lifecycle) {
@@ -1870,10 +1870,6 @@ public class ThemeDisplay
 		TimeZoneThreadLocal.setThemeDisplayTimeZone(timeZone);
 	}
 
-	public void setUnfilteredLayouts(List<Layout> unfilteredLayouts) {
-		_unfilteredLayouts = unfilteredLayouts;
-	}
-
 	public void setURLControlPanel(String urlControlPanel) {
 		_urlControlPanel = urlControlPanel;
 	}
@@ -1904,6 +1900,10 @@ public class ThemeDisplay
 
 	public void setURLSignOut(String urlSignOut) {
 		_urlSignOut = urlSignOut;
+	}
+
+	public void setUnfilteredLayouts(List<Layout> unfilteredLayouts) {
+		_unfilteredLayouts = unfilteredLayouts;
 	}
 
 	public void setUser(User user) {
@@ -2060,10 +2060,10 @@ public class ThemeDisplay
 	private Layout _layout;
 	private transient Map<Long, String> _layoutFriendlyURLs;
 	private transient Map<String, PortletPreferences> _layoutPortletPreferences;
-	private List<Layout> _layouts;
 	private LayoutSet _layoutSet;
 	private String _layoutSetLogo = StringPool.BLANK;
 	private LayoutTypePortlet _layoutTypePortlet;
+	private List<Layout> _layouts;
 	private String _lifecycle;
 	private boolean _lifecycleAction;
 	private boolean _lifecycleEvent;

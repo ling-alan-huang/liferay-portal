@@ -245,21 +245,6 @@ public class ElasticsearchDocumentFactory {
 		}
 	}
 
-	private void _addFields(
-			Collection<com.liferay.portal.kernel.search.Field> fields,
-			XContentBuilder xContentBuilder)
-		throws IOException {
-
-		for (com.liferay.portal.kernel.search.Field field : fields) {
-			if (!field.hasChildren()) {
-				_addField(xContentBuilder, field);
-			}
-			else {
-				_addNestedField(xContentBuilder, field);
-			}
-		}
-	}
-
 	private void _addFieldValue(
 			Field field, Object value, XContentBuilder xContentBuilder)
 		throws IOException {
@@ -285,6 +270,21 @@ public class ElasticsearchDocumentFactory {
 		}
 
 		xContentBuilder.array(field.getName(), elasticsearchValues);
+	}
+
+	private void _addFields(
+			Collection<com.liferay.portal.kernel.search.Field> fields,
+			XContentBuilder xContentBuilder)
+		throws IOException {
+
+		for (com.liferay.portal.kernel.search.Field field : fields) {
+			if (!field.hasChildren()) {
+				_addField(xContentBuilder, field);
+			}
+			else {
+				_addNestedField(xContentBuilder, field);
+			}
+		}
 	}
 
 	private void _addNestedField(

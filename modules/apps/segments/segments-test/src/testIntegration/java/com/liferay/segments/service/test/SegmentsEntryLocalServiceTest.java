@@ -159,6 +159,26 @@ public class SegmentsEntryLocalServiceTest {
 			RandomTestUtil.randomString(), RandomTestUtil.randomString());
 	}
 
+	@Test
+	public void testAddSegmentsEntryWithReferredSource()
+		throws PortalException {
+
+		Criteria criteria = new Criteria();
+
+		_segmentsEntrySegmentsCriteriaContributor.contribute(
+			criteria,
+			String.format(
+				"(segmentsEntryIds eq '%s') and (segmentsEntryIds eq '%s')",
+				RandomTestUtil.nextLong(), RandomTestUtil.nextLong()),
+			Criteria.Conjunction.AND);
+
+		SegmentsEntry segmentsEntry = SegmentsTestUtil.addSegmentsEntry(
+			_group.getGroupId(), CriteriaSerializer.serialize(criteria));
+
+		Assert.assertEquals(
+			SegmentsEntryConstants.SOURCE_REFERRED, segmentsEntry.getSource());
+	}
+
 	@Test(expected = SegmentsEntryNameException.class)
 	public void testAddSegmentsEntryWithoutName() throws Exception {
 		SegmentsTestUtil.addSegmentsEntry(
@@ -180,26 +200,6 @@ public class SegmentsEntryLocalServiceTest {
 
 		Assert.assertEquals(
 			SegmentsEntryConstants.SOURCE_DEFAULT, segmentsEntry.getSource());
-	}
-
-	@Test
-	public void testAddSegmentsEntryWithReferredSource()
-		throws PortalException {
-
-		Criteria criteria = new Criteria();
-
-		_segmentsEntrySegmentsCriteriaContributor.contribute(
-			criteria,
-			String.format(
-				"(segmentsEntryIds eq '%s') and (segmentsEntryIds eq '%s')",
-				RandomTestUtil.nextLong(), RandomTestUtil.nextLong()),
-			Criteria.Conjunction.AND);
-
-		SegmentsEntry segmentsEntry = SegmentsTestUtil.addSegmentsEntry(
-			_group.getGroupId(), CriteriaSerializer.serialize(criteria));
-
-		Assert.assertEquals(
-			SegmentsEntryConstants.SOURCE_REFERRED, segmentsEntry.getSource());
 	}
 
 	@Test

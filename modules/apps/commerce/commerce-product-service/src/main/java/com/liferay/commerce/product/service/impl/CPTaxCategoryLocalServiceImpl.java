@@ -316,10 +316,10 @@ public class CPTaxCategoryLocalServiceImpl
 	private CPDefinitionLocalService _cpDefinitionLocalService;
 
 	@Reference
-	private Searcher _searcher;
+	private SearchRequestBuilderFactory _searchRequestBuilderFactory;
 
 	@Reference
-	private SearchRequestBuilderFactory _searchRequestBuilderFactory;
+	private Searcher _searcher;
 
 	@Reference
 	private SortFieldBuilder _sortFieldBuilder;

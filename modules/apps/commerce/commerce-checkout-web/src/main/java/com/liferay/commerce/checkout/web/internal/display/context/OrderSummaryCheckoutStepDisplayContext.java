@@ -125,6 +125,24 @@ public class OrderSummaryCheckoutStepDisplayContext {
 			CommerceCheckoutWebKeys.COMMERCE_ORDER);
 	}
 
+	public String getCPInstanceCDNURL(CommerceOrderItem commerceOrderItem)
+		throws Exception {
+
+		return _cpInstanceHelper.getCPInstanceCDNURL(
+			CommerceUtil.getCommerceAccountId(_commerceContext),
+			commerceOrderItem.getCPInstanceId());
+	}
+
+	public FileVersion getCPInstanceImageFileVersion(
+			CommerceOrderItem commerceOrderItem)
+		throws Exception {
+
+		return _cpInstanceHelper.getCPInstanceImageFileVersion(
+			CommerceUtil.getCommerceAccountId(_commerceContext),
+			_portal.getCompanyId(_httpServletRequest),
+			commerceOrderItem.getCPInstanceId());
+	}
+
 	public CommerceOrder getCommerceOrder() {
 		if (_commerceOrder != null) {
 			return _commerceOrder;
@@ -211,24 +229,6 @@ public class OrderSummaryCheckoutStepDisplayContext {
 		}
 
 		return _getCommerceProductPrice(commerceOrderItem, _commerceContext);
-	}
-
-	public String getCPInstanceCDNURL(CommerceOrderItem commerceOrderItem)
-		throws Exception {
-
-		return _cpInstanceHelper.getCPInstanceCDNURL(
-			CommerceUtil.getCommerceAccountId(_commerceContext),
-			commerceOrderItem.getCPInstanceId());
-	}
-
-	public FileVersion getCPInstanceImageFileVersion(
-			CommerceOrderItem commerceOrderItem)
-		throws Exception {
-
-		return _cpInstanceHelper.getCPInstanceImageFileVersion(
-			CommerceUtil.getCommerceAccountId(_commerceContext),
-			_portal.getCompanyId(_httpServletRequest),
-			commerceOrderItem.getCPInstanceId());
 	}
 
 	public String getDeliveryTermEntryName(Locale locale) {

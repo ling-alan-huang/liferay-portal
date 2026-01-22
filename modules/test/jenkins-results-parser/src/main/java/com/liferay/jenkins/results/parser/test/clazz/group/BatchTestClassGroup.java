@@ -365,11 +365,6 @@ public abstract class BatchTestClassGroup extends BaseTestClassGroup {
 		return GroupingStrategy.getByString(jobPropertyValue);
 	}
 
-	@Override
-	public Job getJob() {
-		return portalTestClassJob;
-	}
-
 	public JSONObject getJSONObject() {
 		if (jsonObject != null) {
 			return jsonObject;
@@ -411,6 +406,11 @@ public abstract class BatchTestClassGroup extends BaseTestClassGroup {
 		);
 
 		return jsonObject;
+	}
+
+	@Override
+	public Job getJob() {
+		return portalTestClassJob;
 	}
 
 	public long getLongestTestTaskDuration(String testName) {

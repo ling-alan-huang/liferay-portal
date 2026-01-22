@@ -648,6 +648,9 @@ public class SkuResourceTest extends BaseSkuResourceTestCase {
 			randomSkuVirtualSettings.getUseSample());
 	}
 
+	@DeleteAfterTestRun
+	private CProduct _cProduct;
+
 	@Inject
 	private CommercePriceEntryLocalService _commercePriceEntryLocalService;
 
@@ -683,9 +686,6 @@ public class SkuResourceTest extends BaseSkuResourceTestCase {
 
 	@Inject
 	private CPOptionValueLocalService _cpOptionValueLocalService;
-
-	@DeleteAfterTestRun
-	private CProduct _cProduct;
 
 	@DeleteAfterTestRun
 	private User _user;

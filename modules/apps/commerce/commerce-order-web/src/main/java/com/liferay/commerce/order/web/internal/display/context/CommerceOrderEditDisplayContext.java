@@ -149,6 +149,14 @@ public class CommerceOrderEditDisplayContext {
 			renderRequest);
 	}
 
+	public List<CPMeasurementUnit> getCPMeasurementUnits()
+		throws PortalException {
+
+		return _cpMeasurementUnitService.getCPMeasurementUnits(
+			_commerceOrderRequestHelper.getCompanyId(), QueryUtil.ALL_POS,
+			QueryUtil.ALL_POS, null);
+	}
+
 	public String getCommerceAccountThumbnailURL() throws PortalException {
 		if (_commerceOrder == null) {
 			return StringPool.BLANK;
@@ -459,14 +467,6 @@ public class CommerceOrderEditDisplayContext {
 			CommerceOrderScreenNavigationConstants.
 				CATEGORY_KEY_COMMERCE_ORDER_SHIPMENTS
 		).buildPortletURL();
-	}
-
-	public List<CPMeasurementUnit> getCPMeasurementUnits()
-		throws PortalException {
-
-		return _cpMeasurementUnitService.getCPMeasurementUnits(
-			_commerceOrderRequestHelper.getCompanyId(), QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
 	}
 
 	public List<CommerceTermEntry> getDeliveryTermsEntries() {

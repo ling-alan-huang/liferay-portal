@@ -43,8 +43,6 @@ public class ReplaceSoyTranslationTask extends SourceTask {
 		_replacementClosure = replacementClosure;
 	}
 
-	private Closure<String> _replacementClosure;
-
 	private final ReplaceSoyTranslationCommand _replaceSoyTranslationCommand =
 		new ReplaceSoyTranslationCommand() {
 
@@ -65,5 +63,7 @@ public class ReplaceSoyTranslationTask extends SourceTask {
 			}
 
 		};
+
+	private Closure<String> _replacementClosure;
 
 }

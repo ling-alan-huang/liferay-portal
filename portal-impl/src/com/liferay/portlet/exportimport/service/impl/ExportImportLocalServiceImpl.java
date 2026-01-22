@@ -181,6 +181,32 @@ public class ExportImportLocalServiceImpl
 
 	@CTAware
 	@Override
+	public long importLayoutSetPrototypeInBackground(
+			long userId, ExportImportConfiguration exportImportConfiguration,
+			File file)
+		throws PortalException {
+
+		BackgroundTask backgroundTask =
+			BackgroundTaskManagerUtil.addBackgroundTask(
+				userId, exportImportConfiguration.getGroupId(),
+				exportImportConfiguration.getName(),
+				BackgroundTaskExecutorNames.
+					LAYOUT_SET_PROTOTYPE_IMPORT_BACKGROUND_TASK_EXECUTOR,
+				HashMapBuilder.<String, Serializable>put(
+					BackgroundTaskContextMapConstants.DELETE_ON_SUCCESS, true
+				).put(
+					"exportImportConfigurationId",
+					exportImportConfiguration.getExportImportConfigurationId()
+				).build(),
+				new ServiceContext());
+
+		backgroundTask.addAttachment(userId, file.getName(), file);
+
+		return backgroundTask.getBackgroundTaskId();
+	}
+
+	@CTAware
+	@Override
 	public void importLayouts(
 			ExportImportConfiguration exportImportConfiguration, File file)
 		throws PortalException {
@@ -292,32 +318,6 @@ public class ExportImportLocalServiceImpl
 
 			throw exportImportRuntimeException;
 		}
-	}
-
-	@CTAware
-	@Override
-	public long importLayoutSetPrototypeInBackground(
-			long userId, ExportImportConfiguration exportImportConfiguration,
-			File file)
-		throws PortalException {
-
-		BackgroundTask backgroundTask =
-			BackgroundTaskManagerUtil.addBackgroundTask(
-				userId, exportImportConfiguration.getGroupId(),
-				exportImportConfiguration.getName(),
-				BackgroundTaskExecutorNames.
-					LAYOUT_SET_PROTOTYPE_IMPORT_BACKGROUND_TASK_EXECUTOR,
-				HashMapBuilder.<String, Serializable>put(
-					BackgroundTaskContextMapConstants.DELETE_ON_SUCCESS, true
-				).put(
-					"exportImportConfigurationId",
-					exportImportConfiguration.getExportImportConfigurationId()
-				).build(),
-				new ServiceContext());
-
-		backgroundTask.addAttachment(userId, file.getName(), file);
-
-		return backgroundTask.getBackgroundTaskId();
 	}
 
 	@CTAware
