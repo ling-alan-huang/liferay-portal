@@ -23,6 +23,7 @@ import com.liferay.portal.configuration.metatype.annotations.ExtendedObjectClass
 )
 public interface AccountEntryEmailDomainsConfiguration {
 
+	
 	@Meta.AD(
 		deflt = "false", description = "enable-email-domain-validation-help",
 		name = "enable-email-domain-validation", required = false

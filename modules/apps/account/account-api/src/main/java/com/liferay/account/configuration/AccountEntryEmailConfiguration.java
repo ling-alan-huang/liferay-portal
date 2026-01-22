@@ -17,6 +17,7 @@ import com.liferay.portal.kernel.settings.LocalizedValuesMap;
 	category = "accounts", scope = ExtendedObjectClassDefinition.Scope.COMPANY,
 	strictScope = true
 )
+
 @Meta.OCD(
 	id = "com.liferay.account.configuration.AccountEntryEmailConfiguration",
 	localization = "content/Language",
