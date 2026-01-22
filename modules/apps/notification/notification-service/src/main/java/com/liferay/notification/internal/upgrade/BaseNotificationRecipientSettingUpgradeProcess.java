@@ -48,6 +48,7 @@ public abstract class BaseNotificationRecipientSettingUpgradeProcess
 					NotificationConstants.TYPE_EMAIL, "'"));
 			ResultSet resultSet2 = preparedStatement2.executeQuery();
 			PreparedStatement preparedStatement3 =
+					
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection,
 					StringBundler.concat(

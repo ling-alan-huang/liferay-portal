@@ -28,6 +28,7 @@ public class NotificationRecipientSettingUpgradeProcess extends UpgradeProcess {
 					"= NotificationQueueEntry.notificationQueueEntryId where ",
 					"NotificationQueueEntry.type_ = '",
 					NotificationConstants.TYPE_USER_NOTIFICATION, "'"));
+			 
 			ResultSet resultSet1 = preparedStatement1.executeQuery();
 			PreparedStatement preparedStatement2 = connection.prepareStatement(
 				StringBundler.concat(
