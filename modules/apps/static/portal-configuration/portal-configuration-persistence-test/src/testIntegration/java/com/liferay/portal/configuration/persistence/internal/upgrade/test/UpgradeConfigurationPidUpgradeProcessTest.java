@@ -100,6 +100,9 @@ public class UpgradeConfigurationPidUpgradeProcessTest {
 				_SERVICE_FACTORY_PID, _SERVICE_FACTORY_PID + ".instance1",
 				fileName);
 
+			
+			
+			
 			_upgradeConfigurationPidUpgradeProcess.upgrade();
 
 			_assertConfiguration(

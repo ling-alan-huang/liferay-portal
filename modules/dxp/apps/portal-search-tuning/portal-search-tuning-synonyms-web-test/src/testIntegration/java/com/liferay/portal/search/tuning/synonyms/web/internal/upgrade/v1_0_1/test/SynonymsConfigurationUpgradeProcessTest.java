@@ -95,7 +95,7 @@ public class SynonymsConfigurationUpgradeProcessTest {
 				StringBundler.concat(
 					"select dictionary from Configuration_ where ",
 					"configurationId = '", _CONFIGURATION_ID, "'"));
-			ResultSet resultSet = preparedStatement.executeQuery()) {
+			ResultSet   resultSet = preparedStatement.executeQuery()) {
 
 			if (resultSet.next()) {
 				String dictionaryString = resultSet.getString("dictionary");

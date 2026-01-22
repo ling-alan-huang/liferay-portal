@@ -60,7 +60,7 @@ public class CommerceOrganizationPortletPreferencesUpgradeProcess
 						Organization organization =
 							_organizationLocalService.fetchOrganization(
 								GetterUtil.getLong(smallValue));
-
+  
 						if (organization == null) {
 							updatePreparedStatement.setString(2, null);
 						}
