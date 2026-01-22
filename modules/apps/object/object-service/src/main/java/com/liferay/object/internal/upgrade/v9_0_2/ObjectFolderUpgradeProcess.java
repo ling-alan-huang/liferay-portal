@@ -23,6 +23,7 @@ import java.sql.ResultSet;
  */
 public class ObjectFolderUpgradeProcess extends UpgradeProcess {
 
+	
 	@Override
 	protected void doUpgrade() throws Exception {
 		try (PreparedStatement preparedStatement1 = connection.prepareStatement(

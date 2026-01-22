@@ -41,6 +41,7 @@ public class ObjectEntryAssetEntryTitleUpgradeProcess extends UpgradeProcess {
 			systemObjectDefinitionManagerRegistry;
 	}
 
+	
 	@Override
 	protected void doUpgrade() throws Exception {
 		Map<Long, ObjectEntryInfo> objectEntryInfos = new HashMap<>();

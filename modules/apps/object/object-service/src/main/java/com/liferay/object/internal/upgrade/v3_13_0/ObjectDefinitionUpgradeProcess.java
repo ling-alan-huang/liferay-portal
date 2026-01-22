@@ -30,6 +30,7 @@ public class ObjectDefinitionUpgradeProcess extends UpgradeProcess {
 							"' where objectDefinitionId = ?");
 			ResultSet resultSet = preparedStatement1.executeQuery()) {
 
+			
 			while (resultSet.next()) {
 				preparedStatement2.setLong(
 					1, resultSet.getLong("objectDefinitionId"));

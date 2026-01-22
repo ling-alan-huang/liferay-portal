@@ -32,6 +32,7 @@ public class SchemaUpgradeProcess extends UpgradeProcess {
 						"businessType = '",
 						ObjectFieldConstants.BUSINESS_TYPE_PICKLIST, "'")))) {
 
+		
 			preparedStatement.setInt(1, WorkflowConstants.STATUS_APPROVED);
 
 			try (ResultSet resultSet = preparedStatement.executeQuery()) {

@@ -35,6 +35,7 @@ public class ObjectDefinitionUpgradeProcess extends UpgradeProcess {
 			friendlyURLSeparatorConfigurationManager;
 	}
 
+	
 	@Override
 	protected void doUpgrade() throws Exception {
 		try (PreparedStatement preparedStatement1 = connection.prepareStatement(

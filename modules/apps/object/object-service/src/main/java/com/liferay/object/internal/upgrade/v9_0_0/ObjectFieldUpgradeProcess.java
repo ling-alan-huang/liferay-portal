@@ -34,6 +34,7 @@ public class ObjectFieldUpgradeProcess extends UpgradeProcess {
 						"join ObjectDefinition on ",
 						"ObjectDefinition.objectDefinitionId = ",
 						"ObjectField.objectDefinitionId inner join ",
+				
 						"ObjectFieldSetting on ",
 						"ObjectFieldSetting.objectFieldId = ",
 						"ObjectField.objectFieldId where ",

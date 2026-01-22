@@ -31,6 +31,7 @@ public class ObjectActionUpgradeProcess extends UpgradeProcess {
 	public ObjectActionUpgradeProcess(
 		NotificationTemplateLocalService notificationTemplateLocalService) {
 
+		
 		_notificationTemplateLocalService = notificationTemplateLocalService;
 	}
 

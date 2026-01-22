@@ -41,6 +41,7 @@ public class ObjectFieldSettingUpgradeProcess extends UpgradeProcess {
 						"value) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"));
 			ResultSet resultSet = preparedStatement1.executeQuery()) {
 
+			
 			while (resultSet.next()) {
 				preparedStatement2.setString(1, PortalUUIDUtil.generate());
 				preparedStatement2.setLong(2, increment());
