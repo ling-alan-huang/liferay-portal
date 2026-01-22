@@ -1180,6 +1180,85 @@ public class LayoutsAdminDisplayContext {
 			httpServletRequest, "robots", _getStrictRobots());
 	}
 
+	public Group getSelGroup() {
+		return _groupDisplayContextHelper.getSelGroup();
+	}
+
+	public long getSelGroupId() {
+		Group selGroup = getSelGroup();
+
+		if (selGroup != null) {
+			return selGroup.getGroupId();
+		}
+
+		return 0;
+	}
+
+	public Layout getSelLayout() {
+		if (_selLayout != null) {
+			return _selLayout;
+		}
+
+		if (getSelPlid() != LayoutConstants.DEFAULT_PLID) {
+			_selLayout = LayoutLocalServiceUtil.fetchLayout(getSelPlid());
+		}
+
+		return _selLayout;
+	}
+
+	public LayoutSet getSelLayoutSet() {
+		if (_selLayoutSet != null) {
+			return _selLayoutSet;
+		}
+
+		Group group = getStagingGroup();
+
+		if (group == null) {
+			group = getLiveGroup();
+		}
+
+		_selLayoutSet = LayoutSetLocalServiceUtil.fetchLayoutSet(
+			group.getGroupId(), isPrivateLayout());
+
+		return _selLayoutSet;
+	}
+
+	public Long getSelPlid() {
+		if (_selPlid != null) {
+			return _selPlid;
+		}
+
+		_selPlid = ParamUtil.getLong(
+			_liferayPortletRequest, "selPlid", LayoutConstants.DEFAULT_PLID);
+
+		if ((_selPlid == 0) ||
+			(!Objects.equals(
+				ParamUtil.getString(
+					httpServletRequest, "screenNavigationEntryKey"),
+				LayoutScreenNavigationEntryConstants.ENTRY_KEY_DESIGN) &&
+			 !Objects.equals(
+				 httpServletRequest.getAttribute(
+					 ScreenNavigationWebKeys.SELECTED_ENTRY_KEY),
+				 LayoutScreenNavigationEntryConstants.ENTRY_KEY_DESIGN))) {
+
+			return _selPlid;
+		}
+
+		Layout layout = LayoutLocalServiceUtil.fetchLayout(_selPlid);
+
+		if (layout == null) {
+			return _selPlid;
+		}
+
+		Layout draftLayout = layout.fetchDraftLayout();
+
+		if (draftLayout != null) {
+			_selPlid = draftLayout.getPlid();
+		}
+
+		return _selPlid;
+	}
+
 	public String getSelectFaviconEventName() {
 		return _liferayPortletResponse.getNamespace() + "selectImage";
 	}
@@ -1266,85 +1345,6 @@ public class LayoutsAdminDisplayContext {
 					_liferayPortletRequest),
 				_liferayPortletResponse.getNamespace() + "selectTheme",
 				layoutThemeItemSelectorCriterion));
-	}
-
-	public Group getSelGroup() {
-		return _groupDisplayContextHelper.getSelGroup();
-	}
-
-	public long getSelGroupId() {
-		Group selGroup = getSelGroup();
-
-		if (selGroup != null) {
-			return selGroup.getGroupId();
-		}
-
-		return 0;
-	}
-
-	public Layout getSelLayout() {
-		if (_selLayout != null) {
-			return _selLayout;
-		}
-
-		if (getSelPlid() != LayoutConstants.DEFAULT_PLID) {
-			_selLayout = LayoutLocalServiceUtil.fetchLayout(getSelPlid());
-		}
-
-		return _selLayout;
-	}
-
-	public LayoutSet getSelLayoutSet() {
-		if (_selLayoutSet != null) {
-			return _selLayoutSet;
-		}
-
-		Group group = getStagingGroup();
-
-		if (group == null) {
-			group = getLiveGroup();
-		}
-
-		_selLayoutSet = LayoutSetLocalServiceUtil.fetchLayoutSet(
-			group.getGroupId(), isPrivateLayout());
-
-		return _selLayoutSet;
-	}
-
-	public Long getSelPlid() {
-		if (_selPlid != null) {
-			return _selPlid;
-		}
-
-		_selPlid = ParamUtil.getLong(
-			_liferayPortletRequest, "selPlid", LayoutConstants.DEFAULT_PLID);
-
-		if ((_selPlid == 0) ||
-			(!Objects.equals(
-				ParamUtil.getString(
-					httpServletRequest, "screenNavigationEntryKey"),
-				LayoutScreenNavigationEntryConstants.ENTRY_KEY_DESIGN) &&
-			 !Objects.equals(
-				 httpServletRequest.getAttribute(
-					 ScreenNavigationWebKeys.SELECTED_ENTRY_KEY),
-				 LayoutScreenNavigationEntryConstants.ENTRY_KEY_DESIGN))) {
-
-			return _selPlid;
-		}
-
-		Layout layout = LayoutLocalServiceUtil.fetchLayout(_selPlid);
-
-		if (layout == null) {
-			return _selPlid;
-		}
-
-		Layout draftLayout = layout.fetchDraftLayout();
-
-		if (draftLayout != null) {
-			_selPlid = draftLayout.getPlid();
-		}
-
-		return _selPlid;
 	}
 
 	public Group getStagingGroup() {

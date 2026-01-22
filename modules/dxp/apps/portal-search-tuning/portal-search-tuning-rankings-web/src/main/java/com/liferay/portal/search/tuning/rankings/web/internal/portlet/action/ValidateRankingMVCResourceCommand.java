@@ -243,12 +243,12 @@ public class ValidateRankingMVCResourceCommand implements MVCResourceCommand {
 			return _resultsRankingUid;
 		}
 
-		public String getStatus() {
-			return _status;
-		}
-
 		public String getSXPBlueprintExternalReferenceCode() {
 			return _sxpBlueprintExternalReferenceCode;
+		}
+
+		public String getStatus() {
+			return _status;
 		}
 
 		private final List<String> _aliases;

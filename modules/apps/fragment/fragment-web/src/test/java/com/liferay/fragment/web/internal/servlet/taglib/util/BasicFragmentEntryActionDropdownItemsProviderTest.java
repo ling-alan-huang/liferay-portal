@@ -85,29 +85,6 @@ public class BasicFragmentEntryActionDropdownItemsProviderTest
 	}
 
 	@Test
-	public void testGetActionDropdownItemstForMarketplaceFragmentEntry()
-		throws Exception {
-
-		setUpFragmentPermission(true);
-
-		Mockito.when(
-			_fragmentEntry.isMarketplace()
-		).thenReturn(
-			true
-		);
-
-		BasicFragmentEntryActionDropdownItemsProvider
-			basicFragmentEntryActionDropdownItemsProvider =
-				new BasicFragmentEntryActionDropdownItemsProvider(
-					_fragmentEntry, renderRequest, renderResponse);
-
-		assertDropdownItemsInCorrectOrder(
-			basicFragmentEntryActionDropdownItemsProvider.
-				getActionDropdownItems(),
-			"view-site-usages", "move", "delete");
-	}
-
-	@Test
 	public void testGetActionDropdownItemsWithManageFragmentEntries()
 		throws Exception {
 
@@ -141,6 +118,29 @@ public class BasicFragmentEntryActionDropdownItemsProviderTest
 		assertDropdownItemsInCorrectOrder(
 			basicFragmentEntryActionDropdownItemsProvider.
 				getActionDropdownItems());
+	}
+
+	@Test
+	public void testGetActionDropdownItemstForMarketplaceFragmentEntry()
+		throws Exception {
+
+		setUpFragmentPermission(true);
+
+		Mockito.when(
+			_fragmentEntry.isMarketplace()
+		).thenReturn(
+			true
+		);
+
+		BasicFragmentEntryActionDropdownItemsProvider
+			basicFragmentEntryActionDropdownItemsProvider =
+				new BasicFragmentEntryActionDropdownItemsProvider(
+					_fragmentEntry, renderRequest, renderResponse);
+
+		assertDropdownItemsInCorrectOrder(
+			basicFragmentEntryActionDropdownItemsProvider.
+				getActionDropdownItems(),
+			"view-site-usages", "move", "delete");
 	}
 
 	private void _setUpFragmentEntry(

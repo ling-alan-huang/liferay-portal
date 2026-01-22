@@ -602,6 +602,30 @@ public class TestrayAttachmentRecorder {
 		}
 	}
 
+	private void _recordJStacks() {
+		File sourceJStacksDir = new File(System.getenv("BUILD_DIR"), "jstacks");
+
+		if (!sourceJStacksDir.exists()) {
+			return;
+		}
+
+		File destinationJStacksDir = new File(
+			_getRecordedFilesBuildDir(), "jstacks");
+
+		for (File sourceJStackFile : sourceJStacksDir.listFiles()) {
+			try {
+				JenkinsResultsParserUtil.copy(
+					sourceJStackFile,
+					new File(
+						destinationJStacksDir,
+						sourceJStackFile.getName() + ".txt"));
+			}
+			catch (IOException ioException) {
+				throw new RuntimeException(ioException);
+			}
+		}
+	}
+
 	private void _recordJenkinsReport() {
 		if (!(_build instanceof TopLevelBuild)) {
 			return;
@@ -647,30 +671,6 @@ public class TestrayAttachmentRecorder {
 		}
 		catch (IOException ioException) {
 			throw new RuntimeException(ioException);
-		}
-	}
-
-	private void _recordJStacks() {
-		File sourceJStacksDir = new File(System.getenv("BUILD_DIR"), "jstacks");
-
-		if (!sourceJStacksDir.exists()) {
-			return;
-		}
-
-		File destinationJStacksDir = new File(
-			_getRecordedFilesBuildDir(), "jstacks");
-
-		for (File sourceJStackFile : sourceJStacksDir.listFiles()) {
-			try {
-				JenkinsResultsParserUtil.copy(
-					sourceJStackFile,
-					new File(
-						destinationJStacksDir,
-						sourceJStackFile.getName() + ".txt"));
-			}
-			catch (IOException ioException) {
-				throw new RuntimeException(ioException);
-			}
 		}
 	}
 

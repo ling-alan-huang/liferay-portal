@@ -186,24 +186,6 @@ public class SoyPlugin implements Plugin<Project> {
 			});
 	}
 
-	private void _configureTasksBuildSoy(
-		Project project, final Configuration soyConfiguration) {
-
-		TaskContainer taskContainer = project.getTasks();
-
-		taskContainer.withType(
-			BuildSoyTask.class,
-			new Action<BuildSoyTask>() {
-
-				@Override
-				public void execute(BuildSoyTask buildSoyTask) {
-					_configureTaskBuildSoyClasspath(
-						buildSoyTask, soyConfiguration);
-				}
-
-			});
-	}
-
 	private void _configureTaskWrapSoyAlloyTemplateForJavaLibraryPlugin(
 		final WrapSoyAlloyTemplateTask wrapSoyAlloyTemplateTask) {
 
@@ -231,6 +213,24 @@ public class SoyPlugin implements Plugin<Project> {
 			JavaPlugin.CLASSES_TASK_NAME);
 
 		classesTask.dependsOn(wrapSoyAlloyTemplateTask);
+	}
+
+	private void _configureTasksBuildSoy(
+		Project project, final Configuration soyConfiguration) {
+
+		TaskContainer taskContainer = project.getTasks();
+
+		taskContainer.withType(
+			BuildSoyTask.class,
+			new Action<BuildSoyTask>() {
+
+				@Override
+				public void execute(BuildSoyTask buildSoyTask) {
+					_configureTaskBuildSoyClasspath(
+						buildSoyTask, soyConfiguration);
+				}
+
+			});
 	}
 
 	private File _getResourcesDir(Project project) {

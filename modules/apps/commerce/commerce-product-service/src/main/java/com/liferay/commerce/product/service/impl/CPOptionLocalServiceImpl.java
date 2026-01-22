@@ -377,6 +377,17 @@ public class CPOptionLocalServiceImpl extends CPOptionLocalServiceBaseImpl {
 			"Unable to fix the search index after 10 attempts");
 	}
 
+	private void _validateCPOptionKey(
+			long cpOptionId, long companyId, String key)
+		throws PortalException {
+
+		CPOption cpOption = cpOptionPersistence.fetchByC_K(companyId, key);
+
+		if ((cpOption != null) && (cpOption.getCPOptionId() != cpOptionId)) {
+			throw new CPOptionKeyException();
+		}
+	}
+
 	private void _validateCommerceOptionTypeKey(
 			String commerceOptionTypeKey, boolean skuContributor)
 		throws PortalException {
@@ -403,17 +414,6 @@ public class CPOptionLocalServiceImpl extends CPOptionLocalServiceBaseImpl {
 		}
 
 		throw new CPOptionSKUContributorException();
-	}
-
-	private void _validateCPOptionKey(
-			long cpOptionId, long companyId, String key)
-		throws PortalException {
-
-		CPOption cpOption = cpOptionPersistence.fetchByC_K(companyId, key);
-
-		if ((cpOption != null) && (cpOption.getCPOptionId() != cpOptionId)) {
-			throw new CPOptionKeyException();
-		}
 	}
 
 	private static final String[] _SELECTED_FIELD_NAMES = {

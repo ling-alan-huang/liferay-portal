@@ -530,6 +530,9 @@ public class MappedProductDTOConverter
 	}
 
 	@Reference
+	private CProductLocalService _cProductLocalService;
+
+	@Reference
 	private CommerceInventoryEngine _commerceInventoryEngine;
 
 	@Reference
@@ -556,9 +559,6 @@ public class MappedProductDTOConverter
 
 	@Reference
 	private CPInstanceLocalService _cpInstanceLocalService;
-
-	@Reference
-	private CProductLocalService _cProductLocalService;
 
 	@Reference
 	private CSDiagramEntryLocalService _csDiagramEntryLocalService;

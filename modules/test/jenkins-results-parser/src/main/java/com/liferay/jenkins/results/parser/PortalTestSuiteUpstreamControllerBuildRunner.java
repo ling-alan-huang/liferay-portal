@@ -480,23 +480,6 @@ public class PortalTestSuiteUpstreamControllerBuildRunner
 		return _selectedTestSuiteNames;
 	}
 
-	private String _getTestrayProjectName(String testSuite) {
-		return _getTestSuiteBuildProperty(
-			"portal.testsuite.upstream.testray.project.name", testSuite);
-	}
-
-	private String _getTestrayRoutineName(String testSuite) {
-		String testrayRoutineName = _getTestSuiteBuildProperty(
-			"portal.testsuite.upstream.testray.routine.name", testSuite);
-
-		if (JenkinsResultsParserUtil.isNullOrEmpty(testrayRoutineName)) {
-			testrayRoutineName = _getTestSuiteBuildProperty(
-				"portal.testsuite.upstream.testray.build.type", testSuite);
-		}
-
-		return testrayRoutineName;
-	}
-
 	private String _getTestSuiteBuildProperty(
 		String propertyName, String testSuite) {
 
@@ -525,6 +508,23 @@ public class PortalTestSuiteUpstreamControllerBuildRunner
 		catch (IOException ioException) {
 			throw new RuntimeException(ioException);
 		}
+	}
+
+	private String _getTestrayProjectName(String testSuite) {
+		return _getTestSuiteBuildProperty(
+			"portal.testsuite.upstream.testray.project.name", testSuite);
+	}
+
+	private String _getTestrayRoutineName(String testSuite) {
+		String testrayRoutineName = _getTestSuiteBuildProperty(
+			"portal.testsuite.upstream.testray.routine.name", testSuite);
+
+		if (JenkinsResultsParserUtil.isNullOrEmpty(testrayRoutineName)) {
+			testrayRoutineName = _getTestSuiteBuildProperty(
+				"portal.testsuite.upstream.testray.build.type", testSuite);
+		}
+
+		return testrayRoutineName;
 	}
 
 	private boolean _previousBuildHasCurrentSHA(

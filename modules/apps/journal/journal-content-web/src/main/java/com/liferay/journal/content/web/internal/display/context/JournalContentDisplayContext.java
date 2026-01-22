@@ -806,6 +806,11 @@ public class JournalContentDisplayContext {
 		return Validator.isNull(ddmTemplateExternalReferenceCode);
 	}
 
+	public boolean isEnableViewCountIncrement() {
+		return _journalContentPortletInstanceConfiguration.
+			enableViewCountIncrement();
+	}
+
 	public boolean isEnabledContentMetadataAssetAddonEntry(String key) {
 		String contentMetadataAssetAddonEntryKeysString =
 			_journalContentPortletInstanceConfiguration.
@@ -845,11 +850,6 @@ public class JournalContentDisplayContext {
 			userToolAssetAddonEntryKeysString);
 
 		return ArrayUtil.contains(userToolAssetAddonEntryKeys, key);
-	}
-
-	public boolean isEnableViewCountIncrement() {
-		return _journalContentPortletInstanceConfiguration.
-			enableViewCountIncrement();
 	}
 
 	public boolean isExpired() throws PortalException {

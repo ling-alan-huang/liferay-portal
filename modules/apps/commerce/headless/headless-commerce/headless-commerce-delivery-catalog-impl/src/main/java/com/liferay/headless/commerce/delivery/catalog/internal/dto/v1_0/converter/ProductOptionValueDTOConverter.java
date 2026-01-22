@@ -471,30 +471,6 @@ public class ProductOptionValueDTOConverter
 		};
 	}
 
-	private JSONArray _getClonedJSONArray(
-			CPDefinitionOptionRel cpDefinitionOptionRel,
-			CPDefinitionOptionValueRel cpDefinitionOptionValueRel,
-			long cpInstanceId)
-		throws PortalException {
-
-		JSONArray jsonArray = CPJSONUtil.toJSONArray(
-			_cpDefinitionOptionRelLocalService.
-				getCPDefinitionOptionRelKeysCPDefinitionOptionValueRelKeys(
-					cpInstanceId));
-
-		JSONArray clonedJSONArray = _jsonFactory.createJSONArray(
-			jsonArray.toString());
-
-		if (_updateJSONArray(
-				cpDefinitionOptionRel.getKey(),
-				cpDefinitionOptionValueRel.getKey(), clonedJSONArray)) {
-
-			return clonedJSONArray;
-		}
-
-		return null;
-	}
-
 	private String _getCOREntryInfoMessage(
 			List<CommerceOptionValue> commerceOptionValues,
 			CPDefinitionOptionRel cpDefinitionOptionRel,
@@ -657,6 +633,30 @@ public class ProductOptionValueDTOConverter
 						linkedCPDefinition.getName(languageId)
 					});
 			}
+		}
+
+		return null;
+	}
+
+	private JSONArray _getClonedJSONArray(
+			CPDefinitionOptionRel cpDefinitionOptionRel,
+			CPDefinitionOptionValueRel cpDefinitionOptionValueRel,
+			long cpInstanceId)
+		throws PortalException {
+
+		JSONArray jsonArray = CPJSONUtil.toJSONArray(
+			_cpDefinitionOptionRelLocalService.
+				getCPDefinitionOptionRelKeysCPDefinitionOptionValueRelKeys(
+					cpInstanceId));
+
+		JSONArray clonedJSONArray = _jsonFactory.createJSONArray(
+			jsonArray.toString());
+
+		if (_updateJSONArray(
+				cpDefinitionOptionRel.getKey(),
+				cpDefinitionOptionValueRel.getKey(), clonedJSONArray)) {
+
+			return clonedJSONArray;
 		}
 
 		return null;

@@ -177,6 +177,56 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 		return definition;
 	}
 
+	private AIDecision _parseAIDecision(Element aiDecisionElement) {
+		AIDecision aiDecision = new AIDecision(
+			StringUtil.trim(aiDecisionElement.elementText("description")),
+			aiDecisionElement.elementTextTrim("name"));
+
+		aiDecision.setLabelMap(
+			_parseLabels(aiDecisionElement.element("labels")));
+		aiDecision.setMetadata(aiDecisionElement.elementTextTrim("metadata"));
+
+		Set<Setting> settings = new HashSet<>();
+
+		String inputVariables = aiDecisionElement.elementTextTrim(
+			"input-variables");
+
+		if (inputVariables != null) {
+			settings.add(new Setting("inputVariables", inputVariables));
+		}
+
+		String outputVariables = aiDecisionElement.elementTextTrim(
+			"output-variables");
+
+		if (outputVariables != null) {
+			settings.add(new Setting("outputVariables", outputVariables));
+		}
+
+		settings.add(
+			new Setting("prompt", aiDecisionElement.elementTextTrim("prompt")));
+
+		String rag = aiDecisionElement.elementTextTrim("rag");
+
+		if (rag != null) {
+			settings.add(new Setting("rag", rag));
+		}
+
+		String tools = aiDecisionElement.elementTextTrim("tools");
+
+		if (tools != null) {
+			settings.add(new Setting("tools", tools));
+		}
+
+		settings.add(
+			new Setting(
+				"userMessage",
+				aiDecisionElement.elementTextTrim("user-message")));
+
+		aiDecision.setSettings(settings);
+
+		return aiDecision;
+	}
+
 	private void _parseActionElements(
 			List<Element> actionElements, ActionAware actionAware)
 		throws Exception {
@@ -237,56 +287,6 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 			"notification");
 
 		_parseNotificationElements(notificationElements, node);
-	}
-
-	private AIDecision _parseAIDecision(Element aiDecisionElement) {
-		AIDecision aiDecision = new AIDecision(
-			StringUtil.trim(aiDecisionElement.elementText("description")),
-			aiDecisionElement.elementTextTrim("name"));
-
-		aiDecision.setLabelMap(
-			_parseLabels(aiDecisionElement.element("labels")));
-		aiDecision.setMetadata(aiDecisionElement.elementTextTrim("metadata"));
-
-		Set<Setting> settings = new HashSet<>();
-
-		String inputVariables = aiDecisionElement.elementTextTrim(
-			"input-variables");
-
-		if (inputVariables != null) {
-			settings.add(new Setting("inputVariables", inputVariables));
-		}
-
-		String outputVariables = aiDecisionElement.elementTextTrim(
-			"output-variables");
-
-		if (outputVariables != null) {
-			settings.add(new Setting("outputVariables", outputVariables));
-		}
-
-		settings.add(
-			new Setting("prompt", aiDecisionElement.elementTextTrim("prompt")));
-
-		String rag = aiDecisionElement.elementTextTrim("rag");
-
-		if (rag != null) {
-			settings.add(new Setting("rag", rag));
-		}
-
-		String tools = aiDecisionElement.elementTextTrim("tools");
-
-		if (tools != null) {
-			settings.add(new Setting("tools", tools));
-		}
-
-		settings.add(
-			new Setting(
-				"userMessage",
-				aiDecisionElement.elementTextTrim("user-message")));
-
-		aiDecision.setSettings(settings);
-
-		return aiDecision;
 	}
 
 	private Set<Assignment> _parseAssignments(Element assignmentsElement)
@@ -497,23 +497,6 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 		return joinXor;
 	}
 
-	private Map<Locale, String> _parseLabels(Element labelsElement) {
-		if (labelsElement == null) {
-			return Collections.emptyMap();
-		}
-
-		Map<Locale, String> labelMap = new HashMap<>();
-
-		for (Element labelElement : labelsElement.elements()) {
-			labelMap.put(
-				LocaleUtil.fromLanguageId(
-					labelElement.attributeValue("language-id")),
-				labelElement.getText());
-		}
-
-		return labelMap;
-	}
-
 	private LLM _parseLLM(Element llmElement) {
 		LLM llm = new LLM(
 			StringUtil.trim(llmElement.elementText("description")),
@@ -559,6 +542,23 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 		llm.setSettings(settings);
 
 		return llm;
+	}
+
+	private Map<Locale, String> _parseLabels(Element labelsElement) {
+		if (labelsElement == null) {
+			return Collections.emptyMap();
+		}
+
+		Map<Locale, String> labelMap = new HashMap<>();
+
+		for (Element labelElement : labelsElement.elements()) {
+			labelMap.put(
+				LocaleUtil.fromLanguageId(
+					labelElement.attributeValue("language-id")),
+				labelElement.getText());
+		}
+
+		return labelMap;
 	}
 
 	private void _parseNotificationElements(

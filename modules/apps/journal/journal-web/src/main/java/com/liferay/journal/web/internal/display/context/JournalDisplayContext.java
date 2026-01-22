@@ -504,6 +504,36 @@ public class JournalDisplayContext {
 		return _ddmStructureName;
 	}
 
+	public VerticalNavItemList getDDMStructureVerticalNavItemList() {
+		VerticalNavItemList verticalNavItemList = new VerticalNavItemList();
+
+		for (DDMStructure ddmStructure :
+				DDMStructureUtil.getHighlightedDDMStructures(_themeDisplay)) {
+
+			verticalNavItemList.add(
+				verticalNavItem -> {
+					verticalNavItem.setActive(
+						getHighlightedDDMStructureId() ==
+							ddmStructure.getStructureId());
+					verticalNavItem.setHref(
+						PortletURLBuilder.createRenderURL(
+							_liferayPortletResponse
+						).setParameter(
+							"highlightedDDMStructureId",
+							ddmStructure.getStructureId()
+						).buildString());
+
+					String name = ddmStructure.getName(
+						_themeDisplay.getLocale());
+
+					verticalNavItem.setId(name);
+					verticalNavItem.setLabel(name);
+				});
+		}
+
+		return verticalNavItemList;
+	}
+
 	public List<DDMStructure> getDDMStructures() throws PortalException {
 		return getDDMStructures(getRestrictionType());
 	}
@@ -538,36 +568,6 @@ public class JournalDisplayContext {
 		}
 
 		return _ddmStructures;
-	}
-
-	public VerticalNavItemList getDDMStructureVerticalNavItemList() {
-		VerticalNavItemList verticalNavItemList = new VerticalNavItemList();
-
-		for (DDMStructure ddmStructure :
-				DDMStructureUtil.getHighlightedDDMStructures(_themeDisplay)) {
-
-			verticalNavItemList.add(
-				verticalNavItem -> {
-					verticalNavItem.setActive(
-						getHighlightedDDMStructureId() ==
-							ddmStructure.getStructureId());
-					verticalNavItem.setHref(
-						PortletURLBuilder.createRenderURL(
-							_liferayPortletResponse
-						).setParameter(
-							"highlightedDDMStructureId",
-							ddmStructure.getStructureId()
-						).buildString());
-
-					String name = ddmStructure.getName(
-						_themeDisplay.getLocale());
-
-					verticalNavItem.setId(name);
-					verticalNavItem.setLabel(name);
-				});
-		}
-
-		return verticalNavItemList;
 	}
 
 	public int getDefaultStatus() {
@@ -661,6 +661,18 @@ public class JournalDisplayContext {
 		return folderActionDropdownItems.getInfoPanelActionDropdownItems();
 	}
 
+	public String getFolderSubtitle(JournalFolder folder) {
+		if (isNavigationMine() || isNavigationRecent()) {
+			return _getSubtitle(
+				folder.getCreateDate(), "created-x-ago-by-x",
+				folder.getUserName());
+		}
+
+		return _getSubtitle(
+			folder.getModifiedDate(), "modified-x-ago-by-x",
+			folder.getStatusByUserName());
+	}
+
 	public JSONArray getFoldersJSONArray() {
 		return JSONUtil.put(
 			JSONUtil.put(
@@ -673,18 +685,6 @@ public class JournalDisplayContext {
 			).put(
 				"name", LanguageUtil.get(_themeDisplay.getLocale(), "home")
 			));
-	}
-
-	public String getFolderSubtitle(JournalFolder folder) {
-		if (isNavigationMine() || isNavigationRecent()) {
-			return _getSubtitle(
-				folder.getCreateDate(), "created-x-ago-by-x",
-				folder.getUserName());
-		}
-
-		return _getSubtitle(
-			folder.getModifiedDate(), "modified-x-ago-by-x",
-			folder.getStatusByUserName());
 	}
 
 	public long getHighlightedDDMStructureId() {

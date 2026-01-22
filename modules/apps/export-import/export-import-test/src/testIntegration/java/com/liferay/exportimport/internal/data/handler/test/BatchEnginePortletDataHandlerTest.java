@@ -1602,18 +1602,6 @@ public class BatchEnginePortletDataHandlerTest {
 
 	}
 
-	private DepotEntry _addDepotEntry() throws Exception {
-		return _depotEntryLocalService.addDepotEntry(
-			HashMapBuilder.put(
-				LocaleUtil.getDefault(), RandomTestUtil.randomString()
-			).build(),
-			HashMapBuilder.put(
-				LocaleUtil.getDefault(), RandomTestUtil.randomString()
-			).build(),
-			DepotConstants.TYPE_ASSET_LIBRARY,
-			ServiceContextTestUtil.getServiceContext());
-	}
-
 	private DLFileEntry _addDLFileEntry(String content, long groupId)
 		throws Exception {
 
@@ -1628,6 +1616,18 @@ public class BatchEnginePortletDataHandlerTest {
 
 		return _dlFileEntryLocalService.getFileEntry(
 			fileEntry.getFileEntryId());
+	}
+
+	private DepotEntry _addDepotEntry() throws Exception {
+		return _depotEntryLocalService.addDepotEntry(
+			HashMapBuilder.put(
+				LocaleUtil.getDefault(), RandomTestUtil.randomString()
+			).build(),
+			HashMapBuilder.put(
+				LocaleUtil.getDefault(), RandomTestUtil.randomString()
+			).build(),
+			DepotConstants.TYPE_ASSET_LIBRARY,
+			ServiceContextTestUtil.getServiceContext());
 	}
 
 	private FileEntry _addImageFileEntry(long groupId) throws Exception {
@@ -2097,19 +2097,6 @@ public class BatchEnginePortletDataHandlerTest {
 		}
 	}
 
-	private JSONArray _getExportedObjectEntriesJSONArray(
-			String className, File file, long groupId)
-		throws Exception {
-
-		try (ZipFile zipFile = new ZipFile(file)) {
-			ZipEntry zipEntry = zipFile.getEntry(
-				_getBatchFileNameWithPath(className + ".json", groupId));
-
-			return JSONFactoryUtil.createJSONArray(
-				StringUtil.read(zipFile.getInputStream(zipEntry)));
-		}
-	}
-
 	private Map<String, String[]> _getExportImportParameterMap(
 		boolean deletions, boolean includeDocumentLibrary,
 		boolean includeLayoutSetLayoutsPortlet,
@@ -2184,6 +2171,19 @@ public class BatchEnginePortletDataHandlerTest {
 		}
 
 		return parameterMap;
+	}
+
+	private JSONArray _getExportedObjectEntriesJSONArray(
+			String className, File file, long groupId)
+		throws Exception {
+
+		try (ZipFile zipFile = new ZipFile(file)) {
+			ZipEntry zipEntry = zipFile.getEntry(
+				_getBatchFileNameWithPath(className + ".json", groupId));
+
+			return JSONFactoryUtil.createJSONArray(
+				StringUtil.read(zipFile.getInputStream(zipEntry)));
+		}
 	}
 
 	private String[] _getExternalReferenceCodes(ObjectEntry... objectEntries) {

@@ -89,17 +89,6 @@ public class ViewRelatedAssetsSectionDisplayContextTest
 	}
 
 	@Test
-	public void testGetAdditionalProps() throws Exception {
-		HashMap<String, Object> additionalProps = ReflectionTestUtil.invoke(
-			_getViewRelatedAssetsSectionDisplayContext(mockHttpServletRequest),
-			"getAdditionalProps", new Class<?>[0]);
-
-		Assert.assertEquals(
-			_objectDefinition.getExternalReferenceCode() + _KEYWORD_SUFFIX,
-			additionalProps.get("keywords"));
-	}
-
-	@Test
 	public void testGetAPIURL() throws Exception {
 		String apiURL = ReflectionTestUtil.invoke(
 			_getViewRelatedAssetsSectionDisplayContext(mockHttpServletRequest),
@@ -112,6 +101,17 @@ public class ViewRelatedAssetsSectionDisplayContextTest
 					"keywords/any(k:k in ('",
 					_objectDefinition.getExternalReferenceCode(),
 					_KEYWORD_SUFFIX, "'))")));
+	}
+
+	@Test
+	public void testGetAdditionalProps() throws Exception {
+		HashMap<String, Object> additionalProps = ReflectionTestUtil.invoke(
+			_getViewRelatedAssetsSectionDisplayContext(mockHttpServletRequest),
+			"getAdditionalProps", new Class<?>[0]);
+
+		Assert.assertEquals(
+			_objectDefinition.getExternalReferenceCode() + _KEYWORD_SUFFIX,
+			additionalProps.get("keywords"));
 	}
 
 	@Test

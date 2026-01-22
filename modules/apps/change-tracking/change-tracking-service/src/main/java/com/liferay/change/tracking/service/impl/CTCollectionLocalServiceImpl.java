@@ -406,18 +406,6 @@ public class CTCollectionLocalServiceImpl
 	}
 
 	@Override
-	public void deleteCompanyCTCollections(long companyId)
-		throws PortalException {
-
-		List<CTCollection> ctCollections =
-			ctCollectionPersistence.findByCompanyId(companyId);
-
-		for (CTCollection ctCollection : ctCollections) {
-			deleteCTCollection(ctCollection);
-		}
-	}
-
-	@Override
 	public void deleteCTAutoResolutionInfo(long ctAutoResolutionInfoId) {
 		CTAutoResolutionInfo ctAutoResolutionInfo =
 			_ctAutoResolutionInfoPersistence.fetchByPrimaryKey(
@@ -590,6 +578,18 @@ public class CTCollectionLocalServiceImpl
 		}
 
 		return ctCollectionPersistence.remove(ctCollection);
+	}
+
+	@Override
+	public void deleteCompanyCTCollections(long companyId)
+		throws PortalException {
+
+		List<CTCollection> ctCollections =
+			ctCollectionPersistence.findByCompanyId(companyId);
+
+		for (CTCollection ctCollection : ctCollections) {
+			deleteCTCollection(ctCollection);
+		}
 	}
 
 	@Override
@@ -1717,10 +1717,10 @@ public class CTCollectionLocalServiceImpl
 	private GroupLocalService _groupLocalService;
 
 	@Reference
-	private IndexerRegistry _indexerRegistry;
+	private IndexWriterHelper _indexWriterHelper;
 
 	@Reference
-	private IndexWriterHelper _indexWriterHelper;
+	private IndexerRegistry _indexerRegistry;
 
 	@Reference
 	private ResourceLocalService _resourceLocalService;

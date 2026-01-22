@@ -183,16 +183,6 @@ public class IndexUpdaterUtilTest {
 	}
 
 	@Test
-	public void testUpdateIndexes() throws Exception {
-		_dropIndex(_moduleTableIndexName, _moduleIndexName);
-
-		IndexUpdaterUtil.updateIndexes(_moduleBundle);
-
-		Assert.assertTrue(
-			_dbInspector.hasIndex(_moduleTableIndexName, _moduleIndexName));
-	}
-
-	@Test
 	public void testUpdateIndexRetry() throws Exception {
 		DBPartitionUtil.forEachCompanyId(
 			companyId -> _db.runSQL(
@@ -257,6 +247,16 @@ public class IndexUpdaterUtilTest {
 			DBPartitionUtil.forEachCompanyId(
 				companyId -> _db.runSQL("DROP_TABLE_IF_EXISTS(TestTable)"));
 		}
+	}
+
+	@Test
+	public void testUpdateIndexes() throws Exception {
+		_dropIndex(_moduleTableIndexName, _moduleIndexName);
+
+		IndexUpdaterUtil.updateIndexes(_moduleBundle);
+
+		Assert.assertTrue(
+			_dbInspector.hasIndex(_moduleTableIndexName, _moduleIndexName));
 	}
 
 	@Test

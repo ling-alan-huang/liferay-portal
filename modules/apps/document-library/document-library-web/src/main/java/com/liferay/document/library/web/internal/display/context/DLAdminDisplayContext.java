@@ -450,6 +450,19 @@ public class DLAdminDisplayContext {
 		return renderURL;
 	}
 
+	public String getSelectRootFolderURL() throws PortalException {
+		ItemSelector itemSelector =
+			(ItemSelector)_httpServletRequest.getAttribute(
+				ItemSelector.class.getName());
+
+		FolderItemSelectorURLProvider folderItemSelectorURLProvider =
+			new FolderItemSelectorURLProvider(
+				_httpServletRequest, itemSelector);
+
+		return folderItemSelectorURLProvider.getSelectRootFolderURL(
+			getSelectedRepositoryId(), getRootFolderId());
+	}
+
 	public long getSelectedRepositoryId() {
 		if (_selectedRepositoryId != 0) {
 			return _selectedRepositoryId;
@@ -467,19 +480,6 @@ public class DLAdminDisplayContext {
 		_selectedRepositoryId = getRepositoryId();
 
 		return _selectedRepositoryId;
-	}
-
-	public String getSelectRootFolderURL() throws PortalException {
-		ItemSelector itemSelector =
-			(ItemSelector)_httpServletRequest.getAttribute(
-				ItemSelector.class.getName());
-
-		FolderItemSelectorURLProvider folderItemSelectorURLProvider =
-			new FolderItemSelectorURLProvider(
-				_httpServletRequest, itemSelector);
-
-		return folderItemSelectorURLProvider.getSelectRootFolderURL(
-			getSelectedRepositoryId(), getRootFolderId());
 	}
 
 	public PortletURL getViewRenderURL() {
@@ -733,31 +733,6 @@ public class DLAdminDisplayContext {
 		};
 	}
 
-	private String _getDisplayStyle(String defaultValue) {
-		String displayStyle = ParamUtil.getString(
-			_httpServletRequest, "displayStyle");
-
-		String[] displayViews = _dlPortletInstanceSettings.getDisplayViews();
-
-		if (Validator.isNull(displayStyle)) {
-			displayStyle = _getPortletPreference("display-style", defaultValue);
-		}
-		else {
-			if (ArrayUtil.contains(displayViews, displayStyle)) {
-				_setPortletPreference("display-style", displayStyle);
-
-				_httpServletRequest.setAttribute(
-					WebKeys.SINGLE_PAGE_APPLICATION_CLEAR_CACHE, Boolean.TRUE);
-			}
-		}
-
-		if (!ArrayUtil.contains(displayViews, displayStyle)) {
-			displayStyle = displayViews[0];
-		}
-
-		return displayStyle;
-	}
-
 	private SearchContainer<RepositoryEntry> _getDLSearchContainer()
 		throws PortalException {
 
@@ -902,6 +877,31 @@ public class DLAdminDisplayContext {
 		}
 
 		return dlSearchContainer;
+	}
+
+	private String _getDisplayStyle(String defaultValue) {
+		String displayStyle = ParamUtil.getString(
+			_httpServletRequest, "displayStyle");
+
+		String[] displayViews = _dlPortletInstanceSettings.getDisplayViews();
+
+		if (Validator.isNull(displayStyle)) {
+			displayStyle = _getPortletPreference("display-style", defaultValue);
+		}
+		else {
+			if (ArrayUtil.contains(displayViews, displayStyle)) {
+				_setPortletPreference("display-style", displayStyle);
+
+				_httpServletRequest.setAttribute(
+					WebKeys.SINGLE_PAGE_APPLICATION_CLEAR_CACHE, Boolean.TRUE);
+			}
+		}
+
+		if (!ArrayUtil.contains(displayViews, displayStyle)) {
+			displayStyle = displayViews[0];
+		}
+
+		return displayStyle;
 	}
 
 	private Filter _getExtensionsFilter(String[] extensions) {

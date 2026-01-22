@@ -1052,36 +1052,6 @@ public class PageTemplatesImporterTest {
 	}
 
 	@Test
-	public void testImportLayoutPageTemplates() throws Exception {
-		List<LayoutsImporterResultEntry> layoutsImporterResultEntries =
-			_getLayoutsImporterResultEntries(
-				"layout-page-template-multiple", new HashMap<>());
-
-		Assert.assertEquals(
-			layoutsImporterResultEntries.toString(), 2,
-			layoutsImporterResultEntries.size());
-
-		LayoutPageTemplateEntry layoutPageTemplateEntry1 =
-			_getLayoutPageTemplateEntry(layoutsImporterResultEntries, 0);
-		LayoutPageTemplateEntry layoutPageTemplateEntry2 =
-			_getLayoutPageTemplateEntry(layoutsImporterResultEntries, 1);
-
-		List<String> actualLayoutPageTemplateEntryNames = ListUtil.sort(
-			new ArrayList() {
-				{
-					add(layoutPageTemplateEntry1.getName());
-					add(layoutPageTemplateEntry2.getName());
-				}
-			});
-
-		Assert.assertArrayEquals(
-			new String[] {
-				"Layout Page Template One", "Layout Page Template Two"
-			},
-			actualLayoutPageTemplateEntryNames.toArray(new String[0]));
-	}
-
-	@Test
 	public void testImportLayoutPageTemplateWithCustomLookAndFeel()
 		throws Exception {
 
@@ -1171,6 +1141,36 @@ public class PageTemplatesImporterTest {
 		Assert.assertNotNull(
 			PortletFileRepositoryUtil.getPortletFileEntry(
 				layoutPageTemplateEntry.getPreviewFileEntryId()));
+	}
+
+	@Test
+	public void testImportLayoutPageTemplates() throws Exception {
+		List<LayoutsImporterResultEntry> layoutsImporterResultEntries =
+			_getLayoutsImporterResultEntries(
+				"layout-page-template-multiple", new HashMap<>());
+
+		Assert.assertEquals(
+			layoutsImporterResultEntries.toString(), 2,
+			layoutsImporterResultEntries.size());
+
+		LayoutPageTemplateEntry layoutPageTemplateEntry1 =
+			_getLayoutPageTemplateEntry(layoutsImporterResultEntries, 0);
+		LayoutPageTemplateEntry layoutPageTemplateEntry2 =
+			_getLayoutPageTemplateEntry(layoutsImporterResultEntries, 1);
+
+		List<String> actualLayoutPageTemplateEntryNames = ListUtil.sort(
+			new ArrayList() {
+				{
+					add(layoutPageTemplateEntry1.getName());
+					add(layoutPageTemplateEntry2.getName());
+				}
+			});
+
+		Assert.assertArrayEquals(
+			new String[] {
+				"Layout Page Template One", "Layout Page Template Two"
+			},
+			actualLayoutPageTemplateEntryNames.toArray(new String[0]));
 	}
 
 	private void _addFragmentEntryToLayoutPageTemplateEntry(
@@ -1751,11 +1751,11 @@ public class PageTemplatesImporterTest {
 	private LayoutsImporter _layoutsImporter;
 
 	@Inject
-	private PortletPreferencesLocalService _portletPreferencesLocalService;
-
-	@Inject
 	private PortletPreferenceValueLocalService
 		_portletPreferenceValueLocalService;
+
+	@Inject
+	private PortletPreferencesLocalService _portletPreferencesLocalService;
 
 	@Inject
 	private ResourceActionLocalService _resourceActionLocalService;

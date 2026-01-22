@@ -163,12 +163,12 @@ public class EmbeddedPortletWhenEmbeddingNonembeddablePortletInLayoutTest
 	private static LayoutTypePortlet _layoutTypePortlet;
 
 	@Inject
-	private static PortletPreferencesLocalService
-		_portletPreferencesLocalService;
-
-	@Inject
 	private static PortletPreferenceValueLocalService
 		_portletPreferenceValueLocalService;
+
+	@Inject
+	private static PortletPreferencesLocalService
+		_portletPreferencesLocalService;
 
 	private TestNonembeddedPortlet _testNonembeddedPortlet;
 

@@ -784,12 +784,12 @@ public class LayoutRevisionLocalServiceImpl
 	@BeanReference(type = LayoutSetBranchPersistence.class)
 	private LayoutSetBranchPersistence _layoutSetBranchPersistence;
 
-	@BeanReference(type = PortletPreferencesLocalService.class)
-	private PortletPreferencesLocalService _portletPreferencesLocalService;
-
 	@BeanReference(type = PortletPreferenceValueLocalService.class)
 	private PortletPreferenceValueLocalService
 		_portletPreferenceValueLocalService;
+
+	@BeanReference(type = PortletPreferencesLocalService.class)
+	private PortletPreferencesLocalService _portletPreferencesLocalService;
 
 	@BeanReference(type = RecentLayoutRevisionLocalService.class)
 	private RecentLayoutRevisionLocalService _recentLayoutRevisionLocalService;

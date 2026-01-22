@@ -73,13 +73,13 @@ public abstract class BaseBuildEntity
 	}
 
 	@Override
-	public Map<String, String> getBuildParameters() {
-		return _parameters;
+	public String getBuildParameterValue(String name) {
+		return _parameters.get(name);
 	}
 
 	@Override
-	public String getBuildParameterValue(String name) {
-		return _parameters.get(name);
+	public Map<String, String> getBuildParameters() {
+		return _parameters;
 	}
 
 	@Override
@@ -118,6 +118,29 @@ public abstract class BaseBuildEntity
 	}
 
 	@Override
+	public JSONObject getJSONObject() {
+		JSONObject jsonObject = super.getJSONObject();
+
+		State state = getState();
+
+		jsonObject.put(
+			"initialBuild", isInitialBuild()
+		).put(
+			"jenkinsJobName", getJenkinsJobName()
+		).put(
+			"name", getName()
+		).put(
+			"parameters", String.valueOf(_getBuildParametersJSONArray())
+		).put(
+			"r_jobToBuilds_c_jobId", getJobEntityId()
+		).put(
+			"state", state.getJSONObject()
+		);
+
+		return jsonObject;
+	}
+
+	@Override
 	public String getJenkinsJobName() {
 		return _jenkinsJobName;
 	}
@@ -148,29 +171,6 @@ public abstract class BaseBuildEntity
 	@Override
 	public long getJobEntityId() {
 		return _jobEntityId;
-	}
-
-	@Override
-	public JSONObject getJSONObject() {
-		JSONObject jsonObject = super.getJSONObject();
-
-		State state = getState();
-
-		jsonObject.put(
-			"initialBuild", isInitialBuild()
-		).put(
-			"jenkinsJobName", getJenkinsJobName()
-		).put(
-			"name", getName()
-		).put(
-			"parameters", String.valueOf(_getBuildParametersJSONArray())
-		).put(
-			"r_jobToBuilds_c_jobId", getJobEntityId()
-		).put(
-			"state", state.getJSONObject()
-		);
-
-		return jsonObject;
 	}
 
 	@Override
@@ -306,23 +306,6 @@ public abstract class BaseBuildEntity
 	}
 
 	@Override
-	public void setJenkinsJobName(String jenkinsJobName) {
-		_jenkinsJobName = jenkinsJobName;
-	}
-
-	@Override
-	public void setJobEntity(JobEntity jobEntity) {
-		_jobEntity = jobEntity;
-
-		if (_jobEntity != null) {
-			_jobEntityId = _jobEntity.getId();
-		}
-		else {
-			_jobEntityId = 0;
-		}
-	}
-
-	@Override
 	public void setJSONObject(JSONObject jsonObject) {
 		super.setJSONObject(jsonObject);
 
@@ -356,6 +339,23 @@ public abstract class BaseBuildEntity
 			if (_log.isWarnEnabled()) {
 				_log.warn(jsonException);
 			}
+		}
+	}
+
+	@Override
+	public void setJenkinsJobName(String jenkinsJobName) {
+		_jenkinsJobName = jenkinsJobName;
+	}
+
+	@Override
+	public void setJobEntity(JobEntity jobEntity) {
+		_jobEntity = jobEntity;
+
+		if (_jobEntity != null) {
+			_jobEntityId = _jobEntity.getId();
+		}
+		else {
+			_jobEntityId = 0;
 		}
 	}
 

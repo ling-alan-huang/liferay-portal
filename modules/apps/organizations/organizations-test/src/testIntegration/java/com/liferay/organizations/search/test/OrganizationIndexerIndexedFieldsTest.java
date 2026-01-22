@@ -202,10 +202,10 @@ public class OrganizationIndexerIndexedFieldsTest {
 	protected SearchEngineHelper searchEngineHelper;
 
 	@Inject
-	protected Searcher searcher;
+	protected SearchRequestBuilderFactory searchRequestBuilderFactory;
 
 	@Inject
-	protected SearchRequestBuilderFactory searchRequestBuilderFactory;
+	protected Searcher searcher;
 
 	@Inject
 	protected UIDFactory uidFactory;
@@ -325,10 +325,11 @@ public class OrganizationIndexerIndexedFieldsTest {
 	@DeleteAfterTestRun
 	private List<ExpandoColumn> _expandoColumns;
 
+	private ExpandoTableSearchFixture _expandoTableSearchFixture;
+
 	@DeleteAfterTestRun
 	private List<ExpandoTable> _expandoTables;
 
-	private ExpandoTableSearchFixture _expandoTableSearchFixture;
 	private Group _group;
 
 	@DeleteAfterTestRun

@@ -63,22 +63,6 @@ public class ArtifactURLUtilTest {
 	}
 
 	@Test
-	public void testClientExtensionURLWithoutVersionContainsExpectedSymbolicName()
-		throws Exception {
-
-		File file = temporaryFolder.newFile("clientextension.zip");
-
-		URI uri = file.toURI();
-
-		URL url = ArtifactURLUtil.transform(uri.toURL());
-
-		String query = url.getQuery();
-
-		Assert.assertTrue(
-			query.contains(Constants.BUNDLE_SYMBOLICNAME + "=clientextension"));
-	}
-
-	@Test
 	public void testClientExtensionURLWithVersionContainsExpectedSymbolicName()
 		throws Exception {
 
@@ -93,6 +77,22 @@ public class ArtifactURLUtilTest {
 		Assert.assertFalse(
 			query.contains(
 				Constants.BUNDLE_SYMBOLICNAME + "=clientextension-1.0.0"));
+		Assert.assertTrue(
+			query.contains(Constants.BUNDLE_SYMBOLICNAME + "=clientextension"));
+	}
+
+	@Test
+	public void testClientExtensionURLWithoutVersionContainsExpectedSymbolicName()
+		throws Exception {
+
+		File file = temporaryFolder.newFile("clientextension.zip");
+
+		URI uri = file.toURI();
+
+		URL url = ArtifactURLUtil.transform(uri.toURL());
+
+		String query = url.getQuery();
+
 		Assert.assertTrue(
 			query.contains(Constants.BUNDLE_SYMBOLICNAME + "=clientextension"));
 	}

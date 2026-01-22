@@ -110,34 +110,6 @@ public class JSTranspilerPlugin implements Plugin<Project> {
 		return downloadNodeModuleTask;
 	}
 
-	private void _addTasksExpandSoyCompileDependencies(
-		TranspileJSTask transpileJSTask, Configuration configuration) {
-
-		Project project = transpileJSTask.getProject();
-
-		RenameDependencyClosure renameDependencyClosure =
-			new RenameDependencyClosure(project, configuration.getName());
-
-		Iterable<TaskDependency> taskDependencies =
-			JSTranspilerPluginUtil.getTaskDependencies(configuration);
-
-		for (File file : configuration) {
-			Copy copy = JSTranspilerPluginUtil.addTaskExpandCompileDependency(
-				project, file, project.getBuildDir(),
-				"expandSoyCompileDependency", renameDependencyClosure);
-
-			copy.dependsOn(taskDependencies);
-
-			transpileJSTask.dependsOn(copy);
-
-			String path = FileUtil.getAbsolutePath(copy.getDestinationDir());
-
-			path += "/META-INF/resources/**/*.soy";
-
-			transpileJSTask.soyDependency(path);
-		}
-	}
-
 	private TranspileJSTask _addTaskTranspileJS(
 		Task expandJSCompileDependenciesTask) {
 
@@ -167,23 +139,32 @@ public class JSTranspilerPlugin implements Plugin<Project> {
 		return transpileJSTask;
 	}
 
-	private void _configureTasksTranspileJS(
-		Project project, final DownloadNodeModuleTask downloadMetalCliTask,
-		final NpmInstallTask npmInstallTask) {
+	private void _addTasksExpandSoyCompileDependencies(
+		TranspileJSTask transpileJSTask, Configuration configuration) {
 
-		TaskContainer taskContainer = project.getTasks();
+		Project project = transpileJSTask.getProject();
 
-		taskContainer.withType(
-			TranspileJSTask.class,
-			new Action<TranspileJSTask>() {
+		RenameDependencyClosure renameDependencyClosure =
+			new RenameDependencyClosure(project, configuration.getName());
 
-				@Override
-				public void execute(TranspileJSTask transpileJSTask) {
-					_configureTaskTranspileJS(
-						transpileJSTask, downloadMetalCliTask, npmInstallTask);
-				}
+		Iterable<TaskDependency> taskDependencies =
+			JSTranspilerPluginUtil.getTaskDependencies(configuration);
 
-			});
+		for (File file : configuration) {
+			Copy copy = JSTranspilerPluginUtil.addTaskExpandCompileDependency(
+				project, file, project.getBuildDir(),
+				"expandSoyCompileDependency", renameDependencyClosure);
+
+			copy.dependsOn(taskDependencies);
+
+			transpileJSTask.dependsOn(copy);
+
+			String path = FileUtil.getAbsolutePath(copy.getDestinationDir());
+
+			path += "/META-INF/resources/**/*.soy";
+
+			transpileJSTask.soyDependency(path);
+		}
 	}
 
 	private void _configureTaskTranspileJS(
@@ -276,6 +257,25 @@ public class JSTranspilerPlugin implements Plugin<Project> {
 			project, JavaPlugin.CLASSES_TASK_NAME);
 
 		classesTask.dependsOn(transpileJSTask);
+	}
+
+	private void _configureTasksTranspileJS(
+		Project project, final DownloadNodeModuleTask downloadMetalCliTask,
+		final NpmInstallTask npmInstallTask) {
+
+		TaskContainer taskContainer = project.getTasks();
+
+		taskContainer.withType(
+			TranspileJSTask.class,
+			new Action<TranspileJSTask>() {
+
+				@Override
+				public void execute(TranspileJSTask transpileJSTask) {
+					_configureTaskTranspileJS(
+						transpileJSTask, downloadMetalCliTask, npmInstallTask);
+				}
+
+			});
 	}
 
 	private File _getSrcDir(SourceDirectorySet sourceDirectorySet) {

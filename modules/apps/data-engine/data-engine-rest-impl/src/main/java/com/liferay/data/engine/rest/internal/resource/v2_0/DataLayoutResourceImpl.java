@@ -388,6 +388,16 @@ public class DataLayoutResourceImpl extends BaseDataLayoutResourceImpl {
 			_portal.getClassNameId(DDMStructureLayout.class), dataLayoutId);
 	}
 
+	private long _getDDMStructureVersionId(long deDataDefinitionId)
+		throws PortalException {
+
+		DDMStructureVersion ddmStructureVersion =
+			_ddmStructureVersionLocalService.getLatestStructureVersion(
+				deDataDefinitionId);
+
+		return ddmStructureVersion.getStructureVersionId();
+	}
+
 	private DataLayout _getDataLayout(long dataLayoutId) throws Exception {
 		return DataLayoutUtil.toDataLayout(
 			_ddmFormFieldTypeServicesRegistry,
@@ -498,16 +508,6 @@ public class DataLayoutResourceImpl extends BaseDataLayoutResourceImpl {
 				_ddmStructureLayoutLocalService.getStructureLayout(
 					GetterUtil.getLong(document.get(Field.ENTRY_CLASS_PK))),
 				_spiDDMFormRuleConverter));
-	}
-
-	private long _getDDMStructureVersionId(long deDataDefinitionId)
-		throws PortalException {
-
-		DDMStructureVersion ddmStructureVersion =
-			_ddmStructureVersionLocalService.getLatestStructureVersion(
-				deDataDefinitionId);
-
-		return ddmStructureVersion.getStructureVersionId();
 	}
 
 	private List<String> _getFieldNames(String content) {

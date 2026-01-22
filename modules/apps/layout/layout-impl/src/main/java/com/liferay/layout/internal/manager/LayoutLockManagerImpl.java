@@ -121,6 +121,52 @@ public class LayoutLockManagerImpl implements LayoutLockManager {
 	}
 
 	@Override
+	public String getLockedLayoutURL(ActionRequest actionRequest) {
+		return getLockedLayoutURL(_portal.getHttpServletRequest(actionRequest));
+	}
+
+	@Override
+	public String getLockedLayoutURL(HttpServletRequest httpServletRequest) {
+		return PortletURLBuilder.create(
+			_portal.getControlPanelPortletURL(
+				httpServletRequest, LayoutAdminPortletKeys.GROUP_PAGES,
+				PortletRequest.RENDER_PHASE)
+		).setMVCRenderCommandName(
+			"/layout_admin/locked_layout"
+		).setBackURL(
+			() -> {
+				String backURL = ParamUtil.getString(
+					httpServletRequest, "backURL");
+
+				if (Validator.isNotNull(backURL)) {
+					return backURL;
+				}
+
+				backURL = ParamUtil.getString(
+					httpServletRequest, "p_l_back_url");
+
+				if (Validator.isNotNull(backURL)) {
+					return backURL;
+				}
+
+				return ParamUtil.getString(httpServletRequest, "redirect");
+			}
+		).setParameter(
+			"p_l_back_url_title",
+			() -> {
+				String backURLTitle = ParamUtil.getString(
+					httpServletRequest, "p_l_back_url_title");
+
+				if (Validator.isNotNull(backURLTitle)) {
+					return backURLTitle;
+				}
+
+				return null;
+			}
+		).buildString();
+	}
+
+	@Override
 	public List<LockedLayout> getLockedLayouts(
 		long companyId, long groupId, Locale locale) {
 
@@ -188,52 +234,6 @@ public class LayoutLockManagerImpl implements LayoutLockManager {
 		}
 
 		return lockedLayouts;
-	}
-
-	@Override
-	public String getLockedLayoutURL(ActionRequest actionRequest) {
-		return getLockedLayoutURL(_portal.getHttpServletRequest(actionRequest));
-	}
-
-	@Override
-	public String getLockedLayoutURL(HttpServletRequest httpServletRequest) {
-		return PortletURLBuilder.create(
-			_portal.getControlPanelPortletURL(
-				httpServletRequest, LayoutAdminPortletKeys.GROUP_PAGES,
-				PortletRequest.RENDER_PHASE)
-		).setMVCRenderCommandName(
-			"/layout_admin/locked_layout"
-		).setBackURL(
-			() -> {
-				String backURL = ParamUtil.getString(
-					httpServletRequest, "backURL");
-
-				if (Validator.isNotNull(backURL)) {
-					return backURL;
-				}
-
-				backURL = ParamUtil.getString(
-					httpServletRequest, "p_l_back_url");
-
-				if (Validator.isNotNull(backURL)) {
-					return backURL;
-				}
-
-				return ParamUtil.getString(httpServletRequest, "redirect");
-			}
-		).setParameter(
-			"p_l_back_url_title",
-			() -> {
-				String backURLTitle = ParamUtil.getString(
-					httpServletRequest, "p_l_back_url_title");
-
-				if (Validator.isNotNull(backURLTitle)) {
-					return backURLTitle;
-				}
-
-				return null;
-			}
-		).buildString();
 	}
 
 	@Override
@@ -407,6 +407,30 @@ public class LayoutLockManagerImpl implements LayoutLockManager {
 		return null;
 	}
 
+	private LockedLayoutType _getLockedLayoutType(long classPK, String type) {
+		if (Objects.equals(type, LayoutConstants.TYPE_ASSET_DISPLAY)) {
+			return LockedLayoutType.DISPLAY_PAGE_TEMPLATE;
+		}
+		else if (Objects.equals(type, LayoutConstants.TYPE_UTILITY)) {
+			return LockedLayoutType.UTILITY_PAGE;
+		}
+
+		if (!Objects.equals(type, LayoutConstants.TYPE_CONTENT)) {
+			return null;
+		}
+
+		LayoutPageTemplateEntry layoutPageTemplateEntry =
+			_layoutPageTemplateEntryLocalService.
+				fetchLayoutPageTemplateEntryByPlid(classPK);
+
+		if (layoutPageTemplateEntry != null) {
+			return _getLayoutPageTemplateEntryTypeLabel(
+				layoutPageTemplateEntry);
+		}
+
+		return LockedLayoutType.CONTENT_PAGE;
+	}
+
 	private String _getLockedLayoutsGroupConfigurationFilterString(
 		long companyId) {
 
@@ -461,30 +485,6 @@ public class LayoutLockManagerImpl implements LayoutLockManager {
 		}
 
 		return lockedLayoutsGroupConfigurations;
-	}
-
-	private LockedLayoutType _getLockedLayoutType(long classPK, String type) {
-		if (Objects.equals(type, LayoutConstants.TYPE_ASSET_DISPLAY)) {
-			return LockedLayoutType.DISPLAY_PAGE_TEMPLATE;
-		}
-		else if (Objects.equals(type, LayoutConstants.TYPE_UTILITY)) {
-			return LockedLayoutType.UTILITY_PAGE;
-		}
-
-		if (!Objects.equals(type, LayoutConstants.TYPE_CONTENT)) {
-			return null;
-		}
-
-		LayoutPageTemplateEntry layoutPageTemplateEntry =
-			_layoutPageTemplateEntryLocalService.
-				fetchLayoutPageTemplateEntryByPlid(classPK);
-
-		if (layoutPageTemplateEntry != null) {
-			return _getLayoutPageTemplateEntryTypeLabel(
-				layoutPageTemplateEntry);
-		}
-
-		return LockedLayoutType.CONTENT_PAGE;
 	}
 
 	private static final String _CLASS_NAME_LAYOUT = Layout.class.getName();

@@ -2664,33 +2664,6 @@ public class ObjectDefinitionResourceTest
 			objectDefinition.getRestContextPath());
 	}
 
-	private void _testGetObjectDefinitionsPage(
-			ObjectDefinition expectedObjectDefinition, Locale locale,
-			String search)
-		throws Exception {
-
-		User user = testVulcanCRUDItemDelegate_getUser();
-
-		ObjectDefinitionResource objectDefinitionResource =
-			ObjectDefinitionResource.builder(
-			).authentication(
-				user.getEmailAddress(), PropsValues.DEFAULT_ADMIN_PASSWORD
-			).endpoint(
-				testCompany.getVirtualHostname(), 8080, "http"
-			).locale(
-				locale
-			).build();
-
-		Page<ObjectDefinition> page =
-			objectDefinitionResource.getObjectDefinitionsPage(
-				search, null, null, Pagination.of(1, 2), null);
-
-		Assert.assertTrue(
-			_contains(
-				expectedObjectDefinition,
-				(List<ObjectDefinition>)page.getItems()));
-	}
-
 	private void _testGetObjectDefinitionWithRootObjectDefinitionExternalReferenceCodes()
 		throws Exception {
 
@@ -2832,6 +2805,33 @@ public class ObjectDefinitionResourceTest
 					workflowDefinitionLink1, workflowDefinitionLink2)),
 			new HashSet<>(
 				Arrays.asList(objectDefinition.getWorkflowDefinitionLinks())));
+	}
+
+	private void _testGetObjectDefinitionsPage(
+			ObjectDefinition expectedObjectDefinition, Locale locale,
+			String search)
+		throws Exception {
+
+		User user = testVulcanCRUDItemDelegate_getUser();
+
+		ObjectDefinitionResource objectDefinitionResource =
+			ObjectDefinitionResource.builder(
+			).authentication(
+				user.getEmailAddress(), PropsValues.DEFAULT_ADMIN_PASSWORD
+			).endpoint(
+				testCompany.getVirtualHostname(), 8080, "http"
+			).locale(
+				locale
+			).build();
+
+		Page<ObjectDefinition> page =
+			objectDefinitionResource.getObjectDefinitionsPage(
+				search, null, null, Pagination.of(1, 2), null);
+
+		Assert.assertTrue(
+			_contains(
+				expectedObjectDefinition,
+				(List<ObjectDefinition>)page.getItems()));
 	}
 
 	private void _testPostObjectDefinitionBatch() throws Exception {

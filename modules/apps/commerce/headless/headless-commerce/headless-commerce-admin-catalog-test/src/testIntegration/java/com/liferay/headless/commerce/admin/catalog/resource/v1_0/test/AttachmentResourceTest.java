@@ -578,10 +578,10 @@ public class AttachmentResourceTest extends BaseAttachmentResourceTestCase {
 	}
 
 	@DeleteAfterTestRun
-	private CPDefinition _cpDefinition;
+	private CProduct _cProduct;
 
 	@DeleteAfterTestRun
-	private CProduct _cProduct;
+	private CPDefinition _cpDefinition;
 
 	@Inject
 	private DLAppLocalService _dlAppLocalService;

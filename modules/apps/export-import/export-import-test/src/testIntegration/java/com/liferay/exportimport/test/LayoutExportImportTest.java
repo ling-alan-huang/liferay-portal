@@ -318,20 +318,6 @@ public class LayoutExportImportTest extends BaseExportImportTestCase {
 	}
 
 	@Test
-	public void testExportImportLayouts() throws Exception {
-		LayoutTestUtil.addTypePortletLayout(group);
-
-		exportImportLayouts(
-			ExportImportHelperUtil.getLayoutIds(
-				_layoutLocalService.getLayouts(group.getGroupId(), false)),
-			getImportParameterMap());
-
-		Assert.assertEquals(
-			_layoutLocalService.getLayoutsCount(group, false),
-			_layoutLocalService.getLayoutsCount(importedGroup, false));
-	}
-
-	@Test
 	public void testExportImportLayoutSetInvalidLARType() throws Exception {
 
 		// Import a layout set to a layout prototype
@@ -429,6 +415,20 @@ public class LayoutExportImportTest extends BaseExportImportTestCase {
 
 			group = null;
 		}
+	}
+
+	@Test
+	public void testExportImportLayouts() throws Exception {
+		LayoutTestUtil.addTypePortletLayout(group);
+
+		exportImportLayouts(
+			ExportImportHelperUtil.getLayoutIds(
+				_layoutLocalService.getLayouts(group.getGroupId(), false)),
+			getImportParameterMap());
+
+		Assert.assertEquals(
+			_layoutLocalService.getLayoutsCount(group, false),
+			_layoutLocalService.getLayoutsCount(importedGroup, false));
 	}
 
 	@Test

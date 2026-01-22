@@ -31,9 +31,9 @@ public interface StringQuery extends Query {
 
 	public Boolean getAllowLeadingWildcard();
 
-	public String getAnalyzer();
-
 	public Boolean getAnalyzeWildcard();
+
+	public String getAnalyzer();
 
 	public Boolean getAutoGenerateSynonymsPhraseQuery();
 
@@ -88,9 +88,9 @@ public interface StringQuery extends Query {
 
 	public void setAllowLeadingWildcard(Boolean allowLeadingWildcard);
 
-	public void setAnalyzer(String analyzer);
-
 	public void setAnalyzeWildcard(Boolean analyzeWildcard);
+
+	public void setAnalyzer(String analyzer);
 
 	public void setAutoGenerateSynonymsPhraseQuery(
 		Boolean autoGenerateSynonymsPhraseQuery);

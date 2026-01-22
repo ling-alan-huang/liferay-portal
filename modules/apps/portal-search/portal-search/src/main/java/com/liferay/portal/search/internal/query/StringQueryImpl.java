@@ -53,13 +53,13 @@ public class StringQueryImpl extends BaseQueryImpl implements StringQuery {
 	}
 
 	@Override
-	public String getAnalyzer() {
-		return _analyzer;
+	public Boolean getAnalyzeWildcard() {
+		return _analyzeWildcard;
 	}
 
 	@Override
-	public Boolean getAnalyzeWildcard() {
-		return _analyzeWildcard;
+	public String getAnalyzer() {
+		return _analyzer;
 	}
 
 	@Override
@@ -173,13 +173,13 @@ public class StringQueryImpl extends BaseQueryImpl implements StringQuery {
 	}
 
 	@Override
-	public void setAnalyzer(String analyzer) {
-		_analyzer = analyzer;
+	public void setAnalyzeWildcard(Boolean analyzeWildcard) {
+		_analyzeWildcard = analyzeWildcard;
 	}
 
 	@Override
-	public void setAnalyzeWildcard(Boolean analyzeWildcard) {
-		_analyzeWildcard = analyzeWildcard;
+	public void setAnalyzer(String analyzer) {
+		_analyzer = analyzer;
 	}
 
 	@Override
@@ -299,8 +299,8 @@ public class StringQueryImpl extends BaseQueryImpl implements StringQuery {
 	private static final long serialVersionUID = 1L;
 
 	private Boolean _allowLeadingWildcard;
-	private String _analyzer;
 	private Boolean _analyzeWildcard;
+	private String _analyzer;
 	private Boolean _autoGenerateSynonymsPhraseQuery;
 	private String _defaultField;
 	private Operator _defaultOperator;

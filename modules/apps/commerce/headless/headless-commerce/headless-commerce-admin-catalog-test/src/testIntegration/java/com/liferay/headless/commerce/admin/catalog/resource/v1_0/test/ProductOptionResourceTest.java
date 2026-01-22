@@ -351,9 +351,9 @@ public class ProductOptionResourceTest
 			postProductOption.getOptionExternalReferenceCode());
 	}
 
+	private CProduct _cProduct;
 	private CPDefinition _cpDefinition;
 	private CPInstance _cpInstance;
-	private CProduct _cProduct;
 	private final Map<Long, ProductOption> _productOptions = new HashMap<>();
 
 }

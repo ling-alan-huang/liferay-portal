@@ -251,9 +251,9 @@ public class RoleServiceTest extends BasePermissionTestCase {
 	@DeleteAfterTestRun
 	private Role _role;
 
-	private final List<Role> _roles = new ArrayList<>();
-
 	@Inject
 	private RoleService _roleService;
+
+	private final List<Role> _roles = new ArrayList<>();
 
 }

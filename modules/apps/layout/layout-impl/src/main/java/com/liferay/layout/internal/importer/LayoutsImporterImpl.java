@@ -2191,23 +2191,6 @@ public class LayoutsImporterImpl implements LayoutsImporter {
 		}
 	}
 
-	private void _updateLayouts(long plid, long userId) throws Exception {
-		Layout layout = _layoutLocalService.fetchLayout(plid);
-
-		Layout draftLayout = layout.fetchDraftLayout();
-
-		draftLayout = _layoutLocalService.copyLayoutContent(
-			layout, draftLayout);
-
-		_layoutLocalService.updateStatus(
-			userId, draftLayout.getPlid(), WorkflowConstants.STATUS_APPROVED,
-			ServiceContextThreadLocal.getServiceContext());
-
-		_layoutLocalService.updateStatus(
-			userId, plid, WorkflowConstants.STATUS_APPROVED,
-			ServiceContextThreadLocal.getServiceContext());
-	}
-
 	private Layout _updateLayoutSettings(
 		long userId, Layout layout, Settings settings) {
 
@@ -2434,6 +2417,23 @@ public class LayoutsImporterImpl implements LayoutsImporter {
 		return _layoutLocalService.updateLayout(layout);
 	}
 
+	private void _updateLayouts(long plid, long userId) throws Exception {
+		Layout layout = _layoutLocalService.fetchLayout(plid);
+
+		Layout draftLayout = layout.fetchDraftLayout();
+
+		draftLayout = _layoutLocalService.copyLayoutContent(
+			layout, draftLayout);
+
+		_layoutLocalService.updateStatus(
+			userId, draftLayout.getPlid(), WorkflowConstants.STATUS_APPROVED,
+			ServiceContextThreadLocal.getServiceContext());
+
+		_layoutLocalService.updateStatus(
+			userId, plid, WorkflowConstants.STATUS_APPROVED,
+			ServiceContextThreadLocal.getServiceContext());
+	}
+
 	private static final String _PAGE_TEMPLATE_COLLECTION_KEY_DEFAULT =
 		"imported";
 
@@ -2630,9 +2630,9 @@ public class LayoutsImporterImpl implements LayoutsImporter {
 
 		private final long _groupId;
 		private final long _layoutPageTemplateCollectionId;
+		private final LayoutsImportStrategy _layoutsImportStrategy;
 		private final List<LayoutsImporterResultEntry>
 			_layoutsImporterResultEntries;
-		private final LayoutsImportStrategy _layoutsImportStrategy;
 		private final PageTemplateEntry _pageTemplateEntry;
 		private final boolean _preserveItemIds;
 		private final long _userId;
@@ -2735,9 +2735,9 @@ public class LayoutsImporterImpl implements LayoutsImporter {
 		private final DisplayPageTemplate _displayPageTemplate;
 		private final long _groupId;
 		private final long _layoutPageTemplateCollectionId;
+		private final LayoutsImportStrategy _layoutsImportStrategy;
 		private final List<LayoutsImporterResultEntry>
 			_layoutsImporterResultEntries;
-		private final LayoutsImportStrategy _layoutsImportStrategy;
 		private final PageDefinition _pageDefinition;
 		private final boolean _preserveItemIds;
 		private final Thumbnail _thumbnail;
@@ -2782,9 +2782,9 @@ public class LayoutsImporterImpl implements LayoutsImporter {
 		}
 
 		private final long _groupId;
+		private final LayoutsImportStrategy _layoutsImportStrategy;
 		private final List<LayoutsImporterResultEntry>
 			_layoutsImporterResultEntries;
-		private final LayoutsImportStrategy _layoutsImportStrategy;
 		private final String _name;
 		private final PageDefinition _pageDefinition;
 		private final boolean _preserveItemIds;
@@ -2905,9 +2905,9 @@ public class LayoutsImporterImpl implements LayoutsImporter {
 		}
 
 		private final long _groupId;
+		private final LayoutsImportStrategy _layoutsImportStrategy;
 		private final List<LayoutsImporterResultEntry>
 			_layoutsImporterResultEntries;
-		private final LayoutsImportStrategy _layoutsImportStrategy;
 		private final PageDefinition _pageDefinition;
 		private final boolean _preserveItemIds;
 		private final Thumbnail _thumbnail;

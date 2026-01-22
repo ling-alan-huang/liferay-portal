@@ -265,19 +265,6 @@ public class SkuUtil {
 		}
 	}
 
-	private static String _getCommercePricingConfigurationKey(
-			ConfigurationProvider configurationProvider)
-		throws Exception {
-
-		CommercePricingConfiguration commercePricingConfiguration =
-			configurationProvider.getConfiguration(
-				CommercePricingConfiguration.class,
-				new SystemSettingsLocator(
-					CommercePricingConstants.SERVICE_NAME));
-
-		return commercePricingConfiguration.commercePricingCalculationKey();
-	}
-
 	private static String _getCPDefinitionOptionRelKey(
 			long optionId,
 			CPDefinitionOptionRelService cpDefinitionOptionRelService)
@@ -307,6 +294,19 @@ public class SkuUtil {
 		}
 
 		return null;
+	}
+
+	private static String _getCommercePricingConfigurationKey(
+			ConfigurationProvider configurationProvider)
+		throws Exception {
+
+		CommercePricingConfiguration commercePricingConfiguration =
+			configurationProvider.getConfiguration(
+				CommercePricingConfiguration.class,
+				new SystemSettingsLocator(
+					CommercePricingConstants.SERVICE_NAME));
+
+		return commercePricingConfiguration.commercePricingCalculationKey();
 	}
 
 	private static String _getOptions(

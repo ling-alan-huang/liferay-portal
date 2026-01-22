@@ -176,21 +176,6 @@ public class PlaywrightBatchBuildTestrayCaseResult
 	}
 
 	@Override
-	public List<TestrayAttachment> getTestrayAttachments() {
-		List<TestrayAttachment> testrayAttachments =
-			super.getTestrayAttachments();
-
-		testrayAttachments.addAll(getLiferayLogTestrayAttachments());
-
-		testrayAttachments.add(getPlaywrightReportTestrayAttachment());
-		testrayAttachments.add(getPlaywrightTraceViewerTestrayAttachment());
-
-		testrayAttachments.removeAll(Collections.singleton(null));
-
-		return testrayAttachments;
-	}
-
-	@Override
 	public TestReport getTestReport() {
 		PlaywrightTestClassMethod playwrightTestClassMethod =
 			getTestClassMethod();
@@ -244,6 +229,21 @@ public class PlaywrightBatchBuildTestrayCaseResult
 		System.out.println("Unable to find test result for: " + getName());
 
 		return null;
+	}
+
+	@Override
+	public List<TestrayAttachment> getTestrayAttachments() {
+		List<TestrayAttachment> testrayAttachments =
+			super.getTestrayAttachments();
+
+		testrayAttachments.addAll(getLiferayLogTestrayAttachments());
+
+		testrayAttachments.add(getPlaywrightReportTestrayAttachment());
+		testrayAttachments.add(getPlaywrightTraceViewerTestrayAttachment());
+
+		testrayAttachments.removeAll(Collections.singleton(null));
+
+		return testrayAttachments;
 	}
 
 	protected TestrayAttachment getPlaywrightReportTestrayAttachment() {

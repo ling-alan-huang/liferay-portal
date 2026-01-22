@@ -607,17 +607,17 @@ public class BasePersistenceImpl<T extends BaseModel<T>>
 	}
 
 	@Override
-	public DataSource getDataSource() {
-		return _dataSource;
-	}
-
-	@Override
 	public DB getDB() {
 		if (_db == null) {
 			_db = DBManagerUtil.getDB(getDialect(), _dataSource);
 		}
 
 		return _db;
+	}
+
+	@Override
+	public DataSource getDataSource() {
+		return _dataSource;
 	}
 
 	@Override
@@ -1295,9 +1295,9 @@ public class BasePersistenceImpl<T extends BaseModel<T>>
 			Timestamp.class, Type.TIMESTAMP
 		).build();
 
-	private int _databaseOrderByMaxColumns;
 	private long _dataLimitModelMaxCount;
 	private DataSource _dataSource;
+	private int _databaseOrderByMaxColumns;
 	private DB _db;
 	private Map<String, String> _dbColumnNames = Collections.emptyMap();
 	private Class<T> _modelClass;

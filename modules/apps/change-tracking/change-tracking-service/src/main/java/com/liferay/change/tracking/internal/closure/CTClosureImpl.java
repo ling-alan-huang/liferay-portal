@@ -35,6 +35,11 @@ public class CTClosureImpl implements CTClosure {
 	}
 
 	@Override
+	public long getCTCollectionId() {
+		return _ctCollectionId;
+	}
+
+	@Override
 	public Map<Long, List<Long>> getChildPKsMap(
 		long classNameId, long classPK) {
 
@@ -62,11 +67,6 @@ public class CTClosureImpl implements CTClosure {
 		}
 
 		return _getPrimaryKeysMap(nodes, excludedNodes);
-	}
-
-	@Override
-	public long getCTCollectionId() {
-		return _ctCollectionId;
 	}
 
 	@Override

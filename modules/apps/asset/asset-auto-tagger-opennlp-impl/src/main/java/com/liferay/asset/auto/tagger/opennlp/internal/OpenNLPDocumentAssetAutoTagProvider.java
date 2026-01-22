@@ -248,9 +248,9 @@ public class OpenNLPDocumentAssetAutoTagProvider
 	@Reference
 	private TextExtractorRegistry _textExtractorRegistry;
 
-	private final DCLSingleton<TokenizerModel> _tokenizerModelDCLSingleton =
-		new DCLSingleton<>();
 	private final DCLSingleton<List<TokenNameFinderModel>>
 		_tokenNameFinderModelsDCLSingleton = new DCLSingleton<>();
+	private final DCLSingleton<TokenizerModel> _tokenizerModelDCLSingleton =
+		new DCLSingleton<>();
 
 }

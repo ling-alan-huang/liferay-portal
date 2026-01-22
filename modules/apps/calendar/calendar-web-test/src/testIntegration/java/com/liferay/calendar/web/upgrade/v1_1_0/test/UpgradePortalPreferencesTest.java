@@ -203,11 +203,11 @@ public class UpgradePortalPreferencesTest {
 		"com.liferay.portal.util.SessionClicks";
 
 	@Inject
-	private static PortalPreferencesLocalService _portalPreferencesLocalService;
-
-	@Inject
 	private static PortalPreferenceValueLocalService
 		_portalPreferenceValueLocalService;
+
+	@Inject
+	private static PortalPreferencesLocalService _portalPreferencesLocalService;
 
 	private PortalCache<?, ?> _portalCache;
 

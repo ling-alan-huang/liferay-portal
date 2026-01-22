@@ -1133,6 +1133,17 @@ public class CPDefinitionOptionRelLocalServiceImpl
 		}
 	}
 
+	private void _validateCPDefinitionOptionKey(long cpDefinitionId, String key)
+		throws PortalException {
+
+		CPDefinitionOptionRel cpDefinitionOptionRel =
+			cpDefinitionOptionRelPersistence.fetchByC_K(cpDefinitionId, key);
+
+		if (cpDefinitionOptionRel != null) {
+			throw new DuplicateCPDefinitionOptionRelKeyException();
+		}
+	}
+
 	private void _validateCommerceOptionTypeKey(
 			String commerceOptionTypeKey, boolean skuContributor)
 		throws PortalException {
@@ -1159,17 +1170,6 @@ public class CPDefinitionOptionRelLocalServiceImpl
 		}
 
 		throw new CPDefinitionOptionSKUContributorException();
-	}
-
-	private void _validateCPDefinitionOptionKey(long cpDefinitionId, String key)
-		throws PortalException {
-
-		CPDefinitionOptionRel cpDefinitionOptionRel =
-			cpDefinitionOptionRelPersistence.fetchByC_K(cpDefinitionId, key);
-
-		if (cpDefinitionOptionRel != null) {
-			throw new DuplicateCPDefinitionOptionRelKeyException();
-		}
 	}
 
 	private void _validatePriceType(

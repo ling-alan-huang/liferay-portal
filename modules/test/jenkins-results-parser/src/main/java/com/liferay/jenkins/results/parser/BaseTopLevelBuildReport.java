@@ -249,12 +249,6 @@ public abstract class BaseTopLevelBuildReport
 	}
 
 	@Override
-	public String getTestrayBuildDateString() {
-		return JenkinsResultsParserUtil.toDateString(
-			getStartDate(), "yyyy-MM-dd HH:mm:ss", "America/Los_Angeles");
-	}
-
-	@Override
 	public URL getTestResultsJSONUserContentURL() {
 		try {
 			return new URL(
@@ -277,6 +271,12 @@ public abstract class BaseTopLevelBuildReport
 		}
 
 		return buildReportJSONObject.optString("testSuiteName");
+	}
+
+	@Override
+	public String getTestrayBuildDateString() {
+		return JenkinsResultsParserUtil.toDateString(
+			getStartDate(), "yyyy-MM-dd HH:mm:ss", "America/Los_Angeles");
 	}
 
 	@Override

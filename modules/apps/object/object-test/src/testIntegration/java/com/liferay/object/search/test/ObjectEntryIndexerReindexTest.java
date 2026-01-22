@@ -325,10 +325,10 @@ public class ObjectEntryIndexerReindexTest {
 	}
 
 	@Inject
-	protected Searcher searcher;
+	protected SearchRequestBuilderFactory searchRequestBuilderFactory;
 
 	@Inject
-	protected SearchRequestBuilderFactory searchRequestBuilderFactory;
+	protected Searcher searcher;
 
 	@Inject
 	private ObjectDefinitionLocalService _objectDefinitionLocalService;

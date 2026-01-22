@@ -91,6 +91,10 @@ public class MirrorsGetTask extends Task {
 		_retries = retries;
 	}
 
+	public void setSSL(boolean ssl) {
+		_ssl = ssl;
+	}
+
 	public void setSkipChecksum(boolean skipChecksum) {
 		_skipChecksum = skipChecksum;
 	}
@@ -188,10 +192,6 @@ public class MirrorsGetTask extends Task {
 		while (_path.endsWith("/")) {
 			_path = _path.substring(0, _path.length() - 1);
 		}
-	}
-
-	public void setSSL(boolean ssl) {
-		_ssl = ssl;
 	}
 
 	public void setTryLocalNetwork(boolean tryLocalNetwork) {

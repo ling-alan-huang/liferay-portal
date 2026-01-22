@@ -326,6 +326,19 @@ public class ObjectFieldInfoFieldConverter {
 		}
 	}
 
+	private long _getMaxLength(ObjectField objectField, long defaultMaxLength) {
+		ObjectFieldSetting objectFieldSetting =
+			_objectFieldSettingLocalService.fetchObjectFieldSetting(
+				objectField.getObjectFieldId(), "maxLength");
+
+		if (objectFieldSetting == null) {
+			return defaultMaxLength;
+		}
+
+		return GetterUtil.getLong(
+			objectFieldSetting.getValue(), defaultMaxLength);
+	}
+
 	private long _getMaximumFileSize(ObjectField objectField) {
 		ObjectFieldSetting objectFieldSetting =
 			_objectFieldSettingLocalService.fetchObjectFieldSetting(
@@ -348,19 +361,6 @@ public class ObjectFieldInfoFieldConverter {
 		}
 
 		return maximumFileSize;
-	}
-
-	private long _getMaxLength(ObjectField objectField, long defaultMaxLength) {
-		ObjectFieldSetting objectFieldSetting =
-			_objectFieldSettingLocalService.fetchObjectFieldSetting(
-				objectField.getObjectFieldId(), "maxLength");
-
-		if (objectFieldSetting == null) {
-			return defaultMaxLength;
-		}
-
-		return GetterUtil.getLong(
-			objectFieldSetting.getValue(), defaultMaxLength);
 	}
 
 	private ObjectEntry _getObjectEntry() {

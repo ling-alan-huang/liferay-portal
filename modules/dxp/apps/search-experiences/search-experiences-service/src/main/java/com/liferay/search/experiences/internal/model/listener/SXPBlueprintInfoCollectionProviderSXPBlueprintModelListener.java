@@ -213,8 +213,8 @@ public class SXPBlueprintInfoCollectionProviderSXPBlueprintModelListener
 	private final KBArticleLocalService _kbArticleLocalService;
 	private final ObjectDefinitionLocalService _objectDefinitionLocalService;
 	private final ObjectEntryLocalService _objectEntryLocalService;
-	private final Searcher _searcher;
 	private final SearchRequestBuilderFactory _searchRequestBuilderFactory;
+	private final Searcher _searcher;
 	private SXPBlueprint _sxpBlueprint;
 
 }

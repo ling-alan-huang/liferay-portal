@@ -37,11 +37,6 @@ public abstract class BaseJobPrioritizerEntity
 	}
 
 	@Override
-	public Set<JobComparatorEntity> getJobComparatorEntities() {
-		return getRelatedEntities(JobComparatorEntity.class);
-	}
-
-	@Override
 	public JSONObject getJSONObject() {
 		JSONObject jsonObject = super.getJSONObject();
 
@@ -52,6 +47,11 @@ public abstract class BaseJobPrioritizerEntity
 		);
 
 		return jsonObject;
+	}
+
+	@Override
+	public Set<JobComparatorEntity> getJobComparatorEntities() {
+		return getRelatedEntities(JobComparatorEntity.class);
 	}
 
 	@Override

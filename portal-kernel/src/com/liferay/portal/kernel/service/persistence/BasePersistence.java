@@ -208,6 +208,8 @@ public interface BasePersistence<T extends BaseModel<T>> {
 
 	public Session getCurrentSession() throws ORMException;
 
+	public DB getDB();
+
 	/**
 	 * Returns the data source for this model.
 	 *
@@ -215,8 +217,6 @@ public interface BasePersistence<T extends BaseModel<T>> {
 	 * @see    #setDataSource(DataSource)
 	 */
 	public DataSource getDataSource();
-
-	public DB getDB();
 
 	public Dialect getDialect();
 

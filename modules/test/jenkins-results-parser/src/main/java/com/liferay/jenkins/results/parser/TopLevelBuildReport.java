@@ -42,11 +42,11 @@ public interface TopLevelBuildReport extends BuildReport {
 
 	public JobReport getJobReport();
 
-	public String getTestrayBuildDateString();
-
 	public URL getTestResultsJSONUserContentURL();
 
 	public String getTestSuiteName();
+
+	public String getTestrayBuildDateString();
 
 	public long getTopLevelActiveDuration();
 

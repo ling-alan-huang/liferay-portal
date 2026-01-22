@@ -143,6 +143,21 @@ public class MBDiscussionPermissionImplTest {
 	}
 
 	@Test
+	public void testUserCanUpdateHisCommentIfPropsEnabled() throws Exception {
+		_withAlwaysEditableByOwnerEnabled(
+			() -> {
+				long commentId = _addComment(_siteUser1);
+
+				PermissionChecker permissionChecker =
+					PermissionCheckerFactoryUtil.create(_siteUser1);
+
+				Assert.assertTrue(
+					_discussionPermission.hasUpdatePermission(
+						permissionChecker, commentId));
+			});
+	}
+
+	@Test
 	public void testUserCannotUpdateHisComment() throws Exception {
 		long commentId = _addComment(_siteUser1);
 
@@ -166,21 +181,6 @@ public class MBDiscussionPermissionImplTest {
 					PermissionCheckerFactoryUtil.create(_siteUser2);
 
 				Assert.assertFalse(
-					_discussionPermission.hasUpdatePermission(
-						permissionChecker, commentId));
-			});
-	}
-
-	@Test
-	public void testUserCanUpdateHisCommentIfPropsEnabled() throws Exception {
-		_withAlwaysEditableByOwnerEnabled(
-			() -> {
-				long commentId = _addComment(_siteUser1);
-
-				PermissionChecker permissionChecker =
-					PermissionCheckerFactoryUtil.create(_siteUser1);
-
-				Assert.assertTrue(
 					_discussionPermission.hasUpdatePermission(
 						permissionChecker, commentId));
 			});

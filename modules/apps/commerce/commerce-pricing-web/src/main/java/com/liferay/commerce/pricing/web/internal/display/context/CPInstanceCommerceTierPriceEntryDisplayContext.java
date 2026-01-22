@@ -51,6 +51,29 @@ public class CPInstanceCommerceTierPriceEntryDisplayContext
 		_cpInstanceLocalService = cpInstanceLocalService;
 	}
 
+	public CPInstance getCPInstance() throws PortalException {
+		if (_cpInstance != null) {
+			return _cpInstance;
+		}
+
+		_cpInstance = actionHelper.getCPInstance(
+			cpRequestHelper.getRenderRequest());
+
+		return _cpInstance;
+	}
+
+	public long getCPInstanceId() throws PortalException {
+		long cpInstanceId = 0;
+
+		CPInstance cpInstance = getCPInstance();
+
+		if (cpInstance != null) {
+			cpInstanceId = cpInstance.getCPInstanceId();
+		}
+
+		return cpInstanceId;
+	}
+
 	public CommercePriceEntry getCommercePriceEntry() throws PortalException {
 		return _commercePriceListActionHelper.getCommercePriceEntry(
 			cpRequestHelper.getRenderRequest());
@@ -137,29 +160,6 @@ public class CPInstanceCommerceTierPriceEntryDisplayContext
 		}
 
 		return sb.toString();
-	}
-
-	public CPInstance getCPInstance() throws PortalException {
-		if (_cpInstance != null) {
-			return _cpInstance;
-		}
-
-		_cpInstance = actionHelper.getCPInstance(
-			cpRequestHelper.getRenderRequest());
-
-		return _cpInstance;
-	}
-
-	public long getCPInstanceId() throws PortalException {
-		long cpInstanceId = 0;
-
-		CPInstance cpInstance = getCPInstance();
-
-		if (cpInstance != null) {
-			cpInstanceId = cpInstance.getCPInstanceId();
-		}
-
-		return cpInstanceId;
 	}
 
 	public CreationMenu getCreationMenu() throws Exception {

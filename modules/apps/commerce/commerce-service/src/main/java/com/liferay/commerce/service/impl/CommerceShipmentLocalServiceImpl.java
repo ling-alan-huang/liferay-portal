@@ -260,6 +260,14 @@ public class CommerceShipmentLocalServiceImpl
 	}
 
 	@Override
+	public int[] getCommerceShipmentStatusesByCommerceOrderId(
+		long commerceOrderId) {
+
+		return commerceShipmentFinder.
+			findCommerceShipmentStatusesByCommerceOrderId(commerceOrderId);
+	}
+
+	@Override
 	public List<CommerceShipment> getCommerceShipments(
 		long commerceOrderId, int start, int end) {
 
@@ -350,14 +358,6 @@ public class CommerceShipmentLocalServiceImpl
 
 		return commerceShipmentPersistence.countByG_C(
 			groupIds, commerceAddressId);
-	}
-
-	@Override
-	public int[] getCommerceShipmentStatusesByCommerceOrderId(
-		long commerceOrderId) {
-
-		return commerceShipmentFinder.
-			findCommerceShipmentStatusesByCommerceOrderId(commerceOrderId);
 	}
 
 	@Indexable(type = IndexableType.REINDEX)

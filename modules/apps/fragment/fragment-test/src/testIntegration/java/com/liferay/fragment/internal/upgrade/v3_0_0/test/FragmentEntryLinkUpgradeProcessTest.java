@@ -238,6 +238,22 @@ public class FragmentEntryLinkUpgradeProcessTest
 			true);
 	}
 
+	private void _assertFragmentEntryLinkTableColumns() throws Exception {
+		Assert.assertFalse(
+			_dbInspector.hasColumn("FragmentEntryLink", "fragmentEntryId"));
+		Assert.assertTrue(
+			_dbInspector.hasColumn("FragmentEntryLink", "fragmentEntryERC"));
+		Assert.assertTrue(
+			_dbInspector.hasColumn(
+				"FragmentEntryLink", "fragmentEntryScopeERC"));
+		Assert.assertTrue(
+			_dbInspector.hasColumn(
+				"FragmentEntryLink", "originalFragmentEntryLinkERC"));
+		Assert.assertFalse(
+			_dbInspector.hasColumn(
+				"FragmentEntryLink", "originalFragmentEntryLinkId"));
+	}
+
 	private void _assertFragmentEntryLinks(
 			Map<Long, Map<String, Object>> expectedValuesMap,
 			List<Long> fragmentEntryLinkIds)
@@ -267,22 +283,6 @@ public class FragmentEntryLinkUpgradeProcessTest
 				expectedValues.get("originalFragmentEntryLinkId"),
 				_getOriginalFragmentEntryLinkId(fragmentEntryLink));
 		}
-	}
-
-	private void _assertFragmentEntryLinkTableColumns() throws Exception {
-		Assert.assertFalse(
-			_dbInspector.hasColumn("FragmentEntryLink", "fragmentEntryId"));
-		Assert.assertTrue(
-			_dbInspector.hasColumn("FragmentEntryLink", "fragmentEntryERC"));
-		Assert.assertTrue(
-			_dbInspector.hasColumn(
-				"FragmentEntryLink", "fragmentEntryScopeERC"));
-		Assert.assertTrue(
-			_dbInspector.hasColumn(
-				"FragmentEntryLink", "originalFragmentEntryLinkERC"));
-		Assert.assertFalse(
-			_dbInspector.hasColumn(
-				"FragmentEntryLink", "originalFragmentEntryLinkId"));
 	}
 
 	private Map<Long, Map<String, Object>> _getExpectedValues(

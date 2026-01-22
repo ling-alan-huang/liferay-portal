@@ -853,6 +853,29 @@ public class LayoutSetPrototypePropagationTest
 	}
 
 	@Test
+	public void testResetPrototypeWithPermissions() throws Exception {
+		Role role = RoleTestUtil.addRole(RoleConstants.TYPE_REGULAR);
+
+		RoleLocalServiceUtil.addUserRole(_user1.getUserId(), role);
+
+		ResourcePermissionLocalServiceUtil.addResourcePermission(
+			_user1.getCompanyId(), Group.class.getName(),
+			ResourceConstants.SCOPE_COMPANY,
+			String.valueOf(_user1.getCompanyId()), role.getRoleId(),
+			ActionKeys.UPDATE);
+
+		PermissionThreadLocal.setPermissionChecker(
+			PermissionCheckerFactoryUtil.create(_user1));
+
+		Group userGroup = GroupLocalServiceUtil.getUserGroup(
+			_user2.getCompanyId(), _user2.getUserId());
+
+		_layoutSetPrototypeHelper.resetPrototype(
+			LayoutSetLocalServiceUtil.getLayoutSet(
+				userGroup.getGroupId(), true));
+	}
+
+	@Test
 	public void testResetPrototypeWithoutPermissions() throws Exception {
 		PermissionThreadLocal.setPermissionChecker(
 			PermissionCheckerFactoryUtil.create(_user1));
@@ -875,29 +898,6 @@ public class LayoutSetPrototypePropagationTest
 				_log.debug(principalException);
 			}
 		}
-	}
-
-	@Test
-	public void testResetPrototypeWithPermissions() throws Exception {
-		Role role = RoleTestUtil.addRole(RoleConstants.TYPE_REGULAR);
-
-		RoleLocalServiceUtil.addUserRole(_user1.getUserId(), role);
-
-		ResourcePermissionLocalServiceUtil.addResourcePermission(
-			_user1.getCompanyId(), Group.class.getName(),
-			ResourceConstants.SCOPE_COMPANY,
-			String.valueOf(_user1.getCompanyId()), role.getRoleId(),
-			ActionKeys.UPDATE);
-
-		PermissionThreadLocal.setPermissionChecker(
-			PermissionCheckerFactoryUtil.create(_user1));
-
-		Group userGroup = GroupLocalServiceUtil.getUserGroup(
-			_user2.getCompanyId(), _user2.getUserId());
-
-		_layoutSetPrototypeHelper.resetPrototype(
-			LayoutSetLocalServiceUtil.getLayoutSet(
-				userGroup.getGroupId(), true));
 	}
 
 	@Test
@@ -1401,18 +1401,6 @@ public class LayoutSetPrototypePropagationTest
 		Assert.assertEquals(0, mergeFailCount);
 	}
 
-	protected void setLayoutsUpdateable(boolean layoutsUpdateable)
-		throws Exception {
-
-		_layoutSetPrototype =
-			LayoutSetPrototypeLocalServiceUtil.updateLayoutSetPrototype(
-				_layoutSetPrototype.getLayoutSetPrototypeId(),
-				_layoutSetPrototype.getNameMap(),
-				_layoutSetPrototype.getDescriptionMap(),
-				_layoutSetPrototype.isActive(), layoutsUpdateable,
-				ServiceContextTestUtil.getServiceContext());
-	}
-
 	protected Layout setLayoutUpdateable(
 			Layout layout, boolean layoutUpdateable)
 		throws Exception {
@@ -1426,6 +1414,18 @@ public class LayoutSetPrototypePropagationTest
 		layout.setTypeSettingsProperties(typeSettingsUnicodeProperties);
 
 		return LayoutLocalServiceUtil.updateLayout(layout);
+	}
+
+	protected void setLayoutsUpdateable(boolean layoutsUpdateable)
+		throws Exception {
+
+		_layoutSetPrototype =
+			LayoutSetPrototypeLocalServiceUtil.updateLayoutSetPrototype(
+				_layoutSetPrototype.getLayoutSetPrototypeId(),
+				_layoutSetPrototype.getNameMap(),
+				_layoutSetPrototype.getDescriptionMap(),
+				_layoutSetPrototype.isActive(), layoutsUpdateable,
+				ServiceContextTestUtil.getServiceContext());
 	}
 
 	@Override
@@ -1641,14 +1641,14 @@ public class LayoutSetPrototypePropagationTest
 	private String _portletId;
 
 	@Inject
+	private PortletPreferenceValueLocalService
+		_portletPreferenceValueLocalService;
+
+	@Inject
 	private PortletPreferencesFactory _portletPreferencesFactory;
 
 	@Inject
 	private PortletPreferencesLocalService _portletPreferencesLocalService;
-
-	@Inject
-	private PortletPreferenceValueLocalService
-		_portletPreferenceValueLocalService;
 
 	private Layout _prototypeLayout;
 

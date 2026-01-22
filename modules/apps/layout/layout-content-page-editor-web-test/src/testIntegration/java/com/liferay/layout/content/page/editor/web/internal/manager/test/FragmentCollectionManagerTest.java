@@ -48,6 +48,35 @@ public class FragmentCollectionManagerTest {
 
 	@Test
 	@TestInfo("LPS-162848")
+	public void testGetLayoutElementMapsListMapWithPermissions()
+		throws Exception {
+
+		ObjectDefinition objectDefinition =
+			ObjectDefinitionTestUtil.publishObjectDefinition(
+				Collections.singletonList(
+					ObjectFieldUtil.createObjectField(
+						ObjectFieldConstants.BUSINESS_TYPE_TEXT,
+						ObjectFieldConstants.DB_TYPE_STRING, "First Name",
+						"firstName")),
+				false);
+
+		try {
+			Map<String, List<Map<String, Object>>> layoutElementMapsListMap =
+				ReflectionTestUtil.invoke(
+					_fragmentCollectionManager, "getLayoutElementMapsListMap",
+					new Class<?>[] {PermissionChecker.class},
+					PermissionThreadLocal.getPermissionChecker());
+
+			Assert.assertTrue(layoutElementMapsListMap.containsKey("INPUTS"));
+		}
+		finally {
+			_objectDefinitionLocalService.deleteObjectDefinition(
+				objectDefinition);
+		}
+	}
+
+	@Test
+	@TestInfo("LPS-162848")
 	public void testGetLayoutElementMapsListMapWithoutApprovedObjectDefinition() {
 		Map<String, List<Map<String, Object>>> layoutElementMapsListMap =
 			ReflectionTestUtil.invoke(
@@ -93,35 +122,6 @@ public class FragmentCollectionManagerTest {
 			PermissionThreadLocal.setPermissionChecker(
 				originalPermissionChecker);
 
-			_objectDefinitionLocalService.deleteObjectDefinition(
-				objectDefinition);
-		}
-	}
-
-	@Test
-	@TestInfo("LPS-162848")
-	public void testGetLayoutElementMapsListMapWithPermissions()
-		throws Exception {
-
-		ObjectDefinition objectDefinition =
-			ObjectDefinitionTestUtil.publishObjectDefinition(
-				Collections.singletonList(
-					ObjectFieldUtil.createObjectField(
-						ObjectFieldConstants.BUSINESS_TYPE_TEXT,
-						ObjectFieldConstants.DB_TYPE_STRING, "First Name",
-						"firstName")),
-				false);
-
-		try {
-			Map<String, List<Map<String, Object>>> layoutElementMapsListMap =
-				ReflectionTestUtil.invoke(
-					_fragmentCollectionManager, "getLayoutElementMapsListMap",
-					new Class<?>[] {PermissionChecker.class},
-					PermissionThreadLocal.getPermissionChecker());
-
-			Assert.assertTrue(layoutElementMapsListMap.containsKey("INPUTS"));
-		}
-		finally {
 			_objectDefinitionLocalService.deleteObjectDefinition(
 				objectDefinition);
 		}

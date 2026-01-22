@@ -2398,11 +2398,11 @@ public class GitHubWebhookPayloadProcessor {
 		"remote = .*/([^\\.]*)\\.git");
 	private static final Pattern _gitrepoSHAPattern = Pattern.compile(
 		"commit = ([0-9a-f]{40})");
-	private static Set<String> _passingTestSuites;
 	private static final Pattern _passingTestSuiteStatusDescriptionPattern =
 		Pattern.compile(
 			"\"ci:test:(?<testSuiteName>[^\"]+)\"" +
 				"(?:\\s* has PASSED.|\\s* was BYPASSED.)");
+	private static Set<String> _passingTestSuites;
 	private static final Pattern _reevaluatePattern = Pattern.compile(
 		"ci:reevaluate:(?<buildID>[\\d]+_[\\d]+)");
 	private static final Pattern _testPattern = Pattern.compile(

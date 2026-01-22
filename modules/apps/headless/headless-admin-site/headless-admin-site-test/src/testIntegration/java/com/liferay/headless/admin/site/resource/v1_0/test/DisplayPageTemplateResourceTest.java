@@ -995,6 +995,20 @@ public class DisplayPageTemplateResourceTest
 		assertValid(getDisplayPageTemplate);
 	}
 
+	private void _testGetSiteDisplayPageTemplateWithNestedFields(
+			DisplayPageTemplate displayPageTemplate)
+		throws Exception {
+
+		DisplayPageTemplateResource displayPageTemplateResource =
+			_getDisplayPageTemplateResource(
+				"friendlyUrlHistory,pageSpecifications");
+
+		_assertNestedFields(
+			displayPageTemplateResource.getSiteDisplayPageTemplate(
+				testGroup.getExternalReferenceCode(),
+				displayPageTemplate.getExternalReferenceCode()));
+	}
+
 	private void _testGetSiteDisplayPageTemplatesPageWithNestedFields()
 		throws Exception {
 
@@ -1047,20 +1061,6 @@ public class DisplayPageTemplateResourceTest
 		_assertNestedFields(
 			_getDisplayPageTemplate(
 				(List<DisplayPageTemplate>)page.getItems(),
-				displayPageTemplate.getExternalReferenceCode()));
-	}
-
-	private void _testGetSiteDisplayPageTemplateWithNestedFields(
-			DisplayPageTemplate displayPageTemplate)
-		throws Exception {
-
-		DisplayPageTemplateResource displayPageTemplateResource =
-			_getDisplayPageTemplateResource(
-				"friendlyUrlHistory,pageSpecifications");
-
-		_assertNestedFields(
-			displayPageTemplateResource.getSiteDisplayPageTemplate(
-				testGroup.getExternalReferenceCode(),
 				displayPageTemplate.getExternalReferenceCode()));
 	}
 

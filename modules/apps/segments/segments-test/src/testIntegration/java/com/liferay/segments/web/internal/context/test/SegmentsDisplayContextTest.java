@@ -526,6 +526,17 @@ public class SegmentsDisplayContextTest {
 	}
 
 	@Test
+	public void testIsShowAssignUserRolesActionWithPermissions()
+		throws Exception {
+
+		SegmentsEntry segmentsEntry = SegmentsTestUtil.addSegmentsEntry(
+			ServiceContextTestUtil.getServiceContext(
+				_group.getGroupId(), _user.getUserId()));
+
+		Assert.assertTrue(_isShowAssignUserRolesAction(segmentsEntry));
+	}
+
+	@Test
 	public void testIsShowAssignUserRolesActionWithoutPermissions()
 		throws Exception {
 
@@ -536,17 +547,6 @@ public class SegmentsDisplayContextTest {
 				_group.getGroupId(), user.getUserId()));
 
 		Assert.assertFalse(_isShowAssignUserRolesAction(segmentsEntry));
-	}
-
-	@Test
-	public void testIsShowAssignUserRolesActionWithPermissions()
-		throws Exception {
-
-		SegmentsEntry segmentsEntry = SegmentsTestUtil.addSegmentsEntry(
-			ServiceContextTestUtil.getServiceContext(
-				_group.getGroupId(), _user.getUserId()));
-
-		Assert.assertTrue(_isShowAssignUserRolesAction(segmentsEntry));
 	}
 
 	@Test

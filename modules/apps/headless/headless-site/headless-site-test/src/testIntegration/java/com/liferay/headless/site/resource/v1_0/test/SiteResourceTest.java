@@ -482,23 +482,6 @@ public class SiteResourceTest extends BaseSiteResourceTestCase {
 		}
 	}
 
-	private void _testGetSitesPageWithoutAuthentication() throws Exception {
-		SiteResource.Builder builder = SiteResource.builder();
-
-		SiteResource siteResource = builder.build();
-
-		try {
-			siteResource.getSitesPage(true, null, Pagination.of(1, 1));
-
-			Assert.fail();
-		}
-		catch (Problem.ProblemException problemException) {
-			Problem problem = problemException.getProblem();
-
-			Assert.assertEquals("403", problem.getStatus());
-		}
-	}
-
 	private void _testGetSitesPageWithSearch() throws Exception {
 		String name = RandomTestUtil.randomString();
 
@@ -516,6 +499,23 @@ public class SiteResourceTest extends BaseSiteResourceTestCase {
 		Assert.assertEquals(items.toString(), 1, items.size());
 
 		assertEquals(postSite, items.get(0));
+	}
+
+	private void _testGetSitesPageWithoutAuthentication() throws Exception {
+		SiteResource.Builder builder = SiteResource.builder();
+
+		SiteResource siteResource = builder.build();
+
+		try {
+			siteResource.getSitesPage(true, null, Pagination.of(1, 1));
+
+			Assert.fail();
+		}
+		catch (Problem.ProblemException problemException) {
+			Problem problem = problemException.getProblem();
+
+			Assert.assertEquals("403", problem.getStatus());
+		}
 	}
 
 	private Site _testPostSite_addSite(Site site) throws Exception {
@@ -961,23 +961,6 @@ public class SiteResourceTest extends BaseSiteResourceTestCase {
 			locales);
 	}
 
-	private void _testPostSiteWithoutAuthentication() throws Exception {
-		SiteResource.Builder builder = SiteResource.builder();
-
-		SiteResource siteResource = builder.build();
-
-		try {
-			siteResource.postSite(randomSite());
-
-			Assert.fail();
-		}
-		catch (Problem.ProblemException problemException) {
-			Problem problem = problemException.getProblem();
-
-			Assert.assertEquals("403", problem.getStatus());
-		}
-	}
-
 	private void _testPostSiteWithParentSiteExternalReferenceCode()
 		throws Exception {
 
@@ -1061,6 +1044,23 @@ public class SiteResourceTest extends BaseSiteResourceTestCase {
 		Assert.assertNull(typeSettingsMap.get("defaultSiteRoleIds"));
 		Assert.assertNull(typeSettingsMap.get("defaultTeamIds"));
 		Assert.assertNull(typeSettingsMap.get("googleMapsAPIKey"));
+	}
+
+	private void _testPostSiteWithoutAuthentication() throws Exception {
+		SiteResource.Builder builder = SiteResource.builder();
+
+		SiteResource siteResource = builder.build();
+
+		try {
+			siteResource.postSite(randomSite());
+
+			Assert.fail();
+		}
+		catch (Problem.ProblemException problemException) {
+			Problem problem = problemException.getProblem();
+
+			Assert.assertEquals("403", problem.getStatus());
+		}
 	}
 
 	private void _testPutSiteBatch() throws Exception {

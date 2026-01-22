@@ -123,6 +123,26 @@ public class IndexActionsDisplayContextBuilder {
 		).build();
 	}
 
+	private List<Object> _getIndexReindexerNames() {
+		List<Object> indexReindexerNames = new ArrayList<>();
+
+		if (ListUtil.isNotNull(_indexReindexerClassNames)) {
+			for (String indexReindexerClassName : _indexReindexerClassNames) {
+				indexReindexerNames.add(
+					HashMapBuilder.put(
+						"className", indexReindexerClassName
+					).put(
+						"displayName",
+						_language.get(
+							_httpServletRequest,
+							"model.resource." + indexReindexerClassName)
+					).build());
+			}
+		}
+
+		return indexReindexerNames;
+	}
+
 	private Map<String, List<Object>> _getIndexersMap() {
 		Set<Indexer<?>> indexersSet = IndexerRegistryUtil.getIndexers();
 
@@ -202,26 +222,6 @@ public class IndexActionsDisplayContextBuilder {
 		}
 
 		return indexersMap;
-	}
-
-	private List<Object> _getIndexReindexerNames() {
-		List<Object> indexReindexerNames = new ArrayList<>();
-
-		if (ListUtil.isNotNull(_indexReindexerClassNames)) {
-			for (String indexReindexerClassName : _indexReindexerClassNames) {
-				indexReindexerNames.add(
-					HashMapBuilder.put(
-						"className", indexReindexerClassName
-					).put(
-						"displayName",
-						_language.get(
-							_httpServletRequest,
-							"model.resource." + indexReindexerClassName)
-					).build());
-			}
-		}
-
-		return indexReindexerNames;
 	}
 
 	private long[] _getInitialCompanyIds() {

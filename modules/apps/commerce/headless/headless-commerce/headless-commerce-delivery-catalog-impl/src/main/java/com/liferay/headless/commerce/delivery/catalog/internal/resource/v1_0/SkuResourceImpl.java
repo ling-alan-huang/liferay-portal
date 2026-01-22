@@ -413,6 +413,9 @@ public class SkuResourceImpl extends BaseSkuResourceImpl {
 	private AccountEntryLocalService _accountEntryLocalService;
 
 	@Reference
+	private CProductLocalService _cProductLocalService;
+
+	@Reference
 	private CommerceAccountHelper _commerceAccountHelper;
 
 	@Reference
@@ -436,9 +439,6 @@ public class SkuResourceImpl extends BaseSkuResourceImpl {
 	@Reference
 	private CPInstanceUnitOfMeasureLocalService
 		_cpInstanceUnitOfMeasureLocalService;
-
-	@Reference
-	private CProductLocalService _cProductLocalService;
 
 	@Reference
 	private JSONFactory _jsonFactory;

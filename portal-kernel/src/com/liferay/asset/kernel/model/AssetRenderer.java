@@ -140,10 +140,6 @@ public interface AssetRenderer<T> extends Renderer {
 			LiferayPortletResponse liferayPortletResponse)
 		throws Exception;
 
-	public String getUrlTitle();
-
-	public String getUrlTitle(Locale locale);
-
 	public String getURLView(
 			LiferayPortletResponse liferayPortletResponse,
 			WindowState windowState)
@@ -170,6 +166,10 @@ public interface AssetRenderer<T> extends Renderer {
 
 		return StringPool.BLANK;
 	}
+
+	public String getUrlTitle();
+
+	public String getUrlTitle(Locale locale);
 
 	public long getUserId();
 

@@ -111,6 +111,22 @@ public class CommerceSubscriptionEntryDisplayContext {
 		return sb.toString();
 	}
 
+	public CPSubscriptionType getCPSubscriptionType(String subscriptionType) {
+		return _cpSubscriptionTypeRegistry.getCPSubscriptionType(
+			subscriptionType);
+	}
+
+	public CPSubscriptionTypeJSPContributor getCPSubscriptionTypeJSPContributor(
+		String subscriptionType) {
+
+		return _cpSubscriptionTypeJSPContributorRegistry.
+			getCPSubscriptionTypeJSPContributor(subscriptionType);
+	}
+
+	public List<CPSubscriptionType> getCPSubscriptionTypes() {
+		return _cpSubscriptionTypeRegistry.getCPSubscriptionTypes();
+	}
+
 	public long getCommerceOrderId() throws PortalException {
 		CommerceSubscriptionEntry commerceSubscriptionEntry =
 			getCommerceSubscriptionEntry();
@@ -182,22 +198,6 @@ public class CommerceSubscriptionEntryDisplayContext {
 			themeDisplay.getTimeZone());
 
 		return dateTimeFormat.format(showDate);
-	}
-
-	public CPSubscriptionType getCPSubscriptionType(String subscriptionType) {
-		return _cpSubscriptionTypeRegistry.getCPSubscriptionType(
-			subscriptionType);
-	}
-
-	public CPSubscriptionTypeJSPContributor getCPSubscriptionTypeJSPContributor(
-		String subscriptionType) {
-
-		return _cpSubscriptionTypeJSPContributorRegistry.
-			getCPSubscriptionTypeJSPContributor(subscriptionType);
-	}
-
-	public List<CPSubscriptionType> getCPSubscriptionTypes() {
-		return _cpSubscriptionTypeRegistry.getCPSubscriptionTypes();
 	}
 
 	public String getEditCommerceOrderURL(long commerceOrderId)

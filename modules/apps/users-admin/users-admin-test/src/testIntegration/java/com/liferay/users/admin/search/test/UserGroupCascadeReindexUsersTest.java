@@ -333,10 +333,10 @@ public class UserGroupCascadeReindexUsersTest {
 	private static Queries _queries;
 
 	@Inject
-	private static Searcher _searcher;
+	private static SearchRequestBuilderFactory _searchRequestBuilderFactory;
 
 	@Inject
-	private static SearchRequestBuilderFactory _searchRequestBuilderFactory;
+	private static Searcher _searcher;
 
 	@Inject
 	private static UserGroupLocalService _userGroupLocalService;

@@ -240,37 +240,6 @@ public class JournalExportImportTest extends BasePortletExportImportTestCase {
 	}
 
 	@Test
-	public void testExportImportJournalArticleWithoutVersionHistory()
-		throws Exception {
-
-		JournalArticle article = (JournalArticle)addStagedModel(
-			group.getGroupId());
-
-		article = (JournalArticle)addVersion(article);
-
-		Assert.assertEquals(
-			2,
-			JournalArticleLocalServiceUtil.getArticlesCount(
-				group.getGroupId(), article.getArticleId()));
-
-		Map<String, String[]> exportParameterMap = new HashMap<>();
-
-		addParameter(exportParameterMap, "version-history", false);
-
-		exportImportPortlet(
-			JournalPortletKeys.JOURNAL, exportParameterMap,
-			new HashMap<String, String[]>());
-
-		JournalArticle importedArticle = (JournalArticle)getStagedModel(
-			article.getUuid(), importedGroup.getGroupId());
-
-		Assert.assertEquals(
-			1,
-			JournalArticleLocalServiceUtil.getArticlesCount(
-				importedGroup.getGroupId(), importedArticle.getArticleId()));
-	}
-
-	@Test
 	public void testExportImportJournalArticleWithRepeatableWebContentField()
 		throws Exception {
 
@@ -375,6 +344,37 @@ public class JournalExportImportTest extends BasePortletExportImportTestCase {
 		_assertContains(
 			content,
 			"\"classPK\":\"" + referencedArticle2.getResourcePrimKey() + "\"");
+	}
+
+	@Test
+	public void testExportImportJournalArticleWithoutVersionHistory()
+		throws Exception {
+
+		JournalArticle article = (JournalArticle)addStagedModel(
+			group.getGroupId());
+
+		article = (JournalArticle)addVersion(article);
+
+		Assert.assertEquals(
+			2,
+			JournalArticleLocalServiceUtil.getArticlesCount(
+				group.getGroupId(), article.getArticleId()));
+
+		Map<String, String[]> exportParameterMap = new HashMap<>();
+
+		addParameter(exportParameterMap, "version-history", false);
+
+		exportImportPortlet(
+			JournalPortletKeys.JOURNAL, exportParameterMap,
+			new HashMap<String, String[]>());
+
+		JournalArticle importedArticle = (JournalArticle)getStagedModel(
+			article.getUuid(), importedGroup.getGroupId());
+
+		Assert.assertEquals(
+			1,
+			JournalArticleLocalServiceUtil.getArticlesCount(
+				importedGroup.getGroupId(), importedArticle.getArticleId()));
 	}
 
 	@Test

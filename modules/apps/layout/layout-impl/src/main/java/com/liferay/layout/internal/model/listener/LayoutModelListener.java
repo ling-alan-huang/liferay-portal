@@ -148,10 +148,10 @@ public class LayoutModelListener extends BaseModelListener<Layout> {
 	private LayoutFriendlyURLEntryHelper _layoutFriendlyURLEntryHelper;
 
 	@Reference
-	private LayoutLocalizationLocalService _layoutLocalizationLocalService;
+	private LayoutLocalService _layoutLocalService;
 
 	@Reference
-	private LayoutLocalService _layoutLocalService;
+	private LayoutLocalizationLocalService _layoutLocalizationLocalService;
 
 	@Reference
 	private LayoutRevisionLocalService _layoutRevisionLocalService;

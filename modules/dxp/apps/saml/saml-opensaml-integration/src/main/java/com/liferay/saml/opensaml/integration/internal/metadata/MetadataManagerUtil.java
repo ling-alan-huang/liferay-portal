@@ -147,6 +147,14 @@ public class MetadataManagerUtil {
 		}
 	}
 
+	private static boolean _isSSLRequired(
+		SamlProviderConfigurationHelper samlProviderConfigurationHelper) {
+
+		return _getSamlProviderConfiguration(
+			samlProviderConfigurationHelper
+		).sslRequired();
+	}
+
 	private static boolean _isSignAuthnRequest(
 		SamlProviderConfigurationHelper samlProviderConfigurationHelper) {
 
@@ -161,14 +169,6 @@ public class MetadataManagerUtil {
 		return _getSamlProviderConfiguration(
 			samlProviderConfigurationHelper
 		).signMetadata();
-	}
-
-	private static boolean _isSSLRequired(
-		SamlProviderConfigurationHelper samlProviderConfigurationHelper) {
-
-		return _getSamlProviderConfiguration(
-			samlProviderConfigurationHelper
-		).sslRequired();
 	}
 
 	private static boolean _isWantAssertionsSigned(

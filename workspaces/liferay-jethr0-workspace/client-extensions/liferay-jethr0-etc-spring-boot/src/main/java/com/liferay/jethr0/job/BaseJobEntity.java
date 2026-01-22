@@ -131,22 +131,6 @@ public abstract class BaseJobEntity extends BaseEntity implements JobEntity {
 	}
 
 	@Override
-	public URL getJenkinsBranchURL() {
-		String jenkinsBranchURL = getParameterValue("jenkinsBranchURL");
-
-		if (StringUtil.isNullOrEmpty(jenkinsBranchURL)) {
-			return null;
-		}
-
-		return StringUtil.toURL(jenkinsBranchURL);
-	}
-
-	@Override
-	public Set<JenkinsCohortEntity> getJenkinsCohortEntities() {
-		return getRelatedEntities(JenkinsCohortEntity.class);
-	}
-
-	@Override
 	public JSONObject getJSONObject() {
 		JSONObject jsonObject = super.getJSONObject();
 
@@ -178,18 +162,34 @@ public abstract class BaseJobEntity extends BaseEntity implements JobEntity {
 	}
 
 	@Override
+	public URL getJenkinsBranchURL() {
+		String jenkinsBranchURL = getParameterValue("jenkinsBranchURL");
+
+		if (StringUtil.isNullOrEmpty(jenkinsBranchURL)) {
+			return null;
+		}
+
+		return StringUtil.toURL(jenkinsBranchURL);
+	}
+
+	@Override
+	public Set<JenkinsCohortEntity> getJenkinsCohortEntities() {
+		return getRelatedEntities(JenkinsCohortEntity.class);
+	}
+
+	@Override
 	public String getName() {
 		return _name;
 	}
 
 	@Override
-	public Map<String, String> getParameters() {
-		return _parameters;
+	public String getParameterValue(String name) {
+		return _parameters.get(name);
 	}
 
 	@Override
-	public String getParameterValue(String name) {
-		return _parameters.get(name);
+	public Map<String, String> getParameters() {
+		return _parameters;
 	}
 
 	@Override
@@ -296,11 +296,6 @@ public abstract class BaseJobEntity extends BaseEntity implements JobEntity {
 	}
 
 	@Override
-	public void setJenkinsBranchURL(URL jenkinsBranchURL) {
-		setParameterValue("jenkinsBranchURL", String.valueOf(jenkinsBranchURL));
-	}
-
-	@Override
 	public void setJSONObject(JSONObject jsonObject) {
 		super.setJSONObject(jsonObject);
 
@@ -341,8 +336,18 @@ public abstract class BaseJobEntity extends BaseEntity implements JobEntity {
 	}
 
 	@Override
+	public void setJenkinsBranchURL(URL jenkinsBranchURL) {
+		setParameterValue("jenkinsBranchURL", String.valueOf(jenkinsBranchURL));
+	}
+
+	@Override
 	public void setName(String name) {
 		_name = name;
+	}
+
+	@Override
+	public void setParameterValue(String name, String value) {
+		_parameters.put(name, value);
 	}
 
 	@Override
@@ -350,11 +355,6 @@ public abstract class BaseJobEntity extends BaseEntity implements JobEntity {
 		_parameters.clear();
 
 		_parameters.putAll(parameters);
-	}
-
-	@Override
-	public void setParameterValue(String name, String value) {
-		_parameters.put(name, value);
 	}
 
 	@Override

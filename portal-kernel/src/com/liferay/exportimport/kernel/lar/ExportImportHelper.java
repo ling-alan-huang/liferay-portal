@@ -55,12 +55,6 @@ public interface ExportImportHelper {
 			long companyId, boolean excludeDataAlwaysStaged)
 		throws Exception;
 
-	public List<Portlet> getExportablePortlets(
-		long companyId, boolean excludeDataAlwaysStaged, long groupId);
-
-	public String getExportableRootPortletId(long companyId, String portletId)
-		throws Exception;
-
 	public Map<String, Boolean> getExportPortletControlsMap(
 			long companyId, String portletId,
 			Map<String, String[]> parameterMap)
@@ -69,6 +63,12 @@ public interface ExportImportHelper {
 	public Map<String, Boolean> getExportPortletControlsMap(
 			long companyId, String portletId,
 			Map<String, String[]> parameterMap, String type)
+		throws Exception;
+
+	public List<Portlet> getExportablePortlets(
+		long companyId, boolean excludeDataAlwaysStaged, long groupId);
+
+	public String getExportableRootPortletId(long companyId, String portletId)
 		throws Exception;
 
 	public Map<String, Boolean> getImportPortletControlsMap(

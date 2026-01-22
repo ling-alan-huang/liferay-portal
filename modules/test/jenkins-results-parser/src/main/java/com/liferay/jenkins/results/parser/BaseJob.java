@@ -464,64 +464,6 @@ public abstract class BaseJob implements Job {
 	}
 
 	@Override
-	public Set<JenkinsCohort> getJenkinsCohorts() {
-		return Collections.singleton(
-			JenkinsResultsParserUtil.getJenkinsCohort());
-	}
-
-	@Override
-	public JobHistory getJobHistory() {
-		if (_jobHistory != null) {
-			return _jobHistory;
-		}
-
-		String portalUpstreamBranchName = _getPortalUpstreamBranchName();
-
-		if (portalUpstreamBranchName == null) {
-			return null;
-		}
-
-		_jobHistory = HistoryFactory.newJobHistory(portalUpstreamBranchName);
-
-		return _jobHistory;
-	}
-
-	@Override
-	public String getJobName() {
-		return _jobName;
-	}
-
-	@Override
-	public List<File> getJobPropertiesFiles() {
-		return jobPropertiesFiles;
-	}
-
-	@Override
-	public List<String> getJobPropertyOptions() {
-		List<String> jobPropertyOptions = new ArrayList<>();
-
-		jobPropertyOptions.add(String.valueOf(getBuildProfile()));
-
-		String jobName = getJobName();
-
-		jobPropertyOptions.add(jobName);
-
-		if (jobName.contains("(")) {
-			jobPropertyOptions.add(jobName.substring(0, jobName.indexOf("(")));
-		}
-
-		jobPropertyOptions.removeAll(Collections.singleton(null));
-
-		return jobPropertyOptions;
-	}
-
-	@Override
-	public String getJobURL(JenkinsMaster jenkinsMaster) {
-		return JenkinsResultsParserUtil.combine(
-			jenkinsMaster.getURL(), "/job/", _jobName);
-	}
-
-	@Override
 	public JSONObject getJSONObject() {
 		synchronized (jobProperties) {
 			if (jsonObject != null) {
@@ -585,6 +527,64 @@ public abstract class BaseJob implements Job {
 
 			return jsonObject;
 		}
+	}
+
+	@Override
+	public Set<JenkinsCohort> getJenkinsCohorts() {
+		return Collections.singleton(
+			JenkinsResultsParserUtil.getJenkinsCohort());
+	}
+
+	@Override
+	public JobHistory getJobHistory() {
+		if (_jobHistory != null) {
+			return _jobHistory;
+		}
+
+		String portalUpstreamBranchName = _getPortalUpstreamBranchName();
+
+		if (portalUpstreamBranchName == null) {
+			return null;
+		}
+
+		_jobHistory = HistoryFactory.newJobHistory(portalUpstreamBranchName);
+
+		return _jobHistory;
+	}
+
+	@Override
+	public String getJobName() {
+		return _jobName;
+	}
+
+	@Override
+	public List<File> getJobPropertiesFiles() {
+		return jobPropertiesFiles;
+	}
+
+	@Override
+	public List<String> getJobPropertyOptions() {
+		List<String> jobPropertyOptions = new ArrayList<>();
+
+		jobPropertyOptions.add(String.valueOf(getBuildProfile()));
+
+		String jobName = getJobName();
+
+		jobPropertyOptions.add(jobName);
+
+		if (jobName.contains("(")) {
+			jobPropertyOptions.add(jobName.substring(0, jobName.indexOf("(")));
+		}
+
+		jobPropertyOptions.removeAll(Collections.singleton(null));
+
+		return jobPropertyOptions;
+	}
+
+	@Override
+	public String getJobURL(JenkinsMaster jenkinsMaster) {
+		return JenkinsResultsParserUtil.combine(
+			jenkinsMaster.getURL(), "/job/", _jobName);
 	}
 
 	@Override
@@ -1558,6 +1558,38 @@ public abstract class BaseJob implements Job {
 		return 3;
 	}
 
+	private List<PathMatcher> _getJUnitIncludePathMatchers() {
+		List<PathMatcher> jUnitIncludePathMatchers = new ArrayList<>();
+
+		String testSuiteName = getTestSuiteName();
+
+		if (testSuiteName == null) {
+			testSuiteName = "default";
+		}
+
+		for (String jUnitBatchName : _JUNIT_BATCH_NAMES) {
+			JobProperty jobProperty = getJobProperty(
+				"test.batch.class.names.filter", testSuiteName, jUnitBatchName,
+				JobProperty.Type.INCLUDE_GLOB);
+
+			if (!(jobProperty instanceof GlobJobProperty)) {
+				continue;
+			}
+
+			String jobPropertyValue = jobProperty.getValue();
+
+			if (jobPropertyValue == null) {
+				continue;
+			}
+
+			GlobJobProperty globJobProperty = (GlobJobProperty)jobProperty;
+
+			jUnitIncludePathMatchers.addAll(globJobProperty.getPathMatchers());
+		}
+
+		return jUnitIncludePathMatchers;
+	}
+
 	private Map<String, Properties> _getJobPropertiesMap() {
 		synchronized (jobProperties) {
 			if (!_initializeJobProperties) {
@@ -1596,38 +1628,6 @@ public abstract class BaseJob implements Job {
 		}
 
 		return jobPropertiesMap;
-	}
-
-	private List<PathMatcher> _getJUnitIncludePathMatchers() {
-		List<PathMatcher> jUnitIncludePathMatchers = new ArrayList<>();
-
-		String testSuiteName = getTestSuiteName();
-
-		if (testSuiteName == null) {
-			testSuiteName = "default";
-		}
-
-		for (String jUnitBatchName : _JUNIT_BATCH_NAMES) {
-			JobProperty jobProperty = getJobProperty(
-				"test.batch.class.names.filter", testSuiteName, jUnitBatchName,
-				JobProperty.Type.INCLUDE_GLOB);
-
-			if (!(jobProperty instanceof GlobJobProperty)) {
-				continue;
-			}
-
-			String jobPropertyValue = jobProperty.getValue();
-
-			if (jobPropertyValue == null) {
-				continue;
-			}
-
-			GlobJobProperty globJobProperty = (GlobJobProperty)jobProperty;
-
-			jUnitIncludePathMatchers.addAll(globJobProperty.getPathMatchers());
-		}
-
-		return jUnitIncludePathMatchers;
 	}
 
 	private String _getPortalUpstreamBranchName() {
@@ -1695,9 +1695,9 @@ public abstract class BaseJob implements Job {
 	private List<BatchTestClassGroup> _dependentBatchTestClassGroups;
 	private final Map<String, List<String>> _distNodesMap = new HashMap<>();
 	private boolean _initializeJobProperties;
+	private Boolean _jUnitTestFileModifiedOnly;
 	private JobHistory _jobHistory;
 	private final String _jobName;
-	private Boolean _jUnitTestFileModifiedOnly;
 	private Boolean _testAnalyticsCloud;
 
 }

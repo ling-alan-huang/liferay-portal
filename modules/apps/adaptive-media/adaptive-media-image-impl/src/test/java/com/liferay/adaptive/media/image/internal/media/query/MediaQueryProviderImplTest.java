@@ -859,32 +859,6 @@ public class MediaQueryProviderImplTest {
 				"com.liferay.portal.kernel.repository.model.FileEntry"));
 	}
 
-	private AdaptiveMedia<AMProcessor<FileVersion>> _createAdaptiveMedia(
-			String amImageConfigurationEntryUuid, int height, int width,
-			String url)
-		throws Exception {
-
-		Map<String, String> properties = HashMapBuilder.put(
-			AMImageAttribute.AM_IMAGE_ATTRIBUTE_HEIGHT.getName(),
-			String.valueOf(height)
-		).put(
-			AMImageAttribute.AM_IMAGE_ATTRIBUTE_WIDTH.getName(),
-			String.valueOf(width)
-		).put(
-			() -> {
-				AMAttribute<?, ?> amAttribute =
-					AMAttribute.getConfigurationUuidAMAttribute();
-
-				return amAttribute.getName();
-			},
-			amImageConfigurationEntryUuid
-		).build();
-
-		return new AMImage(
-			() -> null, AMImageAttributeMapping.fromProperties(properties),
-			URI.create(url));
-	}
-
 	private AMImageConfigurationEntry _createAMImageConfigurationEntry(
 			final String uuid, final int height, final int width, String url)
 		throws Exception {
@@ -931,6 +905,32 @@ public class MediaQueryProviderImplTest {
 		);
 
 		return amImageConfigurationEntry;
+	}
+
+	private AdaptiveMedia<AMProcessor<FileVersion>> _createAdaptiveMedia(
+			String amImageConfigurationEntryUuid, int height, int width,
+			String url)
+		throws Exception {
+
+		Map<String, String> properties = HashMapBuilder.put(
+			AMImageAttribute.AM_IMAGE_ATTRIBUTE_HEIGHT.getName(),
+			String.valueOf(height)
+		).put(
+			AMImageAttribute.AM_IMAGE_ATTRIBUTE_WIDTH.getName(),
+			String.valueOf(width)
+		).put(
+			() -> {
+				AMAttribute<?, ?> amAttribute =
+					AMAttribute.getConfigurationUuidAMAttribute();
+
+				return amAttribute.getName();
+			},
+			amImageConfigurationEntryUuid
+		).build();
+
+		return new AMImage(
+			() -> null, AMImageAttributeMapping.fromProperties(properties),
+			URI.create(url));
 	}
 
 	private static final long _COMPANY_ID = 1L;

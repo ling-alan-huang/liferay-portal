@@ -34,27 +34,6 @@ public class BaseJenkinsNodeEntity
 	}
 
 	@Override
-	public JenkinsCohortEntity getJenkinsCohortEntity() {
-		JenkinsServerEntity jenkinsServerEntity = getJenkinsServerEntity();
-
-		if (jenkinsServerEntity == null) {
-			return null;
-		}
-
-		return jenkinsServerEntity.getJenkinsCohortEntity();
-	}
-
-	@Override
-	public JenkinsServerEntity getJenkinsServerEntity() {
-		return _jenkinsServerEntity;
-	}
-
-	@Override
-	public long getJenkinsServerEntityId() {
-		return _jenkinsServerId;
-	}
-
-	@Override
 	public JSONObject getJSONObject() {
 		JSONObject jsonObject = super.getJSONObject();
 
@@ -82,6 +61,27 @@ public class BaseJenkinsNodeEntity
 		);
 
 		return jsonObject;
+	}
+
+	@Override
+	public JenkinsCohortEntity getJenkinsCohortEntity() {
+		JenkinsServerEntity jenkinsServerEntity = getJenkinsServerEntity();
+
+		if (jenkinsServerEntity == null) {
+			return null;
+		}
+
+		return jenkinsServerEntity.getJenkinsCohortEntity();
+	}
+
+	@Override
+	public JenkinsServerEntity getJenkinsServerEntity() {
+		return _jenkinsServerEntity;
+	}
+
+	@Override
+	public long getJenkinsServerEntityId() {
+		return _jenkinsServerId;
 	}
 
 	@Override
@@ -153,20 +153,6 @@ public class BaseJenkinsNodeEntity
 	}
 
 	@Override
-	public void setJenkinsServerEntity(
-		JenkinsServerEntity jenkinsServerEntity) {
-
-		_jenkinsServerEntity = jenkinsServerEntity;
-
-		if (jenkinsServerEntity != null) {
-			_jenkinsServerId = jenkinsServerEntity.getId();
-		}
-		else {
-			_jenkinsServerId = 0;
-		}
-	}
-
-	@Override
 	public void setJSONObject(JSONObject jsonObject) {
 		super.setJSONObject(jsonObject);
 
@@ -179,6 +165,20 @@ public class BaseJenkinsNodeEntity
 		_nodeRAM = jsonObject.getInt("nodeRAM");
 		_type = Type.get(jsonObject.getJSONObject("type"));
 		_url = StringUtil.toURL(jsonObject.getString("url"));
+	}
+
+	@Override
+	public void setJenkinsServerEntity(
+		JenkinsServerEntity jenkinsServerEntity) {
+
+		_jenkinsServerEntity = jenkinsServerEntity;
+
+		if (jenkinsServerEntity != null) {
+			_jenkinsServerId = jenkinsServerEntity.getId();
+		}
+		else {
+			_jenkinsServerId = 0;
+		}
 	}
 
 	@Override

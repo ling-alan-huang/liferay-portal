@@ -273,6 +273,10 @@ public class GitHubPullRequest {
 		return ciMergeGitHubFileName.replaceAll("/ci-merge", ".gitrepo");
 	}
 
+	public URL getHTMLURL() {
+		return StringUtil.toURL(_jsonObject.getString("html_url"));
+	}
+
 	public String getHeadBranchName() {
 		return _headBranchName;
 	}
@@ -290,10 +294,6 @@ public class GitHubPullRequest {
 
 	public GitHubRef getHeadGitHubRef() {
 		return _headGitHubRef;
-	}
-
-	public URL getHTMLURL() {
-		return StringUtil.toURL(_jsonObject.getString("html_url"));
 	}
 
 	public URL getIssueLockURL() {

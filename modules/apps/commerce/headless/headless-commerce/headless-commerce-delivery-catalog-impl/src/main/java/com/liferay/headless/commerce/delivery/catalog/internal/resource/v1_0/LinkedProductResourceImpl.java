@@ -154,6 +154,9 @@ public class LinkedProductResourceImpl extends BaseLinkedProductResourceImpl {
 	private AccountEntryLocalService _accountEntryLocalService;
 
 	@Reference
+	private CProductLocalService _cProductLocalService;
+
+	@Reference
 	private CommerceAccountHelper _commerceAccountHelper;
 
 	@Reference
@@ -165,9 +168,6 @@ public class LinkedProductResourceImpl extends BaseLinkedProductResourceImpl {
 	@Reference
 	private CPDefinitionGroupedEntryLocalService
 		_cpDefinitionGroupedEntryLocalService;
-
-	@Reference
-	private CProductLocalService _cProductLocalService;
 
 	@Reference
 	private CSDiagramEntryLocalService _csDiagramEntryLocalService;

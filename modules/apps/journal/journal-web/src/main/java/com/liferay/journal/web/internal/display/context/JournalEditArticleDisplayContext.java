@@ -500,12 +500,6 @@ public class JournalEditArticleDisplayContext {
 		).build();
 	}
 
-	public Map<String, Object> getDataEngineLayoutRendererComponentContext() {
-		return HashMapBuilder.<String, Object>put(
-			"currentLanguageId", getSelectedLanguageId()
-		).build();
-	}
-
 	public DDMFormValues getDDMFormValues() throws PortalException {
 		if (_ddmFormValues != null) {
 			return _ddmFormValues;
@@ -642,6 +636,12 @@ public class JournalEditArticleDisplayContext {
 		_ddmTemplateKey = ddmTemplateKey;
 
 		return _ddmTemplateKey;
+	}
+
+	public Map<String, Object> getDataEngineLayoutRendererComponentContext() {
+		return HashMapBuilder.<String, Object>put(
+			"currentLanguageId", getSelectedLanguageId()
+		).build();
 	}
 
 	public String getDefaultArticleLanguageId() {

@@ -217,6 +217,31 @@ public class ExportImportHelperImpl implements ExportImportHelper {
 	}
 
 	@Override
+	public Map<String, Boolean> getExportPortletControlsMap(
+			long companyId, String portletId,
+			Map<String, String[]> parameterMap)
+		throws Exception {
+
+		return getExportPortletControlsMap(
+			companyId, portletId, parameterMap, "layout-set");
+	}
+
+	@Override
+	public Map<String, Boolean> getExportPortletControlsMap(
+			long companyId, String portletId,
+			Map<String, String[]> parameterMap, String type)
+		throws Exception {
+
+		return HashMapBuilder.put(
+			PortletDataHandlerKeys.PORTLET_DATA,
+			_getExportPortletData(companyId, portletId, parameterMap)
+		).putAll(
+			_getExportPortletSetupControlsMap(
+				companyId, portletId, parameterMap, type)
+		).build();
+	}
+
+	@Override
 	public List<Portlet> getExportablePortlets(
 		long companyId, boolean excludeDataAlwaysStaged, long groupId) {
 
@@ -262,31 +287,6 @@ public class ExportImportHelperImpl implements ExportImportHelper {
 		}
 
 		return PortletIdCodec.decodePortletName(portletId);
-	}
-
-	@Override
-	public Map<String, Boolean> getExportPortletControlsMap(
-			long companyId, String portletId,
-			Map<String, String[]> parameterMap)
-		throws Exception {
-
-		return getExportPortletControlsMap(
-			companyId, portletId, parameterMap, "layout-set");
-	}
-
-	@Override
-	public Map<String, Boolean> getExportPortletControlsMap(
-			long companyId, String portletId,
-			Map<String, String[]> parameterMap, String type)
-		throws Exception {
-
-		return HashMapBuilder.put(
-			PortletDataHandlerKeys.PORTLET_DATA,
-			_getExportPortletData(companyId, portletId, parameterMap)
-		).putAll(
-			_getExportPortletSetupControlsMap(
-				companyId, portletId, parameterMap, type)
-		).build();
 	}
 
 	@Override

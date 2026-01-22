@@ -213,11 +213,11 @@ public class JournalArticleIndexerSummaryTest {
 	private Group _group;
 
 	private Indexer<JournalArticle> _indexer;
+	private JournalArticleSearchFixture _journalArticleSearchFixture;
 
 	@DeleteAfterTestRun
 	private List<JournalArticle> _journalArticles;
 
-	private JournalArticleSearchFixture _journalArticleSearchFixture;
 	private SummaryFixture<JournalArticle> _summaryFixture;
 
 	@DeleteAfterTestRun

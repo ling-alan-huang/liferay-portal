@@ -2450,13 +2450,13 @@ public class LayoutsImporterTest {
 		_layoutPageTemplateStructureService;
 
 	@Inject
+	private LayoutStructureProvider _layoutStructureProvider;
+
+	@Inject
 	private LayoutsExporter _layoutsExporter;
 
 	@Inject
 	private LayoutsImporter _layoutsImporter;
-
-	@Inject
-	private LayoutStructureProvider _layoutStructureProvider;
 
 	@Inject
 	private Portal _portal;

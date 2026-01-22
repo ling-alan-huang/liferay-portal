@@ -35,12 +35,12 @@ public class AWSFleetCloud {
 		return _jsonObject.getString("computer.connector.credentials.id");
 	}
 
-	public String getComputerConnectorJavaPath() {
-		return _jsonObject.getString("computer.connector.java.path");
-	}
-
 	public String getComputerConnectorJVMOptions() {
 		return _jsonObject.getString("computer.connector.jvm.options");
+	}
+
+	public String getComputerConnectorJavaPath() {
+		return _jsonObject.getString("computer.connector.java.path");
 	}
 
 	public int getComputerConnectorLaunchTimeoutSeconds() {
@@ -119,6 +119,10 @@ public class AWSFleetCloud {
 		return jenkinsSlaves;
 	}
 
+	public String getLabelString() {
+		return _jsonObject.getString("label.string");
+	}
+
 	public List<String> getLabels() {
 		List<String> labels = new ArrayList<>();
 
@@ -133,10 +137,6 @@ public class AWSFleetCloud {
 		}
 
 		return labels;
-	}
-
-	public String getLabelString() {
-		return _jsonObject.getString("label.string");
 	}
 
 	public int getMaxSize() {

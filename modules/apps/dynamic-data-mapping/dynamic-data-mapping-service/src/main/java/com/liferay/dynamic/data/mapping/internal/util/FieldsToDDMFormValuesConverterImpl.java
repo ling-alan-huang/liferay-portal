@@ -184,31 +184,6 @@ public class FieldsToDDMFormValuesConverterImpl
 		return null;
 	}
 
-	private String[] _getDDMFieldsDisplayValues(
-			Map<String, DDMFormField> ddmFormFieldsMap,
-			Field ddmFieldsDisplayField)
-		throws PortalException {
-
-		try {
-			return TransformUtil.transform(
-				splitFieldsDisplayValue(ddmFieldsDisplayField),
-				value -> {
-					String fieldName = StringUtil.extractFirst(
-						value, DDMImpl.INSTANCE_SEPARATOR);
-
-					if (!ddmFormFieldsMap.containsKey(fieldName)) {
-						return null;
-					}
-
-					return fieldName;
-				},
-				String.class);
-		}
-		catch (Exception exception) {
-			throw new PortalException(exception);
-		}
-	}
-
 	private String _getDDMFieldValueString(
 		Field ddmField, Locale locale, int index) {
 
@@ -240,6 +215,31 @@ public class FieldsToDDMFormValuesConverterImpl
 		}
 
 		return String.valueOf(fieldValue);
+	}
+
+	private String[] _getDDMFieldsDisplayValues(
+			Map<String, DDMFormField> ddmFormFieldsMap,
+			Field ddmFieldsDisplayField)
+		throws PortalException {
+
+		try {
+			return TransformUtil.transform(
+				splitFieldsDisplayValue(ddmFieldsDisplayField),
+				value -> {
+					String fieldName = StringUtil.extractFirst(
+						value, DDMImpl.INSTANCE_SEPARATOR);
+
+					if (!ddmFormFieldsMap.containsKey(fieldName)) {
+						return null;
+					}
+
+					return fieldName;
+				},
+				String.class);
+		}
+		catch (Exception exception) {
+			throw new PortalException(exception);
+		}
 	}
 
 	private List<String> _getDDMFormFieldNames(

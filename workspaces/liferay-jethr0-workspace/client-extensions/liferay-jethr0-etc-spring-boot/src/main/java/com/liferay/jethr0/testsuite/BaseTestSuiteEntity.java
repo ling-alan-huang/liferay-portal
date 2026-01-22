@@ -30,17 +30,17 @@ public class BaseTestSuiteEntity extends BaseEntity implements TestSuiteEntity {
 	}
 
 	@Override
-	public Set<JobEntity> getJobEntities() {
-		return _jobEntities;
-	}
-
-	@Override
 	public JSONObject getJSONObject() {
 		JSONObject jsonObject = super.getJSONObject();
 
 		jsonObject.put("name", getName());
 
 		return jsonObject;
+	}
+
+	@Override
+	public Set<JobEntity> getJobEntities() {
+		return _jobEntities;
 	}
 
 	@Override

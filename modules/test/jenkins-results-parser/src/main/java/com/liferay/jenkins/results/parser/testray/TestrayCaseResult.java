@@ -70,10 +70,6 @@ public class TestrayCaseResult {
 		return _jsonObject.optLong("duration");
 	}
 
-	public String getErrors() {
-		return _jsonObject.optString("errors");
-	}
-
 	public ErrorType getErrorType() {
 		if (_errorType != null) {
 			return _errorType;
@@ -106,6 +102,10 @@ public class TestrayCaseResult {
 		_errorType = ErrorType.UNIQUE;
 
 		return _errorType;
+	}
+
+	public String getErrors() {
+		return _jsonObject.optString("errors");
 	}
 
 	public URL getHistoryURL() {

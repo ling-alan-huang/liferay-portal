@@ -675,6 +675,15 @@ public class DBPartitionTest extends BaseDBPartitionTestCase {
 	}
 
 	@Test
+	public void testGetClassNameIdSupplier() throws Exception {
+		_assertClassNameIds(
+			classNameIds -> classNameIds.add(
+				_classNameLocalService.getClassNameIdSupplier(
+					"class.name.test"
+				).get()));
+	}
+
+	@Test
 	public void testGetClassNameIdsSupplier() throws Exception {
 		_assertClassNameIds(
 			classNameIds -> {
@@ -686,15 +695,6 @@ public class DBPartitionTest extends BaseDBPartitionTestCase {
 					classNameIds.add(classNameId);
 				}
 			});
-	}
-
-	@Test
-	public void testGetClassNameIdSupplier() throws Exception {
-		_assertClassNameIds(
-			classNameIds -> classNameIds.add(
-				_classNameLocalService.getClassNameIdSupplier(
-					"class.name.test"
-				).get()));
 	}
 
 	@Test
@@ -800,34 +800,6 @@ public class DBPartitionTest extends BaseDBPartitionTestCase {
 	}
 
 	@Test
-	public void testUpdateIndexes() throws Exception {
-		DataSource dataSource = InfrastructureUtil.getDataSource();
-
-		try {
-			DBPartitionUtil.forEachCompanyId(
-				companyId -> {
-					createAndPopulateTable(TEST_TABLE_NAME);
-
-					Assert.assertFalse(
-						dbInspector.hasIndex(TEST_TABLE_NAME, TEST_INDEX_NAME));
-
-					try (Connection connection = dataSource.getConnection()) {
-						db.updateIndexes(
-							connection, TEST_TABLE_NAME,
-							getCreateIndexSQL(TEST_TABLE_NAME), true);
-					}
-
-					Assert.assertTrue(
-						dbInspector.hasIndex(TEST_TABLE_NAME, TEST_INDEX_NAME));
-				});
-		}
-		finally {
-			DBPartitionUtil.forEachCompanyId(
-				companyId -> dropTable(TEST_TABLE_NAME));
-		}
-	}
-
-	@Test
 	public void testUpdateIndexOnControlTable() throws Exception {
 		DataSource dataSource = InfrastructureUtil.getDataSource();
 
@@ -863,6 +835,34 @@ public class DBPartitionTest extends BaseDBPartitionTestCase {
 					}
 				}
 			});
+	}
+
+	@Test
+	public void testUpdateIndexes() throws Exception {
+		DataSource dataSource = InfrastructureUtil.getDataSource();
+
+		try {
+			DBPartitionUtil.forEachCompanyId(
+				companyId -> {
+					createAndPopulateTable(TEST_TABLE_NAME);
+
+					Assert.assertFalse(
+						dbInspector.hasIndex(TEST_TABLE_NAME, TEST_INDEX_NAME));
+
+					try (Connection connection = dataSource.getConnection()) {
+						db.updateIndexes(
+							connection, TEST_TABLE_NAME,
+							getCreateIndexSQL(TEST_TABLE_NAME), true);
+					}
+
+					Assert.assertTrue(
+						dbInspector.hasIndex(TEST_TABLE_NAME, TEST_INDEX_NAME));
+				});
+		}
+		finally {
+			DBPartitionUtil.forEachCompanyId(
+				companyId -> dropTable(TEST_TABLE_NAME));
+		}
 	}
 
 	@Test

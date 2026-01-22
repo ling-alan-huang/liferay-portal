@@ -709,16 +709,6 @@ public abstract class BaseRankingsWebTestCase {
 		return searchHits;
 	}
 
-	protected void setUpSearcher(SearchResponse searchResponse) {
-		Mockito.doReturn(
-			searchResponse
-		).when(
-			searcher
-		).search(
-			Mockito.any()
-		);
-	}
-
 	@SuppressWarnings("unchecked")
 	protected SearchRequestBuilder setUpSearchRequestBuilder() {
 		SearchRequestBuilder searchRequestBuilder = Mockito.mock(
@@ -813,6 +803,16 @@ public abstract class BaseRankingsWebTestCase {
 		return Mockito.mock(SearchSearchResponse.class);
 	}
 
+	protected void setUpSearcher(SearchResponse searchResponse) {
+		Mockito.doReturn(
+			searchResponse
+		).when(
+			searcher
+		).search(
+			Mockito.any()
+		);
+	}
+
 	protected static final DocumentBuilderFactory documentBuilderFactory =
 		Mockito.mock(DocumentBuilderFactory.class);
 	protected static ServiceRegistration<DocumentBuilderFactory>
@@ -844,8 +844,8 @@ public abstract class BaseRankingsWebTestCase {
 		ResourceResponse.class);
 	protected SearchEngineAdapter searchEngineAdapter = Mockito.mock(
 		SearchEngineAdapter.class);
-	protected Searcher searcher = Mockito.mock(Searcher.class);
 	protected SearchRequestBuilderFactory searchRequestBuilderFactory =
 		Mockito.mock(SearchRequestBuilderFactory.class);
+	protected Searcher searcher = Mockito.mock(Searcher.class);
 
 }

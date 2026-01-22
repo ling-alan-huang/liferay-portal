@@ -288,6 +288,24 @@ public class LayoutPageTemplateEntryServiceTest {
 			layoutPrototype.getName(LocaleUtil.getMostRelevantLocale()));
 	}
 
+	@Test(expected = LayoutPageTemplateEntryNameException.class)
+	public void testAddLayoutPageTemplateEntryWithSymbolInName()
+		throws Exception {
+
+		LayoutPageTemplateTestUtil.addLayoutPageTemplateEntry(
+			_layoutPageTemplateCollection.getLayoutPageTemplateCollectionId(),
+			"Test %&# Name");
+	}
+
+	@Test
+	public void testAddLayoutPageTemplateEntryWithUTF8CharsInName()
+		throws Exception {
+
+		LayoutPageTemplateTestUtil.addLayoutPageTemplateEntry(
+			_layoutPageTemplateCollection.getLayoutPageTemplateCollectionId(),
+			"你好andこんにちは");
+	}
+
 	@Test
 	public void testAddLayoutPageTemplateEntryWithoutAddPermission()
 		throws Exception {
@@ -311,24 +329,6 @@ public class LayoutPageTemplateEntryServiceTest {
 		finally {
 			UserTestUtil.setUser(TestPropsValues.getUser());
 		}
-	}
-
-	@Test(expected = LayoutPageTemplateEntryNameException.class)
-	public void testAddLayoutPageTemplateEntryWithSymbolInName()
-		throws Exception {
-
-		LayoutPageTemplateTestUtil.addLayoutPageTemplateEntry(
-			_layoutPageTemplateCollection.getLayoutPageTemplateCollectionId(),
-			"Test %&# Name");
-	}
-
-	@Test
-	public void testAddLayoutPageTemplateEntryWithUTF8CharsInName()
-		throws Exception {
-
-		LayoutPageTemplateTestUtil.addLayoutPageTemplateEntry(
-			_layoutPageTemplateCollection.getLayoutPageTemplateCollectionId(),
-			"你好andこんにちは");
 	}
 
 	@Test

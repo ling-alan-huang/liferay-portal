@@ -333,6 +333,24 @@ public class JobEntityRepository extends BaseEntityRepository<JobEntity> {
 		return Long.valueOf(_jobArchiveAgeInDays) * 1000 * 60 * 60 * 24;
 	}
 
+	private URL _getParameterValue(
+		Map<String, String> parameters, String parameterKey) {
+
+		if (parameters == null) {
+			return null;
+		}
+
+		for (Map.Entry<String, String> parameter : parameters.entrySet()) {
+			String key = parameter.getKey();
+
+			if (key.equals(parameterKey)) {
+				return StringUtil.toURL(parameter.getValue());
+			}
+		}
+
+		return null;
+	}
+
 	private Map<String, String> _getParameters(Object parametersObject) {
 		Map<String, String> parameters = new HashMap<>();
 
@@ -353,24 +371,6 @@ public class JobEntityRepository extends BaseEntityRepository<JobEntity> {
 		}
 
 		return parameters;
-	}
-
-	private URL _getParameterValue(
-		Map<String, String> parameters, String parameterKey) {
-
-		if (parameters == null) {
-			return null;
-		}
-
-		for (Map.Entry<String, String> parameter : parameters.entrySet()) {
-			String key = parameter.getKey();
-
-			if (key.equals(parameterKey)) {
-				return StringUtil.toURL(parameter.getValue());
-			}
-		}
-
-		return null;
 	}
 
 	private JobEntity _updateJobToBuildsRelationshipsFromDALO(

@@ -799,86 +799,6 @@ public class AccountResourceImpl
 			Objects::nonNull);
 	}
 
-	private long _getDefaultBillingAddressId(
-			Account account, long accountEntryId, long defaultBillingAddressId)
-		throws Exception {
-
-		if (FeatureFlagManagerUtil.isEnabled("LPD-35914") &&
-			Validator.isNotNull(
-				account.getDefaultBillingAddressExternalReferenceCode())) {
-
-			Address address = _addressLocalService.getOrAddEmptyAddress(
-				account.getDefaultBillingAddressExternalReferenceCode(),
-				contextCompany.getCompanyId(), contextUser.getUserId(),
-				AccountEntry.class.getName(), accountEntryId);
-
-			return address.getAddressId();
-		}
-
-		long billingAddressId = GetterUtil.getLong(
-			account.getDefaultBillingAddressId());
-
-		if (billingAddressId != 0) {
-			return billingAddressId;
-		}
-
-		Address address =
-			_addressLocalService.fetchAddressByExternalReferenceCode(
-				account.getDefaultBillingAddressExternalReferenceCode(),
-				contextCompany.getCompanyId());
-
-		if (address != null) {
-			return address.getAddressId();
-		}
-
-		return defaultBillingAddressId;
-	}
-
-	private long _getDefaultShippingAddressId(
-			Account account, long accountEntryId, long defaultShippingAddressId)
-		throws Exception {
-
-		if (FeatureFlagManagerUtil.isEnabled("LPD-35914") &&
-			Validator.isNotNull(
-				account.getDefaultShippingAddressExternalReferenceCode())) {
-
-			Address address = _addressLocalService.getOrAddEmptyAddress(
-				account.getDefaultShippingAddressExternalReferenceCode(),
-				contextCompany.getCompanyId(), contextUser.getUserId(),
-				AccountEntry.class.getName(), accountEntryId);
-
-			return address.getAddressId();
-		}
-
-		long shippingAddressId = GetterUtil.getLong(
-			account.getDefaultShippingAddressId());
-
-		if (shippingAddressId != 0) {
-			return shippingAddressId;
-		}
-
-		Address address =
-			_addressLocalService.fetchAddressByExternalReferenceCode(
-				account.getDefaultShippingAddressExternalReferenceCode(),
-				contextCompany.getCompanyId());
-
-		if (address != null) {
-			return address.getAddressId();
-		}
-
-		return defaultShippingAddressId;
-	}
-
-	private String[] _getDomains(Account account) {
-		String[] domains = account.getDomains();
-
-		if (domains == null) {
-			return new String[0];
-		}
-
-		return domains;
-	}
-
 	private DTOConverterContext _getDTOConverterContext(long accountEntryId) {
 		return new DefaultDTOConverterContext(
 			contextAcceptLanguage.isAcceptAllLanguages(),
@@ -966,6 +886,86 @@ public class AccountResourceImpl
 			null, contextHttpServletRequest, accountEntryId,
 			contextAcceptLanguage.getPreferredLocale(), contextUriInfo,
 			contextUser);
+	}
+
+	private long _getDefaultBillingAddressId(
+			Account account, long accountEntryId, long defaultBillingAddressId)
+		throws Exception {
+
+		if (FeatureFlagManagerUtil.isEnabled("LPD-35914") &&
+			Validator.isNotNull(
+				account.getDefaultBillingAddressExternalReferenceCode())) {
+
+			Address address = _addressLocalService.getOrAddEmptyAddress(
+				account.getDefaultBillingAddressExternalReferenceCode(),
+				contextCompany.getCompanyId(), contextUser.getUserId(),
+				AccountEntry.class.getName(), accountEntryId);
+
+			return address.getAddressId();
+		}
+
+		long billingAddressId = GetterUtil.getLong(
+			account.getDefaultBillingAddressId());
+
+		if (billingAddressId != 0) {
+			return billingAddressId;
+		}
+
+		Address address =
+			_addressLocalService.fetchAddressByExternalReferenceCode(
+				account.getDefaultBillingAddressExternalReferenceCode(),
+				contextCompany.getCompanyId());
+
+		if (address != null) {
+			return address.getAddressId();
+		}
+
+		return defaultBillingAddressId;
+	}
+
+	private long _getDefaultShippingAddressId(
+			Account account, long accountEntryId, long defaultShippingAddressId)
+		throws Exception {
+
+		if (FeatureFlagManagerUtil.isEnabled("LPD-35914") &&
+			Validator.isNotNull(
+				account.getDefaultShippingAddressExternalReferenceCode())) {
+
+			Address address = _addressLocalService.getOrAddEmptyAddress(
+				account.getDefaultShippingAddressExternalReferenceCode(),
+				contextCompany.getCompanyId(), contextUser.getUserId(),
+				AccountEntry.class.getName(), accountEntryId);
+
+			return address.getAddressId();
+		}
+
+		long shippingAddressId = GetterUtil.getLong(
+			account.getDefaultShippingAddressId());
+
+		if (shippingAddressId != 0) {
+			return shippingAddressId;
+		}
+
+		Address address =
+			_addressLocalService.fetchAddressByExternalReferenceCode(
+				account.getDefaultShippingAddressExternalReferenceCode(),
+				contextCompany.getCompanyId());
+
+		if (address != null) {
+			return address.getAddressId();
+		}
+
+		return defaultShippingAddressId;
+	}
+
+	private String[] _getDomains(Account account) {
+		String[] domains = account.getDomains();
+
+		if (domains == null) {
+			return new String[0];
+		}
+
+		return domains;
 	}
 
 	private List<EmailAddress> _getEmailAddresses(

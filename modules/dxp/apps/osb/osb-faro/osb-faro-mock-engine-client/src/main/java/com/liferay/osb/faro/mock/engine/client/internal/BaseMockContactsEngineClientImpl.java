@@ -69,11 +69,6 @@ public abstract class BaseMockContactsEngineClientImpl
 	}
 
 	@Override
-	public Channel addChannel(FaroProject faroProject, Channel channel) {
-		return contactsEngineClient.addChannel(faroProject, channel);
-	}
-
-	@Override
 	public void addCSVIndividuals(
 			FaroProject faroProject, List<Map<String, Object>> fieldsMaps,
 			String dataSourceId, List<String> individualSegmentIds)
@@ -81,6 +76,11 @@ public abstract class BaseMockContactsEngineClientImpl
 
 		contactsEngineClient.addCSVIndividuals(
 			faroProject, fieldsMaps, dataSourceId, individualSegmentIds);
+	}
+
+	@Override
+	public Channel addChannel(FaroProject faroProject, Channel channel) {
+		return contactsEngineClient.addChannel(faroProject, channel);
 	}
 
 	@Override
@@ -659,6 +659,15 @@ public abstract class BaseMockContactsEngineClientImpl
 	}
 
 	@Override
+	public Results<Object> getFieldValues(
+		FaroProject faroProject, Long channelId, String query,
+		String fieldMappingFieldName, int cur, int delta) {
+
+		return contactsEngineClient.getFieldValues(
+			faroProject, channelId, query, fieldMappingFieldName, cur, delta);
+	}
+
+	@Override
 	public Results<Field> getFields(
 		FaroProject faroProject, int cur, int delta,
 		List<OrderByField> orderByFields) {
@@ -697,15 +706,6 @@ public abstract class BaseMockContactsEngineClientImpl
 	}
 
 	@Override
-	public Results<Object> getFieldValues(
-		FaroProject faroProject, Long channelId, String query,
-		String fieldMappingFieldName, int cur, int delta) {
-
-		return contactsEngineClient.getFieldValues(
-			faroProject, channelId, query, fieldMappingFieldName, cur, delta);
-	}
-
-	@Override
 	public Individual getIndividual(
 			FaroProject faroProject, String id, String channelId)
 		throws FaroEngineClientException {
@@ -730,78 +730,6 @@ public abstract class BaseMockContactsEngineClientImpl
 		return contactsEngineClient.getIndividualIndividualSegments(
 			faroProject, channelId, individualId, query, status, cur, delta,
 			orderByFields);
-	}
-
-	@Override
-	public Results<Individual> getIndividuals(
-		FaroProject faroProject, FilterBuilder filterBuilder,
-		boolean includeAnonymousUsers, int cur, int delta,
-		List<OrderByField> orderByFields) {
-
-		return contactsEngineClient.getIndividuals(
-			faroProject, filterBuilder, includeAnonymousUsers, cur, delta,
-			orderByFields);
-	}
-
-	@Override
-	public Results<Individual> getIndividuals(
-		FaroProject faroProject, String dataSourceId,
-		boolean includeAnonymousUsers, int cur, int delta,
-		List<OrderByField> orderByFields) {
-
-		return contactsEngineClient.getIndividuals(
-			faroProject, dataSourceId, includeAnonymousUsers, cur, delta,
-			orderByFields);
-	}
-
-	@Override
-	public Results<Individual> getIndividuals(
-		FaroProject faroProject, String accountId, String channelId,
-		String dataSourceId, String individualSegmentId,
-		String notIndividualSegmentId, String interestName, String filterString,
-		String query, List<String> fields, boolean includeAnonymousUsers,
-		int cur, int delta, List<OrderByField> orderByFields) {
-
-		return contactsEngineClient.getIndividuals(
-			faroProject, accountId, channelId, dataSourceId,
-			individualSegmentId, notIndividualSegmentId, interestName,
-			filterString, query, fields, includeAnonymousUsers, cur, delta,
-			orderByFields);
-	}
-
-	@Override
-	public Results<Individual> getIndividualsByIndividualSegment(
-		FaroProject faroProject, String individualSegmentsId, String query,
-		List<String> fields, FilterBuilder filterBuilder,
-		boolean includeAnonymousUsers, int cur, int delta,
-		List<OrderByField> orderByFields) {
-
-		return contactsEngineClient.getIndividualsByIndividualSegment(
-			faroProject, individualSegmentsId, query, fields, filterBuilder,
-			includeAnonymousUsers, cur, delta, orderByFields);
-	}
-
-	@Override
-	public Results<Individual> getIndividualsByIndividualSegment(
-		FaroProject faroProject, String individualSegmentId,
-		String filterString, String query, List<String> fields,
-		boolean includeAnonymousUsers, int cur, int delta,
-		List<OrderByField> orderByFields) {
-
-		return contactsEngineClient.getIndividualsByIndividualSegment(
-			faroProject, individualSegmentId, filterString, query, fields,
-			includeAnonymousUsers, cur, delta, orderByFields);
-	}
-
-	@Override
-	public Results<Distribution> getIndividualsDistribution(
-		FaroProject faroProject, String channelId, String fieldMappingFieldName,
-		String individualSegmentId, int count, int numberOfBins,
-		List<OrderByField> orderByFields) {
-
-		return contactsEngineClient.getIndividualsDistribution(
-			faroProject, channelId, fieldMappingFieldName, individualSegmentId,
-			count, numberOfBins, orderByFields);
 	}
 
 	@Override
@@ -891,6 +819,78 @@ public abstract class BaseMockContactsEngineClientImpl
 	}
 
 	@Override
+	public Results<Individual> getIndividuals(
+		FaroProject faroProject, FilterBuilder filterBuilder,
+		boolean includeAnonymousUsers, int cur, int delta,
+		List<OrderByField> orderByFields) {
+
+		return contactsEngineClient.getIndividuals(
+			faroProject, filterBuilder, includeAnonymousUsers, cur, delta,
+			orderByFields);
+	}
+
+	@Override
+	public Results<Individual> getIndividuals(
+		FaroProject faroProject, String dataSourceId,
+		boolean includeAnonymousUsers, int cur, int delta,
+		List<OrderByField> orderByFields) {
+
+		return contactsEngineClient.getIndividuals(
+			faroProject, dataSourceId, includeAnonymousUsers, cur, delta,
+			orderByFields);
+	}
+
+	@Override
+	public Results<Individual> getIndividuals(
+		FaroProject faroProject, String accountId, String channelId,
+		String dataSourceId, String individualSegmentId,
+		String notIndividualSegmentId, String interestName, String filterString,
+		String query, List<String> fields, boolean includeAnonymousUsers,
+		int cur, int delta, List<OrderByField> orderByFields) {
+
+		return contactsEngineClient.getIndividuals(
+			faroProject, accountId, channelId, dataSourceId,
+			individualSegmentId, notIndividualSegmentId, interestName,
+			filterString, query, fields, includeAnonymousUsers, cur, delta,
+			orderByFields);
+	}
+
+	@Override
+	public Results<Individual> getIndividualsByIndividualSegment(
+		FaroProject faroProject, String individualSegmentsId, String query,
+		List<String> fields, FilterBuilder filterBuilder,
+		boolean includeAnonymousUsers, int cur, int delta,
+		List<OrderByField> orderByFields) {
+
+		return contactsEngineClient.getIndividualsByIndividualSegment(
+			faroProject, individualSegmentsId, query, fields, filterBuilder,
+			includeAnonymousUsers, cur, delta, orderByFields);
+	}
+
+	@Override
+	public Results<Individual> getIndividualsByIndividualSegment(
+		FaroProject faroProject, String individualSegmentId,
+		String filterString, String query, List<String> fields,
+		boolean includeAnonymousUsers, int cur, int delta,
+		List<OrderByField> orderByFields) {
+
+		return contactsEngineClient.getIndividualsByIndividualSegment(
+			faroProject, individualSegmentId, filterString, query, fields,
+			includeAnonymousUsers, cur, delta, orderByFields);
+	}
+
+	@Override
+	public Results<Distribution> getIndividualsDistribution(
+		FaroProject faroProject, String channelId, String fieldMappingFieldName,
+		String individualSegmentId, int count, int numberOfBins,
+		List<OrderByField> orderByFields) {
+
+		return contactsEngineClient.getIndividualsDistribution(
+			faroProject, channelId, fieldMappingFieldName, individualSegmentId,
+			count, numberOfBins, orderByFields);
+	}
+
+	@Override
 	public Results<String> getInterestKeywords(
 		String channelId, FaroProject faroProject, String query, int cur,
 		int delta) {
@@ -911,6 +911,11 @@ public abstract class BaseMockContactsEngineClientImpl
 	}
 
 	@Override
+	public PageVisited getPageVisited(FaroProject faroProject, String id) {
+		return contactsEngineClient.getPageVisited(faroProject, id);
+	}
+
+	@Override
 	public Results<PageVisited> getPagesVisited(
 		FaroProject faroProject, String channelId, String ownerId,
 		String ownerType, String query, String interestName, Date startDate,
@@ -920,11 +925,6 @@ public abstract class BaseMockContactsEngineClientImpl
 		return contactsEngineClient.getPagesVisited(
 			faroProject, channelId, ownerId, ownerType, query, interestName,
 			startDate, endDate, visitedPages, cur, delta, orderByFields);
-	}
-
-	@Override
-	public PageVisited getPageVisited(FaroProject faroProject, String id) {
-		return contactsEngineClient.getPageVisited(faroProject, id);
 	}
 
 	@Override

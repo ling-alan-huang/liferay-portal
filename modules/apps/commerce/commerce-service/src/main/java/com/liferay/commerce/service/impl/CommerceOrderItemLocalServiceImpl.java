@@ -1577,83 +1577,6 @@ public class CommerceOrderItemLocalServiceImpl
 		return commerceOrderItem;
 	}
 
-	private List<CommerceOrderItem> _getCommerceOrderItems(Hits hits)
-		throws PortalException {
-
-		List<Document> documents = hits.toList();
-
-		List<CommerceOrderItem> commerceOrderItems = new ArrayList<>(
-			documents.size());
-
-		for (Document document : documents) {
-			long commerceOrderItemId = GetterUtil.getLong(
-				document.get(Field.ENTRY_CLASS_PK));
-
-			CommerceOrderItem commerceOrderItem = fetchCommerceOrderItem(
-				commerceOrderItemId);
-
-			if (commerceOrderItem == null) {
-				commerceOrderItems = null;
-			}
-			else if (commerceOrderItems != null) {
-				commerceOrderItems.add(commerceOrderItem);
-			}
-		}
-
-		return commerceOrderItems;
-	}
-
-	private CommerceProductPrice _getCommerceProductPrice(
-			CommerceOrder commerceOrder, long cpDefinitionId, long cpInstanceId,
-			String json, BigDecimal quantity, String unitOfMeasureKey,
-			CommerceContext commerceContext)
-		throws PortalException {
-
-		CommerceProductPriceRequest commerceProductPriceRequest =
-			new CommerceProductPriceRequest();
-
-		commerceProductPriceRequest.setCalculateTax(true);
-
-		long accountEntryId = 0;
-
-		AccountEntry accountEntry = commerceContext.getAccountEntry();
-
-		if (accountEntry != null) {
-			accountEntryId = accountEntry.getAccountEntryId();
-		}
-
-		CommerceContextFactory commerceContextFactory =
-			_commerceContextFactorySnapshot.get();
-
-		commerceProductPriceRequest.setCommerceContext(
-			commerceContextFactory.create(
-				accountEntryId, commerceContext.getCommerceChannelGroupId(),
-				commerceOrder.getCommerceCurrencyCode(),
-				commerceOrder.getCommerceOrderId(),
-				commerceOrder.getCompanyId()));
-
-		commerceProductPriceRequest.setCommerceOptionValues(
-			_getStaticOptionValuesNotLinkedToSku(cpDefinitionId, json));
-		commerceProductPriceRequest.setCpInstanceId(cpInstanceId);
-		commerceProductPriceRequest.setQuantity(quantity);
-		commerceProductPriceRequest.setSecure(false);
-		commerceProductPriceRequest.setUnitOfMeasureKey(unitOfMeasureKey);
-
-		return _commerceProductPriceCalculation.getCommerceProductPrice(
-			commerceProductPriceRequest);
-	}
-
-	private BigDecimal _getConvertedPrice(
-			long cpInstanceId, BigDecimal price, CommerceOrder commerceOrder)
-		throws PortalException {
-
-		return CommercePriceConverterUtil.getConvertedPrice(
-			commerceOrder.getGroupId(), cpInstanceId,
-			commerceOrder.getBillingAddressId(),
-			commerceOrder.getShippingAddressId(), price, false,
-			_commerceTaxCalculation);
-	}
-
 	private JSONObject _getCPDefinitionOptionRelJSONObject(
 		CPDefinitionOptionRel cpDefinitionOptionRel, JSONArray jsonArray) {
 
@@ -1766,6 +1689,83 @@ public class CommerceOrderItemLocalServiceImpl
 					cpInstanceId));
 
 		return jsonArray.toString();
+	}
+
+	private List<CommerceOrderItem> _getCommerceOrderItems(Hits hits)
+		throws PortalException {
+
+		List<Document> documents = hits.toList();
+
+		List<CommerceOrderItem> commerceOrderItems = new ArrayList<>(
+			documents.size());
+
+		for (Document document : documents) {
+			long commerceOrderItemId = GetterUtil.getLong(
+				document.get(Field.ENTRY_CLASS_PK));
+
+			CommerceOrderItem commerceOrderItem = fetchCommerceOrderItem(
+				commerceOrderItemId);
+
+			if (commerceOrderItem == null) {
+				commerceOrderItems = null;
+			}
+			else if (commerceOrderItems != null) {
+				commerceOrderItems.add(commerceOrderItem);
+			}
+		}
+
+		return commerceOrderItems;
+	}
+
+	private CommerceProductPrice _getCommerceProductPrice(
+			CommerceOrder commerceOrder, long cpDefinitionId, long cpInstanceId,
+			String json, BigDecimal quantity, String unitOfMeasureKey,
+			CommerceContext commerceContext)
+		throws PortalException {
+
+		CommerceProductPriceRequest commerceProductPriceRequest =
+			new CommerceProductPriceRequest();
+
+		commerceProductPriceRequest.setCalculateTax(true);
+
+		long accountEntryId = 0;
+
+		AccountEntry accountEntry = commerceContext.getAccountEntry();
+
+		if (accountEntry != null) {
+			accountEntryId = accountEntry.getAccountEntryId();
+		}
+
+		CommerceContextFactory commerceContextFactory =
+			_commerceContextFactorySnapshot.get();
+
+		commerceProductPriceRequest.setCommerceContext(
+			commerceContextFactory.create(
+				accountEntryId, commerceContext.getCommerceChannelGroupId(),
+				commerceOrder.getCommerceCurrencyCode(),
+				commerceOrder.getCommerceOrderId(),
+				commerceOrder.getCompanyId()));
+
+		commerceProductPriceRequest.setCommerceOptionValues(
+			_getStaticOptionValuesNotLinkedToSku(cpDefinitionId, json));
+		commerceProductPriceRequest.setCpInstanceId(cpInstanceId);
+		commerceProductPriceRequest.setQuantity(quantity);
+		commerceProductPriceRequest.setSecure(false);
+		commerceProductPriceRequest.setUnitOfMeasureKey(unitOfMeasureKey);
+
+		return _commerceProductPriceCalculation.getCommerceProductPrice(
+			commerceProductPriceRequest);
+	}
+
+	private BigDecimal _getConvertedPrice(
+			long cpInstanceId, BigDecimal price, CommerceOrder commerceOrder)
+		throws PortalException {
+
+		return CommercePriceConverterUtil.getConvertedPrice(
+			commerceOrder.getGroupId(), cpInstanceId,
+			commerceOrder.getBillingAddressId(),
+			commerceOrder.getShippingAddressId(), price, false,
+			_commerceTaxCalculation);
 	}
 
 	private GroupByStep _getCustomerCommerceOrdersGroupByStep(

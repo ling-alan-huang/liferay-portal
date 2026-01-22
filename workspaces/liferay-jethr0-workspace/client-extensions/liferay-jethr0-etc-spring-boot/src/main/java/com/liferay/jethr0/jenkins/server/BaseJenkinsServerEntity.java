@@ -68,6 +68,24 @@ public abstract class BaseJenkinsServerEntity
 	}
 
 	@Override
+	public JSONObject getJSONObject() {
+		JSONObject jsonObject = super.getJSONObject();
+
+		jsonObject.put(
+			"jenkinsNodeCount", getJenkinsNodeCount()
+		).put(
+			"name", getName()
+		).put(
+			"r_jenkinsCohortToJenkinsServers_c_jenkinsCohortId",
+			getJenkinsCohortEntityId()
+		).put(
+			"url", getURL()
+		);
+
+		return jsonObject;
+	}
+
+	@Override
 	public JenkinsCohortEntity getJenkinsCohortEntity() {
 		return _jenkinsCohortEntity;
 	}
@@ -85,24 +103,6 @@ public abstract class BaseJenkinsServerEntity
 	@Override
 	public Set<JenkinsNodeEntity> getJenkinsNodeEntities() {
 		return getRelatedEntities(JenkinsNodeEntity.class);
-	}
-
-	@Override
-	public JSONObject getJSONObject() {
-		JSONObject jsonObject = super.getJSONObject();
-
-		jsonObject.put(
-			"jenkinsNodeCount", getJenkinsNodeCount()
-		).put(
-			"name", getName()
-		).put(
-			"r_jenkinsCohortToJenkinsServers_c_jenkinsCohortId",
-			getJenkinsCohortEntityId()
-		).put(
-			"url", getURL()
-		);
-
-		return jsonObject;
 	}
 
 	@Override
@@ -126,6 +126,17 @@ public abstract class BaseJenkinsServerEntity
 	}
 
 	@Override
+	public void setJSONObject(JSONObject jsonObject) {
+		super.setJSONObject(jsonObject);
+
+		_jenkinsCohortEntityId = jsonObject.optLong(
+			"r_jenkinsCohortToJenkinsServers_c_jenkinsCohortId");
+		_jenkinsNodeCount = jsonObject.optInt("jenkinsNodeCount");
+		_name = jsonObject.optString("name");
+		_url = StringUtil.toURL(jsonObject.getString("url"));
+	}
+
+	@Override
 	public void setJenkinsCohortEntity(
 		JenkinsCohortEntity jenkinsCohortEntity) {
 
@@ -142,17 +153,6 @@ public abstract class BaseJenkinsServerEntity
 	@Override
 	public void setJenkinsNodeCount(int jenkinsNodeCount) {
 		_jenkinsNodeCount = jenkinsNodeCount;
-	}
-
-	@Override
-	public void setJSONObject(JSONObject jsonObject) {
-		super.setJSONObject(jsonObject);
-
-		_jenkinsCohortEntityId = jsonObject.optLong(
-			"r_jenkinsCohortToJenkinsServers_c_jenkinsCohortId");
-		_jenkinsNodeCount = jsonObject.optInt("jenkinsNodeCount");
-		_name = jsonObject.optString("name");
-		_url = StringUtil.toURL(jsonObject.getString("url"));
 	}
 
 	@Override

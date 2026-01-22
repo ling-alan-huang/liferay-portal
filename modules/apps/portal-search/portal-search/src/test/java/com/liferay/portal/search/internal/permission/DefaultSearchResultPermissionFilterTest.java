@@ -70,31 +70,6 @@ public class DefaultSearchResultPermissionFilterTest {
 	}
 
 	@Test
-	public void testSearchGuestWithoutThreshold() {
-		_groupAdmin = false;
-		_permissionFilteredSearchResultAccurateCountThreshold = 0;
-
-		DefaultSearchResultPermissionFilter
-			defaultSearchResultPermissionFilter =
-				_getDefaultSearchResultPermissionFilter();
-
-		SearchContext searchContext = _getSearchContext(4);
-
-		_assertPagination(
-			searchContext, defaultSearchResultPermissionFilter, 4, 10);
-
-		searchContext = _getSearchContext(8);
-
-		_assertPagination(
-			searchContext, defaultSearchResultPermissionFilter, 8, 10);
-
-		searchContext = _getSearchContext(10);
-
-		_assertPagination(
-			searchContext, defaultSearchResultPermissionFilter, 9, 9);
-	}
-
-	@Test
 	public void testSearchGuestWithThreshold() {
 		_groupAdmin = false;
 		_permissionFilteredSearchResultAccurateCountThreshold = 20;
@@ -112,6 +87,31 @@ public class DefaultSearchResultPermissionFilterTest {
 
 		_assertPagination(
 			searchContext, defaultSearchResultPermissionFilter, 8, 9);
+
+		searchContext = _getSearchContext(10);
+
+		_assertPagination(
+			searchContext, defaultSearchResultPermissionFilter, 9, 9);
+	}
+
+	@Test
+	public void testSearchGuestWithoutThreshold() {
+		_groupAdmin = false;
+		_permissionFilteredSearchResultAccurateCountThreshold = 0;
+
+		DefaultSearchResultPermissionFilter
+			defaultSearchResultPermissionFilter =
+				_getDefaultSearchResultPermissionFilter();
+
+		SearchContext searchContext = _getSearchContext(4);
+
+		_assertPagination(
+			searchContext, defaultSearchResultPermissionFilter, 4, 10);
+
+		searchContext = _getSearchContext(8);
+
+		_assertPagination(
+			searchContext, defaultSearchResultPermissionFilter, 8, 10);
 
 		searchContext = _getSearchContext(10);
 

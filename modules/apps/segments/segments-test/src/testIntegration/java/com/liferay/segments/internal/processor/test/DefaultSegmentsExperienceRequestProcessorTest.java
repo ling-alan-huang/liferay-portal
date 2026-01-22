@@ -84,6 +84,38 @@ public class DefaultSegmentsExperienceRequestProcessorTest {
 	}
 
 	@Test
+	public void testGetSegmentsExperienceIdsWithSegmentEntryIds()
+		throws Exception {
+
+		SegmentsEntry segmentsEntry = SegmentsTestUtil.addSegmentsEntry(
+			_group.getGroupId());
+
+		Layout layout = LayoutTestUtil.addTypeContentLayout(_group);
+
+		SegmentsExperience segmentsExperience =
+			_segmentsExperienceLocalService.appendSegmentsExperience(
+				TestPropsValues.getUserId(), _group.getGroupId(),
+				segmentsEntry.getSegmentsEntryId(), layout.getPlid(),
+				RandomTestUtil.randomLocaleStringMap(), true,
+				new UnicodeProperties(true),
+				ServiceContextTestUtil.getServiceContext(_group.getGroupId()));
+
+		long[] segmentsExperienceIds =
+			_segmentsExperienceRequestProcessor.getSegmentsExperienceIds(
+				new MockHttpServletRequest(), new MockHttpServletResponse(),
+				_group.getGroupId(), layout.getPlid(), new long[0],
+				new long[] {segmentsEntry.getSegmentsEntryId()});
+
+		Assert.assertEquals(
+			Arrays.toString(segmentsExperienceIds), 2,
+			segmentsExperienceIds.length);
+		Assert.assertTrue(
+			ArrayUtil.contains(
+				segmentsExperienceIds,
+				segmentsExperience.getSegmentsExperienceId()));
+	}
+
+	@Test
 	public void testGetSegmentsExperienceIdsWithoutSegmentsExperienceIds()
 		throws Exception {
 
@@ -114,38 +146,6 @@ public class DefaultSegmentsExperienceRequestProcessorTest {
 		Assert.assertEquals(
 			Arrays.toString(segmentsExperienceIds), 1,
 			segmentsExperienceIds.length);
-	}
-
-	@Test
-	public void testGetSegmentsExperienceIdsWithSegmentEntryIds()
-		throws Exception {
-
-		SegmentsEntry segmentsEntry = SegmentsTestUtil.addSegmentsEntry(
-			_group.getGroupId());
-
-		Layout layout = LayoutTestUtil.addTypeContentLayout(_group);
-
-		SegmentsExperience segmentsExperience =
-			_segmentsExperienceLocalService.appendSegmentsExperience(
-				TestPropsValues.getUserId(), _group.getGroupId(),
-				segmentsEntry.getSegmentsEntryId(), layout.getPlid(),
-				RandomTestUtil.randomLocaleStringMap(), true,
-				new UnicodeProperties(true),
-				ServiceContextTestUtil.getServiceContext(_group.getGroupId()));
-
-		long[] segmentsExperienceIds =
-			_segmentsExperienceRequestProcessor.getSegmentsExperienceIds(
-				new MockHttpServletRequest(), new MockHttpServletResponse(),
-				_group.getGroupId(), layout.getPlid(), new long[0],
-				new long[] {segmentsEntry.getSegmentsEntryId()});
-
-		Assert.assertEquals(
-			Arrays.toString(segmentsExperienceIds), 2,
-			segmentsExperienceIds.length);
-		Assert.assertTrue(
-			ArrayUtil.contains(
-				segmentsExperienceIds,
-				segmentsExperience.getSegmentsExperienceId()));
 	}
 
 	@DeleteAfterTestRun

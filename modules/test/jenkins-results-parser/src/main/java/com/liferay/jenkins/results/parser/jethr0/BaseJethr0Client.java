@@ -353,9 +353,9 @@ public abstract class BaseJethr0Client implements Jethr0Client {
 
 	protected abstract String getJMSGitHubToJethr0QueueName();
 
-	protected abstract String getJMSJethr0ToJRPQueueName();
-
 	protected abstract String getJMSJRPToJethr0QueueName();
+
+	protected abstract String getJMSJethr0ToJRPQueueName();
 
 	protected abstract String getJMSUserName();
 

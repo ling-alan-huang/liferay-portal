@@ -243,10 +243,10 @@ public class OrganizationServiceTest {
 	@Inject
 	private OrganizationLocalService _organizationLocalService;
 
-	@DeleteAfterTestRun
-	private final List<Organization> _organizations = new ArrayList<>();
-
 	@Inject
 	private OrganizationService _organizationService;
+
+	@DeleteAfterTestRun
+	private final List<Organization> _organizations = new ArrayList<>();
 
 }

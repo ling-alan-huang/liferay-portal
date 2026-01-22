@@ -546,6 +546,9 @@ public class ProductConfigurationResourceTest
 		ProductConfigurationResourceTest.class);
 
 	@Inject
+	private CProductLocalService _cProductLocalService;
+
+	@Inject
 	private ClassNameLocalService _classNameLocalService;
 
 	@DeleteAfterTestRun
@@ -561,9 +564,6 @@ public class ProductConfigurationResourceTest
 
 	@Inject
 	private CPConfigurationListLocalService _cpConfigurationListLocalService;
-
-	@Inject
-	private CProductLocalService _cProductLocalService;
 
 	private CPConfigurationList _masterCPConfigurationList;
 	private User _user;

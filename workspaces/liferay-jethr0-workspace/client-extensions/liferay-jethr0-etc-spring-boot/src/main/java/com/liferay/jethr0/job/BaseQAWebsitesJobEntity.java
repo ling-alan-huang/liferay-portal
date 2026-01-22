@@ -32,16 +32,16 @@ public class BaseQAWebsitesJobEntity extends BaseJobEntity {
 		return getParameterValue("qaWebsitesProjectName");
 	}
 
+	public String getTestSuiteName() {
+		return getParameterValue("testSuiteName");
+	}
+
 	public String getTestrayProjectName() {
 		return getParameterValue("testrayProjectName");
 	}
 
 	public String getTestrayRoutineName() {
 		return getParameterValue("testrayRoutineName");
-	}
-
-	public String getTestSuiteName() {
-		return getParameterValue("testSuiteName");
 	}
 
 	public void setPoshiQuery(String poshiQuery) {
@@ -60,16 +60,16 @@ public class BaseQAWebsitesJobEntity extends BaseJobEntity {
 		setParameterValue("qaWebsitesProjectName", qaWebsitesProjectName);
 	}
 
+	public void setTestSuiteName(String testSuiteName) {
+		setParameterValue("testSuiteName", testSuiteName);
+	}
+
 	public void setTestrayProjectName(String testrayProjectName) {
 		setParameterValue("testrayProjectName", testrayProjectName);
 	}
 
 	public void setTestrayRoutineName(String testrayRoutineName) {
 		setParameterValue("testrayRoutineName", testrayRoutineName);
-	}
-
-	public void setTestSuiteName(String testSuiteName) {
-		setParameterValue("testSuiteName", testSuiteName);
 	}
 
 	protected BaseQAWebsitesJobEntity(JSONObject jsonObject) {

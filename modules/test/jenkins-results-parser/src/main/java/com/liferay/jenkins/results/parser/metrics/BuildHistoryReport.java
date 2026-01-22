@@ -39,33 +39,6 @@ import org.json.JSONObject;
  */
 public class BuildHistoryReport {
 
-	public static BuildHistoryReport newAggregateReport(
-		long durationDays, File outputDir, String startDateString) {
-
-		BuildHistoryReport buildHistoryReport = new BuildHistoryReport(
-			outputDir);
-
-		buildHistoryReport.addFilesFromResource(
-			"dependencies/metrics/aggregate-report", "/index.html");
-
-		long startTime = _getStartTime(startDateString);
-
-		long duration = TimeUnit.DAYS.toMillis(durationDays);
-
-		Collection<BuildHistory> buildHistories =
-			BuildHistoryProcessor.newAggregateJobHistories(duration, startTime);
-
-		buildHistoryReport.addFile(
-			"js/table-data.js",
-			_getTableDataJSFileContent(
-				buildHistories, "Job Category", 1, "[Total]"));
-		buildHistoryReport.addFile(
-			"js/timeline-data.js",
-			_getTimelineDataJSFileContent(buildHistories, duration, startTime));
-
-		return buildHistoryReport;
-	}
-
 	public static BuildHistoryReport newAWSBuildComparisonReport(
 		long durationDays, File outputDir, String startDateString) {
 
@@ -202,6 +175,33 @@ public class BuildHistoryReport {
 		sb.append(";");
 
 		buildHistoryReport.addFile("js/table-data.js", sb.toString());
+
+		return buildHistoryReport;
+	}
+
+	public static BuildHistoryReport newAggregateReport(
+		long durationDays, File outputDir, String startDateString) {
+
+		BuildHistoryReport buildHistoryReport = new BuildHistoryReport(
+			outputDir);
+
+		buildHistoryReport.addFilesFromResource(
+			"dependencies/metrics/aggregate-report", "/index.html");
+
+		long startTime = _getStartTime(startDateString);
+
+		long duration = TimeUnit.DAYS.toMillis(durationDays);
+
+		Collection<BuildHistory> buildHistories =
+			BuildHistoryProcessor.newAggregateJobHistories(duration, startTime);
+
+		buildHistoryReport.addFile(
+			"js/table-data.js",
+			_getTableDataJSFileContent(
+				buildHistories, "Job Category", 1, "[Total]"));
+		buildHistoryReport.addFile(
+			"js/timeline-data.js",
+			_getTimelineDataJSFileContent(buildHistories, duration, startTime));
 
 		return buildHistoryReport;
 	}

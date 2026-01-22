@@ -106,21 +106,6 @@ public class PortalGitWorkingDirectory extends GitWorkingDirectory {
 			getModifiedFilesList());
 	}
 
-	public List<File> getModifiedNonposhiModules() throws IOException {
-		List<File> modifiedFilesList = getModifiedFilesList();
-
-		List<File> modifiedNonposhiFilesList = new ArrayList<>();
-
-		for (File modifiedFile : modifiedFilesList) {
-			if (!JenkinsResultsParserUtil.isPoshiFile(modifiedFile)) {
-				modifiedNonposhiFilesList.add(modifiedFile);
-			}
-		}
-
-		return JenkinsResultsParserUtil.getDirectoriesContainingFiles(
-			getModuleDirsList(null, null), modifiedNonposhiFilesList);
-	}
-
 	public List<File> getModifiedNPMTestModuleDirsList() throws IOException {
 		List<File> modifiedModuleDirsList = getModifiedModuleDirsList();
 
@@ -134,6 +119,21 @@ public class PortalGitWorkingDirectory extends GitWorkingDirectory {
 		}
 
 		return modifiedNPMTestModuleDirsList;
+	}
+
+	public List<File> getModifiedNonposhiModules() throws IOException {
+		List<File> modifiedFilesList = getModifiedFilesList();
+
+		List<File> modifiedNonposhiFilesList = new ArrayList<>();
+
+		for (File modifiedFile : modifiedFilesList) {
+			if (!JenkinsResultsParserUtil.isPoshiFile(modifiedFile)) {
+				modifiedNonposhiFilesList.add(modifiedFile);
+			}
+		}
+
+		return JenkinsResultsParserUtil.getDirectoriesContainingFiles(
+			getModuleDirsList(null, null), modifiedNonposhiFilesList);
 	}
 
 	public List<File> getModifiedPoshiModules() throws IOException {

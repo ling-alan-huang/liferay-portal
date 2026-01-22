@@ -56,6 +56,19 @@ public abstract class BaseJenkinsCohortEntity
 	}
 
 	@Override
+	public JSONObject getJSONObject() {
+		JSONObject jsonObject = super.getJSONObject();
+
+		jsonObject.put(
+			"jenkinsServerCount", getJenkinsServerCount()
+		).put(
+			"name", getName()
+		);
+
+		return jsonObject;
+	}
+
+	@Override
 	public int getJenkinsServerCount() {
 		return _jenkinsServerCount;
 	}
@@ -68,19 +81,6 @@ public abstract class BaseJenkinsCohortEntity
 	@Override
 	public Set<JobEntity> getJobEntities() {
 		return getRelatedEntities(JobEntity.class);
-	}
-
-	@Override
-	public JSONObject getJSONObject() {
-		JSONObject jsonObject = super.getJSONObject();
-
-		jsonObject.put(
-			"jenkinsServerCount", getJenkinsServerCount()
-		).put(
-			"name", getName()
-		);
-
-		return jsonObject;
 	}
 
 	@Override
@@ -113,16 +113,16 @@ public abstract class BaseJenkinsCohortEntity
 	}
 
 	@Override
-	public void setJenkinsServerCount(int jenkinsServerCount) {
-		_jenkinsServerCount = jenkinsServerCount;
-	}
-
-	@Override
 	public void setJSONObject(JSONObject jsonObject) {
 		super.setJSONObject(jsonObject);
 
 		_jenkinsServerCount = jsonObject.getInt("jenkinsServerCount");
 		_name = jsonObject.getString("name");
+	}
+
+	@Override
+	public void setJenkinsServerCount(int jenkinsServerCount) {
+		_jenkinsServerCount = jenkinsServerCount;
 	}
 
 	@Override

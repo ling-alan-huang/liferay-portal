@@ -347,67 +347,6 @@ public class DDMRESTDataProviderTest {
 	}
 
 	@Test
-	public void testGetDataWithoutDataProvider() throws Exception {
-		DDMDataProviderRequest.Builder builder =
-			DDMDataProviderRequest.Builder.newBuilder();
-
-		DDMDataProviderResponse ddmDataProviderResponse =
-			_ddmDataProvider.getData(
-				builder.withDDMDataProviderId(
-					StringUtil.randomString()
-				).build());
-
-		Assert.assertEquals(
-			DDMDataProviderResponseStatus.SERVICE_UNAVAILABLE,
-			ddmDataProviderResponse.getStatus());
-	}
-
-	@Test
-	public void testGetDataWithoutOutputParameters() throws Exception {
-		_setUserPermissionChecker(false);
-
-		String outputParameterId = StringUtil.randomString();
-
-		long ddmDataProviderId = _addDDMDataProviderInstance(
-			_createDDMDataProviderDDMFormValues(
-				false, false, StringPool.BLANK, null, outputParameterId, null,
-				null, null, null, _GET_COUNTRIES_URL),
-			false);
-
-		DDMDataProviderResponse ddmDataProviderResponse =
-			_ddmDataProvider.getData(
-				_createDDMDataProviderRequest(
-					ddmDataProviderId, null, null, null, null, null, null));
-
-		Assert.assertEquals(
-			DDMDataProviderResponseStatus.OK,
-			ddmDataProviderResponse.getStatus());
-		Assert.assertEquals(
-			ddmDataProviderResponse.toString(), 0,
-			ddmDataProviderResponse.size());
-	}
-
-	@Test(expected = DDMDataProviderException.class)
-	public void testGetDataWithoutViewDataProviderPermission()
-		throws Exception {
-
-		_setUserPermissionChecker(true);
-
-		long ddmDataProviderId = _addDDMDataProviderInstance(
-			_createDDMDataProviderDDMFormValues(
-				false, false, StringPool.BLANK, null, StringUtil.randomString(),
-				"nameCurrentValue;name", "list", null, null,
-				_GET_COUNTRIES_URL),
-			false);
-
-		DDMDataProviderRequest ddmDataProviderRequest =
-			_createDDMDataProviderRequest(
-				ddmDataProviderId, null, null, null, null, null, null);
-
-		_ddmDataProvider.getData(ddmDataProviderRequest);
-	}
-
-	@Test
 	public void testGetDataWithPagination() throws Exception {
 		_setUserPermissionChecker(false);
 
@@ -521,6 +460,67 @@ public class DDMRESTDataProviderTest {
 				DDMDataProviderResponseStatus.SERVICE_UNAVAILABLE,
 				ddmDataProviderResponse.getStatus());
 		}
+	}
+
+	@Test
+	public void testGetDataWithoutDataProvider() throws Exception {
+		DDMDataProviderRequest.Builder builder =
+			DDMDataProviderRequest.Builder.newBuilder();
+
+		DDMDataProviderResponse ddmDataProviderResponse =
+			_ddmDataProvider.getData(
+				builder.withDDMDataProviderId(
+					StringUtil.randomString()
+				).build());
+
+		Assert.assertEquals(
+			DDMDataProviderResponseStatus.SERVICE_UNAVAILABLE,
+			ddmDataProviderResponse.getStatus());
+	}
+
+	@Test
+	public void testGetDataWithoutOutputParameters() throws Exception {
+		_setUserPermissionChecker(false);
+
+		String outputParameterId = StringUtil.randomString();
+
+		long ddmDataProviderId = _addDDMDataProviderInstance(
+			_createDDMDataProviderDDMFormValues(
+				false, false, StringPool.BLANK, null, outputParameterId, null,
+				null, null, null, _GET_COUNTRIES_URL),
+			false);
+
+		DDMDataProviderResponse ddmDataProviderResponse =
+			_ddmDataProvider.getData(
+				_createDDMDataProviderRequest(
+					ddmDataProviderId, null, null, null, null, null, null));
+
+		Assert.assertEquals(
+			DDMDataProviderResponseStatus.OK,
+			ddmDataProviderResponse.getStatus());
+		Assert.assertEquals(
+			ddmDataProviderResponse.toString(), 0,
+			ddmDataProviderResponse.size());
+	}
+
+	@Test(expected = DDMDataProviderException.class)
+	public void testGetDataWithoutViewDataProviderPermission()
+		throws Exception {
+
+		_setUserPermissionChecker(true);
+
+		long ddmDataProviderId = _addDDMDataProviderInstance(
+			_createDDMDataProviderDDMFormValues(
+				false, false, StringPool.BLANK, null, StringUtil.randomString(),
+				"nameCurrentValue;name", "list", null, null,
+				_GET_COUNTRIES_URL),
+			false);
+
+		DDMDataProviderRequest ddmDataProviderRequest =
+			_createDDMDataProviderRequest(
+				ddmDataProviderId, null, null, null, null, null, null);
+
+		_ddmDataProvider.getData(ddmDataProviderRequest);
 	}
 
 	private long _addDDMDataProviderInstance(

@@ -57,20 +57,20 @@ public class ViewSpaceContentsSummarySectionDisplayContext
 	}
 
 	@Override
+	public String getAPIURL() {
+		return HttpComponentsUtil.addParameters(
+			super.getAPIURL(), "page", CMSSpaceConstants.SPACE_SUMMARY_PAGE,
+			"pageSize", CMSSpaceConstants.SPACE_SUMMARY_PAGE_SIZE, "sort",
+			"dateModified:desc");
+	}
+
+	@Override
 	public Map<String, Object> getAdditionalProps() {
 		return new HashMapBuilder<>().putAll(
 			super.getAdditionalProps()
 		).put(
 			"showAdditionalItemInfo", true
 		).build();
-	}
-
-	@Override
-	public String getAPIURL() {
-		return HttpComponentsUtil.addParameters(
-			super.getAPIURL(), "page", CMSSpaceConstants.SPACE_SUMMARY_PAGE,
-			"pageSize", CMSSpaceConstants.SPACE_SUMMARY_PAGE_SIZE, "sort",
-			"dateModified:desc");
 	}
 
 	public Map<String, Object> getHeaderProps() throws Exception {

@@ -38,9 +38,9 @@ public interface BuildEntity extends Entity {
 
 	public void addTaskEntity(TaskEntity taskEntity);
 
-	public Map<String, String> getBuildParameters();
-
 	public String getBuildParameterValue(String name);
+
+	public Map<String, String> getBuildParameters();
 
 	public Set<BuildRunEntity> getBuildRunEntities();
 

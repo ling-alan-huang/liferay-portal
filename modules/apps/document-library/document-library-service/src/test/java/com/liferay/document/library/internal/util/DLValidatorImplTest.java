@@ -155,13 +155,6 @@ public class DLValidatorImplTest {
 				RandomTestUtil.randomInt(), RandomTestUtil.randomString()));
 	}
 
-	@Test(expected = FileMimeTypeException.class)
-	public void testValidateFileMimeType() throws Exception {
-		_validateFileMimeType(new String[] {"*"}, "text/plain");
-		_validateFileMimeType(new String[] {"text/plain"}, "application/pdf");
-		_validateFileMimeType(new String[] {"text/plain"}, "text/plain");
-	}
-
 	@Test
 	public void testValidLowerCaseExtension() throws Exception {
 		_validateFileExtension("test.gif");
@@ -175,6 +168,13 @@ public class DLValidatorImplTest {
 	@Test
 	public void testValidUpperCaseExtension() throws Exception {
 		_validateFileExtension("test.GIF");
+	}
+
+	@Test(expected = FileMimeTypeException.class)
+	public void testValidateFileMimeType() throws Exception {
+		_validateFileMimeType(new String[] {"*"}, "text/plain");
+		_validateFileMimeType(new String[] {"text/plain"}, "application/pdf");
+		_validateFileMimeType(new String[] {"text/plain"}, "text/plain");
 	}
 
 	private void _validateFileExtension(String fileName) throws Exception {

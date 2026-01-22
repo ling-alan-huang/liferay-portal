@@ -68,6 +68,8 @@ public interface Job {
 
 	public DistType getDistType();
 
+	public JSONObject getJSONObject();
+
 	public Set<JenkinsCohort> getJenkinsCohorts();
 
 	public JobHistory getJobHistory();
@@ -79,8 +81,6 @@ public interface Job {
 	public List<String> getJobPropertyOptions();
 
 	public String getJobURL(JenkinsMaster jenkinsMaster);
-
-	public JSONObject getJSONObject();
 
 	public Set<String> getNetworkNames();
 

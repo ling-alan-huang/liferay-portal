@@ -132,13 +132,6 @@ public class ContactsEngineClientImpl
 	}
 
 	@Override
-	public Channel addChannel(FaroProject faroProject, Channel channel) {
-		return post(
-			faroProject, Rels.CHANNELS, channel, Channel.class,
-			getUriVariables(faroProject));
-	}
-
-	@Override
 	public void addCSVIndividuals(
 			FaroProject faroProject, List<Map<String, Object>> fieldsMaps,
 			String dataSourceId, List<String> individualSegmentIds)
@@ -182,6 +175,13 @@ public class ContactsEngineClientImpl
 		if (!individualMaps.isEmpty()) {
 			post(faroProject, Rels.CSV_INDIVIDUALS, individualMaps, Void.class);
 		}
+	}
+
+	@Override
+	public Channel addChannel(FaroProject faroProject, Channel channel) {
+		return post(
+			faroProject, Rels.CHANNELS, channel, Channel.class,
+			getUriVariables(faroProject));
 	}
 
 	@Override
@@ -1084,6 +1084,27 @@ public class ContactsEngineClientImpl
 	}
 
 	@Override
+	public long getDXPUsersCount(FaroProject faroProject, String id) {
+		RestTemplate restTemplate = getRestTemplate(faroProject);
+
+		Map<String, Object> uriVariables = getUriVariables(faroProject);
+
+		if (!Validator.isBlank(id)) {
+			uriVariables.put("dataSourceId", id);
+		}
+
+		ResponseEntity<Long> responseEntity = restTemplate.exchange(
+			getTemplatedURL(faroProject, Rels.DXP_ENTITIES_USERS_COUNT),
+			HttpMethod.GET, HttpEntity.EMPTY, Long.class, uriVariables);
+
+		if (responseEntity.getBody() == null) {
+			return 0L;
+		}
+
+		return responseEntity.getBody();
+	}
+
+	@Override
 	public DataSource getDataSource(FaroProject faroProject, String id)
 		throws FaroEngineClientException {
 
@@ -1385,27 +1406,6 @@ public class ContactsEngineClientImpl
 	}
 
 	@Override
-	public long getDXPUsersCount(FaroProject faroProject, String id) {
-		RestTemplate restTemplate = getRestTemplate(faroProject);
-
-		Map<String, Object> uriVariables = getUriVariables(faroProject);
-
-		if (!Validator.isBlank(id)) {
-			uriVariables.put("dataSourceId", id);
-		}
-
-		ResponseEntity<Long> responseEntity = restTemplate.exchange(
-			getTemplatedURL(faroProject, Rels.DXP_ENTITIES_USERS_COUNT),
-			HttpMethod.GET, HttpEntity.EMPTY, Long.class, uriVariables);
-
-		if (responseEntity.getBody() == null) {
-			return 0L;
-		}
-
-		return responseEntity.getBody();
-	}
-
-	@Override
 	public Long getEnrichedProfilesCount(
 		FaroProject faroProject, Long channelId) {
 
@@ -1609,6 +1609,74 @@ public class ContactsEngineClientImpl
 	}
 
 	@Override
+	public Results<Object> getFieldValues(
+		FaroProject faroProject, Long channelId, String query,
+		String fieldMappingFieldName, int cur, int delta) {
+
+		Map<String, Object> uriVariables = getUriVariables(
+			faroProject, cur, delta, null);
+
+		FieldMapping fieldMapping = getFieldMapping(
+			faroProject, fieldMappingFieldName);
+
+		String type = null;
+
+		if (StringUtil.equals(
+				fieldMapping.getOwnerType(),
+				FieldMappingConstants.OWNER_TYPE_INDIVIDUAL)) {
+
+			type = Rels.INDIVIDUALS;
+		}
+		else if (StringUtil.equals(
+					fieldMapping.getOwnerType(),
+					FieldMappingConstants.OWNER_TYPE_ORGANIZATION)) {
+
+			type = Rels.ORGANIZATIONS;
+		}
+		else {
+			return new Results<>();
+		}
+
+		uriVariables.put("apply", getGroupBy(fieldMapping));
+
+		FilterBuilder filterBuilder = new FilterBuilder();
+
+		filterBuilder.addSearchFilter(
+			query, fieldMapping.getFieldName(),
+			fieldMapping.getContext() + "/?/value");
+
+		uriVariables.put("channelId", channelId);
+		uriVariables.put("filter", filterBuilder.build());
+
+		PagedModel<?, IndividualTransformation> pagedModel = get(
+			faroProject, type,
+			new ParameterizedTypeReference
+				<EntityModelPagedModel<IndividualTransformation>>() {
+			},
+			uriVariables);
+
+		Results<IndividualTransformation> results = pagedModel.getResults();
+
+		List<IndividualTransformation> individualTransformations =
+			results.getItems();
+
+		return new Results<>(
+			TransformUtil.transform(
+				individualTransformations,
+				individualTransformation -> {
+					Map<String, Object> terms =
+						individualTransformation.getTerms();
+
+					List<Object> objects = new ArrayList<>(terms.values());
+
+					objects.get(0);
+
+					return objects.get(0);
+				}),
+			results.getTotal());
+	}
+
+	@Override
 	public Results<Field> getFields(
 		FaroProject faroProject, int cur, int delta,
 		List<OrderByField> orderByFields) {
@@ -1718,74 +1786,6 @@ public class ContactsEngineClientImpl
 	}
 
 	@Override
-	public Results<Object> getFieldValues(
-		FaroProject faroProject, Long channelId, String query,
-		String fieldMappingFieldName, int cur, int delta) {
-
-		Map<String, Object> uriVariables = getUriVariables(
-			faroProject, cur, delta, null);
-
-		FieldMapping fieldMapping = getFieldMapping(
-			faroProject, fieldMappingFieldName);
-
-		String type = null;
-
-		if (StringUtil.equals(
-				fieldMapping.getOwnerType(),
-				FieldMappingConstants.OWNER_TYPE_INDIVIDUAL)) {
-
-			type = Rels.INDIVIDUALS;
-		}
-		else if (StringUtil.equals(
-					fieldMapping.getOwnerType(),
-					FieldMappingConstants.OWNER_TYPE_ORGANIZATION)) {
-
-			type = Rels.ORGANIZATIONS;
-		}
-		else {
-			return new Results<>();
-		}
-
-		uriVariables.put("apply", getGroupBy(fieldMapping));
-
-		FilterBuilder filterBuilder = new FilterBuilder();
-
-		filterBuilder.addSearchFilter(
-			query, fieldMapping.getFieldName(),
-			fieldMapping.getContext() + "/?/value");
-
-		uriVariables.put("channelId", channelId);
-		uriVariables.put("filter", filterBuilder.build());
-
-		PagedModel<?, IndividualTransformation> pagedModel = get(
-			faroProject, type,
-			new ParameterizedTypeReference
-				<EntityModelPagedModel<IndividualTransformation>>() {
-			},
-			uriVariables);
-
-		Results<IndividualTransformation> results = pagedModel.getResults();
-
-		List<IndividualTransformation> individualTransformations =
-			results.getItems();
-
-		return new Results<>(
-			TransformUtil.transform(
-				individualTransformations,
-				individualTransformation -> {
-					Map<String, Object> terms =
-						individualTransformation.getTerms();
-
-					List<Object> objects = new ArrayList<>(terms.values());
-
-					objects.get(0);
-
-					return objects.get(0);
-				}),
-			results.getTotal());
-	}
-
-	@Override
 	public long getIdentitiesCount(FaroProject faroProject) {
 		RestTemplate restTemplate = getRestTemplate(faroProject);
 
@@ -1867,245 +1867,6 @@ public class ContactsEngineClientImpl
 			faroProject, Rels.INDIVIDUAL_INDIVIDUAL_SEGMENTS,
 			new ParameterizedTypeReference
 				<EntityModelPagedModel<IndividualSegment>>() {
-			},
-			uriVariables);
-
-		return pagedModel.getResults();
-	}
-
-	@Override
-	public Results<Individual> getIndividuals(
-		FaroProject faroProject, FilterBuilder filterBuilder,
-		boolean includeAnonymousUsers, int cur, int delta,
-		List<OrderByField> orderByFields) {
-
-		Map<String, Object> uriVariables = getUriVariables(
-			faroProject, cur, delta, orderByFields,
-			FilterConstants.FIELD_NAME_CONTEXT_INDIVIDUAL);
-
-		uriVariables.put("filter", filterBuilder.build());
-		uriVariables.put("includeAnonymousUsers", includeAnonymousUsers);
-
-		PagedModel<?, Individual> pagedModel = get(
-			faroProject, Rels.INDIVIDUALS,
-			new ParameterizedTypeReference
-				<EntityModelPagedModel<Individual>>() {
-			},
-			uriVariables);
-
-		return pagedModel.getResults();
-	}
-
-	@Override
-	public Results<Individual> getIndividuals(
-		FaroProject faroProject, String dataSourceId,
-		boolean includeAnonymousUsers, int cur, int delta,
-		List<OrderByField> orderByFields) {
-
-		Map<String, Object> uriVariables = getUriVariables(
-			faroProject, cur, delta, orderByFields,
-			FilterConstants.FIELD_NAME_CONTEXT_INDIVIDUAL);
-
-		uriVariables.put(
-			"filter",
-			FilterUtil.getFilter(
-				"dataSourceId", FilterConstants.COMPARISON_OPERATOR_EQUALS,
-				dataSourceId));
-		uriVariables.put("includeAnonymousUsers", includeAnonymousUsers);
-
-		PagedModel<?, Individual> pagedModel = get(
-			faroProject, Rels.INDIVIDUALS,
-			new ParameterizedTypeReference
-				<EntityModelPagedModel<Individual>>() {
-			},
-			uriVariables);
-
-		return pagedModel.getResults();
-	}
-
-	@Override
-	public Results<Individual> getIndividuals(
-		FaroProject faroProject, String accountId, String channelId,
-		String dataSourceId, String individualSegmentId,
-		String notIndividualSegmentId, String interestName, String filterString,
-		String query, List<String> fields, boolean includeAnonymousUsers,
-		int cur, int delta, List<OrderByField> orderByFields) {
-
-		Map<String, Object> uriVariables = getUriVariables(
-			faroProject, cur, delta, orderByFields,
-			FilterConstants.FIELD_NAME_CONTEXT_INDIVIDUAL);
-
-		if (Validator.isNotNull(accountId)) {
-			uriVariables.put("accountId", accountId);
-		}
-
-		if (Validator.isNotNull(channelId)) {
-			uriVariables.put("channelId", channelId);
-		}
-
-		if (Validator.isNotNull(dataSourceId)) {
-			uriVariables.put("dataSourceId", dataSourceId);
-		}
-
-		if (Validator.isNotNull(filterString)) {
-			uriVariables.put("filter", filterString);
-		}
-
-		uriVariables.put("includeAnonymousUsers", includeAnonymousUsers);
-
-		if (Validator.isNotNull(individualSegmentId)) {
-			uriVariables.put("segmentId", individualSegmentId);
-		}
-
-		if (Validator.isNotNull(interestName)) {
-			uriVariables.put("interestName", interestName);
-		}
-
-		if (Validator.isNotNull(notIndividualSegmentId)) {
-			uriVariables.put("notSegmentId", notIndividualSegmentId);
-		}
-
-		if (Validator.isNotNull(query)) {
-			uriVariables.put("query", query);
-		}
-
-		PagedModel<?, Individual> pagedModel = get(
-			faroProject, Rels.INDIVIDUALS,
-			new ParameterizedTypeReference
-				<EntityModelPagedModel<Individual>>() {
-			},
-			uriVariables);
-
-		return pagedModel.getResults();
-	}
-
-	@Override
-	public Results<Individual> getIndividualsByIndividualSegment(
-		FaroProject faroProject, String individualSegmentId, String query,
-		List<String> fields, FilterBuilder filterBuilder,
-		boolean includeAnonymousUsers, int cur, int delta,
-		List<OrderByField> orderByFields) {
-
-		Map<String, Object> uriVariables = getUriVariables(
-			faroProject, cur, delta, orderByFields,
-			FilterConstants.FIELD_NAME_CONTEXT_INDIVIDUAL);
-
-		if (filterBuilder == null) {
-			filterBuilder = new FilterBuilder();
-		}
-
-		filterBuilder.addSearchFilter(
-			query, fields, FilterConstants.FIELD_NAME_CONTEXT_INDIVIDUAL);
-
-		uriVariables.put("filter", filterBuilder.build());
-
-		uriVariables.put("id", individualSegmentId);
-		uriVariables.put("includeAnonymousUsers", includeAnonymousUsers);
-
-		PagedModel<?, Individual> pagedModel = get(
-			faroProject, Rels.INDIVIDUAL_SEGMENT_INDIVIDUALS,
-			new ParameterizedTypeReference
-				<EntityModelPagedModel<Individual>>() {
-			},
-			uriVariables);
-
-		return pagedModel.getResults();
-	}
-
-	@Override
-	public Results<Individual> getIndividualsByIndividualSegment(
-		FaroProject faroProject, String individualSegmentId,
-		String filterString, String query, List<String> fields,
-		boolean includeAnonymousUsers, int cur, int delta,
-		List<OrderByField> orderByFields) {
-
-		Map<String, Object> uriVariables = getUriVariables(
-			faroProject, cur, delta, orderByFields,
-			FilterConstants.FIELD_NAME_CONTEXT_INDIVIDUAL);
-
-		FilterBuilder filterBuilder = new FilterBuilder();
-
-		filterBuilder.addFilter(filterString);
-		filterBuilder.addSearchFilter(
-			query, fields, FilterConstants.FIELD_NAME_CONTEXT_INDIVIDUAL);
-
-		uriVariables.put("filter", filterBuilder.build());
-
-		uriVariables.put("id", individualSegmentId);
-		uriVariables.put("includeAnonymousUsers", includeAnonymousUsers);
-
-		PagedModel<?, Individual> pagedModel = get(
-			faroProject, Rels.INDIVIDUAL_SEGMENT_INDIVIDUALS,
-			new ParameterizedTypeReference
-				<EntityModelPagedModel<Individual>>() {
-			},
-			uriVariables);
-
-		return pagedModel.getResults();
-	}
-
-	@Override
-	public long getIndividualsCreatedBetweenCount(
-		FaroProject faroProject, Date endDate, Date startDate) {
-
-		Map<String, Object> uriVariables = getUriVariables(faroProject);
-
-		uriVariables.put("endDate", endDate);
-		uriVariables.put("startDate", startDate);
-
-		RestTemplate restTemplate = getRestTemplate(faroProject);
-
-		ResponseEntity<Long> responseEntity = restTemplate.exchange(
-			getTemplatedURL(
-				faroProject, Rels.INDIVIDUALS_CREATED_BETWEEN_COUNT),
-			HttpMethod.GET, HttpEntity.EMPTY, Long.class, uriVariables);
-
-		if (responseEntity.getBody() == null) {
-			return 0L;
-		}
-
-		return responseEntity.getBody();
-	}
-
-	@Override
-	public long getIndividualsCreatedSinceCount(
-		FaroProject faroProject, Date startDate) {
-
-		Map<String, Object> uriVariables = getUriVariables(faroProject);
-
-		uriVariables.put("startDate", startDate);
-
-		RestTemplate restTemplate = getRestTemplate(faroProject);
-
-		ResponseEntity<Long> responseEntity = restTemplate.exchange(
-			getTemplatedURL(faroProject, Rels.INDIVIDUALS_CREATED_SINCE_COUNT),
-			HttpMethod.GET, HttpEntity.EMPTY, Long.class, uriVariables);
-
-		if (responseEntity.getBody() == null) {
-			return 0L;
-		}
-
-		return responseEntity.getBody();
-	}
-
-	@Override
-	public Results<Distribution> getIndividualsDistribution(
-		FaroProject faroProject, String channelId, String fieldMappingFieldName,
-		String individualSegmentId, int count, int numberOfBins,
-		List<OrderByField> orderByFields) {
-
-		Map<String, Object> uriVariables = getUriVariables(
-			faroProject, 0, count, orderByFields);
-
-		uriVariables.put("channelId", channelId);
-		uriVariables.put("fieldMappingFieldName", fieldMappingFieldName);
-		uriVariables.put("individualSegmentId", individualSegmentId);
-		uriVariables.put("numberOfBins", numberOfBins);
-
-		PagedModel<?, Distribution> pagedModel = get(
-			faroProject, Rels.INDIVIDUALS_DISTRIBUTION,
-			new ParameterizedTypeReference
-				<EntityModelPagedModel<Distribution>>() {
 			},
 			uriVariables);
 
@@ -2381,6 +2142,245 @@ public class ContactsEngineClientImpl
 	}
 
 	@Override
+	public Results<Individual> getIndividuals(
+		FaroProject faroProject, FilterBuilder filterBuilder,
+		boolean includeAnonymousUsers, int cur, int delta,
+		List<OrderByField> orderByFields) {
+
+		Map<String, Object> uriVariables = getUriVariables(
+			faroProject, cur, delta, orderByFields,
+			FilterConstants.FIELD_NAME_CONTEXT_INDIVIDUAL);
+
+		uriVariables.put("filter", filterBuilder.build());
+		uriVariables.put("includeAnonymousUsers", includeAnonymousUsers);
+
+		PagedModel<?, Individual> pagedModel = get(
+			faroProject, Rels.INDIVIDUALS,
+			new ParameterizedTypeReference
+				<EntityModelPagedModel<Individual>>() {
+			},
+			uriVariables);
+
+		return pagedModel.getResults();
+	}
+
+	@Override
+	public Results<Individual> getIndividuals(
+		FaroProject faroProject, String dataSourceId,
+		boolean includeAnonymousUsers, int cur, int delta,
+		List<OrderByField> orderByFields) {
+
+		Map<String, Object> uriVariables = getUriVariables(
+			faroProject, cur, delta, orderByFields,
+			FilterConstants.FIELD_NAME_CONTEXT_INDIVIDUAL);
+
+		uriVariables.put(
+			"filter",
+			FilterUtil.getFilter(
+				"dataSourceId", FilterConstants.COMPARISON_OPERATOR_EQUALS,
+				dataSourceId));
+		uriVariables.put("includeAnonymousUsers", includeAnonymousUsers);
+
+		PagedModel<?, Individual> pagedModel = get(
+			faroProject, Rels.INDIVIDUALS,
+			new ParameterizedTypeReference
+				<EntityModelPagedModel<Individual>>() {
+			},
+			uriVariables);
+
+		return pagedModel.getResults();
+	}
+
+	@Override
+	public Results<Individual> getIndividuals(
+		FaroProject faroProject, String accountId, String channelId,
+		String dataSourceId, String individualSegmentId,
+		String notIndividualSegmentId, String interestName, String filterString,
+		String query, List<String> fields, boolean includeAnonymousUsers,
+		int cur, int delta, List<OrderByField> orderByFields) {
+
+		Map<String, Object> uriVariables = getUriVariables(
+			faroProject, cur, delta, orderByFields,
+			FilterConstants.FIELD_NAME_CONTEXT_INDIVIDUAL);
+
+		if (Validator.isNotNull(accountId)) {
+			uriVariables.put("accountId", accountId);
+		}
+
+		if (Validator.isNotNull(channelId)) {
+			uriVariables.put("channelId", channelId);
+		}
+
+		if (Validator.isNotNull(dataSourceId)) {
+			uriVariables.put("dataSourceId", dataSourceId);
+		}
+
+		if (Validator.isNotNull(filterString)) {
+			uriVariables.put("filter", filterString);
+		}
+
+		uriVariables.put("includeAnonymousUsers", includeAnonymousUsers);
+
+		if (Validator.isNotNull(individualSegmentId)) {
+			uriVariables.put("segmentId", individualSegmentId);
+		}
+
+		if (Validator.isNotNull(interestName)) {
+			uriVariables.put("interestName", interestName);
+		}
+
+		if (Validator.isNotNull(notIndividualSegmentId)) {
+			uriVariables.put("notSegmentId", notIndividualSegmentId);
+		}
+
+		if (Validator.isNotNull(query)) {
+			uriVariables.put("query", query);
+		}
+
+		PagedModel<?, Individual> pagedModel = get(
+			faroProject, Rels.INDIVIDUALS,
+			new ParameterizedTypeReference
+				<EntityModelPagedModel<Individual>>() {
+			},
+			uriVariables);
+
+		return pagedModel.getResults();
+	}
+
+	@Override
+	public Results<Individual> getIndividualsByIndividualSegment(
+		FaroProject faroProject, String individualSegmentId, String query,
+		List<String> fields, FilterBuilder filterBuilder,
+		boolean includeAnonymousUsers, int cur, int delta,
+		List<OrderByField> orderByFields) {
+
+		Map<String, Object> uriVariables = getUriVariables(
+			faroProject, cur, delta, orderByFields,
+			FilterConstants.FIELD_NAME_CONTEXT_INDIVIDUAL);
+
+		if (filterBuilder == null) {
+			filterBuilder = new FilterBuilder();
+		}
+
+		filterBuilder.addSearchFilter(
+			query, fields, FilterConstants.FIELD_NAME_CONTEXT_INDIVIDUAL);
+
+		uriVariables.put("filter", filterBuilder.build());
+
+		uriVariables.put("id", individualSegmentId);
+		uriVariables.put("includeAnonymousUsers", includeAnonymousUsers);
+
+		PagedModel<?, Individual> pagedModel = get(
+			faroProject, Rels.INDIVIDUAL_SEGMENT_INDIVIDUALS,
+			new ParameterizedTypeReference
+				<EntityModelPagedModel<Individual>>() {
+			},
+			uriVariables);
+
+		return pagedModel.getResults();
+	}
+
+	@Override
+	public Results<Individual> getIndividualsByIndividualSegment(
+		FaroProject faroProject, String individualSegmentId,
+		String filterString, String query, List<String> fields,
+		boolean includeAnonymousUsers, int cur, int delta,
+		List<OrderByField> orderByFields) {
+
+		Map<String, Object> uriVariables = getUriVariables(
+			faroProject, cur, delta, orderByFields,
+			FilterConstants.FIELD_NAME_CONTEXT_INDIVIDUAL);
+
+		FilterBuilder filterBuilder = new FilterBuilder();
+
+		filterBuilder.addFilter(filterString);
+		filterBuilder.addSearchFilter(
+			query, fields, FilterConstants.FIELD_NAME_CONTEXT_INDIVIDUAL);
+
+		uriVariables.put("filter", filterBuilder.build());
+
+		uriVariables.put("id", individualSegmentId);
+		uriVariables.put("includeAnonymousUsers", includeAnonymousUsers);
+
+		PagedModel<?, Individual> pagedModel = get(
+			faroProject, Rels.INDIVIDUAL_SEGMENT_INDIVIDUALS,
+			new ParameterizedTypeReference
+				<EntityModelPagedModel<Individual>>() {
+			},
+			uriVariables);
+
+		return pagedModel.getResults();
+	}
+
+	@Override
+	public long getIndividualsCreatedBetweenCount(
+		FaroProject faroProject, Date endDate, Date startDate) {
+
+		Map<String, Object> uriVariables = getUriVariables(faroProject);
+
+		uriVariables.put("endDate", endDate);
+		uriVariables.put("startDate", startDate);
+
+		RestTemplate restTemplate = getRestTemplate(faroProject);
+
+		ResponseEntity<Long> responseEntity = restTemplate.exchange(
+			getTemplatedURL(
+				faroProject, Rels.INDIVIDUALS_CREATED_BETWEEN_COUNT),
+			HttpMethod.GET, HttpEntity.EMPTY, Long.class, uriVariables);
+
+		if (responseEntity.getBody() == null) {
+			return 0L;
+		}
+
+		return responseEntity.getBody();
+	}
+
+	@Override
+	public long getIndividualsCreatedSinceCount(
+		FaroProject faroProject, Date startDate) {
+
+		Map<String, Object> uriVariables = getUriVariables(faroProject);
+
+		uriVariables.put("startDate", startDate);
+
+		RestTemplate restTemplate = getRestTemplate(faroProject);
+
+		ResponseEntity<Long> responseEntity = restTemplate.exchange(
+			getTemplatedURL(faroProject, Rels.INDIVIDUALS_CREATED_SINCE_COUNT),
+			HttpMethod.GET, HttpEntity.EMPTY, Long.class, uriVariables);
+
+		if (responseEntity.getBody() == null) {
+			return 0L;
+		}
+
+		return responseEntity.getBody();
+	}
+
+	@Override
+	public Results<Distribution> getIndividualsDistribution(
+		FaroProject faroProject, String channelId, String fieldMappingFieldName,
+		String individualSegmentId, int count, int numberOfBins,
+		List<OrderByField> orderByFields) {
+
+		Map<String, Object> uriVariables = getUriVariables(
+			faroProject, 0, count, orderByFields);
+
+		uriVariables.put("channelId", channelId);
+		uriVariables.put("fieldMappingFieldName", fieldMappingFieldName);
+		uriVariables.put("individualSegmentId", individualSegmentId);
+		uriVariables.put("numberOfBins", numberOfBins);
+
+		PagedModel<?, Distribution> pagedModel = get(
+			faroProject, Rels.INDIVIDUALS_DISTRIBUTION,
+			new ParameterizedTypeReference
+				<EntityModelPagedModel<Distribution>>() {
+			},
+			uriVariables);
+
+		return pagedModel.getResults();
+	}
+
+	@Override
 	public Results<String> getInterestKeywords(
 		String channelId, FaroProject faroProject, String query, int cur,
 		int delta) {
@@ -2435,6 +2435,11 @@ public class ContactsEngineClientImpl
 	}
 
 	@Override
+	public PageVisited getPageVisited(FaroProject faroProject, String id) {
+		return get(faroProject, Rels.PAGE_VISITED, id, PageVisited.class);
+	}
+
+	@Override
 	public Results<PageVisited> getPagesVisited(
 		FaroProject faroProject, String channelId, String ownerId,
 		String ownerType, String query, String interestName, Date startDate,
@@ -2467,11 +2472,6 @@ public class ContactsEngineClientImpl
 			uriVariables);
 
 		return pagedModel.getResults();
-	}
-
-	@Override
-	public PageVisited getPageVisited(FaroProject faroProject, String id) {
-		return get(faroProject, Rels.PAGE_VISITED, id, PageVisited.class);
 	}
 
 	@Override
