@@ -402,6 +402,8 @@ public class DBPartitionUtil {
 		if (!PropsValues.DATABASE_PARTITION_ENABLED) {
 			return dataSource;
 		}
+		
+		
 
 		_initializeDBPartitionDB(
 			DBManagerUtil.getDB(

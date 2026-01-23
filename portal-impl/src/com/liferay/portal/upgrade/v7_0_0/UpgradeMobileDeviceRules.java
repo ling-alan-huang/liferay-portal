@@ -125,6 +125,7 @@ public class UpgradeMobileDeviceRules extends UpgradeProcess {
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection,
 					StringBundler.concat(
+							
 						"insert into ResourcePermission ",
 						"(resourcePermissionId, companyId, name, scope, ",
 						"primKey, primKeyId, roleId, ownerId, actionIds, ",

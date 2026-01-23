@@ -289,6 +289,8 @@ public class CounterDataCleanupPreupgradeProcess
 		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				"delete from Counter where name = '" + counterName + "'")) {
 
+			
+			
 			preparedStatement.executeUpdate();
 
 			if (_log.isInfoEnabled()) {

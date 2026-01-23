@@ -39,6 +39,7 @@ public class UpgradeDB2 extends UpgradeProcess {
 				if (_log.isInfoEnabled()) {
 					_log.info(
 						StringBundler.concat(
+								
 							"Alter column ", tableName, StringPool.PERIOD,
 							columnName, " type to clob(2G)"));
 				}

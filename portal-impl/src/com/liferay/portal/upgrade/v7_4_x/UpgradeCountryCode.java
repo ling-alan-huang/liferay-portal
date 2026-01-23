@@ -119,6 +119,7 @@ public class UpgradeCountryCode extends UpgradeProcess {
 						"Country.countryId = Region.countryId where ",
 						"Country.a2 = '", countryA2, "' and Region.regionCode ",
 						"= '", regionCode, "')")));
+			
 			ResultSet resultSet = preparedStatement2.executeQuery()) {
 
 			if (resultSet.next()) {

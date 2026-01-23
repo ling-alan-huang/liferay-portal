@@ -37,6 +37,7 @@ public abstract class UpgradePortletSettings extends UpgradeProcess {
 		throws Exception {
 
 		if (_log.isDebugEnabled()) {
+			
 			_log.debug("Copy portlet settings as service settings");
 		}
 

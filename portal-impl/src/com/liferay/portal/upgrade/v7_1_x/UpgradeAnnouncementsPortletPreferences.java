@@ -30,6 +30,7 @@ public class UpgradeAnnouncementsPortletPreferences extends UpgradeProcess {
 			PreparedStatement preparedStatement2 = connection.prepareStatement(
 				StringBundler.concat(
 					"select portletPreferencesId, preferences from ",
+					
 					"PortletPreferences where companyId = ? AND portletId = ? ",
 					"AND ownerType = ?"));
 			PreparedStatement preparedStatement3 =
