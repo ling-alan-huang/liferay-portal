@@ -13,7 +13,6 @@ import com.liferay.client.extension.type.configuration.CETConfiguration;
 import com.liferay.client.extension.type.deployer.CETDeployer;
 import com.liferay.client.extension.type.factory.CETFactory;
 import com.liferay.client.extension.type.manager.CETManager;
-import com.liferay.petra.function.transform.TransformUtil;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.feature.flag.FeatureFlagManagerUtil;
@@ -26,6 +25,7 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.vulcan.pagination.Pagination;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -157,42 +157,37 @@ public class CETManagerImpl implements CETManager {
 	private List<CET> _getCETs(long companyId, String keywords, String type)
 		throws PortalException {
 
-		List<CET> cets = TransformUtil.transform(
-			_clientExtensionEntryLocalService.getClientExtensionEntries(
-				companyId, QueryUtil.ALL_POS, QueryUtil.ALL_POS),
-			clientExtensionEntry -> {
-				try {
-					CET cet = _cetFactory.create(clientExtensionEntry, true);
+		List<CET> cets = new ArrayList<>();
 
-					if (_isInclude(cet, keywords, type)) {
-						return cet;
-					}
+		for (ClientExtensionEntry clientExtensionEntry :
+				_clientExtensionEntryLocalService.getClientExtensionEntries(
+					companyId, QueryUtil.ALL_POS, QueryUtil.ALL_POS)) {
+
+			try {
+				CET cet = _cetFactory.create(clientExtensionEntry, true);
+
+				if (_isInclude(cet, keywords, type)) {
+					cets.add(cet);
 				}
-				catch (ClientExtensionEntryTypeException
-							clientExtensionEntryTypeException) {
+			}
+			catch (ClientExtensionEntryTypeException
+						clientExtensionEntryTypeException) {
 
-					if (_log.isDebugEnabled()) {
-						_log.debug(clientExtensionEntryTypeException);
-					}
+				if (_log.isDebugEnabled()) {
+					_log.debug(clientExtensionEntryTypeException);
 				}
-
-				return null;
-			});
+			}
+		}
 
 		Map<String, CET> cetsMap = _getCETsMap(companyId);
 
-		cets.addAll(
-			TransformUtil.transform(
-				cetsMap.entrySet(),
-				entry -> {
-					CET cet = entry.getValue();
+		for (Map.Entry<String, CET> entry : cetsMap.entrySet()) {
+			CET cet = entry.getValue();
 
-					if (_isInclude(cet, keywords, type)) {
-						return cet;
-					}
-
-					return null;
-				}));
+			if (_isInclude(cet, keywords, type)) {
+				cets.add(cet);
+			}
+		}
 
 		return cets;
 	}

@@ -53,6 +53,7 @@ import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
+import com.liferay.portal.odata.entity.EntityField;
 import com.liferay.portal.odata.entity.EntityModel;
 import com.liferay.portal.odata.entity.StringEntityField;
 import com.liferay.portal.search.legacy.searcher.SearchRequestBuilderFactory;
@@ -66,7 +67,9 @@ import jakarta.validation.ValidationException;
 
 import jakarta.ws.rs.core.MultivaluedMap;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -246,18 +249,19 @@ public class DataRecordResourceImpl extends BaseDataRecordResourceImpl {
 			dataDefinitionId = ddmStructure.getStructureId();
 		}
 
-		if (dataDefinitionId <= 0) {
-			return new DataRecordEntityModel(Collections.emptyList());
+		List<EntityField> entityFields = new ArrayList<>();
+
+		if (dataDefinitionId > 0) {
+			DDMStructure ddmStructure =
+				_ddmStructureLocalService.getDDMStructure(dataDefinitionId);
+
+			for (String fieldName : ddmStructure.getFieldNames()) {
+				entityFields.add(
+					new StringEntityField(fieldName, locale -> fieldName));
+			}
 		}
 
-		DDMStructure ddmStructure = _ddmStructureLocalService.getDDMStructure(
-			dataDefinitionId);
-
-		return new DataRecordEntityModel(
-			transform(
-				ddmStructure.getFieldNames(),
-				fieldName -> new StringEntityField(
-					fieldName, locale -> fieldName)));
+		return new DataRecordEntityModel(entityFields);
 	}
 
 	@Override

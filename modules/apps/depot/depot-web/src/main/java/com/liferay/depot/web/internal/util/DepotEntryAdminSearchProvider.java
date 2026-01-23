@@ -14,6 +14,7 @@ import com.liferay.petra.function.transform.TransformUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.language.Language;
 import com.liferay.portal.kernel.module.framework.ModuleServiceLifecycle;
+import com.liferay.portal.kernel.search.Document;
 import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.kernel.search.Hits;
 import com.liferay.portal.kernel.search.Indexer;
@@ -32,6 +33,7 @@ import jakarta.portlet.PortletRequest;
 import jakarta.portlet.PortletResponse;
 import jakarta.portlet.PortletURL;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.osgi.service.component.annotations.Component;
@@ -143,6 +145,8 @@ public class DepotEntryAdminSearchProvider {
 			PortletRequest portletRequest)
 		throws PortalException {
 
+		List<DepotEntry> depotEntries = new ArrayList<>();
+
 		Indexer<Object> indexer = IndexerRegistryUtil.getIndexer(
 			DepotEntry.class.getName());
 
@@ -155,10 +159,14 @@ public class DepotEntryAdminSearchProvider {
 
 		Hits hits = indexer.search(searchContext);
 
-		return TransformUtil.transformToList(
-			hits.getDocs(),
-			document -> _depotEntryService.getDepotEntry(
-				GetterUtil.getLong(document.get(Field.ENTRY_CLASS_PK))));
+		for (Document document : hits.getDocs()) {
+			long classPK = GetterUtil.getLong(
+				document.get(Field.ENTRY_CLASS_PK));
+
+			depotEntries.add(_depotEntryService.getDepotEntry(classPK));
+		}
+
+		return depotEntries;
 	}
 
 	private SearchContext _getSearchContext(

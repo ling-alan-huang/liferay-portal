@@ -9,7 +9,6 @@ import com.liferay.depot.constants.DepotActionKeys;
 import com.liferay.depot.constants.DepotConstants;
 import com.liferay.depot.model.DepotEntry;
 import com.liferay.depot.service.base.DepotEntryServiceBaseImpl;
-import com.liferay.petra.function.transform.TransformUtil;
 import com.liferay.portal.aop.AopService;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.Group;
@@ -21,6 +20,7 @@ import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.permission.GroupPermissionUtil;
 import com.liferay.portal.kernel.util.UnicodeProperties;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
@@ -143,23 +143,24 @@ public class DepotEntryServiceImpl extends DepotEntryServiceBaseImpl {
 			return Collections.emptyList();
 		}
 
-		return TransformUtil.transform(
-			depotEntryLocalService.getGroupConnectedDepotEntries(
-				groupId, type, start, end),
-			depotEntry -> {
-				Group group = depotEntry.getGroup();
+		List<DepotEntry> filteredDepotEntries = new ArrayList<>();
 
-				if (group.isCompany() ||
-					GroupPermissionUtil.contains(
-						permissionChecker, group.getGroupId(),
-						ActionKeys.VIEW) ||
-					permissionChecker.isGroupAdmin(group.getGroupId())) {
+		for (DepotEntry depotEntry :
+				depotEntryLocalService.getGroupConnectedDepotEntries(
+					groupId, type, start, end)) {
 
-					return depotEntry;
-				}
+			Group group = depotEntry.getGroup();
 
-				return null;
-			});
+			if (group.isCompany() ||
+				GroupPermissionUtil.contains(
+					permissionChecker, group.getGroupId(), ActionKeys.VIEW) ||
+				permissionChecker.isGroupAdmin(group.getGroupId())) {
+
+				filteredDepotEntries.add(depotEntry);
+			}
+		}
+
+		return filteredDepotEntries;
 	}
 
 	@Override

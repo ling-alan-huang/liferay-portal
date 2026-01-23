@@ -15,7 +15,6 @@ import com.liferay.asset.link.model.AssetLinkTable;
 import com.liferay.asset.link.model.adapter.StagedAssetLink;
 import com.liferay.asset.link.service.base.AssetLinkLocalServiceBaseImpl;
 import com.liferay.exportimport.kernel.lar.StagedModelType;
-import com.liferay.petra.function.transform.TransformUtil;
 import com.liferay.petra.sql.dsl.DSLQueryFactoryUtil;
 import com.liferay.petra.sql.dsl.query.DSLQuery;
 import com.liferay.petra.string.StringBundler;
@@ -590,18 +589,16 @@ public class AssetLinkLocalServiceImpl extends AssetLinkLocalServiceBaseImpl {
 			return assetLinks;
 		}
 
-		List<AssetLink> filteredAssetLinks = TransformUtil.transform(
-			assetLinks,
-			assetLink -> {
-				AssetEntry assetEntry = _assetEntryLocalService.fetchEntry(
-					assetLink.getEntryId2());
+		List<AssetLink> filteredAssetLinks = new ArrayList<>(assetLinks.size());
 
-				if ((assetEntry != null) && assetEntry.isVisible()) {
-					return assetLink;
-				}
+		for (AssetLink assetLink : assetLinks) {
+			AssetEntry assetEntry = _assetEntryLocalService.fetchEntry(
+				assetLink.getEntryId2());
 
-				return null;
-			});
+			if ((assetEntry != null) && assetEntry.isVisible()) {
+				filteredAssetLinks.add(assetLink);
+			}
+		}
 
 		return Collections.unmodifiableList(filteredAssetLinks);
 	}

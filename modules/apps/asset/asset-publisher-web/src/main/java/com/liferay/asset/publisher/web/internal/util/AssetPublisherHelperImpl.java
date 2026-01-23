@@ -997,19 +997,18 @@ public class AssetPublisherHelperImpl implements AssetPublisherHelper {
 	}
 
 	private long[] _filterAssetCategoryIds(long[] assetCategoryIds) {
-		List<Long> filteredAssetCategoryIdsList = TransformUtil.transformToList(
-			assetCategoryIds,
-			assetCategoryId -> {
-				AssetCategory category =
-					_assetCategoryLocalService.fetchAssetCategory(
-						assetCategoryId);
+		List<Long> filteredAssetCategoryIdsList = new ArrayList<>();
 
-				if (category == null) {
-					return null;
-				}
+		for (long assetCategoryId : assetCategoryIds) {
+			AssetCategory category =
+				_assetCategoryLocalService.fetchAssetCategory(assetCategoryId);
 
-				return assetCategoryId;
-			});
+			if (category == null) {
+				continue;
+			}
+
+			filteredAssetCategoryIdsList.add(assetCategoryId);
+		}
 
 		return ArrayUtil.toArray(
 			filteredAssetCategoryIdsList.toArray(new Long[0]));

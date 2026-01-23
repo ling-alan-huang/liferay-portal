@@ -16,7 +16,6 @@ import com.liferay.info.collection.provider.SingleFormVariationInfoCollectionPro
 import com.liferay.info.pagination.InfoPage;
 import com.liferay.info.pagination.Pagination;
 import com.liferay.info.sort.Sort;
-import com.liferay.petra.function.transform.TransformUtil;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -24,6 +23,7 @@ import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.repository.model.FileEntry;
+import com.liferay.portal.kernel.search.Document;
 import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.kernel.search.Hits;
 import com.liferay.portal.kernel.search.Indexer;
@@ -39,7 +39,9 @@ import com.liferay.portal.kernel.workflow.WorkflowConstants;
 
 import java.io.Serializable;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.Locale;
 
 /**
@@ -88,16 +90,17 @@ public class DLFileEntryTypeRelatedInfoCollectionProvider
 
 			Hits hits = indexer.search(searchContext);
 
-			return InfoPage.of(
-				TransformUtil.transformToList(
-					hits.getDocs(),
-					document -> {
-						long classPK = GetterUtil.getLong(
-							document.get(Field.ENTRY_CLASS_PK));
+			List<FileEntry> fileEntries = new ArrayList<>();
 
-						return _dlAppLocalService.getFileEntry(classPK);
-					}),
-				collectionQuery.getPagination(), hits.getLength());
+			for (Document document : hits.getDocs()) {
+				long classPK = GetterUtil.getLong(
+					document.get(Field.ENTRY_CLASS_PK));
+
+				fileEntries.add(_dlAppLocalService.getFileEntry(classPK));
+			}
+
+			return InfoPage.of(
+				fileEntries, collectionQuery.getPagination(), hits.getLength());
 		}
 		catch (PortalException portalException) {
 			if (_log.isWarnEnabled()) {

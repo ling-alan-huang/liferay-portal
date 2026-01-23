@@ -56,9 +56,11 @@ public class CompanyModelListener extends BaseModelListener<Company> {
 				PanelCategoryHelper panelCategoryHelper =
 					new PanelCategoryHelper(_panelAppRegistry);
 
+				List<PanelApp> panelApps = panelCategoryHelper.getAllPanelApps(
+					PanelCategoryKeys.SITE_ADMINISTRATION);
+
 				List<Portlet> portlets = TransformUtil.transform(
-					panelCategoryHelper.getAllPanelApps(
-						PanelCategoryKeys.SITE_ADMINISTRATION),
+					panelApps,
 					panelApp -> _portletLocalService.getPortletById(
 						panelApp.getPortletId()));
 
