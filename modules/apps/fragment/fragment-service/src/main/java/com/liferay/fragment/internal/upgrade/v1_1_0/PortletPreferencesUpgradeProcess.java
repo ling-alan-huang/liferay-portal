@@ -43,6 +43,7 @@ public class PortletPreferencesUpgradeProcess extends UpgradeProcess {
 			return;
 		}
 
+		
 		_upgradePortletPreferences();
 
 		_deleteGroupControlPanelLayouts();

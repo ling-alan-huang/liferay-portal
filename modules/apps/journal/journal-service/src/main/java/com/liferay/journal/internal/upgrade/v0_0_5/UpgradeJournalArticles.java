@@ -56,6 +56,7 @@ public class UpgradeJournalArticles extends BasePortletIdUpgradeProcess {
 			portletPreferenceValueLocalService;
 		_portletPreferencesLocalService = portletPreferencesLocalService;
 	}
+	
 
 	@Override
 	protected String[][] getRenamePortletIdsArray() {

@@ -178,6 +178,7 @@ public class PermissionUpgradeProcess extends UpgradeProcess {
 			"com_liferay_announcements_web_portlet_AnnouncementsPortlet");
 	}
 
+	
 	private void _upgradeResourcePermission(String name) throws Exception {
 		try (PreparedStatement preparedStatement1 = connection.prepareStatement(
 				StringBundler.concat(
