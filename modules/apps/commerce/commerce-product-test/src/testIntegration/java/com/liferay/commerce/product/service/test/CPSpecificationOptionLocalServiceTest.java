@@ -164,6 +164,7 @@ public class CPSpecificationOptionLocalServiceTest {
 				RandomTestUtil.randomBoolean(), RandomTestUtil.randomString(),
 				RandomTestUtil.randomDouble(), true, _serviceContext);
 
+		
 		Assert.assertEquals(
 			listTypeDefinition.toString(), 1,
 			_cpSpecificationOptionListTypeDefinitionRelLocalService.
