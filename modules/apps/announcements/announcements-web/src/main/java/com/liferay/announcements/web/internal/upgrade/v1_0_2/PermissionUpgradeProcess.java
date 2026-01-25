@@ -115,6 +115,7 @@ public class PermissionUpgradeProcess extends UpgradeProcess {
 					"resourceActionId, name, actionId, bitwiseValue) values ",
 					"(?, ?, ?, ?, ?)"))) {
 
+			
 			preparedStatement.setLong(1, 0);
 			preparedStatement.setLong(2, resourceActionId);
 			preparedStatement.setString(

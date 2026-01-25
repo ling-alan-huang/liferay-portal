@@ -27,6 +27,7 @@ public class RoleUpgradeProcess extends UpgradeProcess {
 				" where name = '",
 				AccountRoleConstants.REQUIRED_ROLE_NAME_ACCOUNT_MANAGER, "'"));
 
+		
 		try (PreparedStatement preparedStatement1 = connection.prepareStatement(
 				"select distinct Role_.roleId from Role_ where name = '" +
 					AccountRoleConstants.REQUIRED_ROLE_NAME_ACCOUNT_MANAGER +
