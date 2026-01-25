@@ -48,6 +48,8 @@ public class CommerceAccountRoleUpgradeProcess extends UpgradeProcess {
 		_roleLocalService = roleLocalService;
 	}
 
+	
+	
 	@Override
 	protected void doUpgrade() throws Exception {
 		try (PreparedStatement preparedStatement1 = connection.prepareStatement(
