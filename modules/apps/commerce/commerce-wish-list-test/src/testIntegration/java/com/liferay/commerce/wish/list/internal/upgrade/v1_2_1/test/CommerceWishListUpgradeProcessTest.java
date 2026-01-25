@@ -67,6 +67,7 @@ public class CommerceWishListUpgradeProcessTest {
 		_resourceActionLocalService.addResourceAction(
 			"com.liferay.commerce.wish.list", "MANAGE_COMMERCE_WISH_LISTS", 1L);
 
+		
 		Role role = _roleLocalService.addRole(
 			RandomTestUtil.randomString(), _serviceContext.getUserId(), null, 0,
 			RandomTestUtil.randomString(), null, null,

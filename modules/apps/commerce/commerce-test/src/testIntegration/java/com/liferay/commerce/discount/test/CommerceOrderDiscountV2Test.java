@@ -94,6 +94,7 @@ public class CommerceOrderDiscountV2Test {
 
 		_user = UserTestUtil.addUser();
 
+		
 		_accountEntry = CommerceAccountTestUtil.getPersonAccountEntry(
 			_user.getUserId());
 

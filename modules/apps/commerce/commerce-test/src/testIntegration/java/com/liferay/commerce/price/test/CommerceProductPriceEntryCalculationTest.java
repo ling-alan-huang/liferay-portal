@@ -106,6 +106,7 @@ public class CommerceProductPriceEntryCalculationTest {
 					_commerceCatalog.getGroupId(),
 					CommercePriceListConstants.TYPE_PRICE_LIST);
 
+		
 		_group = GroupTestUtil.addGroup();
 
 		_commerceChannel = CommerceTestUtil.addCommerceChannel(

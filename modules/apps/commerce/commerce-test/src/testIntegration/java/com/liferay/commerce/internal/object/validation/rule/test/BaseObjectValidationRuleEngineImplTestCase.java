@@ -57,6 +57,7 @@ public abstract class BaseObjectValidationRuleEngineImplTestCase {
 		serviceContext = ServiceContextTestUtil.getServiceContext(
 			group.getGroupId());
 
+		
 		commerceChannel = CommerceChannelLocalServiceUtil.addCommerceChannel(
 			null, AccountConstants.ACCOUNT_ENTRY_ID_DEFAULT, group.getGroupId(),
 			"Test Channel", CommerceChannelConstants.CHANNEL_TYPE_SITE, null,

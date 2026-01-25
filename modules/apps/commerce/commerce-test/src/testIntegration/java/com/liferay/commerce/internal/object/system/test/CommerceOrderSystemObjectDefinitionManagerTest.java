@@ -64,6 +64,7 @@ public class CommerceOrderSystemObjectDefinitionManagerTest {
 			new LiferayIntegrationTestRule(),
 			PermissionCheckerMethodTestRule.INSTANCE);
 
+	
 	@Before
 	public void setUp() throws Exception {
 		_group = GroupTestUtil.addGroup();
