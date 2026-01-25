@@ -90,6 +90,8 @@ public class CPDefinitionLocalServiceTest {
 			new LiferayIntegrationTestRule(),
 			PermissionCheckerMethodTestRule.INSTANCE);
 
+	
+	
 	@Before
 	public void setUp() throws Exception {
 		Company company = _companyLocalService.getCompany(
