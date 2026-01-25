@@ -45,6 +45,7 @@ public class UpgradeOracleTest {
 		new AggregateTestRule(
 			new AssumeTestRule("assume"), new LiferayIntegrationTestRule());
 
+	
 	public static void assume() {
 		_db = DBManagerUtil.getDB();
 

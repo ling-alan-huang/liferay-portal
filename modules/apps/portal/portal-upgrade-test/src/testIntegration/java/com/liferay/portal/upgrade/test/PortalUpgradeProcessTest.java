@@ -51,6 +51,7 @@ public class PortalUpgradeProcessTest {
 	@Rule
 	public static final AggregateTestRule aggregateTestRule =
 		new LiferayIntegrationTestRule();
+	
 
 	@BeforeClass
 	public static void setUpClass() throws Exception {

@@ -135,6 +135,7 @@ public class UpgradeJakartaTest {
 	public static final LiferayIntegrationTestRule liferayIntegrationTestRule =
 		new LiferayIntegrationTestRule();
 
+	
 	@BeforeClass
 	public static void setUpClass() throws Exception {
 		_group = GroupTestUtil.addGroup();
