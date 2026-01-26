@@ -77,6 +77,7 @@ import jakarta.portlet.PortletRequest;
 
 import java.io.IOException;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -206,18 +207,18 @@ public class AssetPublisherWebHelper {
 	}
 
 	public String[] filterAssetTagNames(long groupId, String[] assetTagNames) {
-		List<String> filteredAssetTagNames = TransformUtil.transformToList(
-			_assetTagLocalService.getTagIds(groupId, assetTagNames),
-			assetTagId -> {
-				AssetTag assetTag = _assetTagLocalService.fetchAssetTag(
-					assetTagId);
+		List<String> filteredAssetTagNames = new ArrayList<>();
 
-				if (assetTag != null) {
-					return assetTag.getName();
-				}
+		long[] assetTagIds = _assetTagLocalService.getTagIds(
+			groupId, assetTagNames);
 
-				return null;
-			});
+		for (long assetTagId : assetTagIds) {
+			AssetTag assetTag = _assetTagLocalService.fetchAssetTag(assetTagId);
+
+			if (assetTag != null) {
+				filteredAssetTagNames.add(assetTag.getName());
+			}
+		}
 
 		return ArrayUtil.toStringArray(filteredAssetTagNames);
 	}

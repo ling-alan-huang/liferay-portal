@@ -297,19 +297,18 @@ public class AssetListAssetEntryProviderImpl
 	}
 
 	private long[] _filterAssetCategoryIds(long[] assetCategoryIds) {
-		List<Long> filteredAssetCategoryIds = TransformUtil.transformToList(
-			assetCategoryIds,
-			assetCategoryId -> {
-				AssetCategory category =
-					_assetCategoryLocalService.fetchAssetCategory(
-						assetCategoryId);
+		List<Long> filteredAssetCategoryIds = new ArrayList<>();
 
-				if (category == null) {
-					return null;
-				}
+		for (long assetCategoryId : assetCategoryIds) {
+			AssetCategory category =
+				_assetCategoryLocalService.fetchAssetCategory(assetCategoryId);
 
-				return assetCategoryId;
-			});
+			if (category == null) {
+				continue;
+			}
+
+			filteredAssetCategoryIds.add(assetCategoryId);
+		}
 
 		return ArrayUtil.toArray(filteredAssetCategoryIds.toArray(new Long[0]));
 	}

@@ -15,10 +15,10 @@ import com.liferay.info.collection.provider.RelatedInfoItemCollectionProvider;
 import com.liferay.info.pagination.InfoPage;
 import com.liferay.info.pagination.Pagination;
 import com.liferay.info.sort.Sort;
-import com.liferay.petra.function.transform.TransformUtil;
 import com.liferay.portal.kernel.language.Language;
 import com.liferay.portal.kernel.util.OrderByComparator;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
@@ -93,19 +93,18 @@ public class AssetCategoriesForAssetEntryRelatedInfoItemCollectionProvider
 
 					});
 
-		List<AssetCategory> assetCategories = TransformUtil.transform(
-			assetEntryAssetCategoryRels,
-			assetEntryAssetCategoryRel -> {
-				AssetCategory category =
-					_assetCategoryLocalService.fetchCategory(
-						assetEntryAssetCategoryRel.getAssetCategoryId());
+		List<AssetCategory> assetCategories = new ArrayList<>();
 
-				if (category != null) {
-					return category;
-				}
+		for (AssetEntryAssetCategoryRel assetEntryAssetCategoryRel :
+				assetEntryAssetCategoryRels) {
 
-				return null;
-			});
+			AssetCategory category = _assetCategoryLocalService.fetchCategory(
+				assetEntryAssetCategoryRel.getAssetCategoryId());
+
+			if (category != null) {
+				assetCategories.add(category);
+			}
+		}
 
 		return InfoPage.of(
 			assetCategories, pagination,
