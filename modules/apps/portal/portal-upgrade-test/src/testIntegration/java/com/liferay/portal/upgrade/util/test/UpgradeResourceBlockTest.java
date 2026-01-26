@@ -46,6 +46,8 @@ public class UpgradeResourceBlockTest extends BaseUpgradeResourceBlock {
 		new LiferayIntegrationTestRule();
 
 	@Before
+	
+	
 	public void setUp() throws Exception {
 		_regularRole = RoleTestUtil.addRole(RoleConstants.TYPE_REGULAR);
 
