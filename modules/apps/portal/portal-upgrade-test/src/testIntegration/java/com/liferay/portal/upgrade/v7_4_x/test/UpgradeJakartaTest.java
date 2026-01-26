@@ -167,6 +167,7 @@ public class UpgradeJakartaTest {
 		FragmentCollectionLocalServiceUtil.deleteFragmentCollection(
 			_fragmentCollection);
 
+		
 		LayoutLocalServiceUtil.deleteLayout(_layout);
 
 		GroupTestUtil.deleteGroup(_group);
