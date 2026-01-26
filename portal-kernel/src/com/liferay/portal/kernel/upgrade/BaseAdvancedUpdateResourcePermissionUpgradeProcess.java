@@ -41,6 +41,7 @@ public abstract class BaseAdvancedUpdateResourcePermissionUpgradeProcess
 					"from ResourcePermission where name = '",
 					resourcePermissionName, "'"));
 			PreparedStatement preparedStatement2 =
+					
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection,
 					"update ResourcePermission set actionIds = ? where " +
