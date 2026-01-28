@@ -376,18 +376,18 @@ public class DBPartitionUtil {
 	public static void setDefaultCompanyId(Connection connection)
 		throws SQLException {
 
-		if (PropsValues.DATABASE_PARTITION_ENABLED) {
-			try (PreparedStatement preparedStatement =
-					connection.prepareStatement(
-						"select companyId from Company where webId = ?")) {
+		if (!PropsValues.DATABASE_PARTITION_ENABLED) {
+			return;
+		}
 
-				preparedStatement.setString(
-					1, PropsValues.COMPANY_DEFAULT_WEB_ID);
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
+				"select companyId from Company where webId = ?")) {
 
-				try (ResultSet resultSet = preparedStatement.executeQuery()) {
-					if (resultSet.next()) {
-						_defaultCompanyId = resultSet.getLong(1);
-					}
+			preparedStatement.setString(1, PropsValues.COMPANY_DEFAULT_WEB_ID);
+
+			try (ResultSet resultSet = preparedStatement.executeQuery()) {
+				if (resultSet.next()) {
+					_defaultCompanyId = resultSet.getLong(1);
 				}
 			}
 		}
