@@ -39,6 +39,14 @@ public class JavaUpgradeConnectionCheck extends BaseJavaTermCheck {
 			return javaTerm.getContent();
 		}
 
+
+		
+		_checkDataAccessGetConnectionCall(fileName, javaTerm, fileContent);
+		
+		return _formatReusableConnection();
+	}
+
+	private String _addReusableConnection(String fileName, JavaTerm javaTerm) {
 		String content = javaTerm.getContent();
 
 		Matcher matcher = _runSQLPattern.matcher(content);
@@ -48,11 +56,11 @@ public class JavaUpgradeConnectionCheck extends BaseJavaTermCheck {
 
 			if (matched != null) {
 				String variableName = matched.substring(
-					0, matched.length() - 1);
+						0, matched.length() - 1);
 
 				if (!StringUtil.equals(
 						getVariableTypeName(
-							content, null, content, fileName, variableName),
+								content, null, content, fileName, variableName),
 						"DB")) {
 
 					continue;
@@ -60,45 +68,45 @@ public class JavaUpgradeConnectionCheck extends BaseJavaTermCheck {
 			}
 
 			List<String> parameterList = JavaSourceUtil.getParameterList(
-				content.substring(matcher.start()));
+					content.substring(matcher.start()));
 
 			if (parameterList.size() != 1) {
 				continue;
 			}
 
 			String newContent = StringUtil.insert(
-				content, "connection, ", matcher.end());
+					content, "connection, ", matcher.end());
 
 			if (!content.equals(newContent)) {
 				return newContent;
 			}
 		}
-
+	}
+	private void _checkDataAccessGetConnectionCall(String fileName, JavaTerm javaTerm,String fileContent) {
 		String methodName = javaTerm.getName();
 
 		if (methodName.equals("upgrade") &&
-			javaTerm.hasAnnotation("Override")) {
+				javaTerm.hasAnnotation("Override")) {
 
-			return content;
+			return;
 		}
 
-		String methodContent = javaTerm.getContent();
+		String content = javaTerm.getContent();
 
-		int x = methodContent.indexOf("DataAccess.getConnection(");
+		int x = content.indexOf("DataAccess.getConnection(");
 
 		if (x == -1) {
-			return content;
+			return;
 		}
 
 		addMessage(
-			fileName,
-			"Use existing connection field instead of calling DataAccess." +
-				"getConnection",
-			getLineNumber(fileContent, x));
+				fileName,
+				"Use existing connection field instead of calling DataAccess." +
+						"getConnection",
+				getLineNumber(fileContent, x));
 
-		return javaTerm.getContent();
+
 	}
-
 	@Override
 	protected String[] getCheckableJavaTermNames() {
 		return new String[] {JAVA_METHOD};
