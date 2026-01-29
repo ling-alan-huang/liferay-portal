@@ -39,15 +39,20 @@ public class JavaUpgradeConnectionCheck extends BaseJavaTermCheck {
 			return javaTerm.getContent();
 		}
 
-
-		
 		_checkDataAccessGetConnectionCall(fileName, javaTerm, fileContent);
 		
-		return _formatReusableConnection();
+		String content = javaTerm.getContent();
+
+		String newContent = _fixReusableConnection(fileName, content);
+
+		if (!content.equals(newContent)) {
+			return newContent;
+		}
+		
+		return content;
 	}
 
-	private String _addReusableConnection(String fileName, JavaTerm javaTerm) {
-		String content = javaTerm.getContent();
+	private String _fixReusableConnection(String fileName, String content) {
 
 		Matcher matcher = _runSQLPattern.matcher(content);
 
@@ -74,13 +79,18 @@ public class JavaUpgradeConnectionCheck extends BaseJavaTermCheck {
 				continue;
 			}
 
-			String newContent = StringUtil.insert(
+			String parameter = parameterList.get(0);
+			
+			if (!parameter.startsWith("\"") && !parameter.startsWith("StringBundler.concat(")) {
+				continue;
+			}
+
+			return StringUtil.insert(
 					content, "connection, ", matcher.end());
 
-			if (!content.equals(newContent)) {
-				return newContent;
-			}
 		}
+		
+		return content;
 	}
 	private void _checkDataAccessGetConnectionCall(String fileName, JavaTerm javaTerm,String fileContent) {
 		String methodName = javaTerm.getName();
