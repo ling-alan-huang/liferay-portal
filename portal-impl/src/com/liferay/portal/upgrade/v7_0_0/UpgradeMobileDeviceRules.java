@@ -123,6 +123,8 @@ public class UpgradeMobileDeviceRules extends UpgradeProcess {
 					"= '", _CLASS_NAME, "'))"));
 			PreparedStatement preparedStatement2 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
+			
+			
 					connection,
 					StringBundler.concat(
 						"insert into ResourcePermission ",

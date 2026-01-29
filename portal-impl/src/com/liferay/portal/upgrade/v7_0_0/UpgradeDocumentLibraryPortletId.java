@@ -26,6 +26,8 @@ public class UpgradeDocumentLibraryPortletId
 					_PORTLET_ID_DOCUMENT_LIBRARY + "'");
 			ResultSet resultSet = preparedStatement1.executeQuery()) {
 
+			
+			
 			while (resultSet.next()) {
 				try (PreparedStatement preparedStatement2 =
 						connection.prepareStatement(

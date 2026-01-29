@@ -39,6 +39,8 @@ public class UpgradeCountryCode extends UpgradeProcess {
 		_upgradeRegion("IT", "Napoli", "NA");
 	}
 
+	
+	
 	private void _upgradeCountry() throws Exception {
 		try (PreparedStatement preparedStatement1 =
 				AutoBatchPreparedStatementUtil.autoBatch(

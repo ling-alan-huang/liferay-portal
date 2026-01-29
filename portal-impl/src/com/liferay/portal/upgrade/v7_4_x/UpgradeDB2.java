@@ -32,6 +32,8 @@ public class UpgradeDB2 extends UpgradeProcess {
 					connection.getSchema(), StringPool.APOSTROPHE));
 			ResultSet resultSet = preparedStatement.executeQuery()) {
 
+			
+			
 			while (resultSet.next()) {
 				String tableName = resultSet.getString(1);
 				String columnName = resultSet.getString(2);

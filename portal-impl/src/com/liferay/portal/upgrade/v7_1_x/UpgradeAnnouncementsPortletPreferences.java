@@ -20,6 +20,8 @@ import java.sql.ResultSet;
  */
 public class UpgradeAnnouncementsPortletPreferences extends UpgradeProcess {
 
+	
+	
 	@Override
 	protected void doUpgrade() throws Exception {
 		try (LoggingTimer loggingTimer = new LoggingTimer();
