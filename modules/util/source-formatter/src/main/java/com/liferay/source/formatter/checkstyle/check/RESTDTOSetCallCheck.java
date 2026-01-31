@@ -8,7 +8,6 @@ package com.liferay.source.formatter.checkstyle.check;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.source.formatter.check.util.BNDSourceUtil;
 import com.liferay.source.formatter.check.util.JavaSourceUtil;
 import com.liferay.source.formatter.check.util.SourceUtil;
 import com.liferay.source.formatter.parser.JavaClass;
@@ -28,7 +27,6 @@ import java.io.File;
 import java.io.IOException;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author Alan Huang
@@ -228,7 +226,7 @@ public class RESTDTOSetCallCheck extends BaseCheck {
 
 		File javaFile = JavaSourceUtil.getJavaFile(
 			fullyQualifiedTypeName, _getRootDirName(absolutePath),
-			_getBundleSymbolicNamesMap(absolutePath));
+			getBundleSymbolicNamesMap(absolutePath));
 
 		if (javaFile == null) {
 			return;
@@ -279,24 +277,13 @@ public class RESTDTOSetCallCheck extends BaseCheck {
 		log(detailAST, _MSG_USE_SET_METHOD_INSTEAD, methodName);
 	}
 
-	private synchronized Map<String, String> _getBundleSymbolicNamesMap(
-		String absolutePath) {
-
-		if (_bundleSymbolicNamesMap == null) {
-			_bundleSymbolicNamesMap = BNDSourceUtil.getBundleSymbolicNamesMap(
-				_getRootDirName(absolutePath));
-		}
-
-		return _bundleSymbolicNamesMap;
-	}
-
 	private JavaClass _getJavaClass(
 			String absolutePath, String fullyQualifiedTypeName)
 		throws IOException, ParseException {
 
 		File javaFile = JavaSourceUtil.getJavaFile(
 			fullyQualifiedTypeName, _getRootDirName(absolutePath),
-			_getBundleSymbolicNamesMap(absolutePath));
+			getBundleSymbolicNamesMap(absolutePath));
 
 		if (javaFile == null) {
 			return null;
@@ -356,7 +343,6 @@ public class RESTDTOSetCallCheck extends BaseCheck {
 	private static final Log _log = LogFactoryUtil.getLog(
 		RESTDTOSetCallCheck.class);
 
-	private volatile Map<String, String> _bundleSymbolicNamesMap;
 	private volatile String _rootDirName;
 
 }

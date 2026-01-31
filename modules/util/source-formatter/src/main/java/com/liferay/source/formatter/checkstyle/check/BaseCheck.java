@@ -25,6 +25,7 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Tuple;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.source.formatter.JSPImportsFormatter;
+import com.liferay.source.formatter.check.util.BNDSourceUtil;
 import com.liferay.source.formatter.check.util.JavaSourceUtil;
 import com.liferay.source.formatter.check.util.SourceUtil;
 import com.liferay.source.formatter.checkstyle.util.CheckstyleUtil;
@@ -203,6 +204,19 @@ public abstract class BaseCheck extends AbstractCheck {
 			_attributesJSONObject, _attributeValueMap,
 			CheckstyleUtil.BASE_DIR_NAME_KEY, StringPool.BLANK, null, null,
 			true);
+	}
+
+	protected synchronized Map<String, String> getBundleSymbolicNamesMap(
+		String absolutePath) {
+
+		if (_bundleSymbolicNamesMap != null) {
+			return _bundleSymbolicNamesMap;
+		}
+
+		_bundleSymbolicNamesMap = BNDSourceUtil.getBundleSymbolicNamesMap(
+			SourceUtil.getRootDirName(absolutePath));
+
+		return _bundleSymbolicNamesMap;
 	}
 
 	protected List<String> getChainedMethodNames(
@@ -1755,6 +1769,7 @@ public abstract class BaseCheck extends AbstractCheck {
 		new ConcurrentHashMap<>();
 	private final Map<String, List<String>> _attributeValuesMap =
 		new ConcurrentHashMap<>();
+	private Map<String, String> _bundleSymbolicNamesMap;
 	private JSONObject _excludesJSONObject = new JSONObjectImpl();
 	private final Map<String, List<String>> _excludesValuesMap =
 		new ConcurrentHashMap<>();
