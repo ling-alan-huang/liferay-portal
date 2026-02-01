@@ -92,10 +92,9 @@ public class LiferayJWTBearerAuthenticationHandler
 		SecurityContext securityContext = configureSecurityContext(jwtToken);
 
 		if (securityContext != null) {
-			JAXRSUtils.getCurrentMessage(
-			).put(
-				SecurityContext.class, securityContext
-			);
+			Message message = JAXRSUtils.getCurrentMessage();
+
+			message.put(SecurityContext.class, securityContext);
 		}
 	}
 
