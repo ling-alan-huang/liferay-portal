@@ -200,6 +200,8 @@ public class BatchEnginePortletDataHandler extends BasePortletDataHandler {
 			portletDataContext, true
 		).isEmpty();
 	}
+	
+	
 
 	@Override
 	public boolean isHidden() {

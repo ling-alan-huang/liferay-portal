@@ -348,6 +348,8 @@ public class EditCommerceOrderMVCActionCommand extends BaseMVCActionCommand {
 			}
 		}
 	}
+	
+	
 
 	private void _executeWorkflowTransition(
 			ActionRequest actionRequest, long commerceOrderId,
