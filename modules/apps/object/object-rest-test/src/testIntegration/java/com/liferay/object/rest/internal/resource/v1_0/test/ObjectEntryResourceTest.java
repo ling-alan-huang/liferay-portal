@@ -73,6 +73,7 @@ import com.liferay.object.model.ObjectValidationRule;
 import com.liferay.object.rest.dto.v1_0.Folder;
 import com.liferay.object.rest.dto.v1_0.Link;
 import com.liferay.object.rest.dto.v1_0.SystemProperties;
+import com.liferay.object.rest.dto.v1_0.ValidationError;
 import com.liferay.object.rest.dto.v1_0.ValidationRequest;
 import com.liferay.object.rest.dto.v1_0.ValidationResponse;
 import com.liferay.object.rest.dto.v1_0.Version;
@@ -4627,9 +4628,12 @@ public class ObjectEntryResourceTest {
 
 		JSONObject itemJSONObject = itemsJSONArray.getJSONObject(0);
 
+		String objectEntry1ExternalReferenceCode =
+			_objectEntry1.getExternalReferenceCode();
+
 		Assert.assertEquals(
 			itemJSONObject.getString(objectRelationshipERCObjectFieldName),
-			_objectEntry1.getExternalReferenceCode());
+			objectEntry1ExternalReferenceCode);
 
 		// Comparison operators
 
@@ -4639,7 +4643,7 @@ public class ObjectEntryResourceTest {
 				String.format(
 					"%s/%s eq '%s'", _objectRelationship1.getName(),
 					objectRelationshipERCObjectFieldName,
-					_objectEntry1.getExternalReferenceCode())),
+					objectEntry1ExternalReferenceCode)),
 			_objectDefinition1);
 		_assertFilterString(
 			_OBJECT_FIELD_NAME_1, _OBJECT_FIELD_VALUE_1,
@@ -4647,13 +4651,10 @@ public class ObjectEntryResourceTest {
 				String.format(
 					"%s/%s ge '%s'", _objectRelationship1.getName(),
 					objectRelationshipERCObjectFieldName,
-					_objectEntry1.getExternalReferenceCode())),
+					objectEntry1ExternalReferenceCode)),
 			_objectDefinition1);
 
-		String substring = _objectEntry1.getExternalReferenceCode(
-		).substring(
-			0, 4
-		);
+		String substring = objectEntry1ExternalReferenceCode.substring(0, 4);
 
 		_assertFilterString(
 			_OBJECT_FIELD_NAME_1, _OBJECT_FIELD_VALUE_1,
@@ -4669,7 +4670,7 @@ public class ObjectEntryResourceTest {
 				String.format(
 					"%s/%s le '%s'", _objectRelationship1.getName(),
 					objectRelationshipERCObjectFieldName,
-					_objectEntry1.getExternalReferenceCode())),
+					objectEntry1ExternalReferenceCode)),
 			_objectDefinition1);
 		_assertFilterString(
 			_OBJECT_FIELD_NAME_1, _OBJECT_FIELD_VALUE_1,
@@ -4695,7 +4696,7 @@ public class ObjectEntryResourceTest {
 				String.format(
 					"%s/%s in ('%s', '%s')", _objectRelationship1.getName(),
 					objectRelationshipERCObjectFieldName,
-					_objectEntry1.getExternalReferenceCode(),
+					objectEntry1ExternalReferenceCode,
 					RandomTestUtil.randomInt())),
 			_objectDefinition1);
 
@@ -19893,9 +19894,11 @@ public class ObjectEntryResourceTest {
 					).build(),
 					objectValidationRule1.getExternalReferenceCode()));
 
+			ValidationError[] validationErrors =
+				validationResponse.getValidationErrors();
+
 			Assert.assertEquals(
-				errorMessage1,
-				validationResponse.getValidationErrors()[0].getErrorMessage());
+				errorMessage1, validationErrors[0].getErrorMessage());
 
 			validationResponse = _validate(
 				scopeKey, objectEntryResource,
@@ -19905,8 +19908,9 @@ public class ObjectEntryResourceTest {
 					).build(),
 					objectValidationRule1.getExternalReferenceCode()));
 
-			Assert.assertTrue(
-				ArrayUtil.isEmpty(validationResponse.getValidationErrors()));
+			validationErrors = validationResponse.getValidationErrors();
+
+			Assert.assertTrue(ArrayUtil.isEmpty(validationErrors));
 
 			validationResponse = _validate(
 				scopeKey, objectEntryResource,
@@ -19915,16 +19919,15 @@ public class ObjectEntryResourceTest {
 						objectField1.getName(), RandomTestUtil.randomInt()
 					).build()));
 
+			validationErrors = validationResponse.getValidationErrors();
+
 			Assert.assertEquals(
-				errorMessage1,
-				validationResponse.getValidationErrors()[0].getErrorMessage());
+				errorMessage1, validationErrors[0].getErrorMessage());
 			Assert.assertEquals(
-				errorMessage2,
-				validationResponse.getValidationErrors()[1].getErrorMessage());
+				errorMessage2, validationErrors[1].getErrorMessage());
 			Assert.assertEquals(
 				objectField1.getName(),
-				validationResponse.getValidationErrors()[1].
-					getObjectFieldName());
+				validationErrors[1].getObjectFieldName());
 
 			objectValidationRule2.setActive(false);
 
@@ -19938,11 +19941,12 @@ public class ObjectEntryResourceTest {
 						objectField1.getName(), RandomTestUtil.randomInt()
 					).build()));
 
+			validationErrors = validationResponse.getValidationErrors();
+
 			Assert.assertEquals(
-				1, validationResponse.getValidationErrors().length);
+				Arrays.toString(validationErrors), 1, validationErrors.length);
 			Assert.assertEquals(
-				errorMessage1,
-				validationResponse.getValidationErrors()[0].getErrorMessage());
+				errorMessage1, validationErrors[0].getErrorMessage());
 
 			ObjectField objectField2 =
 				ObjectFieldLocalServiceUtil.addCustomObjectField(
@@ -19976,14 +19980,15 @@ public class ObjectEntryResourceTest {
 				scopeKey, objectEntryResource,
 				_getValidationRequest(Collections.emptyMap()));
 
+			validationErrors = validationResponse.getValidationErrors();
+
 			Assert.assertEquals(
-				errorMessage1,
-				validationResponse.getValidationErrors()[0].getErrorMessage());
+				errorMessage1, validationErrors[0].getErrorMessage());
 
 			Assert.assertEquals(
 				"No value was provided for required object field " +
 					"\"nameRequired\"",
-				validationResponse.getValidationErrors()[1].getErrorMessage());
+				validationErrors[1].getErrorMessage());
 
 			_objectValidationRuleLocalService.deleteObjectValidationRules(
 				objectDefinition.getObjectDefinitionId());
@@ -19995,10 +20000,12 @@ public class ObjectEntryResourceTest {
 						objectField2.getName(), RandomTestUtil.randomString(10)
 					).build()));
 
+			validationErrors = validationResponse.getValidationErrors();
+
 			Assert.assertEquals(
 				"Object entry value exceeds the maximum length of 9 " +
 					"characters for object field \"nameRequired\"",
-				validationResponse.getValidationErrors()[0].getErrorMessage());
+				validationErrors[0].getErrorMessage());
 
 			ObjectEntryTestUtil.addObjectEntry(
 				objectDefinition, objectField2.getName(), "Peter");
@@ -20010,12 +20017,14 @@ public class ObjectEntryResourceTest {
 						objectField2.getName(), "Peter"
 					).build()));
 
+			validationErrors = validationResponse.getValidationErrors();
+
 			Assert.assertEquals(
 				String.format(
 					"Unique value constraint violation for %s.%s with value %s",
 					objectField2.getDBTableName(),
 					objectField2.getDBColumnName(), "Peter"),
-				validationResponse.getValidationErrors()[0].getErrorMessage());
+				validationErrors[0].getErrorMessage());
 
 			_objectFieldLocalService.deleteObjectField(
 				objectField2.getObjectFieldId());
@@ -20038,17 +20047,19 @@ public class ObjectEntryResourceTest {
 						fileEntry.getFileEntryId()
 					).build()));
 
+			validationErrors = validationResponse.getValidationErrors();
+
 			Assert.assertEquals(
 				StringBundler.concat(
 					"The file extension \"pdf\" is invalid for object field \"",
 					_OBJECT_FIELD_NAME_ATTACHMENT_DOCS_AND_MEDIA_SOURCE, "\""),
-				validationResponse.getValidationErrors()[0].getErrorMessage());
+				validationErrors[0].getErrorMessage());
 			Assert.assertEquals(
 				StringBundler.concat(
 					"File exceeds the maximum permitted size of 1 MB for ",
 					"object field \"",
 					_OBJECT_FIELD_NAME_ATTACHMENT_DOCS_AND_MEDIA_SOURCE, "\""),
-				validationResponse.getValidationErrors()[1].getErrorMessage());
+				validationErrors[1].getErrorMessage());
 		}
 		finally {
 			PermissionThreadLocal.setPermissionChecker(
