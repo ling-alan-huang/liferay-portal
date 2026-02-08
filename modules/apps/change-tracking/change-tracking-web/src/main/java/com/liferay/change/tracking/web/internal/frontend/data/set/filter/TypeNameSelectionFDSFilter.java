@@ -39,6 +39,8 @@ public class TypeNameSelectionFDSFilter extends BaseSelectionFDSFilter {
 		return "modelClassNameId";
 	}
 
+	
+	
 	@Override
 	public String getLabel() {
 		return "types";
