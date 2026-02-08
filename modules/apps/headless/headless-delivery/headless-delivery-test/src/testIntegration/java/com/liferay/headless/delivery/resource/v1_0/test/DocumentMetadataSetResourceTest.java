@@ -37,6 +37,7 @@ import org.junit.runner.RunWith;
 public class DocumentMetadataSetResourceTest
 	extends BaseDocumentMetadataSetResourceTestCase {
 
+	
 	@ClassRule
 	@Rule
 	public static final AggregateTestRule aggregateTestRule =

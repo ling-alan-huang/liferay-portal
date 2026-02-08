@@ -156,6 +156,8 @@ public class StructuredContentResourceTest
 	public static final SynchronousMailTestRule synchronousMailTestRule =
 		SynchronousMailTestRule.INSTANCE;
 
+	
+	
 	@Before
 	@Override
 	public void setUp() throws Exception {

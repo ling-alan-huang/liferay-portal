@@ -34,6 +34,7 @@ import org.junit.runner.RunWith;
 public class StructuredContentFolderResourceTest
 	extends BaseStructuredContentFolderResourceTestCase {
 
+	
 	@Override
 	@Test
 	public void testDeleteAssetLibraryStructuredContentFolderByExternalReferenceCode()
