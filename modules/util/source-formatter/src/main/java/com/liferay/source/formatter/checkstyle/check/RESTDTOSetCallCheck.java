@@ -11,16 +11,15 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.source.formatter.check.util.BNDSourceUtil;
 import com.liferay.source.formatter.check.util.JavaSourceUtil;
 import com.liferay.source.formatter.check.util.SourceUtil;
-import com.liferay.source.formatter.parser.JavaClass;
-import com.liferay.source.formatter.parser.JavaClassParser;
-import com.liferay.source.formatter.parser.JavaMethod;
-import com.liferay.source.formatter.parser.JavaParameter;
-import com.liferay.source.formatter.parser.JavaSignature;
-import com.liferay.source.formatter.parser.JavaTerm;
-import com.liferay.source.formatter.parser.ParseException;
+import com.liferay.source.formatter.checkstyle.util.CheckstyleUtil;
+import com.liferay.source.formatter.checkstyle.util.DetailASTUtil;
 import com.liferay.source.formatter.util.FileUtil;
 
+import com.puppycrawl.tools.checkstyle.JavaParser;
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.FileContents;
+import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
@@ -226,28 +225,6 @@ public class RESTDTOSetCallCheck extends BaseCheck {
 		String absolutePath, DetailAST detailAST, String methodName,
 		String fullyQualifiedTypeName) {
 
-		File javaFile = JavaSourceUtil.getJavaFile(
-			fullyQualifiedTypeName, _getRootDirName(absolutePath),
-			_getBundleSymbolicNamesMap(absolutePath));
-
-		if (javaFile == null) {
-			return;
-		}
-
-		JavaClass javaClass = null;
-
-		try {
-			javaClass = JavaClassParser.parseJavaClass(
-				SourceUtil.getAbsolutePath(javaFile), FileUtil.read(javaFile));
-		}
-		catch (IOException | ParseException exception) {
-			if (_log.isDebugEnabled()) {
-				_log.debug(exception);
-			}
-
-			return;
-		}
-
 		DetailAST parentDetailAST = detailAST.getParent();
 
 		if (parentDetailAST.getType() != TokenTypes.EXPR) {
@@ -257,7 +234,8 @@ public class RESTDTOSetCallCheck extends BaseCheck {
 		parentDetailAST = parentDetailAST.getParent();
 
 		if ((parentDetailAST.getType() != TokenTypes.SLIST) ||
-			!_hasReplaceableMethodSignature(methodName, javaClass)) {
+			!_hasReplaceableMethodSignature(
+				absolutePath, fullyQualifiedTypeName, methodName)) {
 
 			return;
 		}
@@ -302,32 +280,68 @@ public class RESTDTOSetCallCheck extends BaseCheck {
 	}
 
 	private boolean _hasReplaceableMethodSignature(
-		String methodName, JavaClass javaClass) {
+		String absolutePath, String fullyQualifiedTypeName, String methodName) {
 
-		for (JavaTerm javaTerm : javaClass.getChildJavaTerms()) {
-			if (!javaTerm.isJavaMethod() || javaTerm.isPrivate()) {
+		File file = JavaSourceUtil.getJavaFile(
+			fullyQualifiedTypeName, _getRootDirName(absolutePath),
+			_getBundleSymbolicNamesMap(absolutePath));
+
+		if (file == null) {
+			return false;
+		}
+
+		DetailAST rootDetailAST = null;
+
+		try {
+			String content = FileUtil.read(file);
+
+			FileText fileText = new FileText(
+				file, CheckstyleUtil.getLines(content));
+
+			FileContents fileContents = new FileContents(fileText);
+
+			rootDetailAST = JavaParser.parse(fileContents);
+		}
+		catch (CheckstyleException | IOException exception) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(exception);
+			}
+
+			return false;
+		}
+
+		DetailAST nextSiblingDetailAST = rootDetailAST.getNextSibling();
+
+		while (true) {
+			if (nextSiblingDetailAST.getType() == TokenTypes.CLASS_DEF) {
+				break;
+			}
+
+			nextSiblingDetailAST = nextSiblingDetailAST.getNextSibling();
+		}
+
+		List<DetailAST> methodDefinitionDetailASTs =
+			DetailASTUtil.getAllChildTokens(
+				nextSiblingDetailAST.findFirstToken(TokenTypes.OBJBLOCK), false,
+				TokenTypes.METHOD_DEF);
+
+		for (DetailAST methodDefinitionDetailAST : methodDefinitionDetailASTs) {
+			if (!StringUtil.equals(
+					methodName, getName(methodDefinitionDetailAST))) {
+
 				continue;
 			}
 
-			JavaMethod javaMethod = (JavaMethod)javaTerm;
+			List<DetailAST> parameterDefs = getParameterDefs(
+				methodDefinitionDetailAST);
 
-			if (!StringUtil.equals(methodName, javaMethod.getName())) {
+			if (parameterDefs.size() != 1) {
 				continue;
 			}
 
-			JavaSignature javaSignature = javaMethod.getSignature();
+			String typeName = getTypeName(parameterDefs.get(0), false);
 
-			List<JavaParameter> javaParameters = javaSignature.getParameters();
-
-			if (javaParameters.size() != 1) {
-				continue;
-			}
-
-			JavaParameter javaParameter = javaParameters.get(0);
-
-			String parameterType = javaParameter.getParameterType();
-
-			if (parameterType.startsWith("UnsafeSupplier")) {
+			if (typeName.startsWith("UnsafeSupplier")) {
 				return true;
 			}
 		}
