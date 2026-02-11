@@ -42,6 +42,7 @@ import com.liferay.source.formatter.processor.FTLSourceProcessor;
 import com.liferay.source.formatter.processor.GradleSourceProcessor;
 import com.liferay.source.formatter.processor.GroovySourceProcessor;
 import com.liferay.source.formatter.processor.HTMLSourceProcessor;
+import com.liferay.source.formatter.processor.JavaSourceProcessor;
 import com.liferay.source.formatter.processor.SourceProcessor;
 import com.liferay.source.formatter.util.CheckType;
 import com.liferay.source.formatter.util.DebugUtil;
@@ -339,7 +340,7 @@ public class SourceFormatter {
 		_sourceProcessors.add(new GroovySourceProcessor());
 		_sourceProcessors.add(new HTMLSourceProcessor());
 		//		_sourceProcessors.add(new JakartaTransformSourceProcessor());
-		//		_sourceProcessors.add(new JavaSourceProcessor());
+		_sourceProcessors.add(new JavaSourceProcessor());
 		//		_sourceProcessors.add(new JSONSourceProcessor());
 		//		_sourceProcessors.add(new JSPSourceProcessor());
 		//		_sourceProcessors.add(new JSSourceProcessor());
