@@ -243,10 +243,7 @@ public class SourceFormatter {
 				ArgumentsUtil.getInteger(
 					arguments, "processor.thread.count",
 					SourceFormatterArgs.PROCESSOR_THREAD_COUNT));
-			sourceFormatterArgs.setShowDebugInformation(
-				ArgumentsUtil.getBoolean(
-					arguments, "show.debug.information",
-					SourceFormatterArgs.SHOW_DEBUG_INFORMATION));
+			sourceFormatterArgs.setShowDebugInformation(true);
 
 			String[] skipCheckNames = StringUtil.split(
 				ArgumentsUtil.getString(
