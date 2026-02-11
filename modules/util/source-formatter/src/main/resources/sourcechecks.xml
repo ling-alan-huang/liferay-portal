@@ -721,6 +721,7 @@
 		<check name="MethodCallsOrderCheck">
 			<category name="Styling" />
 			<description name="Sorts method calls for certain object (for example, `put` calls in `java.util.HashMap`)." />
+            <property name="enabled" value="false" />
 		</check>
 		<check name="PrimitiveWrapperInstantiationCheck">
 			<category name="Bug Prevention" />
@@ -1351,6 +1352,7 @@
 		<check name="MethodCallsOrderCheck">
 			<category name="Styling" />
 			<description name="Sorts method calls for certain object (for example, `put` calls in `java.util.HashMap`)." />
+            <property name="enabled" value="false" />
 		</check>
 		<check name="PrimitiveWrapperInstantiationCheck">
 			<category name="Bug Prevention" />
