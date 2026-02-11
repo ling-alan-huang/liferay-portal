@@ -24,6 +24,8 @@ import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
 import com.liferay.portal.kernel.util.PropsValues;
 import com.liferay.portal.kernel.util.StringUtil;
 
+import java.lang.reflect.Field;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
@@ -115,11 +117,9 @@ public class CounterDataCleanupPreupgradeProcess
 						clazz = classLoader.loadClass(
 							implementationClassName.value());
 
-						tableName = (String)clazz.getField(
-							"TABLE_NAME"
-						).get(
-							null
-						);
+						Field field = clazz.getField("TABLE_NAME");
+
+						tableName = (String)field.get(null);
 					}
 				}
 				catch (ClassNotFoundException classNotFoundException) {
