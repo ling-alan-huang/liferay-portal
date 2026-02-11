@@ -224,16 +224,16 @@ public class CounterDataCleanupPreupgradeProcess
 			return;
 		}
 
-		try (PreparedStatement preparedStatement1 = connection.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				SQLTransformer.transform(
 					StringBundler.concat(
 						"select max(layoutId) from Layout where groupId = ? ",
 						"and privateLayout = ",
 						privateLayout ? "[$TRUE$]" : "[$FALSE$]")))) {
 
-			preparedStatement1.setLong(1, groupId);
+			preparedStatement.setLong(1, groupId);
 
-			try (ResultSet resultSet = preparedStatement1.executeQuery()) {
+			try (ResultSet resultSet = preparedStatement.executeQuery()) {
 				if (resultSet.next()) {
 					long maxValue = resultSet.getLong(1);
 
@@ -315,11 +315,11 @@ public class CounterDataCleanupPreupgradeProcess
 		if (!dbInspector.isNumeric(tableName, columnName)) {
 			long maxValue = 0;
 
-			try (PreparedStatement preparedStatement1 =
+			try (PreparedStatement preparedStatement =
 					connection.prepareStatement(
 						StringBundler.concat(
 							"select ", columnName, " from ", tableName));
-				ResultSet resultSet = preparedStatement1.executeQuery()) {
+				ResultSet resultSet = preparedStatement.executeQuery()) {
 
 				while (resultSet.next()) {
 					String value = resultSet.getString(1);
@@ -342,10 +342,10 @@ public class CounterDataCleanupPreupgradeProcess
 			return maxValue;
 		}
 
-		try (PreparedStatement preparedStatement1 = connection.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				StringBundler.concat(
 					"select max(", columnName, ") from ", tableName));
-			ResultSet resultSet = preparedStatement1.executeQuery()) {
+			ResultSet resultSet = preparedStatement.executeQuery()) {
 
 			if (resultSet.next()) {
 				return resultSet.getLong(1);
