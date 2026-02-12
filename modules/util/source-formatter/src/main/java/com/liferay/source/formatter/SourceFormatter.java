@@ -294,6 +294,15 @@ public class SourceFormatter {
 	}
 
 	public void format() throws Exception {
+		Date now = new Date();
+
+		SimpleDateFormat dateFormat = new SimpleDateFormat(
+			"yyyy-MM-dd HH:mm:ss");
+
+		String time = dateFormat.format(now);
+
+		System.out.println("■SourceFormatter.format() Start: " + time);
+
 		System.setProperty(
 			"javax.xml.parsers.SAXParserFactory",
 			"org.apache.xerces.jaxp.SAXParserFactoryImpl");
@@ -394,6 +403,12 @@ public class SourceFormatter {
 			}
 		}
 
+		now = new Date();
+
+		time = dateFormat.format(now);
+
+		System.out.println("■SourceFormatter.format() End1: " + time);
+
 		if ((_sourceFormatterArgs.isFailOnAutoFix() &&
 			 !_sourceMismatchExceptions.isEmpty()) ||
 			(_sourceFormatterArgs.isFailOnHasWarning() &&
@@ -401,6 +416,12 @@ public class SourceFormatter {
 
 			throw new Exception(_getExceptionMessage());
 		}
+
+		now = new Date();
+
+		time = dateFormat.format(now);
+
+		System.out.println("■SourceFormatter.format() End2: " + time);
 	}
 
 	public List<String> getModifiedFileNames() {
