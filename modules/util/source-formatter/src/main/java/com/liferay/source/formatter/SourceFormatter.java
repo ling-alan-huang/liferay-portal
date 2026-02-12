@@ -80,9 +80,12 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.StringReader;
 
+import java.text.SimpleDateFormat;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -329,6 +332,15 @@ public class SourceFormatter {
 	}
 
 	public void format() throws Exception {
+		Date now = new Date();
+
+		SimpleDateFormat dateFormat = new SimpleDateFormat(
+			"yyyy-MM-dd HH:mm:ss");
+
+		String time = dateFormat.format(now);
+
+		System.out.println("■SourceFormatter.format() Start: " + time);
+
 		System.setProperty(
 			"javax.xml.parsers.SAXParserFactory",
 			"org.apache.xerces.jaxp.SAXParserFactoryImpl");
@@ -468,6 +480,12 @@ public class SourceFormatter {
 			}
 		}
 
+		now = new Date();
+
+		time = dateFormat.format(now);
+
+		System.out.println("■SourceFormatter.format() End1: " + time);
+
 		if ((_sourceFormatterArgs.isFailOnAutoFix() &&
 			 !_sourceMismatchExceptions.isEmpty()) ||
 			(_sourceFormatterArgs.isFailOnHasWarning() &&
@@ -475,6 +493,12 @@ public class SourceFormatter {
 
 			throw new Exception(_getExceptionMessage());
 		}
+
+		now = new Date();
+
+		time = dateFormat.format(now);
+
+		System.out.println("■SourceFormatter.format() End2: " + time);
 	}
 
 	public List<String> getModifiedFileNames() {
@@ -1326,7 +1350,24 @@ public class SourceFormatter {
 			_sourceFormatterSuppressions);
 		sourceProcessor.setSubrepository(_subrepository);
 
+		Date now = new Date();
+
+		SimpleDateFormat dateFormat = new SimpleDateFormat(
+			"yyyy-MM-dd HH:mm:ss");
+
+		String time = dateFormat.format(now);
+
+		System.out.println(
+			sourceProcessor.toString() + "■_runSourceProcessor Start: " + time);
+
 		sourceProcessor.format();
+
+		now = new Date();
+
+		time = dateFormat.format(now);
+
+		System.out.println(
+			sourceProcessor.toString() + "■_runSourceProcessor End: " + time);
 
 		_modifiedFileNames.addAll(sourceProcessor.getModifiedFileNames());
 		_sourceFormatterMessages.addAll(
