@@ -1,5 +1,5 @@
-Lcom/liferay/portal/kernel/json/JSONArray;:SAFE
 Lcom/liferay/portal/kernel/json/JSONObject;:SAFE
+Lcom/liferay/portal/kernel/json/JSONArray;:SAFE
 com/google/api/services/drive/model/File.getExportLinks():SAFE@com/liferay/document/library/opener/google/drive/web/internal/DLOpenerGoogleDriveManagerImpl
 com/liferay/asset/kernel/model/AssetRenderer.getTitle(Ljava/util/Locale;)Ljava/lang/String;:TAINTED
 com/liferay/asset/kernel/model/AssetRenderer.getURLViewInContext(Lcom/liferay/portal/kernel/portlet/LiferayPortletRequest;Lcom/liferay/portal/kernel/portlet/LiferayPortletResponse;Ljava/lang/String;)Ljava/lang/String;:SAFE

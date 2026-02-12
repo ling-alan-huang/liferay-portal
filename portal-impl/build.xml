@@ -419,7 +419,9 @@
 	</target>
 
 	<target name="format-source-all">
-		<antcall target="format-source-files" />
+		<antcall target="format-source-files">
+			<param name="format.current.branch" value="true" />
+		</antcall>
 	</target>
 
 	<target name="format-source-bnd">
