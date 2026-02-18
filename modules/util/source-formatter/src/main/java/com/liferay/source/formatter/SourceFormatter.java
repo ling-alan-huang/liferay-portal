@@ -80,9 +80,12 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.StringReader;
 
+import java.text.SimpleDateFormat;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -107,6 +110,15 @@ import java.util.regex.Pattern;
 public class SourceFormatter {
 
 	public static void main(String[] args) throws Exception {
+		Date now = new Date();
+
+		SimpleDateFormat dateFormat = new SimpleDateFormat(
+			"yyyy-MM-dd HH:mm:ss");
+
+		String time = dateFormat.format(now);
+
+		System.out.println("SourceFormatter Start: " + time);
+
 		Map<String, String> arguments = ArgumentsUtil.parseArguments(args);
 
 		try {
@@ -320,6 +332,12 @@ public class SourceFormatter {
 
 			System.exit(1);
 		}
+
+		now = new Date();
+
+		time = dateFormat.format(now);
+
+		System.out.println("SourceFormatter End: " + time);
 	}
 
 	public SourceFormatter(SourceFormatterArgs sourceFormatterArgs) {
