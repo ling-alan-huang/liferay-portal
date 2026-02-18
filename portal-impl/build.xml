@@ -492,6 +492,13 @@
 	</target>
 
 	<target name="format-source-files">
+		<tstamp>
+			<format pattern="yyyy-MM-dd HH:mm:ss" property="time.start" />
+		</tstamp>
+		<echo>------[format-source-files] Start:</echo>
+		<echo>${time.start}</echo>
+		<echo></echo>
+
 		<exec executable="git" failonerror="true" outputproperty="current.branch.name">
 			<arg value="rev-parse" />
 			<arg value="--abbrev-ref" />
@@ -722,6 +729,12 @@
 				</if>
 			</then>
 		</if>
+		<tstamp>
+			<format pattern="yyyy-MM-dd HH:mm:ss" property="time.end" />
+		</tstamp>
+		<echo>------[format-source-files] End:</echo>
+		<echo>${time.end}</echo>
+		<echo></echo>
 	</target>
 
 	<target name="format-source-latest-author">
