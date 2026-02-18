@@ -177,13 +177,12 @@ public class CTConflictChecker<T extends CTModel<T>> {
 
 		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				StringBundler.concat(
-					"select publication.", primaryKeyName,
-					" as primaryKeyName from ", ctPersistence.getTableName(),
-					" publication inner join CTEntry on CTEntry.modelClassPK ",
-					"= publication.", primaryKeyName, " where CTEntry.",
-					"ctCollectionId = ? and CTEntry.modelClassNameId = ? and ",
-					"CTEntry.changeType = ? and publication.ctCollectionId = ",
-					"?"))) {
+					"select publication.", primaryKeyName, " from ",
+					ctPersistence.getTableName(), " publication inner join ",
+					"CTEntry on CTEntry.modelClassPK = publication.",
+					primaryKeyName, " where CTEntry.ctCollectionId = ? and ",
+					"CTEntry.modelClassNameId = ? and CTEntry.changeType = ? ",
+					"and publication.ctCollectionId = ?"))) {
 
 			preparedStatement.setLong(1, _sourceCTCollectionId);
 			preparedStatement.setLong(2, _modelClassNameId);
@@ -194,7 +193,7 @@ public class CTConflictChecker<T extends CTModel<T>> {
 				while (resultSet.next()) {
 					conflictInfos.add(
 						new AdditionConflictInfo(
-							resultSet.getLong("primaryKeyName")));
+							resultSet.getLong(primaryKeyName)));
 				}
 			}
 		}
@@ -360,8 +359,7 @@ public class CTConflictChecker<T extends CTModel<T>> {
 			try (PreparedStatement preparedStatement =
 					connection.prepareStatement(
 						StringBundler.concat(
-							"select publication.", primaryKeyName,
-							" as primaryKeyName from ",
+							"select publication.", primaryKeyName, " from ",
 							ctPersistence.getTableName(),
 							" publication inner join CTEntry on CTEntry.",
 							"modelClassPK = publication.", primaryKeyName,
@@ -383,7 +381,7 @@ public class CTConflictChecker<T extends CTModel<T>> {
 					while (resultSet.next()) {
 						conflictInfos.add(
 							new ModificationDeletionConflictInfo(
-								resultSet.getLong("primaryKeyName"), false));
+								resultSet.getLong(primaryKeyName), false));
 					}
 				}
 			}
