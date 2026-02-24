@@ -71,6 +71,7 @@ public class UpdateOAuthClientASLocalMetadataMVCRenderCommand
 
 	private void _render(RenderRequest renderRequest)
 		throws ParseException, PortalException {
+
 		long oAuthClientASLocalMetadataId = ParamUtil.getLong(
 			renderRequest, "oAuthClientASLocalMetadataId");
 
