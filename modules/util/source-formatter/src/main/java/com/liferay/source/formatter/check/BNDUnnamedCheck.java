@@ -56,7 +56,7 @@ public class BNDUnnamedCheck extends BaseFileCheck {
 					continue;
 				}
 
-				addMessage(fileName, fileName);
+				addMessage(fileName, javaFileName);
 			}
 		}
 
