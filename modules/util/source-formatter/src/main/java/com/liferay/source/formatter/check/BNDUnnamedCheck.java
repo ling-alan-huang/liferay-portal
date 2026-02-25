@@ -35,6 +35,16 @@ public class BNDUnnamedCheck extends BaseFileCheck {
 			return content;
 		}
 
+		int x = absolutePath.lastIndexOf(CharPool.SLASH);
+
+		File lfrBuildPortalFile = new File(
+				absolutePath.substring(0, x + 1) + ".lfrbuild-portal");
+
+		if (!lfrBuildPortalFile.exists()) {
+			return content;
+		}
+
+
 		String webContextPath = BNDSourceUtil.getDefinitionValue(
 			content, "Web-ContextPath");
 
@@ -42,7 +52,6 @@ public class BNDUnnamedCheck extends BaseFileCheck {
 			return content;
 		}
 
-		int x = absolutePath.lastIndexOf(CharPool.SLASH);
 
 		List<String> javaFileNames = SourceFormatterUtil.scanForFileNames(
 			absolutePath.substring(0, x + 1), new String[0],
