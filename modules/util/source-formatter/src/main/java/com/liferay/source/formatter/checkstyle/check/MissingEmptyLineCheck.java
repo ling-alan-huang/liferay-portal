@@ -24,7 +24,7 @@ public class MissingEmptyLineCheck extends BaseCheck {
 	public int[] getDefaultTokens() {
 		return new int[] {
 			TokenTypes.ASSIGN, TokenTypes.INSTANCE_INIT, TokenTypes.METHOD_CALL,
-			TokenTypes.VARIABLE_DEF
+			TokenTypes.VARIABLE_DEF, TokenTypes.RESOURCE
 		};
 	}
 
@@ -471,7 +471,9 @@ public class MissingEmptyLineCheck extends BaseCheck {
 				continue;
 			}
 
-			if (detailAST.getType() == TokenTypes.VARIABLE_DEF) {
+			if ((detailAST.getType() == TokenTypes.RESOURCE) ||
+				(detailAST.getType() == TokenTypes.VARIABLE_DEF)) {
+
 				log(
 					nextExpressionStartLineNumber,
 					_MSG_MISSING_EMPTY_LINE_BEFORE_VARIABLE_USE, name);
@@ -765,7 +767,9 @@ public class MissingEmptyLineCheck extends BaseCheck {
 				return firstChildDetailAST.getText();
 			}
 		}
-		else if (parentDetailAST.getType() == TokenTypes.VARIABLE_DEF) {
+		else if ((parentDetailAST.getType() == TokenTypes.RESOURCE) ||
+				 (parentDetailAST.getType() == TokenTypes.VARIABLE_DEF)) {
+
 			DetailAST nameDetailAST = parentDetailAST.findFirstToken(
 				TokenTypes.IDENT);
 
