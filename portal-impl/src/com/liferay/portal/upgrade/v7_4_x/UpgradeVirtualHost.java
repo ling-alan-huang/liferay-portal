@@ -5,11 +5,9 @@
 
 package com.liferay.portal.upgrade.v7_4_x;
 
-import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
-import com.liferay.portal.kernel.util.StringUtil;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -21,47 +19,33 @@ public class UpgradeVirtualHost extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		try (PreparedStatement preparedStatement1 = connection.prepareStatement(
-				"select ctCollectionId, virtualHostId, hostname from " +
-					"VirtualHost where hostname != LOWER(hostname)");
+		try (PreparedStatement p1 = connection.prepareStatement(
+				"select notificationRecipientId, userName from ABC")
 
-			PreparedStatement preparedStatement2 = connection.prepareStatement(
-				"update VirtualHost set hostname = ? where ctCollectionId = " +
-					"? and virtualHostId = ?")) {
+		) {
 
-			ResultSet resultSet = preparedStatement1.executeQuery();
+			p1.setString(1, NotificationConstants.TYPE_EMAIL);
+		}
+	}
 
-			while (resultSet.next()) {
-				String hostname = resultSet.getString("hostname");
+	private void _deleteNotificationQueueEntries() throws Exception {
+		try (PreparedStatement deletePreparedStatement1 =
+				connection.prepareStatement(
+					"select ctCollectionId, virtualHostId, hostname from " +
+						"VirtualHost where hostname != LOWER(hostname)");
+			PreparedStatement selectPreparedStatement2 =
+				connection.prepareStatement(
+					"select ctCollectionId, virtualHostId, hostname from " +
+						"VirtualHost where hostname != LOWER(hostname)");
 
-				preparedStatement2.setString(
-					1, StringUtil.toLowerCase(hostname));
+			ResultSet resultSet1 = selectPreparedStatement2.executeQuery()) {
 
-				long ctCollectionId = resultSet.getLong("ctCollectionId");
-
-				preparedStatement2.setLong(2, ctCollectionId);
-
-				long virtualHostId = resultSet.getLong("virtualHostId");
-
-				preparedStatement2.setLong(3, virtualHostId);
-
-				try {
-					preparedStatement2.executeUpdate();
-				}
-				catch (Exception exception) {
-					if (_log.isWarnEnabled()) {
-						_log.warn(
-							StringBundler.concat(
-								"Deleting duplicate virtual host ",
-								virtualHostId, " with hostname ", hostname),
-							exception);
-					}
-
-					runSQL(
-						"delete from VirtualHost where virtualHostId = " +
-							virtualHostId);
-				}
+			while (resultSet1.next()) {
+				long ctCollectionId = resultSet1.getLong("ctCollectionId");
+				long a = ctCollectionId + 1;
 			}
+
+			deletePreparedStatement1.executeBatch();
 		}
 	}
 
