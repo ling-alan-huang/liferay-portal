@@ -559,8 +559,12 @@
 			<description name="Finds unnecessary `else` statements (when the `if` statement ends with a `return` statement)." />
 		</check>
 		<check name="JavaEmptyLineAfterSuperCallCheck">
-			<category name="Miscellaneous" />
+			<category name="Styling" />
 			<description name="Finds missing empty line after a `super` call." />
+		</check>
+		<check name="JavaEmptyLineInTryWithResourcesStatementCheck">
+			<category name="Styling" />
+			<description name="Finds missing empty line in try-with-resources statement." />
 		</check>
 		<check name="JavaEmptyLinesCheck">
 			<category name="Styling" />
