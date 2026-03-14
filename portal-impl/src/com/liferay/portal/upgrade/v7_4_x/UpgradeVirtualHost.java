@@ -5,67 +5,54 @@
 
 package com.liferay.portal.upgrade.v7_4_x;
 
-import com.liferay.petra.string.StringBundler;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.upgrade.UpgradeProcess;
-import com.liferay.portal.kernel.util.StringUtil;
-
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 
 /**
  * @author Christopher Kian
  */
-public class UpgradeVirtualHost extends UpgradeProcess {
+public class UpgradeVirtualHost {
 
-	@Override
-	protected void doUpgrade() throws Exception {
-		try (PreparedStatement preparedStatement1 = connection.prepareStatement(
-				"select ctCollectionId, virtualHostId, hostname from " +
-					"VirtualHost where hostname != LOWER(hostname)");
+	public String method(String month) {
+		String abc = switch (month) {
+			case "Jan", "Feb", "Mar" -> "Q1";
+			case "Apr", "May", "Jun" -> "Q2";
+			case "Jul", "Aug", "Sep" -> "Q3";
+			case "Oct", "Nov", "Dec" -> "Q4";
+			default -> "";
+		};
 
-			PreparedStatement preparedStatement2 = connection.prepareStatement(
-				"update VirtualHost set hostname = ? where ctCollectionId = " +
-					"? and virtualHostId = ?")) {
-
-			ResultSet resultSet = preparedStatement1.executeQuery();
-
-			while (resultSet.next()) {
-				String hostname = resultSet.getString("hostname");
-
-				preparedStatement2.setString(
-					1, StringUtil.toLowerCase(hostname));
-
-				long ctCollectionId = resultSet.getLong("ctCollectionId");
-
-				preparedStatement2.setLong(2, ctCollectionId);
-
-				long virtualHostId = resultSet.getLong("virtualHostId");
-
-				preparedStatement2.setLong(3, virtualHostId);
-
-				try {
-					preparedStatement2.executeUpdate();
-				}
-				catch (Exception exception) {
-					if (_log.isWarnEnabled()) {
-						_log.warn(
-							StringBundler.concat(
-								"Deleting duplicate virtual host ",
-								virtualHostId, " with hostname ", hostname),
-							exception);
-					}
-
-					runSQL(
-						"delete from VirtualHost where virtualHostId = " +
-							virtualHostId);
-				}
-			}
-		}
+		return abc;
 	}
 
-	private static final Log _log = LogFactoryUtil.getLog(
-		UpgradeVirtualHost.class);
+	protected void doUpgrade() {
+		setName(() -> "columnId");
+		setAge(
+			() -> {
+				int a = 0;
+
+				return a;
+			});
+
+		try (PreparedStatement p1 = connection.
+				prepareStatement(
+				"select notificationRecipientId, userName from ABC");
+
+		A a =
+				null
+
+		) {
+
+			p1.setString(1, NotificationConstants.TYPE_EMAIL);
+		}
+
+		try {
+			int a = 0;
+		}
+		catch (Exception e) {
+		}
+
+		long ctCollectionId = resultSet1.getLong("ctCollectionId");
+		long a = ctCollectionId + 1;
+	}
 
 }

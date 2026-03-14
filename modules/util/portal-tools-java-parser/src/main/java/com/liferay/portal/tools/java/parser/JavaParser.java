@@ -428,7 +428,9 @@ public class JavaParser {
 			javaTermContent.contains(
 				"\n" + JavaLambdaExpression.NESTED_CODE_BLOCK + "\n") ||
 			javaTermContent.contains(
-				"\n" + JavaSwitchExpression.NESTED_CODE_BLOCK + "\n")) {
+				"\n" + JavaSwitchExpression.NESTED_CODE_BLOCK + "\n") ||
+			javaTermContent.contains(
+				"\n" + JavaTryStatement.NESTED_CODE_BLOCK + "\n")) {
 
 			return _addJavaTermWithNestedCodeBlocks(
 				parsedJavaClass, detailAST, javaTermContent, className,
@@ -494,6 +496,10 @@ public class JavaParser {
 				else if (line.equals(JavaSwitchExpression.NESTED_CODE_BLOCK)) {
 					followingNestedCodeBlockClassName =
 						JavaSwitchExpression.class.getName();
+				}
+				else if (line.equals(JavaTryStatement.NESTED_CODE_BLOCK)) {
+					followingNestedCodeBlockClassName =
+							JavaTryStatement.class.getName();
 				}
 				else {
 					sb.append(line);
@@ -1100,7 +1106,7 @@ public class JavaParser {
 			return parsedJavaClass;
 		}
 
-		if (detailAST.getType() == TokenTypes.VARIABLE_DEF) {
+		if (detailAST.getType() == TokenTypes.VARIABLE_DEF || detailAST.getType() == TokenTypes.RESOURCE) {
 			DetailAST previousSiblingDetailAST = detailAST.getPreviousSibling();
 
 			if ((previousSiblingDetailAST != null) &&
@@ -1193,6 +1199,26 @@ public class JavaParser {
 			}
 		}
 		else if (detailAST.getType() == TokenTypes.LITERAL_TRY) {
+			DetailAST resourceSpecificationDetailAST = detailAST.findFirstToken(TokenTypes.RESOURCE_SPECIFICATION);
+
+			if (resourceSpecificationDetailAST != null) {
+				DetailAST resourcesDetailAST = resourceSpecificationDetailAST.findFirstToken(TokenTypes.RESOURCES);
+				
+				if (resourcesDetailAST != null) {
+					List<DetailAST> resourceDetailASTs =
+							DetailASTUtil.getAllChildTokens(
+									resourcesDetailAST, false, TokenTypes.RESOURCE);
+
+					for (DetailAST resourceDetailAST : resourceDetailASTs) {
+						parsedJavaClass = _parseDetailAST(
+								parsedJavaClass, resourceDetailAST, fileContents,
+								maxLineLength);
+					}
+				}
+
+			}
+
+
 			List<DetailAST> literalCatchDetailASTs =
 				DetailASTUtil.getAllChildTokens(
 					detailAST, false, TokenTypes.LITERAL_CATCH);

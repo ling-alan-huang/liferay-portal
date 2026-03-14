@@ -107,6 +107,9 @@ public class JavaParserUtil {
 		else if (detailAST.getType() == TokenTypes.CASE_GROUP) {
 			javaTerm = _parseJavaSwitchCaseStatement(detailAST);
 		}
+//		else if (detailAST.getType() == TokenTypes.RESOURCE_SPECIFICATION) {
+//			javaTerm = _parseJavaResourceSpecification(detailAST);
+//		}
 		else if (detailAST.getType() == TokenTypes.ANNOTATION_FIELD_DEF) {
 			javaTerm = _parseJavaAnnotationFieldDefinition(detailAST);
 		}
@@ -208,7 +211,7 @@ public class JavaParserUtil {
 		else if (detailAST.getType() == TokenTypes.SWITCH_RULE) {
 			javaTerm = _parseJavaSwitchRuleStatement(detailAST);
 		}
-		else if (detailAST.getType() == TokenTypes.VARIABLE_DEF) {
+		else if (detailAST.getType() == TokenTypes.VARIABLE_DEF || detailAST.getType() == TokenTypes.RESOURCE) {
 			javaTerm = _parseJavaVariableDefinition(detailAST);
 		}
 
@@ -1709,6 +1712,7 @@ public class JavaParserUtil {
 
 		return javaSwitchCaseStatement;
 	}
+	
 
 	private static JavaExpression _parseJavaSwitchExpression(
 		DetailAST detailAST) {
@@ -1838,22 +1842,23 @@ public class JavaParserUtil {
 			return javaTryStatement;
 		}
 
-		List<JavaVariableDefinition> resourceJavaVariableDefinitions =
-			new ArrayList<>();
-
-		DetailAST resourcesDetailAST = firstChildDetailAST.findFirstToken(
-			TokenTypes.RESOURCES);
-
-		List<DetailAST> resourceDetailASTs = DetailASTUtil.getAllChildTokens(
-			resourcesDetailAST, false, TokenTypes.RESOURCE);
-
-		for (DetailAST resourceDetailAST : resourceDetailASTs) {
-			resourceJavaVariableDefinitions.add(
-				_parseJavaVariableDefinition(resourceDetailAST));
-		}
-
-		javaTryStatement.setResourceJavaVariableDefinitions(
-			resourceJavaVariableDefinitions);
+		javaTryStatement.addResourceSpecification();
+//		List<JavaVariableDefinition> resourceJavaVariableDefinitions =
+//			new ArrayList<>();
+//
+//		DetailAST resourcesDetailAST = firstChildDetailAST.findFirstToken(
+//			TokenTypes.RESOURCES);
+//
+//		List<DetailAST> resourceDetailASTs = DetailASTUtil.getAllChildTokens(
+//			resourcesDetailAST, false, TokenTypes.RESOURCE);
+//
+//		for (DetailAST resourceDetailAST : resourceDetailASTs) {
+//			resourceJavaVariableDefinitions.add(
+//				_parseJavaVariableDefinition(resourceDetailAST));
+//		}
+//
+//		javaTryStatement.setResourceJavaVariableDefinitions(
+//			resourceJavaVariableDefinitions);
 
 		return javaTryStatement;
 	}
