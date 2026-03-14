@@ -12,7 +12,7 @@ ArrayUtilCheck | [Styling](styling_checks.md#styling-checks) | Checks for utiliz
 [AssertEqualsCheck](check/assert_equals_check.md#assertequalscheck) | [Styling](styling_checks.md#styling-checks) | Checks that additional information is provided when calling `Assert.assertEquals`. |
 AssertFailCheck | [Bug Prevention](bug_prevention_checks.md#bug-prevention-checks) | Checks that calls to `Assert.fail` can be only used inside a try block as the last statement. |
 AssignAsUsedCheck | [Performance](performance_checks.md#performance-checks) | Finds cases where an assign statement can be inlined or moved closer to where it is used. |
-AutoBatchPreparedStatementUtilCheck | [Bug Prevention](bug_prevention_checks.md#bug-prevention-checks) | Finds cases where `AutoBatchPreparedStatementUtil.autoBatch` or `AutoBatchPreparedStatementUtil.concurrentAutoBatch` should be used. |
+[AutoBatchPreparedStatementUtilCheck](check/auto_batch_prepared_statement_util_check.md#autobatchpreparedstatementutilcheck) | [Bug Prevention](bug_prevention_checks.md#bug-prevention-checks) | Finds cases where `AutoBatchPreparedStatementUtil.autoBatch` or `AutoBatchPreparedStatementUtil.concurrentAutoBatch` should be used. |
 [AvoidNestedBlocksCheck](https://checkstyle.sourceforge.io/checks/blocks/avoidnestedblocks.html) | [Styling](styling_checks.md#styling-checks) | Finds nested blocks (blocks that are used freely in the code). |
 [AvoidStarImportCheck](https://checkstyle.sourceforge.io/checks/imports/avoidstarimport.html) | [Bug Prevention](bug_prevention_checks.md#bug-prevention-checks) | Checks that there are no import statements that use the * notation. |
 [BatchableUpdateCheck](check/batchable_update_check.md#batchableupdatecheck) | [Performance](performance_checks.md#performance-checks) | Checks for cases where batch updates should be used inside a loop instead of individual executeUpdate calls. |
@@ -95,7 +95,8 @@ JavaDiamondOperatorCheck | [Miscellaneous](miscellaneous_checks.md#miscellaneous
 JavaDocumentAddCallsOrderCheck | [Styling](styling_checks.md#styling-checks) | Sorts `add*` calls for type `Document`. |
 JavaDuplicateVariableCheck | [Miscellaneous](miscellaneous_checks.md#miscellaneous-checks) | Finds variables where a variable with the same name already exists in an extended class. |
 [JavaElseStatementCheck](check/java_else_statement_check.md#javaelsestatementcheck) | [Miscellaneous](miscellaneous_checks.md#miscellaneous-checks) | Finds unnecessary `else` statements (when the `if` statement ends with a `return` statement). |
-JavaEmptyLineAfterSuperCallCheck | [Miscellaneous](miscellaneous_checks.md#miscellaneous-checks) | Finds missing empty line after a `super` call. |
+JavaEmptyLineAfterSuperCallCheck | [Styling](styling_checks.md#styling-checks) | Finds missing empty line after a `super` call. |
+JavaEmptyLineInTryWithResourcesStatementCheck | [Styling](styling_checks.md#styling-checks) | Finds missing empty line in try-with-resources statement. |
 JavaEmptyLinesCheck | [Styling](styling_checks.md#styling-checks) | Finds missing and unnecessary empty lines. |
 JavaEntityFieldsMapOrderCheck | [Styling](styling_checks.md#styling-checks) | Sorts entity fields when calling `EntityFieldsMapFactory.create` and `EntityModel.toEntityFieldsMap`. |
 JavaExceptionCheck | [Naming Conventions](naming_conventions_checks.md#naming-conventions-checks) | Checks that variable names of exceptions in `catch` statements follow naming conventions. |
