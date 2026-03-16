@@ -53,9 +53,9 @@ public class ConfigurationUpgradeProcess extends UpgradeProcess {
 
 			while (resultSet.next()) {
 				Dictionary<String, Object> dictionary = _toDictionary(
-					resultSet.getString(2));
+					resultSet.getString("dictionary"));
 
-				String configurationId = resultSet.getString(1);
+				String configurationId = resultSet.getString("configurationId");
 
 				Long companyId = _getCompanyId(configurationId, dictionary);
 

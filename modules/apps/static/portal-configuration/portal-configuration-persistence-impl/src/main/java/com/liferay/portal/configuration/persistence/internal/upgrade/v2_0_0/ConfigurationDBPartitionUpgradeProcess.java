@@ -49,7 +49,8 @@ public class ConfigurationDBPartitionUpgradeProcess extends UpgradeProcess {
 				while (resultSet.next()) {
 					ScopeConfiguration scopeConfiguration =
 						_getScopeConfiguration(
-							resultSet.getString(1), resultSet.getString(2));
+							resultSet.getString("configurationId"),
+							resultSet.getString("dictionary"));
 
 					if (scopeConfiguration != null) {
 						if (Objects.equals(
@@ -88,51 +89,55 @@ public class ConfigurationDBPartitionUpgradeProcess extends UpgradeProcess {
 		}
 
 		for (ScopeConfiguration scopeConfiguration : _scopeConfigurations) {
-			if (_isApplicable(
+			if (!_isApplicable(
 					scopeConfiguration, CompanyThreadLocal.getCompanyId())) {
 
-				_insertConfiguration(
-					scopeConfiguration.getConfigurationId(),
-					scopeConfiguration.getDictionary());
-
-				if (!Objects.equals(
-						scopeConfiguration.getScope(),
-						ExtendedObjectClassDefinition.Scope.PORTLET_INSTANCE)) {
-
-					_scopeConfigurations.remove(scopeConfiguration);
-				}
+				continue;
 			}
+
+			_insertConfiguration(
+				scopeConfiguration.getConfigurationId(),
+				scopeConfiguration.getDictionary());
+
+			if (Objects.equals(
+					scopeConfiguration.getScope(),
+					ExtendedObjectClassDefinition.Scope.PORTLET_INSTANCE)) {
+
+				continue;
+			}
+
+			_scopeConfigurations.remove(scopeConfiguration);
 		}
 
 		int remainingCompanies = _atomicInteger.decrementAndGet();
 
-		if ((remainingCompanies == 0) && _log.isWarnEnabled()) {
-			for (ScopeConfiguration scopeConfiguration : _scopeConfigurations) {
-				if (Objects.equals(
-						scopeConfiguration.getScope(),
-						ExtendedObjectClassDefinition.Scope.COMPANY)) {
+		if ((remainingCompanies != 0) || !_log.isWarnEnabled()) {
+			return;
+		}
 
-					_log.warn(
-						StringBundler.concat(
-							"Company scope configuration with ID ",
-							scopeConfiguration.getConfigurationId(),
-							" has been removed because the company ID ",
-							scopeConfiguration.getScopePK(),
-							" does not exist"));
-				}
+		for (ScopeConfiguration scopeConfiguration : _scopeConfigurations) {
+			if (Objects.equals(
+					scopeConfiguration.getScope(),
+					ExtendedObjectClassDefinition.Scope.COMPANY)) {
 
-				if (Objects.equals(
-						scopeConfiguration.getScope(),
-						ExtendedObjectClassDefinition.Scope.GROUP)) {
+				_log.warn(
+					StringBundler.concat(
+						"Company scope configuration with ID ",
+						scopeConfiguration.getConfigurationId(),
+						" has been removed because the company ID ",
+						scopeConfiguration.getScopePK(), " does not exist"));
+			}
 
-					_log.warn(
-						StringBundler.concat(
-							"Group scope configuration with ID ",
-							scopeConfiguration.getConfigurationId(),
-							" has been removed because the group ID ",
-							scopeConfiguration.getScopePK(),
-							" does not exist"));
-				}
+			if (Objects.equals(
+					scopeConfiguration.getScope(),
+					ExtendedObjectClassDefinition.Scope.GROUP)) {
+
+				_log.warn(
+					StringBundler.concat(
+						"Group scope configuration with ID ",
+						scopeConfiguration.getConfigurationId(),
+						" has been removed because the group ID ",
+						scopeConfiguration.getScopePK(), " does not exist"));
 			}
 		}
 	}
@@ -210,28 +215,26 @@ public class ConfigurationDBPartitionUpgradeProcess extends UpgradeProcess {
 			return false;
 		}
 
-		if (Objects.equals(
+		if (!Objects.equals(
 				scopeConfiguration.getScope(),
 				ExtendedObjectClassDefinition.Scope.GROUP)) {
 
-			try (PreparedStatement preparedStatement =
-					connection.prepareStatement(
-						"select groupId from Group_ where groupId = ?")) {
-
-				preparedStatement.setLong(
-					1, (long)scopeConfiguration.getScopePK());
-
-				try (ResultSet resultSet = preparedStatement.executeQuery()) {
-					if (resultSet.next()) {
-						return true;
-					}
-				}
-			}
-
-			return false;
+			return true;
 		}
 
-		return true;
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
+				"select groupId from Group_ where groupId = ?")) {
+
+			preparedStatement.setLong(1, (long)scopeConfiguration.getScopePK());
+
+			try (ResultSet resultSet = preparedStatement.executeQuery()) {
+				if (resultSet.next()) {
+					return true;
+				}
+			}
+		}
+
+		return false;
 	}
 
 	private void _removeConfiguration(String configurationId) throws Exception {
