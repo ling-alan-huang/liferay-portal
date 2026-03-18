@@ -1685,7 +1685,9 @@ public class ObjectEntryLocalServiceTest {
 			try (ResultSet resultSet = preparedStatement.executeQuery()) {
 				resultSet.next();
 
-				Assert.assertEquals(200, resultSet.getLong(1));
+				Assert.assertEquals(
+					200,
+					resultSet.getLong(objectField.getSortableDBColumnName()));
 			}
 		}
 
@@ -1934,7 +1936,7 @@ public class ObjectEntryLocalServiceTest {
 				Assert.assertEquals(
 					_encryptor.encrypt(
 						new SecretKeySpec(Base64.decode(key), "AES"), "test"),
-					resultSet.getString(1));
+					resultSet.getString(objectField.getDBColumnName()));
 			}
 		}
 
@@ -7736,13 +7738,14 @@ public class ObjectEntryLocalServiceTest {
 		try (Connection connection = DataAccess.getConnection();
 
 			PreparedStatement preparedStatement = connection.prepareStatement(
-				"select count(*) from " + _objectDefinition.getDBTableName());
+				"select count(*) as count from " +
+					_objectDefinition.getDBTableName());
 
 			ResultSet resultSet = preparedStatement.executeQuery()) {
 
 			resultSet.next();
 
-			return resultSet.getInt(1);
+			return resultSet.getInt("count");
 		}
 	}
 
