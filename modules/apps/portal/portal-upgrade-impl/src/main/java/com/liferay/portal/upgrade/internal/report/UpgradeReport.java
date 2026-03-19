@@ -90,6 +90,7 @@ public class UpgradeReport {
 			_initialTableCounts = _getTableCounts();
 		}
 	}
+	
 
 	public void generateReport(UpgradeRecorder upgradeRecorder) {
 		if (StringUtil.equals(upgradeRecorder.getType(), "no upgrade")) {
