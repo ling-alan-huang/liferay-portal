@@ -27,6 +27,7 @@ import java.util.regex.Pattern;
 public class LayoutPageTemplateStructureRelUpgradeProcess
 	extends UpgradeProcess {
 
+	
 	@Override
 	protected void doUpgrade() throws Exception {
 		try (PreparedStatement preparedStatement1 = connection.prepareStatement(
