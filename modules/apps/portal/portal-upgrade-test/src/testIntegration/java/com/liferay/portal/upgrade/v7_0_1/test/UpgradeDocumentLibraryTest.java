@@ -42,6 +42,7 @@ public class UpgradeDocumentLibraryTest {
 
 	@ClassRule
 	@Rule
+	
 	public static final AggregateTestRule aggregateTestRule =
 		new LiferayIntegrationTestRule();
 

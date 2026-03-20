@@ -64,6 +64,7 @@ import org.osgi.util.promise.Promise;
 public class DBUpgraderTest {
 
 	@ClassRule
+	
 	@Rule
 	public static final AggregateTestRule aggregateTestRule =
 		new LiferayIntegrationTestRule();

@@ -44,6 +44,7 @@ public class IllegalCharactersContentDataCleanupPreupgradeProcessTest
 	extends IllegalCharactersContentDataCleanupPreupgradeProcess {
 
 	@ClassRule
+	
 	@Rule
 	public static final AggregateTestRule aggregateTestRule =
 		new LiferayIntegrationTestRule();

@@ -55,6 +55,7 @@ public class UpgradeOracleTest {
 	public void setUp() throws Exception {
 		_upgradeOracle = new UpgradeOracle();
 
+		
 		_db.runSQL(
 			StringBundler.concat(
 				"alter table ", _TABLE_NAME, " modify ", _FIELD_NAME,

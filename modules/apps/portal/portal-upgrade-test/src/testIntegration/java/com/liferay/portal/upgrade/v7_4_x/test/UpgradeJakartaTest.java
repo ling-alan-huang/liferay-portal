@@ -185,6 +185,7 @@ public class UpgradeJakartaTest {
 		DB db = DBManagerUtil.getDB();
 
 		try {
+			
 			db.runSQL(
 				StringBundler.concat(
 					"insert into Configuration_ (configurationId, dictionary) ",

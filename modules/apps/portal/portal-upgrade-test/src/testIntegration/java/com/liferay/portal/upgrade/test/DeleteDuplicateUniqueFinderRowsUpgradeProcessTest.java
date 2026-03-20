@@ -62,6 +62,7 @@ public class DeleteDuplicateUniqueFinderRowsUpgradeProcessTest {
 	public static void setUpClass() throws Exception {
 		_connection = DataAccess.getConnection();
 		_db = DBManagerUtil.getDB();
+		
 
 		_dbInspector = new DBInspector(_connection);
 	}

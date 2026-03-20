@@ -40,6 +40,7 @@ public class BaseUuidUpgradeProcessTest extends BaseUuidUpgradeProcess {
 	@Before
 	public void setUp() throws Exception {
 		_db.runSQL(
+				
 			"create table TestTable1 (id_ INTEGER not null primary key)");
 		_db.runSQL(
 			"create table TestTable2 (id_ INTEGER not null primary key)");

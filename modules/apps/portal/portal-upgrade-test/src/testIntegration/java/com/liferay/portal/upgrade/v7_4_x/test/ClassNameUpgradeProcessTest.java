@@ -61,6 +61,7 @@ public class ClassNameUpgradeProcessTest {
 
 		_delete("Company");
 
+		
 		DataAccess.cleanUp(_connection);
 	}
 

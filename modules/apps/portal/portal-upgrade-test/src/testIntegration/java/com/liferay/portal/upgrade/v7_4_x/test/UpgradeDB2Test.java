@@ -38,6 +38,7 @@ public class UpgradeDB2Test {
 	@ClassRule
 	@Rule
 	public static final AggregateTestRule aggregateTestRule =
+			
 		new AggregateTestRule(
 			new AssumeTestRule("assume"), new LiferayIntegrationTestRule());
 
