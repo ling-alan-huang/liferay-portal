@@ -30,6 +30,7 @@ public class DatabaseUtil {
 
 		LiferayDatabase liferayDatabase = new LiferayDatabase();
 
+		
 		liferayDatabase.setCompanies(_getCompanies(connection));
 		liferayDatabase.setExportedCompanyId(
 			_getExportedCompanyId(connection, companyId));
