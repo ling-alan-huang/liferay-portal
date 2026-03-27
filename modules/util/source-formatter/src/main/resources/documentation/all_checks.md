@@ -36,6 +36,7 @@ BNDRunInstructionsOrderCheck | [Styling](styling_checks.md#styling-checks) | .bn
 BNDStylingCheck | [Styling](styling_checks.md#styling-checks) | .bnd | Applies rules to enforce consistency in code style. |
 [BNDSuiteCheck](check/bnd_suite_check.md#bndsuitecheck) | [Miscellaneous](miscellaneous_checks.md#miscellaneous-checks) | .bnd | Checks that deprecated apps are moved to the `archived` folder. |
 [BNDWebContextPathCheck](check/bnd_web_context_path_check.md#bndwebcontextpathcheck) | [Bug Prevention](bug_prevention_checks.md#bug-prevention-checks) | .bnd | Checks if the property value for `Web-ContextPath` matches the module directory. |
+BNDWebServiceTrackingCheck | [Bug Prevention](bug_prevention_checks.md#bug-prevention-checks) | .bnd | Finds missing `Web-ServiceTracking: false`. |
 BNDWhitespaceCheck | [Styling](styling_checks.md#styling-checks) | .bnd | Finds missing and unnecessary whitespace in `.bnd` files. |
 BrandNameCheck | [Naming Conventions](naming_conventions_checks.md#naming-conventions-checks) | .java, .jsp, .jspf, .jspx, .tag, .tpl, or .vm | Checks the correct brand name. |
 CDNCheck | [Bug Prevention](bug_prevention_checks.md#bug-prevention-checks) | | Checks the URL in `artifact.properties` files. |
