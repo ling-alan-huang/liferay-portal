@@ -234,15 +234,13 @@ public class InviteUsersMVCResourceCommandTest {
 		}
 	}
 
-	private static CTCollection _ctCollection;
-
 	@Inject
 	private static CTCollectionLocalService _ctCollectionLocalService;
 
-	private static SafeCloseable _safeCloseable;
-
 	@Inject
 	private CompanyLocalService _companyLocalService;
+
+	private CTCollection _ctCollection;
 
 	@Inject(filter = "mvc.command.name=/change_tracking/invite_users")
 	private MVCResourceCommand _mvcResourceCommand;
@@ -250,6 +248,7 @@ public class InviteUsersMVCResourceCommandTest {
 	@Inject
 	private Portal _portal;
 
+	private SafeCloseable _safeCloseable;
 	private ServiceContext _serviceContext;
 
 }

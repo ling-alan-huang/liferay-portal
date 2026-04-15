@@ -1462,8 +1462,6 @@ public class LayoutCTTest {
 	@Inject
 	private static Language _language;
 
-	private static long _layoutClassNameId;
-
 	@Inject
 	private static LayoutLocalService _layoutLocalService;
 
@@ -1479,6 +1477,7 @@ public class LayoutCTTest {
 	private final List<CTCollection> _ctCollections = new ArrayList<>();
 
 	private Group _group;
+	private long _layoutClassNameId;
 
 	@Inject
 	private LayoutLockManager _layoutLockManager;

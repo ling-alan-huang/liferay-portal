@@ -727,16 +727,10 @@ public class CTCollectionLocalServiceTest {
 	@Inject
 	private static CTProcessLocalService _ctProcessLocalService;
 
-	private static long _journalArticleClassNameId;
-	private static long _journalFolderClassNameId;
-
 	@Inject
 	private static JournalFolderLocalService _journalFolderLocalService;
 
 	private static long _layoutClassNameId;
-
-	@Inject
-	private static LayoutLocalService _layoutLocalService;
 
 	private CTCollection _ctCollection1;
 	private CTCollection _ctCollection2;
@@ -750,8 +744,14 @@ public class CTCollectionLocalServiceTest {
 	private CTCollectionService _ctCollectionService;
 
 	private Group _group;
+	private long _journalArticleClassNameId;
 
 	@Inject
 	private JournalArticleLocalService _journalArticleLocalService;
+
+	private long _journalFolderClassNameId;
+
+	@Inject
+	private LayoutLocalService _layoutLocalService;
 
 }
