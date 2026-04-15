@@ -234,8 +234,6 @@ public class CPDefinitionIndexerTest {
 	private static final String _EXPANDO_COLUMN_NAME =
 		RandomTestUtil.randomString();
 
-	private static Indexer<CPDefinition> _indexer;
-
 	@Inject
 	private static IndexerRegistry _indexerRegistry;
 
@@ -256,5 +254,7 @@ public class CPDefinitionIndexerTest {
 
 	@DeleteAfterTestRun
 	private Group _group;
+
+	private Indexer<CPDefinition> _indexer;
 
 }

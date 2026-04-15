@@ -142,12 +142,8 @@ public class CPConfigurationEntryIndexerTest {
 			document.get(Field.ENTRY_CLASS_PK));
 	}
 
-	private static Indexer<CPConfigurationEntry> _indexer;
-
 	@Inject
 	private static IndexerRegistry _indexerRegistry;
-
-	private static User _user;
 
 	@Inject
 	private CommerceCatalogLocalService _commerceCatalogLocalService;
@@ -161,7 +157,11 @@ public class CPConfigurationEntryIndexerTest {
 	@DeleteAfterTestRun
 	private Group _group;
 
+	private Indexer<CPConfigurationEntry> _indexer;
+
 	@Inject
 	private Portal _portal;
+
+	private User _user;
 
 }

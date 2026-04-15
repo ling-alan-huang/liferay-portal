@@ -190,12 +190,8 @@ public class CPInstanceIndexerTest {
 		return searchContext;
 	}
 
-	private static Indexer<CPInstance> _indexer;
-
 	@Inject
 	private static IndexerRegistry _indexerRegistry;
-
-	private static User _user;
 
 	@Inject
 	private CommerceCatalogLocalService _commerceCatalogLocalService;
@@ -205,5 +201,8 @@ public class CPInstanceIndexerTest {
 
 	@DeleteAfterTestRun
 	private Group _group;
+
+	private Indexer<CPInstance> _indexer;
+	private User _user;
 
 }

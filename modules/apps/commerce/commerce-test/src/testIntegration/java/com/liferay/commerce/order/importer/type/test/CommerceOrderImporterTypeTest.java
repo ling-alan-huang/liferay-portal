@@ -248,8 +248,6 @@ public class CommerceOrderImporterTypeTest {
 	private static CommerceOrderImporterTypeRegistry
 		_commerceOrderImporterTypeRegistry;
 
-	private static User _user;
-
 	private AccountEntry _accountEntry;
 
 	@Inject
@@ -272,5 +270,6 @@ public class CommerceOrderImporterTypeTest {
 	private Group _group;
 
 	private ServiceContext _serviceContext;
+	private User _user;
 
 }

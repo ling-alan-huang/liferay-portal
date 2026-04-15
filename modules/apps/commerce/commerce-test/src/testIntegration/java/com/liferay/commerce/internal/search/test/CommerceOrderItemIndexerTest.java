@@ -280,8 +280,6 @@ public class CommerceOrderItemIndexerTest {
 	@Inject
 	private static IndexerRegistry _indexerRegistry;
 
-	private static User _user;
-
 	@DeleteAfterTestRun
 	private CommerceCurrency _commerceCurrency;
 
@@ -293,5 +291,6 @@ public class CommerceOrderItemIndexerTest {
 
 	private Group _group;
 	private Indexer<CommerceOrderItem> _indexer;
+	private User _user;
 
 }
