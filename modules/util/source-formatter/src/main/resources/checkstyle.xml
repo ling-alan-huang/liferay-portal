@@ -933,6 +933,11 @@
 			<property name="description" value="Finds missing LiferayUnitTestRule." />
 			<message key="test.rule.missing" value="Missing test rule &quot;LiferayUnitTestRule&quot;" />
 		</module>
+		<module name="com.liferay.source.formatter.checkstyle.check.TestClassStaticVariableCheck">
+			<property name="category" value="Bug Prevention" />
+			<property name="description" value="Finds cases of incorrect use of static variables." />
+			<message key="variable.assign.incorrect" value="Static variable &quot;{0}&quot; should not be modified from &quot;setUp&quot; but from &quot;setUpClass&quot;" />
+		</module>
 		<module name="com.liferay.source.formatter.checkstyle.check.TextBlockCheck">
 			<property name="category" value="Styling" />
 			<property name="description" value="Finds usage of text block." />
