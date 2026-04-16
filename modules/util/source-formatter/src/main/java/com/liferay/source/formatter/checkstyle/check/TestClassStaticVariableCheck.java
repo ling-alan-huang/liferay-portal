@@ -5,6 +5,8 @@
 
 package com.liferay.source.formatter.checkstyle.check;
 
+import com.liferay.portal.kernel.util.ListUtil;
+
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
@@ -49,12 +51,25 @@ public class TestClassStaticVariableCheck extends BaseCheck {
 			return;
 		}
 
+		List<DetailAST> methodDefDetailASTs = getAllChildTokens(
+			objBlockDetailAST, false, TokenTypes.METHOD_DEF);
+
 		DetailAST setUpMethodDefDetailAST = _getSetUpMethodDefDetailAST(
-			objBlockDetailAST);
+			methodDefDetailASTs);
 
 		if (setUpMethodDefDetailAST == null) {
 			return;
 		}
+
+		List<DetailAST> staticMethodDefDetailASTs = ListUtil.filter(
+			methodDefDetailASTs,
+			methodDefDetailAST -> {
+				DetailAST modifiersDetailAST =
+					methodDefDetailAST.findFirstToken(TokenTypes.MODIFIERS);
+
+				return modifiersDetailAST.branchContains(
+					TokenTypes.LITERAL_STATIC);
+			});
 
 		List<DetailAST> variableDefDetailASTs = getAllChildTokens(
 			objBlockDetailAST, false, TokenTypes.VARIABLE_DEF);
@@ -73,7 +88,9 @@ public class TestClassStaticVariableCheck extends BaseCheck {
 			String variableName = getName(variableDefDetailAST);
 
 			if (!_isAssignedInSetUpMethod(
-					setUpMethodDefDetailAST, variableName)) {
+					setUpMethodDefDetailAST, variableName) ||
+				_containsVariableName(
+					staticMethodDefDetailASTs, variableName)) {
 
 				continue;
 			}
@@ -84,15 +101,24 @@ public class TestClassStaticVariableCheck extends BaseCheck {
 		}
 	}
 
-	private DetailAST _getSetUpMethodDefDetailAST(DetailAST detailAST) {
-		List<DetailAST> methodDefDetailASTs = getAllChildTokens(
-			detailAST, false, TokenTypes.METHOD_DEF);
+	private boolean _containsVariableName(
+		List<DetailAST> detailASTs, String variableName) {
 
-		for (DetailAST methodDefDetailAST : methodDefDetailASTs) {
-			DetailAST modifiersDetailAST = methodDefDetailAST.findFirstToken(
+		for (DetailAST detailAST : detailASTs) {
+			if (containsVariableName(detailAST, variableName)) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	private DetailAST _getSetUpMethodDefDetailAST(List<DetailAST> detailASTs) {
+		for (DetailAST detailAST : detailASTs) {
+			DetailAST modifiersDetailAST = detailAST.findFirstToken(
 				TokenTypes.MODIFIERS);
 
-			String methodName = getName(methodDefDetailAST);
+			String methodName = getName(detailAST);
 
 			if (!methodName.equals("setUp") ||
 				!modifiersDetailAST.branchContains(TokenTypes.LITERAL_PUBLIC)) {
@@ -100,8 +126,7 @@ public class TestClassStaticVariableCheck extends BaseCheck {
 				continue;
 			}
 
-			DetailAST typeDetailAST = methodDefDetailAST.findFirstToken(
-				TokenTypes.TYPE);
+			DetailAST typeDetailAST = detailAST.findFirstToken(TokenTypes.TYPE);
 
 			if (typeDetailAST == null) {
 				continue;
@@ -110,7 +135,7 @@ public class TestClassStaticVariableCheck extends BaseCheck {
 			DetailAST firstChildDetailAST = typeDetailAST.getFirstChild();
 
 			if (firstChildDetailAST.getType() == TokenTypes.LITERAL_VOID) {
-				return methodDefDetailAST;
+				return detailAST;
 			}
 		}
 
