@@ -998,6 +998,11 @@
 			<property name="description" value="Finds unnecessary method calls." />
 			<message key="method.call.unnecessary" value="Use &quot;{0}&quot; instead of calling method &quot;{1}&quot;" />
 		</module>
+		<module name="com.liferay.source.formatter.checkstyle.check.UnnecessaryStaticModifierCheck">
+			<property name="category" value="Performance" />
+			<property name="description" value="Finds unnecessary static modifiers." />
+			<message key="modifier.unnecessary" value="Private static variable &quot;{0}&quot; should be an instance variable, as it is not used by any static members" />
+		</module>
 		<module name="com.liferay.source.formatter.checkstyle.check.UnnecessaryTypeCastCheck">
 			<property name="category" value="Performance" />
 			<property name="description" value="Finds unnecessary Type Casting." />
