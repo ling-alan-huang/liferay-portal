@@ -1239,7 +1239,7 @@ public class CTSQLTransformerTest {
 	private static CTPreferencesLocalService _ctPreferencesLocalService;
 
 	@Inject
-	private static CTSQLTransformer _ctSQLTransformer;
+	private CTSQLTransformer _ctSQLTransformer;
 
 	private static DB _db;
 

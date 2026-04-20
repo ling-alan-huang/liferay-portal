@@ -240,6 +240,11 @@ public abstract class BaseSettingsLocatorTestCase {
 	private static final Set<String> _configurationPids = new HashSet<>();
 	private static final Map<String, String> _factoryConfigurationPids =
 		new HashMap<>();
+
+	@Inject
+	private PortletPreferencesLocalService
+		_portletPreferencesLocalService;
+
 	private static SafeCloseable _safeCloseable;
 
 	@Inject
@@ -251,8 +256,5 @@ public abstract class BaseSettingsLocatorTestCase {
 	@DeleteAfterTestRun
 	private final List<PortletPreferences> _portletPreferencesList =
 		new ArrayList<>();
-
-	@Inject
-	private PortletPreferencesLocalService _portletPreferencesLocalService;
 
 }

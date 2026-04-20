@@ -1558,6 +1558,17 @@ public class SearchResultResourceTest extends BaseSearchResultResourceTestCase {
 		"objectFolderExternalReferenceCode"
 	};
 
+	@Inject
+	private DTOConverterRegistry _dtoConverterRegistry;
+
+	@Inject
+	private ObjectDefinitionLocalService _objectDefinitionLocalService;
+
+	@Inject(
+		filter = "object.entry.manager.storage.type=" + ObjectDefinitionConstants.STORAGE_TYPE_DEFAULT
+	)
+	private ObjectEntryManager _objectEntryManager;
+
 	private AssetCategory _assetCategory;
 
 	@Inject
@@ -1573,10 +1584,6 @@ public class SearchResultResourceTest extends BaseSearchResultResourceTestCase {
 
 	private String _baseURI = "search";
 	private DDMStructure _ddmStructure;
-
-	@Inject
-	private DTOConverterRegistry _dtoConverterRegistry;
-
 	private JournalArticle _journalArticle;
 
 	@Inject
@@ -1594,15 +1601,7 @@ public class SearchResultResourceTest extends BaseSearchResultResourceTestCase {
 	private ObjectDefinition _objectDefinition;
 
 	@Inject
-	private ObjectDefinitionLocalService _objectDefinitionLocalService;
-
-	@Inject
 	private ObjectEntryLocalService _objectEntryLocalService;
-
-	@Inject(
-		filter = "object.entry.manager.storage.type=" + ObjectDefinitionConstants.STORAGE_TYPE_DEFAULT
-	)
-	private ObjectEntryManager _objectEntryManager;
 
 	private SearchEngine _searchEngine;
 

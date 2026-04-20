@@ -793,6 +793,7 @@ public class ShardedEhcachePortalCacheTest {
 	private BaseEhcachePortalCacheManager _baseEhcachePortalCacheManager;
 	private CacheManager _cacheManager;
 	private ThreadLocal<Long> _companyIdThreadLocal;
+
 	private final MockedStatic<CompanyThreadLocal>
 		_companyThreadLocalMockedStatic = Mockito.mockStatic(
 			CompanyThreadLocal.class);

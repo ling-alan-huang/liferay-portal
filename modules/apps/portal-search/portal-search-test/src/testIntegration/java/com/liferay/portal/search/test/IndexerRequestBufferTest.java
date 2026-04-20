@@ -120,20 +120,20 @@ public class IndexerRequestBufferTest {
 			indexerRequestBuffer, "size", new Class<?>[0]);
 	}
 
-	private static TransactionConfig _transactionConfig;
-
 	@Inject
 	private DDMStructureLocalService _ddmStructureLocalService;
-
-	@DeleteAfterTestRun
-	private Group _group;
 
 	@Inject
 	private JournalArticleLocalService _journalArticleLocalService;
 
-	private JournalArticleSearchFixture _journalArticleSearchFixture;
-
 	@Inject
 	private Portal _portal;
+
+	private static TransactionConfig _transactionConfig;
+
+	@DeleteAfterTestRun
+	private Group _group;
+
+	private JournalArticleSearchFixture _journalArticleSearchFixture;
 
 }

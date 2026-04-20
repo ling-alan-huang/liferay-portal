@@ -167,21 +167,21 @@ public class EmbeddedPortletWhenEmbeddingEmbeddablePortletInLayoutTest {
 	}
 
 	@DeleteAfterTestRun
-	private static Group _group;
+	private Group _group;
 
-	private static Layout _layout;
-	private static String[] _layoutStaticPortletsAll;
-	private static LayoutTypePortlet _layoutTypePortlet;
-
-	@Inject
-	private static PortletLocalService _portletLocalService;
+	private Layout _layout;
+	private String[] _layoutStaticPortletsAll;
+	private LayoutTypePortlet _layoutTypePortlet;
 
 	@Inject
-	private static PortletPreferencesLocalService
+	private PortletLocalService _portletLocalService;
+
+	@Inject
+	private PortletPreferencesLocalService
 		_portletPreferencesLocalService;
 
 	@Inject
-	private static PortletPreferenceValueLocalService
+	private PortletPreferenceValueLocalService
 		_portletPreferenceValueLocalService;
 
 }

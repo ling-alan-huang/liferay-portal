@@ -1777,6 +1777,6 @@ public class CustomFDSSerializerTest extends BaseFDSSerializerTestCase {
 	private static final Log _log = LogFactoryUtil.getLog(
 		CustomFDSSerializerTest.class);
 
-	private static CustomFDSSerializer _customFDSSerializer;
+	private CustomFDSSerializer _customFDSSerializer;
 
 }

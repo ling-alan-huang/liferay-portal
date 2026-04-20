@@ -155,26 +155,26 @@ public abstract class BaseFacetedSearcherTestCase {
 	protected final UserSearchFixture userSearchFixture =
 		new UserSearchFixture();
 
-	@DeleteAfterTestRun
-	private List<AssetTag> _assetTags;
-
 	@Inject
 	private DDMStructureLocalService _ddmStructureLocalService;
 
 	@Inject
 	private FacetedSearcherManager _facetedSearcherManager;
 
-	@DeleteAfterTestRun
-	private List<Group> _groups;
-
 	@Inject
 	private JournalArticleLocalService _journalArticleLocalService;
 
-	@DeleteAfterTestRun
-	private List<JournalArticle> _journalArticles;
-
 	@Inject
 	private Portal _portal;
+
+	@DeleteAfterTestRun
+	private List<AssetTag> _assetTags;
+
+	@DeleteAfterTestRun
+	private List<Group> _groups;
+
+	@DeleteAfterTestRun
+	private List<JournalArticle> _journalArticles;
 
 	@DeleteAfterTestRun
 	private List<User> _users;
