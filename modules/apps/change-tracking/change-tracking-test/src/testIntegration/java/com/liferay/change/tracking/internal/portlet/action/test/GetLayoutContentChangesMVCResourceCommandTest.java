@@ -354,7 +354,7 @@ public class GetLayoutContentChangesMVCResourceCommandTest {
 	}
 
 	@Inject
-	private static CTEntryLocalService _ctEntryLocalService;
+	private CTEntryLocalService _ctEntryLocalService;
 
 	@Inject
 	private ClassNameLocalService _classNameLocalService;

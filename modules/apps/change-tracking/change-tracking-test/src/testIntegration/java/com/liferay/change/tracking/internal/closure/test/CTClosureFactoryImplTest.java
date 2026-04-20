@@ -444,13 +444,13 @@ public class CTClosureFactoryImplTest {
 	}
 
 	@Inject
-	private static CTClosureFactory _ctClosureFactory;
+	private CTClosureFactory _ctClosureFactory;
 
 	@Inject
-	private static CTCollectionLocalService _ctCollectionLocalService;
+	private CTCollectionLocalService _ctCollectionLocalService;
 
 	@Inject
-	private static CTEntryLocalService _ctEntryLocalService;
+	private CTEntryLocalService _ctEntryLocalService;
 
 	@Inject
 	private ClassNameLocalService _classNameLocalService;

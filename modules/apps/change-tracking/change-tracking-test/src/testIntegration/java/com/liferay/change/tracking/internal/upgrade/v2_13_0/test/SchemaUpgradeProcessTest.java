@@ -72,7 +72,7 @@ public class SchemaUpgradeProcessTest {
 	@Inject(
 		filter = "component.name=com.liferay.change.tracking.internal.upgrade.registry.ChangeTrackingServiceUpgradeStepRegistrator"
 	)
-	private static UpgradeStepRegistrator _upgradeStepRegistrator;
+	private UpgradeStepRegistrator _upgradeStepRegistrator;
 
 	private DB _db;
 

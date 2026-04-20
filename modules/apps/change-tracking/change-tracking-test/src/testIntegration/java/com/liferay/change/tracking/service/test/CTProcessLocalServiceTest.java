@@ -166,7 +166,7 @@ public class CTProcessLocalServiceTest {
 	}
 
 	@Inject
-	private static JournalFolderLocalService _journalFolderLocalService;
+	private JournalFolderLocalService _journalFolderLocalService;
 
 	@Inject
 	private BackgroundTaskLocalService _backgroundTaskLocalService;

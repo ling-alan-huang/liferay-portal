@@ -241,19 +241,19 @@ public class CTEntryLocalServiceTest {
 	}
 
 	@Inject
-	private static ClassNameLocalService _classNameLocalService;
+	private ClassNameLocalService _classNameLocalService;
 
 	@Inject
-	private static CTCollectionLocalService _ctCollectionLocalService;
+	private CTCollectionLocalService _ctCollectionLocalService;
 
 	@Inject
-	private static CTEntryLocalService _ctEntryLocalService;
+	private CTEntryLocalService _ctEntryLocalService;
 
 	@Inject
-	private static CTProcessLocalService _ctProcessLocalService;
+	private CTProcessLocalService _ctProcessLocalService;
 
 	@Inject
-	private static JournalFolderLocalService _journalFolderLocalService;
+	private JournalFolderLocalService _journalFolderLocalService;
 
 	@Inject
 	private CTCollectionHistoryProviderRegistry

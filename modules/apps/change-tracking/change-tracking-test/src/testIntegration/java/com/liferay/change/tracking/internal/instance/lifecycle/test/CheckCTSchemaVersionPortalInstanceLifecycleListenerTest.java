@@ -77,7 +77,7 @@ public class CheckCTSchemaVersionPortalInstanceLifecycleListenerTest {
 	}
 
 	@Inject
-	private static ReleaseLocalService _releaseLocalService;
+	private ReleaseLocalService _releaseLocalService;
 
 	@Inject
 	private CompanyLocalService _companyLocalService;

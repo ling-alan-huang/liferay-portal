@@ -165,16 +165,16 @@ public class CTMessageBusInterceptorTest {
 		SystemBundleUtil.getBundleContext();
 
 	@Inject
-	private static CTCollectionLocalService _ctCollectionLocalService;
+	private CTCollectionLocalService _ctCollectionLocalService;
 
 	@Inject
-	private static CTMessageLocalService _ctMessageLocalService;
+	private CTMessageLocalService _ctMessageLocalService;
 
 	@Inject
-	private static CTProcessLocalService _ctProcessLocalService;
+	private CTProcessLocalService _ctProcessLocalService;
 
 	@Inject
-	private static DestinationFactory _destinationFactory;
+	private DestinationFactory _destinationFactory;
 
 	@DeleteAfterTestRun
 	private CTCollection _ctCollection;

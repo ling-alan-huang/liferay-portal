@@ -269,12 +269,12 @@ public class InviteUsersMVCResourceCommandTest {
 		}
 	}
 
-	private static CTCollection _ctCollection;
+	private CTCollection _ctCollection;
 
 	@Inject
-	private static CTCollectionLocalService _ctCollectionLocalService;
+	private CTCollectionLocalService _ctCollectionLocalService;
 
-	private static SafeCloseable _safeCloseable;
+	private SafeCloseable _safeCloseable;
 
 	@Inject
 	private CompanyLocalService _companyLocalService;

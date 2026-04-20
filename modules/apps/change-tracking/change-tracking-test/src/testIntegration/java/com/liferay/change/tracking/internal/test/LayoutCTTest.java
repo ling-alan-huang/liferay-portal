@@ -1442,33 +1442,33 @@ public class LayoutCTTest {
 	}
 
 	@Inject
-	private static AssetEntryLocalService _assetEntryLocalService;
+	private AssetEntryLocalService _assetEntryLocalService;
 
 	@Inject
-	private static AssetTagLocalService _assetTagLocalService;
+	private AssetTagLocalService _assetTagLocalService;
 
 	@Inject
-	private static ClassNameLocalService _classNameLocalService;
+	private ClassNameLocalService _classNameLocalService;
 
 	@Inject
-	private static CTCollectionLocalService _ctCollectionLocalService;
+	private CTCollectionLocalService _ctCollectionLocalService;
 
 	@Inject
-	private static CTEntryLocalService _ctEntryLocalService;
+	private CTEntryLocalService _ctEntryLocalService;
 
 	@Inject
-	private static CTProcessLocalService _ctProcessLocalService;
+	private CTProcessLocalService _ctProcessLocalService;
 
 	@Inject
-	private static Language _language;
+	private Language _language;
 
-	private static long _layoutClassNameId;
-
-	@Inject
-	private static LayoutLocalService _layoutLocalService;
+	private long _layoutClassNameId;
 
 	@Inject
-	private static LayoutPermission _layoutPermission;
+	private LayoutLocalService _layoutLocalService;
+
+	@Inject
+	private LayoutPermission _layoutPermission;
 
 	@Inject
 	private BulkLayoutConverter _bulkLayoutConverter;

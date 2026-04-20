@@ -1385,10 +1385,10 @@ public class CTStoreTest {
 	private static long _companyId;
 
 	@Inject
-	private static CTCollectionLocalService _ctCollectionLocalService;
+	private CTCollectionLocalService _ctCollectionLocalService;
 
 	@Inject
-	private static CTSContentLocalService _ctsContentLocalService;
+	private CTSContentLocalService _ctsContentLocalService;
 
 	private static Store _ctStore;
 

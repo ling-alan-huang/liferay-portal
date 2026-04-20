@@ -105,7 +105,7 @@ public class EditCTCollectionTemplateMVCRenderCommandTest {
 	}
 
 	@Inject
-	private static CTCollectionTemplateLocalService
+	private CTCollectionTemplateLocalService
 		_ctCollectionTemplateLocalService;
 
 	@Inject(

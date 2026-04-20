@@ -121,13 +121,13 @@ public class CTColumnResolutionMaxTest {
 	}
 
 	@Inject
-	private static ClassNameLocalService _classNameLocalService;
+	private ClassNameLocalService _classNameLocalService;
 
 	@Inject
-	private static CTCollectionLocalService _ctCollectionLocalService;
+	private CTCollectionLocalService _ctCollectionLocalService;
 
 	@Inject
-	private static DLFolderLocalService _dlFolderLocalService;
+	private DLFolderLocalService _dlFolderLocalService;
 
 	@DeleteAfterTestRun
 	private CTCollection _ctCollection;

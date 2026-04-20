@@ -219,7 +219,7 @@ public class CTCollectionLocalServicePerformanceTest {
 	}
 
 	@Inject
-	private static LayoutLocalService _layoutLocalService;
+	private LayoutLocalService _layoutLocalService;
 
 	private CTCollection _ctCollection1;
 	private CTCollection _ctCollection2;

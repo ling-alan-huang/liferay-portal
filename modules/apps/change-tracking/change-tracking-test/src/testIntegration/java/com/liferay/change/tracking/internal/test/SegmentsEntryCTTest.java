@@ -133,16 +133,16 @@ public class SegmentsEntryCTTest {
 	}
 
 	@Inject
-	private static ClassNameLocalService _classNameLocalService;
+	private ClassNameLocalService _classNameLocalService;
 
 	@Inject
-	private static CTCollectionLocalService _ctCollectionLocalService;
+	private CTCollectionLocalService _ctCollectionLocalService;
 
 	@Inject
-	private static CTCollectionService _ctCollectionService;
+	private CTCollectionService _ctCollectionService;
 
 	@Inject
-	private static CTEntryLocalService _ctEntryLocalService;
+	private CTEntryLocalService _ctEntryLocalService;
 
 	@DeleteAfterTestRun
 	private CTCollection _ctCollection;

@@ -124,10 +124,10 @@ public class GroupCTTest {
 	}
 
 	@Inject
-	private static CTCollectionLocalService _ctCollectionLocalService;
+	private CTCollectionLocalService _ctCollectionLocalService;
 
 	@Inject
-	private static GroupService _groupService;
+	private GroupService _groupService;
 
 	@DeleteAfterTestRun
 	private CTCollection _ctCollection;

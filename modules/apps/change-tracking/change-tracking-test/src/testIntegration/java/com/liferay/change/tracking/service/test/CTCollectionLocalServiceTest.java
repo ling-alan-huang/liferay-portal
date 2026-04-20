@@ -710,33 +710,33 @@ public class CTCollectionLocalServiceTest {
 	}
 
 	@Inject
-	private static AssetEntryLocalService _assetEntryLocalService;
+	private AssetEntryLocalService _assetEntryLocalService;
 
 	@Inject
-	private static AssetTagLocalService _assetTagLocalService;
+	private AssetTagLocalService _assetTagLocalService;
 
 	@Inject
-	private static ClassNameLocalService _classNameLocalService;
+	private ClassNameLocalService _classNameLocalService;
 
 	@Inject
-	private static CTCollectionLocalService _ctCollectionLocalService;
+	private CTCollectionLocalService _ctCollectionLocalService;
 
 	@Inject
-	private static CTEntryLocalService _ctEntryLocalService;
+	private CTEntryLocalService _ctEntryLocalService;
 
 	@Inject
-	private static CTProcessLocalService _ctProcessLocalService;
+	private CTProcessLocalService _ctProcessLocalService;
 
-	private static long _journalArticleClassNameId;
-	private static long _journalFolderClassNameId;
-
-	@Inject
-	private static JournalFolderLocalService _journalFolderLocalService;
-
-	private static long _layoutClassNameId;
+	private long _journalArticleClassNameId;
+	private long _journalFolderClassNameId;
 
 	@Inject
-	private static LayoutLocalService _layoutLocalService;
+	private JournalFolderLocalService _journalFolderLocalService;
+
+	private long _layoutClassNameId;
+
+	@Inject
+	private LayoutLocalService _layoutLocalService;
 
 	private CTCollection _ctCollection1;
 	private CTCollection _ctCollection2;

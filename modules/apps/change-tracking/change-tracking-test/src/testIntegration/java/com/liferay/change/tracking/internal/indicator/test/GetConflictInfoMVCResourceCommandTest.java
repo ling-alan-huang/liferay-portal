@@ -210,10 +210,10 @@ public class GetConflictInfoMVCResourceCommandTest {
 	}
 
 	@Inject
-	private static CTCollectionLocalService _ctCollectionLocalService;
+	private CTCollectionLocalService _ctCollectionLocalService;
 
 	@Inject
-	private static Portal _portal;
+	private Portal _portal;
 
 	@Inject
 	private CompanyLocalService _companyLocalService;

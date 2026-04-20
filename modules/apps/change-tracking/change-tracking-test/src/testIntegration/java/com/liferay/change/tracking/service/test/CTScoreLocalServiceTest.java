@@ -187,13 +187,13 @@ public class CTScoreLocalServiceTest {
 	}
 
 	@Inject
-	private static ClassNameLocalService _classNameLocalService;
+	private ClassNameLocalService _classNameLocalService;
 
 	@Inject
-	private static CTScoreLocalService _ctScoreLocalService;
+	private CTScoreLocalService _ctScoreLocalService;
 
 	@Inject
-	private static DLFileEntryLocalService _dlFileEntryLocalService;
+	private DLFileEntryLocalService _dlFileEntryLocalService;
 
 	@Inject
 	private BlogsEntryLocalService _blogsEntryLocalService;

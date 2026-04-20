@@ -434,7 +434,7 @@ public class PublicationUserNotificationHandlerTest {
 	}
 
 	@Inject
-	private static Portal _portal;
+	private Portal _portal;
 
 	@Inject
 	private CompanyLocalService _companyLocalService;
