@@ -143,8 +143,17 @@ public class UpgradeCTSchemaVersionTest {
 			_ctPreferences.getPreviousCtCollectionId());
 	}
 
+	@DeleteAfterTestRun
+	private CTCollection _ctCollection1;
+
+	@DeleteAfterTestRun
+	private CTCollection _ctCollection2;
+
 	@Inject
 	private CTCollectionLocalService _ctCollectionLocalService;
+
+	@DeleteAfterTestRun
+	private CTPreferences _ctPreferences;
 
 	@Inject
 	private CTPreferencesLocalService _ctPreferencesLocalService;
@@ -153,15 +162,6 @@ public class UpgradeCTSchemaVersionTest {
 		filter = "(&(component.name=com.liferay.change.tracking.internal.upgrade.registry.ChangeTrackingServiceUpgradeStepRegistrator))"
 	)
 	private UpgradeStepRegistrator _upgradeStepRegistrator;
-
-	@DeleteAfterTestRun
-	private CTCollection _ctCollection1;
-
-	@DeleteAfterTestRun
-	private CTCollection _ctCollection2;
-
-	@DeleteAfterTestRun
-	private CTPreferences _ctPreferences;
 
 	private final List<UpgradeProcess> _upgradeSteps = new ArrayList<>();
 

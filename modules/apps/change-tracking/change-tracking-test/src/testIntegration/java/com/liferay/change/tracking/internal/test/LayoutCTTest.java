@@ -1448,16 +1448,26 @@ public class LayoutCTTest {
 	private AssetTagLocalService _assetTagLocalService;
 
 	@Inject
+	private BulkLayoutConverter _bulkLayoutConverter;
+
+	@Inject
 	private ClassNameLocalService _classNameLocalService;
+
+	private CTCollection _ctCollection;
 
 	@Inject
 	private CTCollectionLocalService _ctCollectionLocalService;
+
+	@DeleteAfterTestRun
+	private final List<CTCollection> _ctCollections = new ArrayList<>();
 
 	@Inject
 	private CTEntryLocalService _ctEntryLocalService;
 
 	@Inject
 	private CTProcessLocalService _ctProcessLocalService;
+
+	private Group _group;
 
 	@Inject
 	private Language _language;
@@ -1468,19 +1478,9 @@ public class LayoutCTTest {
 	private LayoutLocalService _layoutLocalService;
 
 	@Inject
-	private LayoutPermission _layoutPermission;
-
-	@Inject
-	private BulkLayoutConverter _bulkLayoutConverter;
-
-	private CTCollection _ctCollection;
-
-	@DeleteAfterTestRun
-	private final List<CTCollection> _ctCollections = new ArrayList<>();
-
-	private Group _group;
-
-	@Inject
 	private LayoutLockManager _layoutLockManager;
+
+	@Inject
+	private LayoutPermission _layoutPermission;
 
 }

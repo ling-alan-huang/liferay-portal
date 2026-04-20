@@ -93,6 +93,9 @@ public abstract class BaseTableReferenceDefinitionTestCase {
 	@Inject
 	private ClassNameLocalService _classNameLocalService;
 
+	@DeleteAfterTestRun
+	private CTCollection _ctCollection;
+
 	@Inject
 	private CTCollectionLocalService _ctCollectionLocalService;
 
@@ -101,8 +104,5 @@ public abstract class BaseTableReferenceDefinitionTestCase {
 
 	@Inject
 	private CTEntryLocalService _ctEntryLocalService;
-
-	@DeleteAfterTestRun
-	private CTCollection _ctCollection;
 
 }

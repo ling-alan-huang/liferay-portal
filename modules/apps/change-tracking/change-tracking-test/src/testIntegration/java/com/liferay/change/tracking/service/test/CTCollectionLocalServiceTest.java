@@ -718,8 +718,19 @@ public class CTCollectionLocalServiceTest {
 	@Inject
 	private ClassNameLocalService _classNameLocalService;
 
+	private CTCollection _ctCollection1;
+	private CTCollection _ctCollection2;
+	private CTCollection _ctCollection3;
+	private CTCollection _ctCollection4;
+
 	@Inject
 	private CTCollectionLocalService _ctCollectionLocalService;
+
+	@DeleteAfterTestRun
+	private final List<CTCollection> _ctCollections = new ArrayList<>();
+
+	@Inject
+	private CTCollectionService _ctCollectionService;
 
 	@Inject
 	private CTEntryLocalService _ctEntryLocalService;
@@ -727,7 +738,12 @@ public class CTCollectionLocalServiceTest {
 	@Inject
 	private CTProcessLocalService _ctProcessLocalService;
 
+	private Group _group;
 	private long _journalArticleClassNameId;
+
+	@Inject
+	private JournalArticleLocalService _journalArticleLocalService;
+
 	private long _journalFolderClassNameId;
 
 	@Inject
@@ -737,21 +753,5 @@ public class CTCollectionLocalServiceTest {
 
 	@Inject
 	private LayoutLocalService _layoutLocalService;
-
-	private CTCollection _ctCollection1;
-	private CTCollection _ctCollection2;
-	private CTCollection _ctCollection3;
-	private CTCollection _ctCollection4;
-
-	@DeleteAfterTestRun
-	private final List<CTCollection> _ctCollections = new ArrayList<>();
-
-	@Inject
-	private CTCollectionService _ctCollectionService;
-
-	private Group _group;
-
-	@Inject
-	private JournalArticleLocalService _journalArticleLocalService;
 
 }

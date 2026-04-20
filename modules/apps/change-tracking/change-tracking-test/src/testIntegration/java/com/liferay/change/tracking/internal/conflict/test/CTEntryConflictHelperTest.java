@@ -144,6 +144,12 @@ public class CTEntryConflictHelperTest {
 	@Inject
 	private ClassNameLocalService _classNameLocalService;
 
+	@DeleteAfterTestRun
+	private CTCollection _ctCollection1;
+
+	@DeleteAfterTestRun
+	private CTCollection _ctCollection2;
+
 	@Inject
 	private CTCollectionLocalService _ctCollectionLocalService;
 
@@ -156,19 +162,13 @@ public class CTEntryConflictHelperTest {
 	@Inject
 	private CTSContentLocalService _ctsContentLocalService;
 
+	@DeleteAfterTestRun
+	private Group _group;
+
 	@Inject
 	private JournalArticleLocalService _journalArticleLocalService;
 
 	@Inject
 	private Language _language;
-
-	@DeleteAfterTestRun
-	private CTCollection _ctCollection1;
-
-	@DeleteAfterTestRun
-	private CTCollection _ctCollection2;
-
-	@DeleteAfterTestRun
-	private Group _group;
 
 }

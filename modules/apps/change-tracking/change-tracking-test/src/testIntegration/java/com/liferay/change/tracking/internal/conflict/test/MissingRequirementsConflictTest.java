@@ -202,19 +202,19 @@ public class MissingRequirementsConflictTest {
 	@Inject
 	private CTCollectionLocalService _ctCollectionLocalService;
 
-	@Inject
-	private CTProcessLocalService _ctProcessLocalService;
-
-	@Inject
-	private JournalFolderLocalService _journalFolderLocalService;
-
 	@DeleteAfterTestRun
 	private final List<CTCollection> _ctCollections = new ArrayList<>();
+
+	@Inject
+	private CTProcessLocalService _ctProcessLocalService;
 
 	@DeleteAfterTestRun
 	private Group _group;
 
 	private final JournalFolderFixture _journalFolderFixture =
 		new JournalFolderFixture(_journalFolderLocalService);
+
+	@Inject
+	private JournalFolderLocalService _journalFolderLocalService;
 
 }

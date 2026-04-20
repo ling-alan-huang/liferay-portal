@@ -135,6 +135,9 @@ public class SegmentsEntryCTTest {
 	@Inject
 	private ClassNameLocalService _classNameLocalService;
 
+	@DeleteAfterTestRun
+	private CTCollection _ctCollection;
+
 	@Inject
 	private CTCollectionLocalService _ctCollectionLocalService;
 
@@ -143,9 +146,6 @@ public class SegmentsEntryCTTest {
 
 	@Inject
 	private CTEntryLocalService _ctEntryLocalService;
-
-	@DeleteAfterTestRun
-	private CTCollection _ctCollection;
 
 	private Group _group;
 

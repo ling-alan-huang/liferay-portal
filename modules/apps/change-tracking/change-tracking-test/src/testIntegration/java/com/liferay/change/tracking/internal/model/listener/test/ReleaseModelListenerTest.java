@@ -15,7 +15,6 @@ import com.liferay.change.tracking.service.CTCollectionLocalService;
 import com.liferay.change.tracking.service.CTPreferencesLocalService;
 import com.liferay.change.tracking.service.CTProcessLocalService;
 import com.liferay.change.tracking.service.CTSchemaVersionLocalService;
-import com.liferay.document.library.kernel.service.DLFolderLocalService;
 import com.liferay.dynamic.data.mapping.test.util.DDMStructureTestUtil;
 import com.liferay.journal.model.JournalArticle;
 import com.liferay.journal.model.JournalFolder;
@@ -368,8 +367,14 @@ public class ReleaseModelListenerTest {
 			WorkflowConstants.STATUS_APPROVED, _ctCollection.getStatus());
 	}
 
+	@DeleteAfterTestRun
+	private CTCollection _ctCollection;
+
 	@Inject
 	private CTCollectionLocalService _ctCollectionLocalService;
+
+	@DeleteAfterTestRun
+	private CTPreferences _ctPreferences;
 
 	@Inject
 	private CTPreferencesLocalService _ctPreferencesLocalService;
@@ -380,22 +385,16 @@ public class ReleaseModelListenerTest {
 	@Inject
 	private CTSchemaVersionLocalService _ctSchemaVersionLocalService;
 
-	@Inject
-	private JournalFolderLocalService _journalFolderLocalService;
-
-	@Inject
-	private ReleaseLocalService _releaseLocalService;
-
-	@DeleteAfterTestRun
-	private CTCollection _ctCollection;
-
-	@DeleteAfterTestRun
-	private CTPreferences _ctPreferences;
-
 	private final JournalFolderFixture _journalFolderFixture =
 		new JournalFolderFixture(_journalFolderLocalService);
 
+	@Inject
+	private JournalFolderLocalService _journalFolderLocalService;
+
 	@DeleteAfterTestRun
 	private Release _release;
+
+	@Inject
+	private ReleaseLocalService _releaseLocalService;
 
 }

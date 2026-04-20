@@ -166,9 +166,6 @@ public class CTProcessLocalServiceTest {
 	}
 
 	@Inject
-	private JournalFolderLocalService _journalFolderLocalService;
-
-	@Inject
 	private BackgroundTaskLocalService _backgroundTaskLocalService;
 
 	@Inject
@@ -186,5 +183,8 @@ public class CTProcessLocalServiceTest {
 	private long _journalFolderClassNameId;
 	private final JournalFolderFixture _journalFolderFixture =
 		new JournalFolderFixture(_journalFolderLocalService);
+
+	@Inject
+	private JournalFolderLocalService _journalFolderLocalService;
 
 }

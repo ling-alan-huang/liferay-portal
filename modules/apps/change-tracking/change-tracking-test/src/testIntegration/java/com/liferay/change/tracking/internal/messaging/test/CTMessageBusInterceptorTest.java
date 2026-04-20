@@ -164,6 +164,9 @@ public class CTMessageBusInterceptorTest {
 	private static final BundleContext _bundleContext =
 		SystemBundleUtil.getBundleContext();
 
+	@DeleteAfterTestRun
+	private CTCollection _ctCollection;
+
 	@Inject
 	private CTCollectionLocalService _ctCollectionLocalService;
 
@@ -175,9 +178,6 @@ public class CTMessageBusInterceptorTest {
 
 	@Inject
 	private DestinationFactory _destinationFactory;
-
-	@DeleteAfterTestRun
-	private CTCollection _ctCollection;
 
 	private ServiceRegistration<Destination> _serviceRegistration;
 	private TestDestination _testDestination;
