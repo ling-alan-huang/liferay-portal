@@ -28,46 +28,8 @@ import com.liferay.source.formatter.check.configuration.SourceFormatterSuppressi
 import com.liferay.source.formatter.check.configuration.SuppressionsLoader;
 import com.liferay.source.formatter.check.util.SourceUtil;
 import com.liferay.source.formatter.exception.SourceMismatchException;
-import com.liferay.source.formatter.processor.BNDRunSourceProcessor;
-import com.liferay.source.formatter.processor.BNDSourceProcessor;
-import com.liferay.source.formatter.processor.CETSourceProcessor;
-import com.liferay.source.formatter.processor.CIMergeAndGitRepoSourceProcessor;
-import com.liferay.source.formatter.processor.CQLSourceProcessor;
-import com.liferay.source.formatter.processor.CSPSourceProcessor;
-import com.liferay.source.formatter.processor.CSSSourceProcessor;
-import com.liferay.source.formatter.processor.CodeownersSourceProcessor;
-import com.liferay.source.formatter.processor.ConfigSourceProcessor;
-import com.liferay.source.formatter.processor.DTDSourceProcessor;
-import com.liferay.source.formatter.processor.DockerfileSourceProcessor;
-import com.liferay.source.formatter.processor.FTLSourceProcessor;
-import com.liferay.source.formatter.processor.GradleSourceProcessor;
-import com.liferay.source.formatter.processor.GroovySourceProcessor;
-import com.liferay.source.formatter.processor.HTMLSourceProcessor;
-import com.liferay.source.formatter.processor.JSONSourceProcessor;
-import com.liferay.source.formatter.processor.JSPSourceProcessor;
-import com.liferay.source.formatter.processor.JSSourceProcessor;
-import com.liferay.source.formatter.processor.JakartaTransformSourceProcessor;
-import com.liferay.source.formatter.processor.JavaSourceProcessor;
-import com.liferay.source.formatter.processor.LDIFSourceProcessor;
-import com.liferay.source.formatter.processor.LFRBuildSourceProcessor;
-import com.liferay.source.formatter.processor.LibrarySourceProcessor;
-import com.liferay.source.formatter.processor.ListSourceProcessor;
-import com.liferay.source.formatter.processor.MarkdownSourceProcessor;
-import com.liferay.source.formatter.processor.PackageinfoSourceProcessor;
-import com.liferay.source.formatter.processor.PoshiSourceProcessor;
-import com.liferay.source.formatter.processor.PropertiesSourceProcessor;
-import com.liferay.source.formatter.processor.PythonSourceProcessor;
-import com.liferay.source.formatter.processor.SHSourceProcessor;
-import com.liferay.source.formatter.processor.SQLSourceProcessor;
 import com.liferay.source.formatter.processor.SourceProcessor;
-import com.liferay.source.formatter.processor.SoySourceProcessor;
-import com.liferay.source.formatter.processor.TFSourceProcessor;
-import com.liferay.source.formatter.processor.TLDSourceProcessor;
-import com.liferay.source.formatter.processor.TSSourceProcessor;
 import com.liferay.source.formatter.processor.TXTSourceProcessor;
-import com.liferay.source.formatter.processor.UpgradeSourceProcessor;
-import com.liferay.source.formatter.processor.XMLSourceProcessor;
-import com.liferay.source.formatter.processor.YMLSourceProcessor;
 import com.liferay.source.formatter.util.CheckType;
 import com.liferay.source.formatter.util.DebugUtil;
 import com.liferay.source.formatter.util.FileUtil;
@@ -80,9 +42,12 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.StringReader;
 
+import java.text.SimpleDateFormat;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -107,6 +72,13 @@ import java.util.regex.Pattern;
 public class SourceFormatter {
 
 	public static void main(String[] args) throws Exception {
+		SimpleDateFormat dateFormat = new SimpleDateFormat(
+			"yyyy-MM-dd HH:mm:ss");
+
+		String time = dateFormat.format(new Date());
+
+		System.out.println("■SF Start: " + time);
+
 		Map<String, String> arguments = ArgumentsUtil.parseArguments(args);
 
 		try {
@@ -320,6 +292,10 @@ public class SourceFormatter {
 
 			System.exit(1);
 		}
+
+		time = dateFormat.format(new Date());
+
+		System.out.println("■SF End: " + time);
 	}
 
 	public SourceFormatter(SourceFormatterArgs sourceFormatterArgs) {
@@ -349,46 +325,7 @@ public class SourceFormatter {
 					"working properly."));
 		}
 
-		_sourceProcessors.add(new BNDRunSourceProcessor());
-		_sourceProcessors.add(new BNDSourceProcessor());
-		_sourceProcessors.add(new CIMergeAndGitRepoSourceProcessor());
-		_sourceProcessors.add(new CodeownersSourceProcessor());
-		_sourceProcessors.add(new ConfigSourceProcessor());
-		_sourceProcessors.add(new CQLSourceProcessor());
-		_sourceProcessors.add(new CSPSourceProcessor());
-		_sourceProcessors.add(new CSSSourceProcessor());
-		_sourceProcessors.add(new DockerfileSourceProcessor());
-		_sourceProcessors.add(new DTDSourceProcessor());
-		_sourceProcessors.add(new FTLSourceProcessor());
-		_sourceProcessors.add(new GradleSourceProcessor());
-		_sourceProcessors.add(new GroovySourceProcessor());
-		_sourceProcessors.add(new HTMLSourceProcessor());
-		_sourceProcessors.add(new JakartaTransformSourceProcessor());
-		_sourceProcessors.add(new JavaSourceProcessor());
-		_sourceProcessors.add(new JSONSourceProcessor());
-		_sourceProcessors.add(new JSPSourceProcessor());
-		_sourceProcessors.add(new JSSourceProcessor());
-		_sourceProcessors.add(new LDIFSourceProcessor());
-		_sourceProcessors.add(new LFRBuildSourceProcessor());
-		_sourceProcessors.add(new LibrarySourceProcessor());
-		_sourceProcessors.add(new ListSourceProcessor());
-		_sourceProcessors.add(new MarkdownSourceProcessor());
-		_sourceProcessors.add(new PackageinfoSourceProcessor());
-		_sourceProcessors.add(new PoshiSourceProcessor());
-		_sourceProcessors.add(new PropertiesSourceProcessor());
-		_sourceProcessors.add(new PythonSourceProcessor());
-		_sourceProcessors.add(new SHSourceProcessor());
-		_sourceProcessors.add(new SoySourceProcessor());
-		_sourceProcessors.add(new SQLSourceProcessor());
-		_sourceProcessors.add(new TFSourceProcessor());
-		_sourceProcessors.add(new TLDSourceProcessor());
-		_sourceProcessors.add(new TSSourceProcessor());
 		_sourceProcessors.add(new TXTSourceProcessor());
-		_sourceProcessors.add(new UpgradeSourceProcessor());
-		_sourceProcessors.add(new XMLSourceProcessor());
-		_sourceProcessors.add(new YMLSourceProcessor());
-
-		_sourceProcessors.add(new CETSourceProcessor());
 
 		ExecutorService executorService = Executors.newFixedThreadPool(
 			_sourceProcessors.size());
