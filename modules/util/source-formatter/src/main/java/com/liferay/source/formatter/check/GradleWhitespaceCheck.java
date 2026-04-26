@@ -8,26 +8,23 @@ package com.liferay.source.formatter.check;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 
-import java.io.IOException;
-
 /**
  * @author Alan Huang
  */
-public class GradleWhitespaceCheck extends WhitespaceCheck {
+public class GradleWhitespaceCheck extends BaseFileCheck {
 
 	@Override
 	protected String doProcess(
-			String fileName, String absolutePath, String content)
-		throws IOException {
+		String fileName, String absolutePath, String content) {
 
 		int index = content.indexOf(" (group: \"");
 
-		if (index != -1) {
-			return StringUtil.replaceFirst(
-				content, StringPool.SPACE, StringPool.BLANK, index);
+		if (index == -1) {
+			return content;
 		}
 
-		return super.doProcess(fileName, absolutePath, content);
+		return StringUtil.replaceFirst(
+			content, StringPool.SPACE, StringPool.BLANK, index);
 	}
 
 }
