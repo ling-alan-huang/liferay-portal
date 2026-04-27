@@ -103,9 +103,11 @@ public class FDSEntryFDSSelectionFilterItemsFDSDataProvider
 
 		_checkPermissions(themeDisplay);
 
-		return _getFDSEntryFDSSelectionFilterItems(
-			themeDisplay.getCompanyId(), fdsKeywords
-		).size();
+		List<FDSSelectionFilterItem> fdsEntryFDSSelectionFilterItems =
+			_getFDSEntryFDSSelectionFilterItems(
+				themeDisplay.getCompanyId(), fdsKeywords);
+
+		return fdsEntryFDSSelectionFilterItems.size();
 	}
 
 	private void _checkPermissions(ThemeDisplay themeDisplay)

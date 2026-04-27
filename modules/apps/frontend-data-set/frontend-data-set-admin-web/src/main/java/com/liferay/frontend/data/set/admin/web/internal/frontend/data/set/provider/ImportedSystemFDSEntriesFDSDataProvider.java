@@ -113,9 +113,11 @@ public class ImportedSystemFDSEntriesFDSDataProvider
 
 		_checkPermissions(themeDisplay);
 
-		return FDSDataProviderUtil.getSystemFDSEntries(
-			fdsKeywords.getKeywords(), _systemFDSEntryRegistry
-		).size();
+		List<SystemFDSEntry> systemFDSEntries =
+			FDSDataProviderUtil.getSystemFDSEntries(
+				fdsKeywords.getKeywords(), _systemFDSEntryRegistry);
+
+		return systemFDSEntries.size();
 	}
 
 	private void _checkPermissions(ThemeDisplay themeDisplay)
