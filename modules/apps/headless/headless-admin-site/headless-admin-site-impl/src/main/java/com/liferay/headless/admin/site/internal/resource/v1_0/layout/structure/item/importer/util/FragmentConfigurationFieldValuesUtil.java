@@ -571,10 +571,10 @@ public class FragmentConfigurationFieldValuesUtil {
 						_fragmentCollectionFilterRegistryServiceTracker.
 							getService();
 
-				return CollectionFilterConfigurationUtil.
-					getConfigurationJSONObject(
-						fragmentCollectionFilterRegistry, filterKey
-					).toString();
+				return String.valueOf(
+					CollectionFilterConfigurationUtil.
+						getConfigurationJSONObject(
+							fragmentCollectionFilterRegistry, filterKey));
 			}
 		}
 

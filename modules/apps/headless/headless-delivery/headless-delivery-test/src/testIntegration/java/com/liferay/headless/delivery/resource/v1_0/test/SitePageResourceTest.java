@@ -147,6 +147,7 @@ import jakarta.ws.rs.core.PathSegment;
 import jakarta.ws.rs.core.UriBuilder;
 import jakarta.ws.rs.core.UriInfo;
 
+import java.io.PrintWriter;
 import java.io.Serializable;
 
 import java.net.URI;
@@ -348,10 +349,10 @@ public class SitePageResourceTest extends BaseSitePageResourceTestCase {
 				}
 				else if (key.equals("/html/common/themes/top_head.jsp#post")) {
 					try {
-						httpServletResponse.getWriter(
-						).write(
-							dynamicIncludeContent
-						);
+						PrintWriter printWriter =
+							httpServletResponse.getWriter();
+
+						printWriter.write(dynamicIncludeContent);
 					}
 					catch (Exception exception) {
 						throw new RuntimeException(exception);
