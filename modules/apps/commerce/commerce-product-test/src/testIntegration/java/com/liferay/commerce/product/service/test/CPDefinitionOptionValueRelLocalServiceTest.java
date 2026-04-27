@@ -135,18 +135,18 @@ public class CPDefinitionOptionValueRelLocalServiceTest {
 
 		Assert.assertEquals(cpInstances.toString(), 3, cpInstances.size());
 
-		CPInstance cpInstance = cpInstances.get(0);
+		CPInstance cpInstance1 = cpInstances.get(0);
 
-		cpInstance.setExpirationDate(
+		cpInstance1.setExpirationDate(
 			new Date(System.currentTimeMillis() - 86400000L));
 
-		cpInstance = _cpInstanceLocalService.updateCPInstance(cpInstance);
+		cpInstance1 = _cpInstanceLocalService.updateCPInstance(cpInstance1);
+
+		CPInstance cpInstance2 = _cpInstanceLocalService.getCPInstance(
+			cpInstance1.getCPInstanceId());
 
 		Assert.assertEquals(
-			WorkflowConstants.STATUS_APPROVED,
-			_cpInstanceLocalService.getCPInstance(
-				cpInstance.getCPInstanceId()
-			).getStatus());
+			WorkflowConstants.STATUS_APPROVED, cpInstance2.getStatus());
 
 		List<CPDefinitionOptionValueRel> cpDefinitionOptionValueRels =
 			_cpDefinitionOptionValueRelLocalService.

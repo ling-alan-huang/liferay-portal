@@ -210,9 +210,7 @@ public class SideNavigationDisplayContext {
 					"canonicalName", panelApp.getLabel(LocaleUtil.ENGLISH)
 				).put(
 					"href",
-					panelApp.getPortletURL(
-						_httpServletRequest
-					).toString()
+					String.valueOf(panelApp.getPortletURL(_httpServletRequest))
 				).put(
 					"id", panelApp.getPortletId()
 				).put(

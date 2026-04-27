@@ -478,10 +478,11 @@ public class ViewChangesDisplayContext {
 					classPKs.add(_modelClassPK);
 				}
 
+				Map<Long, List<Long>> parentPKsMap = ctClosure.getParentPKsMap(
+					_modelClassNameId, _modelClassPK);
+
 				for (Map.Entry<Long, List<Long>> entry :
-						ctClosure.getParentPKsMap(
-							_modelClassNameId, _modelClassPK
-						).entrySet()) {
+						parentPKsMap.entrySet()) {
 
 					long classNameId = entry.getKey();
 
@@ -489,16 +490,18 @@ public class ViewChangesDisplayContext {
 						ModelInfoKey modelInfoKey = new ModelInfoKey(
 							classNameId, classPK);
 
-						if (!modelInfoMap.containsKey(modelInfoKey)) {
-							modelInfoMap.put(
-								modelInfoKey, new ModelInfo(modelKeyCounter++));
-
-							Set<Long> classPKs =
-								classNameIdClassPKsMap.computeIfAbsent(
-									classNameId, key -> new HashSet<>());
-
-							classPKs.add(classPK);
+						if (modelInfoMap.containsKey(modelInfoKey)) {
+							continue;
 						}
+
+						modelInfoMap.put(
+							modelInfoKey, new ModelInfo(modelKeyCounter++));
+
+						Set<Long> classPKs =
+							classNameIdClassPKsMap.computeIfAbsent(
+								classNameId, key -> new HashSet<>());
+
+						classPKs.add(classPK);
 					}
 				}
 			}
@@ -1127,11 +1130,10 @@ public class ViewChangesDisplayContext {
 
 		JSONArray childrenJSONArray = JSONFactoryUtil.createJSONArray();
 
-		for (Map.Entry<Long, List<Long>> entry :
-				ctClosure.getChildPKsMap(
-					_modelClassNameId, _modelClassPK
-				).entrySet()) {
+		Map<Long, List<Long>> childPKsMap = ctClosure.getChildPKsMap(
+			_modelClassNameId, _modelClassPK);
 
+		for (Map.Entry<Long, List<Long>> entry : childPKsMap.entrySet()) {
 			for (long classPK : entry.getValue()) {
 				ModelInfo modelInfo = modelInfoMap.get(
 					new ModelInfoKey(entry.getKey(), classPK));
