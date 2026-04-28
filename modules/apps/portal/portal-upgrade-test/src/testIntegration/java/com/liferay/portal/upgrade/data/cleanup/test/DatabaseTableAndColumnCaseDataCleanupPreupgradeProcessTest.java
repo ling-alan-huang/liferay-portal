@@ -380,7 +380,9 @@ public class DatabaseTableAndColumnCaseDataCleanupPreupgradeProcessTest
 			long partitionCount = 1;
 
 			if (PropsValues.DATABASE_PARTITION_ENABLED) {
-				partitionCount = PortalInstancePool.getCompanyIds().length;
+				long[] companyIds = PortalInstancePool.getCompanyIds();
+
+				partitionCount = companyIds.length;
 			}
 
 			Assert.assertEquals(

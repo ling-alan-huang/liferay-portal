@@ -80,6 +80,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.FrameworkUtil;
 import org.osgi.framework.ServiceRegistration;
@@ -111,9 +112,10 @@ public class ObjectEntryModelListenerTest {
 				getObjectDefinitionByExternalReferenceCode(
 					"L_DSR_ROOM", TestPropsValues.getCompanyId());
 
-		BundleContext bundleContext = FrameworkUtil.getBundle(
-			ObjectEntryModelListenerTest.class
-		).getBundleContext();
+		Bundle bundle = FrameworkUtil.getBundle(
+			ObjectEntryModelListenerTest.class);
+
+		BundleContext bundleContext = bundle.getBundleContext();
 
 		_serviceRegistrations.add(
 			bundleContext.registerService(
