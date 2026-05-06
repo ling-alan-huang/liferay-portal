@@ -20,18 +20,19 @@ public class ExpandoBridgeAttributesOrderCheck extends BaseCheck {
 
 	@Override
 	public int[] getDefaultTokens() {
-		return new int[] {TokenTypes.LITERAL_NEW};
+		return new int[] {TokenTypes.METHOD_DEF};
 	}
 
 	@Override
 	protected void doVisitToken(DetailAST detailAST) {
-		for (String enforceFactoryClassNames :
-				getAttributeValues(_ENFORCE_FACTORY_CLASS_NAMES_KEY)) {
-
-			_checkEnforceFactory(
-				detailAST,
-				StringUtil.split(enforceFactoryClassNames, CharPool.COLON));
+		List<DetailAST> methodCallDetailASTs = getMethodCalls(
+				detailAST, "setExpandoBridgeAttributes");
+		
+		if (methodCallDetailASTs.isEmpty()) {
+			return;
 		}
+		
+		
 	}
 
 	private void _checkEnforceFactory(
