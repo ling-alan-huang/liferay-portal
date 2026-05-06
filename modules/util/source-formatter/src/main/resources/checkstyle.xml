@@ -440,6 +440,11 @@
 			<property name="description" value="Validates variable names that have type `*Exception`." />
 			<message key="variable.rename" value="Rename exception variable &quot;{0}&quot; to &quot;{1}&quot;" />
 		</module>
+		<module name="com.liferay.source.formatter.checkstyle.check.ExpandoBridgeAttributesOrderCheck">
+			<property name="category" value="Bug Prevention" />
+			<property name="description" value="Ensure `setExpandoBridgeAttributes` is the final setter called on a model before the `*Persistence.update` method." />
+			<message key="method.call.order.incorrect" value="&quot;{0}&quot; should be the final setter called on a model before &quot;{1}&quot;" />
+		</module>
 		<module name="com.liferay.source.formatter.checkstyle.check.FactoryCheck">
 			<property name="category" value="Bug Prevention" />
 			<property name="description" value="Finds cases where `*Factory` should be used when creating new instances of an object." />
