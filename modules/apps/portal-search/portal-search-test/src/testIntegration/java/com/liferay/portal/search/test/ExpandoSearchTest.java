@@ -458,11 +458,17 @@ public class ExpandoSearchTest {
 	@Inject
 	private ExpandoColumnLocalService _expandoColumnLocalService;
 
-	@DeleteAfterTestRun
-	private final List<ExpandoColumn> _expandoColumns = new ArrayList<>();
-
 	@Inject
 	private ExpandoTableLocalService _expandoTableLocalService;
+
+	@Inject
+	private IndexerRegistry _indexerRegistry;
+
+	@Inject
+	private UserLocalService _userLocalService;
+
+	@DeleteAfterTestRun
+	private final List<ExpandoColumn> _expandoColumns = new ArrayList<>();
 
 	@DeleteAfterTestRun
 	private final List<ExpandoTable> _expandoTables = new ArrayList<>();
@@ -471,12 +477,6 @@ public class ExpandoSearchTest {
 	private final List<FileEntry> _fileEntries = new ArrayList<>();
 
 	private Indexer<User> _indexer;
-
-	@Inject
-	private IndexerRegistry _indexerRegistry;
-
-	@Inject
-	private UserLocalService _userLocalService;
 
 	@DeleteAfterTestRun
 	private final List<User> _users = new ArrayList<>();

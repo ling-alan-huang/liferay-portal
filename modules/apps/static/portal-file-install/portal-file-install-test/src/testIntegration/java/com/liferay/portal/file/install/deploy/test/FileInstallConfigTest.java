@@ -453,7 +453,7 @@ public class FileInstallConfigTest {
 		FileInstallConfigTest.class.getName() + "Configuration";
 
 	@Inject
-	private static ConfigurationAdmin _configurationAdmin;
+	private ConfigurationAdmin _configurationAdmin;
 
 	private BundleContext _bundleContext;
 	private Configuration _configuration;

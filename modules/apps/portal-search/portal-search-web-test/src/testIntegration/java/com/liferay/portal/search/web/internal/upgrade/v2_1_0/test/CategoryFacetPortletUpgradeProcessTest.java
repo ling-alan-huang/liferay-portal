@@ -145,6 +145,9 @@ public class CategoryFacetPortletUpgradeProcessTest {
 		"com.liferay.portal.search.web.internal.upgrade.v2_1_0." +
 			"CategoryFacetPortletUpgradeProcess";
 
+	@Inject
+	private PortletLocalService _portletLocalService;
+
 	@DeleteAfterTestRun
 	private AssetVocabulary _assetVocabulary1;
 
@@ -162,9 +165,6 @@ public class CategoryFacetPortletUpgradeProcessTest {
 
 	@Inject
 	private MultiVMPool _multiVMPool;
-
-	@Inject
-	private PortletLocalService _portletLocalService;
 
 	@DeleteAfterTestRun
 	private PortletPreferences _portletPreferences;

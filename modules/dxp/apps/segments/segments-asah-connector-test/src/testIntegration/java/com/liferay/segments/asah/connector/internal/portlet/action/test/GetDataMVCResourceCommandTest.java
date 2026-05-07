@@ -167,7 +167,7 @@ public class GetDataMVCResourceCommandTest {
 	private static CompanyLocalService _companyLocalService;
 
 	@Inject
-	private static LayoutSetLocalService _layoutSetLocalService;
+	private LayoutSetLocalService _layoutSetLocalService;
 
 	@DeleteAfterTestRun
 	private Group _group;

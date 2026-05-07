@@ -528,7 +528,7 @@ public class FileInstallDeployTest {
 	private static final String _TEST_VALUE_2 = "testValue2";
 
 	@Inject
-	private static ConfigurationAdmin _configurationAdmin;
+	private ConfigurationAdmin _configurationAdmin;
 
 	static {
 		Package pkg = FileInstallDeployTest.class.getPackage();

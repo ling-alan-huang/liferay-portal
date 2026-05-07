@@ -98,15 +98,16 @@ public class LanguageImplGetAvailableLocalesTest {
 	}
 
 	private static Company _company;
-	private static final Set<Locale> _locales = new HashSet<>(
-		Arrays.asList(
-			LocaleUtil.BRAZIL, LocaleUtil.HUNGARY, LocaleUtil.JAPAN,
-			LocaleUtil.US));
 
 	@Inject
 	private GroupLocalService _groupLocalService;
 
 	@Inject
 	private Language _language;
+
+	private static final Set<Locale> _locales = new HashSet<>(
+		Arrays.asList(
+			LocaleUtil.BRAZIL, LocaleUtil.HUNGARY, LocaleUtil.JAPAN,
+			LocaleUtil.US));
 
 }

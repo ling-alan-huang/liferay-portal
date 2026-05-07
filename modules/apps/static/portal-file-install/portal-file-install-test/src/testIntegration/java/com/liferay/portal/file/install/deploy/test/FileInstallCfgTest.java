@@ -118,7 +118,7 @@ public class FileInstallCfgTest {
 	private static BundleContext _bundleContext;
 
 	@Inject
-	private static ConfigurationAdmin _configurationAdmin;
+	private ConfigurationAdmin _configurationAdmin;
 
 	private static boolean _originalModuleFrameworkFileInstallCfgEnabled;
 

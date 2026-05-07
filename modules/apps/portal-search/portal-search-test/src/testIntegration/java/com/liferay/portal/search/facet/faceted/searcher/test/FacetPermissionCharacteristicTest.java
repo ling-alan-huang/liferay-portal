@@ -363,6 +363,12 @@ public class FacetPermissionCharacteristicTest {
 	@Inject
 	private FolderFacetFactory _folderFacetFactory;
 
+	@Inject
+	private Searcher _searcher;
+
+	@Inject
+	private SearchRequestBuilderFactory _searchRequestBuilderFactory;
+
 	@DeleteAfterTestRun
 	private Group _groupA;
 
@@ -375,13 +381,6 @@ public class FacetPermissionCharacteristicTest {
 	private JournalFolder _journalFolderB;
 	private Role _roleA;
 	private Role _roleB;
-
-	@Inject
-	private Searcher _searcher;
-
-	@Inject
-	private SearchRequestBuilderFactory _searchRequestBuilderFactory;
-
 	private ServiceContext _serviceContext;
 
 }

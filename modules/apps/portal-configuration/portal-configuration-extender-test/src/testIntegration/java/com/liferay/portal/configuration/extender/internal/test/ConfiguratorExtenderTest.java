@@ -471,10 +471,10 @@ public class ConfiguratorExtenderTest {
 	private static final String _JAR_BUNDLE_SYMBOLIC_NAME =
 		"com.liferay.foo.bundle.for.testing.symbolic.name";
 
-	private Bundle _bundle;
-
 	@Inject
 	private ConfigurationAdmin _configurationAdmin;
+
+	private Bundle _bundle;
 
 	private static class TestProperties<K, V> extends Hashtable<K, V> {
 

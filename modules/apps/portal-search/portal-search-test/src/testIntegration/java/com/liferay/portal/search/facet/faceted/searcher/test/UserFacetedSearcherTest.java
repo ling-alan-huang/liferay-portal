@@ -142,15 +142,15 @@ public class UserFacetedSearcherTest extends BaseFacetedSearcherTestCase {
 	@Inject
 	protected static Portal portal;
 
-	private static final Locale _locale = LocaleUtil.US;
-
-	@DeleteAfterTestRun
-	private final List<JournalArticle> _articles = new ArrayList<>();
-
 	@Inject
 	private JournalArticleLocalService _journalArticleLocalService;
 
+	private static final Locale _locale = LocaleUtil.US;
+
 	@Inject
 	private UserFacetFactory _userFacetFactory;
+
+	@DeleteAfterTestRun
+	private final List<JournalArticle> _articles = new ArrayList<>();
 
 }

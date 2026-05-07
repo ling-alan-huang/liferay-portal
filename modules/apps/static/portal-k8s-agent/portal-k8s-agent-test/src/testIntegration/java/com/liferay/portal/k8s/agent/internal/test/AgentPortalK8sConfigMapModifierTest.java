@@ -667,13 +667,13 @@ public class AgentPortalK8sConfigMapModifierTest {
 	private static BundleContext _bundleContext;
 
 	@Inject
-	private static CompanyLocalService _companyLocalService;
+	private CompanyLocalService _companyLocalService;
 
 	@Inject
 	private static ConfigurationAdmin _configurationAdmin;
 
 	@Inject
-	private static DataSource _dataSource;
+	private DataSource _dataSource;
 
 	private static NamespacedKubernetesClient _kubernetesMockClient;
 	private static KubernetesMockServer _kubernetesMockServer;

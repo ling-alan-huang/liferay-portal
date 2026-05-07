@@ -151,13 +151,13 @@ public class JournalArticleLocalServiceTreeTest {
 	}
 
 	@Inject
-	private static IndexerRegistry _indexerRegistry;
+	private IndexerRegistry _indexerRegistry;
 
 	@Inject
-	private static JournalArticleLocalService _journalArticleLocalService;
+	private JournalArticleLocalService _journalArticleLocalService;
 
 	@Inject
-	private static JournalFolderLocalService _journalFolderLocalService;
+	private JournalFolderLocalService _journalFolderLocalService;
 
 	@DeleteAfterTestRun
 	private Group _group;
