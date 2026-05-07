@@ -25,12 +25,12 @@ public class ExpandoBridgeAttributesOrderCheck extends BaseCheck {
 
 	@Override
 	protected void doVisitToken(DetailAST detailAST) {
-		List<DetailAST> methodCallDetailASTs = getMethodCalls(
-				detailAST, "setExpandoBridgeAttributes");
-		
-		if (methodCallDetailASTs.isEmpty()) {
+//		List<DetailAST> methodCallDetailASTs = getMethodCalls(
+//				detailAST, "setExpandoBridgeAttributes");
+//		
+//		if (methodCallDetailASTs.isEmpty()) {
 			return;
-		}
+//		}
 		
 		
 	}
