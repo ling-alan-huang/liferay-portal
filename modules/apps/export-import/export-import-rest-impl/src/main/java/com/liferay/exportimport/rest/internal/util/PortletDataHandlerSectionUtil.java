@@ -137,11 +137,13 @@ public class PortletDataHandlerSectionUtil {
 					setDeletionCount(() -> finalDeletionCount);
 					setLabel(() -> LanguageUtil.get(locale, entry.getKey()));
 					setName(entry::getKey);
+
+					List<PortletDataHandler> portletDataHandlersMap =
+						entry.getValue();
+
 					setPortletDataHandlers(
-						() -> entry.getValue(
-						).toArray(
-							new PortletDataHandler[0]
-						));
+						() -> portletDataHandlersMap.toArray(
+							new PortletDataHandler[0]));
 				}
 			},
 			PortletDataHandlerSection.class);
