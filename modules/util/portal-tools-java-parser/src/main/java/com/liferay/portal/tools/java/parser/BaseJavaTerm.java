@@ -298,12 +298,20 @@ public abstract class BaseJavaTerm implements JavaTerm {
 		StringBundler sb, JavaTerm javaTerm, String indent, String prefix,
 		String suffix, int maxLineLength) {
 
+		appendNewLine(
+			sb, javaTerm, indent, prefix, suffix, maxLineLength, false);
+	}
+
+	protected void appendNewLine(
+		StringBundler sb, JavaTerm javaTerm, String indent, String prefix,
+		String suffix, int maxLineLength, boolean precedingBlankLine) {
+
 		sb = _stripTrailingWhitespace(sb);
 
 		if (sb.index() > 0) {
 			indent = adjustIndent(sb, indent);
 
-			sb.append("\n");
+			sb.append(precedingBlankLine ? "\n\n" : "\n");
 		}
 
 		sb.append(indent);
