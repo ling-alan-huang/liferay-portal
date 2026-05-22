@@ -182,6 +182,7 @@ TSSpecFileStylingCheck | .ts or .tsx | Applies rules to enforce consistency in c
 TXTEmptyLinesCheck | .txt | Finds missing and unnecessary empty lines. |
 TXTStylingCheck | .txt | Applies rules to enforce consistency in code style. |
 TernaryOperatorCheck | .java, .jsp, .jspf, .jspx, .tag, .tpl, or .vm | Finds use of ternary operator in `java` files (use if statement instead). |
+TestClassUnnecessaryTryFinallyCheck | .java | Finds try-finally blocks in test classes whose finally body only calls a known cleanup method. |
 TextBlockCheck | .java | Finds usage of text block. |
 UnnecessaryMethodCallCheck | .java | Finds unnecessary method calls. |
 [WhitespaceAfterCheck](https://checkstyle.sourceforge.io/checks/whitespace/whitespaceafter.html) | .java, .jsp, .jspf, .jspx, .tag, .tpl, or .vm | Checks that a token is followed by whitespace, with the exception that it does not check for whitespace after the semicolon of an empty for iterator. |

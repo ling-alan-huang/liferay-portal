@@ -931,6 +931,11 @@
 			<property name="description" value="Finds missing LiferayUnitTestRule." />
 			<message key="test.rule.missing" value="Missing test rule &quot;LiferayUnitTestRule&quot;" />
 		</module>
+		<module name="com.liferay.source.formatter.checkstyle.check.TestClassUnnecessaryTryFinallyCheck">
+			<property name="category" value="Styling" />
+			<property name="description" value="Finds try-finally blocks in test classes whose finally body only calls a known cleanup method." />
+			<message key="try.finally.unnecessary" value="Inline try-finally; finally body only calls test cleanup method &quot;{0}&quot;" />
+		</module>
 		<module name="com.liferay.source.formatter.checkstyle.check.TextBlockCheck">
 			<property name="category" value="Styling" />
 			<property name="description" value="Finds usage of text block." />
