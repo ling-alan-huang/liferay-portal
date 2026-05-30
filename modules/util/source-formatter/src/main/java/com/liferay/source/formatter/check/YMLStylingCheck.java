@@ -129,7 +129,7 @@ public class YMLStylingCheck extends BaseFileCheck {
 		String fileName, String absolutePath, String content) {
 
 		content = content.replaceAll(
-			"(\\A|\n)( *)(description:) (?!\\|-)(.+)(\\Z|\n)",
+			"(\\A|\n)( *)(description:) +(?![|>])(.+)(\\Z|\n)",
 			"$1$2$3\n    $2$4$5");
 		content = content.replaceAll("(\\A|\n) *description:\n +\"\"", "");
 
