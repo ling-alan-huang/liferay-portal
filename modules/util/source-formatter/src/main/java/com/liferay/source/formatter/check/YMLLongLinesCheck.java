@@ -10,10 +10,10 @@ import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Validator;
+import com.liferay.source.formatter.check.util.SourceUtil;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.io.IOException;
 
 /**
  * @author Alan Huang
@@ -22,7 +22,8 @@ public class YMLLongLinesCheck extends BaseFileCheck {
 
 	@Override
 	protected String doProcess(
-		String fileName, String absolutePath, String content) {
+			String fileName, String absolutePath, String content)
+		throws IOException {
 
 		int maxLineLength = 0;
 
@@ -38,32 +39,84 @@ public class YMLLongLinesCheck extends BaseFileCheck {
 			return content;
 		}
 
-		Matcher matcher = _descriptionPattern.matcher(content);
+		StringBundler sb = new StringBundler();
 
-		while (matcher.find()) {
-			String match = matcher.group(4);
+		String description = null;
+		String descriptionLeadingSpaces = StringPool.BLANK;
+		String leadingSpaces = StringPool.BLANK;
 
-			if (match.contains(": ")) {
+		for (String line : content.split("\n")) {
+			if (description == null) {
+				String trimmedLine = line.trim();
+
+				if (!trimmedLine.startsWith("description:")) {
+					sb.append(line);
+					sb.append(StringPool.NEW_LINE);
+
+					continue;
+				}
+
+				descriptionLeadingSpaces = SourceUtil.getLeadingSpaces(line);
+
+				sb.append(descriptionLeadingSpaces);
+
+				sb.append("description:");
+				sb.append(StringPool.NEW_LINE);
+
+				description = StringPool.BLANK;
+
 				continue;
 			}
 
-			String description = StringUtil.trim(
-				match.replaceAll("\n +", StringPool.SPACE));
+			leadingSpaces = SourceUtil.getLeadingSpaces(line);
 
-			String indent = matcher.group(2) + StringPool.FOUR_SPACES;
+			if (leadingSpaces.length() > descriptionLeadingSpaces.length()) {
+				description = description + StringPool.SPACE + line.trim();
 
-			description = _splitDescription(
-				indent + description, indent, maxLineLength);
-
-			description = StringPool.NEW_LINE + description;
-
-			if (!StringUtil.equals(match, description)) {
-				return StringUtil.replaceFirst(
-					content, match, description, matcher.start(4));
+				continue;
 			}
+
+			if (!description.isEmpty()) {
+				String indent =
+					descriptionLeadingSpaces + StringPool.FOUR_SPACES;
+
+				description = indent + description.trim();
+
+				if (!fileName.endsWith("/rest-openapi.yaml")) {
+					description = _splitDescription(
+						description, indent, maxLineLength);
+				}
+
+				sb.append(description);
+				sb.append(StringPool.NEW_LINE);
+			}
+
+			sb.append(line);
+			sb.append(StringPool.NEW_LINE);
+
+			description = null;
+			descriptionLeadingSpaces = StringPool.BLANK;
 		}
 
-		return content;
+		if (!Validator.isBlank(description)) {
+			String indent = descriptionLeadingSpaces + StringPool.FOUR_SPACES;
+
+			description = indent + description.trim();
+
+			if (!fileName.endsWith("/rest-openapi.yaml")) {
+				description = _splitDescription(
+					description, indent, maxLineLength);
+			}
+
+			sb.append(description);
+			sb.append(StringPool.NEW_LINE);
+		}
+
+		if (sb.index() > 0) {
+			sb.setIndex(sb.index() - 1);
+		}
+
+		return sb.toString();
 	}
 
 	private String _splitDescription(
@@ -100,8 +153,5 @@ public class YMLLongLinesCheck extends BaseFileCheck {
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		YMLLongLinesCheck.class);
-
-	private static final Pattern _descriptionPattern = Pattern.compile(
-		"(\n( +)description:(\n\\2 +#.*)*)((\n\\2 +.+)+)");
 
 }
