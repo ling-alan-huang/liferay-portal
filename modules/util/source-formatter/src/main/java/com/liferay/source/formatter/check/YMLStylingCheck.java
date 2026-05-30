@@ -41,7 +41,6 @@ public class YMLStylingCheck extends BaseFileCheck {
 
 		content = content.replaceAll(
 			"(\\A|\n)( *#)@? ?(review)(\\Z|\n)", "$1$2 @$3$4");
-
 		content = _formatDescription(fileName, absolutePath, content);
 
 		return _formatQuotes(content);
