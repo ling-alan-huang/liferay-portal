@@ -32,8 +32,7 @@ components:
                     $ref: "#/components/schemas/Admin"
                     # @review
                     description:
-                        The portal instance's administrator. This field is optional and is only used in the portal
-                        instance creation.
+                        The portal instance's administrator. This field is optional and is only used in the portal instance creation.
                     writeOnly: true
                 companyId:
                     description:
@@ -56,8 +55,7 @@ components:
             type: object
 info:
     description:
-        "A Java client JAR is available for use with the group ID 'com.liferay', artifact ID
-        'com.liferay.headless.portal.instances.client', and version '1.0.31'."
+        "A Java client JAR is available for use with the group ID 'com.liferay', artifact ID 'com.liferay.headless.portal.instances.client', and version '1.0.31'."
     license:
         name: Apache 2.0
         url: http://www.apache.org/licenses/LICENSE-2.0.html
@@ -93,7 +91,6 @@ paths:
                                 type: array
                     description:
                         default response
-            # @review
             tags: ["PortalInstance"]
         post:
             description:
@@ -118,7 +115,6 @@ paths:
                                 $ref: "#/components/schemas/PortalInstance"
                     description:
                         default response
-            # @review
             tags: ["PortalInstance"]
     /portal-instances/{portalInstanceId}:
         delete:
@@ -159,13 +155,11 @@ paths:
                                 $ref: "#/components/schemas/PortalInstance"
                     description:
                         default response
-            # @review
             tags: ["PortalInstance"]
         patch:
             # @review
             description:
-                Updates the portal instance with information sent in the request body. Only the provided fields are
-                updated.
+                Updates the portal instance with information sent in the request body. Only the provided fields are updated.
             operationId: patchPortalInstance
             parameters:
                 -   in: path
@@ -193,7 +187,6 @@ paths:
                     # @review
                     description:
                         "Portal instance successfully updated"
-            # @review
             tags: ["PortalInstance"]
     /portal-instances/{portalInstanceId}/activate:
         # @review
@@ -219,8 +212,7 @@ paths:
         # @review
         put:
             description:
-                Deactivates the portal instance. When a portal instance is deactivated, its virtual host will not longer
-                respond requests.
+                Deactivates the portal instance. When a portal instance is deactivated, its virtual host will not longer respond requests.
             operationId: putPortalInstanceDeactivate
             parameters:
                 -   in: path
