@@ -153,12 +153,22 @@ public class YMLStylingCheck extends BaseFileCheck {
 		String leadingSpaces = StringPool.BLANK;
 
 		for (String line : content.split("\n")) {
-			if (description == null) {
-				String trimmedLine = line.trim();
+			String trimmedLine = line.trim();
+
+			if (trimmedLine.matches("\\w+:.*")) {
+				if (!Validator.isBlank(description)) {
+					sb.append(
+						_formatDescription(
+							description, descriptionLeadingSpaces, fileName,
+							maxLineLength));
+					sb.append(StringPool.NEW_LINE);
+				}
 
 				if (!trimmedLine.startsWith("description:")) {
 					sb.append(line);
 					sb.append(StringPool.NEW_LINE);
+
+					description = null;
 
 					continue;
 				}
@@ -175,47 +185,25 @@ public class YMLStylingCheck extends BaseFileCheck {
 				continue;
 			}
 
-			leadingSpaces = SourceUtil.getLeadingSpaces(line);
-
-			if (leadingSpaces.length() > descriptionLeadingSpaces.length()) {
-				description = description + StringPool.SPACE + line.trim();
+			if (description == null) {
+				sb.append(line);
+				sb.append(StringPool.NEW_LINE);
 
 				continue;
 			}
 
-			if (!description.isEmpty()) {
-				String indent =
-					descriptionLeadingSpaces + StringPool.FOUR_SPACES;
+			leadingSpaces = SourceUtil.getLeadingSpaces(line);
 
-				description = indent + description.trim();
-
-				if (!fileName.endsWith("/rest-openapi.yaml")) {
-					description = _splitDescription(
-						description, indent, maxLineLength);
-				}
-
-				sb.append(description);
-				sb.append(StringPool.NEW_LINE);
+			if (leadingSpaces.length() > descriptionLeadingSpaces.length()) {
+				description = description + StringPool.SPACE + line.trim();
 			}
-
-			sb.append(line);
-			sb.append(StringPool.NEW_LINE);
-
-			description = null;
-			descriptionLeadingSpaces = StringPool.BLANK;
 		}
 
 		if (!Validator.isBlank(description)) {
-			String indent = descriptionLeadingSpaces + StringPool.FOUR_SPACES;
-
-			description = indent + description.trim();
-
-			if (!fileName.endsWith("/rest-openapi.yaml")) {
-				description = _splitDescription(
-					description, indent, maxLineLength);
-			}
-
-			sb.append(description);
+			sb.append(
+				_formatDescription(
+					description, descriptionLeadingSpaces, fileName,
+					maxLineLength));
 			sb.append(StringPool.NEW_LINE);
 		}
 
@@ -224,6 +212,20 @@ public class YMLStylingCheck extends BaseFileCheck {
 		}
 
 		return sb.toString();
+	}
+
+	private String _formatDescription(
+		String description, String indent, String fileName, int maxLineLength) {
+
+		indent = indent + StringPool.FOUR_SPACES;
+
+		description = indent + description.trim();
+
+		if (!fileName.endsWith("/rest-openapi.yaml")) {
+			description = _splitDescription(description, indent, maxLineLength);
+		}
+
+		return description;
 	}
 
 	private String _formatQuotes(String content) throws IOException {
