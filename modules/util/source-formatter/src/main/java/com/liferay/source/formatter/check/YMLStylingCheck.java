@@ -155,7 +155,7 @@ public class YMLStylingCheck extends BaseFileCheck {
 		for (String line : content.split("\n")) {
 			String trimmedLine = line.trim();
 
-			if (trimmedLine.matches("\\w+:.*")) {
+			if (trimmedLine.matches(".+?:.*")) {
 				if (!Validator.isBlank(description)) {
 					sb.append(
 						_formatDescription(
