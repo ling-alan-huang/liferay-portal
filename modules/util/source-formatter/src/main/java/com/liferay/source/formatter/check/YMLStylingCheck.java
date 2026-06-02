@@ -159,8 +159,9 @@ public class YMLStylingCheck extends BaseFileCheck {
 				if (!Validator.isBlank(description)) {
 					sb.append(
 						_formatDescription(
-							description, descriptionLeadingSpaces, fileName,
-							maxLineLength));
+							description,
+							descriptionLeadingSpaces + StringPool.FOUR_SPACES,
+							fileName, maxLineLength));
 					sb.append(StringPool.NEW_LINE);
 				}
 
@@ -195,14 +196,16 @@ public class YMLStylingCheck extends BaseFileCheck {
 			leadingSpaces = SourceUtil.getLeadingSpaces(line);
 
 			if (leadingSpaces.length() > descriptionLeadingSpaces.length()) {
-				description = description + StringPool.SPACE + line.trim();
+				description =
+					description.trim() + StringPool.SPACE + trimmedLine;
 			}
 		}
 
 		if (!Validator.isBlank(description)) {
 			sb.append(
 				_formatDescription(
-					description, descriptionLeadingSpaces, fileName,
+					description,
+					descriptionLeadingSpaces + StringPool.FOUR_SPACES, fileName,
 					maxLineLength));
 			sb.append(StringPool.NEW_LINE);
 		}
@@ -217,15 +220,13 @@ public class YMLStylingCheck extends BaseFileCheck {
 	private String _formatDescription(
 		String description, String indent, String fileName, int maxLineLength) {
 
-		indent = indent + StringPool.FOUR_SPACES;
-
-		description = indent + description.trim();
+		description = description.trim();
 
 		if (!fileName.endsWith("/rest-openapi.yaml")) {
-			description = _splitDescription(description, indent, maxLineLength);
+			return _splitDescription(description, indent, maxLineLength);
 		}
 
-		return description;
+		return indent + description;
 	}
 
 	private String _formatQuotes(String content) throws IOException {
@@ -339,31 +340,35 @@ public class YMLStylingCheck extends BaseFileCheck {
 	private String _splitDescription(
 		String description, String indent, int maxLineLength) {
 
-		if (description.length() <= maxLineLength) {
+		if (Validator.isNull(description)) {
+			return StringPool.BLANK;
+		}
+
+		if ((indent.length() + description.length()) <= maxLineLength) {
+			return indent + description;
+		}
+
+		description = indent + description;
+
+		int x = description.indexOf(CharPool.SPACE, indent.length());
+
+		if (x == -1) {
 			return description;
 		}
 
-		int pos = description.indexOf(CharPool.SPACE, indent.length());
+		if (x > maxLineLength) {
+			String s = description.substring(x + 1);
 
-		if (pos == -1) {
-			return description;
+			return description.substring(0, x) + "\n" +
+				_splitDescription(s, indent, maxLineLength);
 		}
 
-		if (pos > maxLineLength) {
-			return StringBundler.concat(
-				description.substring(0, pos), StringPool.NEW_LINE,
-				_splitDescription(
-					indent + description.substring(pos + 1), indent,
-					maxLineLength));
-		}
+		x = description.lastIndexOf(CharPool.SPACE, maxLineLength);
 
-		pos = description.lastIndexOf(CharPool.SPACE, maxLineLength);
+		String s = description.substring(x + 1);
 
-		return StringBundler.concat(
-			description.substring(0, pos), StringPool.NEW_LINE,
-			_splitDescription(
-				indent + description.substring(pos + 1), indent,
-				maxLineLength));
+		return description.substring(0, x) + "\n" +
+			_splitDescription(s, indent, maxLineLength);
 	}
 
 	private static final String _MAX_LINE_LENGTH = "maxLineLength";
