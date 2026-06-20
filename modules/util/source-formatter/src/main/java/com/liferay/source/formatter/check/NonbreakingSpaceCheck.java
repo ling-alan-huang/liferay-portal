@@ -6,6 +6,7 @@
 package com.liferay.source.formatter.check;
 
 import com.liferay.petra.string.CharPool;
+import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 
 /**
@@ -16,6 +17,14 @@ public class NonbreakingSpaceCheck extends BaseFileCheck {
 	@Override
 	protected String doProcess(
 		String fileName, String absolutePath, String content) {
+
+		int index = fileName.lastIndexOf(StringPool.SLASH);
+
+		String shortFileName = fileName.substring(index + 1);
+
+		if (shortFileName.matches("Language_.+\\.properties")) {
+			return content;
+		}
 
 		return StringUtil.replace(
 			content, CharPool.NO_BREAK_SPACE, CharPool.SPACE);

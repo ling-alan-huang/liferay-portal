@@ -18,6 +18,14 @@ public class SlantedQuotesCheck extends BaseFileCheck {
 	protected String doProcess(
 		String fileName, String absolutePath, String content) {
 
+		int index = fileName.lastIndexOf(StringPool.SLASH);
+
+		String shortFileName = fileName.substring(index + 1);
+
+		if (shortFileName.matches("Language_.+\\.properties")) {
+			return content;
+		}
+
 		content = _fixSlantedQuotes(
 			content, _SLANTED_DOUBLE_QUOTE_CHARS, StringPool.QUOTE);
 		content = _fixSlantedQuotes(
