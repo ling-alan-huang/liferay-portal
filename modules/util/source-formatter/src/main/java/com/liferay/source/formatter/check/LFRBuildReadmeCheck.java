@@ -6,8 +6,8 @@
 package com.liferay.source.formatter.check;
 
 import com.liferay.petra.string.StringBundler;
-import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.source.formatter.check.util.SourceUtil;
 import com.liferay.source.formatter.util.SourceFormatterUtil;
 
 /**
@@ -20,9 +20,7 @@ public class LFRBuildReadmeCheck extends BaseFileCheck {
 			String fileName, String absolutePath, String content)
 		throws Exception {
 
-		int pos = fileName.lastIndexOf(StringPool.SLASH);
-
-		String shortFileName = fileName.substring(pos + 1);
+		String shortFileName = SourceUtil.getShortFileName(fileName);
 
 		String readmeMarkdownContent = _getModulesReadmeMarkdownContent(
 			absolutePath);

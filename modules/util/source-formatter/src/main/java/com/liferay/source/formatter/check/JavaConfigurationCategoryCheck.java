@@ -7,6 +7,7 @@ package com.liferay.source.formatter.check;
 
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.source.formatter.check.util.SourceUtil;
 import com.liferay.source.formatter.util.FileUtil;
 import com.liferay.source.formatter.util.SourceFormatterUtil;
 
@@ -43,7 +44,7 @@ public class JavaConfigurationCategoryCheck extends BaseFileCheck {
 			return content;
 		}
 
-		String shortFileName = fileName.substring(x + 1);
+		String shortFileName = SourceUtil.getShortFileName(fileName);
 
 		if (!shortFileName.endsWith("Configuration.java")) {
 			return content;

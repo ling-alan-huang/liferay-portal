@@ -242,6 +242,12 @@ public class SourceUtil {
 		}
 	}
 
+	public static String getShortFileName(String fileName) {
+		int index = fileName.lastIndexOf(StringPool.SLASH);
+
+		return fileName.substring(index + 1);
+	}
+
 	public static boolean hasTypo(String s1, String s2) {
 		if (Validator.isNull(s1) || Validator.isNull(s2) || s1.equals(s2) ||
 			(s1.charAt(0) != s2.charAt(0)) ||

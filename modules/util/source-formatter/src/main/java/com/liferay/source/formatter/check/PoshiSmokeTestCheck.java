@@ -26,9 +26,7 @@ public class PoshiSmokeTestCheck extends BaseFileCheck {
 			return content;
 		}
 
-		int pos = fileName.lastIndexOf(StringPool.SLASH);
-
-		String shortFileName = fileName.substring(pos + 1);
+		String shortFileName = SourceUtil.getShortFileName(fileName);
 
 		if (!shortFileName.contains("Smoke") &&
 			!shortFileName.contains("smoke")) {

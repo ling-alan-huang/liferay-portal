@@ -12,6 +12,7 @@ import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.NaturalOrderStringComparator;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.source.formatter.check.util.SourceUtil;
 import com.liferay.source.formatter.processor.PropertiesSourceProcessor;
 
 import java.io.IOException;
@@ -39,9 +40,7 @@ public class PropertiesPortalFileCheck extends BaseFileCheck {
 			String fileName, String absolutePath, String content)
 		throws IOException {
 
-		int pos = fileName.lastIndexOf(StringPool.SLASH);
-
-		String shortFileName = fileName.substring(pos + 1);
+		String shortFileName = SourceUtil.getShortFileName(fileName);
 
 		if (shortFileName.equals("test-portal-impl.properties") ||
 			((isPortalSource() || isSubrepository()) &&

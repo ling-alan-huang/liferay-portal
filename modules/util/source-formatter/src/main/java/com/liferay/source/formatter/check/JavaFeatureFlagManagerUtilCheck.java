@@ -11,6 +11,7 @@ import com.liferay.portal.tools.GitUtil;
 import com.liferay.portal.tools.ToolsUtil;
 import com.liferay.source.formatter.SourceFormatterArgs;
 import com.liferay.source.formatter.check.util.JavaSourceUtil;
+import com.liferay.source.formatter.check.util.SourceUtil;
 import com.liferay.source.formatter.processor.SourceProcessor;
 
 import java.util.List;
@@ -32,9 +33,7 @@ public class JavaFeatureFlagManagerUtilCheck extends BaseFileCheck {
 			String fileName, String absolutePath, String content)
 		throws Exception {
 
-		int pos = fileName.lastIndexOf(StringPool.SLASH);
-
-		String shortFileName = fileName.substring(pos + 1);
+		String shortFileName = SourceUtil.getShortFileName(fileName);
 
 		if (absolutePath.contains("/feature-flag/") ||
 			shortFileName.equals("FeatureFlagManagerUtil.java")) {

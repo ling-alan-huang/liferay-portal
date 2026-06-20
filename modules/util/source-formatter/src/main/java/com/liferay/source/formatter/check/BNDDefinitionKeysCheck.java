@@ -8,6 +8,7 @@ package com.liferay.source.formatter.check;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.source.formatter.check.util.BNDSourceUtil;
+import com.liferay.source.formatter.check.util.SourceUtil;
 
 import java.util.Comparator;
 import java.util.List;
@@ -83,12 +84,9 @@ public class BNDDefinitionKeysCheck extends BaseDefinitionKeysCheck {
 		}
 
 		if (correctKey == null) {
-			int pos = fileName.lastIndexOf(StringPool.SLASH);
-
-			String shortFileName = fileName.substring(pos + 1);
-
 			Map<String, String> definitionKeysMap =
-				fileSpecificDefinitionKeysMap.get(shortFileName);
+				fileSpecificDefinitionKeysMap.get(
+					SourceUtil.getShortFileName(fileName));
 
 			if (definitionKeysMap != null) {
 				correctKey = definitionKeysMap.get(lowerCaseDefinitionKey);

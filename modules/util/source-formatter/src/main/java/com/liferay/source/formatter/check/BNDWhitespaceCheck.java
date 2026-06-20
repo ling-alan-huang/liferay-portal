@@ -8,6 +8,7 @@ package com.liferay.source.formatter.check;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.source.formatter.check.util.BNDSourceUtil;
+import com.liferay.source.formatter.check.util.SourceUtil;
 
 import java.io.IOException;
 
@@ -25,11 +26,8 @@ public class BNDWhitespaceCheck extends WhitespaceCheck {
 			String fileName, String absolutePath, String content)
 		throws IOException {
 
-		int pos = fileName.lastIndexOf(StringPool.SLASH);
-
-		String shortFileName = fileName.substring(pos + 1);
-
-		content = _formatWhitespace(shortFileName, content);
+		content = _formatWhitespace(
+			SourceUtil.getShortFileName(fileName), content);
 
 		content = StringUtil.replace(
 			content, new String[] {"\n\n", "\t ", ": \t", " :=", ":\t ", ":= "},

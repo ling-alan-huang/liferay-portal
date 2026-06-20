@@ -11,6 +11,7 @@ import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.source.formatter.check.comparator.PropertyValueComparator;
+import com.liferay.source.formatter.check.util.SourceUtil;
 
 import java.io.IOException;
 
@@ -29,9 +30,7 @@ public class PropertiesMultiLineValuesOrderCheck extends BaseFileCheck {
 			String fileName, String absolutePath, String content)
 		throws IOException {
 
-		int pos = fileName.lastIndexOf(StringPool.SLASH);
-
-		String shortFileName = fileName.substring(pos + 1);
+		String shortFileName = SourceUtil.getShortFileName(fileName);
 
 		if (!shortFileName.matches(
 				"(ci|compatibility|system(-ext)?|poshi|test)\\.properties")) {

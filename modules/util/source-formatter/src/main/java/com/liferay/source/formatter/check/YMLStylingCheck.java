@@ -167,9 +167,7 @@ public class YMLStylingCheck extends BaseFileCheck {
 
 			String newDescription = StringPool.BLANK;
 
-			int index = fileName.lastIndexOf(StringPool.SLASH);
-
-			String shortFileName = fileName.substring(index + 1);
+			String shortFileName = SourceUtil.getShortFileName(fileName);
 
 			if (shortFileName.matches("rest-openapi(-v\\d+\\.\\d+)?\\.yaml")) {
 				newDescription =

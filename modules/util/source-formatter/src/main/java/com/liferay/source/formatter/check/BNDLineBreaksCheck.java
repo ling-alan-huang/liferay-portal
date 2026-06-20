@@ -5,9 +5,9 @@
 
 package com.liferay.source.formatter.check;
 
-import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.source.formatter.check.util.BNDSourceUtil;
+import com.liferay.source.formatter.check.util.SourceUtil;
 
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -22,11 +22,8 @@ public class BNDLineBreaksCheck extends BaseFileCheck {
 	protected String doProcess(
 		String fileName, String absolutePath, String content) {
 
-		int pos = fileName.lastIndexOf(StringPool.SLASH);
-
-		String shortFileName = fileName.substring(pos + 1);
-
-		return _formatLineBreaks(shortFileName, content);
+		return _formatLineBreaks(
+			SourceUtil.getShortFileName(fileName), content);
 	}
 
 	private String _formatLineBreaks(

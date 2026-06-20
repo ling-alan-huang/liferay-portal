@@ -12,6 +12,7 @@ import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.tools.GitUtil;
 import com.liferay.source.formatter.SourceFormatterArgs;
+import com.liferay.source.formatter.check.util.SourceUtil;
 import com.liferay.source.formatter.processor.SourceProcessor;
 import com.liferay.source.formatter.util.FileUtil;
 import com.liferay.source.formatter.util.SourceFormatterUtil;
@@ -116,7 +117,8 @@ public class PoshiDependenciesFileLocationCheck extends BaseFileCheck {
 				for (String line : currentBranchFileDiff.split("\n")) {
 					if (line.startsWith(StringPool.DASH) &&
 						_containsFileName(
-							line, _getShortFileName(entry.getKey()))) {
+							line,
+							SourceUtil.getShortFileName(entry.getKey()))) {
 
 						break;
 					}
@@ -170,12 +172,6 @@ public class PoshiDependenciesFileLocationCheck extends BaseFileCheck {
 
 			return true;
 		}
-	}
-
-	private String _getShortFileName(String fileName) {
-		int pos = fileName.lastIndexOf(StringPool.SLASH);
-
-		return fileName.substring(pos + 1);
 	}
 
 	private synchronized void _populateTestCaseAndDependenciesFileNames()
@@ -248,7 +244,7 @@ public class PoshiDependenciesFileLocationCheck extends BaseFileCheck {
 
 				if (_containsFileName(
 						testCaseFileContent,
-						_getShortFileName(entry.getKey()))) {
+						SourceUtil.getShortFileName(entry.getKey()))) {
 
 					Set<String> referencesFileNames = entry.getValue();
 
@@ -264,7 +260,7 @@ public class PoshiDependenciesFileLocationCheck extends BaseFileCheck {
 
 				if (_containsFileName(
 						testCaseFileContent,
-						_getShortFileName(entry.getKey()))) {
+						SourceUtil.getShortFileName(entry.getKey()))) {
 
 					Set<String> referencesFileNames = entry.getValue();
 
