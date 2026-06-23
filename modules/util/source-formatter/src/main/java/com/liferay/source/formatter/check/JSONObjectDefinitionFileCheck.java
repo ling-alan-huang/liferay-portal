@@ -32,13 +32,24 @@ public class JSONObjectDefinitionFileCheck extends BaseFileCheck {
 	protected String doProcess(
 		String fileName, String absolutePath, String content) {
 
-		if (!absolutePath.endsWith("-object-definition.json") &&
-			!absolutePath.endsWith(
-				"object-definition.batch-engine-data.json")) {
+		return _sortObjectFields(absolutePath, content);
+	}
 
-			return content;
+	private void _sortObjectFields(JSONObject jsonObject) {
+		JSONArray objectFieldsJSONArray = jsonObject.getJSONArray(
+			"objectFields");
+
+		if (objectFieldsJSONArray == null) {
+			return;
 		}
 
+		jsonObject.put(
+			"objectFields",
+			JSONSourceUtil.sortJSONArray(
+				objectFieldsJSONArray, new ObjectFieldComparator()));
+	}
+
+	private String _sortObjectFields(String absolutePath, String content) {
 		try {
 			JSONObject jsonObject = new JSONObjectImpl(content);
 
@@ -72,20 +83,6 @@ public class JSONObjectDefinitionFileCheck extends BaseFileCheck {
 		}
 
 		return content;
-	}
-
-	private void _sortObjectFields(JSONObject jsonObject) {
-		JSONArray objectFieldsJSONArray = jsonObject.getJSONArray(
-			"objectFields");
-
-		if (objectFieldsJSONArray == null) {
-			return;
-		}
-
-		jsonObject.put(
-			"objectFields",
-			JSONSourceUtil.sortJSONArray(
-				objectFieldsJSONArray, new ObjectFieldComparator()));
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
