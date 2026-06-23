@@ -15,6 +15,20 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.source.formatter.check.util.JSONSourceUtil;
 
+import com.puppycrawl.tools.checkstyle.JavaParser;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.FileContents;
+import com.puppycrawl.tools.checkstyle.api.FileText;
+import com.puppycrawl.tools.checkstyle.api.FullIdent;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.liferay.source.formatter.checkstyle.util.CheckstyleUtil;
+import com.liferay.source.formatter.checkstyle.util.DetailASTUtil;
+import com.liferay.source.formatter.util.FileUtil;
+import com.liferay.petra.string.StringBundler;
+import com.liferay.portal.kernel.util.StringUtil;
+
+import java.io.File;
+
 import java.util.Comparator;
 import java.util.List;
 
@@ -30,11 +44,227 @@ public class JSONObjectDefinitionFileCheck extends BaseFileCheck {
 
 	@Override
 	protected String doProcess(
-		String fileName, String absolutePath, String content) {
+		String fileName, String absolutePath, String content) throws Exception {
 
+		_checkClassName(fileName, absolutePath, content);
+		
 		return _sortObjectFields(absolutePath, content);
 	}
 
+	private void _checkClassName(String fileName,String absolutePath, String content) throws Exception {
+
+		String regex = _getClassNameRegex();
+
+		if (regex == null) {
+			return;
+		}
+
+
+		try {
+			JSONObject jsonObject = new JSONObjectImpl(content);
+
+			if (absolutePath.endsWith("-object-definition.json")) {
+				String className = jsonObject.getString("className");
+
+				if (className.isBlank() || className.matches(regex)) {
+					return;
+				}
+			}
+			else if (absolutePath.endsWith(
+					"object-definition.batch-engine-data.json")) {
+
+				JSONArray itemsJSONArray = jsonObject.getJSONArray("items");
+
+				if (itemsJSONArray == null) {
+					return;
+				}
+
+				List<Object> items = JSONUtil.toObjectList(itemsJSONArray);
+
+				for (Object item : items) {
+					JSONObject itemJSONObject = (JSONObject)item;
+
+					String className = itemJSONObject.getString(
+							"className");
+
+					if (className.isBlank() || className.matches(regex)) {
+						return;
+					}
+				}
+			}
+		}
+		catch (JSONException jsonException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(jsonException);
+			}
+		}
+
+		addMessage(
+				fileName,
+				"\"className\" does not match the pattern specified by \"_class" +
+				"NamePattern\" in \"ObjectDefinitionClassNameProcessorImpl\"");
+
+	}
+
+	private boolean _appendString(DetailAST detailAST, StringBundler sb) {
+		if (detailAST == null) {
+			return false;
+		}
+
+		if (detailAST.getType() == TokenTypes.STRING_LITERAL) {
+			String text = detailAST.getText();
+
+			sb.append(text.substring(1, text.length() - 1));
+
+			return true;
+		}
+
+		if (detailAST.getType() != TokenTypes.PLUS) {
+			return false;
+		}
+
+		DetailAST firstChildDetailAST = detailAST.getFirstChild();
+
+		if (firstChildDetailAST == null) {
+			return false;
+		}
+
+		DetailAST nextSiblingDetailAST = firstChildDetailAST.getNextSibling();
+
+		if (_appendString(firstChildDetailAST, sb) &&
+		    _appendString(nextSiblingDetailAST, sb)) {
+
+			return true;
+		}
+
+		return false;
+	}
+
+	private synchronized String _getClassNameRegex() throws Exception {
+		if (_classNameRegex != null) {
+			return _classNameRegex;
+		}
+
+		File portalDir = getPortalDir();
+
+		if (portalDir == null) {
+			return null;
+		}
+
+		File file = new File(
+				portalDir,
+				"/modules/apps/object/object-service/src/main/java/com/liferay" +
+				"/object/internal/definition/processor" +
+				"/ObjectDefinitionClassNameProcessorImpl.java");
+
+		String content = FileUtil.read(file);
+
+		FileText fileText = new FileText(
+				file, CheckstyleUtil.getLines(content));
+
+		FileContents fileContents = new FileContents(fileText);
+
+		DetailAST rootDetailAST = JavaParser.parse(fileContents);
+
+		DetailAST nextSiblingDetailAST = rootDetailAST.getNextSibling();
+
+		while (true) {
+			if (nextSiblingDetailAST.getType() != TokenTypes.CLASS_DEF) {
+				nextSiblingDetailAST = nextSiblingDetailAST.getNextSibling();
+
+				continue;
+			}
+
+			DetailAST objBlockDetailAST = nextSiblingDetailAST.findFirstToken(
+					TokenTypes.OBJBLOCK);
+
+			List<DetailAST> variableDefinitionDetailASTs =
+					DetailASTUtil.getAllChildTokens(
+							objBlockDetailAST, false, TokenTypes.VARIABLE_DEF);
+
+			for (DetailAST variableDefinitionDetailAST :
+					variableDefinitionDetailASTs) {
+
+				DetailAST identDetailAST =
+						variableDefinitionDetailAST.findFirstToken(
+								TokenTypes.IDENT);
+
+				if (identDetailAST == null) {
+					continue;
+				}
+
+				String variableName = identDetailAST.getText();
+
+				if (!variableName.equals("_classNamePattern")) {
+					continue;
+				}
+
+				DetailAST assignDetailAST =
+						variableDefinitionDetailAST.findFirstToken(
+								TokenTypes.ASSIGN);
+
+				if (assignDetailAST == null) {
+					return null;
+				}
+
+				DetailAST firstChildDetailAST = assignDetailAST.getFirstChild();
+
+				if ((firstChildDetailAST == null) ||
+				    (firstChildDetailAST.getType() != TokenTypes.EXPR)) {
+
+					return null;
+				}
+
+				firstChildDetailAST = firstChildDetailAST.getFirstChild();
+
+				if ((firstChildDetailAST == null) ||
+				    (firstChildDetailAST.getType() != TokenTypes.METHOD_CALL)) {
+
+					return null;
+				}
+
+				FullIdent fullIdent = FullIdent.createFullIdentBelow(
+						firstChildDetailAST);
+
+				if (!StringUtil.equals(
+						fullIdent.getText(), "Pattern.compile")) {
+
+					return null;
+				}
+
+				_classNameRegex = _extractCombinedString(firstChildDetailAST);
+
+				return _classNameRegex;
+			}
+
+			return null;
+		}
+	}
+
+	private String _extractCombinedString(DetailAST detailAST) {
+		DetailAST elistDetailAST = detailAST.findFirstToken(TokenTypes.ELIST);
+
+		if ((elistDetailAST == null) || (elistDetailAST.getChildCount() == 0)) {
+			return null;
+		}
+
+		DetailAST exprDetailAST = elistDetailAST.findFirstToken(
+				TokenTypes.EXPR);
+
+		if (exprDetailAST == null) {
+			return null;
+		}
+
+		StringBundler sb = new StringBundler();
+
+		if (_appendString(exprDetailAST.getFirstChild(), sb)) {
+			return StringUtil.replace(sb.toString(), "\\\\", "\\");
+		}
+
+		return null;
+	}
+	private String _classNameRegex;
+	
 	private void _sortObjectFields(JSONObject jsonObject) {
 		JSONArray objectFieldsJSONArray = jsonObject.getJSONArray(
 			"objectFields");
