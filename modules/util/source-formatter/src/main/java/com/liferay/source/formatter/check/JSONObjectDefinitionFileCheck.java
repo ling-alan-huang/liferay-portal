@@ -5,6 +5,7 @@
 
 package com.liferay.source.formatter.check;
 
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.json.JSONObjectImpl;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONException;
@@ -12,8 +13,12 @@ import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.source.formatter.check.util.JSONSourceUtil;
+import com.liferay.source.formatter.checkstyle.util.CheckstyleUtil;
+import com.liferay.source.formatter.checkstyle.util.DetailASTUtil;
+import com.liferay.source.formatter.util.FileUtil;
 
 import com.puppycrawl.tools.checkstyle.JavaParser;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -21,11 +26,6 @@ import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.liferay.source.formatter.checkstyle.util.CheckstyleUtil;
-import com.liferay.source.formatter.checkstyle.util.DetailASTUtil;
-import com.liferay.source.formatter.util.FileUtil;
-import com.liferay.petra.string.StringBundler;
-import com.liferay.portal.kernel.util.StringUtil;
 
 import java.io.File;
 
@@ -44,44 +44,26 @@ public class JSONObjectDefinitionFileCheck extends BaseFileCheck {
 
 	@Override
 	protected String doProcess(
-		String fileName, String absolutePath, String content) throws Exception {
-
-		_checkClassName(fileName, absolutePath, content);
-		
-		return _sortObjectFields(absolutePath, content);
-	}
-
-	private void _checkClassName(String fileName,String absolutePath, String content) throws Exception {
-
-		String regex = _getClassNameRegex();
-
-		if (regex == null) {
-			return;
-		}
-
+			String fileName, String absolutePath, String content)
+		throws Exception {
 
 		try {
 			JSONObject jsonObject = new JSONObjectImpl(content);
 
 			if (absolutePath.endsWith("-object-definition.json")) {
-				String className = jsonObject.getString("className");
+				_checkClassName(fileName, jsonObject);
+				_sortObjectFields(jsonObject);
 
-				if (className.isBlank() || className.matches(regex)) {
-					return;
-				}
-				addMessage(
-						fileName,
-						"\"className\" does not match the pattern specified by \"_class" +
-						"NamePattern\" in \"ObjectDefinitionClassNameProcessorImpl\"");
-
+				return JSONUtil.toString(jsonObject);
 			}
-			else if (absolutePath.endsWith(
+
+			if (absolutePath.endsWith(
 					"object-definition.batch-engine-data.json")) {
 
 				JSONArray itemsJSONArray = jsonObject.getJSONArray("items");
 
 				if (itemsJSONArray == null) {
-					return;
+					return JSONUtil.toString(jsonObject);
 				}
 
 				List<Object> items = JSONUtil.toObjectList(itemsJSONArray);
@@ -89,19 +71,11 @@ public class JSONObjectDefinitionFileCheck extends BaseFileCheck {
 				for (Object item : items) {
 					JSONObject itemJSONObject = (JSONObject)item;
 
-					String className = itemJSONObject.getString(
-							"className");
-
-					if (className.isBlank() || className.matches(regex)) {
-						return;
-					}
-
-					addMessage(
-							fileName,
-							"\"className\" does not match the pattern specified by \"_class" +
-							"NamePattern\" in \"ObjectDefinitionClassNameProcessorImpl\"");
-
+					_checkClassName(fileName, itemJSONObject);
+					_sortObjectFields(itemJSONObject);
 				}
+
+				return JSONUtil.toString(jsonObject);
 			}
 		}
 		catch (JSONException jsonException) {
@@ -110,7 +84,7 @@ public class JSONObjectDefinitionFileCheck extends BaseFileCheck {
 			}
 		}
 
-
+		return content;
 	}
 
 	private boolean _appendString(DetailAST detailAST, StringBundler sb) {
@@ -139,12 +113,33 @@ public class JSONObjectDefinitionFileCheck extends BaseFileCheck {
 		DetailAST nextSiblingDetailAST = firstChildDetailAST.getNextSibling();
 
 		if (_appendString(firstChildDetailAST, sb) &&
-		    _appendString(nextSiblingDetailAST, sb)) {
+			_appendString(nextSiblingDetailAST, sb)) {
 
 			return true;
 		}
 
 		return false;
+	}
+
+	private void _checkClassName(String fileName, JSONObject jsonObject)
+		throws Exception {
+
+		String regex = _getClassNameRegex();
+
+		if (regex == null) {
+			return;
+		}
+
+		String className = jsonObject.getString("className");
+
+		if (className.isBlank() || className.matches(regex)) {
+			return;
+		}
+
+		addMessage(
+			fileName,
+			"\"className\" does not match the pattern specified by \"_class" +
+				"NamePattern\" in \"ObjectDefinitionClassNameProcessorImpl\"");
 	}
 
 	private synchronized String _getClassNameRegex() throws Exception {
@@ -159,15 +154,15 @@ public class JSONObjectDefinitionFileCheck extends BaseFileCheck {
 		}
 
 		File file = new File(
-				portalDir,
-				"/modules/apps/object/object-service/src/main/java/com/liferay" +
+			portalDir,
+			"/modules/apps/object/object-service/src/main/java/com/liferay" +
 				"/object/internal/definition/processor" +
-				"/ObjectDefinitionClassNameProcessorImpl.java");
+					"/ObjectDefinitionClassNameProcessorImpl.java");
 
 		String content = FileUtil.read(file);
 
 		FileText fileText = new FileText(
-				file, CheckstyleUtil.getLines(content));
+			file, CheckstyleUtil.getLines(content));
 
 		FileContents fileContents = new FileContents(fileText);
 
@@ -183,18 +178,18 @@ public class JSONObjectDefinitionFileCheck extends BaseFileCheck {
 			}
 
 			DetailAST objBlockDetailAST = nextSiblingDetailAST.findFirstToken(
-					TokenTypes.OBJBLOCK);
+				TokenTypes.OBJBLOCK);
 
 			List<DetailAST> variableDefinitionDetailASTs =
-					DetailASTUtil.getAllChildTokens(
-							objBlockDetailAST, false, TokenTypes.VARIABLE_DEF);
+				DetailASTUtil.getAllChildTokens(
+					objBlockDetailAST, false, TokenTypes.VARIABLE_DEF);
 
 			for (DetailAST variableDefinitionDetailAST :
 					variableDefinitionDetailASTs) {
 
 				DetailAST identDetailAST =
-						variableDefinitionDetailAST.findFirstToken(
-								TokenTypes.IDENT);
+					variableDefinitionDetailAST.findFirstToken(
+						TokenTypes.IDENT);
 
 				if (identDetailAST == null) {
 					continue;
@@ -207,8 +202,8 @@ public class JSONObjectDefinitionFileCheck extends BaseFileCheck {
 				}
 
 				DetailAST assignDetailAST =
-						variableDefinitionDetailAST.findFirstToken(
-								TokenTypes.ASSIGN);
+					variableDefinitionDetailAST.findFirstToken(
+						TokenTypes.ASSIGN);
 
 				if (assignDetailAST == null) {
 					return null;
@@ -217,7 +212,7 @@ public class JSONObjectDefinitionFileCheck extends BaseFileCheck {
 				DetailAST firstChildDetailAST = assignDetailAST.getFirstChild();
 
 				if ((firstChildDetailAST == null) ||
-				    (firstChildDetailAST.getType() != TokenTypes.EXPR)) {
+					(firstChildDetailAST.getType() != TokenTypes.EXPR)) {
 
 					return null;
 				}
@@ -225,13 +220,13 @@ public class JSONObjectDefinitionFileCheck extends BaseFileCheck {
 				firstChildDetailAST = firstChildDetailAST.getFirstChild();
 
 				if ((firstChildDetailAST == null) ||
-				    (firstChildDetailAST.getType() != TokenTypes.METHOD_CALL)) {
+					(firstChildDetailAST.getType() != TokenTypes.METHOD_CALL)) {
 
 					return null;
 				}
 
 				FullIdent fullIdent = FullIdent.createFullIdentBelow(
-						firstChildDetailAST);
+					firstChildDetailAST);
 
 				if (!StringUtil.equals(
 						fullIdent.getText(), "Pattern.compile")) {
@@ -256,7 +251,7 @@ public class JSONObjectDefinitionFileCheck extends BaseFileCheck {
 		}
 
 		DetailAST exprDetailAST = elistDetailAST.findFirstToken(
-				TokenTypes.EXPR);
+			TokenTypes.EXPR);
 
 		if (exprDetailAST == null) {
 			return null;
@@ -270,8 +265,7 @@ public class JSONObjectDefinitionFileCheck extends BaseFileCheck {
 
 		return null;
 	}
-	private String _classNameRegex;
-	
+
 	private void _sortObjectFields(JSONObject jsonObject) {
 		JSONArray objectFieldsJSONArray = jsonObject.getJSONArray(
 			"objectFields");
@@ -286,44 +280,10 @@ public class JSONObjectDefinitionFileCheck extends BaseFileCheck {
 				objectFieldsJSONArray, new ObjectFieldComparator()));
 	}
 
-	private String _sortObjectFields(String absolutePath, String content) {
-		try {
-			JSONObject jsonObject = new JSONObjectImpl(content);
-
-			if (absolutePath.endsWith("-object-definition.json")) {
-				_sortObjectFields(jsonObject);
-
-				return JSONUtil.toString(jsonObject);
-			}
-			else if (absolutePath.endsWith(
-						"object-definition.batch-engine-data.json")) {
-
-				JSONArray itemsJSONArray = jsonObject.getJSONArray("items");
-
-				if (itemsJSONArray == null) {
-					return JSONUtil.toString(jsonObject);
-				}
-
-				List<Object> items = JSONUtil.toObjectList(itemsJSONArray);
-
-				for (Object item : items) {
-					_sortObjectFields((JSONObject)item);
-				}
-
-				return JSONUtil.toString(jsonObject);
-			}
-		}
-		catch (JSONException jsonException) {
-			if (_log.isDebugEnabled()) {
-				_log.debug(jsonException);
-			}
-		}
-
-		return content;
-	}
-
 	private static final Log _log = LogFactoryUtil.getLog(
 		JSONObjectDefinitionFileCheck.class);
+
+	private String _classNameRegex;
 
 	private static class ObjectFieldComparator implements Comparator<Object> {
 
