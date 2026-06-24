@@ -66,10 +66,7 @@ public class JSONObjectDefinitionFileCheck extends BaseFileCheck {
 				List<Object> items = JSONUtil.toObjectList(itemsJSONArray);
 
 				for (Object item : items) {
-					JSONObject itemJSONObject = (JSONObject)item;
-
-					_checkClassName(fileName, itemJSONObject);
-					_sortObjectFields(itemJSONObject);
+					_sortObjectFields((JSONObject)item);
 				}
 			}
 
