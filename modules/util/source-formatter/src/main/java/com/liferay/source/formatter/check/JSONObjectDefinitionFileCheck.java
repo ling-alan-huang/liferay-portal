@@ -69,6 +69,11 @@ public class JSONObjectDefinitionFileCheck extends BaseFileCheck {
 				if (className.isBlank() || className.matches(regex)) {
 					return;
 				}
+				addMessage(
+						fileName,
+						"\"className\" does not match the pattern specified by \"_class" +
+						"NamePattern\" in \"ObjectDefinitionClassNameProcessorImpl\"");
+
 			}
 			else if (absolutePath.endsWith(
 					"object-definition.batch-engine-data.json")) {
@@ -90,6 +95,12 @@ public class JSONObjectDefinitionFileCheck extends BaseFileCheck {
 					if (className.isBlank() || className.matches(regex)) {
 						return;
 					}
+
+					addMessage(
+							fileName,
+							"\"className\" does not match the pattern specified by \"_class" +
+							"NamePattern\" in \"ObjectDefinitionClassNameProcessorImpl\"");
+
 				}
 			}
 		}
@@ -99,10 +110,6 @@ public class JSONObjectDefinitionFileCheck extends BaseFileCheck {
 			}
 		}
 
-		addMessage(
-				fileName,
-				"\"className\" does not match the pattern specified by \"_class" +
-				"NamePattern\" in \"ObjectDefinitionClassNameProcessorImpl\"");
 
 	}
 
