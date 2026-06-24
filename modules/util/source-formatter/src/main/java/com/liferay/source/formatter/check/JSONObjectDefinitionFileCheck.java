@@ -53,12 +53,9 @@ public class JSONObjectDefinitionFileCheck extends BaseFileCheck {
 			if (absolutePath.endsWith("-object-definition.json")) {
 				_checkClassName(fileName, jsonObject);
 				_sortObjectFields(jsonObject);
-
-				return JSONUtil.toString(jsonObject);
 			}
-
-			if (absolutePath.endsWith(
-					"object-definition.batch-engine-data.json")) {
+			else if (absolutePath.endsWith(
+						"object-definition.batch-engine-data.json")) {
 
 				JSONArray itemsJSONArray = jsonObject.getJSONArray("items");
 
@@ -74,9 +71,9 @@ public class JSONObjectDefinitionFileCheck extends BaseFileCheck {
 					_checkClassName(fileName, itemJSONObject);
 					_sortObjectFields(itemJSONObject);
 				}
-
-				return JSONUtil.toString(jsonObject);
 			}
+
+			return JSONUtil.toString(jsonObject);
 		}
 		catch (JSONException jsonException) {
 			if (_log.isDebugEnabled()) {
