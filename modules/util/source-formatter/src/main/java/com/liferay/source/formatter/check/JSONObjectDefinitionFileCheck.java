@@ -232,7 +232,7 @@ public class JSONObjectDefinitionFileCheck extends BaseFileCheck {
 					return null;
 				}
 
-				_classNameRegex = _extractCombinedString(firstChildDetailAST);
+				_classNameRegex = _getClassNameRegex(firstChildDetailAST);
 
 				return _classNameRegex;
 			}
@@ -241,7 +241,7 @@ public class JSONObjectDefinitionFileCheck extends BaseFileCheck {
 		}
 	}
 
-	private String _extractCombinedString(DetailAST detailAST) {
+	private String _getClassNameRegex(DetailAST detailAST) {
 		DetailAST elistDetailAST = detailAST.findFirstToken(TokenTypes.ELIST);
 
 		if ((elistDetailAST == null) || (elistDetailAST.getChildCount() == 0)) {
