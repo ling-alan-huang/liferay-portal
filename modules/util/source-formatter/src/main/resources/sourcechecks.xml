@@ -211,6 +211,10 @@
 			<category name="Styling" />
 			<description name="Sorts properties in `.css` files." />
 		</check>
+		<check name="CSSVariablesOrderCheck">
+			<category name="Styling" />
+			<description name="Sorts variables in `.css` files." />
+		</check>
 		<check name="WhitespaceCheck">
 			<category name="Styling" />
 			<description name="Finds missing and unnecessary whitespace." />
