@@ -229,7 +229,7 @@ public class CSSVariablesOrderCheck extends BaseFileCheck {
 	private static final NaturalOrderStringComparator _comparator =
 		new NaturalOrderStringComparator();
 	private static final Pattern _propertyKeyPattern = Pattern.compile(
-		"^\\s+([\\w-]+):.*[^(]$", Pattern.MULTILINE);
+		"^\\s+(\\w[\\w-]*):.*[^(]$", Pattern.MULTILINE);
 	private static final Pattern _sassVariablePattern = Pattern.compile(
 		"^\\$([\\w-]+):", Pattern.MULTILINE);
 
