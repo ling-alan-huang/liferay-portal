@@ -129,15 +129,7 @@ public class CSSVariablesOrderCheck extends BaseFileCheck {
 					return;
 				}
 
-				String line = getLine(s, getLineNumber(s, x));
-
-				String trimmedLine = line.trim();
-
-				if (trimmedLine.endsWith("*/") ||
-					trimmedLine.startsWith("/*") ||
-					trimmedLine.startsWith(StringPool.DOUBLE_SLASH) ||
-					trimmedLine.startsWith(StringPool.STAR)) {
-
+				if (_isComment(getLine(s, getLineNumber(s, x)))) {
 					continue;
 				}
 
@@ -199,14 +191,7 @@ public class CSSVariablesOrderCheck extends BaseFileCheck {
 				return new Tuple(s.substring(matcher.start()), s.length() - 1);
 			}
 
-			String line = getLine(s, getLineNumber(s, x));
-
-			String trimmedLine = line.trim();
-
-			if (trimmedLine.endsWith("*/") || trimmedLine.startsWith("/*") ||
-				trimmedLine.startsWith(StringPool.DOUBLE_SLASH) ||
-				trimmedLine.startsWith(StringPool.STAR)) {
-
+			if (_isComment(getLine(s, getLineNumber(s, x)))) {
 				continue;
 			}
 
@@ -231,6 +216,19 @@ public class CSSVariablesOrderCheck extends BaseFileCheck {
 
 			return new Tuple(s.substring(matcher.start()), s.length() - 1);
 		}
+	}
+
+	private boolean _isComment(String line) {
+		String trimmedLine = line.trim();
+
+		if (trimmedLine.endsWith("*/") || trimmedLine.startsWith("/*") ||
+			trimmedLine.startsWith(StringPool.DOUBLE_SLASH) ||
+			trimmedLine.startsWith(StringPool.STAR)) {
+
+			return true;
+		}
+
+		return false;
 	}
 
 	private static final NaturalOrderStringComparator _comparator =
