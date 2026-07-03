@@ -62,7 +62,7 @@ public class CSSVariablesOrderCheck extends BaseFileCheck {
 				continue;
 			}
 
-			int index = followingCode.indexOf('\n');
+			int index = followingCode.indexOf(StringPool.NEW_LINE);
 
 			if (index == -1) {
 				continue;
@@ -143,7 +143,7 @@ public class CSSVariablesOrderCheck extends BaseFileCheck {
 				continue;
 			}
 
-			int index = followingCode.indexOf('\n');
+			int index = followingCode.indexOf(StringPool.NEW_LINE);
 
 			if (index == -1) {
 				return;
