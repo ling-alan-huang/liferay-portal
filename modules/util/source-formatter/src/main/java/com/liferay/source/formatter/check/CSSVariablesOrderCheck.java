@@ -9,7 +9,6 @@ import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.NaturalOrderStringComparator;
-import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Tuple;
 import com.liferay.portal.kernel.util.Validator;
 
@@ -59,23 +58,17 @@ public class CSSVariablesOrderCheck extends BaseFileCheck {
 				continue;
 			}
 
-			String s = followingCode;
-
 			int index = followingCode.indexOf('\n');
 
-			if (index != -1) {
-				s = followingCode.substring(0, index);
-			}
-
-			Matcher matcher2 = _sassVariablePattern.matcher(s);
-
-			if (!matcher2.find()) {
+			if (index == -1) {
 				continue;
 			}
 
-			String nextVariableName = matcher2.group(1);
+			String firstLine = followingCode.substring(0, index);
 
-			if (_comparator.compare(variableName, nextVariableName) <= 0) {
+			Matcher matcher2 = _sassVariablePattern.matcher(firstLine);
+
+			if (!matcher2.find()) {
 				continue;
 			}
 
@@ -89,15 +82,18 @@ public class CSSVariablesOrderCheck extends BaseFileCheck {
 				continue;
 			}
 
-			content = StringUtil.replaceFirst(
-				content, nextVariableDeclaration,
-				(String)variableDeclarationTuple.getObject(0),
-				matcher1.start());
-			content = StringUtil.replaceFirst(
-				content, (String)variableDeclarationTuple.getObject(0),
-				nextVariableDeclaration, matcher1.start());
+			String nextVariableName = matcher2.group(1);
 
-			return content;
+			if (_comparator.compare(variableName, nextVariableName) <= 0) {
+				continue;
+			}
+
+			addMessage(
+				fileName,
+				StringBundler.concat(
+					"\"", nextVariableName, "\" should come after \"",
+					variableName, "\""),
+				getLineNumber(content, matcher1.start()));
 		}
 
 		return content;
