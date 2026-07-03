@@ -6,6 +6,7 @@
 package com.liferay.source.formatter.check;
 
 import com.liferay.petra.string.CharPool;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.NaturalOrderStringComparator;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -35,6 +36,10 @@ public class CSSVariablesOrderCheck extends BaseFileCheck {
 
 			Tuple variableDeclarationTuple = _getVariableDeclarationTuple(
 				content, matcher1);
+
+			_checkPropertiesOrder(
+				fileName, (String)variableDeclarationTuple.getObject(0),
+				getLineNumber(content, matcher1.start()));
 
 			int endIndex = (int)variableDeclarationTuple.getObject(1);
 
@@ -98,6 +103,80 @@ public class CSSVariablesOrderCheck extends BaseFileCheck {
 		return content;
 	}
 
+	private void _checkPropertiesOrder(
+		String fileName, String content, int lineNumber) {
+
+		Matcher matcher1 = _propertyKeyPattern.matcher(content);
+
+		while (matcher1.find()) {
+			String propertyKey = matcher1.group(1);
+
+			int x = matcher1.start();
+
+			while (true) {
+				x = content.indexOf(",\n", x + 1);
+
+				if (x == -1) {
+					return;
+				}
+
+				String line = getLine(content, getLineNumber(content, x));
+
+				String trimmedLine = line.trim();
+
+				if (trimmedLine.endsWith("*/") ||
+					trimmedLine.startsWith("/*") ||
+					trimmedLine.startsWith(StringPool.DOUBLE_SLASH) ||
+					trimmedLine.startsWith(StringPool.STAR)) {
+
+					continue;
+				}
+
+				if (getLevel(content.substring(matcher1.start(), x + 2)) == 0) {
+					break;
+				}
+			}
+
+			int propertyKeyLineNumber = getLineNumber(
+				content, matcher1.start() + 1);
+
+			String followingCode = content.substring(x + 2);
+
+			char c = followingCode.charAt(0);
+
+			if (c == CharPool.NEW_LINE) {
+				continue;
+			}
+
+			int index = followingCode.indexOf('\n');
+
+			if (index == -1) {
+				return;
+			}
+
+			String firstLine = followingCode.substring(0, index);
+
+			Matcher matcher2 = _propertyKeyPattern.matcher(firstLine);
+
+			if (!matcher2.find()) {
+				continue;
+			}
+
+			String nextPropertyKey = matcher2.group(1);
+
+			if (_comparator.compare(propertyKey, nextPropertyKey) <= 0) {
+				continue;
+			}
+
+			addMessage(
+				fileName,
+				StringBundler.concat(
+					"\"", propertyKey, "\" should come after \"",
+					nextPropertyKey, "\""),
+				lineNumber + propertyKeyLineNumber - 1);
+		}
+	}
+
 	private Tuple _getVariableDeclarationTuple(String s, Matcher matcher) {
 		int x = matcher.end();
 
@@ -144,6 +223,8 @@ public class CSSVariablesOrderCheck extends BaseFileCheck {
 
 	private static final NaturalOrderStringComparator _comparator =
 		new NaturalOrderStringComparator();
+	private static final Pattern _propertyKeyPattern = Pattern.compile(
+		"^\\s+([\\w-]+):.*[^(]$", Pattern.MULTILINE);
 	private static final Pattern _sassVariablePattern = Pattern.compile(
 		"^\\$([\\w-]+):", Pattern.MULTILINE);
 
