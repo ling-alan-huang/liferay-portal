@@ -36,6 +36,10 @@ public class CSSVariablesOrderCheck extends BaseFileCheck {
 			Tuple variableDeclarationTuple = _getVariableDeclarationTuple(
 				content, matcher1);
 
+			if (variableDeclarationTuple == null) {
+				return content;
+			}
+
 			_checkPropertiesOrder(
 				fileName, (String)variableDeclarationTuple.getObject(0),
 				getLineNumber(content, matcher1.start()));
@@ -75,6 +79,10 @@ public class CSSVariablesOrderCheck extends BaseFileCheck {
 			Tuple nextVariableDeclarationTuple = _getVariableDeclarationTuple(
 				followingCode, matcher2);
 
+			if (nextVariableDeclarationTuple == null) {
+				return content;
+			}
+
 			String nextVariableDeclaration =
 				(String)nextVariableDeclarationTuple.getObject(0);
 
@@ -100,9 +108,9 @@ public class CSSVariablesOrderCheck extends BaseFileCheck {
 	}
 
 	private void _checkPropertiesOrder(
-		String fileName, String content, int lineNumber) {
+		String fileName, String s, int lineNumber) {
 
-		Matcher matcher1 = _propertyKeyPattern.matcher(content);
+		Matcher matcher1 = _propertyKeyPattern.matcher(s);
 
 		while (matcher1.find()) {
 			String propertyKey = matcher1.group(1);
@@ -110,13 +118,13 @@ public class CSSVariablesOrderCheck extends BaseFileCheck {
 			int x = matcher1.start();
 
 			while (true) {
-				x = content.indexOf(",\n", x + 1);
+				x = s.indexOf(",\n", x + 1);
 
 				if (x == -1) {
 					return;
 				}
 
-				String line = getLine(content, getLineNumber(content, x));
+				String line = getLine(s, getLineNumber(s, x));
 
 				String trimmedLine = line.trim();
 
@@ -128,15 +136,14 @@ public class CSSVariablesOrderCheck extends BaseFileCheck {
 					continue;
 				}
 
-				if (getLevel(content.substring(matcher1.start(), x + 2)) == 0) {
+				if (getLevel(s.substring(matcher1.start(), x + 2)) == 0) {
 					break;
 				}
 			}
 
-			int propertyKeyLineNumber = getLineNumber(
-				content, matcher1.start() + 1);
+			int propertyKeyLineNumber = getLineNumber(s, matcher1.start() + 1);
 
-			String followingCode = content.substring(x + 2);
+			String followingCode = s.substring(x + 2);
 
 			char c = followingCode.charAt(0);
 
@@ -179,7 +186,11 @@ public class CSSVariablesOrderCheck extends BaseFileCheck {
 		while (true) {
 			x = s.indexOf(StringPool.SEMICOLON, x + 1);
 
-			if ((x == -1) || (x == (s.length() - 1))) {
+			if (x == -1) {
+				return null;
+			}
+
+			if (x == (s.length() - 1)) {
 				return new Tuple(s.substring(matcher.start()), s.length() - 1);
 			}
 
