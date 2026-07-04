@@ -12,6 +12,7 @@ import com.liferay.portal.kernel.util.NaturalOrderStringComparator;
 import com.liferay.portal.kernel.util.Tuple;
 import com.liferay.portal.kernel.util.Validator;
 
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -41,7 +42,8 @@ public class CSSVariablesOrderCheck extends BaseFileCheck {
 			}
 
 			_checkPropertiesOrder(
-				fileName, (String)variableDeclarationTuple.getObject(0),
+				fileName, absolutePath, variableName,
+				(String)variableDeclarationTuple.getObject(0),
 				getLineNumber(content, matcher1.start()));
 
 			int endIndex = (int)variableDeclarationTuple.getObject(1);
@@ -108,7 +110,17 @@ public class CSSVariablesOrderCheck extends BaseFileCheck {
 	}
 
 	private void _checkPropertiesOrder(
-		String fileName, String s, int lineNumber) {
+		String fileName, String absolutePath, String variableName, String s,
+		int lineNumber) {
+
+		List<String> skipSortVariableNames = getAttributeValues(
+			_SKIP_SORT_VARIABLE_NAMES_KEY, absolutePath);
+
+		for (String skipSortVariableName : skipSortVariableNames) {
+			if (variableName.contains(skipSortVariableName)) {
+				return;
+			}
+		}
 
 		Matcher matcher1 = _propertyKeyPattern.matcher(s);
 
@@ -225,6 +237,9 @@ public class CSSVariablesOrderCheck extends BaseFileCheck {
 
 		return false;
 	}
+
+	private static final String _SKIP_SORT_VARIABLE_NAMES_KEY =
+		"skipSortVariableNames";
 
 	private static final NaturalOrderStringComparator _comparator =
 		new NaturalOrderStringComparator();
