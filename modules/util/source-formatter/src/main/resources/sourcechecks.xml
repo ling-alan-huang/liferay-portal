@@ -213,7 +213,7 @@
 		</check>
 		<check name="CSSVariablesOrderCheck">
 			<category name="Styling" />
-			<description name="Sorts variables in `.css` files." />
+			<description name="Sorts variables and properties in `.scss` files." />
 		</check>
 		<check name="WhitespaceCheck">
 			<category name="Styling" />
