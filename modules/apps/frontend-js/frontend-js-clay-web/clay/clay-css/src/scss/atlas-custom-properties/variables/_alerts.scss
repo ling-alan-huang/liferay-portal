@@ -388,6 +388,7 @@ $alert-notifications-fixed: () !default;
 $alert-notifications-fixed: map-deep-merge(
 	(
 		bottom: $alert-notifications-fixed-bottom,
+		breakpoint-down: sm,
 		left: $alert-notifications-fixed-left,
 		position: fixed,
 		right: $alert-notifications-fixed-right,

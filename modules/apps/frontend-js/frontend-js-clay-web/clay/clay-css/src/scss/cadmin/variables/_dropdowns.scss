@@ -46,6 +46,7 @@ $cadmin-dropdown-menu: map-deep-merge(
 		border-style: $cadmin-dropdown-border-style,
 		border-width: $cadmin-dropdown-border-width,
 		box-shadow: clay-enable-shadows($cadmin-dropdown-box-shadow),
+		breakpoint-down: md,
 		color: $cadmin-dropdown-color,
 		display: none,
 		float: left,
