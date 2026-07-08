@@ -17,19 +17,6 @@ import java.util.regex.Matcher;
  */
 public class CSSSourceUtil {
 
-	public static boolean isComment(String line) {
-		String trimmedLine = line.trim();
-
-		if (trimmedLine.endsWith("*/") || trimmedLine.startsWith("/*") ||
-		    trimmedLine.startsWith(StringPool.DOUBLE_SLASH) ||
-		    trimmedLine.startsWith(StringPool.STAR)) {
-
-			return true;
-		}
-
-		return false;
-	}
-
 	public static Tuple getVariableDeclarationTuple(String s, Matcher matcher) {
 		int x = matcher.end();
 
@@ -44,7 +31,9 @@ public class CSSSourceUtil {
 				return new Tuple(s.substring(matcher.start()), s.length() - 1);
 			}
 
-			if (isComment(SourceUtil.getLine(s, SourceUtil.getLineNumber(s, x)))) {
+			if (isComment(
+					SourceUtil.getLine(s, SourceUtil.getLineNumber(s, x)))) {
+
 				continue;
 			}
 
@@ -64,10 +53,24 @@ public class CSSSourceUtil {
 
 			if (index != -1) {
 				return new Tuple(
-						s.substring(matcher.start(), index), index + 1);
+					s.substring(matcher.start(), index), index + 1);
 			}
 
 			return new Tuple(s.substring(matcher.start()), s.length() - 1);
 		}
 	}
+
+	public static boolean isComment(String line) {
+		String trimmedLine = line.trim();
+
+		if (trimmedLine.endsWith("*/") || trimmedLine.startsWith("/*") ||
+			trimmedLine.startsWith(StringPool.DOUBLE_SLASH) ||
+			trimmedLine.startsWith(StringPool.STAR)) {
+
+			return true;
+		}
+
+		return false;
+	}
+
 }
