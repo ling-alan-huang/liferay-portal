@@ -11,6 +11,7 @@ import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.NaturalOrderStringComparator;
 import com.liferay.portal.kernel.util.Tuple;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.source.formatter.check.util.CSSSourceUtil;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -33,7 +34,7 @@ public class CSSVariablesOrderCheck extends BaseFileCheck {
 		while (matcher1.find()) {
 			String variableName = matcher1.group(1);
 
-			Tuple variableDeclarationTuple = _getVariableDeclarationTuple(
+			Tuple variableDeclarationTuple = CSSSourceUtil.getVariableDeclarationTuple(
 				content, matcher1);
 
 			if (variableDeclarationTuple == null) {
@@ -76,7 +77,7 @@ public class CSSVariablesOrderCheck extends BaseFileCheck {
 				continue;
 			}
 
-			Tuple nextVariableDeclarationTuple = _getVariableDeclarationTuple(
+			Tuple nextVariableDeclarationTuple = CSSSourceUtil.getVariableDeclarationTuple(
 				followingCode, matcher2);
 
 			if (nextVariableDeclarationTuple == null) {
@@ -124,7 +125,7 @@ public class CSSVariablesOrderCheck extends BaseFileCheck {
 					return;
 				}
 
-				if (_isComment(getLine(s, getLineNumber(s, x)))) {
+				if (CSSSourceUtil.isComment(getLine(s, getLineNumber(s, x)))) {
 					continue;
 				}
 
@@ -172,59 +173,7 @@ public class CSSVariablesOrderCheck extends BaseFileCheck {
 		}
 	}
 
-	private Tuple _getVariableDeclarationTuple(String s, Matcher matcher) {
-		int x = matcher.end();
 
-		while (true) {
-			x = s.indexOf(StringPool.SEMICOLON, x + 1);
-
-			if (x == -1) {
-				return null;
-			}
-
-			if (x == (s.length() - 1)) {
-				return new Tuple(s.substring(matcher.start()), s.length() - 1);
-			}
-
-			if (_isComment(getLine(s, getLineNumber(s, x)))) {
-				continue;
-			}
-
-			String variableDeclaration = s.substring(matcher.start(), x + 1);
-
-			if (getLevel(variableDeclaration) != 0) {
-				continue;
-			}
-
-			char c = s.charAt(x + 1);
-
-			if (c == CharPool.NEW_LINE) {
-				return new Tuple(variableDeclaration, x + 2);
-			}
-
-			int index = s.indexOf(StringPool.NEW_LINE, x + 1);
-
-			if (index != -1) {
-				return new Tuple(
-					s.substring(matcher.start(), index), index + 1);
-			}
-
-			return new Tuple(s.substring(matcher.start()), s.length() - 1);
-		}
-	}
-
-	private boolean _isComment(String line) {
-		String trimmedLine = line.trim();
-
-		if (trimmedLine.endsWith("*/") || trimmedLine.startsWith("/*") ||
-			trimmedLine.startsWith(StringPool.DOUBLE_SLASH) ||
-			trimmedLine.startsWith(StringPool.STAR)) {
-
-			return true;
-		}
-
-		return false;
-	}
 
 	private static final NaturalOrderStringComparator _comparator =
 		new NaturalOrderStringComparator();
