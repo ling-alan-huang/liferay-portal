@@ -203,6 +203,10 @@
 			<category name="Styling" />
 			<description name="Validates comments in `.css` files." />
 		</check>
+		<check name="CSSEmptyLinesCheck">
+			<category name="Styling" />
+			<description name="Finds missing empty lines in `.css` files." />
+		</check>
 		<check name="CSSImportsCheck">
 			<category name="Styling" />
 			<description name="Sorts and groups imports in `.css` files." />
