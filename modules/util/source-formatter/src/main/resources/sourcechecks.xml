@@ -205,7 +205,7 @@
 		</check>
 		<check name="CSSEmptyLinesCheck">
 			<category name="Styling" />
-			<description name="Finds missing empty lines in `.css` files." />
+			<description name="Finds missing empty lines in `.scss` files." />
 		</check>
 		<check name="CSSImportsCheck">
 			<category name="Styling" />
