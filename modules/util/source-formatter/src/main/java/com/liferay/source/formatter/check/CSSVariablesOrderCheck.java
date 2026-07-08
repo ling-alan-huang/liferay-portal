@@ -34,8 +34,8 @@ public class CSSVariablesOrderCheck extends BaseFileCheck {
 		while (matcher1.find()) {
 			String variableName = matcher1.group(1);
 
-			Tuple variableDeclarationTuple = CSSSourceUtil.getVariableDeclarationTuple(
-				content, matcher1);
+			Tuple variableDeclarationTuple =
+				CSSSourceUtil.getVariableDeclarationTuple(content, matcher1);
 
 			if (variableDeclarationTuple == null) {
 				return content;
@@ -77,8 +77,9 @@ public class CSSVariablesOrderCheck extends BaseFileCheck {
 				continue;
 			}
 
-			Tuple nextVariableDeclarationTuple = CSSSourceUtil.getVariableDeclarationTuple(
-				followingCode, matcher2);
+			Tuple nextVariableDeclarationTuple =
+				CSSSourceUtil.getVariableDeclarationTuple(
+					followingCode, matcher2);
 
 			if (nextVariableDeclarationTuple == null) {
 				return content;
@@ -172,8 +173,6 @@ public class CSSVariablesOrderCheck extends BaseFileCheck {
 				lineNumber + propertyKeyLineNumber - 1);
 		}
 	}
-
-
 
 	private static final NaturalOrderStringComparator _comparator =
 		new NaturalOrderStringComparator();
