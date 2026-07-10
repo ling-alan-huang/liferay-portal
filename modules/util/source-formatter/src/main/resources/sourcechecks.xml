@@ -218,6 +218,7 @@
 		<check name="CSSVariablesOrderCheck">
 			<category name="Styling" />
 			<description name="Sorts variables and properties in `.scss` files." />
+			<property name="enabled" value="false" />
 		</check>
 		<check name="WhitespaceCheck">
 			<category name="Styling" />
