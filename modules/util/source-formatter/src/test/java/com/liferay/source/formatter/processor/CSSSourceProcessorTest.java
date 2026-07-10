@@ -5,16 +5,8 @@
 
 package com.liferay.source.formatter.processor;
 
-import org.junit.Test;
-
 /**
  * @author Alan Huang
  */
 public class CSSSourceProcessorTest extends BaseSourceProcessorTestCase {
-
-	@Test
-	public void testIncorrectWhitespace() throws Exception {
-		//test("IncorrectWhitespace.testcss");
-	}
-
 }
