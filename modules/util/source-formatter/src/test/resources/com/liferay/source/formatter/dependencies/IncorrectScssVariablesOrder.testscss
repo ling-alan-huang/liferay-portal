@@ -1,0 +1,5 @@
+$link-hover-decoration: underline !default;
+
+$link-hover-color: $primary-d2 !default;
+$link-decoration: none !default;
+$link-color: $primary !default;
