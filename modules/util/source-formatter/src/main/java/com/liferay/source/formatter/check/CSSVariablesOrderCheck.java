@@ -63,13 +63,16 @@ public class CSSVariablesOrderCheck extends BaseFileCheck {
 				continue;
 			}
 
+			String firstLine = null;
+
 			int index = followingCode.indexOf(StringPool.NEW_LINE);
 
 			if (index == -1) {
-				continue;
+				firstLine = followingCode.substring(0);
 			}
-
-			String firstLine = followingCode.substring(0, index);
+			else {
+				firstLine = followingCode.substring(0, index);
+			}
 
 			Matcher matcher2 = _sassVariablePattern.matcher(firstLine);
 
@@ -101,8 +104,8 @@ public class CSSVariablesOrderCheck extends BaseFileCheck {
 			addMessage(
 				fileName,
 				StringBundler.concat(
-					"\"", nextVariableName, "\" should come after \"",
-					variableName, "\""),
+					"\"$", variableName, "\" should come after \"$",
+					nextVariableName, "\""),
 				getLineNumber(content, matcher1.start()));
 		}
 
