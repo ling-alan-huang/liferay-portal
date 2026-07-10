@@ -1,0 +1,17 @@
+$nav-tabs-link: map-deep-merge(
+	(
+		font-weight: $font-weight-semi-bold,
+		transition: box-shadow 0.15s ease-in-out,
+		focus: (
+			box-shadow: $component-focus-box-shadow,
+			outline: 0,
+		),
+		disabled: (
+			box-shadow: none,
+			active: (
+				box-shadow: none,
+			),
+		),
+	),
+	$nav-tabs-link
+);

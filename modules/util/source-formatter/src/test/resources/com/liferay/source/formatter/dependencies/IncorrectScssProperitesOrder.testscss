@@ -1,0 +1,7 @@
+$btn-primary: (
+	border-radius: 4px,
+
+	color: orange,
+	box-shadow: none,
+	background-color: black,
+);
