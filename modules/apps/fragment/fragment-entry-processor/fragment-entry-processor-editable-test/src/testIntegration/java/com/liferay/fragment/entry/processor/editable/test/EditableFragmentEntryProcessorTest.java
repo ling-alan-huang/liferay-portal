@@ -1738,8 +1738,9 @@ public class EditableFragmentEntryProcessorTest {
 		element = _getElement(
 			"data-lfr-editable-id", "image-square", editableValues,
 			"fragment_entry_image.html", LocaleUtil.getSiteDefault(),
-			FragmentEntryLinkConstants.VIEW
-		).parent();
+			FragmentEntryLinkConstants.VIEW);
+
+		element = element.parent();
 
 		String href = element.attr("href");
 

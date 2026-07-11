@@ -355,9 +355,11 @@ public class DDMFormValuesExportImportContentProcessorTest {
 			stagingLayout.isPrivateLayout(),
 			jsonObject.getBoolean("privateLayout"));
 
+		Element missingReferencesElement =
+			_portletDataContextExport.getMissingReferencesElement();
+
 		List<Element> missingReferenceElements =
-			_portletDataContextExport.getMissingReferencesElement(
-			).elements();
+			missingReferencesElement.elements();
 
 		Assert.assertEquals(
 			missingReferenceElements.toString(), 1,

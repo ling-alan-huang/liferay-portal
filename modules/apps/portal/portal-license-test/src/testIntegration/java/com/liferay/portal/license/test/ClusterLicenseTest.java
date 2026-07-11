@@ -255,10 +255,9 @@ public class ClusterLicenseTest extends BaseLicenseTestCase {
 
 		tomcatNode.start(true);
 
-		String path = tomcatNode.getLiferayHome(
-		).concat(
-			"/data/license"
-		);
+		String liferayHome = tomcatNode.getLiferayHome();
+
+		String path = liferayHome.concat("/data/license");
 
 		tomcatNode.syncExecute(
 			() -> {

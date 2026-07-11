@@ -98,13 +98,13 @@ public class DLAppHelperLocalServiceTest {
 			RandomTestUtil.randomString(),
 			ServiceContextTestUtil.getServiceContext());
 
+		InputStream inputStream = fileEntry.getContentStream();
+
 		fileEntry = _dlAppLocalService.updateFileEntry(
 			fileEntry.getUserId(), fileEntry.getFileEntryId(),
 			fileEntry.getFileName(), fileEntry.getMimeType(),
 			fileEntry.getTitle(), "", fileEntry.getDescription(), "",
-			DLVersionNumberIncrease.MINOR,
-			fileEntry.getContentStream(
-			).readAllBytes(),
+			DLVersionNumberIncrease.MINOR, inputStream.readAllBytes(),
 			displayDate, fileEntry.getExpirationDate(),
 			fileEntry.getReviewDate(),
 			ServiceContextTestUtil.getServiceContext());
@@ -272,15 +272,14 @@ public class DLAppHelperLocalServiceTest {
 
 		calendar.add(Calendar.YEAR, -1);
 
+		InputStream inputStream = fileEntry.getContentStream();
 		Date updatedDisplayDate = calendar.getTime();
 
 		fileEntry = _dlAppLocalService.updateFileEntry(
 			fileEntry.getUserId(), fileEntry.getFileEntryId(),
 			fileEntry.getFileName(), fileEntry.getMimeType(),
 			fileEntry.getTitle(), "", fileEntry.getDescription(), "",
-			DLVersionNumberIncrease.AUTOMATIC,
-			fileEntry.getContentStream(
-			).readAllBytes(),
+			DLVersionNumberIncrease.AUTOMATIC, inputStream.readAllBytes(),
 			updatedDisplayDate, fileEntry.getExpirationDate(),
 			fileEntry.getReviewDate(),
 			ServiceContextTestUtil.getServiceContext());

@@ -255,11 +255,9 @@ public class SharedAssetDTOConverterTest {
 			).build(),
 			serviceContext);
 
-		long fileEntryId = GetterUtil.getLong(
-			objectEntry.getValues(
-			).get(
-				"file"
-			));
+		Map<String, Serializable> values = objectEntry.getValues();
+
+		long fileEntryId = GetterUtil.getLong(values.get("file"));
 
 		FileEntry fileEntry = DLAppLocalServiceUtil.getFileEntry(fileEntryId);
 

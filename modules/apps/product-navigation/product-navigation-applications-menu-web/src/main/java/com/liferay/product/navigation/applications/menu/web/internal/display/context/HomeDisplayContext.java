@@ -108,9 +108,7 @@ public class HomeDisplayContext {
 			propsItems.add(
 				HashMapBuilder.<String, Object>put(
 					"href",
-					panelApp.getPortletURL(
-						_httpServletRequest
-					).toString()
+					String.valueOf(panelApp.getPortletURL(_httpServletRequest))
 				).put(
 					"id", panelApp.getPortletId()
 				).put(

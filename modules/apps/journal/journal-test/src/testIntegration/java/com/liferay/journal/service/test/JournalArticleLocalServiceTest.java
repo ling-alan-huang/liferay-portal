@@ -252,10 +252,10 @@ public class JournalArticleLocalServiceTest {
 			_ddmStructureLocalService.getStructure(
 				ddmStructure.getStructureId());
 
+		DDMFormField ddmFormField = updatedDDMStructure.getDDMFormField("name");
+
 		LocalizedValue updatedNamePredefinedValue =
-			updatedDDMStructure.getDDMFormField(
-				"name"
-			).getPredefinedValue();
+			ddmFormField.getPredefinedValue();
 
 		Assert.assertEquals(
 			brContent, updatedNamePredefinedValue.getString(LocaleUtil.BRAZIL));
