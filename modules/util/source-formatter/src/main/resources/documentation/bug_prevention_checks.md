@@ -106,6 +106,7 @@ JavaComponentAnnotationsCheck | .java | Performs several checks on classes with 
 JavaDefaultAdminScreenNameCheck | .java | Checks that we do not use `PropsKeys.DEFAULT_ADMIN_SCREEN_NAME` or `PropsValues.DEFAULT_ADMIN_SCREEN_NAME`. |
 JavaExpandoBridgeAttributesCallOrderCheck | .java | Ensure `setExpandoBridgeAttributes` is the final setter called on a model before model persistence. |
 JavaFeatureFlagManagerUtilCheck | .java | Finds cases where `FeatureFlagManagerUtil.isEnabled` should be used and incorrect use of it. |
+[JavaFetchContractCatchCheck](check/java_fetch_contract_catch_check.md#javafetchcontractcatchcheck) | .java | Finds a catch of `PortalException` or a `NoSuch*Exception` that only returns the null or false absence sentinel, where the try block holds a single local service or persistence lookup, so the null-tolerant fetch sibling should be used instead. |
 [JavaFinderCacheCheck](check/java_finder_cache_check.md#javafindercachecheck) | .java | Checks that the method `BasePersistenceImpl.fetchByPrimaryKey` is overridden, when using `FinderPath`. |
 JavaFinderImplCustomSQLCheck | .java | Checks that hardcoded SQL values in `*FinderImpl` classes match the SQL in the `.xml` file in the `custom-sql` directory. |
 JavaIgnoreAnnotationCheck | .java | Finds methods with `@Ignore` annotation in test classes. |
