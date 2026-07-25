@@ -30,8 +30,8 @@ import java.util.regex.Pattern;
 public class JavaServiceHopCheck extends BaseServiceImplCheck {
 
 	@Override
-	public boolean isModuleSourceCheck() {
-		return false;
+	public boolean isLiferaySourceCheck() {
+		return true;
 	}
 
 	@Override
