@@ -1039,6 +1039,16 @@ public class JavaSourceProcessorTest extends BaseSourceProcessorTestCase {
 	}
 
 	@Test
+	public void testSystemGroupGuestUser() throws Exception {
+		test(
+			"SystemGroupGuestUser.testjava",
+			StringBundler.concat(
+				"Create the reserved system group \"CMS\" with the guest user ",
+				"to avoid a dangling membership after cleanup; for the CMS ",
+				"group use \"GroupTestUtil.getOrAddCMSGroup\""));
+	}
+
+	@Test
 	public void testTextBlock() throws Exception {
 		test(
 			SourceProcessorTestParameters.create(

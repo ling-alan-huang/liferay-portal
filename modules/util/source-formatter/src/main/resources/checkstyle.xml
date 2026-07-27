@@ -910,6 +910,11 @@
 			<message key="system.event.unneeded.1" value="@SystemEvent on method &quot;{0}&quot; is not needed, because the first parameter is not &quot;{1}&quot;" />
 			<message key="system.event.unneeded.2" value="@SystemEvent on method &quot;{0}&quot; is not needed, because &quot;{1}&quot; does not implement &quot;ClassedModel&quot;" />
 		</module>
+		<module name="com.liferay.source.formatter.checkstyle.check.SystemGroupGuestUserCheck">
+			<property name="category" value="Bug Prevention" />
+			<property name="description" value="Checks that reserved system groups are created with the guest user in tests, so no owner membership dangles after cleanup." />
+			<message key="system.group.guest.user" value="Create the reserved system group &quot;{0}&quot; with the guest user to avoid a dangling membership after cleanup; for the CMS group use &quot;GroupTestUtil.getOrAddCMSGroup&quot;" />
+		</module>
 		<module name="com.liferay.source.formatter.checkstyle.check.TernaryOperatorCheck">
 			<property name="category" value="Styling" />
 			<property name="description" value="Finds use of ternary operator in `java` files (use if statement instead)." />
