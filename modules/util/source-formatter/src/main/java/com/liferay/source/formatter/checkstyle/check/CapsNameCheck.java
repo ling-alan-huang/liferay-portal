@@ -5,6 +5,8 @@
 
 package com.liferay.source.formatter.checkstyle.check;
 
+import com.liferay.source.formatter.check.util.SourceUtil;
+
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
@@ -40,40 +42,17 @@ public class CapsNameCheck extends BaseCheck {
 		}
 
 		String name = getName(detailAST);
-		String tokenTypeName = getTokenTypeName(detailAST);
 
-		for (String[] array : _ALL_CAPS_STRINGS) {
-			String s = array[1];
+		String allCapsName = SourceUtil.getAllCapsName(name);
 
-			int x = -1;
-
-			while (true) {
-				x = name.indexOf(s, x + 1);
-
-				if (x == -1) {
-					break;
-				}
-
-				int y = x + s.length();
-
-				if ((y != name.length()) &&
-					!Character.isUpperCase(name.charAt(y))) {
-
-					continue;
-				}
-
-				String newName =
-					name.substring(0, x) + array[0] + name.substring(y);
-
-				log(detailAST, _MSG_RENAME, tokenTypeName, name, newName);
-			}
+		if (allCapsName.equals(name)) {
+			return;
 		}
-	}
 
-	private static final String[][] _ALL_CAPS_STRINGS = {
-		{"CPE", "Cpe"}, {"DDL", "Ddl"}, {"DDM", "Ddm"}, {"DL", "Dl"},
-		{"JAAS", "Jaas"}, {"PK", "Pk"}
-	};
+		log(
+			detailAST, _MSG_RENAME, getTokenTypeName(detailAST), name,
+			allCapsName);
+	}
 
 	private static final String _MSG_RENAME = "rename";
 

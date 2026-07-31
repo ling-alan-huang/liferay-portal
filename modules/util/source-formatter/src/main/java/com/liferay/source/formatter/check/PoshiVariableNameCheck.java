@@ -97,7 +97,7 @@ public class PoshiVariableNameCheck extends BaseFileCheck {
 			return;
 		}
 
-		String allCapsName = _getAllCapsName(variableName);
+		String allCapsName = SourceUtil.getAllCapsName(variableName);
 
 		if (!variableName.equals(allCapsName)) {
 			addMessage(
@@ -118,35 +118,6 @@ public class PoshiVariableNameCheck extends BaseFileCheck {
 					"Rename variable \"", variableName, "\" to \"",
 					expectedName, "\" in \"", message, "\""));
 		}
-	}
-
-	private String _getAllCapsName(String variableName) {
-		for (String[] array : _ALL_CAPS_STRINGS) {
-			String s = array[1];
-
-			int x = -1;
-
-			while (true) {
-				x = variableName.indexOf(s, x + 1);
-
-				if (x == -1) {
-					break;
-				}
-
-				int y = x + s.length();
-
-				if ((y != variableName.length()) &&
-					!Character.isUpperCase(variableName.charAt(y))) {
-
-					continue;
-				}
-
-				return variableName.substring(0, x) + array[0] +
-					variableName.substring(y);
-			}
-		}
-
-		return variableName;
 	}
 
 	private String _getExpectedName(String variableName) {
@@ -222,11 +193,6 @@ public class PoshiVariableNameCheck extends BaseFileCheck {
 			_parsePoshiElements(fileName, commandName, element);
 		}
 	}
-
-	private static final String[][] _ALL_CAPS_STRINGS = {
-		{"DDL", "Ddl"}, {"DDM", "Ddm"}, {"DL", "Dl"}, {"PK", "Pk"},
-		{"URL", "Url"}
-	};
 
 	private static final Pattern _variableReferencePattern = Pattern.compile(
 		"(\\$\\{)([a-zA-Z0-9_]+?)(\\})");

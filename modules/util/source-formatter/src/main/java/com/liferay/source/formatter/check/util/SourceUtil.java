@@ -73,6 +73,34 @@ public class SourceUtil {
 		return getAbsolutePath(Paths.get(fileName));
 	}
 
+	public static String getAllCapsName(String name) {
+		for (String[] array : _ALL_CAPS_STRINGS) {
+			String s = array[1];
+
+			int x = -1;
+
+			while (true) {
+				x = name.indexOf(s, x + 1);
+
+				if (x == -1) {
+					break;
+				}
+
+				int y = x + s.length();
+
+				if ((y != name.length()) &&
+					!Character.isUpperCase(name.charAt(y))) {
+
+					continue;
+				}
+
+				return name.substring(0, x) + array[0] + name.substring(y);
+			}
+		}
+
+		return name;
+	}
+
 	public static Map<String, String> getAnnotationMemberValuePair(
 		String annotation) {
 
@@ -464,6 +492,13 @@ public class SourceUtil {
 
 		return tablesSQLContent.substring(matcher.start(), x + 1);
 	}
+
+	private static final String[][] _ALL_CAPS_STRINGS = {
+		{"CPE", "Cpe"}, {"CT", "Ct"}, {"COR", "Cor"}, {"CP", "Cp"},
+		{"CS", "Cs"}, {"DDL", "Ddl"}, {"DDM", "Ddm"}, {"DL", "Dl"},
+		{"KB", "Kb"}, {"MB", "Mb"}, {"JAAS", "Jaas"}, {"PK", "Pk"},
+		{"PLO", "Plo"}, {"SXP", "Sxp"}, {"URL", "Url"}
+	};
 
 	private static final Pattern _annotationMemberValuePairPattern =
 		Pattern.compile("(\\w+) = ([\\s\\S]+?(?=(,\\s+\\w+ = )|\\)))");
