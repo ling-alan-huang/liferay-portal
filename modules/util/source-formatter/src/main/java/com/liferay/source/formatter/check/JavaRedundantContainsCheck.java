@@ -171,8 +171,7 @@ public class JavaRedundantContainsCheck extends BaseFileCheck {
 
 		return new IfStatement(
 			StringUtil.trim(content.substring(x + 3, y)),
-			content.substring(content.indexOf("(", pos), x + 1),
-			StringUtil.trim(content.substring(y + 1)), pos, y + 1);
+			content.substring(content.indexOf("(", pos), x + 1));
 	}
 
 	private boolean _hasOperation(
@@ -253,15 +252,9 @@ public class JavaRedundantContainsCheck extends BaseFileCheck {
 
 	private static class IfStatement {
 
-		public IfStatement(
-			String body, String clause, String followingCode, int start,
-			int end) {
-
+		public IfStatement(String body, String clause) {
 			_body = body;
 			_clause = clause;
-			_followingCode = followingCode;
-			_start = start;
-			_end = end;
 		}
 
 		public String getBody() {
@@ -272,23 +265,8 @@ public class JavaRedundantContainsCheck extends BaseFileCheck {
 			return _clause;
 		}
 
-		public int getEnd() {
-			return _end;
-		}
-
-		public String getFollowingCode() {
-			return _followingCode;
-		}
-
-		public int getStart() {
-			return _start;
-		}
-
 		private final String _body;
 		private final String _clause;
-		private final int _end;
-		private final String _followingCode;
-		private final int _start;
 
 	}
 
