@@ -77,24 +77,27 @@ public class JavaRedundantContainsCheck extends BaseFileCheck {
 		String fileName, String content, String s, Matcher matcher,
 		String parameter, int lineNumber) {
 
-		String operation = null;
-		String suggestion = null;
-
 		boolean negated = false;
 
 		if (matcher.group(1) != null) {
 			negated = true;
 		}
 
-		boolean map = false;
-
-		if (matcher.group(3) != null) {
-			map = true;
-		}
-
 		String variableName = matcher.group(2);
 
-		if (map) {
+		String variableTypeName = getVariableTypeName(
+			content, null, content, fileName, variableName, true, false);
+
+		if (variableTypeName == null) {
+			return;
+		}
+
+		String operation = null;
+		String suggestion = null;
+
+		if (StringUtil.equals(matcher.group(3), "containsKey") &&
+			variableTypeName.matches("\\w*Map<.+")) {
+
 			if (negated && _hasOperation(s, variableName, "put", parameter)) {
 				operation = "put";
 				suggestion = "a single \"putIfAbsent\" or \"computeIfAbsent\"";
@@ -108,19 +111,17 @@ public class JavaRedundantContainsCheck extends BaseFileCheck {
 				suggestion = "a single \"remove\" with a null check";
 			}
 		}
-		else if (negated) {
-			if (!_isSetTypedReceiver(content, variableName)) {
-				return;
-			}
+		else if (StringUtil.equals(matcher.group(3), "contains") &&
+				 variableTypeName.matches("\\w*Set<.*")) {
 
-			if (_hasOperation(s, variableName, "add", parameter)) {
+			if (negated && _hasOperation(s, variableName, "add", parameter)) {
 				operation = "add";
 				suggestion = "the boolean result of a single \"add\"";
 			}
-		}
-		else if (_hasOperation(s, variableName, "remove", parameter)) {
-			operation = "remove";
-			suggestion = "the boolean result of a single \"remove\"";
+			else if (_hasOperation(s, variableName, "remove", parameter)) {
+				operation = "remove";
+				suggestion = "the boolean result of a single \"remove\"";
+			}
 		}
 
 		if ((operation == null) || (suggestion == null)) {
@@ -130,7 +131,7 @@ public class JavaRedundantContainsCheck extends BaseFileCheck {
 		addMessage(
 			fileName,
 			StringBundler.concat(
-				"Combine the \"contains", map ? "Key" : "", "\" check on \"",
+				"Combine the \"", matcher.group(3), "\" check on \"",
 				variableName, "\" and the following \"", operation, "\" into ",
 				suggestion),
 			lineNumber);
@@ -227,32 +228,12 @@ public class JavaRedundantContainsCheck extends BaseFileCheck {
 		return false;
 	}
 
-	private boolean _isSetTypedReceiver(String fileContent, String receiver) {
-		Pattern pattern = Pattern.compile(
-			StringBundler.concat(
-				"\\b\\w*Set\\s*(<[^<>]*(<[^<>]*>)?[^<>]*>)?\\s+",
-				Pattern.quote(receiver), "\\b"));
-
-		Matcher matcher = pattern.matcher(fileContent);
-
-		if (matcher.find()) {
-			return true;
-		}
-
-		pattern = Pattern.compile(
-			Pattern.quote(receiver) + "\\s*=\\s*new\\s+\\w*Set\\s*[<(]");
-
-		matcher = pattern.matcher(fileContent);
-
-		return matcher.find();
-	}
-
 	private String _normalize(String s) {
 		return s.replaceAll("\\s+", "");
 	}
 
 	private static final Pattern _containsCallPattern = Pattern.compile(
-		"(!)?(\\w+)\\.contains(Key)?\\(");
+		"(!)?(\\w+)\\.(contains(Key)?)\\(");
 	private static final Pattern _ifStatementPattern = Pattern.compile(
 		"[\n\t]if \\(");
 
