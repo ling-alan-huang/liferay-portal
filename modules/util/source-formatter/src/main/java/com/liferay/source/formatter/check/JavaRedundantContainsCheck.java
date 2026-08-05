@@ -52,7 +52,7 @@ public class JavaRedundantContainsCheck extends BaseFileCheck {
 				}
 
 				List<String> parameterList = JavaSourceUtil.getParameterList(
-					JavaSourceUtil.getMethodCall(clause, matcher2.start()));
+					JavaSourceUtil.getMethodCall(clause, matcher2.start(2)));
 
 				if (parameterList.isEmpty()) {
 					continue;
@@ -236,7 +236,7 @@ public class JavaRedundantContainsCheck extends BaseFileCheck {
 	}
 
 	private static final Pattern _containsCallPattern = Pattern.compile(
-		"(!)?(\\w+)\\.(contains(Key)?)\\(");
+		"\\((!)?(\\w+)\\.(contains(Key)?)\\(");
 	private static final Pattern _ifStatementPattern = Pattern.compile(
 		"[\n\t]if \\(");
 
