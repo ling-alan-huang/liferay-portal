@@ -45,18 +45,6 @@ public class JavaRedundantContainsCheck extends BaseFileCheck {
 			Matcher matcher2 = _containsCallPattern.matcher(clause);
 
 			while (matcher2.find()) {
-				boolean negated = false;
-
-				if (matcher2.group(1) != null) {
-					negated = true;
-				}
-
-				boolean map = false;
-
-				if (matcher2.group(3) != null) {
-					map = true;
-				}
-
 				List<String> parameterList = JavaSourceUtil.getParameterList(
 					JavaSourceUtil.getMethodCall(clause, matcher2.start()));
 
@@ -71,8 +59,8 @@ public class JavaRedundantContainsCheck extends BaseFileCheck {
 				}
 
 				_checkMethodCallInIfBody(
-					fileName, content, body, map, negated, matcher2.group(2),
-					parameter, getLineNumber(content, matcher1.start()));
+					fileName, content, body, matcher2, parameter,
+					getLineNumber(content, matcher1.start()));
 			}
 		}
 
@@ -80,11 +68,25 @@ public class JavaRedundantContainsCheck extends BaseFileCheck {
 	}
 
 	private void _checkMethodCallInIfBody(
-		String fileName, String content, String s, boolean map, boolean negated,
-		String variableName, String parameter, int lineNumber) {
+		String fileName, String content, String s, Matcher matcher,
+		String parameter, int lineNumber) {
 
 		String operation = null;
 		String suggestion = null;
+
+		boolean negated = false;
+
+		if (matcher.group(1) != null) {
+			negated = true;
+		}
+
+		boolean map = false;
+
+		if (matcher.group(3) != null) {
+			map = true;
+		}
+
+		String variableName = matcher.group(2);
 
 		if (map) {
 			if (negated && _hasOperation(s, variableName, "put", parameter)) {
@@ -115,7 +117,7 @@ public class JavaRedundantContainsCheck extends BaseFileCheck {
 			suggestion = "the boolean result of a single \"remove\"";
 		}
 
-		if (operation == null) {
+		if ((operation == null) || (suggestion == null)) {
 			return;
 		}
 
