@@ -77,12 +77,6 @@ public class JavaRedundantContainsCheck extends BaseFileCheck {
 		String fileName, String content, String s, Matcher matcher,
 		String parameter, int lineNumber) {
 
-		String firstStatement = _getFirstStatement(s);
-
-		if (firstStatement == null) {
-			return;
-		}
-
 		boolean negated = false;
 
 		if (matcher.group(1) != null) {
@@ -169,30 +163,6 @@ public class JavaRedundantContainsCheck extends BaseFileCheck {
 		}
 	}
 
-	private String _getFirstStatement(String s) {
-		int level = 0;
-
-		for (int i = 0; i < s.length(); i++) {
-			char c = s.charAt(i);
-
-			if ((c == '(') || (c == '{')) {
-				level++;
-			}
-			else if ((c == ')') || (c == '}')) {
-				if ((c == '}') && (level == 0)) {
-					return s.substring(0, i);
-				}
-
-				level--;
-			}
-			else if ((c == ';') && (level == 0)) {
-				return s.substring(0, i + 1);
-			}
-		}
-
-		return null;
-	}
-
 	private IfStatement _getIfStatement(String content, int pos) {
 		int x = _getClosePos(content, "(", ")", pos);
 
@@ -212,30 +182,33 @@ public class JavaRedundantContainsCheck extends BaseFileCheck {
 	}
 
 	private boolean _hasOperation(
-		String s, String variableName, String methodName, String parameter) {
+		String content, String variableName, String methodName,
+		String parameter) {
 
 		Pattern pattern = Pattern.compile(
-			StringBundler.concat(
-				Pattern.quote(variableName), "\\.\\s*", methodName, "\\("));
+			StringBundler.concat(variableName, "\\.\\s*", methodName, "\\("));
 
-		Matcher matcher = pattern.matcher(s);
+		Matcher matcher = pattern.matcher(content);
 
-		while (matcher.find()) {
-			List<String> parameterList = JavaSourceUtil.getParameterList(
-				JavaSourceUtil.getMethodCall(s, matcher.start()));
-
-			if (parameterList.isEmpty()) {
-				continue;
-			}
-
-			if (Objects.equals(
-					_normalize(parameterList.get(0)), _normalize(parameter))) {
-
-				return true;
-			}
+		if (!matcher.find()) {
+			return false;
 		}
 
-		return false;
+		String s = content.substring(0, matcher.start());
+
+		if (s.matches("(?s).*\\b" + variableName + "\\b.*")) {
+			return false;
+		}
+
+		List<String> parameterList = JavaSourceUtil.getParameterList(
+			JavaSourceUtil.getMethodCall(content, matcher.start()));
+
+		if (parameterList.isEmpty()) {
+			return false;
+		}
+
+		return Objects.equals(
+			_normalize(parameterList.get(0)), _normalize(parameter));
 	}
 
 	private boolean _hasTopLevelComma(String s) {
