@@ -77,6 +77,12 @@ public class JavaRedundantContainsCheck extends BaseFileCheck {
 		String fileName, String content, String s, Matcher matcher,
 		String parameter, int lineNumber) {
 
+		String firstStatement = _getFirstStatement(s);
+
+		if (firstStatement == null) {
+			return;
+		}
+
 		boolean negated = false;
 
 		if (matcher.group(1) != null) {
@@ -161,6 +167,30 @@ public class JavaRedundantContainsCheck extends BaseFileCheck {
 				return -1;
 			}
 		}
+	}
+
+	private String _getFirstStatement(String s) {
+		int level = 0;
+
+		for (int i = 0; i < s.length(); i++) {
+			char c = s.charAt(i);
+
+			if ((c == '(') || (c == '{')) {
+				level++;
+			}
+			else if ((c == ')') || (c == '}')) {
+				if ((c == '}') && (level == 0)) {
+					return s.substring(0, i);
+				}
+
+				level--;
+			}
+			else if ((c == ';') && (level == 0)) {
+				return s.substring(0, i + 1);
+			}
+		}
+
+		return null;
 	}
 
 	private IfStatement _getIfStatement(String content, int pos) {
