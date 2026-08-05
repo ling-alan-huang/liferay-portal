@@ -45,6 +45,12 @@ public class JavaRedundantContainsCheck extends BaseFileCheck {
 			Matcher matcher2 = _containsCallPattern.matcher(clause);
 
 			while (matcher2.find()) {
+				String variableName = matcher2.group(2);
+
+				if (!variableName.matches("_?[a-z]\\w+")) {
+					continue;
+				}
+
 				List<String> parameterList = JavaSourceUtil.getParameterList(
 					JavaSourceUtil.getMethodCall(clause, matcher2.start()));
 
