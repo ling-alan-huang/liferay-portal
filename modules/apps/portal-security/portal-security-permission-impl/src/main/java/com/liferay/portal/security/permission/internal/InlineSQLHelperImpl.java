@@ -827,7 +827,7 @@ public class InlineSQLHelperImpl implements InlineSQLHelper {
 				}
 
 				try {
-					if (!disabledGroupIds.contains(groupId) &&
+					if (disabledGroupIds.add(groupId) &&
 						_resourcePermissionLocalService.hasResourcePermission(
 							companyId, className,
 							ResourceConstants.SCOPE_COMPANY,

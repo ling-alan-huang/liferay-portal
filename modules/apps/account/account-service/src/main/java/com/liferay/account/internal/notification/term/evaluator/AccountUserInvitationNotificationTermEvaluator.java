@@ -35,10 +35,10 @@ public class AccountUserInvitationNotificationTermEvaluator
 
 		Map<String, Object> termValues = notificationContext.getTermValues();
 
-		if (!termValues.containsKey("currentUserId") &&
-			(notificationContext.getUserId() > 0)) {
+		long userId = notificationContext.getUserId();
 
-			termValues.put("currentUserId", notificationContext.getUserId());
+		if (userId > 0) {
+			termValues.putIfAbsent("currentUserId", userId);
 		}
 
 		return evaluate(context, termValues, termName);

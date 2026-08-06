@@ -956,9 +956,7 @@ public class LocalizationImpl implements Localization {
 		for (Locale availableLocale :
 				LanguageUtil.getAvailableLocales(groupId)) {
 
-			if (!localizationMap.containsKey(availableLocale) ||
-				Validator.isNull(localizationMap.get(availableLocale))) {
-
+			if (Validator.isNull(localizationMap.get(availableLocale))) {
 				localizationMap.put(availableLocale, defaultValue);
 			}
 		}
