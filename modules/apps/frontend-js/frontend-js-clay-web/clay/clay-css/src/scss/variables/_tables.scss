@@ -271,8 +271,10 @@ $c-table: map-deep-merge(
 							padding-right: 0rem,
 						),
 					),
+
 				)
 			),
+
 		table-column-start: (
 			padding-left: $table-cell-gutters,
 		),
@@ -311,6 +313,7 @@ $c-table: map-deep-merge(
 						border-top: calc(2 * #{$table-border-width}) solid
 							$table-border-color,
 					),
+
 				)
 			),
 		tfoot: $c-table-tfoot,
@@ -449,10 +452,12 @@ $c-tr-table-focus: map-deep-merge(
 
 			before: (
 				bottom: calc(#{$table-border-width} * -1),
+
 				box-shadow: (
 					inset 0 0.2rem 0 0 rgba($primary, 0.25),
 					inset 0 -0.2rem 0 0 rgba($primary, 0.25),
 				),
+
 				content: '',
 				display: block,
 				left: calc(#{$table-border-width} * -1),
@@ -628,6 +633,7 @@ $c-table-sort: map-deep-merge(
 			table-cell: (
 				cursor: pointer,
 				transition: clay-enable-transitions($component-transition),
+
 				hover: (
 					background-color: $primary-l3,
 					color: $gray-900,
@@ -892,6 +898,7 @@ $c-table-list: map-merge(
 
 						href: $table-list-head-link,
 					),
+
 				)
 			),
 		table-cell: $c-table-list-cell,
@@ -903,6 +910,7 @@ $c-table-list: map-merge(
 					table-cell: (
 						vertical-align: middle,
 					),
+
 				)
 			),
 		tfoot:
@@ -912,6 +920,7 @@ $c-table-list: map-merge(
 					table-cell: (
 						vertical-align: middle,
 					),
+
 				)
 			),
 		caption: $c-table-list-caption,
@@ -1083,6 +1092,7 @@ $table-row-theme-colors: map-deep-merge(
 		'primary': (
 			background-color: theme-color-level(primary, $table-bg-level),
 			border-color: theme-color-level(primary, $table-border-level),
+
 			hover: (
 				background-color:
 					clay-darken(theme-color-level(primary, $table-bg-level), 5%),
@@ -1092,6 +1102,7 @@ $table-row-theme-colors: map-deep-merge(
 		'secondary': (
 			background-color: theme-color-level(secondary, $table-bg-level),
 			border-color: theme-color-level(secondary, $table-border-level),
+
 			hover: (
 				background-color:
 					clay-darken(
@@ -1104,6 +1115,7 @@ $table-row-theme-colors: map-deep-merge(
 		'success': (
 			background-color: theme-color-level(success, $table-bg-level),
 			border-color: theme-color-level(success, $table-border-level),
+
 			hover: (
 				background-color:
 					clay-darken(theme-color-level(success, $table-bg-level), 5%),
@@ -1113,6 +1125,7 @@ $table-row-theme-colors: map-deep-merge(
 		'info': (
 			background-color: theme-color-level(info, $table-bg-level),
 			border-color: theme-color-level(info, $table-border-level),
+
 			hover: (
 				background-color:
 					clay-darken(theme-color-level(info, $table-bg-level), 5%),
@@ -1122,6 +1135,7 @@ $table-row-theme-colors: map-deep-merge(
 		'warning': (
 			background-color: theme-color-level(warning, $table-bg-level),
 			border-color: theme-color-level(warning, $table-border-level),
+
 			hover: (
 				background-color:
 					clay-darken(theme-color-level(warning, $table-bg-level), 5%),
@@ -1131,6 +1145,7 @@ $table-row-theme-colors: map-deep-merge(
 		'danger': (
 			background-color: theme-color-level(danger, $table-bg-level),
 			border-color: theme-color-level(danger, $table-border-level),
+
 			hover: (
 				background-color:
 					clay-darken(theme-color-level(danger, $table-bg-level), 5%),
@@ -1140,6 +1155,7 @@ $table-row-theme-colors: map-deep-merge(
 		'light': (
 			background-color: theme-color-level(light, $table-bg-level),
 			border-color: theme-color-level(light, $table-border-level),
+
 			hover: (
 				background-color:
 					clay-darken(theme-color-level(light, $table-bg-level), 5%),
@@ -1149,6 +1165,7 @@ $table-row-theme-colors: map-deep-merge(
 		'dark': (
 			background-color: theme-color-level(dark, $table-bg-level),
 			border-color: theme-color-level(dark, $table-border-level),
+
 			hover: (
 				background-color:
 					clay-darken(theme-color-level(dark, $table-bg-level), 5%),

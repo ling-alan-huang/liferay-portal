@@ -308,8 +308,10 @@ $cadmin-c-table: map-deep-merge(
 							padding-right: 0px,
 						),
 					),
+
 				)
 			),
+
 		table-column-start: (
 			padding-left: $cadmin-table-cell-gutters,
 		),
@@ -349,6 +351,7 @@ $cadmin-c-table: map-deep-merge(
 						border-top: calc(2 * #{$cadmin-table-border-width})
 							solid $cadmin-table-border-color,
 					),
+
 				)
 			),
 		tfoot: $cadmin-c-table-tfoot,
@@ -490,12 +493,14 @@ $cadmin-c-tr-table-focus: map-deep-merge(
 		td: (
 			before: (
 				bottom: calc(#{$cadmin-table-border-width} * -1),
+
 				box-shadow: (
 					inset 0 2px 0 0 $cadmin-primary-l0,
 					inset 0 4px 0 0 $cadmin-white,
 					inset 0 -2px 0 0 $cadmin-primary-l0,
 					inset 0 -4px 0 0 $cadmin-white,
 				),
+
 				content: '',
 				display: block,
 				left: calc(#{$cadmin-table-border-width} * -1),
@@ -509,10 +514,12 @@ $cadmin-c-tr-table-focus: map-deep-merge(
 			first-child: (
 				after: (
 					bottom: $cadmin-table-border-width,
+
 					box-shadow: (
 						inset 2px 0 0 0 $cadmin-primary-l0,
 						inset 4px 0 0 0 $cadmin-white,
 					),
+
 					content: '',
 					display: block,
 					left: calc(#{$cadmin-table-border-width} * -1),
@@ -527,10 +534,12 @@ $cadmin-c-tr-table-focus: map-deep-merge(
 			last-child: (
 				after: (
 					bottom: $cadmin-table-border-width,
+
 					box-shadow: (
 						inset -2px 0 0 0 $cadmin-primary-l0,
 						inset -4px 0 0 0 $cadmin-white,
 					),
+
 					content: '',
 					display: block,
 					pointer-events: none,
@@ -937,6 +946,7 @@ $cadmin-c-table-list: map-merge(
 							$cadmin-table-list-head-vertical-alignment,
 						href: $cadmin-table-list-head-link,
 					),
+
 				)
 			),
 		table-cell: $cadmin-c-table-list-cell,
@@ -948,6 +958,7 @@ $cadmin-c-table-list: map-merge(
 					table-cell: (
 						vertical-align: middle,
 					),
+
 				)
 			),
 		tfoot:
@@ -957,6 +968,7 @@ $cadmin-c-table-list: map-merge(
 					table-cell: (
 						vertical-align: middle,
 					),
+
 				)
 			),
 		caption: $cadmin-c-table-list-caption,
