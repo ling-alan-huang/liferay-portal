@@ -219,68 +219,6 @@ public class JavaParserUtil {
 		return javaTerm;
 	}
 
-	private static int _getArrayDimension(DetailAST detailAST) {
-		int arrayDimension = 0;
-
-		DetailAST childDetailAST = detailAST.getFirstChild();
-
-		while (childDetailAST.getType() == TokenTypes.ARRAY_DECLARATOR) {
-			arrayDimension++;
-
-			childDetailAST = childDetailAST.getFirstChild();
-		}
-
-		// Checkstyle parses the following two types as identical DetailASTs:
-		// 'Map<Long, List<String>[]>' and 'Map<Long, List<String>>[]'. The
-		// following logic is to 'correct' misplaced array declarators.
-
-		if (arrayDimension > 0) {
-			DetailAST parentDetailAST = detailAST.getParent();
-
-			if (parentDetailAST.getType() == TokenTypes.TYPE_ARGUMENT) {
-				parentDetailAST = parentDetailAST.getParent();
-			}
-
-			if ((parentDetailAST.getType() == TokenTypes.TYPE_ARGUMENTS) &&
-				_isMisplacedArrayDeclarator(
-					parentDetailAST.getLastChild(),
-					detailAST.getFirstChild())) {
-
-				return 0;
-			}
-
-			return arrayDimension;
-		}
-
-		DetailAST typeInfoDetailAST = detailAST;
-
-		if (childDetailAST.getType() == TokenTypes.DOT) {
-			typeInfoDetailAST = childDetailAST;
-		}
-
-		DetailAST typeArgumentsDetailAST = typeInfoDetailAST.findFirstToken(
-			TokenTypes.TYPE_ARGUMENTS);
-
-		if (typeArgumentsDetailAST == null) {
-			return arrayDimension;
-		}
-
-		List<DetailAST> arrayDeclaratorDetailASTs =
-			DetailASTUtil.getAllChildTokens(
-				typeInfoDetailAST, true, TokenTypes.ARRAY_DECLARATOR);
-
-		for (DetailAST arrayDeclaratorDetailAST : arrayDeclaratorDetailASTs) {
-			if (_isMisplacedArrayDeclarator(
-					typeArgumentsDetailAST.getLastChild(),
-					arrayDeclaratorDetailAST)) {
-
-				arrayDimension++;
-			}
-		}
-
-		return arrayDimension;
-	}
-
 	private static Tuple _getChainTuple(DetailAST dotDetailAST) {
 		String name = StringPool.BLANK;
 
@@ -352,23 +290,6 @@ public class JavaParserUtil {
 		}
 
 		return closingDetailAST.getText();
-	}
-
-	private static boolean _isMisplacedArrayDeclarator(
-		DetailAST genericEndDetailAST, DetailAST arrayDeclaratorDetailAST) {
-
-		Position genericEndPosition = new Position(
-			genericEndDetailAST.getLineNo(), genericEndDetailAST.getColumnNo());
-
-		Position arrayDeclaratorPosition = new Position(
-			arrayDeclaratorDetailAST.getLineNo(),
-			arrayDeclaratorDetailAST.getColumnNo());
-
-		if (arrayDeclaratorPosition.compareTo(genericEndPosition) > 0) {
-			return true;
-		}
-
-		return false;
 	}
 
 	private static List<JavaExpression> _parseArrayValueJavaExpressions(
@@ -1921,16 +1842,10 @@ public class JavaParserUtil {
 			childDetailAST = childDetailAST.getNextSibling();
 		}
 
-		int arrayDimension = _getArrayDimension(detailAST);
-
-		while (childDetailAST.getType() == TokenTypes.ARRAY_DECLARATOR) {
-			childDetailAST = childDetailAST.getFirstChild();
-		}
-
 		FullIdent typeFullIdent = FullIdent.createFullIdent(childDetailAST);
 
 		JavaType javaType = new JavaType(
-			arrayDimension, javaAnnotations, typeFullIdent.getText());
+			javaAnnotations, typeFullIdent.getText());
 
 		DetailAST typeInfoDetailAST = childDetailAST;
 
@@ -2124,6 +2039,85 @@ public class JavaParserUtil {
 		}
 
 		return javaRecordComponents;
+	}
+
+	private int _getArrayDimension(DetailAST detailAST) {
+		int arrayDimension = 0;
+
+		DetailAST childDetailAST = detailAST.getFirstChild();
+
+		while (childDetailAST.getType() == TokenTypes.ARRAY_DECLARATOR) {
+			arrayDimension++;
+
+			childDetailAST = childDetailAST.getFirstChild();
+		}
+
+		// Checkstyle parses the following two types as identical DetailASTs:
+		// 'Map<Long, List<String>[]>' and 'Map<Long, List<String>>[]'. The
+		// following logic is to 'correct' misplaced array declarators.
+
+		if (arrayDimension > 0) {
+			DetailAST parentDetailAST = detailAST.getParent();
+
+			if (parentDetailAST.getType() == TokenTypes.TYPE_ARGUMENT) {
+				parentDetailAST = parentDetailAST.getParent();
+			}
+
+			if ((parentDetailAST.getType() == TokenTypes.TYPE_ARGUMENTS) &&
+				_isMisplacedArrayDeclarator(
+					parentDetailAST.getLastChild(),
+					detailAST.getFirstChild())) {
+
+				return 0;
+			}
+
+			return arrayDimension;
+		}
+
+		DetailAST typeInfoDetailAST = detailAST;
+
+		if (childDetailAST.getType() == TokenTypes.DOT) {
+			typeInfoDetailAST = childDetailAST;
+		}
+
+		DetailAST typeArgumentsDetailAST = typeInfoDetailAST.findFirstToken(
+			TokenTypes.TYPE_ARGUMENTS);
+
+		if (typeArgumentsDetailAST == null) {
+			return arrayDimension;
+		}
+
+		List<DetailAST> arrayDeclaratorDetailASTs =
+			DetailASTUtil.getAllChildTokens(
+				typeInfoDetailAST, true, TokenTypes.ARRAY_DECLARATOR);
+
+		for (DetailAST arrayDeclaratorDetailAST : arrayDeclaratorDetailASTs) {
+			if (_isMisplacedArrayDeclarator(
+					typeArgumentsDetailAST.getLastChild(),
+					arrayDeclaratorDetailAST)) {
+
+				arrayDimension++;
+			}
+		}
+
+		return arrayDimension;
+	}
+
+	private boolean _isMisplacedArrayDeclarator(
+		DetailAST genericEndDetailAST, DetailAST arrayDeclaratorDetailAST) {
+
+		Position genericEndPosition = new Position(
+			genericEndDetailAST.getLineNo(), genericEndDetailAST.getColumnNo());
+
+		Position arrayDeclaratorPosition = new Position(
+			arrayDeclaratorDetailAST.getLineNo(),
+			arrayDeclaratorDetailAST.getColumnNo());
+
+		if (arrayDeclaratorPosition.compareTo(genericEndPosition) > 0) {
+			return true;
+		}
+
+		return false;
 	}
 
 	private static final int[] _SIMPLE_TYPES = {
