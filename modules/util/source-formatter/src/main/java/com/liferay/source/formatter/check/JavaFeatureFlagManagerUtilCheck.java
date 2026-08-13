@@ -123,19 +123,18 @@ public class JavaFeatureFlagManagerUtilCheck extends BaseFileCheck {
 			parameterList = JavaSourceUtil.getParameterList(
 				JavaSourceUtil.getMethodCall(parameter, 0));
 
-			if (parameterList.size() != 1) {
+			if ((parameterList.size() != 1) ||
+				!StringUtil.startsWith(
+					parameterList.get(0), "\"feature.flag.")) {
+
 				continue;
 			}
 
-			if (StringUtil.startsWith(
-					parameterList.get(0), "\"feature.flag.")) {
-
-				addMessage(
-					fileName,
-					"Use \"FeatureFlagManagerUtil.isEnabled\" instead of " +
-						"\"PropsUtil.get\" for feature flag",
-					getLineNumber(content, matcher.start()));
-			}
+			addMessage(
+				fileName,
+				"Use \"FeatureFlagManagerUtil.isEnabled\" instead of " +
+					"\"PropsUtil.get\" for feature flag",
+				getLineNumber(content, matcher.start()));
 		}
 	}
 
@@ -143,19 +142,32 @@ public class JavaFeatureFlagManagerUtilCheck extends BaseFileCheck {
 		Matcher matcher = _isEnabledPattern.matcher(content);
 
 		while (matcher.find()) {
-			String variableTypeName = getVariableTypeName(
-				content, null, content, fileName, matcher.group(1));
+			String name = matcher.group(1);
 
-			if (variableTypeName == null) {
-				continue;
+			if (name.equals("FeatureFlagManagerUtil")) {
+				List<String> parameterList = JavaSourceUtil.getParameterList(
+					JavaSourceUtil.getMethodCall(content, matcher.start(1)));
+
+				if (parameterList.size() != 1) {
+					continue;
+				}
+			}
+			else {
+				String variableTypeName = getVariableTypeName(
+					content, null, content, fileName, name);
+
+				if ((variableTypeName == null) ||
+					!variableTypeName.equals("FeatureFlagManager")) {
+
+					continue;
+				}
 			}
 
-			if (variableTypeName.equals("FeatureFlagManager")) {
-				addMessage(
-					fileName,
-					"Use \"FeatureFlagManagerUtil.isEnabled\" instead",
-					getLineNumber(content, matcher.start()));
-			}
+			addMessage(
+				fileName,
+				"Use \"FeatureFlagManagerUtil.isEnabled(long, String)\" " +
+					"instead",
+				getLineNumber(content, matcher.start(1)));
 		}
 	}
 
