@@ -298,10 +298,10 @@ public class JavaParserUtil {
 
 		List<JavaExpression> arrayValueJavaExpressions = new ArrayList<>();
 
-		DetailAST firstChildDetailAST = detailAST;
-
-		while (true) {
-			if (firstChildDetailAST.getType() != bracketType) {
+		DetailAST nextSiblingDetailAST = detailAST;
+		
+		while (nextSiblingDetailAST != null) {
+			if (nextSiblingDetailAST.getType() != bracketType) {
 				if (arrayValueJavaExpressions.size() > 1) {
 					Collections.reverse(arrayValueJavaExpressions);
 				}
@@ -309,25 +309,56 @@ public class JavaParserUtil {
 				return arrayValueJavaExpressions;
 			}
 
-			DetailAST closeBracketDetailAST =
-				firstChildDetailAST.findFirstToken(TokenTypes.RBRACK);
-
-			DetailAST previousSiblingDetailAST =
-				closeBracketDetailAST.getPreviousSibling();
-
-			if ((previousSiblingDetailAST == null) ||
-				(previousSiblingDetailAST.getType() == bracketType)) {
-
+			DetailAST childDetailAST = nextSiblingDetailAST.getFirstChild();
+			
+			if (childDetailAST == null ||
+			    childDetailAST.getType() != TokenTypes.EXPR) {
+				
 				arrayValueJavaExpressions.add(
 					new JavaSimpleValue(StringPool.BLANK));
 			}
 			else {
 				arrayValueJavaExpressions.add(
-					_parseJavaExpression(previousSiblingDetailAST));
+						_parseJavaExpression(childDetailAST));
 			}
 
-			firstChildDetailAST = firstChildDetailAST.getFirstChild();
+			nextSiblingDetailAST = nextSiblingDetailAST.getNextSibling();
+			
+			
 		}
+
+		return arrayValueJavaExpressions;
+//
+//		DetailAST firstChildDetailAST = detailAST;
+//
+//		while (true) {
+//			if (firstChildDetailAST.getType() != bracketType) {
+//				if (arrayValueJavaExpressions.size() > 1) {
+//					Collections.reverse(arrayValueJavaExpressions);
+//				}
+//
+//				return arrayValueJavaExpressions;
+//			}
+//
+//			DetailAST closeBracketDetailAST =
+//				firstChildDetailAST.findFirstToken(TokenTypes.RBRACK);
+//
+//			DetailAST previousSiblingDetailAST =
+//				closeBracketDetailAST.getPreviousSibling();
+//
+//			if ((previousSiblingDetailAST == null) ||
+//				(previousSiblingDetailAST.getType() == bracketType)) {
+//
+//				arrayValueJavaExpressions.add(
+//					new JavaSimpleValue(StringPool.BLANK));
+//			}
+//			else {
+//				arrayValueJavaExpressions.add(
+//					_parseJavaExpression(previousSiblingDetailAST));
+//			}
+//
+//			firstChildDetailAST = firstChildDetailAST.getFirstChild();
+//		}
 	}
 
 	private static List<JavaType> _parseExceptionJavaTypes(
