@@ -89,6 +89,7 @@ $close: map-deep-merge(
 		text-shadow: $close-text-shadow,
 		transition: $component-transition,
 		width: var(--close-width, 32px),
+
 		hover: (
 			color: var(--close-hover-color, $close-color),
 			text-decoration: none,
@@ -150,8 +151,8 @@ $c-inner: map-deep-merge(
 		height: inherit,
 		justify-content: inherit,
 		line-height: inherit,
-		max-width: inherit,
 		min-width: inherit,
+		max-width: inherit,
 		outline: 0,
 		overflow: inherit,
 		padding-bottom: inherit,

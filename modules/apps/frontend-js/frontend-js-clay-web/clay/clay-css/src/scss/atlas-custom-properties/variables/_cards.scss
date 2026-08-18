@@ -248,6 +248,7 @@ $card-title-link: () !default;
 $card-title-link: map-deep-merge(
 	(
 		color: map-get($card-title, color),
+
 		hover: (
 			color: map-get($card-title, color),
 		),
@@ -280,6 +281,7 @@ $card-subtitle-link: () !default;
 $card-subtitle-link: map-deep-merge(
 	(
 		color: map-get($card-subtitle, color),
+
 		hover: (
 			color: $gray-600,
 		),
@@ -301,6 +303,7 @@ $card-link: map-deep-merge(
 	(
 		color: var(--card-link-color, $gray-600),
 		font-size: var(--card-link-font-size, 14px),
+
 		hover: (
 			color: var(--card-link-hover-color, $gray-600),
 			text-decoration: var(--card-link-hover-text-decoration, underline),
@@ -357,6 +360,7 @@ $card-header: map-deep-merge(
 		color: var(--card-header-color, $card-cap-color),
 		margin-bottom: var(--card-header-margin-bottom, 0),
 		padding: var(--card-header-padding, $card-spacer-y $card-spacer-x),
+
 		first-child: (
 			border-radius:
 				clay-enable-rounded(
@@ -379,6 +383,7 @@ $card-footer: map-deep-merge(
 				$card-border-width solid $card-border-color
 			),
 		padding: var(--card-footer-padding, $card-spacer-y $card-spacer-x),
+
 		last-child: (
 			border-radius:
 				clay-enable-rounded(
@@ -745,6 +750,7 @@ $card-interactive-after-highlight: map-deep-merge(
 				--card-interactive-after-highlight-transition,
 				height 0.15s ease-out
 			),
+
 		hover: (
 			height: var(--card-interactive-after-highlight-hover-height, 4px),
 		),
@@ -862,6 +868,7 @@ $card-interactive-secondary: map-deep-merge(
 			box-shadow: c-unset,
 			color: $gray-900,
 			transform: translateY(-0.25rem),
+
 			after: (
 				bottom: -0.25rem,
 				content: '',
@@ -1211,6 +1218,7 @@ $template-card: map-deep-merge(
 
 		hover: (
 			transform: translateY(-0.25rem),
+
 			after: (
 				bottom: -0.25rem,
 				content: '',

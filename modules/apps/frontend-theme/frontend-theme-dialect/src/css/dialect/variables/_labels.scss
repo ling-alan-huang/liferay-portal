@@ -4,6 +4,7 @@ $label: (
 	border-radius: var(--label-sm-border-radius),
 	font-size: var(--label-sm-font-size),
 	font-weight: var(--label-sm-font-weight),
+
 	lexicon-icon: (
 		height: var(--label-sm-icon-size),
 		width: var(--label-sm-icon-size),
@@ -21,6 +22,7 @@ $label-lg: (
 	border-radius: var(--label-lg-border-radius),
 	font-size: var(--label-lg-font-size),
 	font-weight: var(--label-lg-font-weight),
+
 	lexicon-icon: (
 		height: var(--label-lg-icon-size),
 		width: var(--label-lg-icon-size),
@@ -37,6 +39,7 @@ $label-lg: (
 
 $label-primary: (
 	border-color: var(--color-action-primary-default),
+
 	close: (
 		focus: (
 			color: var(--color-action-primary-hover),
@@ -48,6 +51,7 @@ $label-primary: (
 	),
 
 	color: var(--color-action-primary-default),
+
 	focus: (
 		color: var(--color-action-primary-hover),
 	),
@@ -56,10 +60,12 @@ $label-primary: (
 		border-color: var(--color-action-primary-default),
 		color: var(--color-action-primary-hover),
 	),
+
 );
 
 $label-secondary: (
 	border-color: var(--color-action-secondary-default),
+
 	close: (
 		focus: (
 			color: var(--color-action-secondary-hover),
@@ -71,6 +77,7 @@ $label-secondary: (
 	),
 
 	color: var(--color-action-secondary-default),
+
 	focus: (
 		color: var(--color-action-secondary-hover),
 	),
@@ -79,6 +86,7 @@ $label-secondary: (
 		border-color: var(--color-action-secondary-default),
 		color: var(--color-action-secondary-hover),
 	),
+
 );
 
 $label-success-hover-color: $success-d1;
@@ -106,6 +114,7 @@ $label-success: (
 		border-color: $success,
 		color: $label-success-hover-color,
 	),
+
 );
 
 $label-info-hover-color: $info-d1;
@@ -133,6 +142,7 @@ $label-info: (
 		border-color: $info,
 		color: $label-info-hover-color,
 	),
+
 );
 
 $label-warning-hover-color: $warning-d1;
@@ -160,6 +170,7 @@ $label-warning: (
 		border-color: $warning,
 		color: $label-warning-hover-color,
 	),
+
 );
 
 $label-danger-hover-color: $danger-d1;
@@ -187,11 +198,13 @@ $label-danger: (
 		border-color: $danger,
 		color: $label-danger-hover-color,
 	),
+
 );
 
 $label-light: (
 	background-color: var(--color-neutral-6),
 	border-color: var(--color-neutral-1),
+
 	close: (
 		focus: (
 			color: var(--color-neutral-3),
@@ -203,6 +216,7 @@ $label-light: (
 	),
 
 	color: var(--color-neutral-1),
+
 	focus: (
 		color: var(--color-neutral-1),
 	),
@@ -212,11 +226,13 @@ $label-light: (
 		border-color: var(--color-neutral-1),
 		color: var(--color-neutral-1),
 	),
+
 );
 
 $label-dark: (
 	background-color: var(--color-neutral-1),
 	border-color: var(--color-neutral-6),
+
 	close: (
 		focus: (
 			color: var(--color-neutral-10),
@@ -228,6 +244,7 @@ $label-dark: (
 	),
 
 	color: var(--color-neutral-6),
+
 	focus: (
 		color: var(--color-neutral-6),
 	),
@@ -237,6 +254,7 @@ $label-dark: (
 		border-color: var(--color-neutral-6),
 		color: var(--color-neutral-6),
 	),
+
 );
 
 // Label Inverse
@@ -244,6 +262,7 @@ $label-dark: (
 $label-inverse-primary: (
 	background-color: var(--color-action-primary-default),
 	border-color: var(--color-action-primary-default),
+
 	close: (
 		hover: (
 			color: var(--color-action-primary-hover-lighten),
@@ -251,6 +270,7 @@ $label-inverse-primary: (
 	),
 
 	color: var(--color-action-primary-inverted),
+
 	hover: (
 		background-color: var(--color-action-primary-hover),
 		border-color: var(--color-action-primary-hover),
@@ -262,12 +282,14 @@ $label-inverse-primary: (
 			color: var(--color-action-primary-hover-lighten),
 		),
 	),
+
 );
 
 $label-inverse-secondary: (
 	background-color: var(--color-action-secondary-default),
 	border-color: var(--color-action-secondary-default),
 	color: var(--color-action-secondary-inverted),
+
 	hover: (
 		background-color: var(--color-action-secondary-hover),
 		border-color: var(--color-action-secondary-hover),
@@ -285,6 +307,7 @@ $label-inverse-secondary: (
 			color: var(--color-action-secondary-hover-lighten),
 		),
 	),
+
 );
 
 $label-inverse-success: (
@@ -310,6 +333,7 @@ $label-inverse-success: (
 			color: $success-l2,
 		),
 	),
+
 );
 
 $label-inverse-info: (
@@ -334,6 +358,7 @@ $label-inverse-info: (
 			color: $info-l2,
 		),
 	),
+
 );
 
 $label-inverse-warning: (
@@ -359,6 +384,7 @@ $label-inverse-warning: (
 			color: $warning-l2,
 		),
 	),
+
 );
 
 $label-inverse-danger: (
@@ -384,11 +410,13 @@ $label-inverse-danger: (
 			color: $danger-l2,
 		),
 	),
+
 );
 
 $label-inverse-light: (
 	background-color: var(--color-neutral-1),
 	border-color: var(--color-neutral-1),
+
 	close: (
 		hover: (
 			color: var(--color-neutral-7),
@@ -396,6 +424,7 @@ $label-inverse-light: (
 	),
 
 	color: var(--color-neutral-6),
+
 	hover: (
 		background-color: var(--color-neutral-1),
 		border-color: var(--color-neutral-1),
@@ -407,11 +436,13 @@ $label-inverse-light: (
 			color: var(--color-neutral-7),
 		),
 	),
+
 );
 
 $label-inverse-dark: (
 	background-color: var(--color-neutral-6),
 	border-color: var(--color-neutral-6),
+
 	close: (
 		hover: (
 			color: var(--color-neutral-3),
@@ -419,6 +450,7 @@ $label-inverse-dark: (
 	),
 
 	color: var(--color-neutral-1),
+
 	hover: (
 		background-color: var(--color-neutral-6),
 		border-color: var(--color-neutral-6),
@@ -430,6 +462,7 @@ $label-inverse-dark: (
 			color: var(--color-neutral-3),
 		),
 	),
+
 );
 
 // Label Tonal
@@ -445,6 +478,7 @@ $label-tonal-primary: (
 	),
 
 	color: var(--color-action-primary-default),
+
 	hover: (
 		background-color: var(--color-action-primary-hover),
 		border-color: transparent,
@@ -456,6 +490,7 @@ $label-tonal-primary: (
 			color: var(--color-action-primary-hover),
 		),
 	),
+
 );
 
 $label-tonal-secondary: (
@@ -469,6 +504,7 @@ $label-tonal-secondary: (
 	),
 
 	color: var(--color-action-secondary-default),
+
 	hover: (
 		background-color: var(--color-action-secondary-hover),
 		border-color: transparent,
@@ -480,6 +516,7 @@ $label-tonal-secondary: (
 			color: var(--color-action-secondary-hover),
 		),
 	),
+
 );
 
 $label-tonal-success: (
@@ -505,6 +542,7 @@ $label-tonal-success: (
 			color: $success-d2,
 		),
 	),
+
 );
 
 $label-tonal-info: (
@@ -529,6 +567,7 @@ $label-tonal-info: (
 			color: $info-d2,
 		),
 	),
+
 );
 
 $label-tonal-warning: (
@@ -554,6 +593,7 @@ $label-tonal-warning: (
 			color: $warning-d2,
 		),
 	),
+
 );
 
 $label-tonal-danger: (
@@ -579,6 +619,7 @@ $label-tonal-danger: (
 			color: $danger-d2,
 		),
 	),
+
 );
 
 $label-tonal-light: (
@@ -592,6 +633,7 @@ $label-tonal-light: (
 	),
 
 	color: var(--color-neutral-1),
+
 	hover: (
 		background-color: var(--color-neutral-6),
 		border-color: transparent,
@@ -603,6 +645,7 @@ $label-tonal-light: (
 			color: var(--color-neutral-3),
 		),
 	),
+
 );
 
 $label-tonal-dark: (
@@ -616,6 +659,7 @@ $label-tonal-dark: (
 	),
 
 	color: var(--color-neutral-6),
+
 	hover: (
 		background-color: var(--color-neutral-1),
 		border-color: transparent,
@@ -627,6 +671,7 @@ $label-tonal-dark: (
 			color: var(--color-neutral-7),
 		),
 	),
+
 );
 
 // Label Borderless
@@ -645,6 +690,7 @@ $label-borderless-primary: (
 	),
 
 	color: var(--color-action-primary-default),
+
 	focus: (
 		color: var(--color-action-primary-hover),
 	),
@@ -652,6 +698,7 @@ $label-borderless-primary: (
 	hover: (
 		color: var(--color-action-primary-hover),
 	),
+
 );
 
 $label-borderless-secondary: (
@@ -668,6 +715,7 @@ $label-borderless-secondary: (
 	),
 
 	color: var(--color-action-secondary-default),
+
 	focus: (
 		color: var(--color-action-secondary-hover),
 	),
@@ -675,6 +723,7 @@ $label-borderless-secondary: (
 	hover: (
 		color: var(--color-action-secondary-hover),
 	),
+
 );
 
 $label-borderless-success-hover-color: $success-d1;
@@ -701,6 +750,7 @@ $label-borderless-success: (
 	hover: (
 		color: $label-borderless-success-hover-color,
 	),
+
 );
 
 $label-borderless-info-hover-color: $info-d1;
@@ -727,6 +777,7 @@ $label-borderless-info: (
 	hover: (
 		color: $label-borderless-info-hover-color,
 	),
+
 );
 
 $label-borderless-warning-hover-color: $warning-d1;
@@ -753,6 +804,7 @@ $label-borderless-warning: (
 	hover: (
 		color: $label-borderless-warning-hover-color,
 	),
+
 );
 
 $label-borderless-danger-hover-color: $danger-d1;
@@ -779,6 +831,7 @@ $label-borderless-danger: (
 	hover: (
 		color: $label-borderless-danger-hover-color,
 	),
+
 );
 
 $label-borderless-light: (
@@ -795,6 +848,7 @@ $label-borderless-light: (
 	),
 
 	color: var(--color-neutral-1),
+
 	focus: (
 		color: var(--color-neutral-1),
 	),
@@ -802,6 +856,7 @@ $label-borderless-light: (
 	hover: (
 		color: var(--color-neutral-1),
 	),
+
 );
 
 $label-borderless-dark: (
@@ -818,6 +873,7 @@ $label-borderless-dark: (
 	),
 
 	color: var(--color-neutral-6),
+
 	focus: (
 		color: var(--color-neutral-6),
 	),
@@ -825,6 +881,7 @@ $label-borderless-dark: (
 	hover: (
 		color: var(--color-neutral-6),
 	),
+
 );
 
 $label-palette: (

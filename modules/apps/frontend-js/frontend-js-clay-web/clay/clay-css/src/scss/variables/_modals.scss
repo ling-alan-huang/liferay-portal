@@ -453,8 +453,10 @@ $modal-success: map-deep-merge(
 			background-color: theme-color-level(success, -10),
 			border-color: theme-color-level(success, -9),
 			color: theme-color-level(success, 6),
+
 			close: (
 				color: theme-color-level(success, 6),
+
 				hover: (
 					color: inherit,
 				),
@@ -481,8 +483,10 @@ $modal-info: map-deep-merge(
 			background-color: theme-color-level(info, -10),
 			border-color: theme-color-level(info, -9),
 			color: theme-color-level(info, 6),
+
 			close: (
 				color: theme-color-level(info, 6),
+
 				hover: (
 					color: inherit,
 				),
@@ -509,8 +513,10 @@ $modal-warning: map-deep-merge(
 			background-color: theme-color-level(warning, -10),
 			border-color: theme-color-level(warning, -9),
 			color: theme-color-level(warning, 6),
+
 			close: (
 				color: theme-color-level(warning, 6),
+
 				hover: (
 					color: inherit,
 				),
@@ -537,8 +543,10 @@ $modal-danger: map-deep-merge(
 			background-color: theme-color-level(danger, -10),
 			border-color: theme-color-level(danger, -9),
 			color: theme-color-level(danger, 6),
+
 			close: (
 				color: theme-color-level(danger, 6),
+
 				hover: (
 					color: inherit,
 				),

@@ -79,6 +79,7 @@ $cadmin-btn: map-deep-merge(
 
 		active: (
 			box-shadow: clay-enable-shadows($cadmin-btn-active-box-shadow),
+
 			focus: (
 				box-shadow: c-unset,
 			),
@@ -841,6 +842,7 @@ $cadmin-btn-ai: map-deep-merge(
 		background-color: $cadmin-purple,
 		border-color: transparent,
 		color: $cadmin-white,
+
 		hover: (
 			background-color: $cadmin-purple-d1,
 			border-color: transparent,
@@ -876,6 +878,7 @@ $cadmin-btn-ai-gradient: map-deep-merge(
 		border-color: transparent,
 		box-shadow: 0 0 8px 0
 			unquote('hsl(from #{$cadmin-purple} h s l / 0.15)'),
+
 		hover: (
 			background-image:
 				linear-gradient(

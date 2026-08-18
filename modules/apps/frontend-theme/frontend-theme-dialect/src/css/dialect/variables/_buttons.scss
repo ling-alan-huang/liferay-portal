@@ -56,6 +56,7 @@ $btn: (
 	border-color: var(--btn-default-border-color),
 	box-shadow: var(--btn-box-shadow),
 	color: var(--btn-default-color),
+
 	disabled: (
 		background-color:
 			var(
@@ -74,6 +75,7 @@ $btn: (
 	),
 
 	font-weight: var(--btn-font-weight),
+
 	hover: (
 		background-color:
 			var(
@@ -131,6 +133,7 @@ $btn-link: (
 	disabled: (
 		color: var(--color-action-primary-disabled),
 	),
+
 );
 
 $btn-danger: (
@@ -147,6 +150,7 @@ $btn-danger: (
 	hover: (
 		color: c-unset,
 	),
+
 );
 
 $btn-info: (
@@ -163,6 +167,7 @@ $btn-info: (
 	hover: (
 		color: c-unset,
 	),
+
 );
 
 $btn-success: (
@@ -179,6 +184,7 @@ $btn-success: (
 	hover: (
 		color: c-unset,
 	),
+
 );
 
 $btn-warning: (
@@ -195,4 +201,5 @@ $btn-warning: (
 	hover: (
 		color: c-unset,
 	),
+
 );

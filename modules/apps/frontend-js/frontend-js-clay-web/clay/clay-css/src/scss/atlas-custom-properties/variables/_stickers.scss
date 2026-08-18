@@ -76,6 +76,7 @@ $sticker-sm: map-deep-merge(
 		height: var(--sticker-sm-height, 1.5rem),
 		line-height: var(--sticker-sm-line-height, 1.5rem),
 		width: var(--sticker-sm-width, 1.5rem),
+
 		sticker-outside: (
 			left: -0.75rem,
 			top: -0.75rem,
@@ -110,6 +111,7 @@ $sticker-lg: map-deep-merge(
 		height: var(--sticker-lg-height, 2.5rem),
 		line-height: var(--sticker-lg-line-height, 2.5rem),
 		width: var(--sticker-lg-width, 2.5rem),
+
 		sticker-outside: (
 			left: -1.25rem,
 			top: -1.25rem,
@@ -144,6 +146,7 @@ $sticker-xl: map-deep-merge(
 		height: var(--sticker-xl-height, 3rem),
 		line-height: var(--sticker-xl-line-height, 3rem),
 		width: var(--sticker-xl-width, 3rem),
+
 		sticker-outside: (
 			left: -1.5rem,
 			top: -1.5rem,
@@ -177,6 +180,7 @@ $sticker-xxl: map-deep-merge(
 		height: var(--sticker-xxl-height, 5rem),
 		line-height: var(--sticker-xxl-line-height, 5rem),
 		width: var(--sticker-xxl-width, 5rem),
+
 		lexicon-icon: (
 			font-size: 1.5rem,
 		),

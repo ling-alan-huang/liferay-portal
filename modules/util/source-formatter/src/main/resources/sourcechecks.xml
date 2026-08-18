@@ -203,6 +203,10 @@
 			<category name="Styling" />
 			<description name="Validates comments in `.css` files." />
 		</check>
+		<check name="CSSEmptyLinesCheck">
+			<category name="Styling" />
+			<description name="Finds missing empty lines in `.scss` files." />
+		</check>
 		<check name="CSSImportsCheck">
 			<category name="Styling" />
 			<description name="Sorts and groups imports in `.css` files." />
@@ -210,6 +214,11 @@
 		<check name="CSSPropertiesOrderCheck">
 			<category name="Styling" />
 			<description name="Sorts properties in `.css` files." />
+		</check>
+		<check name="CSSVariablesOrderCheck">
+			<category name="Styling" />
+			<description name="Sorts variables and properties in `.scss` files." />
+			<property name="enabled" value="false" />
 		</check>
 		<check name="WhitespaceCheck">
 			<category name="Styling" />

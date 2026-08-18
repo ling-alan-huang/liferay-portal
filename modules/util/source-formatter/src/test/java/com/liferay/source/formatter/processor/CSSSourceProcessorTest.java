@@ -13,8 +13,33 @@ import org.junit.Test;
 public class CSSSourceProcessorTest extends BaseSourceProcessorTestCase {
 
 	@Test
-	public void testIncorrectWhitespace() throws Exception {
-		//test("IncorrectWhitespace.testcss");
+	public void testIncorrectEmptyLines() throws Exception {
+		test("IncorrectEmptyLines.testscss");
+	}
+
+	@Test
+	public void testScssProperitesOrder() throws Exception {
+		test(
+			SourceProcessorTestParameters.create(
+				"IncorrectScssProperitesOrder.testscss"
+			).addExpectedMessage(
+				"\"color\" should come after \"box-shadow\"", 4
+			).addExpectedMessage(
+				"\"box-shadow\" should come after \"background-color\"", 5
+			));
+	}
+
+	@Test
+	public void testScssVariablesOrder() throws Exception {
+		test(
+			SourceProcessorTestParameters.create(
+				"IncorrectScssVariablesOrder.testscss"
+			).addExpectedMessage(
+				"\"$link-hover-color\" should come after \"$link-decoration\"",
+				3
+			).addExpectedMessage(
+				"\"$link-decoration\" should come after \"$link-color\"", 4
+			));
 	}
 
 }
