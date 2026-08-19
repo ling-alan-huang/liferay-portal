@@ -255,24 +255,29 @@ public class JavaParserUtil {
 	}
 
 	private static String _getName(DetailAST detailAST) {
-//		DetailAST identDetailAST = detailAST.findFirstToken(TokenTypes.IDENT);
-//
-//		if (identDetailAST != null) {
-//			return identDetailAST.getText();
-//		}
-//
-//		DetailAST firstChildDetailAST = detailAST.getFirstChild();
-//
-//		if (ArrayUtil.contains(_SIMPLE_TYPES, firstChildDetailAST.getType())) {
-//			return firstChildDetailAST.getText();
-//		}
-//
-//		DetailAST dotDetailAST = detailAST.findFirstToken(TokenTypes.DOT);
-//
-//		FullIdent fullIdent = FullIdent.createFullIdent(dotDetailAST);
-//
-//		return fullIdent.getText();
-		FullIdent fullIdent = FullIdent.createFullIdent(detailAST.getFirstChild());
+		DetailAST arrayDeclaratorDetailAST = detailAST.findFirstToken(TokenTypes.ARRAY_DECLARATOR);
+		
+		if (arrayDeclaratorDetailAST != null) {
+			FullIdent fullIdent = FullIdent.createFullIdent(detailAST.getFirstChild());
+
+			return fullIdent.getText();
+		}
+		
+		DetailAST identDetailAST = detailAST.findFirstToken(TokenTypes.IDENT);
+
+		if (identDetailAST != null) {
+			return identDetailAST.getText();
+		}
+
+		DetailAST firstChildDetailAST = detailAST.getFirstChild();
+
+		if (ArrayUtil.contains(_SIMPLE_TYPES, firstChildDetailAST.getType())) {
+			return firstChildDetailAST.getText();
+		}
+
+		DetailAST dotDetailAST = detailAST.findFirstToken(TokenTypes.DOT);
+
+		FullIdent fullIdent = FullIdent.createFullIdent(dotDetailAST);
 
 		return fullIdent.getText();
 		
