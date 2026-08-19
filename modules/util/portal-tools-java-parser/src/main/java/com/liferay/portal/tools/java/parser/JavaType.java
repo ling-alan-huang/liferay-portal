@@ -16,13 +16,16 @@ import java.util.List;
  */
 public class JavaType extends BaseJavaTerm implements Comparable<JavaType> {
 
-	public JavaType(int arrayDimension, String name) {
-		this(null, name);
-	}
+	public JavaType(
+			int arrayDimension, List<JavaAnnotation> javaAnnotations, String name) {
 
-	public JavaType(List<JavaAnnotation> javaAnnotations, String name) {
+		_arrayDimension = arrayDimension;
 		_javaAnnotations = javaAnnotations;
 		_name = new JavaSimpleValue(name);
+	}
+
+	public JavaType(int arrayDimension, String name) {
+		this(arrayDimension, null, name);
 	}
 
 	@Override
@@ -65,8 +68,12 @@ public class JavaType extends BaseJavaTerm implements Comparable<JavaType> {
 		String indent, String prefix, String suffix, int maxLineLength,
 		boolean forceLineBreak) {
 
-		StringBundler sb = new StringBundler(1);
+		StringBundler sb = new StringBundler();
 
+		for (int i = 0; i < _arrayDimension; i++) {
+			sb.append("[]");
+		}
+		
 		if (_varargs) {
 			sb.append("...");
 		}
@@ -151,5 +158,6 @@ public class JavaType extends BaseJavaTerm implements Comparable<JavaType> {
 	private final JavaSimpleValue _name;
 	private List<JavaType> _upperBoundJavaTypes;
 	private boolean _varargs;
+	private final int _arrayDimension;
 
 }
