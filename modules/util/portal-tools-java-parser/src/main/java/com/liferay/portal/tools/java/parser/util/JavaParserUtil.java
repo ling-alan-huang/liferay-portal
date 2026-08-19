@@ -256,11 +256,14 @@ public class JavaParserUtil {
 
 	private static String _getName(DetailAST detailAST) {
 		DetailAST arrayDeclaratorDetailAST = detailAST.findFirstToken(TokenTypes.ARRAY_DECLARATOR);
-		
+
 		if (arrayDeclaratorDetailAST != null) {
 			FullIdent fullIdent = FullIdent.createFullIdent(detailAST.getFirstChild());
 
-			return fullIdent.getText();
+			String text = fullIdent.getText();
+			
+			return text.replaceAll("\\[\\]", "");
+//			return fullIdent.getText();
 		}
 		
 		DetailAST identDetailAST = detailAST.findFirstToken(TokenTypes.IDENT);
@@ -710,8 +713,8 @@ public class JavaParserUtil {
 				FullIdent fullIdent = FullIdent.createFullIdent(childDetailAST);
 
 				return new JavaArrayDeclarator(
-//					fullIdent.getText(), dimensionValueJavaExpressions);
-					fullIdent.getText());
+					fullIdent.getText(), dimensionValueJavaExpressions);
+//					fullIdent.getText());
 			}
 
 			dimensionValueJavaExpressions.add(
@@ -1510,11 +1513,11 @@ public class JavaParserUtil {
 			new JavaNewArrayInstantiation();
 
 		JavaArrayDeclarator javaArrayDeclarator = new JavaArrayDeclarator(
-//			_getName(literalNewDetailAST),
-//			_parseArrayValueJavaExpressions(
-//				literalNewDetailAST.findFirstToken(
-//					TokenTypes.ARRAY_DECLARATOR)));
-			_getName(literalNewDetailAST));
+			_getName(literalNewDetailAST),
+			_parseArrayValueJavaExpressions(
+				literalNewDetailAST.findFirstToken(
+					TokenTypes.ARRAY_DECLARATOR)));
+//			_getName(literalNewDetailAST));
 
 		javaArrayDeclarator.setGenericJavaTypes(
 			_parseGenericJavaTypes(
