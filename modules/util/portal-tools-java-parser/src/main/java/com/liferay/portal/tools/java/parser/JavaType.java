@@ -65,7 +65,7 @@ public class JavaType extends BaseJavaTerm implements Comparable<JavaType> {
 		String indent, String prefix, String suffix, int maxLineLength,
 		boolean forceLineBreak) {
 
-		StringBundler sb = new StringBundler(2);
+		StringBundler sb = new StringBundler(1);
 
 		if (_varargs) {
 			sb.append("...");
