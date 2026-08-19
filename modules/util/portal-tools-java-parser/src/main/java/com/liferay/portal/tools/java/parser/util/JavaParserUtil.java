@@ -1894,10 +1894,26 @@ public class JavaParserUtil {
 			childDetailAST = childDetailAST.getNextSibling();
 		}
 
+//		int arrayDimension = _getArrayDimension(detailAST);
+		List<DetailAST> arrayDeclaratorDetailASTs =
+				DetailASTUtil.getAllChildTokens(
+						detailAST, false,
+						TokenTypes.ARRAY_DECLARATOR);
+
+		int arrayDimension = arrayDeclaratorDetailASTs.size();
+
+		while (childDetailAST.getType() == TokenTypes.ARRAY_DECLARATOR) {
+			childDetailAST = childDetailAST.getFirstChild();
+		}
+
 		FullIdent typeFullIdent = FullIdent.createFullIdent(childDetailAST);
 
-		JavaType javaType = new JavaType(
-			javaAnnotations, typeFullIdent.getText());
+		String text = typeFullIdent.getText();
+
+		text = text.replaceAll("\\[\\]", "");
+
+		JavaType javaType = new JavaType(arrayDimension,
+			javaAnnotations, text);
 
 		DetailAST typeInfoDetailAST = childDetailAST;
 
