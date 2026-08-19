@@ -255,23 +255,27 @@ public class JavaParserUtil {
 	}
 
 	private static String _getName(DetailAST detailAST) {
-		DetailAST identDetailAST = detailAST.findFirstToken(TokenTypes.IDENT);
-
-		if (identDetailAST != null) {
-			return identDetailAST.getText();
-		}
-
-		DetailAST firstChildDetailAST = detailAST.getFirstChild();
-
-		if (ArrayUtil.contains(_SIMPLE_TYPES, firstChildDetailAST.getType())) {
-			return firstChildDetailAST.getText();
-		}
-
-		DetailAST dotDetailAST = detailAST.findFirstToken(TokenTypes.DOT);
-
-		FullIdent fullIdent = FullIdent.createFullIdent(dotDetailAST);
+//		DetailAST identDetailAST = detailAST.findFirstToken(TokenTypes.IDENT);
+//
+//		if (identDetailAST != null) {
+//			return identDetailAST.getText();
+//		}
+//
+//		DetailAST firstChildDetailAST = detailAST.getFirstChild();
+//
+//		if (ArrayUtil.contains(_SIMPLE_TYPES, firstChildDetailAST.getType())) {
+//			return firstChildDetailAST.getText();
+//		}
+//
+//		DetailAST dotDetailAST = detailAST.findFirstToken(TokenTypes.DOT);
+//
+//		FullIdent fullIdent = FullIdent.createFullIdent(dotDetailAST);
+//
+//		return fullIdent.getText();
+		FullIdent fullIdent = FullIdent.createFullIdent(detailAST.getFirstChild());
 
 		return fullIdent.getText();
+		
 	}
 
 	private static String _getSuffix(DetailAST detailAST) {
@@ -701,7 +705,8 @@ public class JavaParserUtil {
 				FullIdent fullIdent = FullIdent.createFullIdent(childDetailAST);
 
 				return new JavaArrayDeclarator(
-					fullIdent.getText(), dimensionValueJavaExpressions);
+//					fullIdent.getText(), dimensionValueJavaExpressions);
+					fullIdent.getText());
 			}
 
 			dimensionValueJavaExpressions.add(
@@ -1500,10 +1505,11 @@ public class JavaParserUtil {
 			new JavaNewArrayInstantiation();
 
 		JavaArrayDeclarator javaArrayDeclarator = new JavaArrayDeclarator(
-			_getName(literalNewDetailAST),
-			_parseArrayValueJavaExpressions(
-				literalNewDetailAST.findFirstToken(
-					TokenTypes.ARRAY_DECLARATOR)));
+//			_getName(literalNewDetailAST),
+//			_parseArrayValueJavaExpressions(
+//				literalNewDetailAST.findFirstToken(
+//					TokenTypes.ARRAY_DECLARATOR)));
+			_getName(literalNewDetailAST));
 
 		javaArrayDeclarator.setGenericJavaTypes(
 			_parseGenericJavaTypes(
