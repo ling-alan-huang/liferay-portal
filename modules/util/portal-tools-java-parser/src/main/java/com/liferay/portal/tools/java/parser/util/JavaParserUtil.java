@@ -294,71 +294,79 @@ public class JavaParserUtil {
 	private static List<JavaExpression> _parseArrayValueJavaExpressions(
 		DetailAST detailAST) {
 
-		int bracketType = detailAST.getType();
-
 		List<JavaExpression> arrayValueJavaExpressions = new ArrayList<>();
 
-		DetailAST nextSiblingDetailAST = detailAST;
-		
-		while (nextSiblingDetailAST != null) {
-			if (nextSiblingDetailAST.getType() != bracketType) {
-				if (arrayValueJavaExpressions.size() > 1) {
-					Collections.reverse(arrayValueJavaExpressions);
+
+		if (detailAST.getType() == TokenTypes.INDEX_OP) {
+			DetailAST firstChildDetailAST = detailAST;
+	
+			while (true) {
+				if (firstChildDetailAST.getType() != TokenTypes.INDEX_OP) {
+					if (arrayValueJavaExpressions.size() > 1) {
+						Collections.reverse(arrayValueJavaExpressions);
+					}
+	
+					return arrayValueJavaExpressions;
 				}
-
-				return arrayValueJavaExpressions;
+	
+				DetailAST closeBracketDetailAST =
+					firstChildDetailAST.findFirstToken(TokenTypes.RBRACK);
+	
+				DetailAST previousSiblingDetailAST =
+					closeBracketDetailAST.getPreviousSibling();
+	
+				if ((previousSiblingDetailAST == null) ||
+					(previousSiblingDetailAST.getType() == TokenTypes.INDEX_OP)) {
+	
+					arrayValueJavaExpressions.add(
+						new JavaSimpleValue(StringPool.BLANK));
+				}
+				else {
+					arrayValueJavaExpressions.add(
+						_parseJavaExpression(previousSiblingDetailAST));
+				}
+	
+				firstChildDetailAST = firstChildDetailAST.getFirstChild();
 			}
-
-			DetailAST childDetailAST = nextSiblingDetailAST.getFirstChild();
-			
-			if (childDetailAST == null ||
-			    childDetailAST.getType() != TokenTypes.EXPR) {
-				
-				arrayValueJavaExpressions.add(
-					new JavaSimpleValue(StringPool.BLANK));
-			}
-			else {
-				arrayValueJavaExpressions.add(
-						_parseJavaExpression(childDetailAST));
-			}
-
-			nextSiblingDetailAST = nextSiblingDetailAST.getNextSibling();
-			
 			
 		}
+		
+		else {
+			DetailAST nextSiblingDetailAST = detailAST;
+
+			while (nextSiblingDetailAST != null) {
+				if (nextSiblingDetailAST.getType() != TokenTypes.ARRAY_DECLARATOR) {
+//					if (arrayValueJavaExpressions.size() > 1) {
+//						Collections.reverse(arrayValueJavaExpressions);
+//					}
+
+					return arrayValueJavaExpressions;
+				}
+
+				DetailAST childDetailAST = nextSiblingDetailAST.getFirstChild();
+
+				if (childDetailAST == null ||
+				    childDetailAST.getType() != TokenTypes.EXPR) {
+
+					arrayValueJavaExpressions.add(
+							new JavaSimpleValue(StringPool.BLANK));
+				}
+				else {
+					arrayValueJavaExpressions.add(
+							_parseJavaExpression(childDetailAST));
+				}
+
+				nextSiblingDetailAST = nextSiblingDetailAST.getNextSibling();
+
+
+			}
+
+		}
+
 
 		return arrayValueJavaExpressions;
 //
-//		DetailAST firstChildDetailAST = detailAST;
-//
-//		while (true) {
-//			if (firstChildDetailAST.getType() != bracketType) {
-//				if (arrayValueJavaExpressions.size() > 1) {
-//					Collections.reverse(arrayValueJavaExpressions);
-//				}
-//
-//				return arrayValueJavaExpressions;
-//			}
-//
-//			DetailAST closeBracketDetailAST =
-//				firstChildDetailAST.findFirstToken(TokenTypes.RBRACK);
-//
-//			DetailAST previousSiblingDetailAST =
-//				closeBracketDetailAST.getPreviousSibling();
-//
-//			if ((previousSiblingDetailAST == null) ||
-//				(previousSiblingDetailAST.getType() == bracketType)) {
-//
-//				arrayValueJavaExpressions.add(
-//					new JavaSimpleValue(StringPool.BLANK));
-//			}
-//			else {
-//				arrayValueJavaExpressions.add(
-//					_parseJavaExpression(previousSiblingDetailAST));
-//			}
-//
-//			firstChildDetailAST = firstChildDetailAST.getFirstChild();
-//		}
+
 	}
 
 	private static List<JavaType> _parseExceptionJavaTypes(
