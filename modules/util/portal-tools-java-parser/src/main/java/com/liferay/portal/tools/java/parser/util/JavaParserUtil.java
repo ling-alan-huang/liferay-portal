@@ -244,7 +244,21 @@ public class JavaParserUtil {
 			if (ArrayUtil.contains(_SIMPLE_TYPES, detailAST.getType()) &&
 				(detailAST.getFirstChild() == null)) {
 
-				name = detailAST.getText() + "." + name;
+//				name = detailAST.getText() + "." + name;
+
+				List<DetailAST> arrayDeclaratorDetailASTs =
+						DetailASTUtil.getAllChildTokens(
+								detailAST.getParent(), false,
+								TokenTypes.ARRAY_DECLARATOR);
+				
+				String s = "";
+				for (int i = 0; i < arrayDeclaratorDetailASTs.size(); i++) {
+					s = s + "[]";
+
+				}
+				name = detailAST.getText() + s + "." + name;
+
+
 			}
 			else {
 				javaExpression = _parseJavaExpression(detailAST);
