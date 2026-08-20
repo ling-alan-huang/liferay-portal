@@ -17,7 +17,7 @@ import java.util.List;
 public class JavaType extends BaseJavaTerm implements Comparable<JavaType> {
 
 	public JavaType(
-			int arrayDimension, List<JavaAnnotation> javaAnnotations, String name) {
+		int arrayDimension, List<JavaAnnotation> javaAnnotations, String name) {
 
 		_arrayDimension = arrayDimension;
 		_javaAnnotations = javaAnnotations;
@@ -73,7 +73,7 @@ public class JavaType extends BaseJavaTerm implements Comparable<JavaType> {
 		for (int i = 0; i < _arrayDimension; i++) {
 			sb.append("[]");
 		}
-		
+
 		if (_varargs) {
 			sb.append("...");
 		}
@@ -152,12 +152,12 @@ public class JavaType extends BaseJavaTerm implements Comparable<JavaType> {
 		return sb.toString();
 	}
 
+	private final int _arrayDimension;
 	private List<JavaType> _genericJavaTypes;
 	private final List<JavaAnnotation> _javaAnnotations;
 	private List<JavaType> _lowerBoundJavaTypes;
 	private final JavaSimpleValue _name;
 	private List<JavaType> _upperBoundJavaTypes;
 	private boolean _varargs;
-	private final int _arrayDimension;
 
 }
