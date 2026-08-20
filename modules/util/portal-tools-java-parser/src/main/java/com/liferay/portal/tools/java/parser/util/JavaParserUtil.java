@@ -249,13 +249,9 @@ public class JavaParserUtil {
 						detailAST.getParent(), false,
 						TokenTypes.ARRAY_DECLARATOR);
 
-				String s = "";
+				String brackets = "[]".repeat(arrayDeclaratorDetailASTs.size());
 
-				for (int i = 0; i < arrayDeclaratorDetailASTs.size(); i++) {
-					s = s + "[]";
-				}
-
-				name = detailAST.getText() + s + "." + name;
+				name = detailAST.getText() + brackets + "." + name;
 			}
 			else {
 				javaExpression = _parseJavaExpression(detailAST);
