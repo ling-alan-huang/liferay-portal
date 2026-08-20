@@ -15,7 +15,6 @@ import java.util.List;
 public class JavaArrayDeclarator extends BaseJavaExpression {
 
 	public JavaArrayDeclarator(
-//		String className) {
 		String className, List<JavaExpression> dimensionValueJavaExpressions) {
 
 		_className = new JavaSimpleValue(className);

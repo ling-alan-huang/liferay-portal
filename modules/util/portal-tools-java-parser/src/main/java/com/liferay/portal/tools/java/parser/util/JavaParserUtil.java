@@ -244,21 +244,18 @@ public class JavaParserUtil {
 			if (ArrayUtil.contains(_SIMPLE_TYPES, detailAST.getType()) &&
 				(detailAST.getFirstChild() == null)) {
 
-//				name = detailAST.getText() + "." + name;
-
 				List<DetailAST> arrayDeclaratorDetailASTs =
-						DetailASTUtil.getAllChildTokens(
-								detailAST.getParent(), false,
-								TokenTypes.ARRAY_DECLARATOR);
-				
+					DetailASTUtil.getAllChildTokens(
+						detailAST.getParent(), false,
+						TokenTypes.ARRAY_DECLARATOR);
+
 				String s = "";
+
 				for (int i = 0; i < arrayDeclaratorDetailASTs.size(); i++) {
 					s = s + "[]";
-
 				}
+
 				name = detailAST.getText() + s + "." + name;
-
-
 			}
 			else {
 				javaExpression = _parseJavaExpression(detailAST);
@@ -269,17 +266,18 @@ public class JavaParserUtil {
 	}
 
 	private static String _getName(DetailAST detailAST) {
-		DetailAST arrayDeclaratorDetailAST = detailAST.findFirstToken(TokenTypes.ARRAY_DECLARATOR);
+		DetailAST arrayDeclaratorDetailAST = detailAST.findFirstToken(
+			TokenTypes.ARRAY_DECLARATOR);
 
 		if (arrayDeclaratorDetailAST != null) {
-			FullIdent fullIdent = FullIdent.createFullIdent(detailAST.getFirstChild());
+			FullIdent fullIdent = FullIdent.createFullIdent(
+				detailAST.getFirstChild());
 
 			String text = fullIdent.getText();
-			
+
 			return text.replaceAll("\\[\\]", "");
-//			return fullIdent.getText();
 		}
-		
+
 		DetailAST identDetailAST = detailAST.findFirstToken(TokenTypes.IDENT);
 
 		if (identDetailAST != null) {
@@ -297,7 +295,6 @@ public class JavaParserUtil {
 		FullIdent fullIdent = FullIdent.createFullIdent(dotDetailAST);
 
 		return fullIdent.getText();
-		
 	}
 
 	private static String _getSuffix(DetailAST detailAST) {
@@ -322,28 +319,28 @@ public class JavaParserUtil {
 
 		List<JavaExpression> arrayValueJavaExpressions = new ArrayList<>();
 
-
 		if (detailAST.getType() == TokenTypes.INDEX_OP) {
 			DetailAST firstChildDetailAST = detailAST;
-	
+
 			while (true) {
 				if (firstChildDetailAST.getType() != TokenTypes.INDEX_OP) {
 					if (arrayValueJavaExpressions.size() > 1) {
 						Collections.reverse(arrayValueJavaExpressions);
 					}
-	
+
 					return arrayValueJavaExpressions;
 				}
-	
+
 				DetailAST closeBracketDetailAST =
 					firstChildDetailAST.findFirstToken(TokenTypes.RBRACK);
-	
+
 				DetailAST previousSiblingDetailAST =
 					closeBracketDetailAST.getPreviousSibling();
-	
+
 				if ((previousSiblingDetailAST == null) ||
-					(previousSiblingDetailAST.getType() == TokenTypes.INDEX_OP)) {
-	
+					(previousSiblingDetailAST.getType() ==
+						TokenTypes.INDEX_OP)) {
+
 					arrayValueJavaExpressions.add(
 						new JavaSimpleValue(StringPool.BLANK));
 				}
@@ -351,48 +348,38 @@ public class JavaParserUtil {
 					arrayValueJavaExpressions.add(
 						_parseJavaExpression(previousSiblingDetailAST));
 				}
-	
+
 				firstChildDetailAST = firstChildDetailAST.getFirstChild();
 			}
-			
 		}
-		
 		else {
 			DetailAST nextSiblingDetailAST = detailAST;
 
 			while (nextSiblingDetailAST != null) {
-				if (nextSiblingDetailAST.getType() != TokenTypes.ARRAY_DECLARATOR) {
-//					if (arrayValueJavaExpressions.size() > 1) {
-//						Collections.reverse(arrayValueJavaExpressions);
-//					}
+				if (nextSiblingDetailAST.getType() !=
+						TokenTypes.ARRAY_DECLARATOR) {
 
 					return arrayValueJavaExpressions;
 				}
 
 				DetailAST childDetailAST = nextSiblingDetailAST.getFirstChild();
 
-				if (childDetailAST == null ||
-				    childDetailAST.getType() != TokenTypes.EXPR) {
+				if ((childDetailAST == null) ||
+					(childDetailAST.getType() != TokenTypes.EXPR)) {
 
 					arrayValueJavaExpressions.add(
-							new JavaSimpleValue(StringPool.BLANK));
+						new JavaSimpleValue(StringPool.BLANK));
 				}
 				else {
 					arrayValueJavaExpressions.add(
-							_parseJavaExpression(childDetailAST));
+						_parseJavaExpression(childDetailAST));
 				}
 
 				nextSiblingDetailAST = nextSiblingDetailAST.getNextSibling();
-
-
 			}
-
 		}
 
-
 		return arrayValueJavaExpressions;
-//
-
 	}
 
 	private static List<JavaType> _parseExceptionJavaTypes(
@@ -728,7 +715,6 @@ public class JavaParserUtil {
 
 				return new JavaArrayDeclarator(
 					fullIdent.getText(), dimensionValueJavaExpressions);
-//					fullIdent.getText());
 			}
 
 			dimensionValueJavaExpressions.add(
@@ -1531,7 +1517,6 @@ public class JavaParserUtil {
 			_parseArrayValueJavaExpressions(
 				literalNewDetailAST.findFirstToken(
 					TokenTypes.ARRAY_DECLARATOR)));
-//			_getName(literalNewDetailAST));
 
 		javaArrayDeclarator.setGenericJavaTypes(
 			_parseGenericJavaTypes(
@@ -1908,11 +1893,9 @@ public class JavaParserUtil {
 			childDetailAST = childDetailAST.getNextSibling();
 		}
 
-//		int arrayDimension = _getArrayDimension(detailAST);
 		List<DetailAST> arrayDeclaratorDetailASTs =
-				DetailASTUtil.getAllChildTokens(
-						detailAST, false,
-						TokenTypes.ARRAY_DECLARATOR);
+			DetailASTUtil.getAllChildTokens(
+				detailAST, false, TokenTypes.ARRAY_DECLARATOR);
 
 		int arrayDimension = arrayDeclaratorDetailASTs.size();
 
@@ -1926,8 +1909,7 @@ public class JavaParserUtil {
 
 		text = text.replaceAll("\\[\\]", "");
 
-		JavaType javaType = new JavaType(arrayDimension,
-			javaAnnotations, text);
+		JavaType javaType = new JavaType(arrayDimension, javaAnnotations, text);
 
 		DetailAST typeInfoDetailAST = childDetailAST;
 
