@@ -1192,7 +1192,21 @@ public class JavaParserUtil {
 					"\"\"\"" + firstChildDetailAST.getText() + "\"\"\"");
 			}
 			else {
-				javaExpression = new JavaSimpleValue(detailAST.getText());
+				DetailAST nextSiblingDetailAST = detailAST.getNextSibling();
+
+				if ((nextSiblingDetailAST != null) &&
+					(nextSiblingDetailAST.getType() ==
+						TokenTypes.ARRAY_DECLARATOR)) {
+
+					FullIdent typeFullIdent = FullIdent.createFullIdent(
+						detailAST);
+
+					javaExpression = new JavaSimpleValue(
+						typeFullIdent.getText());
+				}
+				else {
+					javaExpression = new JavaSimpleValue(detailAST.getText());
+				}
 			}
 		}
 		else {
