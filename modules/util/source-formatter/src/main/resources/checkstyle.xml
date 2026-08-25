@@ -773,6 +773,11 @@
 			<property name="description" value="Finds unnecessary branching (`break`, `continue` or `return`) statements." />
 			<message key="branching.statement.redundant" value="Redundant &quot;{0}&quot; statement" />
 		</module>
+		<module name="com.liferay.source.formatter.checkstyle.check.UnnecessaryEmptyLineCheck">
+			<property name="category" value="Styling" />
+			<property name="description" value="Finds unnecessary empty lines." />
+			<message key="empty.line.unnecessary" value="Remove unnecessary empty line on line &quot;{0}&quot;" />
+		</module>
 		<module name="com.liferay.source.formatter.checkstyle.check.RedundantLogCheck">
 			<property name="category" value="Performance" />
 			<property name="description" value="Finds unnecessary logs." />

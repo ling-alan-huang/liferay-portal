@@ -493,7 +493,7 @@ public class CommerceOrderCommerceDefinitionTermContributor
 			Company company = _companyLocalService.getCompany(
 				commerceOrder.getCompanyId());
 
-			StringBuffer sb = new StringBuffer();
+			StringBuffer sb = new StringBuffer(7);
 
 			sb.append(company.getPortalURL(commerceOrder.getGroupId()));
 
@@ -527,9 +527,7 @@ public class CommerceOrderCommerceDefinitionTermContributor
 
 			sb.append(Portal.FRIENDLY_URL_SEPARATOR);
 
-			sb.append("placed-order");
-
-			sb.append(StringPool.FORWARD_SLASH);
+			sb.append("placed-order/");
 
 			sb.append(commerceOrder.getCommerceOrderId());
 
