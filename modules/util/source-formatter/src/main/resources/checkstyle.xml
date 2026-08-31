@@ -902,6 +902,12 @@
 			<property name="description" value="Finds cases of calls like `list.size() == 0` (use `list.isEmpty()` instead)." />
 			<message key="method.use" value="Use method &quot;{0}&quot; instead" />
 		</module>
+		<module name="com.liferay.source.formatter.checkstyle.check.SQLBooleanValuesCheck">
+			<property name="category" value="Bug Prevention" />
+			<property name="description" value="Perform several checks on boolean values in SQL statements." />
+			<message key="boolean.value.incorrect" value="Use &quot;[${0}$]&quot; instead of &quot;{1}&quot;" />
+			<message key="sql.unwrapped" value="Use &quot;SQLTransformer.transform&quot; to wrap SQL statement" />
+		</module>
 		<module name="com.liferay.source.formatter.checkstyle.check.StaticBlockCheck">
 			<property name="category" value="Bug Prevention" />
 			<property name="description" value="Performs several checks on static blocks." />
