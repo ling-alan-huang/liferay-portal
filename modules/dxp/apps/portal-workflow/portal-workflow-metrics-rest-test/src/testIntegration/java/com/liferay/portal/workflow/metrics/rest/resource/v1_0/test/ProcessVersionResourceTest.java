@@ -95,10 +95,22 @@ public class ProcessVersionResourceTest
 
 				return null;
 			});
+
+		_testGraphQLGetProcessProcessVersionsPage();
 	}
 
-	@Test
-	public void testGraphQLGetProcessProcessVersionsPage() throws Exception {
+	@Override
+	protected String[] getAdditionalAssertFieldNames() {
+		return new String[] {"name"};
+	}
+
+	private void _testGraphQLGetProcessProcessVersionsPage() throws Exception {
+		_workflowMetricsRESTTestHelper.deleteProcess(
+			testGroup.getCompanyId(), _process);
+
+		_process = _workflowMetricsRESTTestHelper.addProcess(
+			testGroup.getCompanyId());
+
 		BaseProcessVersionResourceTestCase.GraphQLField graphQLField =
 			new BaseProcessVersionResourceTestCase.GraphQLField(
 				"processProcessVersions",
@@ -122,11 +134,6 @@ public class ProcessVersionResourceTest
 			Arrays.asList(
 				ProcessVersionSerDes.toDTOs(
 					processVersionsJSONObject.getString("items"))));
-	}
-
-	@Override
-	protected String[] getAdditionalAssertFieldNames() {
-		return new String[] {"name"};
 	}
 
 	private Process _process;
