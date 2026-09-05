@@ -15,7 +15,7 @@ public class Abc {
 	String[] s2 = {"a1", "a2", "a3", "a4"};
 
 	private com.liferay.portal.search.sort.Sort[] _a() {
-		Mockito.any(Sort[].class);
+		Mockito.any(Sort1.Sort2[].class);
 		Mockito.any(BlogsEntry[]::new);
 		Mockito.any(ArrayList<?>[]::new);
 
