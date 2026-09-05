@@ -227,11 +227,25 @@ public class JavaParserUtil {
 			if (detailAST.getType() == TokenTypes.DOT) {
 				DetailAST lastChildDetailAST = detailAST.getLastChild();
 
-				if (Validator.isNull(name)) {
-					name = lastChildDetailAST.getText();
+				String text = StringPool.BLANK;
+				
+				if (lastChildDetailAST.getType() == TokenTypes.ARRAY_DECLARATOR) {
+					DetailAST previousSiblingDetailAST = lastChildDetailAST.getPreviousSibling();
+
+					FullIdent fullIdent = FullIdent.createFullIdent(
+							previousSiblingDetailAST);
+
+					text = fullIdent.getText();
 				}
 				else {
-					name = lastChildDetailAST.getText() + "." + name;
+					text = lastChildDetailAST.getText();
+				}
+				
+				if (Validator.isNull(name)) {
+					name = text;
+				}
+				else {
+					name = text + "." + name;
 				}
 
 				detailAST = detailAST.getFirstChild();
@@ -244,14 +258,21 @@ public class JavaParserUtil {
 			if (ArrayUtil.contains(_SIMPLE_TYPES, detailAST.getType()) &&
 				(detailAST.getFirstChild() == null)) {
 
-				List<DetailAST> arrayDeclaratorDetailASTs =
-					DetailASTUtil.getAllChildTokens(
-						detailAST.getParent(), false,
-						TokenTypes.ARRAY_DECLARATOR);
-
-				String brackets = "[]".repeat(arrayDeclaratorDetailASTs.size());
-
-				name = detailAST.getText() + brackets + "." + name;
+				DetailAST nextSiblingDetailAST = detailAST.getNextSibling();
+				
+				if (nextSiblingDetailAST.getType() == TokenTypes.ARRAY_DECLARATOR) {
+					List<DetailAST> arrayDeclaratorDetailASTs =
+						DetailASTUtil.getAllChildTokens(
+							detailAST.getParent(), false,
+							TokenTypes.ARRAY_DECLARATOR);
+	
+					String brackets = "[]".repeat(arrayDeclaratorDetailASTs.size());
+	
+					name = detailAST.getText() + brackets + "." + name;
+				}
+				else {
+					name = detailAST.getText() + "." + name;
+				}
 			}
 			else {
 				javaExpression = _parseJavaExpression(detailAST);
