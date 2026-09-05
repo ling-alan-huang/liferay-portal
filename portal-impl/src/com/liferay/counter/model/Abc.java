@@ -16,6 +16,7 @@ public class Abc {
 
 	private com.liferay.portal.search.sort.Sort[] _a() {
 		Mockito.any(Sort1.Sort2[].class);
+		Mockito.any(Sorta[].class);
 		Mockito.any(BlogsEntry[]::new);
 		Mockito.any(ArrayList<?>[]::new);
 
