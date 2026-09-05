@@ -48,8 +48,16 @@ public class JavaVariableDefinition extends BaseJavaTerm {
 		return entry.getValue();
 	}
 
+	public boolean hasPrecedingBlankLine() {
+		return _precedingBlankLine;
+	}
+
 	public void setJavaType(JavaType javaType) {
 		_javaType = javaType;
+	}
+
+	public void setPrecedingBlankLine(boolean precedingBlankLine) {
+		_precedingBlankLine = precedingBlankLine;
 	}
 
 	@Override
@@ -143,6 +151,7 @@ public class JavaVariableDefinition extends BaseJavaTerm {
 	private final List<JavaAnnotation> _javaAnnotations;
 	private JavaType _javaType;
 	private final List<JavaSimpleValue> _modifiers;
+	private boolean _precedingBlankLine;
 	private final Map<JavaSimpleValue, JavaExpression> _variableMap =
 		new LinkedHashMap<>();
 
