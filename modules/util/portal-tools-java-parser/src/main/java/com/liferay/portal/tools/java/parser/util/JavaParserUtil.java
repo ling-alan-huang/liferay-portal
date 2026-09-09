@@ -249,7 +249,8 @@ public class JavaParserUtil {
 			if ((parentDetailAST.getType() == TokenTypes.TYPE_ARGUMENTS) &&
 				_isMisplacedArrayDeclarator(
 					parentDetailAST.getLastChild(),
-					detailAST.getFirstChild())) {
+//					detailAST.getFirstChild())) {
+						arrayDeclaratorDetailASTs.get(0))) {
 
 				return 0;
 			}
