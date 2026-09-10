@@ -14,6 +14,12 @@ public class Abc {
 	double[] aaa = {3, 4};
 	String[] s2 = {"a1", "a2", "a3", "a4"};
 
+	public void putAll(Map<? extends String, ? extends String[]> map) {
+		super.putAll(map);
+
+		_map.putAll(map);
+	}
+
 	private com.liferay.portal.search.sort.Sort[] _a() {
 		Mockito.any(Sort1.Sort2.Sort3.class);
 		Mockito.any(Sort1.Sort2[].class);
