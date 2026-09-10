@@ -293,6 +293,10 @@ public class JavaParserUtil {
 
 		DetailAST detailAST = dotDetailAST;
 
+		List<DetailAST> arrayDeclaratorDetailASTs =
+			DetailASTUtil.getAllChildTokens(
+				detailAST.getParent(), false, TokenTypes.ARRAY_DECLARATOR);
+
 		while (true) {
 			if (detailAST.getType() == TokenTypes.DOT) {
 				DetailAST lastChildDetailAST = detailAST.getLastChild();
@@ -326,6 +330,12 @@ public class JavaParserUtil {
 				continue;
 			}
 
+			if (!Validator.isBlank(name)) {
+				String brackets = "[]".repeat(arrayDeclaratorDetailASTs.size());
+
+				name = name + brackets;
+			}
+
 			JavaExpression javaExpression = null;
 
 			if (ArrayUtil.contains(_SIMPLE_TYPES, detailAST.getType()) &&
@@ -336,10 +346,9 @@ public class JavaParserUtil {
 				if (nextSiblingDetailAST.getType() ==
 						TokenTypes.ARRAY_DECLARATOR) {
 
-					List<DetailAST> arrayDeclaratorDetailASTs =
-						DetailASTUtil.getAllChildTokens(
-							detailAST.getParent(), false,
-							TokenTypes.ARRAY_DECLARATOR);
+					arrayDeclaratorDetailASTs = DetailASTUtil.getAllChildTokens(
+						detailAST.getParent(), false,
+						TokenTypes.ARRAY_DECLARATOR);
 
 					String brackets = "[]".repeat(
 						arrayDeclaratorDetailASTs.size());
