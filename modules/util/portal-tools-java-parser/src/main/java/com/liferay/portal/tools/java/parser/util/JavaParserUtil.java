@@ -579,13 +579,10 @@ public class JavaParserUtil {
 		}
 	}
 
-	private static JavaType _parseGenericBoundJavaType(
-		DetailAST detailAST, int arrayDimension) {
-
+	private static JavaType _parseGenericBoundJavaType(DetailAST detailAST) {
 		FullIdent fullIdent = FullIdent.createFullIdent(detailAST);
 
-		JavaType genericBoundJavaType = new JavaType(
-			arrayDimension, fullIdent.getText());
+		JavaType genericBoundJavaType = new JavaType(0, fullIdent.getText());
 
 		DetailAST typeArgumentsDetailAST = null;
 
@@ -610,61 +607,21 @@ public class JavaParserUtil {
 	private static List<JavaType> _parseGenericBoundJavaTypes(
 		DetailAST detailAST, int genericBoundType) {
 
-		List<DetailAST> typeGenericBoundsDetailASTs =
-			DetailASTUtil.getAllChildTokens(detailAST, true, genericBoundType);
+		DetailAST genericBoundTypeDetailAST = detailAST.findFirstToken(
+			genericBoundType);
 
-		if (typeGenericBoundsDetailASTs.size()==0) {
+		if (genericBoundTypeDetailAST == null) {
 			return null;
 		}
-		
-		int arrayDimension = 0;
-		DetailAST typeGenericBoundsDetailAST = null;
-
-		List<DetailAST> arrayDeclaratorDetailASTs =
-				DetailASTUtil.getAllChildTokens(
-						detailAST, false, TokenTypes.ARRAY_DECLARATOR);
-
-		arrayDimension = arrayDeclaratorDetailASTs.size();
-		
-//		outerLoop:
-//		for (DetailAST curTypeGenericBoundsDetailAST :
-//				typeGenericBoundsDetailASTs) {
-//
-//			DetailAST parentDetailAST =
-//				curTypeGenericBoundsDetailAST.getParent();
-//
-//			while (true) {
-//				if (DetailASTUtil.equals(detailAST, parentDetailAST)) {
-//					typeGenericBoundsDetailAST = curTypeGenericBoundsDetailAST;
-//
-//					break outerLoop;
-//				}
-//
-//				if (parentDetailAST.getType() != TokenTypes.ARRAY_DECLARATOR) {
-//					continue outerLoop;
-//				}
-//
-//				arrayDimension++;
-//
-//				parentDetailAST = parentDetailAST.getParent();
-//			}
-//		}
-
-		if (arrayDimension == 0) {
-			return null;
-		}
-
-		typeGenericBoundsDetailAST = typeGenericBoundsDetailASTs.get(0);
-//		if (typeGenericBoundsDetailAST == null) {
-//			return null;
-//		}
 
 		List<JavaType> genericBoundJavaTypes = new ArrayList<>();
 
-		DetailAST childDetailAST = typeGenericBoundsDetailAST.getFirstChild();
+		DetailAST childDetailAST = genericBoundTypeDetailAST.getFirstChild();
 
 		while (true) {
-			if (childDetailAST == null) {
+			if ((childDetailAST == null) ||
+				(childDetailAST.getType() == TokenTypes.ARRAY_DECLARATOR)) {
+
 				return genericBoundJavaTypes;
 			}
 
@@ -672,7 +629,7 @@ public class JavaParserUtil {
 				(childDetailAST.getType() != TokenTypes.TYPE_EXTENSION_AND)) {
 
 				genericBoundJavaTypes.add(
-					_parseGenericBoundJavaType(childDetailAST, arrayDimension));
+					_parseGenericBoundJavaType(childDetailAST));
 			}
 
 			childDetailAST = childDetailAST.getNextSibling();
