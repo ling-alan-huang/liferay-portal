@@ -791,14 +791,6 @@ public abstract class BaseCheck extends AbstractCheck {
 			return StringPool.BLANK;
 		}
 
-		int arrayDimension = 0;
-
-		while (childDetailAST.getType() == TokenTypes.ARRAY_DECLARATOR) {
-			arrayDimension++;
-
-			childDetailAST = childDetailAST.getFirstChild();
-		}
-
 		StringBundler sb = new StringBundler();
 
 		FullIdent typeFullIdent = FullIdent.createFullIdent(childDetailAST);
@@ -816,14 +808,10 @@ public abstract class BaseCheck extends AbstractCheck {
 
 		sb.append(typeFullIdent.getText());
 
-		if (includeArrayDimension) {
-			for (int i = 0; i < arrayDimension; i++) {
-				sb.append("[]");
-			}
-		}
+		if (!includeArrayDimension) {
+			String s = sb.toString();
 
-		if (!includeTypeArguments) {
-			return sb.toString();
+			return s.replaceAll("(\\[\\])+$", "");
 		}
 
 		DetailAST typeArgumentsDetailAST = typeDetailAST.findFirstToken(
