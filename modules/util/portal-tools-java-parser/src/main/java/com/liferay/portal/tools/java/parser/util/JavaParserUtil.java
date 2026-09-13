@@ -227,14 +227,6 @@ public class JavaParserUtil {
 
 		int arrayDimension = arrayDeclaratorDetailASTs.size();
 
-		//	DetailAST childDetailAST = detailAST.getFirstChild();
-
-		//	while (childDetailAST.getType() == TokenTypes.ARRAY_DECLARATOR) {
-		//		arrayDimension++;
-		//
-		//		childDetailAST = childDetailAST.getFirstChild();
-		//	}
-
 		// Checkstyle parses the following two types as identical DetailASTs:
 		// 'Map<Long, List<String>[]>' and 'Map<Long, List<String>>[]'. The
 		// following logic is to 'correct' misplaced array declarators.
@@ -249,8 +241,7 @@ public class JavaParserUtil {
 			if ((parentDetailAST.getType() == TokenTypes.TYPE_ARGUMENTS) &&
 				_isMisplacedArrayDeclarator(
 					parentDetailAST.getLastChild(),
-//					detailAST.getFirstChild())) {
-						arrayDeclaratorDetailASTs.get(0))) {
+					arrayDeclaratorDetailASTs.get(0))) {
 
 				return 0;
 			}
@@ -1998,14 +1989,6 @@ public class JavaParserUtil {
 
 			childDetailAST = childDetailAST.getNextSibling();
 		}
-
-		// 		List<DetailAST> arrayDeclaratorDetailASTs =
-
-		//			DetailASTUtil.getAllChildTokens(
-		//				detailAST, false, TokenTypes.ARRAY_DECLARATOR);
-
-		//
-		//		int arrayDimension = arrayDeclaratorDetailASTs.size();
 
 		int arrayDimension = _getArrayDimension(detailAST);
 
