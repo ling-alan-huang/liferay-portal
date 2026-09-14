@@ -9,6 +9,7 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.source.formatter.checkstyle.util.DetailASTUtil;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 import java.util.HashMap;
@@ -182,25 +183,34 @@ public class ExceptionVariableNameCheck extends VariableNameCheck {
 	}
 
 	private String _getExceptionTypeName(DetailAST definitionDetailAST) {
+		DetailAST parentDetailAST = definitionDetailAST.getParent();
 		DetailAST typeDetailAST = definitionDetailAST.findFirstToken(
 			TokenTypes.TYPE);
 
-		DetailAST parentDetailAST = definitionDetailAST.getParent();
+		if ((parentDetailAST.getType() == TokenTypes.LITERAL_CATCH) &&
+			(typeDetailAST.getChildCount(TokenTypes.BOR) > 0)) {
 
-		if (parentDetailAST.getType() == TokenTypes.LITERAL_CATCH) {
-			DetailAST firstChildDetailAST = typeDetailAST.getFirstChild();
+			DetailAST childDetailAST = typeDetailAST.getFirstChild();
 
-			if ((firstChildDetailAST != null) &&
-				(firstChildDetailAST.getType() == TokenTypes.BOR)) {
+			while (childDetailAST != null) {
+				if (childDetailAST.getType() == TokenTypes.BOR) {
+					childDetailAST = childDetailAST.getNextSibling();
 
-				for (String name : getNames(firstChildDetailAST, true)) {
-					if (name.endsWith("Exception")) {
-						return "Exception";
-					}
+					continue;
 				}
 
-				return null;
+				FullIdent fullIdent = FullIdent.createFullIdent(childDetailAST);
+
+				String text = fullIdent.getText();
+
+				if (text.endsWith("Exception")) {
+					return "Exception";
+				}
+
+				childDetailAST = childDetailAST.getNextSibling();
 			}
+
+			return null;
 		}
 
 		String exceptionTypeName = getTypeName(typeDetailAST, false);
