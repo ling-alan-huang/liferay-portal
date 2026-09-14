@@ -31,6 +31,17 @@ public class Abc {
 		return new com.liferay.portal.search.sort.Sort[] {a, b};
 	}
 
+	private Configuration _getAccountEntryValidatorConfiguration(long companyId)
+			throws Exception {
+
+		try {
+			return null;
+		}
+		catch (InvalidSyntaxException | IOException exception) {
+			throw new ConfigurationException(exception);
+		}
+	}
+	
 	private static final String[][] _RESOURCE_NAMES = new String[30][20];
 
 	Long accountEntryId = (Long)values[0][1][2];
