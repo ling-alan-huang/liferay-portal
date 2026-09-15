@@ -208,12 +208,12 @@ public class JavaParser {
 	}
 
 	private static ContentModifications _addCommentContentModifications(
-		ContentModifications contentModifications,
-		ParsedJavaTerm parsedJavaTerm, String indent,
-		FileContents fileContents) {
+			ContentModifications contentModifications,
+			ParsedJavaTerm parsedJavaTerm, String indent,
+			FileContents fileContents) {
 
-		CommonHiddenStreamToken precedingCommentToken =
-			parsedJavaTerm.getPrecedingCommentToken();
+		DetailAST precedingCommentToken =
+				parsedJavaTerm.getPrecedingCommentToken();
 
 		if (precedingCommentToken == null) {
 			return contentModifications;
@@ -222,10 +222,10 @@ public class JavaParser {
 		String expectedCommentIndent = indent;
 
 		String trimmedJavaTermContent = StringUtil.trim(
-			parsedJavaTerm.getContent());
+				parsedJavaTerm.getContent());
 
 		if (trimmedJavaTermContent.startsWith("}") ||
-			trimmedJavaTermContent.startsWith(")")) {
+		    trimmedJavaTermContent.startsWith(")")) {
 
 			expectedCommentIndent += "\t";
 		}
@@ -236,9 +236,9 @@ public class JavaParser {
 			}
 
 			String line = fileContents.getLine(
-				precedingCommentToken.getLine() - 1);
+					precedingCommentToken.getLineNo() - 1);
 
-			if (!_isAtLineStart(line, precedingCommentToken.getColumn() - 1)) {
+			if (!_isAtLineStart(line, precedingCommentToken.getColumnNo() - 1)) {
 				return contentModifications;
 			}
 
@@ -246,14 +246,14 @@ public class JavaParser {
 
 			if (!actualCommentIndent.equals(expectedCommentIndent)) {
 				contentModifications.addReplaceContent(
-					expectedCommentIndent + StringUtil.trim(line),
-					precedingCommentToken.getLine());
+						expectedCommentIndent + StringUtil.trim(line),
+						precedingCommentToken.getLineNo());
 			}
 
 			if (precedingCommentToken.getType() ==
-					TokenTypes.SINGLE_LINE_COMMENT) {
+			    TokenTypes.SINGLE_LINE_COMMENT) {
 
-				precedingCommentToken = precedingCommentToken.getHiddenBefore();
+				precedingCommentToken = DetailASTUtil.getHiddenBefore(precedingCommentToken);
 
 				continue;
 			}
@@ -266,15 +266,15 @@ public class JavaParser {
 				javadoc = true;
 			}
 			else if (actualCommentIndent.equals(expectedCommentIndent)) {
-				precedingCommentToken = precedingCommentToken.getHiddenBefore();
+				precedingCommentToken = DetailASTUtil.getHiddenBefore(precedingCommentToken);
 
 				continue;
 			}
 
 			int end =
-				precedingCommentToken.getLine() + StringUtil.count(text, "\n");
+					precedingCommentToken.getLineNo() + StringUtil.count(text, "\n");
 
-			for (int i = precedingCommentToken.getLine() + 1; i <= end; i++) {
+			for (int i = precedingCommentToken.getLineNo() + 1; i <= end; i++) {
 				line = fileContents.getLine(i - 1);
 
 				if (Validator.isNull(line)) {
@@ -288,20 +288,20 @@ public class JavaParser {
 							expectedCommentIndent + StringPool.SPACE)) {
 
 						contentModifications.addReplaceContent(
-							expectedCommentIndent + StringPool.SPACE +
+								expectedCommentIndent + StringPool.SPACE +
 								StringUtil.trim(line),
-							i);
+								i);
 					}
 				}
 				else if (line.startsWith(actualCommentIndent)) {
 					contentModifications.addReplaceContent(
-						StringUtil.replaceFirst(
-							line, actualCommentIndent, expectedCommentIndent),
-						i);
+							StringUtil.replaceFirst(
+									line, actualCommentIndent, expectedCommentIndent),
+							i);
 				}
 			}
 
-			precedingCommentToken = precedingCommentToken.getHiddenBefore();
+			precedingCommentToken = DetailASTUtil.getHiddenBefore(precedingCommentToken);
 		}
 	}
 
@@ -961,8 +961,8 @@ public class JavaParser {
 	}
 
 	private static boolean _isExcludedJavaTerm(ParsedJavaTerm parsedJavaTerm) {
-		CommonHiddenStreamToken precedingCommentToken =
-			parsedJavaTerm.getPrecedingCommentToken();
+		DetailAST precedingCommentToken =
+				parsedJavaTerm.getPrecedingCommentToken();
 
 		while (true) {
 			if (precedingCommentToken == null) {
@@ -970,15 +970,16 @@ public class JavaParser {
 			}
 
 			if ((precedingCommentToken.getType() ==
-					TokenTypes.SINGLE_LINE_COMMENT) &&
-				StringUtil.startsWith(
-					StringUtil.trim(precedingCommentToken.getText()),
-					"Skip JavaParser")) {
+			     TokenTypes.SINGLE_LINE_COMMENT) &&
+			    StringUtil.startsWith(
+						StringUtil.trim(precedingCommentToken.getText()),
+						"Skip JavaParser")) {
 
 				return true;
 			}
 
-			precedingCommentToken = precedingCommentToken.getHiddenBefore();
+			// 2. 替换为 DetailASTUtil.getHiddenBefore
+			precedingCommentToken = DetailASTUtil.getHiddenBefore(precedingCommentToken);
 		}
 	}
 
@@ -1303,13 +1304,12 @@ public class JavaParser {
 				parsedJavaClass, detailAST, fileContents, maxLineLength);
 		}
 
-		CommonHiddenStreamToken commonHiddenStreamToken =
-			DetailASTUtil.getHiddenBefore(detailAST);
+		DetailAST precedingCommentToken = DetailASTUtil.getHiddenBefore(detailAST);
 
-		if (commonHiddenStreamToken != null) {
+		if (precedingCommentToken != null) {
 			parsedJavaClass.addPrecedingCommentToken(
-				commonHiddenStreamToken,
-				DetailASTUtil.getStartPosition(detailAST));
+					precedingCommentToken,
+					DetailASTUtil.getStartPosition(detailAST));
 		}
 
 		parsedJavaClass = _walk(

@@ -5,7 +5,9 @@
 
 package com.liferay.portal.tools.java.parser;
 
-import antlr.CommonHiddenStreamToken;
+//import antlr.CommonHiddenStreamToken;
+
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -90,14 +92,14 @@ public class ParsedJavaClass {
 	}
 
 	public void addPrecedingCommentToken(
-		CommonHiddenStreamToken precedingCommentToken, Position startPosition) {
+			DetailAST precedingCommentToken, Position startPosition) {
 
 		ParsedJavaTerm parsedJavaTerm = _lastParsedJavaTerm;
 
 		while (true) {
 			if (parsedJavaTerm == null) {
 				_precedingCommentTokensMap.put(
-					startPosition, precedingCommentToken);
+						startPosition, precedingCommentToken);
 
 				return;
 			}
@@ -133,7 +135,7 @@ public class ParsedJavaClass {
 	}
 
 	public void processCommentTokens() {
-		for (Map.Entry<Position, CommonHiddenStreamToken> entry :
+		for (Map.Entry<Position, DetailAST> entry :
 				_precedingCommentTokensMap.entrySet()) {
 
 			Position startPosition = entry.getKey();
@@ -145,9 +147,7 @@ public class ParsedJavaClass {
 					break;
 				}
 
-				if (startPosition.compareTo(parsedJavaTerm.getStartPosition()) >
-						0) {
-
+				if (startPosition.compareTo(parsedJavaTerm.getStartPosition()) > 0) {
 					parsedJavaTerm.setContainsCommentToken(true);
 
 					break;
@@ -160,7 +160,7 @@ public class ParsedJavaClass {
 
 	private ParsedJavaTerm _firstParsedJavaTerm;
 	private ParsedJavaTerm _lastParsedJavaTerm;
-	private final Map<Position, CommonHiddenStreamToken>
-		_precedingCommentTokensMap = new HashMap<>();
+	private final Map<Position, DetailAST> _precedingCommentTokensMap
+		 = new HashMap<>();
 
 }
