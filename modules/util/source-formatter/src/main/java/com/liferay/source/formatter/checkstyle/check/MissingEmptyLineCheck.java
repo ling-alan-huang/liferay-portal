@@ -240,7 +240,7 @@ public class MissingEmptyLineCheck extends BaseCheck {
 		nextSiblingDetailAST = nextSiblingDetailAST.getNextSibling();
 
 		if ((nextSiblingDetailAST == null) ||
-			(getHiddenBefore(nextSiblingDetailAST) != null) ||
+			(getPrecedingCommentDetailAST(nextSiblingDetailAST) != null) ||
 			(nextSiblingDetailAST.getType() == TokenTypes.RCURLY)) {
 
 			return;
@@ -389,7 +389,7 @@ public class MissingEmptyLineCheck extends BaseCheck {
 	}
 
 	private void _checkMissingEmptyLineBeforeVariableDef(DetailAST detailAST) {
-		if (getHiddenBefore(detailAST) != null) {
+		if (getPrecedingCommentDetailAST(detailAST) != null) {
 			return;
 		}
 
