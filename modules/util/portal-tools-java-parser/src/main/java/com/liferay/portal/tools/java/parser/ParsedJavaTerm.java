@@ -5,15 +5,14 @@
 
 package com.liferay.portal.tools.java.parser;
 
-//import antlr.CommonHiddenStreamToken;
-
 import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.tools.ToolsUtil;
-import com.liferay.portal.tools.java.parser.util.JavaParserUtil;
 import com.liferay.portal.tools.java.parser.util.DetailASTUtil;
+import com.liferay.portal.tools.java.parser.util.JavaParserUtil;
+
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
@@ -44,8 +43,8 @@ public class ParsedJavaTerm implements Comparable<ParsedJavaTerm> {
 		return _startPosition.compareTo(parsedJavaTerm.getStartPosition());
 	}
 
-	public boolean containsCommentToken() {
-		return _containsCommentToken;
+	public boolean containsCommentDetailAST() {
+		return _containsCommentDetailAST;
 	}
 
 	public String getAccessModifier() {
@@ -77,23 +76,26 @@ public class ParsedJavaTerm implements Comparable<ParsedJavaTerm> {
 			return NO_ACTION_REQUIRED;
 		}
 
-		DetailAST precedingCommentToken =
-				nextParsedJavaTerm.getPrecedingCommentToken();
+		DetailAST precedingCommentDetailAST =
+			nextParsedJavaTerm.getPrecedingCommentDetailAST();
 
-		if (precedingCommentToken != null) {
-			while (DetailASTUtil.getHiddenBefore(precedingCommentToken) != null) {
-				precedingCommentToken = DetailASTUtil.getHiddenBefore(precedingCommentToken);
+		if (precedingCommentDetailAST != null) {
+			while (DetailASTUtil.getPrecedingComment(
+						precedingCommentDetailAST) != null) {
+
+				precedingCommentDetailAST = DetailASTUtil.getPrecedingComment(
+					precedingCommentDetailAST);
 			}
 
-			if (((precedingCommentToken.getType() ==
-			      TokenTypes.BLOCK_COMMENT_BEGIN) &&
-			     StringUtil.startsWith(
-						 StringUtil.trim(precedingCommentToken.getText()),
-						 CharPool.STAR)) ||
-			    ((precedingCommentToken.getType() ==
-			      TokenTypes.SINGLE_LINE_COMMENT) &&
-			     StringUtil.startsWith(
-						 precedingCommentToken.getText(), CharPool.SPACE))) {
+			if (((precedingCommentDetailAST.getType() ==
+					TokenTypes.BLOCK_COMMENT_BEGIN) &&
+				 StringUtil.startsWith(
+					 StringUtil.trim(precedingCommentDetailAST.getText()),
+					 CharPool.STAR)) ||
+				((precedingCommentDetailAST.getType() ==
+					TokenTypes.SINGLE_LINE_COMMENT) &&
+				 StringUtil.startsWith(
+					 precedingCommentDetailAST.getText(), CharPool.SPACE))) {
 
 				return DOUBLE_LINE_BREAK_REQUIRED;
 			}
@@ -108,7 +110,7 @@ public class ParsedJavaTerm implements Comparable<ParsedJavaTerm> {
 		if (_content.endsWith(StringPool.OPEN_CURLY_BRACE)) {
 			if (_followingNestedCodeBlockClassName != null) {
 				return _getOpenCurlyBraceFollowingLineAction(
-						_followingNestedCodeBlockClassName);
+					_followingNestedCodeBlockClassName);
 			}
 
 			return _getOpenCurlyBraceFollowingLineAction(_className);
@@ -116,10 +118,10 @@ public class ParsedJavaTerm implements Comparable<ParsedJavaTerm> {
 
 		if (Objects.equals(
 				StringUtil.trim(_content), StringPool.CLOSE_CURLY_BRACE) ||
-		    _className.equals(JavaConstructorCall.class.getName()) ||
-		    _className.equals(JavaMethodDefinition.class.getName()) ||
-		    _className.equals(JavaEnumConstantDefinitions.class.getName()) ||
-		    _className.equals(JavaAnnotationFieldDefinition.class.getName())) {
+			_className.equals(JavaConstructorCall.class.getName()) ||
+			_className.equals(JavaMethodDefinition.class.getName()) ||
+			_className.equals(JavaEnumConstantDefinitions.class.getName()) ||
+			_className.equals(JavaAnnotationFieldDefinition.class.getName())) {
 
 			return DOUBLE_LINE_BREAK_REQUIRED;
 		}
@@ -131,27 +133,28 @@ public class ParsedJavaTerm implements Comparable<ParsedJavaTerm> {
 		return _nextParsedJavaTerm;
 	}
 
-	public DetailAST getPrecedingCommentToken() {
-		return _precedingCommentToken;
+	public DetailAST getPrecedingCommentDetailAST() {
+		return _precedingCommentDetailAST;
 	}
+
 	public int getPrecedingLineAction() {
 		ParsedJavaTerm previousParsedJavaTerm = getPreviousParsedJavaTerm();
 
-		if (_precedingCommentToken != null) {
+		if (_precedingCommentDetailAST != null) {
 			if (previousParsedJavaTerm == null) {
 				return DOUBLE_LINE_BREAK_REQUIRED;
 			}
 
-			if ((_precedingCommentToken.getType() ==
+			if ((_precedingCommentDetailAST.getType() ==
 					TokenTypes.SINGLE_LINE_COMMENT) &&
 				StringUtil.startsWith(
-					_precedingCommentToken.getText(), CharPool.SPACE)) {
+					_precedingCommentDetailAST.getText(), CharPool.SPACE)) {
 
 				Position previousEndPosition =
 					previousParsedJavaTerm.getEndPosition();
 
 				if (previousEndPosition.getLineNumber() ==
-						_precedingCommentToken.getLineNo()) {
+						_precedingCommentDetailAST.getLineNo()) {
 
 					return NO_ACTION_REQUIRED;
 				}
@@ -159,10 +162,10 @@ public class ParsedJavaTerm implements Comparable<ParsedJavaTerm> {
 				return DOUBLE_LINE_BREAK_REQUIRED;
 			}
 
-			if ((_precedingCommentToken.getType() ==
+			if ((_precedingCommentDetailAST.getType() ==
 					TokenTypes.BLOCK_COMMENT_BEGIN) &&
 				StringUtil.startsWith(
-					StringUtil.trim(_precedingCommentToken.getText()),
+					StringUtil.trim(_precedingCommentDetailAST.getText()),
 					CharPool.STAR) &&
 				!StringUtil.startsWith(
 					StringUtil.trim(_content), StringPool.CLOSE_CURLY_BRACE)) {
@@ -271,16 +274,18 @@ public class ParsedJavaTerm implements Comparable<ParsedJavaTerm> {
 		return null;
 	}
 
-	public void setContainsCommentToken(boolean containsCommentToken) {
-		_containsCommentToken = containsCommentToken;
+	public void setContainsCommentDetailAST(boolean containsCommentDetailAST) {
+		_containsCommentDetailAST = containsCommentDetailAST;
 	}
 
 	public void setNextParsedJavaTerm(ParsedJavaTerm nextParsedJavaTerm) {
 		_nextParsedJavaTerm = nextParsedJavaTerm;
 	}
 
-	public void setPrecedingCommentToken(DetailAST precedingCommentToken) {
-		_precedingCommentToken = precedingCommentToken;
+	public void setPrecedingCommentDetailAST(
+		DetailAST precedingCommentDetailAST) {
+
+		_precedingCommentDetailAST = precedingCommentDetailAST;
 	}
 
 	public void setPreviousParsedJavaTerm(
@@ -317,7 +322,7 @@ public class ParsedJavaTerm implements Comparable<ParsedJavaTerm> {
 		if ((_followingNestedCodeBlockClassName != null) ||
 			(previousJavaTerm._followingNestedCodeBlockClassName != null) ||
 			(previousJavaTerm._precedingNestedCodeBlockClassName != null) ||
-			(previousJavaTerm.getPrecedingCommentToken() != null)) {
+			(previousJavaTerm.getPrecedingCommentDetailAST() != null)) {
 
 			return NO_ACTION_REQUIRED;
 		}
@@ -330,7 +335,7 @@ public class ParsedJavaTerm implements Comparable<ParsedJavaTerm> {
 		}
 
 		if (!Objects.equals(accessModifier, previousAccessModifier) ||
-			(previousJavaTerm.getPrecedingCommentToken() != null) ||
+			(previousJavaTerm.getPrecedingCommentDetailAST() != null) ||
 			StringUtil.startsWith(StringUtil.trim(_content), CharPool.AT) ||
 			StringUtil.startsWith(
 				StringUtil.trim(previousJavaTerm.getContent()), CharPool.AT)) {
@@ -484,12 +489,12 @@ public class ParsedJavaTerm implements Comparable<ParsedJavaTerm> {
 		"\\s([\\w$]+)( =|;)");
 
 	private final String _className;
-	private boolean _containsCommentToken;
+	private boolean _containsCommentDetailAST;
 	private final String _content;
 	private final Position _endPosition;
 	private final String _followingNestedCodeBlockClassName;
 	private ParsedJavaTerm _nextParsedJavaTerm;
-	private DetailAST _precedingCommentToken;
+	private DetailAST _precedingCommentDetailAST;
 	private final String _precedingNestedCodeBlockClassName;
 	private ParsedJavaTerm _previousParsedJavaTerm;
 	private final Position _startPosition;

@@ -5,8 +5,6 @@
 
 package com.liferay.portal.tools.java.parser;
 
-import antlr.CommonHiddenStreamToken;
-
 import com.liferay.petra.io.unsync.UnsyncBufferedReader;
 import com.liferay.petra.io.unsync.UnsyncStringReader;
 import com.liferay.petra.string.CharPool;
@@ -208,37 +206,39 @@ public class JavaParser {
 	}
 
 	private static ContentModifications _addCommentContentModifications(
-			ContentModifications contentModifications,
-			ParsedJavaTerm parsedJavaTerm, String indent,
-			FileContents fileContents) {
+		ContentModifications contentModifications,
+		ParsedJavaTerm parsedJavaTerm, String indent,
+		FileContents fileContents) {
 
-		DetailAST precedingCommentToken =
-				parsedJavaTerm.getPrecedingCommentToken();
+		DetailAST precedingCommentDetailAST =
+			parsedJavaTerm.getPrecedingCommentDetailAST();
 
-		if (precedingCommentToken == null) {
+		if (precedingCommentDetailAST == null) {
 			return contentModifications;
 		}
 
 		String expectedCommentIndent = indent;
 
 		String trimmedJavaTermContent = StringUtil.trim(
-				parsedJavaTerm.getContent());
+			parsedJavaTerm.getContent());
 
 		if (trimmedJavaTermContent.startsWith("}") ||
-		    trimmedJavaTermContent.startsWith(")")) {
+			trimmedJavaTermContent.startsWith(")")) {
 
 			expectedCommentIndent += "\t";
 		}
 
 		while (true) {
-			if (precedingCommentToken == null) {
+			if (precedingCommentDetailAST == null) {
 				return contentModifications;
 			}
 
 			String line = fileContents.getLine(
-					precedingCommentToken.getLineNo() - 1);
+				precedingCommentDetailAST.getLineNo() - 1);
 
-			if (!_isAtLineStart(line, precedingCommentToken.getColumnNo() - 1)) {
+			if (!_isAtLineStart(
+					line, precedingCommentDetailAST.getColumnNo() - 1)) {
+
 				return contentModifications;
 			}
 
@@ -246,19 +246,20 @@ public class JavaParser {
 
 			if (!actualCommentIndent.equals(expectedCommentIndent)) {
 				contentModifications.addReplaceContent(
-						expectedCommentIndent + StringUtil.trim(line),
-						precedingCommentToken.getLineNo());
+					expectedCommentIndent + StringUtil.trim(line),
+					precedingCommentDetailAST.getLineNo());
 			}
 
-			if (precedingCommentToken.getType() ==
-			    TokenTypes.SINGLE_LINE_COMMENT) {
+			if (precedingCommentDetailAST.getType() ==
+					TokenTypes.SINGLE_LINE_COMMENT) {
 
-				precedingCommentToken = DetailASTUtil.getHiddenBefore(precedingCommentToken);
+				precedingCommentDetailAST = DetailASTUtil.getPrecedingComment(
+					precedingCommentDetailAST);
 
 				continue;
 			}
 
-			String text = precedingCommentToken.getText();
+			String text = precedingCommentDetailAST.getText();
 
 			boolean javadoc = false;
 
@@ -266,15 +267,19 @@ public class JavaParser {
 				javadoc = true;
 			}
 			else if (actualCommentIndent.equals(expectedCommentIndent)) {
-				precedingCommentToken = DetailASTUtil.getHiddenBefore(precedingCommentToken);
+				precedingCommentDetailAST = DetailASTUtil.getPrecedingComment(
+					precedingCommentDetailAST);
 
 				continue;
 			}
 
 			int end =
-					precedingCommentToken.getLineNo() + StringUtil.count(text, "\n");
+				precedingCommentDetailAST.getLineNo() +
+					StringUtil.count(text, "\n");
 
-			for (int i = precedingCommentToken.getLineNo() + 1; i <= end; i++) {
+			for (int i = precedingCommentDetailAST.getLineNo() + 1; i <= end;
+				 i++) {
+
 				line = fileContents.getLine(i - 1);
 
 				if (Validator.isNull(line)) {
@@ -288,20 +293,21 @@ public class JavaParser {
 							expectedCommentIndent + StringPool.SPACE)) {
 
 						contentModifications.addReplaceContent(
-								expectedCommentIndent + StringPool.SPACE +
+							expectedCommentIndent + StringPool.SPACE +
 								StringUtil.trim(line),
-								i);
+							i);
 					}
 				}
 				else if (line.startsWith(actualCommentIndent)) {
 					contentModifications.addReplaceContent(
-							StringUtil.replaceFirst(
-									line, actualCommentIndent, expectedCommentIndent),
-							i);
+						StringUtil.replaceFirst(
+							line, actualCommentIndent, expectedCommentIndent),
+						i);
 				}
 			}
 
-			precedingCommentToken = DetailASTUtil.getHiddenBefore(precedingCommentToken);
+			precedingCommentDetailAST = DetailASTUtil.getPrecedingComment(
+				precedingCommentDetailAST);
 		}
 	}
 
@@ -585,7 +591,7 @@ public class JavaParser {
 				return content;
 			}
 
-			if (parsedJavaTerm.containsCommentToken() ||
+			if (parsedJavaTerm.containsCommentDetailAST() ||
 				(parsedJavaTerm.getContent() == null)) {
 
 				parsedJavaTerm = parsedJavaTerm.getPreviousParsedJavaTerm();
@@ -943,7 +949,7 @@ public class JavaParser {
 		ParsedJavaClass parsedJavaClass = _walk(
 			new ParsedJavaClass(), rootDetailAST, fileContents, maxLineLength);
 
-		parsedJavaClass.processCommentTokens();
+		parsedJavaClass.processCommentDetailASTs();
 
 		return parsedJavaClass;
 	}
@@ -961,31 +967,31 @@ public class JavaParser {
 	}
 
 	private static boolean _isExcludedJavaTerm(ParsedJavaTerm parsedJavaTerm) {
-		DetailAST precedingCommentToken =
-				parsedJavaTerm.getPrecedingCommentToken();
+		DetailAST precedingCommentDetailAST =
+			parsedJavaTerm.getPrecedingCommentDetailAST();
 
 		while (true) {
-			if (precedingCommentToken == null) {
+			if (precedingCommentDetailAST == null) {
 				return false;
 			}
 
-			if ((precedingCommentToken.getType() ==
-			     TokenTypes.SINGLE_LINE_COMMENT) &&
-			    StringUtil.startsWith(
-						StringUtil.trim(precedingCommentToken.getText()),
-						"Skip JavaParser")) {
+			if ((precedingCommentDetailAST.getType() ==
+					TokenTypes.SINGLE_LINE_COMMENT) &&
+				StringUtil.startsWith(
+					StringUtil.trim(precedingCommentDetailAST.getText()),
+					"Skip JavaParser")) {
 
 				return true;
 			}
 
-			// 2. 替换为 DetailASTUtil.getHiddenBefore
-			precedingCommentToken = DetailASTUtil.getHiddenBefore(precedingCommentToken);
+			precedingCommentDetailAST = DetailASTUtil.getPrecedingComment(
+				precedingCommentDetailAST);
 		}
 	}
 
 	private static String _parse(
 			File file, String packagePath, String content, int maxLineLength,
-			boolean abortOnNestedCommentToken)
+			boolean abortOnNestedCommentDetailAST)
 		throws CheckstyleException, IOException {
 
 		List<String> lines = _getLines(content);
@@ -1000,8 +1006,8 @@ public class JavaParser {
 		ParsedJavaClass parsedJavaClass = _getParsedJavaClass(
 			rootDetailAST, fileContents, maxLineLength);
 
-		if (abortOnNestedCommentToken &&
-			parsedJavaClass.containsNestedCommentToken()) {
+		if (abortOnNestedCommentDetailAST &&
+			parsedJavaClass.containsNestedCommentDetailAST()) {
 
 			return content;
 		}
@@ -1045,7 +1051,7 @@ public class JavaParser {
 				break;
 			}
 
-			if (!parsedJavaTerm.containsCommentToken()) {
+			if (!parsedJavaTerm.containsCommentDetailAST()) {
 				contentModifications = _addContentModifications(
 					contentModifications, parsedJavaTerm, fileContents);
 			}
@@ -1304,12 +1310,13 @@ public class JavaParser {
 				parsedJavaClass, detailAST, fileContents, maxLineLength);
 		}
 
-		DetailAST precedingCommentToken = DetailASTUtil.getHiddenBefore(detailAST);
+		DetailAST precedingCommentDetailAST = DetailASTUtil.getPrecedingComment(
+			detailAST);
 
-		if (precedingCommentToken != null) {
-			parsedJavaClass.addPrecedingCommentToken(
-					precedingCommentToken,
-					DetailASTUtil.getStartPosition(detailAST));
+		if (precedingCommentDetailAST != null) {
+			parsedJavaClass.addPrecedingCommentDetailAST(
+				precedingCommentDetailAST,
+				DetailASTUtil.getStartPosition(detailAST));
 		}
 
 		parsedJavaClass = _walk(
