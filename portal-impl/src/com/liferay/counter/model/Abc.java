@@ -26,13 +26,13 @@ public class Abc {
 		Mockito.any(Sorta[].class);
 		Mockito.any(BlogsEntry[]::new);
 		Mockito.any(BlogsEntry1.BlogsEntry2[]::new);
-		Mockito.any(ArrayList<?>[]::new);
+		Mockito.any(ArrayList<?>::new);
 
 		return new com.liferay.portal.search.sort.Sort[] {a, b};
 	}
 
 	private Configuration _getAccountEntryValidatorConfiguration(long companyId)
-			throws Exception {
+		throws Exception {
 
 		try {
 			return null;
@@ -41,7 +41,7 @@ public class Abc {
 			throw new ConfigurationException(exception);
 		}
 	}
-	
+
 	private static final String[][] _RESOURCE_NAMES = new String[30][20];
 
 	Long accountEntryId = (Long)values[0][1][2];
