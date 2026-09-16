@@ -714,18 +714,6 @@ public class DDMFormDisplayContextTest {
 	}
 
 	@Test
-	public void testIsSharedFormWithoutPortletSession() throws Exception {
-		RenderRequest renderRequest = _mockRenderRequest();
-
-		Assert.assertNull(renderRequest.getPortletSession(false));
-
-		DDMFormDisplayContext createDDMFormDisplayContext =
-			_createDDMFormDisplayContext(renderRequest);
-
-		Assert.assertTrue(createDDMFormDisplayContext.isFormShared());
-	}
-
-	@Test
 	public void testIsSharedFormWithPortletSession() throws Exception {
 		RenderRequest renderRequest = _mockRenderRequest();
 
@@ -734,6 +722,18 @@ public class DDMFormDisplayContextTest {
 		Assert.assertNotNull(portletSession);
 
 		portletSession.setAttribute("shared", Boolean.TRUE);
+
+		DDMFormDisplayContext createDDMFormDisplayContext =
+			_createDDMFormDisplayContext(renderRequest);
+
+		Assert.assertTrue(createDDMFormDisplayContext.isFormShared());
+	}
+
+	@Test
+	public void testIsSharedFormWithoutPortletSession() throws Exception {
+		RenderRequest renderRequest = _mockRenderRequest();
+
+		Assert.assertNull(renderRequest.getPortletSession(false));
 
 		DDMFormDisplayContext createDDMFormDisplayContext =
 			_createDDMFormDisplayContext(renderRequest);
