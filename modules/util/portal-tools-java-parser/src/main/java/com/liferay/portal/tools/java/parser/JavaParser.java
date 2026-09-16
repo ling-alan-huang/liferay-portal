@@ -1001,7 +1001,10 @@ public class JavaParser {
 		FileContents fileContents = new FileContents(fileText);
 
 		DetailAST rootDetailAST =
-			com.puppycrawl.tools.checkstyle.JavaParser.parse(fileContents);
+			com.puppycrawl.tools.checkstyle.JavaParser.parseFileText(
+				fileText,
+				com.puppycrawl.tools.checkstyle.JavaParser.Options.
+					WITH_COMMENTS);
 
 		ParsedJavaClass parsedJavaClass = _getParsedJavaClass(
 			rootDetailAST, fileContents, maxLineLength);
