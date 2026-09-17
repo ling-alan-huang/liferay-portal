@@ -115,6 +115,10 @@ publishing {
 	}
 }
 
+tasks.named("test") {
+	classpath = configurations.compileClasspath + classpath
+}
+
 test {
 	systemProperty "issue.key", System.getProperty("issue.key")
 }
