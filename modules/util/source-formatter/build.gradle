@@ -117,6 +117,11 @@ publishing {
 
 test {
 	systemProperty "issue.key", System.getProperty("issue.key")
+
+	classpath = configurations.compileClasspath.filter {
+		File file ->
+		file.name.startsWith("com.liferay.portal.kernel-")
+	} + classpath
 }
 
 updateFileVersions {
