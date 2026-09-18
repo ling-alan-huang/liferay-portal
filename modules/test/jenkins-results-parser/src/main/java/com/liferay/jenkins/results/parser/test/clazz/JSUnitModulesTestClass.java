@@ -58,11 +58,6 @@ public class JSUnitModulesTestClass extends ModulesTestClass {
 	}
 
 	@Override
-	public String getTestrayMainComponentName() {
-		return _testrayMainComponentName;
-	}
-
-	@Override
 	public String getTestTaskName() {
 		String testClassFilePath = JenkinsResultsParserUtil.getCanonicalPath(
 			getTestClassFile());
@@ -71,6 +66,11 @@ public class JSUnitModulesTestClass extends ModulesTestClass {
 			".*/modules(/.+)", "$1");
 
 		return testTaskName.replaceAll("/", ":") + ":" + getTaskName();
+	}
+
+	@Override
+	public String getTestrayMainComponentName() {
+		return _testrayMainComponentName;
 	}
 
 	protected JSUnitModulesTestClass(
