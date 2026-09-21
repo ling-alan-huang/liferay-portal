@@ -82,20 +82,13 @@ public class ExportArticleHelperImpl implements ExportArticleHelper {
 
 		int pages = articleDisplay.getNumberOfPages();
 
-		StringBundler sb = new StringBundler(pages + 12);
+		StringBundler sb = new StringBundler(pages + 9);
 
-		sb.append("<html>");
-
-		sb.append("<head>");
-		sb.append("<meta content=\"");
+		sb.append("<html><head><meta content=\"");
 		sb.append(ContentTypes.TEXT_HTML_UTF8);
-		sb.append("\" http-equiv=\"content-type\" />");
-		sb.append("<base href=\"");
+		sb.append("\" http-equiv=\"content-type\" /><base href=\"");
 		sb.append(themeDisplay.getPortalURL());
-		sb.append("\" />");
-		sb.append("</head>");
-
-		sb.append("<body>");
+		sb.append("\" /></head><body>");
 
 		sb.append(articleDisplay.getContent());
 
@@ -106,8 +99,7 @@ public class ExportArticleHelperImpl implements ExportArticleHelper {
 			sb.append(articleDisplay.getContent());
 		}
 
-		sb.append("</body>");
-		sb.append("</html>");
+		sb.append("</body></html>");
 
 		String s = sb.toString();
 

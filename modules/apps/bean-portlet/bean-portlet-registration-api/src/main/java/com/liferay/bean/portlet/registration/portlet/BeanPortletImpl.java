@@ -496,9 +496,7 @@ public class BeanPortletImpl implements BeanPortlet {
 
 			portletPreferencesSB.append("<read-only>");
 			portletPreferencesSB.append(preference.isReadOnly());
-			portletPreferencesSB.append("</read-only>");
-
-			portletPreferencesSB.append("</preference>");
+			portletPreferencesSB.append("</read-only></preference>");
 		}
 
 		portletPreferencesSB.append("</portlet-preferences>");

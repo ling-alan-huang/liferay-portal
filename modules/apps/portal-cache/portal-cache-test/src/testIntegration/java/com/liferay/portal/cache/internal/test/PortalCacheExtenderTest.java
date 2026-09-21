@@ -169,16 +169,14 @@ public class PortalCacheExtenderTest {
 			sb -> {
 				sb.append("<cache alias=\"");
 				sb.append(defaultConfigCacheName);
-				sb.append("\"><key-type>java.io.Serializable</key-type>");
-				sb.append("<value-type>java.io.Serializable</value-type>");
-				sb.append("<heap>1000</heap></cache>");
-
-				sb.append("<cache alias=\"");
+				sb.append("\"><key-type>java.io.Serializable</key-type><value");
+				sb.append("-type>java.io.Serializable</value-type><heap>1000<");
+				sb.append("/heap></cache><cache alias=\"");
 				sb.append(offHeapConfigCacheName);
-				sb.append("\"><key-type>java.io.Serializable</key-type>");
-				sb.append("<value-type>java.io.Serializable</value-type>");
-				sb.append("<resources><heap>1000</heap><offheap unit=\"MB\">");
-				sb.append("10</offheap></resources></cache>");
+				sb.append("\"><key-type>java.io.Serializable</key-type><value");
+				sb.append("-type>java.io.Serializable</value-type><resources>");
+				sb.append("<heap>1000</heap><offheap unit=\"MB\">10</offheap>");
+				sb.append("</resources></cache>");
 			});
 
 		_bundle = _installBundle(_BUNDLE_SYMBOLIC_NAME, _multiVmXML, null);

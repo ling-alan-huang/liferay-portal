@@ -100,9 +100,7 @@ public class CustomizationSettingsProcessor implements ColumnProcessor {
 
 		_writer.append("<div class=\"");
 		_writer.append(classNames);
-		_writer.append("\">");
-
-		_writer.append("<h1>");
+		_writer.append("\"><h1>");
 		_writer.append(columnId);
 		_writer.append("</h1>");
 
