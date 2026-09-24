@@ -5,9 +5,6 @@
 
 package com.liferay.source.formatter.checkstyle.check;
 
-import antlr.CommonASTWithHiddenTokens;
-import antlr.CommonHiddenStreamToken;
-
 import com.liferay.petra.function.transform.TransformUtil;
 import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringBundler;
@@ -34,6 +31,7 @@ import com.liferay.source.formatter.util.FileUtil;
 import com.liferay.source.formatter.util.SourceFormatterCheckUtil;
 import com.liferay.source.formatter.util.SourceFormatterUtil;
 
+import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
@@ -50,6 +48,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
+
+import org.antlr.v4.runtime.Token;
 
 /**
  * @author Hugo Huijser
@@ -392,22 +392,25 @@ public abstract class BaseCheck extends AbstractCheck {
 			StringPool.PERIOD + typeName;
 	}
 
-	protected CommonHiddenStreamToken getHiddenAfter(DetailAST detailAST) {
-		CommonASTWithHiddenTokens commonASTWithHiddenTokens =
-			(CommonASTWithHiddenTokens)detailAST;
+	protected Token getHiddenAfter(DetailAST detailAST) {
+		DetailAstImpl detailAstImpl = (DetailAstImpl)detailAST;
 
-		return commonASTWithHiddenTokens.getHiddenAfter();
+		List<Token> hiddenAfterTokens = detailAstImpl.getHiddenAfter();
+
+		if (hiddenAfterTokens == null) {
+			return null;
+		}
+
+		return hiddenAfterTokens.get(0);
 	}
 
-	protected CommonHiddenStreamToken getHiddenBefore(DetailAST detailAST) {
-		CommonASTWithHiddenTokens commonASTWithHiddenTokens =
-			(CommonASTWithHiddenTokens)detailAST;
+	protected Token getHiddenBefore(DetailAST detailAST) {
+		DetailAstImpl detailAstImpl = (DetailAstImpl)detailAST;
 
-		CommonHiddenStreamToken commonHiddenStreamToken =
-			commonASTWithHiddenTokens.getHiddenBefore();
+		List<Token> hiddenBeforeTokens = detailAstImpl.getHiddenBefore();
 
-		if (commonHiddenStreamToken != null) {
-			return commonHiddenStreamToken;
+		if (hiddenBeforeTokens != null) {
+			return hiddenBeforeTokens.get(hiddenBeforeTokens.size() - 1);
 		}
 
 		DetailAST previousSiblingDetailAST = detailAST.getPreviousSibling();
@@ -417,10 +420,10 @@ public abstract class BaseCheck extends AbstractCheck {
 				return null;
 			}
 
-			commonHiddenStreamToken = getHiddenAfter(previousSiblingDetailAST);
+			Token hiddenAfterToken = getHiddenAfter(previousSiblingDetailAST);
 
-			if (commonHiddenStreamToken != null) {
-				return commonHiddenStreamToken;
+			if (hiddenAfterToken != null) {
+				return hiddenAfterToken;
 			}
 
 			previousSiblingDetailAST = previousSiblingDetailAST.getLastChild();
@@ -436,41 +439,20 @@ public abstract class BaseCheck extends AbstractCheck {
 					0, absolutePath.lastIndexOf(CharPool.SLASH)));
 		}
 
-		DetailAST rootDetailAST = detailAST;
-
-		while (true) {
-			if (rootDetailAST.getParent() != null) {
-				rootDetailAST = rootDetailAST.getParent();
-			}
-			else if (rootDetailAST.getPreviousSibling() != null) {
-				rootDetailAST = rootDetailAST.getPreviousSibling();
-			}
-			else {
-				break;
-			}
-		}
-
 		List<String> importNames = new ArrayList<>();
 
-		DetailAST siblingDetailAST = rootDetailAST.getNextSibling();
+		for (DetailAST importDetailAST :
+				getAllChildTokens(
+					_getCompilationUnitDetailAST(detailAST), false,
+					TokenTypes.IMPORT)) {
 
-		while (true) {
-			if (siblingDetailAST == null) {
-				return importNames;
-			}
+			FullIdent importFullIdent = FullIdent.createFullIdentBelow(
+				importDetailAST);
 
-			if (siblingDetailAST.getType() == TokenTypes.IMPORT) {
-				FullIdent importFullIdent = FullIdent.createFullIdentBelow(
-					siblingDetailAST);
-
-				importNames.add(importFullIdent.getText());
-			}
-			else if (siblingDetailAST.getType() != TokenTypes.STATIC_IMPORT) {
-				return importNames;
-			}
-
-			siblingDetailAST = siblingDetailAST.getNextSibling();
+			importNames.add(importFullIdent.getText());
 		}
+
+		return importNames;
 	}
 
 	protected int getMaxDirLevel() {
@@ -565,25 +547,18 @@ public abstract class BaseCheck extends AbstractCheck {
 	}
 
 	protected String getPackageName(DetailAST detailAST) {
-		DetailAST rootDetailAST = detailAST;
+		DetailAST compilationUnitDetailAST = _getCompilationUnitDetailAST(
+			detailAST);
 
-		while (true) {
-			if (rootDetailAST.getParent() != null) {
-				rootDetailAST = rootDetailAST.getParent();
-			}
-			else if (rootDetailAST.getPreviousSibling() != null) {
-				rootDetailAST = rootDetailAST.getPreviousSibling();
-			}
-			else {
-				break;
-			}
-		}
+		DetailAST packageDefinitionDetailAST =
+			compilationUnitDetailAST.findFirstToken(TokenTypes.PACKAGE_DEF);
 
-		if (rootDetailAST.getType() != TokenTypes.PACKAGE_DEF) {
+		if (packageDefinitionDetailAST == null) {
 			return StringPool.BLANK;
 		}
 
-		DetailAST dotDetailAST = rootDetailAST.findFirstToken(TokenTypes.DOT);
+		DetailAST dotDetailAST = packageDefinitionDetailAST.findFirstToken(
+			TokenTypes.DOT);
 
 		FullIdent fullIdent = FullIdent.createFullIdent(dotDetailAST);
 
@@ -791,21 +766,16 @@ public abstract class BaseCheck extends AbstractCheck {
 			return StringPool.BLANK;
 		}
 
-		int arrayDimension = 0;
-
-		while (childDetailAST.getType() == TokenTypes.ARRAY_DECLARATOR) {
-			arrayDimension++;
-
-			childDetailAST = childDetailAST.getFirstChild();
-		}
+		List<DetailAST> arrayDeclaratorDetailASTs = getAllChildTokens(
+			typeDetailAST, false, TokenTypes.ARRAY_DECLARATOR);
 
 		StringBundler sb = new StringBundler();
 
-		FullIdent typeFullIdent = FullIdent.createFullIdent(childDetailAST);
+		String baseTypeName = DetailASTUtil.getBaseTypeName(childDetailAST);
 
 		if (fullyQualifiedName) {
 			String packageName = JavaSourceUtil.getPackageName(
-				typeFullIdent.getText(), getPackageName(detailAST),
+				baseTypeName, getPackageName(detailAST),
 				getImportNames(detailAST));
 
 			if (Validator.isNotNull(packageName)) {
@@ -814,10 +784,10 @@ public abstract class BaseCheck extends AbstractCheck {
 			}
 		}
 
-		sb.append(typeFullIdent.getText());
+		sb.append(baseTypeName);
 
 		if (includeArrayDimension) {
-			for (int i = 0; i < arrayDimension; i++) {
+			for (int i = 0; i < arrayDeclaratorDetailASTs.size(); i++) {
 				sb.append("[]");
 			}
 		}
@@ -1212,14 +1182,13 @@ public abstract class BaseCheck extends AbstractCheck {
 	}
 
 	protected boolean hasPrecedingPlaceholder(DetailAST detailAST) {
-		CommonHiddenStreamToken commonHiddenStreamToken = getHiddenBefore(
-			detailAST);
+		Token hiddenBeforeToken = getHiddenBefore(detailAST);
 
-		if (commonHiddenStreamToken == null) {
+		if (hiddenBeforeToken == null) {
 			return false;
 		}
 
-		String text = commonHiddenStreamToken.getText();
+		String text = hiddenBeforeToken.getText();
 
 		return text.contains("PLACEHOLDER");
 	}
@@ -1591,6 +1560,16 @@ public abstract class BaseCheck extends AbstractCheck {
 		}
 
 		return getVariableTypeName(detailAST, name, false);
+	}
+
+	private DetailAST _getCompilationUnitDetailAST(DetailAST detailAST) {
+		DetailAST compilationUnitDetailAST = detailAST;
+
+		while (compilationUnitDetailAST.getParent() != null) {
+			compilationUnitDetailAST = compilationUnitDetailAST.getParent();
+		}
+
+		return compilationUnitDetailAST;
 	}
 
 	private List<String> _getJSPImportNames(String directoryName) {

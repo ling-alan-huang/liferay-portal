@@ -7,9 +7,9 @@ package com.liferay.source.formatter.util;
 
 import com.liferay.petra.io.unsync.UnsyncBufferedReader;
 import com.liferay.petra.io.unsync.UnsyncStringReader;
+import com.liferay.portal.tools.java.parser.DetailASTParser;
 import com.liferay.source.formatter.checkstyle.util.DetailASTUtil;
 
-import com.puppycrawl.tools.checkstyle.JavaParser;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.FileText;
@@ -38,9 +38,9 @@ public class LegacyPropertiesUtil {
 
 		FileContents fileContents = new FileContents(fileText);
 
-		DetailAST rootDetailAST = JavaParser.parse(fileContents);
+		DetailAST rootDetailAST = DetailASTParser.parse(fileContents);
 
-		DetailAST nextSiblingDetailAST = rootDetailAST.getNextSibling();
+		DetailAST nextSiblingDetailAST = rootDetailAST.getFirstChild();
 
 		while (true) {
 			if (nextSiblingDetailAST.getType() != TokenTypes.CLASS_DEF) {
