@@ -5,9 +5,6 @@
 
 package com.liferay.source.formatter.checkstyle.check;
 
-import antlr.CommonASTWithHiddenTokens;
-import antlr.CommonHiddenStreamToken;
-
 import com.liferay.petra.function.transform.TransformUtil;
 import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringBundler;
@@ -348,6 +345,28 @@ public abstract class BaseCheck extends AbstractCheck {
 		return parameterExprDetailASTs.get(0);
 	}
 
+	protected DetailAST getFollowingCommentDetailAST(DetailAST detailAST) {
+		if (detailAST == null) {
+			return null;
+		}
+
+		DetailAST nextSiblingDetailAST = detailAST.getNextSibling();
+
+		if (nextSiblingDetailAST == null) {
+			return null;
+		}
+
+		int type = nextSiblingDetailAST.getType();
+
+		if ((type == TokenTypes.BLOCK_COMMENT_BEGIN) ||
+			(type == TokenTypes.SINGLE_LINE_COMMENT)) {
+
+			return nextSiblingDetailAST;
+		}
+
+		return null;
+	}
+
 	protected String getFullyQualifiedTypeName(
 		DetailAST typeDetailAST, boolean checkPackage) {
 
@@ -390,41 +409,6 @@ public abstract class BaseCheck extends AbstractCheck {
 
 		return JavaSourceUtil.getPackageName((String)fileText.getFullText()) +
 			StringPool.PERIOD + typeName;
-	}
-
-	protected CommonHiddenStreamToken getHiddenAfter(DetailAST detailAST) {
-		CommonASTWithHiddenTokens commonASTWithHiddenTokens =
-			(CommonASTWithHiddenTokens)detailAST;
-
-		return commonASTWithHiddenTokens.getHiddenAfter();
-	}
-
-	protected CommonHiddenStreamToken getHiddenBefore(DetailAST detailAST) {
-		CommonASTWithHiddenTokens commonASTWithHiddenTokens =
-			(CommonASTWithHiddenTokens)detailAST;
-
-		CommonHiddenStreamToken commonHiddenStreamToken =
-			commonASTWithHiddenTokens.getHiddenBefore();
-
-		if (commonHiddenStreamToken != null) {
-			return commonHiddenStreamToken;
-		}
-
-		DetailAST previousSiblingDetailAST = detailAST.getPreviousSibling();
-
-		while (true) {
-			if (previousSiblingDetailAST == null) {
-				return null;
-			}
-
-			commonHiddenStreamToken = getHiddenAfter(previousSiblingDetailAST);
-
-			if (commonHiddenStreamToken != null) {
-				return commonHiddenStreamToken;
-			}
-
-			previousSiblingDetailAST = previousSiblingDetailAST.getLastChild();
-		}
 	}
 
 	protected List<String> getImportNames(DetailAST detailAST) {
@@ -641,6 +625,37 @@ public abstract class BaseCheck extends AbstractCheck {
 		return null;
 	}
 
+	protected DetailAST getPrecedingCommentDetailAST(DetailAST detailAST) {
+		if (detailAST == null) {
+			return null;
+		}
+
+		DetailAST previousSiblingDetailAST = detailAST.getPreviousSibling();
+
+		if (previousSiblingDetailAST != null) {
+			int type = previousSiblingDetailAST.getType();
+
+			if ((type == TokenTypes.BLOCK_COMMENT_BEGIN) ||
+				(type == TokenTypes.SINGLE_LINE_COMMENT)) {
+
+				return previousSiblingDetailAST;
+			}
+		}
+
+		while (previousSiblingDetailAST != null) {
+			DetailAST followingCommentDetailAST = getFollowingCommentDetailAST(
+				previousSiblingDetailAST);
+
+			if (followingCommentDetailAST != null) {
+				return followingCommentDetailAST;
+			}
+
+			previousSiblingDetailAST = previousSiblingDetailAST.getLastChild();
+		}
+
+		return null;
+	}
+
 	protected String getSignature(DetailAST detailAST) {
 		if ((detailAST.getType() != TokenTypes.CTOR_DEF) &&
 			(detailAST.getType() != TokenTypes.METHOD_DEF)) {
@@ -791,14 +806,6 @@ public abstract class BaseCheck extends AbstractCheck {
 			return StringPool.BLANK;
 		}
 
-		int arrayDimension = 0;
-
-		while (childDetailAST.getType() == TokenTypes.ARRAY_DECLARATOR) {
-			arrayDimension++;
-
-			childDetailAST = childDetailAST.getFirstChild();
-		}
-
 		StringBundler sb = new StringBundler();
 
 		FullIdent typeFullIdent = FullIdent.createFullIdent(childDetailAST);
@@ -816,14 +823,10 @@ public abstract class BaseCheck extends AbstractCheck {
 
 		sb.append(typeFullIdent.getText());
 
-		if (includeArrayDimension) {
-			for (int i = 0; i < arrayDimension; i++) {
-				sb.append("[]");
-			}
-		}
+		if (!includeArrayDimension) {
+			String s = sb.toString();
 
-		if (!includeTypeArguments) {
-			return sb.toString();
+			return s.replaceAll("(\\[\\])+$", "");
 		}
 
 		DetailAST typeArgumentsDetailAST = typeDetailAST.findFirstToken(
@@ -1212,14 +1215,14 @@ public abstract class BaseCheck extends AbstractCheck {
 	}
 
 	protected boolean hasPrecedingPlaceholder(DetailAST detailAST) {
-		CommonHiddenStreamToken commonHiddenStreamToken = getHiddenBefore(
+		DetailAST precedingCommentDetailAST = getPrecedingCommentDetailAST(
 			detailAST);
 
-		if (commonHiddenStreamToken == null) {
+		if (precedingCommentDetailAST == null) {
 			return false;
 		}
 
-		String text = commonHiddenStreamToken.getText();
+		String text = precedingCommentDetailAST.getText();
 
 		return text.contains("PLACEHOLDER");
 	}
