@@ -1,0 +1,40 @@
+/**
+ * SPDX-FileCopyrightText: (c) 2026 Liferay, Inc. https://liferay.com
+ * SPDX-License-Identifier: LGPL-2.1-or-later OR LicenseRef-Liferay-DXP-EULA-2.0.0-2023-06
+ */
+
+package com.liferay.source.formatter.dependencies;
+
+/**
+ * @author Alan Huang
+ */
+public class JavaRecordPatterns {
+
+	public String getDescription(Object object) {
+		return switch (object) {
+			case Point(
+				int x, int y) -> "point";
+			case Line(Point start,
+				Point(int x, int y)) -> "line";
+			default -> "unknown";
+		};
+	}
+
+	public int getSum(Object object) {
+		if (object instanceof
+				Point(int x, int y)) {
+
+			return x + y;
+		}
+
+		if (object instanceof Line(
+				Point(var x1, var y1),
+				Point(var x2, var y2))) {
+
+			return x1 + y1 + x2 + y2;
+		}
+
+		return 0;
+	}
+
+}
