@@ -360,9 +360,8 @@ public class ParsedJavaTerm implements Comparable<ParsedJavaTerm> {
 		}
 
 		if (previousContent.matches("(?s).*\\sstatic\\s.*") &&
-			(previousVariableName.equals("_instance") ||
-			 previousVariableName.equals("_log") ||
-			 previousVariableName.equals("_logger"))) {
+			(_isSeparatedStaticVariableName(previousVariableName) ||
+			 _isSeparatedStaticVariableName(variableName))) {
 
 			return DOUBLE_LINE_BREAK_REQUIRED;
 		}
@@ -478,6 +477,16 @@ public class ParsedJavaTerm implements Comparable<ParsedJavaTerm> {
 		}
 
 		return SINGLE_LINE_BREAK_REQUIRED;
+	}
+
+	private boolean _isSeparatedStaticVariableName(String variableName) {
+		if (variableName.equals("_instance") || variableName.equals("_log") ||
+			variableName.equals("_logger")) {
+
+			return true;
+		}
+
+		return false;
 	}
 
 	private static final Pattern _accessModifierPattern = Pattern.compile(
