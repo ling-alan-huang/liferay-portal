@@ -349,6 +349,7 @@ public class SourceFormatter {
 					"working properly."));
 		}
 
+		
 		_sourceProcessors.add(new BNDRunSourceProcessor());
 		_sourceProcessors.add(new BNDSourceProcessor());
 		_sourceProcessors.add(new CIMergeAndGitRepoSourceProcessor());
