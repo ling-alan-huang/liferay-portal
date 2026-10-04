@@ -25,8 +25,8 @@ import org.hibernate.engine.jdbc.batch.internal.BatchingBatch;
 public class HibernateUnexpectedRowCountAspect {
 
 	@Before(
-		"handler(java.lang.RuntimeException) &&" +
-			"withincode(void org.hibernate.engine.jdbc.batch.internal.BatchingBatch." +
+		"handler(java.lang.RuntimeException) && withincode(void org." +
+			"hibernate.engine.jdbc.batch.internal.BatchingBatch." +
 				"doExecuteBatch()) && args(runtimeException) && this(batchingBatch)"
 	)
 	public void logUpdateSQL(
