@@ -145,7 +145,7 @@ public abstract class BaseUnnecessaryStatementCheck extends BaseCheck {
 
 		if ((nextSiblingDetailAST == null) ||
 			(nextSiblingDetailAST.getType() != TokenTypes.LITERAL_RETURN) ||
-			(getHiddenBefore(nextSiblingDetailAST) != null)) {
+			(getPrecedingCommentDetailAST(nextSiblingDetailAST) != null)) {
 
 			return;
 		}

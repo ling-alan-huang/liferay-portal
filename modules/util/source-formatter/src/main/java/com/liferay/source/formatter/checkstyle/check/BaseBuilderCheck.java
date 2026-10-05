@@ -284,7 +284,7 @@ public abstract class BaseBuilderCheck extends BaseChainedMethodCheck {
 			detailAST, true, ALL_TYPES);
 
 		for (DetailAST childDetailAST : childDetailASTs) {
-			if (getHiddenBefore(childDetailAST) != null) {
+			if (getPrecedingCommentDetailAST(childDetailAST) != null) {
 				return;
 			}
 		}

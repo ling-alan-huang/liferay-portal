@@ -5,7 +5,7 @@
 
 package com.liferay.portal.tools.java.parser;
 
-import antlr.CommonHiddenStreamToken;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -89,21 +89,22 @@ public class ParsedJavaClass {
 		}
 	}
 
-	public void addPrecedingCommentToken(
-		CommonHiddenStreamToken precedingCommentToken, Position startPosition) {
+	public void addPrecedingCommentDetailAST(
+		DetailAST precedingCommentDetailAST, Position startPosition) {
 
 		ParsedJavaTerm parsedJavaTerm = _lastParsedJavaTerm;
 
 		while (true) {
 			if (parsedJavaTerm == null) {
-				_precedingCommentTokensMap.put(
-					startPosition, precedingCommentToken);
+				_precedingCommentDetailASTsMap.put(
+					startPosition, precedingCommentDetailAST);
 
 				return;
 			}
 
 			if (startPosition.equals(parsedJavaTerm.getStartPosition())) {
-				parsedJavaTerm.setPrecedingCommentToken(precedingCommentToken);
+				parsedJavaTerm.setPrecedingCommentDetailAST(
+					precedingCommentDetailAST);
 
 				return;
 			}
@@ -112,7 +113,7 @@ public class ParsedJavaClass {
 		}
 	}
 
-	public boolean containsNestedCommentToken() {
+	public boolean containsNestedCommentDetailAST() {
 		ParsedJavaTerm parsedJavaTerm = _lastParsedJavaTerm;
 
 		while (true) {
@@ -120,7 +121,7 @@ public class ParsedJavaClass {
 				return false;
 			}
 
-			if (parsedJavaTerm.containsCommentToken()) {
+			if (parsedJavaTerm.containsCommentDetailAST()) {
 				return true;
 			}
 
@@ -132,9 +133,9 @@ public class ParsedJavaClass {
 		return _lastParsedJavaTerm;
 	}
 
-	public void processCommentTokens() {
-		for (Map.Entry<Position, CommonHiddenStreamToken> entry :
-				_precedingCommentTokensMap.entrySet()) {
+	public void processCommentDetailASTs() {
+		for (Map.Entry<Position, DetailAST> entry :
+				_precedingCommentDetailASTsMap.entrySet()) {
 
 			Position startPosition = entry.getKey();
 
@@ -148,7 +149,7 @@ public class ParsedJavaClass {
 				if (startPosition.compareTo(parsedJavaTerm.getStartPosition()) >
 						0) {
 
-					parsedJavaTerm.setContainsCommentToken(true);
+					parsedJavaTerm.setContainsCommentDetailAST(true);
 
 					break;
 				}
@@ -160,7 +161,7 @@ public class ParsedJavaClass {
 
 	private ParsedJavaTerm _firstParsedJavaTerm;
 	private ParsedJavaTerm _lastParsedJavaTerm;
-	private final Map<Position, CommonHiddenStreamToken>
-		_precedingCommentTokensMap = new HashMap<>();
+	private final Map<Position, DetailAST> _precedingCommentDetailASTsMap =
+		new HashMap<>();
 
 }

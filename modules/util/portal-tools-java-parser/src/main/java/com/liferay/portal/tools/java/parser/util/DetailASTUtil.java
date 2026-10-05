@@ -5,9 +5,6 @@
 
 package com.liferay.portal.tools.java.parser.util;
 
-import antlr.CommonASTWithHiddenTokens;
-import antlr.CommonHiddenStreamToken;
-
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.tools.java.parser.Position;
 
@@ -227,11 +224,26 @@ public class DetailASTUtil {
 		return endPosition;
 	}
 
-	public static CommonHiddenStreamToken getHiddenBefore(DetailAST detailAST) {
-		CommonASTWithHiddenTokens commonASTWithHiddenTokens =
-			(CommonASTWithHiddenTokens)detailAST;
+	public static DetailAST getPrecedingComment(DetailAST detailAST) {
+		if (detailAST == null) {
+			return null;
+		}
 
-		return commonASTWithHiddenTokens.getHiddenBefore();
+		DetailAST previousSiblingDetailAST = detailAST.getPreviousSibling();
+
+		if (previousSiblingDetailAST == null) {
+			return null;
+		}
+
+		int type = previousSiblingDetailAST.getType();
+
+		if ((type == TokenTypes.BLOCK_COMMENT_BEGIN) ||
+			(type == TokenTypes.SINGLE_LINE_COMMENT)) {
+
+			return previousSiblingDetailAST;
+		}
+
+		return null;
 	}
 
 	public static Position getStartPosition(DetailAST detailAST) {
