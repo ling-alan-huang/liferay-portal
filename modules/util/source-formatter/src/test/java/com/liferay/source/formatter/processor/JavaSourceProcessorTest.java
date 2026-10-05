@@ -1177,6 +1177,11 @@ public class JavaSourceProcessorTest extends BaseSourceProcessorTestCase {
 	}
 
 	@Test
+	public void testSortMockitoChainedCalls() throws Exception {
+		test("SortMockitoChainedCalls.testjava");
+	}
+
+	@Test
 	public void testStaticFinalLog() throws Exception {
 		test("StaticFinalLog.testjava");
 	}

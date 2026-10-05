@@ -294,6 +294,7 @@ JavaMapBuilderGenericsCheck | [Bug Prevention](bug_prevention_checks.md#bug-prev
 JavaMetaOCDSecretFieldCheck | [Bug Prevention](bug_prevention_checks.md#bug-prevention-checks) | .java | Finds missing `type = Meta.Type.Password` on secret-bearing fields. |
 JavaMissingOverrideCheck | [Bug Prevention](bug_prevention_checks.md#bug-prevention-checks) | .java | Finds missing @Override annotations. |
 JavaMissingXMLPublicIdsCheck | [Bug Prevention](bug_prevention_checks.md#bug-prevention-checks) | .java | Finds missing public IDs for check XML files. |
+JavaMockitoChainedCallsOrderCheck | [Styling](styling_checks.md#styling-checks) | .java | Sorts chained `then*` calls on `Mockito.when`. |
 JavaModifiedServiceMethodCheck | [Bug Prevention](bug_prevention_checks.md#bug-prevention-checks) | .java | Finds missing empty lines before `removedService` or `addingService` calls. |
 JavaModuleClassGetResourceCallCheck | [Bug Prevention](bug_prevention_checks.md#bug-prevention-checks) | .java | Checks that dependencies files are located in the correct directory. |
 [JavaModuleComponentCheck](check/java_module_component_check.md#javamodulecomponentcheck) | [Bug Prevention](bug_prevention_checks.md#bug-prevention-checks) | .java | Performs several checks on classes with or without `@Component` annotation. |

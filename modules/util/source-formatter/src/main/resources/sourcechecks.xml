@@ -653,6 +653,10 @@
 			<description name="Finds missing `type = Meta.Type.Password` on secret-bearing fields." />
 			<property name="enabled" value="false" />
 		</check>
+		<check name="JavaMockitoChainedCallsOrderCheck">
+			<category name="Styling" />
+			<description name="Sorts chained `then*` calls on `Mockito.when`." />
+		</check>
 		<check name="JavaModifiedServiceMethodCheck">
 			<category name="Bug Prevention" />
 			<description name="Finds missing empty lines before `removedService` or `addingService` calls." />
