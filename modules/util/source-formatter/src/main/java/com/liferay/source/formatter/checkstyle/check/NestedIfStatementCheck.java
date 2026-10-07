@@ -40,7 +40,7 @@ public class NestedIfStatementCheck extends BaseCheck {
 		DetailAST firstChildDetailAST = lastChildDetailAST.getFirstChild();
 
 		if ((firstChildDetailAST.getType() != TokenTypes.LITERAL_IF) ||
-			(getHiddenBefore(firstChildDetailAST) != null)) {
+			(getPrecedingCommentDetailAST(firstChildDetailAST) != null)) {
 
 			return;
 		}

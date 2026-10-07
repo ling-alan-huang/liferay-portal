@@ -1,0 +1,53 @@
+package com.liferay.counter.model;
+
+import java.util.List;
+
+public class Abc {
+
+	int inta;
+	List<String> list;
+	Object o;
+	String[] s;
+	A.B.C.String[] s1;
+	double[] abc;
+	double[][] xyz;
+	double[] aaa = {3, 4};
+	String[] s2 = {"a1", "a2", "a3", "a4"};
+
+	public void putAll(Map<? extends String, ? extends String[]> map) {
+		super.putAll(map);
+
+		_map.putAll(map);
+	}
+
+	private com.liferay.portal.search.sort.Sort[] _a() {
+		Mockito.any(Sort1.Sort2.Sort3.class);
+		Mockito.any(Sort1.Sort2[].class);
+		Mockito.any(Sorta[].class);
+		Mockito.any(BlogsEntry[]::new);
+		Mockito.any(BlogsEntry1.BlogsEntry2[]::new);
+		Mockito.any(ArrayList<?>::new);
+
+		return new com.liferay.portal.search.sort.Sort[] {a, b};
+	}
+
+	private Configuration _getAccountEntryValidatorConfiguration(long companyId)
+		throws Exception {
+
+		try {
+			return null;
+		}
+		catch (InvalidSyntaxException | IOException exception) {
+			throw new ConfigurationException(exception);
+		}
+	}
+
+	private static final String[][] _RESOURCE_NAMES = new String[30][20];
+
+	Long accountEntryId = (Long)values[0][1][2];
+
+	private final Map<Long, long[]> _accountGroupIdsMap = new HashMap<>();
+
+	BooleanClause<Query>[] booleanClauses = searchContext.getBooleanClauses();
+
+}
