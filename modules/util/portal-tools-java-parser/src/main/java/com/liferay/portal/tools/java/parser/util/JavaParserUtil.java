@@ -1850,39 +1850,27 @@ public class JavaParserUtil {
 		DetailAST previousResourceDetailAST = null;
 
 		for (DetailAST resourceDetailAST : resourceDetailASTs) {
-			if (previousResourceDetailAST == null) {
-				resourceJavaVariableDefinitions.add(
-					_parseJavaVariableDefinition(resourceDetailAST));
+			JavaVariableDefinition resourceJavaVariableDefinition =
+				_parseJavaVariableDefinition(resourceDetailAST);
 
-				previousResourceDetailAST = resourceDetailAST;
+			if (previousResourceDetailAST != null) {
+				DetailAST semiDetailAST =
+					previousResourceDetailAST.getNextSibling();
 
-				continue;
+				if ((semiDetailAST == null) ||
+					(semiDetailAST.getType() != TokenTypes.SEMI)) {
+
+					return null;
+				}
+
+				if (resourceDetailAST.getLineNo() >
+						(semiDetailAST.getLineNo() + 1)) {
+
+					resourceJavaVariableDefinition.setPrecedingBlankLine(true);
+				}
 			}
 
-			DetailAST nextSiblingDetailAST =
-				previousResourceDetailAST.getNextSibling();
-
-			if ((nextSiblingDetailAST == null) ||
-				(nextSiblingDetailAST.getType() != TokenTypes.SEMI)) {
-
-				return null;
-			}
-
-			int lineNumber = resourceDetailAST.getLineNo();
-			int semiDetailASTLineNumber = nextSiblingDetailAST.getLineNo();
-
-			if (lineNumber > (semiDetailASTLineNumber + 1)) {
-				JavaVariableDefinition javaVariableDefinition =
-					new JavaVariableDefinition(
-						Collections.emptyList(), Collections.emptyList());
-
-				javaVariableDefinition.addVariable("// EMPTY_LINE_PLACEHOLDER");
-
-				resourceJavaVariableDefinitions.add(javaVariableDefinition);
-			}
-
-			resourceJavaVariableDefinitions.add(
-				_parseJavaVariableDefinition(resourceDetailAST));
+			resourceJavaVariableDefinitions.add(resourceJavaVariableDefinition);
 
 			previousResourceDetailAST = resourceDetailAST;
 		}
