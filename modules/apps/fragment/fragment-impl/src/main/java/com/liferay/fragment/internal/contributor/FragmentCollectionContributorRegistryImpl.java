@@ -98,14 +98,13 @@ public class FragmentCollectionContributorRegistryImpl
 			FragmentCollectionContributor fragmentCollectionContributor =
 				fragmentCollectionBag._fragmentCollectionContributor;
 
-			if (!fragmentCollectionContributor.isEnabled()) {
+			if (!fragmentCollectionContributor.isEnabled() ||
+				MapUtil.isEmpty(fragmentCollectionContributor.getNames())) {
+
 				continue;
 			}
 
-			if (MapUtil.isNotEmpty(fragmentCollectionContributor.getNames())) {
-				fragmentCollectionContributors.add(
-					fragmentCollectionContributor);
-			}
+			fragmentCollectionContributors.add(fragmentCollectionContributor);
 		}
 
 		return fragmentCollectionContributors;
@@ -233,9 +232,11 @@ public class FragmentCollectionContributorRegistryImpl
 			ResourceBundleLoader resourceBundleLoader =
 				fragmentCollectionContributor.getResourceBundleLoader();
 
-			if (resourceBundleLoader != null) {
-				resourceBundleLoaders.add(resourceBundleLoader);
+			if (resourceBundleLoader == null) {
+				continue;
 			}
+
+			resourceBundleLoaders.add(resourceBundleLoader);
 		}
 
 		return new AggregateResourceBundleLoader(

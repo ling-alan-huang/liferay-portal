@@ -51,11 +51,13 @@ public class CompanyModelListener extends BaseModelListener<Company> {
 
 		try {
 			for (CTCollection ctCollection : ctCollections) {
-				if (ctCollection.getStatus() !=
+				if (ctCollection.getStatus() ==
 						WorkflowConstants.STATUS_APPROVED) {
 
-					_ctCollectionLocalService.deleteCTCollection(ctCollection);
+					continue;
 				}
+
+				_ctCollectionLocalService.deleteCTCollection(ctCollection);
 			}
 		}
 		catch (PortalException portalException) {

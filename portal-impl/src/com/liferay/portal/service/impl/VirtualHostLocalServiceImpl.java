@@ -71,9 +71,11 @@ public class VirtualHostLocalServiceImpl
 		List<VirtualHost> defaultVirtualHosts = new ArrayList<>();
 
 		for (VirtualHost virtualHost : virtualHosts) {
-			if (virtualHost.isDefaultVirtualHost()) {
-				defaultVirtualHosts.add(virtualHost);
+			if (!virtualHost.isDefaultVirtualHost()) {
+				continue;
 			}
+
+			defaultVirtualHosts.add(virtualHost);
 		}
 
 		if (defaultVirtualHosts.isEmpty()) {
@@ -152,13 +154,15 @@ public class VirtualHostLocalServiceImpl
 		List<VirtualHost> filteredVirtualHosts = null;
 
 		for (VirtualHost virtualHost : virtualHosts) {
-			if (virtualHost.getLayoutSetId() == layoutSetId) {
-				if (filteredVirtualHosts == null) {
-					filteredVirtualHosts = new ArrayList<>(virtualHosts.size());
-				}
-
-				filteredVirtualHosts.add(virtualHost);
+			if (virtualHost.getLayoutSetId() != layoutSetId) {
+				continue;
 			}
+
+			if (filteredVirtualHosts == null) {
+				filteredVirtualHosts = new ArrayList<>(virtualHosts.size());
+			}
+
+			filteredVirtualHosts.add(virtualHost);
 		}
 
 		if (filteredVirtualHosts == null) {
@@ -244,11 +248,13 @@ public class VirtualHostLocalServiceImpl
 		while (iterator.hasNext()) {
 			VirtualHost virtualHost = iterator.next();
 
-			if (!hostnames.containsKey(virtualHost.getHostname())) {
-				iterator.remove();
-
-				virtualHostPersistence.remove(virtualHost);
+			if (hostnames.containsKey(virtualHost.getHostname())) {
+				continue;
 			}
+
+			iterator.remove();
+
+			virtualHostPersistence.remove(virtualHost);
 		}
 
 		virtualHostPersistence.cacheResult(virtualHosts);

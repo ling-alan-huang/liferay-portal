@@ -248,12 +248,14 @@ public class StaticSiteExporterTest {
 
 			String html = staticSiteExportLayout.getHTML();
 
-			if (url.contains(".css") && html.contains(url)) {
-				stylesheet = true;
-
-				Assert.assertThat(
-					html, CoreMatchers.containsString(StringPool.SLASH + path));
+			if (!url.contains(".css") || !html.contains(url)) {
+				continue;
 			}
+
+			stylesheet = true;
+
+			Assert.assertThat(
+				html, CoreMatchers.containsString(StringPool.SLASH + path));
 		}
 
 		Assert.assertTrue(staticSiteExportResources.toString(), bundleResource);

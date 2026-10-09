@@ -125,9 +125,11 @@ public class S3Store implements Store {
 							Instant initiatedInstant =
 								multipartUpload.initiated();
 
-							if (initiatedInstant.isBefore(startInstant)) {
-								multipartUploads.add(multipartUpload);
+							if (!initiatedInstant.isBefore(startInstant)) {
+								continue;
 							}
+
+							multipartUploads.add(multipartUpload);
 						}
 					});
 
@@ -633,15 +635,17 @@ public class S3Store implements Store {
 
 			while (iterator.hasNext()) {
 				for (int i = 0; i < _DELETE_MAX; i++) {
-					if (iterator.hasNext()) {
-						S3Object s3Object = iterator.next();
-
-						objectIdentifiers.add(
-							ObjectIdentifier.builder(
-							).key(
-								s3Object.key()
-							).build());
+					if (!iterator.hasNext()) {
+						continue;
 					}
+
+					S3Object s3Object = iterator.next();
+
+					objectIdentifiers.add(
+						ObjectIdentifier.builder(
+						).key(
+							s3Object.key()
+						).build());
 				}
 
 				CompletableFuture<DeleteObjectsResponse> completableFuture =
@@ -678,9 +682,11 @@ public class S3Store implements Store {
 		String key = null;
 
 		for (S3Object s3Object : s3Objects) {
-			if ((key == null) || (key.compareTo(s3Object.key()) < 0)) {
-				key = s3Object.key();
+			if ((key != null) && (key.compareTo(s3Object.key()) >= 0)) {
+				continue;
 			}
+
+			key = s3Object.key();
 		}
 
 		return key.substring(key.lastIndexOf(CharPool.SLASH) + 1);

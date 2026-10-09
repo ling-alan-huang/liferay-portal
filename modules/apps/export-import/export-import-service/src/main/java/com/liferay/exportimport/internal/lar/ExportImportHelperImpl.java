@@ -486,9 +486,11 @@ public class ExportImportHelperImpl implements ExportImportHelper {
 			}
 
 			for (Layout parentLayout : parentLayouts) {
-				if (!layouts.contains(parentLayout)) {
-					layouts.add(parentLayout);
+				if (layouts.contains(parentLayout)) {
+					continue;
 				}
+
+				layouts.add(parentLayout);
 			}
 
 			boolean includeChildren = entry.getValue();
@@ -498,9 +500,11 @@ public class ExportImportHelperImpl implements ExportImportHelper {
 			}
 
 			for (Layout childLayout : layout.getAllChildren()) {
-				if (!layouts.contains(childLayout)) {
-					layouts.add(childLayout);
+				if (layouts.contains(childLayout)) {
+					continue;
 				}
+
+				layouts.add(childLayout);
 			}
 		}
 
@@ -1208,10 +1212,12 @@ public class ExportImportHelperImpl implements ExportImportHelper {
 			long modelDeletionCount = manifestSummary.getModelDeletionCount(
 				manifestSummaryKey);
 
-			if (modelDeletionCount > 0) {
-				element.addAttribute(
-					"deletion-count", String.valueOf(modelDeletionCount));
+			if (modelDeletionCount <= 0) {
+				continue;
 			}
+
+			element.addAttribute(
+				"deletion-count", String.valueOf(modelDeletionCount));
 		}
 	}
 
@@ -1679,12 +1685,14 @@ public class ExportImportHelperImpl implements ExportImportHelper {
 			childLayoutsJSONArray = _jsonFactory.createJSONArray();
 
 			for (Layout childLayout : childLayouts) {
-				if (!_populateLayoutsJSON(
+				if (_populateLayoutsJSON(
 						childLayoutsJSONArray, childLayout,
 						selectedLayoutIds)) {
 
-					includeChildren = false;
+					continue;
 				}
+
+				includeChildren = false;
 			}
 		}
 

@@ -587,9 +587,11 @@ public class TransactionalPortalCacheUtil {
 				while (iterator.hasNext()) {
 					ValueEntry valueEntry = iterator.next();
 
-					if (valueEntry.isRemove()) {
-						iterator.remove();
+					if (!valueEntry.isRemove()) {
+						continue;
 					}
+
+					iterator.remove();
 				}
 			}
 

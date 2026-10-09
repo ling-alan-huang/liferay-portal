@@ -102,11 +102,13 @@ public class ReferenceAnnotationCheck extends BaseCheck {
 				variableDefinitionDetailAST.findFirstToken(
 					TokenTypes.MODIFIERS);
 
-			if (!modifiersDetailAST.branchContains(TokenTypes.LITERAL_STATIC)) {
-				log(
-					methodDefinitionDetailAST, _MSG_MOVE_REFERENCE, methodName,
-					variableName);
+			if (modifiersDetailAST.branchContains(TokenTypes.LITERAL_STATIC)) {
+				continue;
 			}
+
+			log(
+				methodDefinitionDetailAST, _MSG_MOVE_REFERENCE, methodName,
+				variableName);
 		}
 	}
 

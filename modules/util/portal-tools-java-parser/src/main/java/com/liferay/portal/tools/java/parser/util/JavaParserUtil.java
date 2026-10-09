@@ -270,12 +270,14 @@ public class JavaParserUtil {
 				typeInfoDetailAST, true, TokenTypes.ARRAY_DECLARATOR);
 
 		for (DetailAST arrayDeclaratorDetailAST : arrayDeclaratorDetailASTs) {
-			if (_isMisplacedArrayDeclarator(
+			if (!_isMisplacedArrayDeclarator(
 					typeArgumentsDetailAST.getLastChild(),
 					arrayDeclaratorDetailAST)) {
 
-				arrayDimension++;
+				continue;
 			}
+
+			arrayDimension++;
 		}
 
 		return arrayDimension;

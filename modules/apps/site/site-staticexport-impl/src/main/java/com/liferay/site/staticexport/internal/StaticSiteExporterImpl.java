@@ -523,9 +523,11 @@ public class StaticSiteExporterImpl implements StaticSiteExporter {
 
 			stylesheetResourceURL = _resolveURL(stylesheetResourceURL, url);
 
-			if (stylesheetResourceURL != null) {
-				stylesheetResourceURLs.add(stylesheetResourceURL);
+			if (stylesheetResourceURL == null) {
+				continue;
 			}
+
+			stylesheetResourceURLs.add(stylesheetResourceURL);
 		}
 
 		return stylesheetResourceURLs;
@@ -593,9 +595,11 @@ public class StaticSiteExporterImpl implements StaticSiteExporter {
 		for (String name :
 				StringUtil.split(path.substring(0, index), CharPool.SLASH)) {
 
-			if (Validator.isNotNull(name)) {
-				names.add(name);
+			if (Validator.isNull(name)) {
+				continue;
 			}
+
+			names.add(name);
 		}
 
 		for (String name : StringUtil.split(relativeURL, CharPool.SLASH)) {

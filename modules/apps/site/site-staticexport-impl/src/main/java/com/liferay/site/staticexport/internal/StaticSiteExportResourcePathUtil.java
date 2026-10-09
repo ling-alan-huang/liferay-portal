@@ -109,9 +109,11 @@ public class StaticSiteExportResourcePathUtil {
 
 			int index = parameter.lastIndexOf(CharPool.PERIOD);
 
-			if (index != -1) {
-				extension = parameter.substring(index + 1);
+			if (index == -1) {
+				continue;
 			}
+
+			extension = parameter.substring(index + 1);
 		}
 
 		if (!_isExtension(extension)) {
