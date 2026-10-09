@@ -36,14 +36,12 @@ public class AIHubAgentNodeValidator extends BaseNodeValidator<AIHubAgent> {
 		String agentDefinitionExternalReferenceCode = null;
 
 		for (Setting setting : aiHubAgent.getSettings()) {
-			if (!Objects.equals(
+			if (Objects.equals(
 					setting.getName(),
 					"agentDefinitionExternalReferenceCode")) {
 
-				continue;
+				agentDefinitionExternalReferenceCode = setting.getValue();
 			}
-
-			agentDefinitionExternalReferenceCode = setting.getValue();
 		}
 
 		if (Validator.isNull(agentDefinitionExternalReferenceCode)) {

@@ -32,11 +32,9 @@ public class StringUtil {
 		for (int i = 0; i < array.length; i++) {
 			sb.append(array[i]);
 
-			if ((i + 1) >= array.length) {
-				continue;
+			if ((i + 1) < array.length) {
+				sb.append(separator);
 			}
-
-			sb.append(separator);
 		}
 
 		return sb.toString();

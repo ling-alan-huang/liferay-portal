@@ -343,11 +343,9 @@ public class DDMExpressionEvaluatorVisitor
 				String key = entry.getKey();
 				Object value = entry.getValue();
 
-				if (!key.startsWith(variable) || (value == null)) {
-					continue;
+				if (key.startsWith(variable) && (value != null)) {
+					variableValue = value;
 				}
-
-				variableValue = value;
 			}
 		}
 

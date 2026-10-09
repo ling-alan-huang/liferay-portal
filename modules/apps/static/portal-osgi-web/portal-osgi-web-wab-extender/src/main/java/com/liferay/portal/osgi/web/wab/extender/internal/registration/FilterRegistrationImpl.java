@@ -190,11 +190,9 @@ public class FilterRegistrationImpl implements FilterRegistration.Dynamic {
 			List<String> filterMappingItems = new ArrayList<>();
 
 			for (FilterMappingItem filterMappingItem : _filterMappingItems) {
-				if (urlPattern != filterMappingItem.isUrlPattern()) {
-					continue;
+				if (urlPattern == filterMappingItem.isUrlPattern()) {
+					filterMappingItems.add(filterMappingItem.getItemContent());
 				}
-
-				filterMappingItems.add(filterMappingItem.getItemContent());
 			}
 
 			return filterMappingItems;

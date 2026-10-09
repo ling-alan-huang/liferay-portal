@@ -562,19 +562,17 @@ public class RenderCollectionLayoutStructureItemDisplayContext {
 						"targetCollections",
 						FragmentConfigurationFieldDataType.ARRAY);
 
-			if ((targetCollectionsJSONArray == null) ||
-				!JSONUtil.hasValue(
+			if ((targetCollectionsJSONArray != null) &&
+				JSONUtil.hasValue(
 					targetCollectionsJSONArray,
 					_collectionStyledLayoutStructureItem.getItemId())) {
 
-				continue;
+				filterValues.put(
+					parameterName.replaceFirst(
+						FragmentCollectionFilterConstants.FILTER_PREFIX,
+						StringPool.BLANK),
+					entry.getValue());
 			}
-
-			filterValues.put(
-				parameterName.replaceFirst(
-					FragmentCollectionFilterConstants.FILTER_PREFIX,
-					StringPool.BLANK),
-				entry.getValue());
 		}
 
 		return filterValues;

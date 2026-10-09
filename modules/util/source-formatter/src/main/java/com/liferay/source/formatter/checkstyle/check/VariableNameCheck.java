@@ -452,14 +452,15 @@ public class VariableNameCheck extends BaseCheck {
 
 			DetailAST firstChildDetailAST = typeDetailAST.getFirstChild();
 
-			if ((firstChildDetailAST == null) ||
-				(firstChildDetailAST.getType() == TokenTypes.DOT) ||
-				!typeName.equals(getTypeName(typeDetailAST, false))) {
-
+			if (firstChildDetailAST == null) {
 				continue;
 			}
 
-			count++;
+			if ((firstChildDetailAST.getType() != TokenTypes.DOT) &&
+				typeName.equals(getTypeName(typeDetailAST, false))) {
+
+				count++;
+			}
 		}
 
 		if (count == 1) {
@@ -580,16 +581,14 @@ public class VariableNameCheck extends BaseCheck {
 			String expectedVariableName = _getExpectedVariableName(
 				stringLiteralDetailAST.getText());
 
-			if (!SourceUtil.hasTypo(
+			if (SourceUtil.hasTypo(
 					StringUtil.toLowerCase(variableName),
 					StringUtil.toLowerCase(expectedVariableName))) {
 
-				continue;
+				log(
+					detailAST, _MSG_TYPO_VARIABLE, variableName,
+					expectedVariableName);
 			}
-
-			log(
-				detailAST, _MSG_TYPO_VARIABLE, variableName,
-				expectedVariableName);
 		}
 	}
 
@@ -656,18 +655,18 @@ public class VariableNameCheck extends BaseCheck {
 			for (int i = expectedVariableName.length() - 1; i >= 0; i--) {
 				char c1 = trimmedName.charAt(i);
 
-				if ((c1 == expectedVariableName.charAt(i)) ||
-					(i >= (expectedVariableName.length() - 1))) {
-
+				if (c1 == expectedVariableName.charAt(i)) {
 					continue;
 				}
 
-				char c2 = trimmedName.charAt(i + 1);
+				if (i < (expectedVariableName.length() - 1)) {
+					char c2 = trimmedName.charAt(i + 1);
 
-				if (Character.isUpperCase(c1) &&
-					(Character.isDigit(c2) || Character.isUpperCase(c2))) {
+					if (Character.isUpperCase(c1) &&
+						(Character.isDigit(c2) || Character.isUpperCase(c2))) {
 
-					return;
+						return;
+					}
 				}
 			}
 
@@ -698,18 +697,16 @@ public class VariableNameCheck extends BaseCheck {
 		while (matcher.find()) {
 			int x = matcher.start() + 1;
 
-			if (!SourceUtil.hasTypo(
+			if (SourceUtil.hasTypo(
 					StringUtil.toLowerCase(trimmedName.substring(x)),
 					lowerCaseTrimmedTypeName)) {
 
-				continue;
+				log(
+					detailAST, _MSG_TYPO_VARIABLE, variableName,
+					StringBundler.concat(
+						leadingUnderline, variableName.substring(0, x),
+						typeName, nameTrailingDigits));
 			}
-
-			log(
-				detailAST, _MSG_TYPO_VARIABLE, variableName,
-				StringBundler.concat(
-					leadingUnderline, variableName.substring(0, x), typeName,
-					nameTrailingDigits));
 		}
 	}
 
@@ -1009,11 +1006,12 @@ public class VariableNameCheck extends BaseCheck {
 		String digits = StringPool.BLANK;
 
 		for (int i = s.length() - 1; i >= 0; i--) {
-			if (!Character.isDigit(s.charAt(i))) {
+			if (Character.isDigit(s.charAt(i))) {
+				digits = s.charAt(i) + digits;
+			}
+			else {
 				return digits;
 			}
-
-			digits = s.charAt(i) + digits;
 		}
 
 		return digits;

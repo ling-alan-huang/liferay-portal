@@ -250,19 +250,15 @@ public class CollaboratorUtil {
 			TicketConstants.TYPE_INVITE_COLLABORATOR);
 
 		for (Ticket ticket : tickets) {
-			if (ticketIds.contains(ticket.getTicketId())) {
-				continue;
+			if (!ticketIds.contains(ticket.getTicketId())) {
+				ticketLocalService.deleteTicket(ticket.getTicketId());
 			}
-
-			ticketLocalService.deleteTicket(ticket.getTicketId());
 		}
 
 		for (SharingEntry sharingEntry : oldSharingEntries) {
-			if (sharingEntryIds.contains(sharingEntry.getSharingEntryId())) {
-				continue;
+			if (!sharingEntryIds.contains(sharingEntry.getSharingEntryId())) {
+				sharingEntryService.deleteSharingEntry(sharingEntry);
 			}
-
-			sharingEntryService.deleteSharingEntry(sharingEntry);
 		}
 
 		Collections.sort(

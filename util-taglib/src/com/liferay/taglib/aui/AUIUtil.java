@@ -206,17 +206,15 @@ public class AUIUtil {
 		for (int i = 0; i < name.length(); i++) {
 			char c = name.charAt(i);
 
-			if ((_VALID_CHARS.length > c) && _VALID_CHARS[c]) {
-				continue;
+			if ((_VALID_CHARS.length <= c) || !_VALID_CHARS[c]) {
+				if (chars == null) {
+					chars = new char[name.length()];
+
+					name.getChars(0, chars.length, chars, 0);
+				}
+
+				chars[i] = CharPool.DASH;
 			}
-
-			if (chars == null) {
-				chars = new char[name.length()];
-
-				name.getChars(0, chars.length, chars, 0);
-			}
-
-			chars[i] = CharPool.DASH;
 		}
 
 		if (chars == null) {

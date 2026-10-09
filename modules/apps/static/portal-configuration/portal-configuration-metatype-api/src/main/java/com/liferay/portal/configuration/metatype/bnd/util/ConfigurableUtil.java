@@ -110,11 +110,9 @@ public class ConfigurableUtil {
 		List<Method> nonsyntheticDeclaredMethods = new ArrayList<>();
 
 		for (Method method : interfaceClass.getDeclaredMethods()) {
-			if (method.isSynthetic()) {
-				continue;
+			if (!method.isSynthetic()) {
+				nonsyntheticDeclaredMethods.add(method);
 			}
-
-			nonsyntheticDeclaredMethods.add(method);
 		}
 
 		// Fields

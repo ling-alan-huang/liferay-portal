@@ -47,13 +47,11 @@ public class UpgradeSearch extends BaseUpgradePortletPreferences {
 				hasDLFileEntry = true;
 			}
 
-			if (!value.equals(
+			if (value.equals(
 					"com.liferay.portlet.journal.model.JournalArticle")) {
 
-				continue;
+				hasJournalArticle = true;
 			}
-
-			hasJournalArticle = true;
 		}
 
 		if (!hasBookmarksEntry && !hasDLFileEntry && !hasJournalArticle) {

@@ -119,12 +119,10 @@ public class WhitespaceCheck extends BaseFileCheck {
 				return line;
 			}
 
-			if (ToolsUtil.isInsideQuotes(line, x)) {
-				continue;
+			if (!ToolsUtil.isInsideQuotes(line, x)) {
+				line = StringUtil.replaceFirst(
+					line, incorrectSyntax, correctSyntax, x);
 			}
-
-			line = StringUtil.replaceFirst(
-				line, incorrectSyntax, correctSyntax, x);
 		}
 	}
 
@@ -296,17 +294,14 @@ public class WhitespaceCheck extends BaseFileCheck {
 				}
 			}
 
-			if (x <= 0) {
-				continue;
+			if (x > 0) {
+				char previousChar = linePart.charAt(x - 1);
+
+				if (previousChar == CharPool.SPACE) {
+					linePart =
+						linePart.substring(0, x - 1) + linePart.substring(x);
+				}
 			}
-
-			char previousChar = linePart.charAt(x - 1);
-
-			if (previousChar != CharPool.SPACE) {
-				continue;
-			}
-
-			linePart = linePart.substring(0, x - 1) + linePart.substring(x);
 		}
 
 		line = StringUtil.replace(line, originalLinePart, linePart);

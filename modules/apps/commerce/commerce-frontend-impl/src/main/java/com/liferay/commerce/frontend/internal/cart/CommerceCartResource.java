@@ -304,13 +304,11 @@ public class CommerceCartResource {
 		for (CommerceOrderValidatorResult commerceOrderValidatorResult :
 				commerceOrderValidatorResults) {
 
-			if (!commerceOrderValidatorResult.hasMessageResult()) {
-				continue;
+			if (commerceOrderValidatorResult.hasMessageResult()) {
+				errorMessages = ArrayUtil.append(
+					errorMessages,
+					commerceOrderValidatorResult.getLocalizedMessage());
 			}
-
-			errorMessages = ArrayUtil.append(
-				errorMessages,
-				commerceOrderValidatorResult.getLocalizedMessage());
 		}
 
 		return errorMessages;
@@ -575,19 +573,17 @@ public class CommerceCartResource {
 
 			Product parent = productMap.get(parentProductId);
 
-			if (parent == null) {
-				continue;
+			if (parent != null) {
+				if (parent.getChildItems() == null) {
+					parent.setChildItems(new ArrayList<>());
+				}
+
+				List<Product> childItems = parent.getChildItems();
+
+				childItems.add(product);
+
+				productMap.remove(product.getId());
 			}
-
-			if (parent.getChildItems() == null) {
-				parent.setChildItems(new ArrayList<>());
-			}
-
-			List<Product> childItems = parent.getChildItems();
-
-			childItems.add(product);
-
-			productMap.remove(product.getId());
 		}
 
 		return new ArrayList(productMap.values());

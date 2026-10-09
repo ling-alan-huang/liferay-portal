@@ -322,23 +322,21 @@ public class PortletBagFactory {
 			boolean assetRendererEnabledValue = GetterUtil.getBoolean(
 				assetRendererEnabledPropertyValue, true);
 
-			if (!assetRendererEnabledValue) {
-				continue;
+			if (assetRendererEnabledValue) {
+				AssetRendererFactory<?> assetRendererFactory = _newInstance(
+					AssetRendererFactory.class, assetRendererFactoryClass);
+
+				assetRendererFactory.setClassName(
+					assetRendererFactory.getClassName());
+				assetRendererFactory.setPortletId(portlet.getPortletId());
+
+				ServiceRegistration<?> serviceRegistration =
+					bundleContext.registerService(
+						AssetRendererFactory.class, assetRendererFactory,
+						properties);
+
+				serviceRegistrations.add(serviceRegistration);
 			}
-
-			AssetRendererFactory<?> assetRendererFactory = _newInstance(
-				AssetRendererFactory.class, assetRendererFactoryClass);
-
-			assetRendererFactory.setClassName(
-				assetRendererFactory.getClassName());
-			assetRendererFactory.setPortletId(portlet.getPortletId());
-
-			ServiceRegistration<?> serviceRegistration =
-				bundleContext.registerService(
-					AssetRendererFactory.class, assetRendererFactory,
-					properties);
-
-			serviceRegistrations.add(serviceRegistration);
 		}
 	}
 

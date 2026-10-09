@@ -71,44 +71,47 @@ public class LayoutPageTemplateStructureRelUpgradeProcess
 			layoutStructure.getLayoutStructureItems();
 
 		for (LayoutStructureItem layoutStructureItem : layoutStructureItems) {
-			if (!(layoutStructureItem instanceof
-					CollectionStyledLayoutStructureItem)) {
+			if (layoutStructureItem instanceof
+					CollectionStyledLayoutStructureItem) {
 
-				continue;
-			}
+				CollectionStyledLayoutStructureItem
+					collectionStyledLayoutStructureItem =
+						(CollectionStyledLayoutStructureItem)
+							layoutStructureItem;
 
-			CollectionStyledLayoutStructureItem
-				collectionStyledLayoutStructureItem =
-					(CollectionStyledLayoutStructureItem)layoutStructureItem;
+				collectionStyledLayoutStructureItem.setDisplayAllItems(false);
 
-			collectionStyledLayoutStructureItem.setDisplayAllItems(false);
+				String paginationType = _getPaginationType(
+					collectionStyledLayoutStructureItem, itemsJSONObject);
 
-			String paginationType = _getPaginationType(
-				collectionStyledLayoutStructureItem, itemsJSONObject);
+				if (CollectionPaginationUtil.isPaginationEnabled(
+						paginationType)) {
 
-			if (CollectionPaginationUtil.isPaginationEnabled(paginationType)) {
-				collectionStyledLayoutStructureItem.setDisplayAllPages(
-					collectionStyledLayoutStructureItem.isShowAllItems());
+					collectionStyledLayoutStructureItem.setDisplayAllPages(
+						collectionStyledLayoutStructureItem.isShowAllItems());
 
-				int numberOfItemsPerPage =
-					collectionStyledLayoutStructureItem.
-						getNumberOfItemsPerPage();
+					int numberOfItemsPerPage =
+						collectionStyledLayoutStructureItem.
+							getNumberOfItemsPerPage();
 
-				if (numberOfItemsPerPage > 0) {
-					int numberOfItems =
-						collectionStyledLayoutStructureItem.getNumberOfItems();
+					if (numberOfItemsPerPage > 0) {
+						int numberOfItems =
+							collectionStyledLayoutStructureItem.
+								getNumberOfItems();
 
-					collectionStyledLayoutStructureItem.setNumberOfPages(
-						(int)Math.ceil(
-							numberOfItems / (double)numberOfItemsPerPage));
+						collectionStyledLayoutStructureItem.setNumberOfPages(
+							(int)Math.ceil(
+								numberOfItems / (double)numberOfItemsPerPage));
+					}
 				}
-			}
-			else {
-				paginationType = CollectionPaginationUtil.PAGINATION_TYPE_NONE;
-			}
+				else {
+					paginationType =
+						CollectionPaginationUtil.PAGINATION_TYPE_NONE;
+				}
 
-			collectionStyledLayoutStructureItem.setPaginationType(
-				paginationType);
+				collectionStyledLayoutStructureItem.setPaginationType(
+					paginationType);
+			}
 		}
 
 		JSONObject jsonObject = layoutStructure.toJSONObject();

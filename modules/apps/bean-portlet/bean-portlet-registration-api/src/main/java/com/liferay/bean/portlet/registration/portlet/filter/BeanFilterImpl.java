@@ -76,12 +76,11 @@ public class BeanFilterImpl implements BeanFilter {
 		for (Map.Entry<String, String> entry : initParams.entrySet()) {
 			String value = entry.getValue();
 
-			if (value == null) {
-				continue;
+			if (value != null) {
+				dictionary.put(
+					"jakarta.portlet.init-param.".concat(entry.getKey()),
+					value);
 			}
-
-			dictionary.put(
-				"jakarta.portlet.init-param.".concat(entry.getKey()), value);
 		}
 
 		dictionary.put("service.ranking:Integer", getOrdinal());

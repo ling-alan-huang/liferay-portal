@@ -45,11 +45,9 @@ public class UpgradeBNDIncludeResourceCheck extends BaseFileCheck {
 		while (iterator.hasNext()) {
 			String includeResourceValue = iterator.next();
 
-			if (includeResourceValue.endsWith(".jar")) {
-				continue;
+			if (!includeResourceValue.endsWith(".jar")) {
+				iterator.remove();
 			}
-
-			iterator.remove();
 		}
 
 		if (includeResourceValues.isEmpty()) {

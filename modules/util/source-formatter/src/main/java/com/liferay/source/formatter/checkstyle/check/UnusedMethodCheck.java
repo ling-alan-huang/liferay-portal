@@ -202,15 +202,14 @@ public class UnusedMethodCheck extends BaseCheck {
 
 			firstChildDetailAST = exprDetailAST.getFirstChild();
 
-			if (firstChildDetailAST.getType() != TokenTypes.STRING_LITERAL) {
-				continue;
+			if (firstChildDetailAST.getType() == TokenTypes.STRING_LITERAL) {
+				String text = firstChildDetailAST.getText();
+
+				referencedMethodNamesMap = _addMapEntry(
+					referencedMethodNamesMap,
+					text.substring(1, text.length() - 1),
+					exprDetailASTs.size() - 2);
 			}
-
-			String text = firstChildDetailAST.getText();
-
-			referencedMethodNamesMap = _addMapEntry(
-				referencedMethodNamesMap, text.substring(1, text.length() - 1),
-				exprDetailASTs.size() - 2);
 		}
 
 		List<DetailAST> annotationDetailASTs = getAllChildTokens(
@@ -254,15 +253,13 @@ public class UnusedMethodCheck extends BaseCheck {
 
 				String propertyValueName = fullIdent.getText();
 
-				if (!propertyValueName.matches("\".*\"")) {
-					continue;
+				if (propertyValueName.matches("\".*\"")) {
+					referencedMethodNamesMap = _addMapEntry(
+						referencedMethodNamesMap,
+						propertyValueName.substring(
+							1, propertyValueName.length() - 1),
+						1);
 				}
-
-				referencedMethodNamesMap = _addMapEntry(
-					referencedMethodNamesMap,
-					propertyValueName.substring(
-						1, propertyValueName.length() - 1),
-					1);
 			}
 		}
 

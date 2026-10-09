@@ -65,13 +65,11 @@ public class CommerceSAPHelperImpl implements CommerceSAPHelper {
 				companyId, QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 
 		for (SAPEntry sapEntry : companySAPEntries) {
-			if (!Objects.equals(
+			if (Objects.equals(
 					sapEntry.getName(), CommerceSAPConstants.SAP_ENTRY_NAME)) {
 
-				continue;
+				_sapEntryLocalService.deleteSAPEntry(sapEntry);
 			}
-
-			_sapEntryLocalService.deleteSAPEntry(sapEntry);
 		}
 	}
 

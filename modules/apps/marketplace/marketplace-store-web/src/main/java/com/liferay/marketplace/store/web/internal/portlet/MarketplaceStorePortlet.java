@@ -766,11 +766,9 @@ public class MarketplaceStorePortlet extends MVCPortlet {
 		List<App> apps = appLocalService.getInstalledApps();
 
 		for (App app : apps) {
-			if (app.getRemoteAppId() <= 0) {
-				continue;
+			if (app.getRemoteAppId() > 0) {
+				jsonArray.put(_getAppJSONObject(app));
 			}
-
-			jsonArray.put(_getAppJSONObject(app));
 		}
 
 		return jsonArray;

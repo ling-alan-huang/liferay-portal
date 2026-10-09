@@ -19,11 +19,9 @@ public class SortItemList extends ArrayList<SortItem> {
 		SortItemList sortItemList = new SortItemList();
 
 		for (SortItem sortItem : sortItems) {
-			if (sortItem == null) {
-				continue;
+			if (sortItem != null) {
+				sortItemList.add(sortItem);
 			}
-
-			sortItemList.add(sortItem);
 		}
 
 		return sortItemList;

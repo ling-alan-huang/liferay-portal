@@ -205,13 +205,11 @@ public class HotDeployUtil {
 		for (String dependentServletContextName :
 				hotDeployEvent.getDependentServletContextNames()) {
 
-			if (_deployedServletContextNames.contains(
+			if (!_deployedServletContextNames.contains(
 					dependentServletContextName)) {
 
-				continue;
+				requiredServletContextNames.add(dependentServletContextName);
 			}
-
-			requiredServletContextNames.add(dependentServletContextName);
 		}
 
 		Collections.sort(requiredServletContextNames);

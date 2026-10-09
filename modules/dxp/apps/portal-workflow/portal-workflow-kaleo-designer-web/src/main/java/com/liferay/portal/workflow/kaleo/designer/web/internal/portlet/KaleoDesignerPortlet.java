@@ -406,11 +406,9 @@ public class KaleoDesignerPortlet extends MVCPortlet {
 			User user = _userLocalService.fetchUserByEmailAddress(
 				themeDisplay.getCompanyId(), emailAddress);
 
-			if (user == null) {
-				continue;
+			if (user != null) {
+				users.add(user);
 			}
-
-			users.add(user);
 		}
 
 		String keywords = ParamUtil.getString(resourceRequest, "keywords");
@@ -431,11 +429,9 @@ public class KaleoDesignerPortlet extends MVCPortlet {
 			User user = _userLocalService.fetchUserByScreenName(
 				themeDisplay.getCompanyId(), screenName);
 
-			if (user == null) {
-				continue;
+			if (user != null) {
+				users.add(user);
 			}
-
-			users.add(user);
 		}
 
 		for (long userId :
@@ -443,11 +439,9 @@ public class KaleoDesignerPortlet extends MVCPortlet {
 
 			User user = _userLocalService.fetchUser(userId);
 
-			if (user == null) {
-				continue;
+			if (user != null) {
+				users.add(user);
 			}
-
-			users.add(user);
 		}
 
 		JSONArray jsonArray = _jsonFactory.createJSONArray();

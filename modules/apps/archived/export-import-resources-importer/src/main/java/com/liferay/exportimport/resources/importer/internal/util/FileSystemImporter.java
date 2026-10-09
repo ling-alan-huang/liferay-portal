@@ -1674,11 +1674,9 @@ public class FileSystemImporter extends BaseImporter {
 		List<File> files2 = new ArrayList<>();
 
 		for (File file : files1) {
-			if (!file.isFile()) {
-				continue;
+			if (file.isFile()) {
+				files2.add(file);
 			}
-
-			files2.add(file);
 		}
 
 		return files2.toArray(new File[0]);

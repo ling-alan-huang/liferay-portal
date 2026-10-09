@@ -240,13 +240,12 @@ public class SitePageDTOConverter implements DTOConverter<Layout, SitePage> {
 								long bitwiseValue =
 									resourceAction.getBitwiseValue();
 
-								if ((actionIds & bitwiseValue) !=
+								if ((actionIds & bitwiseValue) ==
 										bitwiseValue) {
 
-									continue;
+									actionIdsSet.add(
+										resourceAction.getActionId());
 								}
-
-								actionIdsSet.add(resourceAction.getActionId());
 							}
 
 							String roleKey = role.getName();

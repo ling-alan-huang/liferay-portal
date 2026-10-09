@@ -165,16 +165,14 @@ public class FunctionCommercePaymentIntegration
 		for (CommercePaymentMethodGroupRel commercePaymentMethodGroupRel :
 				commercePaymentMethodGroupRels) {
 
-			if (!key.equals(
+			if (key.equals(
 					commercePaymentMethodGroupRel.getPaymentIntegrationKey())) {
 
-				continue;
+				_commercePaymentMethodGroupRelLocalService.
+					deleteCommercePaymentMethodGroupRel(
+						commercePaymentMethodGroupRel.
+							getCommercePaymentMethodGroupRelId());
 			}
-
-			_commercePaymentMethodGroupRelLocalService.
-				deleteCommercePaymentMethodGroupRel(
-					commercePaymentMethodGroupRel.
-						getCommercePaymentMethodGroupRelId());
 		}
 	}
 
@@ -197,16 +195,14 @@ public class FunctionCommercePaymentIntegration
 
 			String key = (String)properties.get("key");
 
-			if (!key.equals(
+			if (key.equals(
 					commercePaymentMethodGroupRel.getPaymentIntegrationKey())) {
 
-				continue;
+				_commercePaymentMethodGroupRelLocalService.
+					deleteCommercePaymentMethodGroupRel(
+						commercePaymentMethodGroupRel.
+							getCommercePaymentMethodGroupRelId());
 			}
-
-			_commercePaymentMethodGroupRelLocalService.
-				deleteCommercePaymentMethodGroupRel(
-					commercePaymentMethodGroupRel.
-						getCommercePaymentMethodGroupRelId());
 		}
 	}
 

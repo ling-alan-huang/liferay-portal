@@ -409,14 +409,12 @@ public class LayoutsImporterImpl implements LayoutsImporter {
 		for (ClientExtensionEntryRel clientExtensionEntryRel :
 				clientExtensionEntryRels) {
 
-			if (!cetExternalReferenceCode.equals(
+			if (cetExternalReferenceCode.equals(
 					clientExtensionEntryRel.getCETExternalReferenceCode())) {
 
-				continue;
+				_clientExtensionEntryRelLocalService.
+					deleteClientExtensionEntryRel(clientExtensionEntryRel);
 			}
-
-			_clientExtensionEntryRelLocalService.deleteClientExtensionEntryRel(
-				clientExtensionEntryRel);
 		}
 
 		UnicodeProperties unicodeProperties = new UnicodeProperties(true);
@@ -1992,7 +1990,7 @@ public class LayoutsImporterImpl implements LayoutsImporter {
 				for (PageElement childPageElement :
 						pageElement.getPageElements()) {
 
-					if (!_processPageElement(
+					if (_processPageElement(
 							new ArrayList<>(), draftLayout, layoutStructure,
 							pageDefinitionVersion, childPageElement,
 							rootLayoutStructureItem.getItemId(), position,
@@ -2002,10 +2000,8 @@ public class LayoutsImporterImpl implements LayoutsImporter {
 									draftLayout.getPlid()),
 							warningMessages)) {
 
-						continue;
+						position++;
 					}
-
-					position++;
 				}
 			}
 
@@ -2082,16 +2078,14 @@ public class LayoutsImporterImpl implements LayoutsImporter {
 		int childPosition = 0;
 
 		for (PageElement childPageElement : pageElement.getPageElements()) {
-			if (!_processPageElement(
+			if (_processPageElement(
 					fragmentEntryLinks, layout, layoutStructure,
 					pageDefinitionVersion, childPageElement,
 					layoutStructureItem.getItemId(), childPosition,
 					preserveItemIds, segmentsExperienceId, warningMessages)) {
 
-				continue;
+				childPosition++;
 			}
-
-			childPosition++;
 		}
 
 		return true;

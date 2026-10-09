@@ -85,17 +85,15 @@ public class ObjectActionPermissionRestController extends BaseRestController {
 			JSONObject jsonObject =
 				currentObjectEntryPermissionsJSONArray.getJSONObject(i);
 
-			if (roleNames.contains(jsonObject.getString("roleName"))) {
-				continue;
+			if (!roleNames.contains(jsonObject.getString("roleName"))) {
+				newObjectEntryPermissionsJSONArray.put(
+					new JSONObject(
+					).put(
+						"actionIds", new JSONArray()
+					).put(
+						"roleName", jsonObject.getString("roleName")
+					));
 			}
-
-			newObjectEntryPermissionsJSONArray.put(
-				new JSONObject(
-				).put(
-					"actionIds", new JSONArray()
-				).put(
-					"roleName", jsonObject.getString("roleName")
-				));
 		}
 
 		return newObjectEntryPermissionsJSONArray;

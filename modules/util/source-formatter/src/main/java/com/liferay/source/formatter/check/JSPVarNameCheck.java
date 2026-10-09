@@ -35,16 +35,14 @@ public class JSPVarNameCheck extends BaseFileCheck {
 					varName, "Html", "HTML");
 			}
 
-			if (expectedVarName == null) {
-				continue;
+			if (expectedVarName != null) {
+				addMessage(
+					fileName,
+					StringBundler.concat(
+						"Rename var \"", varName, "\" to \"", expectedVarName,
+						"\""),
+					getLineNumber(content, matcher.start()));
 			}
-
-			addMessage(
-				fileName,
-				StringBundler.concat(
-					"Rename var \"", varName, "\" to \"", expectedVarName,
-					"\""),
-				getLineNumber(content, matcher.start()));
 		}
 
 		return content;

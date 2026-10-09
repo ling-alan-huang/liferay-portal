@@ -188,11 +188,9 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 		List<App> apps = appPersistence.findAll();
 
 		for (App app : apps) {
-			if (!app.isInstalled()) {
-				continue;
+			if (app.isInstalled()) {
+				installedApps.add(app);
 			}
-
-			installedApps.add(app);
 		}
 
 		installedApps = ListUtil.sort(
@@ -308,12 +306,10 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 		for (Module module : modules) {
 			_moduleLocalService.deleteModule(module.getModuleId());
 
-			if (!module.isBundle()) {
-				continue;
+			if (module.isBundle()) {
+				BundleManagerUtil.uninstallBundle(
+					module.getBundleSymbolicName(), module.getBundleVersion());
 			}
-
-			BundleManagerUtil.uninstallBundle(
-				module.getBundleSymbolicName(), module.getBundleVersion());
 		}
 	}
 

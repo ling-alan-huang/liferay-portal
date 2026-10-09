@@ -444,12 +444,11 @@ public class DefaultDLEditFileEntryDisplayContext
 		for (Map.Entry<String, String[]> entry : parameterMap.entrySet()) {
 			String parameterName = entry.getKey();
 
-			if (!StringUtil.startsWith(parameterName, namespace)) {
-				continue;
+			if (StringUtil.startsWith(parameterName, namespace)) {
+				dynamicServletRequest.setParameterValues(
+					parameterName.substring(namespace.length()),
+					entry.getValue());
 			}
-
-			dynamicServletRequest.setParameterValues(
-				parameterName.substring(namespace.length()), entry.getValue());
 		}
 
 		return dynamicServletRequest;

@@ -1018,24 +1018,23 @@ public class GraphQLServletExtender {
 				Class<?> queryClass = query.getClass();
 
 				for (Class<?> innerClasses : queryClass.getClasses()) {
-					if (!innerClasses.isAnnotationPresent(
+					if (innerClasses.isAnnotationPresent(
 							GraphQLTypeExtension.class)) {
 
-						continue;
-					}
+						GraphQLTypeExtension graphQLTypeExtension =
+							innerClasses.getAnnotation(
+								GraphQLTypeExtension.class);
 
-					GraphQLTypeExtension graphQLTypeExtension =
-						innerClasses.getAnnotation(GraphQLTypeExtension.class);
+						Class<?> clazz = graphQLTypeExtension.value();
 
-					Class<?> clazz = graphQLTypeExtension.value();
+						Set<Class<?>> classes = classesMap.computeIfAbsent(
+							clazz, key -> new HashSet<>());
 
-					Set<Class<?>> classes = classesMap.computeIfAbsent(
-						clazz, key -> new HashSet<>());
+						classes.add(innerClasses);
 
-					classes.add(innerClasses);
-
-					for (Method method : innerClasses.getMethods()) {
-						_servletDataMap.put(method, servletData);
+						for (Method method : innerClasses.getMethods()) {
+							_servletDataMap.put(method, servletData);
+						}
 					}
 				}
 			}
@@ -1827,20 +1826,19 @@ public class GraphQLServletExtender {
 
 			String typeName = GraphQLTypeUtil.simplePrint(graphQLOutputType);
 
-			if ((typeName == null) || !typeName.equals("Object") ||
-				!StringUtil.endsWith(graphQLFieldDefinition.getName(), "Id")) {
+			if ((typeName != null) && typeName.equals("Object") &&
+				StringUtil.endsWith(graphQLFieldDefinition.getName(), "Id")) {
 
-				continue;
+				GraphQLFieldDefinition.Builder
+					newGraphQLFieldDefinitionBuilder =
+						GraphQLFieldDefinition.newFieldDefinition(
+							graphQLFieldDefinition);
+
+				graphQLObjectTypeBuilder.field(
+					newGraphQLFieldDefinitionBuilder.type(
+						graphQLInterfaceType
+					).build());
 			}
-
-			GraphQLFieldDefinition.Builder newGraphQLFieldDefinitionBuilder =
-				GraphQLFieldDefinition.newFieldDefinition(
-					graphQLFieldDefinition);
-
-			graphQLObjectTypeBuilder.field(
-				newGraphQLFieldDefinitionBuilder.type(
-					graphQLInterfaceType
-				).build());
 		}
 	}
 
@@ -2205,13 +2203,11 @@ public class GraphQLServletExtender {
 			Method[] methods = clazz.getMethods();
 
 			for (Method existingMethod : methods) {
-				if (!StringUtil.equals(
+				if (StringUtil.equals(
 						existingMethod.getName(), "getContentId")) {
 
-					continue;
+					method = existingMethod;
 				}
-
-				method = existingMethod;
 			}
 
 			return dataFetcher.get(

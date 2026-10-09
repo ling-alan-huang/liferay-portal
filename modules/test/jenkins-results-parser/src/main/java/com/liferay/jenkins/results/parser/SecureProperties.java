@@ -98,17 +98,14 @@ public class SecureProperties extends Properties {
 
 		while (matcher.find()) {
 			String propertyGroup = matcher.group(0);
-
 			String propertyName = matcher.group(1);
 
-			if (!containsKey(propertyName)) {
-				continue;
+			if (containsKey(propertyName)) {
+				newValue = newValue.replace(
+					propertyGroup,
+					_getReferencedValue(
+						new ArrayList<>(previousKeys), propertyName));
 			}
-
-			newValue = newValue.replace(
-				propertyGroup,
-				_getReferencedValue(
-					new ArrayList<>(previousKeys), propertyName));
 		}
 
 		return newValue;

@@ -40,12 +40,10 @@ public class OutboundLinksUtil {
 			String objectEntryExternalReferenceCode = _decodeURL(
 				matcher.group(1));
 
-			if (Validator.isNull(objectEntryExternalReferenceCode)) {
-				continue;
+			if (Validator.isNotNull(objectEntryExternalReferenceCode)) {
+				objectEntryExternalReferenceCodes.add(
+					objectEntryExternalReferenceCode);
 			}
-
-			objectEntryExternalReferenceCodes.add(
-				objectEntryExternalReferenceCode);
 		}
 
 		return objectEntryExternalReferenceCodes;

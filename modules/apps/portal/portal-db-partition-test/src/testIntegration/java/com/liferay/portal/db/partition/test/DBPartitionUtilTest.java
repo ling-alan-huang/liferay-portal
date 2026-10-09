@@ -749,11 +749,9 @@ public class DBPartitionUtilTest extends BaseDBPartitionTestCase {
 		}
 		finally {
 			for (Connection connection : connections) {
-				if (connection.isClosed()) {
-					continue;
+				if (!connection.isClosed()) {
+					connection.close();
 				}
-
-				connection.close();
 			}
 
 			db.runSQL(dbPartitionDB.getDropPartitionSQL(partitionName));

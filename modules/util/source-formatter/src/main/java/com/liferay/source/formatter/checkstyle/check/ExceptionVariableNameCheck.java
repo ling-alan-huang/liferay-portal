@@ -56,13 +56,11 @@ public class ExceptionVariableNameCheck extends VariableNameCheck {
 					expectedName += String.valueOf(counter);
 				}
 
-				if (name.equals(expectedName)) {
-					continue;
+				if (!name.equals(expectedName)) {
+					log(
+						exceptionDefinition.getLineNumber(),
+						MSG_RENAME_VARIABLE, name, expectedName);
 				}
-
-				log(
-					exceptionDefinition.getLineNumber(), MSG_RENAME_VARIABLE,
-					name, expectedName);
 			}
 		}
 	}

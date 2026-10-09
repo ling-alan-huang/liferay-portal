@@ -97,13 +97,11 @@ public class ExpandoValueServiceImpl extends ExpandoValueServiceBaseImpl {
 				companyId, _classNameLocalService.getClassNameId(className),
 				tableName, columnName);
 
-			if (ExpandoColumnPermissionUtil.contains(
+			if (!ExpandoColumnPermissionUtil.contains(
 					getPermissionChecker(), expandoColumn, ActionKeys.VIEW)) {
 
-				continue;
+				attributeValues.remove(columnName);
 			}
-
-			attributeValues.remove(columnName);
 		}
 
 		return attributeValues;

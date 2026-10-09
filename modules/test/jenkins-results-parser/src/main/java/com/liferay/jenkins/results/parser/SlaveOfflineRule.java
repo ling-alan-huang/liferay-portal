@@ -42,16 +42,15 @@ public class SlaveOfflineRule {
 		for (Object propertyNameObject : buildProperties.keySet()) {
 			String propertyName = propertyNameObject.toString();
 
-			if (!propertyName.startsWith("slave.offline.rule[")) {
-				continue;
+			if (propertyName.startsWith("slave.offline.rule[")) {
+				String ruleName = propertyName.substring(
+					"slave.offline.rule[".length(),
+					propertyName.lastIndexOf("]"));
+
+				_slaveOfflineRules.add(
+					new SlaveOfflineRule(
+						buildProperties.getProperty(propertyName), ruleName));
 			}
-
-			String ruleName = propertyName.substring(
-				"slave.offline.rule[".length(), propertyName.lastIndexOf("]"));
-
-			_slaveOfflineRules.add(
-				new SlaveOfflineRule(
-					buildProperties.getProperty(propertyName), ruleName));
 		}
 
 		return _slaveOfflineRules;

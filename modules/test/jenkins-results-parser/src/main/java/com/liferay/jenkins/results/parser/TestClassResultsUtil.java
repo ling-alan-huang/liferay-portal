@@ -61,11 +61,9 @@ public class TestClassResultsUtil {
 
 			JenkinsResultsParserUtil.move(file, destinationFile);
 
-			if (file.exists()) {
-				continue;
+			if (!file.exists()) {
+				System.out.println("Deleted results file:" + file);
 			}
-
-			System.out.println("Deleted results file:" + file);
 		}
 	}
 

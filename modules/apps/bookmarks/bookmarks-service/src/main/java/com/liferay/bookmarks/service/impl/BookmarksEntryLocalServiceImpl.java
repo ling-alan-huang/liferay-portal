@@ -182,13 +182,11 @@ public class BookmarksEntryLocalServiceImpl
 			groupId, folderId);
 
 		for (BookmarksEntry entry : entries) {
-			if (!includeTrashedEntries &&
-				_trashHelper.isInTrashExplicitly(entry)) {
+			if (includeTrashedEntries ||
+				!_trashHelper.isInTrashExplicitly(entry)) {
 
-				continue;
+				bookmarksEntryLocalService.deleteEntry(entry);
 			}
-
-			bookmarksEntryLocalService.deleteEntry(entry);
 		}
 	}
 

@@ -46,11 +46,9 @@ public class MonitorConfigLoader {
 		for (String propertyName : buildProperties.stringPropertyNames()) {
 			Matcher matcher = _monitorPropertyPattern.matcher(propertyName);
 
-			if (!matcher.matches()) {
-				continue;
+			if (matcher.matches()) {
+				ids.add(matcher.group("id"));
 			}
-
-			ids.add(matcher.group("id"));
 		}
 
 		return ids;
@@ -64,16 +62,14 @@ public class MonitorConfigLoader {
 		for (String propertyName : buildProperties.stringPropertyNames()) {
 			Matcher matcher = _indexedPropertyPattern.matcher(propertyName);
 
-			if (!matcher.matches() || !id.equals(matcher.group("id")) ||
-				!category.equals(matcher.group("category"))) {
+			if (matcher.matches() && id.equals(matcher.group("id")) &&
+				category.equals(matcher.group("category"))) {
 
-				continue;
+				indexedProperties.put(
+					matcher.group("name"),
+					JenkinsResultsParserUtil.getProperty(
+						buildProperties, propertyName));
 			}
-
-			indexedProperties.put(
-				matcher.group("name"),
-				JenkinsResultsParserUtil.getProperty(
-					buildProperties, propertyName));
 		}
 
 		return indexedProperties;

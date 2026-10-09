@@ -93,13 +93,11 @@ public abstract class StateAwareResponseImpl
 
 			String parameterName = entry.getKey();
 
-			if (_mutableRenderParametersImpl.isPublic(parameterName) &&
-				!_mutableRenderParametersImpl.isMutated(parameterName)) {
+			if (!_mutableRenderParametersImpl.isPublic(parameterName) ||
+				_mutableRenderParametersImpl.isMutated(parameterName)) {
 
-				continue;
+				renderParameterMap.put(parameterName, entry.getValue());
 			}
-
-			renderParameterMap.put(parameterName, entry.getValue());
 		}
 
 		return renderParameterMap;

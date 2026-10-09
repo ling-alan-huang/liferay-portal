@@ -93,24 +93,20 @@ public class SharingPermissionSQLContributor
 			SharingConfiguration groupSharingConfiguration =
 				_getSharingConfiguration(groupId);
 
-			if (groupSharingConfiguration.isEnabled()) {
-				continue;
+			if (!groupSharingConfiguration.isEnabled()) {
+				disabledGroupIds.add(groupId);
 			}
-
-			disabledGroupIds.add(groupId);
 		}
 
 		Set<Long> userGroupIds = SetUtil.fromArray(
 			_userLocalService.getUserGroupPrimaryKeys(userId));
 
 		for (SharingEntry sharingEntry : sharingEntries) {
-			if (disabledGroupIds.contains(sharingEntry.getGroupId()) ||
-				!userGroupIds.contains(sharingEntry.getToUserGroupId())) {
+			if (!disabledGroupIds.contains(sharingEntry.getGroupId()) &&
+				userGroupIds.contains(sharingEntry.getToUserGroupId())) {
 
-				continue;
+				permittedClassPKs.add(sharingEntry.getClassPK());
 			}
-
-			permittedClassPKs.add(sharingEntry.getClassPK());
 		}
 	}
 
@@ -137,11 +133,9 @@ public class SharingPermissionSQLContributor
 				SharingConfiguration groupSharingConfiguration =
 					_getSharingConfiguration(groupId);
 
-				if (groupSharingConfiguration.isEnabled()) {
-					continue;
+				if (!groupSharingConfiguration.isEnabled()) {
+					disableGroupIds.add(groupId);
 				}
-
-				disableGroupIds.add(groupId);
 			}
 
 			if (disableGroupIds.size() == groupIds.length) {
@@ -235,20 +229,18 @@ public class SharingPermissionSQLContributor
 			SharingConfiguration sharingConfiguration =
 				_getSharingConfiguration(groupId);
 
-			if (sharingConfiguration.isEnabled()) {
-				continue;
-			}
+			if (!sharingConfiguration.isEnabled()) {
+				if (groupCount == 0) {
+					sb.append("(SharingEntry.groupId NOT IN (");
+				}
+				else {
+					sb.append(StringPool.COMMA_AND_SPACE);
+				}
 
-			if (groupCount == 0) {
-				sb.append("(SharingEntry.groupId NOT IN (");
-			}
-			else {
-				sb.append(StringPool.COMMA_AND_SPACE);
-			}
+				sb.append(groupId);
 
-			sb.append(groupId);
-
-			groupCount++;
+				groupCount++;
+			}
 		}
 
 		if (groupCount > 0) {

@@ -38,14 +38,12 @@ public class DesignLibraryResourceTypeContributorRegistryImpl
 				designLibraryResourceTypeContributor :
 					_designLibraryResourceTypeContributors) {
 
-			if (!designLibraryResourceTypeContributor.hasViewPermission(
+			if (designLibraryResourceTypeContributor.hasViewPermission(
 					permissionChecker, depotEntry)) {
 
-				continue;
+				designLibraryResourceTypeContributors.add(
+					designLibraryResourceTypeContributor);
 			}
-
-			designLibraryResourceTypeContributors.add(
-				designLibraryResourceTypeContributor);
 		}
 
 		return designLibraryResourceTypeContributors;

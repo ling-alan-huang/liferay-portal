@@ -41,13 +41,15 @@ public class RuntimeVariables {
 
 				String variableValue = context.get(variableKey);
 
-				if (variableValue == null) {
+				if (variableValue != null) {
+					locatorValue = locatorValue.replaceFirst(
+						regex, variableValue);
+				}
+				else {
 					throw new Exception(
 						"Variable \"" + variableKey + "\" found in \"" +
 							locator + "\" is not set");
 				}
-
-				locatorValue = locatorValue.replaceFirst(regex, variableValue);
 			}
 		}
 
@@ -82,11 +84,9 @@ public class RuntimeVariables {
 				List<String> argumentsList = new ArrayList<>();
 
 				for (int i = 1; i < arguments.length; i++) {
-					if ((i % 2) != 1) {
-						continue;
+					if ((i % 2) == 1) {
+						argumentsList.add(arguments[i]);
 					}
-
-					argumentsList.add(arguments[i]);
 				}
 
 				String method = statementMatcher.group(2);

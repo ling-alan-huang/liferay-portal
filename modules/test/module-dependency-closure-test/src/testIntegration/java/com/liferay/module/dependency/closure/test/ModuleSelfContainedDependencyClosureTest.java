@@ -71,11 +71,9 @@ public class ModuleSelfContainedDependencyClosureTest {
 					Dictionary<String, String> headers =
 						dependencyBundle.getHeaders(null);
 
-					if (headers.get("Test-Bridge-Pass-Code") == null) {
-						continue;
+					if (headers.get("Test-Bridge-Pass-Code") != null) {
+						iterator.remove();
 					}
-
-					iterator.remove();
 				}
 			}
 

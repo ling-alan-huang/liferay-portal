@@ -28,15 +28,13 @@ public class ValidatorEqualsCheck extends BaseFileCheck {
 		Matcher matcher = _validatorEqualsPattern.matcher(content);
 
 		while (matcher.find()) {
-			if (ToolsUtil.isInsideQuotes(content, matcher.start())) {
-				continue;
+			if (!ToolsUtil.isInsideQuotes(content, matcher.start())) {
+				addMessage(
+					fileName,
+					"Use Objects.equals(Object, Object) instead of " +
+						"Validator.equals(Object, Object)",
+					getLineNumber(content, matcher.start()));
 			}
-
-			addMessage(
-				fileName,
-				"Use Objects.equals(Object, Object) instead of " +
-					"Validator.equals(Object, Object)",
-				getLineNumber(content, matcher.start()));
 		}
 	}
 

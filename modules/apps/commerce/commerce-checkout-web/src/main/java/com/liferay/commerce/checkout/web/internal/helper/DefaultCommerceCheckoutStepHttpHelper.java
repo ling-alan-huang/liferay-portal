@@ -250,26 +250,23 @@ public class DefaultCommerceCheckoutStepHttpHelper
 		for (CommerceShippingOption commerceShippingOption :
 				commerceShippingOptions) {
 
-			if (!shippingOptionName.equals(commerceShippingOption.getKey())) {
-				continue;
+			if (shippingOptionName.equals(commerceShippingOption.getKey())) {
+				CommerceShippingFixedOption commerceShippingFixedOption =
+					_commerceShippingFixedOptionLocalService.
+						fetchCommerceShippingFixedOption(
+							commerceOrder.getCompanyId(),
+							commerceShippingOption.getKey());
+
+				if (commerceShippingFixedOption != null) {
+					deliveryCommerceTermEntries =
+						_commerceTermEntryLocalService.
+							getDeliveryCommerceTermEntries(
+								commerceOrder.getCompanyId(),
+								commerceOrder.getCommerceOrderTypeId(),
+								commerceShippingFixedOption.
+									getCommerceShippingFixedOptionId());
+				}
 			}
-
-			CommerceShippingFixedOption commerceShippingFixedOption =
-				_commerceShippingFixedOptionLocalService.
-					fetchCommerceShippingFixedOption(
-						commerceOrder.getCompanyId(),
-						commerceShippingOption.getKey());
-
-			if (commerceShippingFixedOption == null) {
-				continue;
-			}
-
-			deliveryCommerceTermEntries =
-				_commerceTermEntryLocalService.getDeliveryCommerceTermEntries(
-					commerceOrder.getCompanyId(),
-					commerceOrder.getCommerceOrderTypeId(),
-					commerceShippingFixedOption.
-						getCommerceShippingFixedOptionId());
 		}
 
 		if (ListUtil.isEmpty(deliveryCommerceTermEntries)) {
@@ -991,15 +988,13 @@ public class DefaultCommerceCheckoutStepHttpHelper
 				}
 			}
 
-			if (highestPriorityCommerceShippingOption != null) {
-				continue;
-			}
+			if (highestPriorityCommerceShippingOption == null) {
+				highestPriorityCommerceShippingOption =
+					commerceShippingOptions.get(0);
 
-			highestPriorityCommerceShippingOption = commerceShippingOptions.get(
-				0);
-
-			if (commerceShippingOptionAccountEntryRel == null) {
-				break;
+				if (commerceShippingOptionAccountEntryRel == null) {
+					break;
+				}
 			}
 		}
 

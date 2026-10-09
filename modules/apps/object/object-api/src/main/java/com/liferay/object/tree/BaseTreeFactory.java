@@ -41,13 +41,11 @@ public class BaseTreeFactory {
 
 			List<Node> nodes = unsafeFunction.apply(node);
 
-			if (ListUtil.isEmpty(nodes)) {
-				continue;
+			if (ListUtil.isNotEmpty(nodes)) {
+				node.setChildNodes(nodes);
+
+				queue.addAll(nodes);
 			}
-
-			node.setChildNodes(nodes);
-
-			queue.addAll(nodes);
 		}
 
 		return new Tree(rootNode);

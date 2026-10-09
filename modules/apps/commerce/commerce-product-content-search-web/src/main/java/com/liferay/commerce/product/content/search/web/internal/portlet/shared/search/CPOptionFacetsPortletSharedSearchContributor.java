@@ -288,18 +288,16 @@ public class CPOptionFacetsPortletSharedSearchContributor
 			CPOption cpOption = _cpOptionLocalService.getCPOption(
 				searchContext.getCompanyId(), termCollector.getTerm());
 
-			if (!cpOption.isFacetable()) {
-				continue;
+			if (cpOption.isFacetable()) {
+				MultiValueFacet multiValueFacet = new MultiValueFacet(
+					searchContext);
+
+				multiValueFacet.setFieldName(
+					CPOptionFacetsUtil.getIndexFieldName(
+						termCollector.getTerm(), themeDisplay.getLanguageId()));
+
+				facets.add(multiValueFacet);
 			}
-
-			MultiValueFacet multiValueFacet = new MultiValueFacet(
-				searchContext);
-
-			multiValueFacet.setFieldName(
-				CPOptionFacetsUtil.getIndexFieldName(
-					termCollector.getTerm(), themeDisplay.getLanguageId()));
-
-			facets.add(multiValueFacet);
 		}
 
 		return facets;

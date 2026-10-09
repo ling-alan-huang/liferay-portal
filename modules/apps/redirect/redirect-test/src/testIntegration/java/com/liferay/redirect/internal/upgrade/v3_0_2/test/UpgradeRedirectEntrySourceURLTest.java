@@ -242,12 +242,10 @@ public class UpgradeRedirectEntrySourceURLTest {
 					for (UpgradeStep upgradeStep : upgradeSteps) {
 						Class<?> clazz = upgradeStep.getClass();
 
-						if (!Objects.equals(clazz.getName(), _CLASS_NAME)) {
-							continue;
+						if (Objects.equals(clazz.getName(), _CLASS_NAME)) {
+							_redirectEntrySourceURLUpgradeProcess =
+								(UpgradeProcess)upgradeStep;
 						}
-
-						_redirectEntrySourceURLUpgradeProcess =
-							(UpgradeProcess)upgradeStep;
 					}
 				}
 

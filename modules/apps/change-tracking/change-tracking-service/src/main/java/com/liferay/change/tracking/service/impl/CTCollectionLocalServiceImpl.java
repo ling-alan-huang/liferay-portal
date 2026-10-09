@@ -282,11 +282,9 @@ public class CTCollectionLocalServiceImpl
 
 				List<ConflictInfo> conflictInfos = ctConflictChecker.check();
 
-				if (conflictInfos.isEmpty()) {
-					continue;
+				if (!conflictInfos.isEmpty()) {
+					conflictInfosMap.put(entry.getKey(), conflictInfos);
 				}
-
-				conflictInfosMap.put(entry.getKey(), conflictInfos);
 			}
 		}
 
@@ -701,11 +699,9 @@ public class CTCollectionLocalServiceImpl
 			CTMappingTableInfo ctMappingTableInfo =
 				ctTableMapperHelper.getCTMappingTableInfo(ctCollectionId);
 
-			if (ctMappingTableInfo == null) {
-				continue;
+			if (ctMappingTableInfo != null) {
+				ctMappingTableInfos.add(ctMappingTableInfo);
 			}
-
-			ctMappingTableInfos.add(ctMappingTableInfo);
 		}
 
 		return ctMappingTableInfos;
@@ -1441,17 +1437,15 @@ public class CTCollectionLocalServiceImpl
 					List<String> uids = new ArrayList<>(ctEntries.size());
 
 					for (CTEntry ctEntry : ctEntries) {
-						if (ctEntry.getChangeType() ==
+						if (ctEntry.getChangeType() !=
 								CTConstants.CT_CHANGE_TYPE_DELETION) {
 
-							continue;
+							uids.add(
+								_uidFactory.getUID(
+									indexer.getClassName(),
+									ctEntry.getModelClassPK(),
+									ctEntry.getCtCollectionId()));
 						}
-
-						uids.add(
-							_uidFactory.getUID(
-								indexer.getClassName(),
-								ctEntry.getModelClassPK(),
-								ctEntry.getCtCollectionId()));
 					}
 
 					_indexWriterHelper.deleteDocuments(
@@ -1669,25 +1663,24 @@ public class CTCollectionLocalServiceImpl
 					List<String> uids = new ArrayList<>(ctEntries.size());
 
 					for (CTEntry ctEntry : ctEntries) {
-						if (ctEntry.getChangeType() ==
+						if (ctEntry.getChangeType() !=
 								CTConstants.CT_CHANGE_TYPE_DELETION) {
 
-							continue;
-						}
+							uids.add(
+								_uidFactory.getUID(
+									indexer.getClassName(),
+									ctEntry.getModelClassPK(),
+									fromCTCollectionId));
 
-						uids.add(
-							_uidFactory.getUID(
-								indexer.getClassName(),
-								ctEntry.getModelClassPK(), fromCTCollectionId));
+							try (SafeCloseable safeCloseable =
+									CTCollectionThreadLocal.
+										setCTCollectionIdWithSafeCloseable(
+											toCTCollectionId)) {
 
-						try (SafeCloseable safeCloseable =
-								CTCollectionThreadLocal.
-									setCTCollectionIdWithSafeCloseable(
-										toCTCollectionId)) {
-
-							indexer.reindex(
-								indexer.getClassName(),
-								ctEntry.getModelClassPK());
+								indexer.reindex(
+									indexer.getClassName(),
+									ctEntry.getModelClassPK());
+							}
 						}
 					}
 

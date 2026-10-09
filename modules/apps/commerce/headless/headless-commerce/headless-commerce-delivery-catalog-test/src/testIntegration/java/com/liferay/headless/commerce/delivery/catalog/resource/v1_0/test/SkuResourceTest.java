@@ -740,13 +740,11 @@ public class SkuResourceTest extends BaseSkuResourceTestCase {
 					skuUnitOfMeasures.length);
 			}
 
-			if (!Objects.equals(sku.getId(), sku3.getId())) {
-				continue;
+			if (Objects.equals(sku.getId(), sku3.getId())) {
+				Assert.assertEquals(
+					Arrays.toString(skuUnitOfMeasures), 0,
+					skuUnitOfMeasures.length);
 			}
-
-			Assert.assertEquals(
-				Arrays.toString(skuUnitOfMeasures), 0,
-				skuUnitOfMeasures.length);
 		}
 	}
 
@@ -814,18 +812,16 @@ public class SkuResourceTest extends BaseSkuResourceTestCase {
 					Arrays.toString(tierPrices), 2, tierPrices.length);
 			}
 
-			if (!Objects.equals(sku.getId(), sku2.getId())) {
-				continue;
+			if (Objects.equals(sku.getId(), sku2.getId())) {
+				Assert.assertEquals(
+					Arrays.toString(skuUnitOfMeasures), 1,
+					skuUnitOfMeasures.length);
+
+				SkuUnitOfMeasure skuUnitOfMeasure = skuUnitOfMeasures[0];
+
+				Assert.assertNull(skuUnitOfMeasure.getPrice());
+				Assert.assertNull(skuUnitOfMeasure.getTierPrices());
 			}
-
-			Assert.assertEquals(
-				Arrays.toString(skuUnitOfMeasures), 1,
-				skuUnitOfMeasures.length);
-
-			SkuUnitOfMeasure skuUnitOfMeasure = skuUnitOfMeasures[0];
-
-			Assert.assertNull(skuUnitOfMeasure.getPrice());
-			Assert.assertNull(skuUnitOfMeasure.getTierPrices());
 		}
 	}
 

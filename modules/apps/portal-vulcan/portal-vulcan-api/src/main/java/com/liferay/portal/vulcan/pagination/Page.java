@@ -137,11 +137,9 @@ public class Page<T> {
 		while (iterator.hasNext()) {
 			sb.append(iterator.next());
 
-			if (!iterator.hasNext()) {
-				continue;
+			if (iterator.hasNext()) {
+				sb.append(", ");
 			}
-
-			sb.append(", ");
 		}
 
 		sb.append("], \"page\": ");
@@ -211,11 +209,9 @@ public class Page<T> {
 				sb.append("\"");
 			}
 
-			if (!iterator.hasNext()) {
-				continue;
+			if (iterator.hasNext()) {
+				sb.append(", ");
 			}
-
-			sb.append(", ");
 		}
 
 		sb.append("}");

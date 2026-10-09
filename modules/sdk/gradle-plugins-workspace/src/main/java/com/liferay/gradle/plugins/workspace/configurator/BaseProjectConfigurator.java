@@ -162,21 +162,19 @@ public abstract class BaseProjectConfigurator implements ProjectConfigurator {
 
 		if ((version == null) && dir.exists()) {
 			for (String fileName : dir.list()) {
-				if (!fileName.startsWith("tomcat-")) {
-					continue;
+				if (fileName.startsWith("tomcat-")) {
+					version = fileName.substring(fileName.indexOf("-") + 1);
+
+					NamedDomainObjectCollection<AppServer>
+						namedDomainObjectCollection =
+							liferayExtension.getAppServers();
+
+					TomcatAppServer tomcatAppServer =
+						(TomcatAppServer)namedDomainObjectCollection.getByName(
+							"tomcat");
+
+					tomcatAppServer.setVersion(version);
 				}
-
-				version = fileName.substring(fileName.indexOf("-") + 1);
-
-				NamedDomainObjectCollection<AppServer>
-					namedDomainObjectCollection =
-						liferayExtension.getAppServers();
-
-				TomcatAppServer tomcatAppServer =
-					(TomcatAppServer)namedDomainObjectCollection.getByName(
-						"tomcat");
-
-				tomcatAppServer.setVersion(version);
 			}
 		}
 	}

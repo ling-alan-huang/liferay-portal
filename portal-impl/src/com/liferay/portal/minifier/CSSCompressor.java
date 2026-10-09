@@ -130,14 +130,12 @@ public class CSSCompressor {
 			while (i < sb.length()) {
 				char c = sb.charAt(i++);
 
-				if ((c != '}') ||
-					((i - lineStartPosition) <= lineBreakPosition)) {
+				if ((c == '}') &&
+					((i - lineStartPosition) > lineBreakPosition)) {
 
-					continue;
+					sb.insert(i, '\n');
+					lineStartPosition = i;
 				}
-
-				sb.insert(i, '\n');
-				lineStartPosition = i;
 			}
 
 			css = sb.toString();
@@ -422,17 +420,13 @@ public class CSSCompressor {
 					break;
 				}
 
-				if (css.charAt(endIndex - 1) == '\\') {
-					continue;
+				if (css.charAt(endIndex - 1) != '\\') {
+					foundTerminator = true;
+
+					if (!Objects.equals(terminator, ")")) {
+						endIndex = css.indexOf(")", endIndex);
+					}
 				}
-
-				foundTerminator = true;
-
-				if (Objects.equals(terminator, ")")) {
-					continue;
-				}
-
-				endIndex = css.indexOf(")", endIndex);
 			}
 
 			sb.append(css.substring(appendIndex, matcher.start()));

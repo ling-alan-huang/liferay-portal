@@ -197,14 +197,12 @@ public class HttpServletEndpointController {
 			for (LiferayContextController liferayContextController :
 					_liferayContextControllers) {
 
-				if (!Objects.equals(
+				if (Objects.equals(
 						liferayContextController.getContextPath(),
 						requestURI)) {
 
-					continue;
+					liferayContextControllers.add(liferayContextController);
 				}
-
-				liferayContextControllers.add(liferayContextController);
 			}
 
 			if (!liferayContextControllers.isEmpty()) {

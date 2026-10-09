@@ -55,15 +55,13 @@ public class DefaultCapabilityRegistry
 			getCapabilities();
 
 		for (Capability capability : capabilities.values()) {
-			if (!(capability instanceof RepositoryWrapperAware)) {
-				continue;
+			if (capability instanceof RepositoryWrapperAware) {
+				RepositoryWrapperAware repositoryWrapperAware =
+					(RepositoryWrapperAware)capability;
+
+				localRepository = repositoryWrapperAware.wrapLocalRepository(
+					localRepository);
 			}
-
-			RepositoryWrapperAware repositoryWrapperAware =
-				(RepositoryWrapperAware)capability;
-
-			localRepository = repositoryWrapperAware.wrapLocalRepository(
-				localRepository);
 		}
 
 		return localRepository;
@@ -74,14 +72,12 @@ public class DefaultCapabilityRegistry
 			getCapabilities();
 
 		for (Capability capability : capabilities.values()) {
-			if (!(capability instanceof RepositoryWrapperAware)) {
-				continue;
+			if (capability instanceof RepositoryWrapperAware) {
+				RepositoryWrapperAware repositoryWrapperAware =
+					(RepositoryWrapperAware)capability;
+
+				repository = repositoryWrapperAware.wrapRepository(repository);
 			}
-
-			RepositoryWrapperAware repositoryWrapperAware =
-				(RepositoryWrapperAware)capability;
-
-			repository = repositoryWrapperAware.wrapRepository(repository);
 		}
 
 		return repository;
@@ -94,15 +90,13 @@ public class DefaultCapabilityRegistry
 			getCapabilities();
 
 		for (Capability capability : capabilities.values()) {
-			if (!(capability instanceof RepositoryEventAware)) {
-				continue;
+			if (capability instanceof RepositoryEventAware) {
+				RepositoryEventAware repositoryEventAware =
+					(RepositoryEventAware)capability;
+
+				repositoryEventAware.registerRepositoryEventListeners(
+					repositoryEventRegistry);
 			}
-
-			RepositoryEventAware repositoryEventAware =
-				(RepositoryEventAware)capability;
-
-			repositoryEventAware.registerRepositoryEventListeners(
-				repositoryEventRegistry);
 		}
 	}
 

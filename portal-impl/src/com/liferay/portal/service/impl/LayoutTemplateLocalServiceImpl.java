@@ -209,13 +209,11 @@ public class LayoutTemplateLocalServiceImpl
 		for (Map.Entry<String, LayoutTemplate> entry : _warCustom.entrySet()) {
 			String layoutTemplateId = entry.getKey();
 
-			if (_portalCustom.containsKey(layoutTemplateId) ||
-				themesCustom.containsKey(layoutTemplateId)) {
+			if (!_portalCustom.containsKey(layoutTemplateId) &&
+				!themesCustom.containsKey(layoutTemplateId)) {
 
-				continue;
+				customLayoutTemplates.add(_warCustom.get(layoutTemplateId));
 			}
-
-			customLayoutTemplates.add(_warCustom.get(layoutTemplateId));
 		}
 
 		for (Map.Entry<String, LayoutTemplate> entry :
@@ -223,13 +221,11 @@ public class LayoutTemplateLocalServiceImpl
 
 			String layoutTemplateId = entry.getKey();
 
-			if (_portalCustom.containsKey(layoutTemplateId) ||
-				_warCustom.containsKey(layoutTemplateId)) {
+			if (!_portalCustom.containsKey(layoutTemplateId) &&
+				!_warCustom.containsKey(layoutTemplateId)) {
 
-				continue;
+				customLayoutTemplates.add(themesCustom.get(layoutTemplateId));
 			}
-
-			customLayoutTemplates.add(themesCustom.get(layoutTemplateId));
 		}
 
 		return customLayoutTemplates;
@@ -400,11 +396,9 @@ public class LayoutTemplateLocalServiceImpl
 
 			layoutTemplateModel.setDefaultPluginSetting(pluginSetting);
 
-			if (layoutTemplates == null) {
-				continue;
+			if (layoutTemplates != null) {
+				layoutTemplates.add(layoutTemplateModel);
 			}
-
-			layoutTemplates.add(layoutTemplateModel);
 		}
 	}
 

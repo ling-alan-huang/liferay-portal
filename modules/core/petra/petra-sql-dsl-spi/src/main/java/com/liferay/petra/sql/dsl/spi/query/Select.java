@@ -82,11 +82,9 @@ public class Select extends BaseASTNode implements DefaultFromStep {
 
 				expression.toSQL(consumer, astNodeListener);
 
-				if (!iterator.hasNext()) {
-					continue;
+				if (iterator.hasNext()) {
+					consumer.accept(", ");
 				}
-
-				consumer.accept(", ");
 			}
 		}
 	}

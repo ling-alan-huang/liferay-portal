@@ -94,23 +94,22 @@ public class BufferedProcess extends Process {
 				while (bytesRead != -1) {
 					bytesRead = _inputStream.read(bytes);
 
-					if (bytesRead <= 0) {
-						continue;
-					}
+					if (bytesRead > 0) {
+						int spaceAvailable = _buffer.length - _index;
 
-					int spaceAvailable = _buffer.length - _index;
+						if (bytesRead > spaceAvailable) {
+							int spaceNeeded = bytesRead - spaceAvailable;
 
-					if (bytesRead > spaceAvailable) {
-						int spaceNeeded = bytesRead - spaceAvailable;
+							_makeSpace(spaceNeeded);
+						}
 
-						_makeSpace(spaceNeeded);
-					}
+						synchronized (_buffer) {
+							System.arraycopy(
+								bytes, 0, _buffer, _index, bytesRead);
 
-					synchronized (_buffer) {
-						System.arraycopy(bytes, 0, _buffer, _index, bytesRead);
-
-						_index += bytesRead;
-						_totalBytesRead += bytesRead;
+							_index += bytesRead;
+							_totalBytesRead += bytesRead;
+						}
 					}
 				}
 			}

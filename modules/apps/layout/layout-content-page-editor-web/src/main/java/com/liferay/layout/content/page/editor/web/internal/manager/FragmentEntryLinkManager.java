@@ -461,12 +461,11 @@ public class FragmentEntryLinkManager {
 				while (iterator.hasNext()) {
 					String key = iterator.next();
 
-					if (!editableFragmentEntryProcessorJSONObject.has(key)) {
-						continue;
+					if (editableFragmentEntryProcessorJSONObject.has(key)) {
+						defaultEditableFragmentEntryProcessorJSONObject.put(
+							key,
+							editableFragmentEntryProcessorJSONObject.get(key));
 					}
-
-					defaultEditableFragmentEntryProcessorJSONObject.put(
-						key, editableFragmentEntryProcessorJSONObject.get(key));
 				}
 			}
 

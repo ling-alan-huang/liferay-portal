@@ -240,12 +240,11 @@ public class LiferayThemeDefaultsPlugin implements Plugin<Project> {
 
 			File file = project.file(fileName);
 
-			if (!file.exists()) {
-				continue;
+			if (file.exists()) {
+				replaceRegexTask.match(
+					GradlePluginsDefaultsUtil.jsonVersionPattern.pattern(),
+					file);
 			}
-
-			replaceRegexTask.match(
-				GradlePluginsDefaultsUtil.jsonVersionPattern.pattern(), file);
 		}
 
 		replaceRegexTask.setDescription(

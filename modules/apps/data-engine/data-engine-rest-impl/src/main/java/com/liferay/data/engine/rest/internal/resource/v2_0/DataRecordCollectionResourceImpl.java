@@ -137,14 +137,12 @@ public class DataRecordCollectionResourceImpl
 			PermissionChecker permissionChecker =
 				PermissionThreadLocal.getPermissionChecker();
 
-			if (!permissionChecker.hasPermission(
+			if (permissionChecker.hasPermission(
 					ddlRecordSet.getGroupId(), resourceName,
 					dataRecordCollectionId, resourceAction.getActionId())) {
 
-				continue;
+				actionIdsJSONArray.put(resourceAction.getActionId());
 			}
-
-			actionIdsJSONArray.put(resourceAction.getActionId());
 		}
 
 		return actionIdsJSONArray.toString();

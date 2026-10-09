@@ -38,14 +38,12 @@ public class FeatureFlagTestHelper {
 		Bundle featureFlagWebBundle = null;
 
 		for (Bundle curBundle : bundleContext.getBundles()) {
-			if (!Objects.equals(
+			if (Objects.equals(
 					curBundle.getSymbolicName(),
 					"com.liferay.feature.flag.web")) {
 
-				continue;
+				featureFlagWebBundle = curBundle;
 			}
-
-			featureFlagWebBundle = curBundle;
 		}
 
 		Assert.assertNotNull(featureFlagWebBundle);

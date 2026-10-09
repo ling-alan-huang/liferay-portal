@@ -76,15 +76,13 @@ public class ValidatorIsNullCheck extends BaseCheck {
 
 			String typeName = getTypeName(typeDetailAST, true);
 
-			if (Validator.isNull(typeName) ||
-				ArrayUtil.contains(_RESERVED_TYPE_NAMES, typeName)) {
+			if (Validator.isNotNull(typeName) &&
+				!ArrayUtil.contains(_RESERVED_TYPE_NAMES, typeName)) {
 
-				continue;
+				log(
+					methodCallDetailAST, _MSG_RESERVED_METHOD,
+					"Validator." + getMethodName(methodCallDetailAST));
 			}
-
-			log(
-				methodCallDetailAST, _MSG_RESERVED_METHOD,
-				"Validator." + getMethodName(methodCallDetailAST));
 		}
 	}
 

@@ -283,11 +283,9 @@ public class OAuth2ApplicationScopeAliasesLocalServiceImpl
 						s -> new ArrayList<>());
 
 				for (String scopeAlias : _scopeAliases) {
-					if (scopeAliasList.contains(scopeAlias)) {
-						continue;
+					if (!scopeAliasList.contains(scopeAlias)) {
+						scopeAliasList.add(scopeAlias);
 					}
-
-					scopeAliasList.add(scopeAlias);
 				}
 			}
 

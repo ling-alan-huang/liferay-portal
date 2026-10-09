@@ -1048,21 +1048,17 @@ public class SingleLogoutProfileImpl
 
 			int status = samlRequestInfo.getStatus();
 
-			if (status != SamlSloRequestInfo.REQUEST_STATUS_INITIATED) {
-				continue;
+			if (status == SamlSloRequestInfo.REQUEST_STATUS_INITIATED) {
+				DateTime initiateDateTime = samlRequestInfo.getInitiateTime();
+
+				DateTime expireDateTime = initiateDateTime.plusSeconds(10);
+
+				if (expireDateTime.isBeforeNow()) {
+					samlRequestInfo.setStatus(
+						SamlSloRequestInfo.REQUEST_STATUS_TIMED_OUT);
+					samlRequestInfo.setStatusCode(StatusCode.PARTIAL_LOGOUT);
+				}
 			}
-
-			DateTime initiateDateTime = samlRequestInfo.getInitiateTime();
-
-			DateTime expireDateTime = initiateDateTime.plusSeconds(10);
-
-			if (!expireDateTime.isBeforeNow()) {
-				continue;
-			}
-
-			samlRequestInfo.setStatus(
-				SamlSloRequestInfo.REQUEST_STATUS_TIMED_OUT);
-			samlRequestInfo.setStatusCode(StatusCode.PARTIAL_LOGOUT);
 		}
 
 		httpServletResponse.setContentType(ContentTypes.TEXT_JAVASCRIPT);
@@ -1709,19 +1705,18 @@ public class SingleLogoutProfileImpl
 					_samlPeerBindingLocalService.getSamlPeerBinding(
 						samlSpSession.getSamlPeerBindingId());
 
-				if (!Objects.equals(
-						samlPeerBinding.getSamlNameIdValue(), nameIDValue) ||
-					!Objects.equals(
+				if (Objects.equals(
+						samlPeerBinding.getSamlNameIdValue(), nameIDValue) &&
+					Objects.equals(
 						samlPeerBinding.getSamlNameIdFormat(), nameIDFormat)) {
 
-					continue;
+					statusCodeURI = StatusCode.SUCCESS;
+
+					samlSpSession.setTerminated(true);
+
+					samlSpSessionLocalService.updateSamlSpSession(
+						samlSpSession);
 				}
-
-				statusCodeURI = StatusCode.SUCCESS;
-
-				samlSpSession.setTerminated(true);
-
-				samlSpSessionLocalService.updateSamlSpSession(samlSpSession);
 			}
 		}
 

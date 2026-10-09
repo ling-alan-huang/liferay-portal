@@ -50,11 +50,9 @@ public class PropertiesUtil {
 		for (Map.Entry<String, ?> entry : map.entrySet()) {
 			Object value = entry.getValue();
 
-			if ((value == null) || !(value instanceof String)) {
-				continue;
+			if ((value != null) && (value instanceof String)) {
+				properties.setProperty(entry.getKey(), (String)value);
 			}
-
-			properties.setProperty(entry.getKey(), (String)value);
 		}
 
 		return properties;
@@ -81,17 +79,15 @@ public class PropertiesUtil {
 		while (enumeration.hasMoreElements()) {
 			String key = enumeration.nextElement();
 
-			if (!key.startsWith(prefix)) {
-				continue;
+			if (key.startsWith(prefix)) {
+				String value = properties.getProperty(key);
+
+				if (removePrefix) {
+					key = key.substring(prefix.length());
+				}
+
+				newProperties.setProperty(key, value);
 			}
-
-			String value = properties.getProperty(key);
-
-			if (removePrefix) {
-				key = key.substring(prefix.length());
-			}
-
-			newProperties.setProperty(key, value);
 		}
 
 		return newProperties;
@@ -160,13 +156,11 @@ public class PropertiesUtil {
 			// environments. This is a known case for loading SQL scripts in SQL
 			// Server.
 
-			if (value == null) {
-				continue;
+			if (value != null) {
+				value = value.trim();
+
+				properties.setProperty(key, value);
 			}
-
-			value = value.trim();
-
-			properties.setProperty(key, value);
 		}
 	}
 
@@ -270,15 +264,13 @@ public class PropertiesUtil {
 
 			String trimmedKey = key.trim();
 
-			if (key.equals(trimmedKey)) {
-				continue;
+			if (!key.equals(trimmedKey)) {
+				properties.remove(key);
+
+				String value = properties.getProperty(key);
+
+				properties.setProperty(trimmedKey, value);
 			}
-
-			properties.remove(key);
-
-			String value = properties.getProperty(key);
-
-			properties.setProperty(trimmedKey, value);
 		}
 	}
 

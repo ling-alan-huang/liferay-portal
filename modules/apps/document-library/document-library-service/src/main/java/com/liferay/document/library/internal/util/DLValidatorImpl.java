@@ -462,12 +462,10 @@ public final class DLValidatorImpl implements DLValidator {
 						blacklistLastChar);
 				}
 
-				if (!title.endsWith(blacklistLastChar)) {
-					continue;
+				if (title.endsWith(blacklistLastChar)) {
+					title = StringUtil.replaceLast(
+						title, blacklistLastChar, StringPool.BLANK);
 				}
-
-				title = StringUtil.replaceLast(
-					title, blacklistLastChar, StringPool.BLANK);
 			}
 		}
 

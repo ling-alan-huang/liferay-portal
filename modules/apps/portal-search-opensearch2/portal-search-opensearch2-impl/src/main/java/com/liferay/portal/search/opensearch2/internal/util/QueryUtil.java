@@ -88,16 +88,14 @@ public class QueryUtil {
 		for (String term : terms) {
 			termsList.add(term);
 
-			if (termsList.size() != maxTermsCount) {
-				continue;
+			if (termsList.size() == maxTermsCount) {
+				builder.should(
+					_getTermsQuery(
+						boost, field, termsList.toArray(new String[0])
+					)._toQuery());
+
+				termsList.clear();
 			}
-
-			builder.should(
-				_getTermsQuery(
-					boost, field, termsList.toArray(new String[0])
-				)._toQuery());
-
-			termsList.clear();
 		}
 
 		if (!termsList.isEmpty()) {

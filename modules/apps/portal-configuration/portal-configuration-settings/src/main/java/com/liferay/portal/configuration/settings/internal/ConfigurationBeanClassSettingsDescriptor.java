@@ -52,11 +52,9 @@ public class ConfigurationBeanClassSettingsDescriptor
 		Set<String> multiValuedKeys = new HashSet<>();
 
 		for (Method method : _configurationBeanClass.getMethods()) {
-			if (method.getReturnType() != String[].class) {
-				continue;
+			if (method.getReturnType() == String[].class) {
+				multiValuedKeys.add(method.getName());
 			}
-
-			multiValuedKeys.add(method.getName());
 		}
 
 		return multiValuedKeys;

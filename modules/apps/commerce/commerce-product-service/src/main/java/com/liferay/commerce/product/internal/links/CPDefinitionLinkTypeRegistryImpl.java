@@ -69,11 +69,9 @@ public class CPDefinitionLinkTypeRegistryImpl
 		List<String> types = new ArrayList<>();
 
 		for (CPDefinitionLinkType cpDefinitionLinkType : _serviceTrackerList) {
-			if (!cpDefinitionLinkType.isActive()) {
-				continue;
+			if (cpDefinitionLinkType.isActive()) {
+				types.add(cpDefinitionLinkType.getType());
 			}
-
-			types.add(cpDefinitionLinkType.getType());
 		}
 
 		return types;

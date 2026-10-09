@@ -2735,12 +2735,10 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceBaseImpl {
 			MBCategory.class.getName(), message.getGroupId());
 
 		for (long categoryId : categoryIds) {
-			if (categoryId == MBCategoryConstants.DEFAULT_PARENT_CATEGORY_ID) {
-				continue;
+			if (categoryId != MBCategoryConstants.DEFAULT_PARENT_CATEGORY_ID) {
+				subscriptionSender.addPersistedSubscribers(
+					MBCategory.class.getName(), categoryId);
 			}
-
-			subscriptionSender.addPersistedSubscribers(
-				MBCategory.class.getName(), categoryId);
 		}
 
 		subscriptionSender.addPersistedSubscribers(
@@ -2797,16 +2795,14 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceBaseImpl {
 		for (StartTag startTag : startTags) {
 			String targetUri = startTag.getAttributeValue("href");
 
-			if (Validator.isNull(targetUri)) {
-				continue;
-			}
-
-			try {
-				LinkbackProducerUtil.sendPingback(sourceUri, targetUri);
-			}
-			catch (Exception exception) {
-				_log.error(
-					"Error while sending pingback " + targetUri, exception);
+			if (Validator.isNotNull(targetUri)) {
+				try {
+					LinkbackProducerUtil.sendPingback(sourceUri, targetUri);
+				}
+				catch (Exception exception) {
+					_log.error(
+						"Error while sending pingback " + targetUri, exception);
+				}
 			}
 		}
 	}
@@ -2968,13 +2964,11 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceBaseImpl {
 			threadId);
 
 		for (MBMessage message : messages) {
-			if (message.getPriority() == priority) {
-				continue;
+			if (message.getPriority() != priority) {
+				message.setPriority(priority);
+
+				mbMessagePersistence.update(message);
 			}
-
-			message.setPriority(priority);
-
-			mbMessagePersistence.update(message);
 		}
 	}
 

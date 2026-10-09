@@ -128,11 +128,9 @@ public class GroupAwareRoleKaleoTaskAssignmentSelector
 		List<Long> groupIds = new ArrayList<>();
 
 		for (Group ancestorGroup : group.getAncestors()) {
-			if (!_isValidAssignment(group, role)) {
-				continue;
+			if (_isValidAssignment(group, role)) {
+				groupIds.add(ancestorGroup.getGroupId());
 			}
-
-			groupIds.add(ancestorGroup.getGroupId());
 		}
 
 		return groupIds;
@@ -147,11 +145,9 @@ public class GroupAwareRoleKaleoTaskAssignmentSelector
 			group.getOrganizationId());
 
 		for (Organization ancestorOrganization : organization.getAncestors()) {
-			if (!_isValidAssignment(group, role)) {
-				continue;
+			if (_isValidAssignment(group, role)) {
+				groupIds.add(ancestorOrganization.getGroupId());
 			}
-
-			groupIds.add(ancestorOrganization.getGroupId());
 		}
 
 		return groupIds;

@@ -77,24 +77,22 @@ public class PatcherProjectVersionUtil {
 
 			matcher = pattern.matcher(curPatcherProjectVersion.getCommittish());
 
-			if (!matcher.find()) {
-				continue;
+			if (matcher.find()) {
+				int curFixPackVersionNumber = GetterUtil.getInteger(
+					matcher.group(3));
+				int curPortalVersionNumber = GetterUtil.getInteger(
+					matcher.group(4));
+
+				if ((curPortalVersionNumber != portalVersionNumber) ||
+					(curFixPackVersionNumber > fixPackVersionNumber)) {
+
+					continue;
+				}
+
+				fixedIssues.addAll(
+					PatcherUtil.getTokens(
+						curPatcherProjectVersion.getFixedIssues()));
 			}
-
-			int curFixPackVersionNumber = GetterUtil.getInteger(
-				matcher.group(3));
-			int curPortalVersionNumber = GetterUtil.getInteger(
-				matcher.group(4));
-
-			if ((curPortalVersionNumber != portalVersionNumber) ||
-				(curFixPackVersionNumber > fixPackVersionNumber)) {
-
-				continue;
-			}
-
-			fixedIssues.addAll(
-				PatcherUtil.getTokens(
-					curPatcherProjectVersion.getFixedIssues()));
 		}
 
 		ListUtil.distinct(fixedIssues);

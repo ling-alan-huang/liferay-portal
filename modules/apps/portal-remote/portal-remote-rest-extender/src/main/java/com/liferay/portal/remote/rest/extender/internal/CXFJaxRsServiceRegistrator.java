@@ -136,11 +136,9 @@ public class CXFJaxRsServiceRegistrator {
 		for (Map<Object, Server> servers : _busServers.values()) {
 			Server server = servers.remove(application);
 
-			if (server == null) {
-				continue;
+			if (server != null) {
+				server.destroy();
 			}
-
-			server.destroy();
 		}
 	}
 

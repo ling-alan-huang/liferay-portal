@@ -260,39 +260,37 @@ public class DDMFormInstanceReportUpgradeProcess extends UpgradeProcess {
 					ddmFormFieldValue.getDDMFormField(),
 					ddmFormFieldValue.getType());
 
-			if (ddmFormFieldTypeReportProcessor == null) {
-				continue;
-			}
+			if (ddmFormFieldTypeReportProcessor != null) {
+				String ddmFormFieldValueName = ddmFormFieldValue.getName();
 
-			String ddmFormFieldValueName = ddmFormFieldValue.getName();
+				JSONObject fieldJSONObject = dataJSONObject.getJSONObject(
+					ddmFormFieldValueName);
 
-			JSONObject fieldJSONObject = dataJSONObject.getJSONObject(
-				ddmFormFieldValueName);
+				if (fieldJSONObject == null) {
+					fieldJSONObject = JSONUtil.put(
+						"type", ddmFormFieldValue.getType()
+					).put(
+						"values", _jsonFactory.createJSONObject()
+					);
+				}
 
-			if (fieldJSONObject == null) {
-				fieldJSONObject = JSONUtil.put(
-					"type", ddmFormFieldValue.getType()
-				).put(
-					"values", _jsonFactory.createJSONObject()
-				);
-			}
+				try {
+					JSONObject processedFieldJSONObject =
+						ddmFormFieldTypeReportProcessor.process(
+							ddmFormFieldValue,
+							_jsonFactory.createJSONObject(
+								fieldJSONObject.toString()),
+							formInstanceRecordId,
+							DDMFormInstanceReportConstants.
+								EVENT_ADD_RECORD_VERSION);
 
-			try {
-				JSONObject processedFieldJSONObject =
-					ddmFormFieldTypeReportProcessor.process(
-						ddmFormFieldValue,
-						_jsonFactory.createJSONObject(
-							fieldJSONObject.toString()),
-						formInstanceRecordId,
-						DDMFormInstanceReportConstants.
-							EVENT_ADD_RECORD_VERSION);
-
-				dataJSONObject.put(
-					ddmFormFieldValueName, processedFieldJSONObject);
-			}
-			catch (JSONException jsonException) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(jsonException);
+					dataJSONObject.put(
+						ddmFormFieldValueName, processedFieldJSONObject);
+				}
+				catch (JSONException jsonException) {
+					if (_log.isWarnEnabled()) {
+						_log.warn(jsonException);
+					}
 				}
 			}
 		}

@@ -169,16 +169,14 @@ public class CommerceAccountRoleUpgradeProcess extends UpgradeProcess {
 				continue;
 			}
 
-			if ((resourcePermission.getScope() !=
-					ResourceConstants.SCOPE_GROUP_TEMPLATE) &&
-				(resourcePermission.getScope() !=
+			if ((resourcePermission.getScope() ==
+					ResourceConstants.SCOPE_GROUP_TEMPLATE) ||
+				(resourcePermission.getScope() ==
 					ResourceConstants.SCOPE_INDIVIDUAL)) {
 
-				continue;
+				_copyResourcePermission(
+					resourcePermission, accountRole.getRoleId());
 			}
-
-			_copyResourcePermission(
-				resourcePermission, accountRole.getRoleId());
 		}
 
 		return accountRole;

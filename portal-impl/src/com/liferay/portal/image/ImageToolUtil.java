@@ -1004,11 +1004,9 @@ public class ImageToolUtil {
 		for (int b = 0; b <= maxIndex; b++) {
 			multiBytes[b] = (byte)((intValue >>> ((maxIndex - b) * 7)) & 0x7f);
 
-			if (b == maxIndex) {
-				continue;
+			if (b != maxIndex) {
+				multiBytes[b] |= (byte)0x80;
 			}
-
-			multiBytes[b] |= (byte)0x80;
 		}
 
 		return multiBytes;

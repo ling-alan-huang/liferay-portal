@@ -71,15 +71,13 @@ public class GitUtil {
 				continue;
 			}
 
-			if (sb.index() <= 1) {
-				continue;
+			if (sb.index() > 1) {
+				sb.setIndex(sb.index() - 1);
+
+				commitMessages.add(sb.toString());
+
+				sb.setIndex(0);
 			}
-
-			sb.setIndex(sb.index() - 1);
-
-			commitMessages.add(sb.toString());
-
-			sb.setIndex(0);
 		}
 
 		return commitMessages;
@@ -306,11 +304,9 @@ public class GitUtil {
 		String line = null;
 
 		while ((line = unsyncBufferedReader.readLine()) != null) {
-			if (StringUtil.count(line, CharPool.SLASH) < gitLevel) {
-				continue;
+			if (StringUtil.count(line, CharPool.SLASH) >= gitLevel) {
+				fileNames.add(getFileName(line, gitLevel));
 			}
-
-			fileNames.add(getFileName(line, gitLevel));
 		}
 
 		return fileNames;
@@ -393,13 +389,13 @@ public class GitUtil {
 		while ((line = unsyncBufferedReader.readLine()) != null) {
 			String[] array = line.split("\\s+");
 
-			if ((array.length < 2) ||
-				(StringUtil.count(array[1], CharPool.SLASH) < gitLevel)) {
-
+			if (array.length < 2) {
 				continue;
 			}
 
-			fileNames.add(getFileName(array[1], gitLevel));
+			if (StringUtil.count(array[1], CharPool.SLASH) >= gitLevel) {
+				fileNames.add(getFileName(array[1], gitLevel));
+			}
 		}
 
 		return fileNames;
@@ -420,17 +416,15 @@ public class GitUtil {
 			File dir = getRootDir(
 				file.getParentFile(), baseDir, markerFileName);
 
-			if (dir == null) {
-				continue;
+			if (dir != null) {
+				String dirName = String.valueOf(
+					baseDirPath.relativize(dir.toPath()));
+
+				dirName = StringUtil.replace(
+					dirName, File.separatorChar, CharPool.SLASH);
+
+				dirNames.add(dirName);
 			}
-
-			String dirName = String.valueOf(
-				baseDirPath.relativize(dir.toPath()));
-
-			dirName = StringUtil.replace(
-				dirName, File.separatorChar, CharPool.SLASH);
-
-			dirNames.add(dirName);
 		}
 
 		return dirNames;
@@ -462,11 +456,9 @@ public class GitUtil {
 		String line = null;
 
 		while ((line = unsyncBufferedReader.readLine()) != null) {
-			if (StringUtil.count(line, CharPool.SLASH) < gitLevel) {
-				continue;
+			if (StringUtil.count(line, CharPool.SLASH) >= gitLevel) {
+				fileNames.add(getFileName(line, gitLevel));
 			}
-
-			fileNames.add(getFileName(line, gitLevel));
 		}
 
 		return fileNames;
@@ -614,11 +606,9 @@ public class GitUtil {
 		String line = null;
 
 		while ((line = unsyncBufferedReader.readLine()) != null) {
-			if (StringUtil.count(line, CharPool.SLASH) < gitLevel) {
-				continue;
+			if (StringUtil.count(line, CharPool.SLASH) >= gitLevel) {
+				fileNames.add(getFileName(line, gitLevel));
 			}
-
-			fileNames.add(getFileName(line, gitLevel));
 		}
 
 		return fileNames;
@@ -656,12 +646,10 @@ public class GitUtil {
 
 			long timestamp = GetterUtil.getLong(parts[1]);
 
-			if (timestamp <= latestTimestamp) {
-				continue;
+			if (timestamp > latestTimestamp) {
+				latestCommitId = parts[0];
+				latestTimestamp = timestamp;
 			}
-
-			latestCommitId = parts[0];
-			latestTimestamp = timestamp;
 		}
 
 		return latestCommitId;
@@ -683,11 +671,9 @@ public class GitUtil {
 		String line = null;
 
 		while ((line = unsyncBufferedReader.readLine()) != null) {
-			if (StringUtil.count(line, CharPool.SLASH) < gitLevel) {
-				continue;
+			if (StringUtil.count(line, CharPool.SLASH) >= gitLevel) {
+				fileNames.add(getFileName(line, gitLevel));
 			}
-
-			fileNames.add(getFileName(line, gitLevel));
 		}
 
 		return fileNames;

@@ -115,11 +115,9 @@ public class UpdateFragmentPortletSetsSortConfigurationMVCActionCommand
 		List<String> oldVisibleFragmentCollectionKeys = new ArrayList<>();
 
 		for (String fragmentCollectionKey : oldFragmentCollectionKeys) {
-			if (!newFragmentCollectionKeys.contains(fragmentCollectionKey)) {
-				continue;
+			if (newFragmentCollectionKeys.contains(fragmentCollectionKey)) {
+				oldVisibleFragmentCollectionKeys.add(fragmentCollectionKey);
 			}
-
-			oldVisibleFragmentCollectionKeys.add(fragmentCollectionKey);
 		}
 
 		Map<String, String> swapCollectionKeysMap = new LinkedHashMap<>();

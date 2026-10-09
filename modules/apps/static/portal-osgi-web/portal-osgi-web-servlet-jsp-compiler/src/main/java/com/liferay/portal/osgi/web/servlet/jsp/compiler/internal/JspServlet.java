@@ -351,19 +351,15 @@ public class JspServlet extends HttpServlet {
 
 			Object value = attributes.get("osgi.extender");
 
-			if (!value.equals("jsp.taglib")) {
-				continue;
+			if (value.equals("jsp.taglib")) {
+				BundleRevision bundleRevision = bundleWire.getProvider();
+
+				Bundle bundle = bundleRevision.getBundle();
+
+				if (!bundles.contains(bundle)) {
+					bundles.add(bundle);
+				}
 			}
-
-			BundleRevision bundleRevision = bundleWire.getProvider();
-
-			Bundle bundle = bundleRevision.getBundle();
-
-			if (bundles.contains(bundle)) {
-				continue;
-			}
-
-			bundles.add(bundle);
 		}
 	}
 

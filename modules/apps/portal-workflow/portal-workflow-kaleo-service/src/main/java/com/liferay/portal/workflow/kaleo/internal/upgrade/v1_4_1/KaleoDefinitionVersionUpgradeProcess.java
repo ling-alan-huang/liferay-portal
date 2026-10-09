@@ -104,17 +104,15 @@ public class KaleoDefinitionVersionUpgradeProcess extends UpgradeProcess {
 			ResultSet resultSet = preparedStatement1.executeQuery()) {
 
 			for (String tableName : _TABLE_NAMES) {
-				if (!hasColumn(tableName, "kaleoDefinitionId")) {
-					continue;
+				if (hasColumn(tableName, "kaleoDefinitionId")) {
+					preparedStatements.add(
+						AutoBatchPreparedStatementUtil.concurrentAutoBatch(
+							connection,
+							StringBundler.concat(
+								"update ", tableName,
+								" set kaleoDefinitionVersionId = ? where ",
+								"kaleoDefinitionId = ? ")));
 				}
-
-				preparedStatements.add(
-					AutoBatchPreparedStatementUtil.concurrentAutoBatch(
-						connection,
-						StringBundler.concat(
-							"update ", tableName,
-							" set kaleoDefinitionVersionId = ? where ",
-							"kaleoDefinitionId = ? ")));
 			}
 
 			while (resultSet.next()) {

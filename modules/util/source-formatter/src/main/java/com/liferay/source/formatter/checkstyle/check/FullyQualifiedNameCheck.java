@@ -41,14 +41,18 @@ public class FullyQualifiedNameCheck extends BaseCheck {
 				nameDetailAST, name);
 
 			if ((fullyQualifiedName == null) ||
-				fullyQualifiedName.matches(".*\\.upgrade\\.v[0-9_]+\\.\\w+") ||
-				_isFullyQualifiedNameRequired(
-					detailAST, fullyQualifiedName, name, nameDetailASTs)) {
+				fullyQualifiedName.matches(".*\\.upgrade\\.v[0-9_]+\\.\\w+")) {
 
 				continue;
 			}
 
-			log(nameDetailAST, _MSG_USE_IMPORT_STATEMENT, fullyQualifiedName);
+			if (!_isFullyQualifiedNameRequired(
+					detailAST, fullyQualifiedName, name, nameDetailASTs)) {
+
+				log(
+					nameDetailAST, _MSG_USE_IMPORT_STATEMENT,
+					fullyQualifiedName);
+			}
 		}
 	}
 

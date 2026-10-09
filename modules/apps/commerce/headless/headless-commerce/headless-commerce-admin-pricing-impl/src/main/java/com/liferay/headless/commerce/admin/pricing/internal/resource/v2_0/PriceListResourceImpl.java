@@ -685,14 +685,12 @@ public class PriceListResourceImpl
 
 				TierPrice[] tierPrices = priceEntry.getTierPrices();
 
-				if (tierPrices == null) {
-					continue;
-				}
-
-				for (TierPrice tierPrice : tierPrices) {
-					TierPriceUtil.addOrUpdateCommerceTierPriceEntry(
-						_commerceTierPriceEntryService, tierPrice,
-						commercePriceEntry, _serviceContextHelper);
+				if (tierPrices != null) {
+					for (TierPrice tierPrice : tierPrices) {
+						TierPriceUtil.addOrUpdateCommerceTierPriceEntry(
+							_commerceTierPriceEntryService, tierPrice,
+							commercePriceEntry, _serviceContextHelper);
+					}
 				}
 			}
 		}

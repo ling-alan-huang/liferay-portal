@@ -60,13 +60,11 @@ public class OPConnectManagementLink extends ManagementLink {
 		List<String> vaultNames = new ArrayList<>();
 
 		for (String key : jsonObject.keySet()) {
-			if (!key.startsWith(_VAULT_NAME_PREFIX) ||
-				!jsonObject.optBoolean(key)) {
+			if (key.startsWith(_VAULT_NAME_PREFIX) &&
+				jsonObject.optBoolean(key)) {
 
-				continue;
+				vaultNames.add(key.substring(_VAULT_NAME_PREFIX.length()));
 			}
-
-			vaultNames.add(key.substring(_VAULT_NAME_PREFIX.length()));
 		}
 
 		if (!jsonObject.optBoolean("vaultsRendered")) {
@@ -93,11 +91,9 @@ public class OPConnectManagementLink extends ManagementLink {
 		for (String ignoredValue : ignoredValuesString.split("\\r?\\n")) {
 			ignoredValue = ignoredValue.trim();
 
-			if (ignoredValue.isEmpty()) {
-				continue;
+			if (!ignoredValue.isEmpty()) {
+				ignoredValues.add(ignoredValue);
 			}
-
-			ignoredValues.add(ignoredValue);
 		}
 
 		opConnectDescriptor.setIgnoredValues(ignoredValues);

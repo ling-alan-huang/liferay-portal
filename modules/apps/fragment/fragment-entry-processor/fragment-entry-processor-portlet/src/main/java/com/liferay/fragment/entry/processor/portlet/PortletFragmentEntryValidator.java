@@ -98,18 +98,17 @@ public class PortletFragmentEntryValidator
 							"have-an-id"));
 			}
 
-			if (elements.size() <= 1) {
-				continue;
-			}
+			if (elements.size() > 1) {
+				Portlet portlet = _portletLocalService.getPortletById(
+					_portletRegistry.getPortletName(alias));
 
-			Portlet portlet = _portletLocalService.getPortletById(
-				_portletRegistry.getPortletName(alias));
-
-			if (!portlet.isInstanceable()) {
-				throw new FragmentEntryContentException(
-					_language.format(
-						locale, "you-cannot-add-the-widget-x-more-than-once",
-						alias));
+				if (!portlet.isInstanceable()) {
+					throw new FragmentEntryContentException(
+						_language.format(
+							locale,
+							"you-cannot-add-the-widget-x-more-than-once",
+							alias));
+				}
 			}
 		}
 	}

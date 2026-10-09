@@ -443,13 +443,11 @@ public class LiferayPortlet extends GenericPortlet {
 		int sessionMessagesSize = SessionMessages.size(actionRequest);
 
 		for (String suffix : _IGNORED_SESSION_MESSAGE_SUFFIXES) {
-			if (!SessionMessages.contains(
+			if (SessionMessages.contains(
 					actionRequest, portletId.concat(suffix))) {
 
-				continue;
+				sessionMessagesSize--;
 			}
-
-			sessionMessagesSize--;
 		}
 
 		if (sessionMessagesSize == 0) {
@@ -473,13 +471,11 @@ public class LiferayPortlet extends GenericPortlet {
 		String portletId = PortalUtil.getPortletId(actionRequest);
 
 		for (String suffix : _IGNORED_SESSION_MESSAGE_SUFFIXES) {
-			if (!SessionMessages.contains(
+			if (SessionMessages.contains(
 					actionRequest, portletId.concat(suffix))) {
 
-				continue;
+				sessionMessagesSize--;
 			}
-
-			sessionMessagesSize--;
 		}
 
 		if (sessionMessagesSize == 0) {

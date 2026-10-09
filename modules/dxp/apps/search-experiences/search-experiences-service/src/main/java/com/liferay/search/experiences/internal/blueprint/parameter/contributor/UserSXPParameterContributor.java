@@ -223,13 +223,12 @@ public class UserSXPParameterContributor implements SXPParameterContributor {
 		for (AssetCategory assetCategory : assetCategories) {
 			assetCategoryIds.add(assetCategory.getCategoryId());
 
-			if (assetCategory.getParentCategoryId() <= 0) {
-				continue;
+			if (assetCategory.getParentCategoryId() > 0) {
+				parentAssetCategoryIds.addAll(
+					_getParentAssetCategoryIds(
+						assetCategory.getParentCategory(),
+						new ArrayList<Long>()));
 			}
-
-			parentAssetCategoryIds.addAll(
-				_getParentAssetCategoryIds(
-					assetCategory.getParentCategory(), new ArrayList<Long>()));
 		}
 
 		sxpParameters.add(

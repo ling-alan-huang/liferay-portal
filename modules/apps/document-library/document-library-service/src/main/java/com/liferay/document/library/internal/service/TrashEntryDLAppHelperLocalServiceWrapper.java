@@ -593,11 +593,9 @@ public class TrashEntryDLAppHelperLocalServiceWrapper
 
 			// Trash
 
-			if (trashVersion == null) {
-				continue;
+			if (trashVersion != null) {
+				_trashVersionLocalService.deleteTrashVersion(trashVersion);
 			}
-
-			_trashVersionLocalService.deleteTrashVersion(trashVersion);
 		}
 
 		if (DLAppHelperThreadLocal.isEnabled()) {

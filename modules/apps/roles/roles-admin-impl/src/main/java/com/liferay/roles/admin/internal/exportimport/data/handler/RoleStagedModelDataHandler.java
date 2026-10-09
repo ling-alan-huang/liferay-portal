@@ -225,11 +225,10 @@ public class RoleStagedModelDataHandler
 				group = importedUserGroup.getGroup();
 			}
 
-			if (group == null) {
-				continue;
+			if (group != null) {
+				_groupLocalService.addRoleGroup(
+					importedRole.getRoleId(), group);
 			}
-
-			_groupLocalService.addRoleGroup(importedRole.getRoleId(), group);
 		}
 
 		portletDataContext.importClassedModel(role, importedRole);
@@ -264,14 +263,12 @@ public class RoleStagedModelDataHandler
 			long groupId = GetterUtil.getLong(
 				groupResourcePermission.getPrimKey());
 
-			if ((groupId != portletDataContext.getCompanyGroupId()) &&
-				(groupId != portletDataContext.getUserPersonalSiteGroupId())) {
+			if ((groupId == portletDataContext.getCompanyGroupId()) ||
+				(groupId == portletDataContext.getUserPersonalSiteGroupId())) {
 
-				continue;
+				_resourcePermissionLocalService.deleteResourcePermission(
+					groupResourcePermission);
 			}
-
-			_resourcePermissionLocalService.deleteResourcePermission(
-				groupResourcePermission);
 		}
 	}
 

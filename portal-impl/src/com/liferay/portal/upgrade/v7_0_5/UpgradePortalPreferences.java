@@ -101,15 +101,13 @@ public class UpgradePortalPreferences extends UpgradeProcess {
 					}
 				}
 
-				if (!updatedDocument) {
-					continue;
+				if (updatedDocument) {
+					preparedStatement2.setString(1, document.asXML());
+					preparedStatement2.setLong(
+						2, resultSet.getLong("portalPreferencesId"));
+
+					preparedStatement2.addBatch();
 				}
-
-				preparedStatement2.setString(1, document.asXML());
-				preparedStatement2.setLong(
-					2, resultSet.getLong("portalPreferencesId"));
-
-				preparedStatement2.addBatch();
 			}
 
 			preparedStatement2.executeBatch();

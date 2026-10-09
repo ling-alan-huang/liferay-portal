@@ -55,11 +55,9 @@ public class JenkinsEventsManagementLink extends ManagementLink {
 		for (JenkinsEventsDescriptor.EventType eventType :
 				JenkinsEventsDescriptor.EventType.values()) {
 
-			if (!jsonObject.optBoolean(eventType.toString())) {
-				continue;
+			if (jsonObject.optBoolean(eventType.toString())) {
+				jenkinsEventsDescriptor.addEventType(eventType);
 			}
-
-			jenkinsEventsDescriptor.addEventType(eventType);
 		}
 
 		jenkinsEventsDescriptor.save();

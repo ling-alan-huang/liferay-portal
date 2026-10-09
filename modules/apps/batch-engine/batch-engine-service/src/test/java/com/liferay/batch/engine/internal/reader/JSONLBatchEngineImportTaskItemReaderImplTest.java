@@ -323,15 +323,13 @@ public class JSONLBatchEngineImportTaskItemReaderImplTest
 			sb.append("{");
 
 			for (int j = 0; j < singleRowValues.length; j++) {
-				if (singleRowValues[j] == null) {
-					continue;
+				if (singleRowValues[j] != null) {
+					sb.append("\"");
+					sb.append(columnNames[j]);
+					sb.append("\": ");
+					sb.append(singleRowValues[j]);
+					sb.append(",");
 				}
-
-				sb.append("\"");
-				sb.append(columnNames[j]);
-				sb.append("\": ");
-				sb.append(singleRowValues[j]);
-				sb.append(",");
 			}
 
 			sb.setIndex(sb.index() - 1);

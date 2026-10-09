@@ -87,14 +87,13 @@ public class ObjectDefinitionUpgradeProcessTest {
 				_objectDefinitionLocalService.getObjectDefinitions(
 					QueryUtil.ALL_POS, QueryUtil.ALL_POS)) {
 
-			if (objectDefinition.isEnableIndexSearch() ||
-				(objectDefinition.getObjectDefinitionId() ==
+			if (!objectDefinition.isEnableIndexSearch() &&
+				(objectDefinition.getObjectDefinitionId() !=
 					_objectDefinition.getObjectDefinitionId())) {
 
-				continue;
+				_objectDefinitionIds.add(
+					objectDefinition.getObjectDefinitionId());
 			}
-
-			_objectDefinitionIds.add(objectDefinition.getObjectDefinitionId());
 		}
 
 		UpgradeProcess upgradeProcess = UpgradeTestUtil.getUpgradeStep(

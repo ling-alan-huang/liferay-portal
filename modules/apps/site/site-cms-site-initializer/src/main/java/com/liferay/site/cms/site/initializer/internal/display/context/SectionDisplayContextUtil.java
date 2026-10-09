@@ -1043,16 +1043,14 @@ public class SectionDisplayContextUtil {
 							objectEntryFolderExternalReferenceCode,
 							depotEntryGroupId, companyId);
 
-				if (objectEntryFolder == null) {
-					continue;
+				if (objectEntryFolder != null) {
+					List<Long> objectEntryFolderIds =
+						objectEntryFolderIdsMap.computeIfAbsent(
+							depotEntryGroupId, key -> new ArrayList<>());
+
+					objectEntryFolderIds.add(
+						objectEntryFolder.getObjectEntryFolderId());
 				}
-
-				List<Long> objectEntryFolderIds =
-					objectEntryFolderIdsMap.computeIfAbsent(
-						depotEntryGroupId, key -> new ArrayList<>());
-
-				objectEntryFolderIds.add(
-					objectEntryFolder.getObjectEntryFolderId());
 			}
 		}
 
@@ -1405,11 +1403,9 @@ public class SectionDisplayContextUtil {
 		for (Long groupId : groupIds) {
 			JSONObject jsonObject = _getJSONObject(groupId, locale);
 
-			if (jsonObject == null) {
-				continue;
+			if (jsonObject != null) {
+				jsonArray.put(jsonObject);
 			}
-
-			jsonArray.put(jsonObject);
 		}
 
 		return jsonArray;

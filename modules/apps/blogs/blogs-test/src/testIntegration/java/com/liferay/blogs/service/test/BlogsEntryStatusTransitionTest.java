@@ -379,13 +379,11 @@ public class BlogsEntryStatusTransitionTest {
 		int count = 0;
 
 		for (SocialActivity socialActivity : socialActivities) {
-			if ((activityType != ACTIVITY_KEY_ANY) &&
-				(activityType != socialActivity.getType())) {
+			if ((activityType == ACTIVITY_KEY_ANY) ||
+				(activityType == socialActivity.getType())) {
 
-				continue;
+				count = count + 1;
 			}
-
-			count = count + 1;
 		}
 
 		Assert.assertEquals(expectedCount, count);

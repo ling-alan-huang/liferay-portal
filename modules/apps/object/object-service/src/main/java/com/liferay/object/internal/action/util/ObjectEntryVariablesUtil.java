@@ -343,13 +343,11 @@ public class ObjectEntryVariablesUtil {
 			Object defaultValue = ObjectFieldSettingUtil.getDefaultValue(
 				null, objectField, null);
 
-			if (Validator.isNull(defaultValue) ||
-				!keys.contains(objectField.getName())) {
+			if (Validator.isNotNull(defaultValue) &&
+				keys.contains(objectField.getName())) {
 
-				continue;
+				defaultVariables.put(objectField.getName(), defaultValue);
 			}
-
-			defaultVariables.put(objectField.getName(), defaultValue);
 		}
 
 		return defaultVariables;

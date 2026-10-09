@@ -137,14 +137,12 @@ public class ObjectDefinitionTreeUtil {
 					nodeObjectDefinition, objectDefinitionSettingLocalService,
 					new long[] {objectDefinition2.getObjectDefinitionId()});
 
-				if (!nodeObjectDefinition.isApproved() ||
-					!objectDefinition1.isApproved()) {
+				if (nodeObjectDefinition.isApproved() &&
+					objectDefinition1.isApproved()) {
 
-					continue;
+					objectDefinitionLocalService.deployObjectDefinition(
+						nodeObjectDefinition);
 				}
-
-				objectDefinitionLocalService.deployObjectDefinition(
-					nodeObjectDefinition);
 			}
 		}
 		else {
@@ -179,12 +177,10 @@ public class ObjectDefinitionTreeUtil {
 				objectDefinitionPersistence.findByPrimaryKey(
 					rootObjectDefinitionId);
 
-			if (!rootObjectDefinition.isApproved()) {
-				continue;
+			if (rootObjectDefinition.isApproved()) {
+				objectDefinitionLocalService.deployObjectDefinition(
+					rootObjectDefinition);
 			}
-
-			objectDefinitionLocalService.deployObjectDefinition(
-				rootObjectDefinition);
 		}
 	}
 
@@ -632,14 +628,12 @@ public class ObjectDefinitionTreeUtil {
 				objectDefinitionPersistence.findByPrimaryKey(
 					objectRelationship.getObjectDefinitionId1());
 
-			if (!objectDefinition1.isApproved()) {
-				continue;
+			if (objectDefinition1.isApproved()) {
+				Collections.addAll(
+					addRootObjectDefinitionIds,
+					ArrayUtil.toArray(
+						objectDefinition1.getRootObjectDefinitionIds()));
 			}
-
-			Collections.addAll(
-				addRootObjectDefinitionIds,
-				ArrayUtil.toArray(
-					objectDefinition1.getRootObjectDefinitionIds()));
 		}
 
 		if (addRootObjectDefinitionIds.isEmpty()) {

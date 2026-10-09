@@ -111,16 +111,14 @@ public class AdvancedTableFDSView extends BaseTableFDSView {
 					for (FDSCellRendererCET fdsCellRendererCET :
 							fdsCellRendererCETs) {
 
-						if (!Objects.equals(
+						if (Objects.equals(
 								fdsCellRendererCET.getExternalReferenceCode(),
 								"LXC:liferay-sample-fds-cell-renderer")) {
 
-							continue;
+							clientExtension = true;
+							moduleName =
+								"default from " + fdsCellRendererCET.getURL();
 						}
-
-						clientExtension = true;
-						moduleName =
-							"default from " + fdsCellRendererCET.getURL();
 					}
 				}
 

@@ -39,18 +39,16 @@ public class ScopeActionDropdownItemsProvider {
 			_editAssetListDisplayContext.getSelectedGroups();
 
 		for (Group group : _editAssetListDisplayContext.getAvailableGroups()) {
-			if (selectedGroups.contains(group)) {
-				continue;
+			if (!selectedGroups.contains(group)) {
+				dropdownItemList.add(
+					dropdownItem -> {
+						dropdownItem.putData("action", "addRow");
+						dropdownItem.putData(
+							"groupId", String.valueOf(group.getGroupId()));
+						dropdownItem.setLabel(
+							group.getScopeDescriptiveName(_themeDisplay));
+					});
 			}
-
-			dropdownItemList.add(
-				dropdownItem -> {
-					dropdownItem.putData("action", "addRow");
-					dropdownItem.putData(
-						"groupId", String.valueOf(group.getGroupId()));
-					dropdownItem.setLabel(
-						group.getScopeDescriptiveName(_themeDisplay));
-				});
 		}
 
 		dropdownItemList.add(

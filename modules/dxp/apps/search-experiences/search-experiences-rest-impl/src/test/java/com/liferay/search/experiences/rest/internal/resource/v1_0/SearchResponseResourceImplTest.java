@@ -483,11 +483,9 @@ public class SearchResponseResourceImplTest {
 		Map<String, String> map = new HashMap<>();
 
 		for (Map.Entry<String, String> entry : actualMap.entrySet()) {
-			if (!expectedMap.containsKey(entry.getKey())) {
-				continue;
+			if (expectedMap.containsKey(entry.getKey())) {
+				map.put(entry.getKey(), entry.getValue());
 			}
-
-			map.put(entry.getKey(), entry.getValue());
 		}
 
 		AssertUtils.assertEquals(

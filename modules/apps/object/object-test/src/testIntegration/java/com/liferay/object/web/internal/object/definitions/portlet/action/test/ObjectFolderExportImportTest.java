@@ -197,14 +197,13 @@ public class ObjectFolderExportImportTest extends BaseExportImportTestCase {
 				Assert.assertTrue(objectFolderItem.getLinkedObjectDefinition());
 			}
 
-			if (!unlinkedObjectFolderItemExternalReferenceCodes.contains(
+			if (unlinkedObjectFolderItemExternalReferenceCodes.contains(
 					objectFolderItem.
 						getObjectDefinitionExternalReferenceCode())) {
 
-				continue;
+				Assert.assertFalse(
+					objectFolderItem.getLinkedObjectDefinition());
 			}
-
-			Assert.assertFalse(objectFolderItem.getLinkedObjectDefinition());
 		}
 	}
 

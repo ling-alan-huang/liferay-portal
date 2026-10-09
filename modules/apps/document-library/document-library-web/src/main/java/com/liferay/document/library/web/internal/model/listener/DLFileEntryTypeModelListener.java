@@ -160,11 +160,9 @@ public class DLFileEntryTypeModelListener
 
 			ServiceRegistration<?> serviceRegistration = entry.getValue();
 
-			if (serviceRegistration == null) {
-				continue;
+			if (serviceRegistration != null) {
+				serviceRegistration.unregister();
 			}
-
-			serviceRegistration.unregister();
 		}
 	}
 

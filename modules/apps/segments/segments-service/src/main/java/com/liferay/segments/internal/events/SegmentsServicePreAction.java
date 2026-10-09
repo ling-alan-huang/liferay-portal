@@ -99,11 +99,9 @@ public class SegmentsServicePreAction extends Action {
 
 				long segmentsEntryId = segmentsExperience.getSegmentsEntryId();
 
-				if (segmentsEntryId == SegmentsEntryConstants.ID_MISSING) {
-					continue;
+				if (segmentsEntryId != SegmentsEntryConstants.ID_MISSING) {
+					segmentsExperienceIdsSegmentsEntryIds.add(segmentsEntryId);
 				}
-
-				segmentsExperienceIdsSegmentsEntryIds.add(segmentsEntryId);
 			}
 
 			long[] cachedSegmentsEntryIds =

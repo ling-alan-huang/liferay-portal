@@ -214,13 +214,11 @@ public class DDMDataDefinitionConverterImpl
 
 			DDMFormField ddmFormField = ddmFormFieldsMap.get(fieldName);
 
-			if (ddmFormField == null) {
-				continue;
+			if (ddmFormField != null) {
+				_addDataDefinitionFieldLinks(
+					classNameId, dataLayoutId,
+					Collections.singletonList(ddmFormField), groupId);
 			}
-
-			_addDataDefinitionFieldLinks(
-				classNameId, dataLayoutId,
-				Collections.singletonList(ddmFormField), groupId);
 		}
 	}
 

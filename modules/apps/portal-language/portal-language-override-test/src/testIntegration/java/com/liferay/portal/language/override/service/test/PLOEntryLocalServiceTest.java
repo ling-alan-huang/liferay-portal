@@ -223,11 +223,9 @@ public class PLOEntryLocalServiceTest {
 		List<Long> ploEntryIds = new ArrayList<>();
 
 		for (PLOEntry ploEntry : ploEntries) {
-			if (!expectedPloEntryIds.contains(ploEntry.getPloEntryId())) {
-				continue;
+			if (expectedPloEntryIds.contains(ploEntry.getPloEntryId())) {
+				ploEntryIds.add(ploEntry.getPloEntryId());
 			}
-
-			ploEntryIds.add(ploEntry.getPloEntryId());
 		}
 
 		Assert.assertEquals(

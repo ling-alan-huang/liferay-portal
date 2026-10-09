@@ -55,14 +55,12 @@ public class LDAPSystemConfigurationsUpgradeProcess extends UpgradeProcess {
 			long companyId = GetterUtil.getLong(
 				configurationProperties.get("companyId"));
 
-			if (companyId != CompanyConstants.SYSTEM) {
-				continue;
+			if (companyId == CompanyConstants.SYSTEM) {
+				_configurationProvider.saveSystemConfiguration(
+					Class.forName(className), configurationProperties);
+
+				configuration.delete();
 			}
-
-			_configurationProvider.saveSystemConfiguration(
-				Class.forName(className), configurationProperties);
-
-			configuration.delete();
 		}
 	}
 

@@ -215,18 +215,16 @@ public class GradleExportedPackageDependenciesCheck extends BaseFileCheck {
 			String bundleSymbolicName = BNDSourceUtil.getDefinitionValue(
 				content, "Bundle-SymbolicName");
 
-			if ((bundleSymbolicName == null) ||
-				!bundleSymbolicName.startsWith("com.liferay.") ||
-				bundleSymbolicName.equals("com.liferay.ant.bnd")) {
+			if ((bundleSymbolicName != null) &&
+				bundleSymbolicName.startsWith("com.liferay.") &&
+				!bundleSymbolicName.equals("com.liferay.ant.bnd")) {
 
-				continue;
+				String bundleVersion = BNDSourceUtil.getDefinitionValue(
+					content, "Bundle-Version");
+
+				_emptyExportPackageBundleSymbolicMap.put(
+					bundleSymbolicName, bundleVersion);
 			}
-
-			String bundleVersion = BNDSourceUtil.getDefinitionValue(
-				content, "Bundle-Version");
-
-			_emptyExportPackageBundleSymbolicMap.put(
-				bundleSymbolicName, bundleVersion);
 		}
 
 		return _emptyExportPackageBundleSymbolicMap;

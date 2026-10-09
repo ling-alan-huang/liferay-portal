@@ -199,11 +199,9 @@ public class ObjectEntryModelListener extends BaseModelListener<ObjectEntry> {
 		for (FileEntry fileEntry :
 				_dlAppService.getFileEntries(group.getGroupId(), folderId)) {
 
-			if (sourceFileEntries.remove(fileEntry.getTitle()) != null) {
-				continue;
+			if (sourceFileEntries.remove(fileEntry.getTitle()) == null) {
+				_dlAppService.deleteFileEntry(fileEntry.getFileEntryId());
 			}
-
-			_dlAppService.deleteFileEntry(fileEntry.getFileEntryId());
 		}
 
 		for (long fileEntryId : sourceFileEntries.values()) {

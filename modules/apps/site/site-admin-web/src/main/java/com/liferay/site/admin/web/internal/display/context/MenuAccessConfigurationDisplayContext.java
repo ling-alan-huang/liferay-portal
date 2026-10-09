@@ -83,11 +83,9 @@ public class MenuAccessConfigurationDisplayContext {
 			Role role = _roleLocalService.fetchRole(
 				GetterUtil.getLong(roleIds[i]));
 
-			if (role == null) {
-				continue;
+			if (role != null) {
+				checkedRoleIds[i] = role.getRoleId();
 			}
-
-			checkedRoleIds[i] = role.getRoleId();
 		}
 
 		regularRoleItemSelectorCriterion.setCheckedRoleIds(checkedRoleIds);
@@ -141,11 +139,9 @@ public class MenuAccessConfigurationDisplayContext {
 		for (String roleId : accessToControlMenuRoleIds) {
 			Role role = _roleLocalService.fetchRole(GetterUtil.getLong(roleId));
 
-			if (role == null) {
-				continue;
+			if (role != null) {
+				roles.add(role);
 			}
-
-			roles.add(role);
 		}
 
 		if (!_menuAccessConfigurationManager.isShowControlMenuByRole(

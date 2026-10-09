@@ -68,11 +68,9 @@ public class PoshiIndentationCheck extends BaseFileCheck {
 					StringPool.CLOSE_BRACKET, StringPool.CLOSE_CURLY_BRACE
 				});
 
-			if (!trimmedLine.endsWith("'{")) {
-				continue;
+			if (trimmedLine.endsWith("'{")) {
+				level++;
 			}
-
-			level++;
 		}
 
 		StringBundler sb = new StringBundler((lines.length * 2) + 2);
@@ -163,17 +161,15 @@ public class PoshiIndentationCheck extends BaseFileCheck {
 					matcher.group(4), matcher.group(1));
 			}
 
-			if ((replacement == null) ||
-				StringUtil.equals(matcher.group(4), replacement)) {
+			if ((replacement != null) &&
+				!StringUtil.equals(matcher.group(4), replacement)) {
 
-				continue;
+				matcher.appendReplacement(
+					sb,
+					Matcher.quoteReplacement(
+						StringUtil.replaceFirst(
+							matcher.group(), matcher.group(4), replacement)));
 			}
-
-			matcher.appendReplacement(
-				sb,
-				Matcher.quoteReplacement(
-					StringUtil.replaceFirst(
-						matcher.group(), matcher.group(4), replacement)));
 		}
 
 		if (sb.length() > 0) {

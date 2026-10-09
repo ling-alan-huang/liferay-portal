@@ -51,22 +51,21 @@ public class PropertiesLanguageContractionsCheck extends BaseFileCheck {
 				for (String contraction : _CONTRACTIONS) {
 					int i = lowerCaseDescription.indexOf(contraction);
 
-					if ((i == -1) ||
-						Character.isLetterOrDigit(
-							lowerCaseDescription.charAt(i - 1)) ||
-						Character.isLetterOrDigit(
+					if ((i != -1) &&
+						!Character.isLetterOrDigit(
+							lowerCaseDescription.charAt(i - 1)) &&
+						!Character.isLetterOrDigit(
 							lowerCaseDescription.charAt(
 								i + contraction.length()))) {
 
-						continue;
+						addMessage(
+							fileName,
+							StringBundler.concat(
+								"Do not use contraction \"", contraction,
+								"\" in the description of key \"", array[0],
+								"\""),
+							lineNumber);
 					}
-
-					addMessage(
-						fileName,
-						StringBundler.concat(
-							"Do not use contraction \"", contraction,
-							"\" in the description of key \"", array[0], "\""),
-						lineNumber);
 				}
 			}
 		}

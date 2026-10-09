@@ -426,11 +426,9 @@ public class PostupgradeVerifyDatabaseStateTest
 			List<String> logMessages = new ArrayList<>();
 
 			for (LogEntry logEntry : logCapture.getLogEntries()) {
-				if (!priority.equals(logEntry.getPriority())) {
-					continue;
+				if (priority.equals(logEntry.getPriority())) {
+					logMessages.add(logEntry.getMessage());
 				}
-
-				logMessages.add(logEntry.getMessage());
 			}
 
 			List<String> messages = function.apply(
@@ -454,14 +452,12 @@ public class PostupgradeVerifyDatabaseStateTest
 			Set<String> messages = new HashSet<>();
 
 			for (String message : logCapture.getMessages()) {
-				if (!message.startsWith("Column ") &&
-					!message.startsWith("Missing columns") &&
-					!message.startsWith("Stale columns")) {
+				if (message.startsWith("Column ") ||
+					message.startsWith("Missing columns") ||
+					message.startsWith("Stale columns")) {
 
-					continue;
+					messages.add(message);
 				}
-
-				messages.add(message);
 			}
 
 			Assert.assertEquals(

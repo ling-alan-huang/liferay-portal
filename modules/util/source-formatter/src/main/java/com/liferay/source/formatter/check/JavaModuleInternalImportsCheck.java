@@ -81,13 +81,12 @@ public class JavaModuleInternalImportsCheck extends BaseFileCheck {
 
 			File file = new File(expectedImportFileLocation);
 
-			if (file.exists()) {
-				continue;
+			if (!file.exists()) {
+				addMessage(
+					fileName,
+					"Do not import internal class from another module",
+					getLineNumber(content, matcher.start(1)));
 			}
-
-			addMessage(
-				fileName, "Do not import internal class from another module",
-				getLineNumber(content, matcher.start(1)));
 		}
 	}
 

@@ -468,13 +468,11 @@ public class MBMessageServiceImpl extends MBMessageServiceBaseImpl {
 					break;
 				}
 
-				if (!_messageModelResourcePermission.contains(
+				if (_messageModelResourcePermission.contains(
 						getPermissionChecker(), message, ActionKeys.VIEW)) {
 
-					continue;
+					messages.add(message);
 				}
-
-				messages.add(message);
 			}
 		}
 
@@ -548,13 +546,11 @@ public class MBMessageServiceImpl extends MBMessageServiceBaseImpl {
 					break;
 				}
 
-				if (!_messageModelResourcePermission.contains(
+				if (_messageModelResourcePermission.contains(
 						getPermissionChecker(), message, ActionKeys.VIEW)) {
 
-					continue;
+					messages.add(message);
 				}
-
-				messages.add(message);
 			}
 		}
 
@@ -606,13 +602,11 @@ public class MBMessageServiceImpl extends MBMessageServiceBaseImpl {
 					break;
 				}
 
-				if (!_messageModelResourcePermission.contains(
+				if (_messageModelResourcePermission.contains(
 						getPermissionChecker(), message, ActionKeys.VIEW)) {
 
-					continue;
+					messages.add(message);
 				}
-
-				messages.add(message);
 			}
 		}
 
@@ -655,13 +649,11 @@ public class MBMessageServiceImpl extends MBMessageServiceBaseImpl {
 					break;
 				}
 
-				if (!_messageModelResourcePermission.contains(
+				if (_messageModelResourcePermission.contains(
 						getPermissionChecker(), message, ActionKeys.VIEW)) {
 
-					continue;
+					messages.add(message);
 				}
-
-				messages.add(message);
 			}
 		}
 
@@ -800,13 +792,11 @@ public class MBMessageServiceImpl extends MBMessageServiceBaseImpl {
 					break;
 				}
 
-				if (!_messageModelResourcePermission.contains(
+				if (_messageModelResourcePermission.contains(
 						getPermissionChecker(), message, ActionKeys.VIEW)) {
 
-					continue;
+					messages.add(message);
 				}
-
-				messages.add(message);
 			}
 
 			if (!messages.isEmpty()) {

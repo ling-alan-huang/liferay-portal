@@ -465,11 +465,9 @@ public class LiferayResourceProperties extends ComponentPropertiesImpl {
 		for (String endpointOperation : pathOperations) {
 			Operation operation = Operation.toOperation(endpointOperation);
 
-			if (!_isAllowedOperation(operation)) {
-				continue;
+			if (_isAllowedOperation(operation)) {
+				possibleOperations.add(operation);
 			}
-
-			possibleOperations.add(operation);
 		}
 
 		if (possibleOperations.isEmpty()) {

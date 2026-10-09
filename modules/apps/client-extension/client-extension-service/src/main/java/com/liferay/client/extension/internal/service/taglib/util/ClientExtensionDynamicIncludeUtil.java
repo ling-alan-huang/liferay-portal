@@ -38,7 +38,7 @@ public class ClientExtensionDynamicIncludeUtil {
 		for (ClientExtensionEntryRel layoutSetClientExtensionEntryRel :
 				layoutSetClientExtensionEntryRels) {
 
-			if (ListUtil.exists(
+			if (!ListUtil.exists(
 					clientExtensionEntryRels,
 					clientExtensionEntryRel -> Objects.equals(
 						layoutSetClientExtensionEntryRel.
@@ -46,10 +46,8 @@ public class ClientExtensionDynamicIncludeUtil {
 						clientExtensionEntryRel.
 							getCETExternalReferenceCode()))) {
 
-				continue;
+				clientExtensionEntryRels.add(layoutSetClientExtensionEntryRel);
 			}
-
-			clientExtensionEntryRels.add(layoutSetClientExtensionEntryRel);
 		}
 
 		Layout masterLayout = LayoutLocalServiceUtil.fetchLayout(
@@ -65,7 +63,7 @@ public class ClientExtensionDynamicIncludeUtil {
 			for (ClientExtensionEntryRel masterLayoutClientExtensionEntryRel :
 					masterLayoutClientExtensionEntryRels) {
 
-				if (ListUtil.exists(
+				if (!ListUtil.exists(
 						clientExtensionEntryRels,
 						clientExtensionEntryRel -> Objects.equals(
 							masterLayoutClientExtensionEntryRel.
@@ -73,11 +71,9 @@ public class ClientExtensionDynamicIncludeUtil {
 							clientExtensionEntryRel.
 								getCETExternalReferenceCode()))) {
 
-					continue;
+					clientExtensionEntryRels.add(
+						masterLayoutClientExtensionEntryRel);
 				}
-
-				clientExtensionEntryRels.add(
-					masterLayoutClientExtensionEntryRel);
 			}
 		}
 
@@ -91,7 +87,7 @@ public class ClientExtensionDynamicIncludeUtil {
 		for (ClientExtensionEntryRel layoutClientExtensionEntryRel :
 				layoutClientExtensionEntryRels) {
 
-			if (ListUtil.exists(
+			if (!ListUtil.exists(
 					clientExtensionEntryRels,
 					clientExtensionEntryRel -> Objects.equals(
 						layoutClientExtensionEntryRel.
@@ -99,10 +95,8 @@ public class ClientExtensionDynamicIncludeUtil {
 						clientExtensionEntryRel.
 							getCETExternalReferenceCode()))) {
 
-				continue;
+				clientExtensionEntryRels.add(layoutClientExtensionEntryRel);
 			}
-
-			clientExtensionEntryRels.add(layoutClientExtensionEntryRel);
 		}
 
 		return clientExtensionEntryRels;

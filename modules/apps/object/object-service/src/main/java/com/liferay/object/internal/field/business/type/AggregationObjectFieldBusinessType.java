@@ -170,15 +170,13 @@ public class AggregationObjectFieldBusinessType
 		for (String requiredObjectFieldSettingName :
 				requiredObjectFieldSettingsNames) {
 
-			if (Validator.isNotNull(
+			if (Validator.isNull(
 					objectFieldSettingsValuesMap.get(
 						requiredObjectFieldSettingName))) {
 
-				continue;
+				missingRequiredObjectFieldSettingsNames.add(
+					requiredObjectFieldSettingName);
 			}
-
-			missingRequiredObjectFieldSettingsNames.add(
-				requiredObjectFieldSettingName);
 		}
 
 		if (!missingRequiredObjectFieldSettingsNames.isEmpty()) {

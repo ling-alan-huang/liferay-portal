@@ -179,11 +179,9 @@ public class TestrayRoutine {
 				sb.append(nameFilters[i]);
 				sb.append("')");
 
-				if (i >= (nameFilters.length - 1)) {
-					continue;
+				if (i < (nameFilters.length - 1)) {
+					sb.append(" or ");
 				}
-
-				sb.append(" or ");
 			}
 
 			sb.append(")");

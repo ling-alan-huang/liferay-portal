@@ -64,25 +64,24 @@ public class CommerceOrderAttachmentSearchPermissionFilterContributor
 					"accountEntryGroupId");
 
 				for (AccountEntry accountEntry : accountEntries) {
-					if (!_portletResourcePermission.contains(
+					if (_portletResourcePermission.contains(
 							permissionChecker,
 							accountEntry.getAccountEntryGroupId(),
-							CommerceOrderActionKeys.MANAGE_COMMERCE_ORDERS) &&
-						!_portletResourcePermission.contains(
+							CommerceOrderActionKeys.MANAGE_COMMERCE_ORDERS) ||
+						_portletResourcePermission.contains(
 							permissionChecker,
 							accountEntry.getAccountEntryGroupId(),
-							CommerceOrderActionKeys.VIEW_COMMERCE_ORDERS) &&
-						!_portletResourcePermission.contains(
+							CommerceOrderActionKeys.VIEW_COMMERCE_ORDERS) ||
+						_portletResourcePermission.contains(
 							permissionChecker,
 							accountEntry.getAccountEntryGroupId(),
 							CommerceOrderActionKeys.
 								VIEW_OPEN_COMMERCE_ORDERS)) {
 
-						continue;
+						termsFilter.addValue(
+							String.valueOf(
+								accountEntry.getAccountEntryGroupId()));
 					}
-
-					termsFilter.addValue(
-						String.valueOf(accountEntry.getAccountEntryGroupId()));
 				}
 
 				if (termsFilter.isEmpty()) {
@@ -113,17 +112,15 @@ public class CommerceOrderAttachmentSearchPermissionFilterContributor
 			TermsFilter termsFilter = new TermsFilter("accountEntryGroupId");
 
 			for (AccountEntry accountEntry : accountEntries) {
-				if (!_portletResourcePermission.contains(
+				if (_portletResourcePermission.contains(
 						permissionChecker,
 						accountEntry.getAccountEntryGroupId(),
 						CommerceOrderActionKeys.
 							VIEW_RESTRICTED_COMMERCE_ORDER_ATTACHMENTS)) {
 
-					continue;
+					termsFilter.addValue(
+						String.valueOf(accountEntry.getAccountEntryGroupId()));
 				}
-
-				termsFilter.addValue(
-					String.valueOf(accountEntry.getAccountEntryGroupId()));
 			}
 
 			if (!termsFilter.isEmpty()) {

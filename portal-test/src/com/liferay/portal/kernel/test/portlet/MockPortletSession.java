@@ -215,15 +215,13 @@ public class MockPortletSession implements PortletSession {
 
 			iterator.remove();
 
-			if (!(value instanceof
-					HttpSessionBindingListener httpSessionBindingListener)) {
+			if (value instanceof
+					HttpSessionBindingListener httpSessionBindingListener) {
 
-				continue;
+				httpSessionBindingListener.valueUnbound(
+					new HttpSessionBindingEvent(
+						new MockHttpSession(), entry.getKey(), value));
 			}
-
-			httpSessionBindingListener.valueUnbound(
-				new HttpSessionBindingEvent(
-					new MockHttpSession(), entry.getKey(), value));
 		}
 	}
 

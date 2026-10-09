@@ -281,11 +281,9 @@ public class OpenAPIUtil {
 
 			String localizedRestrictFieldName = restrictFieldName + "_i18n";
 
-			if (!_hasSchemaProperty(localizedRestrictFieldName, schemaObject)) {
-				continue;
+			if (_hasSchemaProperty(localizedRestrictFieldName, schemaObject)) {
+				restrictFieldNames.add(localizedRestrictFieldName);
 			}
-
-			restrictFieldNames.add(localizedRestrictFieldName);
 		}
 
 		return StringUtil.merge(restrictFieldNames);
@@ -460,13 +458,11 @@ public class OpenAPIUtil {
 
 			Map<?, ?> propertyMap = (Map<?, ?>)value;
 
-			if (!GetterUtil.getBoolean(
+			if (GetterUtil.getBoolean(
 					propertyMap.get(excludedPropertyAttributeName))) {
 
-				continue;
+				excludedPropertyNames.add(entry.getKey());
 			}
-
-			excludedPropertyNames.add(entry.getKey());
 		}
 
 		if (excludedPropertyNames.isEmpty()) {
@@ -1186,11 +1182,9 @@ public class OpenAPIUtil {
 
 			String name = entry.getKey();
 
-			if (!visitedParameterNames.add(name)) {
-				continue;
+			if (visitedParameterNames.add(name)) {
+				_appendQueryParameter(name, sb, entry.getValue());
 			}
-
-			_appendQueryParameter(name, sb, entry.getValue());
 		}
 
 		Set<String> fieldNames = _getFieldNames(inputJSONObject.opt("fields"));
@@ -1524,11 +1518,9 @@ public class OpenAPIUtil {
 
 			string = string.trim();
 
-			if (string.isEmpty()) {
-				continue;
+			if (!string.isEmpty()) {
+				fieldPaths.add(string);
 			}
-
-			fieldPaths.add(string);
 		}
 
 		return fieldPaths;
@@ -1699,16 +1691,15 @@ public class OpenAPIUtil {
 		Map<String, Object> requiredPropertySchemas = new LinkedHashMap<>();
 
 		for (String requiredPropertyName : requiredPropertyNames) {
-			if (!(properties.get(requiredPropertyName) instanceof
-					Map<?, ?> propertySchema)) {
+			if (properties.get(requiredPropertyName) instanceof
+					Map<?, ?> propertySchema) {
 
-				continue;
+				requiredPropertySchemas.put(
+					requiredPropertyName,
+					_toRequiredPropertySchema(
+						depth, objectToolSet,
+						(Map<String, Object>)propertySchema));
 			}
-
-			requiredPropertySchemas.put(
-				requiredPropertyName,
-				_toRequiredPropertySchema(
-					depth, objectToolSet, (Map<String, Object>)propertySchema));
 		}
 
 		if (requiredPropertySchemas.isEmpty()) {

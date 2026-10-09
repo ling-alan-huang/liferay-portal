@@ -140,12 +140,10 @@ public class ViewUADEntitiesManagementToolbarDisplayContext
 			String value = ParamUtil.getString(
 				httpServletRequest, parameterName);
 
-			if (Validator.isNull(value)) {
-				continue;
+			if (Validator.isNotNull(value)) {
+				portletURL.setParameter(parameterName, (String)null);
+				portletURL.setParameter(parameterName, value);
 			}
-
-			portletURL.setParameter(parameterName, (String)null);
-			portletURL.setParameter(parameterName, value);
 		}
 
 		return portletURL;

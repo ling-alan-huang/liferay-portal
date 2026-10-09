@@ -356,11 +356,9 @@ public class MarkdownSourceFormatterReadmeCheck extends BaseFileCheck {
 		List<CheckInfo> checkInfos = new ArrayList<>();
 
 		for (CheckInfo checkInfo : checkInfoMap.values()) {
-			if (!category.equals(checkInfo.getCategory())) {
-				continue;
+			if (category.equals(checkInfo.getCategory())) {
+				checkInfos.add(checkInfo);
 			}
-
-			checkInfos.add(checkInfo);
 		}
 
 		return checkInfos;
@@ -708,11 +706,9 @@ public class MarkdownSourceFormatterReadmeCheck extends BaseFileCheck {
 			List<String> sourceProcessorNames =
 				checkInfo.getSourceProcessorNames();
 
-			if (!sourceProcessorNames.contains(sourceProcessorName)) {
-				continue;
+			if (sourceProcessorNames.contains(sourceProcessorName)) {
+				checkInfos.add(checkInfo);
 			}
-
-			checkInfos.add(checkInfo);
 		}
 
 		return checkInfos;
@@ -735,11 +731,9 @@ public class MarkdownSourceFormatterReadmeCheck extends BaseFileCheck {
 			for (String sourceProcessorName :
 					checkInfo.getSourceProcessorNames()) {
 
-				if (sourceProcessorName.equals("all")) {
-					continue;
+				if (!sourceProcessorName.equals("all")) {
+					sourceProcessorNames.add(sourceProcessorName);
 				}
-
-				sourceProcessorNames.add(sourceProcessorName);
 			}
 		}
 
@@ -763,11 +757,9 @@ public class MarkdownSourceFormatterReadmeCheck extends BaseFileCheck {
 			sb.append(fileExtensions.get(i));
 			sb.append(", ");
 
-			if (i != (fileExtensions.size() - 2)) {
-				continue;
+			if (i == (fileExtensions.size() - 2)) {
+				sb.append("or ");
 			}
-
-			sb.append("or ");
 		}
 
 		if (sb.length() > 0) {

@@ -81,13 +81,11 @@ public class MBThreadUADTestUtil {
 		for (MBThread mbThread : mbThreads) {
 			long mbCategoryId = mbThread.getCategoryId();
 
-			if (mbCategoryId ==
+			if (mbCategoryId !=
 					MBCategoryConstants.DEFAULT_PARENT_CATEGORY_ID) {
 
-				continue;
+				mbCategoryLocalService.deleteCategory(mbCategoryId);
 			}
-
-			mbCategoryLocalService.deleteCategory(mbCategoryId);
 		}
 	}
 

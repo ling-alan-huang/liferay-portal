@@ -255,11 +255,9 @@ public class IllegalImportsCheck extends BaseFileCheck {
 				}
 			}
 
-			if (!line.contains("org.jsoup.")) {
-				continue;
+			if (line.contains("org.jsoup.")) {
+				addMessage(fileName, "Do not use org.jsoup, see LPD-42623");
 			}
-
-			addMessage(fileName, "Do not use org.jsoup, see LPD-42623");
 		}
 
 		return content;

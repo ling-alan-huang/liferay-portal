@@ -88,17 +88,15 @@ public class UpgradeCatchAllCheck extends BaseFileCheck {
 				expectedMessages.add(_getMessage(jsonObject));
 			}
 
-			if (!keys.contains("hasMessage")) {
-				continue;
-			}
+			if (keys.contains("hasMessage")) {
+				String[] classNames = JSONUtil.toStringArray(
+					jsonObject.getJSONArray("classNames"));
 
-			String[] classNames = JSONUtil.toStringArray(
-				jsonObject.getJSONArray("classNames"));
+				int count = (classNames.length > 0) ? classNames.length : 1;
 
-			int count = (classNames.length > 0) ? classNames.length : 1;
-
-			for (int y = 0; y < count; y++) {
-				expectedMessages.add(_getMessage(jsonObject));
+				for (int y = 0; y < count; y++) {
+					expectedMessages.add(_getMessage(jsonObject));
+				}
 			}
 		}
 
@@ -1003,13 +1001,11 @@ public class UpgradeCatchAllCheck extends BaseFileCheck {
 			int methodEndIndex = _findMatchingClosingBrace(
 				classBody, bodyMatcher.end() - 1);
 
-			if (methodEndIndex == -1) {
-				continue;
+			if (methodEndIndex != -1) {
+				existingMethods.add(
+					classBody.substring(methodIndex, methodEndIndex + 1));
+				methodNames.add(methodName);
 			}
-
-			existingMethods.add(
-				classBody.substring(methodIndex, methodEndIndex + 1));
-			methodNames.add(methodName);
 		}
 
 		newMethod = "\n\t" + newMethod;

@@ -299,43 +299,41 @@ public class CommerceCurrencyLocalServiceImpl
 				commerceCurrencyPersistence.fetchByC_C(
 					serviceContext.getCompanyId(), code);
 
-			if (commerceCurrency != null) {
-				continue;
+			if (commerceCurrency == null) {
+				String externalReferenceCode = jsonObject.getString(
+					"externalReferenceCode");
+				boolean primary = jsonObject.getBoolean("primary");
+				double priority = jsonObject.getDouble("priority");
+				double rate = jsonObject.getDouble("rate");
+				String symbol = jsonObject.getString("symbol");
+
+				RoundingTypeConfiguration roundingTypeConfiguration =
+					_configurationProvider.getConfiguration(
+						RoundingTypeConfiguration.class,
+						new SystemSettingsLocator(
+							RoundingTypeConstants.SERVICE_NAME));
+
+				Map<Locale, String> nameMap = HashMapBuilder.put(
+					serviceContext.getLocale(), jsonObject.getString("name")
+				).build();
+
+				Map<Locale, String> formatPatternMap = HashMapBuilder.put(
+					serviceContext.getLocale(),
+					StringBundler.concat(
+						symbol, StringPool.SPACE,
+						CommerceCurrencyConstants.DECIMAL_FORMAT_PATTERN)
+				).build();
+
+				RoundingMode roundingMode =
+					roundingTypeConfiguration.roundingMode();
+
+				commerceCurrencyLocalService.addCommerceCurrency(
+					externalReferenceCode, serviceContext.getUserId(), code,
+					nameMap, symbol, BigDecimal.valueOf(rate), formatPatternMap,
+					roundingTypeConfiguration.maximumFractionDigits(),
+					roundingTypeConfiguration.minimumFractionDigits(),
+					roundingMode.name(), primary, priority, true);
 			}
-
-			String externalReferenceCode = jsonObject.getString(
-				"externalReferenceCode");
-			boolean primary = jsonObject.getBoolean("primary");
-			double priority = jsonObject.getDouble("priority");
-			double rate = jsonObject.getDouble("rate");
-			String symbol = jsonObject.getString("symbol");
-
-			RoundingTypeConfiguration roundingTypeConfiguration =
-				_configurationProvider.getConfiguration(
-					RoundingTypeConfiguration.class,
-					new SystemSettingsLocator(
-						RoundingTypeConstants.SERVICE_NAME));
-
-			Map<Locale, String> nameMap = HashMapBuilder.put(
-				serviceContext.getLocale(), jsonObject.getString("name")
-			).build();
-
-			Map<Locale, String> formatPatternMap = HashMapBuilder.put(
-				serviceContext.getLocale(),
-				StringBundler.concat(
-					symbol, StringPool.SPACE,
-					CommerceCurrencyConstants.DECIMAL_FORMAT_PATTERN)
-			).build();
-
-			RoundingMode roundingMode =
-				roundingTypeConfiguration.roundingMode();
-
-			commerceCurrencyLocalService.addCommerceCurrency(
-				externalReferenceCode, serviceContext.getUserId(), code,
-				nameMap, symbol, BigDecimal.valueOf(rate), formatPatternMap,
-				roundingTypeConfiguration.maximumFractionDigits(),
-				roundingTypeConfiguration.minimumFractionDigits(),
-				roundingMode.name(), primary, priority, true);
 		}
 
 		if (updateExchangeRate) {
@@ -712,15 +710,13 @@ public class CommerceCurrencyLocalServiceImpl
 				commerceCurrencyPersistence.findByC_P(companyId, primary);
 
 			for (CommerceCurrency commerceCurrency : commerceCurrencies) {
-				if (commerceCurrency.getCommerceCurrencyId() ==
+				if (commerceCurrency.getCommerceCurrencyId() !=
 						commerceCurrencyId) {
 
-					continue;
+					commerceCurrency.setPrimary(false);
+
+					commerceCurrencyPersistence.update(commerceCurrency);
 				}
-
-				commerceCurrency.setPrimary(false);
-
-				commerceCurrencyPersistence.update(commerceCurrency);
 			}
 		}
 	}

@@ -38,11 +38,9 @@ public class DepotApplicationController {
 		Collection<DepotApplication> depotApplications = new ArrayList<>();
 
 		for (DepotApplication depotApplication : _serviceTrackerMap.values()) {
-			if (!depotApplication.isCustomizable()) {
-				continue;
+			if (depotApplication.isCustomizable()) {
+				depotApplications.add(depotApplication);
 			}
-
-			depotApplications.add(depotApplication);
 		}
 
 		return depotApplications;

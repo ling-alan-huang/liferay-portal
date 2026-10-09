@@ -421,14 +421,12 @@ public class AnnouncementsDisplayContext {
 		List<T> selectedEntries = new ArrayList<>();
 
 		for (T entry : unsafeSupplier.get()) {
-			if (!unsafeTriFunction.apply(
+			if (unsafeTriFunction.apply(
 					_announcementsRequestHelper.getPermissionChecker(), entry,
 					ActionKeys.MANAGE_ANNOUNCEMENTS)) {
 
-				continue;
+				selectedEntries.add(entry);
 			}
-
-			selectedEntries.add(entry);
 		}
 
 		return selectedEntries;

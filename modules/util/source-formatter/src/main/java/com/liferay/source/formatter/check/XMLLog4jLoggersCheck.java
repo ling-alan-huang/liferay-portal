@@ -80,11 +80,10 @@ public class XMLLog4jLoggersCheck extends BaseFileCheck {
 					}
 				}
 
-				if (exists) {
-					continue;
+				if (!exists) {
+					addMessage(
+						fileName, "Class/package does not exist: " + name);
 				}
-
-				addMessage(fileName, "Class/package does not exist: " + name);
 			}
 		}
 	}

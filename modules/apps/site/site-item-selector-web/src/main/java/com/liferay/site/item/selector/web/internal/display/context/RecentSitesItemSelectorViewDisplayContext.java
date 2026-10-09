@@ -77,17 +77,15 @@ public class RecentSitesItemSelectorViewDisplayContext
 		for (Group group :
 				_recentGroupManager.getRecentGroups(httpServletRequest)) {
 
-			if (ArrayUtil.contains(
+			if (!ArrayUtil.contains(
 					groupItemSelectorCriterion.getExcludedGroupIds(),
-					group.getGroupId()) ||
-				!GroupPermissionUtil.contains(
+					group.getGroupId()) &&
+				GroupPermissionUtil.contains(
 					permissionChecker, group,
 					groupItemSelectorCriterion.getActionId())) {
 
-				continue;
+				groups.add(group);
 			}
-
-			groups.add(group);
 		}
 
 		groupSearch.setResultsAndTotal(groups);

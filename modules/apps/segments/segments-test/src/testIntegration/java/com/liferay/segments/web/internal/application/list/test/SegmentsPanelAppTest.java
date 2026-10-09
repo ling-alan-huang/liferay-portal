@@ -69,17 +69,15 @@ public class SegmentsPanelAppTest {
 
 			Class<? extends PanelApp> clazz = panelApp.getClass();
 
-			if (!Objects.equals(
+			if (Objects.equals(
 					clazz.getCanonicalName(),
 					"com.liferay.segments.web.internal.application.list." +
 						"SegmentsPanelApp")) {
 
-				continue;
+				_serviceReference = serviceReference;
+
+				_panelApp = panelApp;
 			}
-
-			_serviceReference = serviceReference;
-
-			_panelApp = panelApp;
 		}
 
 		Assert.assertNotNull(_panelApp);

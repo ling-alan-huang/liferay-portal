@@ -111,11 +111,9 @@ public class EditDisplayContextFactory {
 			String originalValue = _ploOriginalTranslationProvider.get(
 				locale, key);
 
-			if (Validator.isNull(originalValue)) {
-				continue;
+			if (Validator.isNotNull(originalValue)) {
+				originalValuesLocalizedValuesMap.put(locale, originalValue);
 			}
-
-			originalValuesLocalizedValuesMap.put(locale, originalValue);
 		}
 	}
 

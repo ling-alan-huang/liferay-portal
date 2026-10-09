@@ -222,12 +222,10 @@ public class DefaultFullNameGenerator implements FullNameGenerator {
 		for (FullNameField fullNameField : fullNameFields) {
 			String name = namesMap.get(fullNameField.getName());
 
-			if (name == null) {
-				continue;
+			if (name != null) {
+				sb.append(StringPool.SPACE);
+				sb.append(name);
 			}
-
-			sb.append(StringPool.SPACE);
-			sb.append(name);
 		}
 
 		return StringUtil.trim(sb.toString());

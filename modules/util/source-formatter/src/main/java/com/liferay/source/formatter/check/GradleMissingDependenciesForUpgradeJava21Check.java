@@ -73,21 +73,19 @@ public class GradleMissingDependenciesForUpgradeJava21Check
 				}
 			}
 
-			if (!javaFileContent.contains(
+			if (javaFileContent.contains(
 					"import jakarta.xml.bind.annotation.")) {
 
-				continue;
-			}
-
-			if (shortDirName.endsWith("-test")) {
-				content = _fixMissingDependencies(
-					content, "testIntegrationImplementation",
-					"jakarta.xml.bind", "jakarta.xml.bind-api", "4.0.2");
-			}
-			else {
-				content = _fixMissingDependencies(
-					content, "compileOnly", "jakarta.xml.bind",
-					"jakarta.xml.bind-api", "4.0.2");
+				if (shortDirName.endsWith("-test")) {
+					content = _fixMissingDependencies(
+						content, "testIntegrationImplementation",
+						"jakarta.xml.bind", "jakarta.xml.bind-api", "4.0.2");
+				}
+				else {
+					content = _fixMissingDependencies(
+						content, "compileOnly", "jakarta.xml.bind",
+						"jakarta.xml.bind-api", "4.0.2");
+				}
 			}
 		}
 

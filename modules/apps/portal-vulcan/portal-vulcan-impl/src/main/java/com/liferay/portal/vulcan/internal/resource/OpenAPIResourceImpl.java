@@ -262,11 +262,9 @@ public class OpenAPIResourceImpl implements OpenAPIResource {
 				securityRequirements.addAll(openAPI.getSecurity());
 			}
 
-			if (openAPI.getTags() == null) {
-				continue;
+			if (openAPI.getTags() != null) {
+				tags.addAll(openAPI.getTags());
 			}
-
-			tags.addAll(openAPI.getTags());
 		}
 
 		OpenAPI openAPI1 = new OpenAPI();
@@ -565,11 +563,9 @@ public class OpenAPIResourceImpl implements OpenAPIResource {
 			String entryClassName = _serviceTrackerMap.getService(
 				resourceClass.getName());
 
-			if (entryClassName == null) {
-				continue;
+			if (entryClassName != null) {
+				classNames.add(entryClassName);
 			}
-
-			classNames.add(entryClassName);
 		}
 
 		return classNames;
@@ -801,11 +797,9 @@ public class OpenAPIResourceImpl implements OpenAPIResource {
 				_getExtendedPropertyDefinitions(
 					className, companyId, extensionProviderRegistry);
 
-			if (ListUtil.isEmpty(propertyDefinitions)) {
-				continue;
+			if (ListUtil.isNotEmpty(propertyDefinitions)) {
+				propertyDefinitionsMap.put(className, propertyDefinitions);
 			}
-
-			propertyDefinitionsMap.put(className, propertyDefinitions);
 		}
 
 		if (MapUtil.isNotEmpty(propertyDefinitionsMap)) {
@@ -973,13 +967,11 @@ public class OpenAPIResourceImpl implements OpenAPIResource {
 							schemaMappings.entrySet()) {
 
 						for (int i = 0; i < newTags.size(); i++) {
-							if (!Objects.equals(
+							if (Objects.equals(
 									entry.getKey(), newTags.get(i))) {
 
-								continue;
+								newTags.set(i, entry.getValue());
 							}
-
-							newTags.set(i, entry.getValue());
 						}
 					}
 
@@ -1005,14 +997,13 @@ public class OpenAPIResourceImpl implements OpenAPIResource {
 					String schemaName = StringUtil.lowerCaseFirstLetter(
 						entry.getKey());
 
-					if (!parameterName.contains(schemaName)) {
-						continue;
+					if (parameterName.contains(schemaName)) {
+						parameter.setName(
+							StringUtil.replace(
+								parameterName, schemaName,
+								StringUtil.lowerCaseFirstLetter(
+									entry.getValue())));
 					}
-
-					parameter.setName(
-						StringUtil.replace(
-							parameterName, schemaName,
-							StringUtil.lowerCaseFirstLetter(entry.getValue())));
 				}
 
 				return super.filterParameter(
@@ -1078,11 +1069,9 @@ public class OpenAPIResourceImpl implements OpenAPIResource {
 							childDTOProperty.getName(),
 							_addSchema(childDTOProperty));
 
-						if (!childDTOProperty.isRequired()) {
-							continue;
+						if (childDTOProperty.isRequired()) {
+							schema.addRequiredItem(childDTOProperty.getName());
 						}
-
-						schema.addRequiredItem(childDTOProperty.getName());
 					}
 
 					return Optional.of(schema);
@@ -1110,13 +1099,11 @@ public class OpenAPIResourceImpl implements OpenAPIResource {
 						}
 					}
 
-					if (!(propertySchema instanceof ArraySchema)) {
-						continue;
+					if (propertySchema instanceof ArraySchema) {
+						ArraySchema arraySchema = (ArraySchema)propertySchema;
+
+						_replaceReference(entry, arraySchema.getItems());
 					}
-
-					ArraySchema arraySchema = (ArraySchema)propertySchema;
-
-					_replaceReference(entry, arraySchema.getItems());
 				}
 
 				return super.filterSchemaProperty(
@@ -1259,17 +1246,15 @@ public class OpenAPIResourceImpl implements OpenAPIResource {
 
 					Schema schema = entry.getValue();
 
-					if (!schemas.containsKey(schema.getName())) {
-						continue;
+					if (schemas.containsKey(schema.getName())) {
+						String newName = "C." + schema.getName();
+
+						schema.setName(newName);
+
+						DTOProperty dtoProperty = entry.getKey();
+
+						dtoProperty.setName(newName);
 					}
-
-					String newName = "C." + schema.getName();
-
-					schema.setName(newName);
-
-					DTOProperty dtoProperty = entry.getKey();
-
-					dtoProperty.setName(newName);
 				}
 			}
 
@@ -1284,39 +1269,38 @@ public class OpenAPIResourceImpl implements OpenAPIResource {
 					for (DTOProperty childDTOProperty1 :
 							dtoProperty.getDTOProperties()) {
 
-						if (!StringUtil.equals(
+						if (StringUtil.equals(
 								childDTOProperty1.getType(), "Object")) {
 
-							continue;
-						}
+							Schema schema = new Schema();
 
-						Schema schema = new Schema();
+							schema.setDescription(
+								childDTOProperty1.getDescription());
+							schema.setExtensions(
+								HashMapBuilder.putAll(
+									childDTOProperty1.getExtensions()
+								).build());
+							schema.setName(childDTOProperty1.getName());
+							schema.setType("object");
 
-						schema.setDescription(
-							childDTOProperty1.getDescription());
-						schema.setExtensions(
-							HashMapBuilder.putAll(
-								childDTOProperty1.getExtensions()
-							).build());
-						schema.setName(childDTOProperty1.getName());
-						schema.setType("object");
+							for (DTOProperty childDTOProperty2 :
+									childDTOProperty1.getDTOProperties()) {
 
-						for (DTOProperty childDTOProperty2 :
-								childDTOProperty1.getDTOProperties()) {
+								schema.addProperties(
+									childDTOProperty2.getName(),
+									_addSchema(childDTOProperty2));
 
-							schema.addProperties(
-								childDTOProperty2.getName(),
-								_addSchema(childDTOProperty2));
+								if (childDTOProperty2.isRequired()) {
+									schema.addRequiredItem(
+										childDTOProperty2.getName());
+								}
 
-							if (childDTOProperty2.isRequired()) {
-								schema.addRequiredItem(
-									childDTOProperty2.getName());
+								schemas.putAll(
+									_getNewSchemas(childDTOProperty2));
 							}
 
-							schemas.putAll(_getNewSchemas(childDTOProperty2));
+							schemas.put(childDTOProperty1, schema);
 						}
-
-						schemas.put(childDTOProperty1, schema);
 					}
 				}
 				else {

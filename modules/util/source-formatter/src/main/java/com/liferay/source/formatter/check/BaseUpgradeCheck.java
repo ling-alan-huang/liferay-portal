@@ -30,11 +30,9 @@ public abstract class BaseUpgradeCheck extends BaseFileCheck {
 		List<String> missingImports = new ArrayList<>();
 
 		for (String newImport : newImports) {
-			if (newContent.contains("import=\"" + newImport)) {
-				continue;
+			if (!newContent.contains("import=\"" + newImport)) {
+				missingImports.add(newImport);
 			}
-
-			missingImports.add(newImport);
 		}
 
 		if (missingImports.isEmpty()) {

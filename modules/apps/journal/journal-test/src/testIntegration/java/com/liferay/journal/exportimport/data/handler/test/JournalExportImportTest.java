@@ -262,13 +262,11 @@ public class JournalExportImportTest extends BasePortletExportImportTestCase {
 			for (LogEntry logEntry : logEntries) {
 				String message = logEntry.getMessage();
 
-				if (!message.startsWith(
+				if (message.startsWith(
 						"Unable to get journal article with primary key")) {
 
-					continue;
+					count++;
 				}
-
-				count++;
 			}
 
 			Assert.assertTrue("Unexpected log messages: " + count, count <= 2);
@@ -861,13 +859,11 @@ public class JournalExportImportTest extends BasePortletExportImportTestCase {
 			for (LogEntry logEntry : logEntries) {
 				String message = logEntry.getMessage();
 
-				if (!message.startsWith(
+				if (message.startsWith(
 						"Unable to get journal article with primary key")) {
 
-					continue;
+					count++;
 				}
-
-				count++;
 			}
 
 			Assert.assertTrue("Unexpected log messages: " + count, count <= 1);
@@ -1619,13 +1615,11 @@ public class JournalExportImportTest extends BasePortletExportImportTestCase {
 		JournalArticle firstArticle = null;
 
 		for (JournalArticle journalArticle : articles) {
-			if ((firstArticle != null) &&
-				(journalArticle.getVersion() >= firstArticle.getVersion())) {
+			if ((firstArticle == null) ||
+				(journalArticle.getVersion() < firstArticle.getVersion())) {
 
-				continue;
+				firstArticle = journalArticle;
 			}
-
-			firstArticle = journalArticle;
 		}
 
 		deleteStagedModel(firstArticle);
@@ -2114,13 +2108,11 @@ public class JournalExportImportTest extends BasePortletExportImportTestCase {
 
 			JSONObject jsonObject = _jsonFactory.createJSONObject(text);
 
-			if (!jsonObject.has("classPK")) {
-				continue;
+			if (jsonObject.has("classPK")) {
+				classPKs.add(
+					GetterUtil.getLong(
+						JSONUtil.getValue(jsonObject, "Object/classPK")));
 			}
-
-			classPKs.add(
-				GetterUtil.getLong(
-					JSONUtil.getValue(jsonObject, "Object/classPK")));
 		}
 
 		return classPKs;

@@ -1556,11 +1556,9 @@ public class ObjectEntryServiceTest {
 				JSONObject jsonObject = JSONFactoryUtil.createJSONObject(
 					userNotificationEvent.getPayload());
 
-				if (!jsonObject.has("exceedsObjectEntryLimit")) {
-					continue;
+				if (jsonObject.has("exceedsObjectEntryLimit")) {
+					count++;
 				}
-
-				count++;
 			}
 
 			Assert.assertEquals(1, count);

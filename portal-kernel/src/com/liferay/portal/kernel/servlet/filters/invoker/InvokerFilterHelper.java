@@ -144,23 +144,21 @@ public class InvokerFilterHelper {
 			}
 
 			for (FilterMapping filterMapping : filterMappings) {
-				if (!filterMapping.isMatch(
+				if (filterMapping.isMatch(
 						httpServletRequest, dispatcher, uri)) {
 
-					continue;
-				}
+					Filter filter = filterMapping.getFilter();
 
-				Filter filter = filterMapping.getFilter();
+					if (filter instanceof LiferayFilter) {
+						LiferayFilter liferayFilter = (LiferayFilter)filter;
 
-				if (filter instanceof LiferayFilter) {
-					LiferayFilter liferayFilter = (LiferayFilter)filter;
-
-					if (!liferayFilter.isFilterEnabled()) {
-						continue;
+						if (!liferayFilter.isFilterEnabled()) {
+							continue;
+						}
 					}
-				}
 
-				invokerFilterChain.addFilter(filter);
+					invokerFilterChain.addFilter(filter);
+				}
 			}
 		}
 
@@ -211,11 +209,9 @@ public class InvokerFilterHelper {
 		}
 
 		for (String filterName : dynamicFilterNames) {
-			if (filterNames.contains(filterName)) {
-				continue;
+			if (!filterNames.contains(filterName)) {
+				filterNames.add(filterName);
 			}
-
-			filterNames.add(filterName);
 		}
 
 		return filterNames;
@@ -299,12 +295,10 @@ public class InvokerFilterHelper {
 			Filter filter = _initFilter(
 				servletContext, filterClassName, filterConfig);
 
-			if (filter == null) {
-				continue;
+			if (filter != null) {
+				filterObjectValuePairs.put(
+					filterName, new ObjectValuePair<>(filter, filterConfig));
 			}
-
-			filterObjectValuePairs.put(
-				filterName, new ObjectValuePair<>(filter, filterConfig));
 		}
 
 		List<Element> filterMappingElements = rootElement.elements(

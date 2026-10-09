@@ -77,11 +77,11 @@ public class NullAssertionInIfStatementCheck extends BaseCheck {
 						variableName);
 				}
 
-				if (compareStartLineNumber <= methodCallStartLineNumber) {
-					continue;
+				if (compareStartLineNumber > methodCallStartLineNumber) {
+					log(
+						nextSiblingDetailAST, _MSG_MOVE_NULL_CHECK,
+						variableName);
 				}
-
-				log(nextSiblingDetailAST, _MSG_MOVE_NULL_CHECK, variableName);
 			}
 		}
 	}

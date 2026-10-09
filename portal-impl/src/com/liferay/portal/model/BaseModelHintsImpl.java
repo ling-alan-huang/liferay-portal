@@ -219,11 +219,9 @@ public abstract class BaseModelHintsImpl implements ModelHints {
 		for (FieldDataBag fieldDataBag : fieldDataBags.values()) {
 			Tuple tuple = fieldDataBag._sanitize;
 
-			if (tuple == null) {
-				continue;
+			if (tuple != null) {
+				sanitizeTuples.add(tuple);
 			}
-
-			sanitizeTuples.add(tuple);
 		}
 
 		return sanitizeTuples;
@@ -520,12 +518,10 @@ public abstract class BaseModelHintsImpl implements ModelHints {
 					fieldDataBag._sanitize = fieldSanitize;
 				}
 
-				if (fieldValidators.isEmpty()) {
-					continue;
+				if (!fieldValidators.isEmpty()) {
+					fieldDataBag._validators = ListUtil.fromMapValues(
+						fieldValidators);
 				}
-
-				fieldDataBag._validators = ListUtil.fromMapValues(
-					fieldValidators);
 			}
 		}
 	}

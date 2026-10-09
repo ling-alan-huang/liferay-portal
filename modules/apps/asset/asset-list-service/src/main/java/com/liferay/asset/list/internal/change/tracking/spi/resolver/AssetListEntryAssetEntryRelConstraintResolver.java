@@ -88,14 +88,12 @@ public class AssetListEntryAssetEntryRelConstraintResolver
 						assetListEntryId, segmentsEntryId, QueryUtil.ALL_POS,
 						QueryUtil.ALL_POS)) {
 
-			if (!constraintResolverContext.isSourceCTModel(
+			if (constraintResolverContext.isSourceCTModel(
 					curAssetListEntryAssetEntryRel)) {
 
-				continue;
+				sourceAssetListEntryAssetEntryRels.add(
+					curAssetListEntryAssetEntryRel);
 			}
-
-			sourceAssetListEntryAssetEntryRels.add(
-				curAssetListEntryAssetEntryRel);
 		}
 
 		Set<Integer> targetPositions = _getTargetPositions(
@@ -201,14 +199,12 @@ public class AssetListEntryAssetEntryRelConstraintResolver
 				_assetListEntryAssetEntryRelLocalService.
 					fetchAssetListEntryAssetEntryRel((Long)row[0]);
 
-			if ((assetListEntryAssetEntryRel == null) ||
-				constraintResolverContext.isSourceCTModel(
+			if ((assetListEntryAssetEntryRel != null) &&
+				!constraintResolverContext.isSourceCTModel(
 					assetListEntryAssetEntryRel)) {
 
-				continue;
+				targetPositions.add((Integer)row[1]);
 			}
-
-			targetPositions.add((Integer)row[1]);
 		}
 
 		return targetPositions;

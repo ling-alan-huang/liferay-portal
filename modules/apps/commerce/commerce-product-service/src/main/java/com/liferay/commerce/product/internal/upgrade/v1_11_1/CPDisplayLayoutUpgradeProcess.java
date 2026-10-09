@@ -39,22 +39,21 @@ public class CPDisplayLayoutUpgradeProcess extends UpgradeProcess {
 
 				Layout layout = _fetchLayout(groupId, layoutUuid);
 
-				if (layout != null) {
-					continue;
-				}
+				if (layout == null) {
+					long cpDisplayLayoutId = resultSet.getLong(
+						"CPDisplayLayoutId");
 
-				long cpDisplayLayoutId = resultSet.getLong("CPDisplayLayoutId");
+					if (_log.isDebugEnabled()) {
+						_log.debug(
+							String.format(
+								"Removing CPDisplayLayout entry id: %s",
+								cpDisplayLayoutId));
+					}
 
-				if (_log.isDebugEnabled()) {
-					_log.debug(
+					runSQL(
 						String.format(
-							"Removing CPDisplayLayout entry id: %s",
-							cpDisplayLayoutId));
+							_DELETE_CPDISPLAYLAYOUT_SQL, cpDisplayLayoutId));
 				}
-
-				runSQL(
-					String.format(
-						_DELETE_CPDISPLAYLAYOUT_SQL, cpDisplayLayoutId));
 			}
 		}
 	}

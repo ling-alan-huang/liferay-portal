@@ -297,11 +297,9 @@ public class EditRolePermissionsNavigationDisplayContext {
 			NavigationItem panelCategoryNavigationItem =
 				_getPanelCategoryNavigationItem(panelCategory, new String[0]);
 
-			if (panelCategoryNavigationItem == null) {
-				continue;
+			if (panelCategoryNavigationItem != null) {
+				navigationItems.add(panelCategoryNavigationItem);
 			}
-
-			navigationItems.add(panelCategoryNavigationItem);
 		}
 
 		return navigationItems;
@@ -340,11 +338,9 @@ public class EditRolePermissionsNavigationDisplayContext {
 			NavigationItem navigationItem =
 				_getUnfilteredPanelCategoryNavigationItem(panelCategory);
 
-			if (navigationItem == null) {
-				continue;
+			if (navigationItem != null) {
+				navigationItems.add(navigationItem);
 			}
-
-			navigationItems.add(navigationItem);
 		}
 
 		return navigationItems;
@@ -461,12 +457,10 @@ public class EditRolePermissionsNavigationDisplayContext {
 							panelCategoryKey),
 						excludedPanelAppKeys);
 
-				if (panelCategoryNavigationItem == null) {
-					continue;
+				if (panelCategoryNavigationItem != null) {
+					topLevelNavigationItem.addNavigationItems(
+						panelCategoryNavigationItem);
 				}
-
-				topLevelNavigationItem.addNavigationItems(
-					panelCategoryNavigationItem);
 			}
 		}
 
@@ -498,21 +492,18 @@ public class EditRolePermissionsNavigationDisplayContext {
 					PanelCategoryKeys.ROOT));
 
 			for (PanelCategory panelCategory : panelCategories) {
-				if (ListUtil.isEmpty(
+				if (ListUtil.isNotEmpty(
 						_panelAppRegistry.getPanelApps(panelCategory))) {
 
-					continue;
+					NavigationItem panelCategoryNavigationItem =
+						_getUnfilteredPanelCategoryNavigationItem(
+							panelCategory);
+
+					if (panelCategoryNavigationItem != null) {
+						topLevelNavigationItem.addNavigationItems(
+							panelCategoryNavigationItem);
+					}
 				}
-
-				NavigationItem panelCategoryNavigationItem =
-					_getUnfilteredPanelCategoryNavigationItem(panelCategory);
-
-				if (panelCategoryNavigationItem == null) {
-					continue;
-				}
-
-				topLevelNavigationItem.addNavigationItems(
-					panelCategoryNavigationItem);
 			}
 		}
 

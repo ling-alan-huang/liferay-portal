@@ -302,11 +302,10 @@ public class DDMFormValuesFactoryImpl implements DDMFormValuesFactory {
 			String fieldName = ddmFormFieldParameterNameParts
 				[DDMFormFieldParameterNameUtil.DDM_FORM_FIELD_NAME_INDEX];
 
-			if (!fieldName.equals(ddmFormField.getName())) {
-				continue;
+			if (fieldName.equals(ddmFormField.getName())) {
+				filteredDDMFormFieldParameterNames.add(
+					ddmFormFieldParameterName);
 			}
-
-			filteredDDMFormFieldParameterNames.add(ddmFormFieldParameterName);
 		}
 
 		return filteredDDMFormFieldParameterNames;
@@ -481,21 +480,20 @@ public class DDMFormValuesFactoryImpl implements DDMFormValuesFactory {
 			String parameterValue = httpServletRequest.getParameter(
 				fullDDMFormFieldParameterName);
 
-			if (!persistDefaultValues &&
-				(!GetterUtil.getBoolean(
+			if (persistDefaultValues ||
+				(GetterUtil.getBoolean(
 					httpServletRequest.getParameter(
 						fullDDMFormFieldParameterName + "_edited"),
-					true) ||
-				 (parameterValue == null))) {
+					true) &&
+				 (parameterValue != null))) {
 
-				continue;
+				String ddmFormFieldParameterValue =
+					_getDDMFormFieldParameterValue(
+						predefinedValue.getString(availableLocale), fieldType,
+						fullDDMFormFieldParameterName, httpServletRequest);
+
+				value.addString(availableLocale, ddmFormFieldParameterValue);
 			}
-
-			String ddmFormFieldParameterValue = _getDDMFormFieldParameterValue(
-				predefinedValue.getString(availableLocale), fieldType,
-				fullDDMFormFieldParameterName, httpServletRequest);
-
-			value.addString(availableLocale, ddmFormFieldParameterValue);
 		}
 
 		ddmFormFieldValue.setValue(value);
@@ -548,15 +546,13 @@ public class DDMFormValuesFactoryImpl implements DDMFormValuesFactory {
 				siteAvailableLocales);
 
 			for (String availableLocaleString : availableLocaleStrings) {
-				if (!ArrayUtil.contains(
+				if (ArrayUtil.contains(
 						siteAvailableLocaleStrings, availableLocaleString,
 						false)) {
 
-					continue;
+					ddmFormValues.addAvailableLocale(
+						LocaleUtil.fromLanguageId(availableLocaleString));
 				}
-
-				ddmFormValues.addAvailableLocale(
-					LocaleUtil.fromLanguageId(availableLocaleString));
 			}
 		}
 	}

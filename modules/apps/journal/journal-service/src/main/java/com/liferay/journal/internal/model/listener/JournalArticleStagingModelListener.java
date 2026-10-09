@@ -162,14 +162,12 @@ public class JournalArticleStagingModelListener
 			for (JournalArticle journalArticleResourceArticle :
 					journalArticleResourceArticles) {
 
-				if (!ArrayUtil.contains(
+				if (ArrayUtil.contains(
 						stagedModelDataHandler.getExportableStatuses(),
 						journalArticleResourceArticle.getStatus())) {
 
-					continue;
+					classPKs.add(journalArticleResourceArticle.getId());
 				}
-
-				classPKs.add(journalArticleResourceArticle.getId());
 			}
 
 			long journalArticleClassNameId =

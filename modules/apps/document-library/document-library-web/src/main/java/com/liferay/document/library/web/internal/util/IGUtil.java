@@ -54,11 +54,9 @@ public class IGUtil {
 			for (int i = 0; i < ancestorFolders.size(); i++) {
 				Folder ancestorFolder = ancestorFolders.get(i);
 
-				if (rootFolderId != ancestorFolder.getFolderId()) {
-					continue;
+				if (rootFolderId == ancestorFolder.getFolderId()) {
+					indexOfRootFolder = i;
 				}
-
-				indexOfRootFolder = i;
 			}
 
 			if (indexOfRootFolder > -1) {

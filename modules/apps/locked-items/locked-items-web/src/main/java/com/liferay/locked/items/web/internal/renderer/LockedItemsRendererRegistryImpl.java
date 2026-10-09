@@ -37,11 +37,9 @@ public class LockedItemsRendererRegistryImpl
 		for (LockedItemsRenderer lockedItemsRenderer :
 				_serviceTrackerMap.values()) {
 
-			if (!lockedItemsRenderer.isVisible()) {
-				continue;
+			if (lockedItemsRenderer.isVisible()) {
+				lockedItemsRenderers.add(lockedItemsRenderer);
 			}
-
-			lockedItemsRenderers.add(lockedItemsRenderer);
 		}
 
 		return lockedItemsRenderers;

@@ -125,14 +125,12 @@ public class AutocompleteDDMTextFieldSettingUpgradeProcess
 			_ddmFormDeserializer, definition);
 
 		for (DDMFormField ddmFormField : ddmForm.getDDMFormFields()) {
-			if (!Objects.equals(ddmFormField.getType(), "text")) {
-				continue;
+			if (Objects.equals(ddmFormField.getType(), "text")) {
+				Map<String, Object> properties = ddmFormField.getProperties();
+
+				properties.putIfAbsent(
+					"autocomplete", _isAutocompleteEnabled(properties));
 			}
-
-			Map<String, Object> properties = ddmFormField.getProperties();
-
-			properties.putIfAbsent(
-				"autocomplete", _isAutocompleteEnabled(properties));
 		}
 
 		return DDMFormSerializeUtil.serialize(ddmForm, _ddmFormSerializer);

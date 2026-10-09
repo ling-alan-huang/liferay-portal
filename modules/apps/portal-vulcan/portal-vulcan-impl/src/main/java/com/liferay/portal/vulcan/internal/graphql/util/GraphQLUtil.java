@@ -68,17 +68,15 @@ public class GraphQLUtil {
 
 			Class<? extends Annotation> typeClass = annotation.annotationType();
 
-			if (!StringUtil.equals(typeClass.getName(), clazz.getName())) {
-				continue;
-			}
+			if (StringUtil.equals(typeClass.getName(), clazz.getName())) {
+				try {
+					Method method = typeClass.getMethod("value");
 
-			try {
-				Method method = typeClass.getMethod("value");
-
-				return method.invoke(annotation);
-			}
-			catch (Exception exception) {
-				throw new RuntimeException(exception);
+					return method.invoke(annotation);
+				}
+				catch (Exception exception) {
+					throw new RuntimeException(exception);
+				}
 			}
 		}
 

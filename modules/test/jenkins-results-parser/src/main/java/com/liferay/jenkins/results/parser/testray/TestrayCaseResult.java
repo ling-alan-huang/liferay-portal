@@ -268,16 +268,14 @@ public class TestrayCaseResult {
 					TestrayFactory.newJSONObjectTestrayCaseResult(
 						testrayServer, entityJSONObject);
 
-				if (Objects.equals(
-						testrayCaseResult.getPortalSHA(), getPortalSHA()) ||
-					Objects.equals(
+				if (!Objects.equals(
+						testrayCaseResult.getPortalSHA(), getPortalSHA()) &&
+					!Objects.equals(
 						testrayCaseResult.getPullRequestSenderUsername(),
 						getPullRequestSenderUsername())) {
 
-					continue;
+					testrayCaseResults.add(testrayCaseResult);
 				}
-
-				testrayCaseResults.add(testrayCaseResult);
 			}
 		}
 		catch (IOException ioException) {

@@ -49,15 +49,13 @@ public class DependencyManagerIntegrityTest {
 						componentDependencyDeclaration :
 							componentDeclaration.getComponentDependencies()) {
 
-					if (componentDependencyDeclaration.getState() !=
+					if (componentDependencyDeclaration.getState() ==
 							ComponentDependencyDeclaration.
 								STATE_UNAVAILABLE_REQUIRED) {
 
-						continue;
+						missingComponentDependencyDeclarations.add(
+							componentDependencyDeclaration);
 					}
-
-					missingComponentDependencyDeclarations.add(
-						componentDependencyDeclaration);
 				}
 			}
 		}

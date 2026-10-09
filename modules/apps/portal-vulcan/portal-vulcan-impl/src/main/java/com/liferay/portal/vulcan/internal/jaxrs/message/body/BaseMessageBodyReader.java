@@ -153,13 +153,11 @@ public abstract class BaseMessageBodyReader
 		while (iterator.hasNext()) {
 			String fieldName = iterator.next();
 
-			if (fieldNames.contains(fieldName)) {
-				continue;
+			if (!fieldNames.contains(fieldName)) {
+				extendedProperties.put(
+					fieldName,
+					_getJsonNodeValue(jsonNode.get(fieldName), objectMapper));
 			}
-
-			extendedProperties.put(
-				fieldName,
-				_getJsonNodeValue(jsonNode.get(fieldName), objectMapper));
 		}
 
 		return extendedProperties;

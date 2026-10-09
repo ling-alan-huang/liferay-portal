@@ -275,11 +275,9 @@ public class OpenAPIUtil {
 						Schema curSchema = allSchemas.putIfAbsent(
 							schemaKey, oneOfSchema);
 
-						if (curSchema != null) {
-							continue;
+						if (curSchema == null) {
+							queue.add(schemas);
 						}
-
-						queue.add(schemas);
 					}
 				}
 
@@ -313,17 +311,16 @@ public class OpenAPIUtil {
 				propertySchemas = schema.getPropertySchemas();
 			}
 
-			if ((propertySchemas != null) || (schema.getEnumValues() == null)) {
-				continue;
+			if ((propertySchemas == null) && (schema.getEnumValues() != null)) {
+				String schemaName = StringUtil.upperCaseFirstLetter(
+					entry.getKey());
+
+				if (items != null) {
+					schemaName = formatSingular(configYAML, schemaName);
+				}
+
+				globalEnumSchemas.put(schemaName, schema);
 			}
-
-			String schemaName = StringUtil.upperCaseFirstLetter(entry.getKey());
-
-			if (items != null) {
-				schemaName = formatSingular(configYAML, schemaName);
-			}
-
-			globalEnumSchemas.put(schemaName, schema);
 		}
 
 		return globalEnumSchemas;

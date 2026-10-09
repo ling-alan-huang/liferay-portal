@@ -75,26 +75,23 @@ public class URLWeavingAdapter extends WeavingAdaptor {
 			for (Class<?> interfaceClass : interfaceClasses) {
 				JavaClass javaClass = _classToJavaClass(interfaceClass);
 
-				if (javaClass == null) {
-					continue;
+				if (javaClass != null) {
+					bcelWorld.addSourceObjectType(javaClass, false);
 				}
-
-				bcelWorld.addSourceObjectType(javaClass, false);
 			}
 
 			currentClass = currentClass.getSuperclass();
 
-			if (currentClass == null) {
+			if (currentClass != null) {
+				JavaClass javaClass = _classToJavaClass(currentClass);
+
+				if (javaClass != null) {
+					bcelWorld.addSourceObjectType(javaClass, false);
+				}
+			}
+			else {
 				break;
 			}
-
-			JavaClass javaClass = _classToJavaClass(currentClass);
-
-			if (javaClass == null) {
-				continue;
-			}
-
-			bcelWorld.addSourceObjectType(javaClass, false);
 		}
 
 		JavaClass javaClass = _classToJavaClass(aspectClass);

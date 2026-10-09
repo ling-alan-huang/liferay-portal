@@ -145,13 +145,11 @@ public class JSPIndentationCheck extends BaseFileCheck {
 						content.substring(lineStartPos + 1);
 			}
 
-			if (insideUnformattedTextTag ||
-				!trimmedLine.matches("<(pre|textarea).*")) {
+			if (!insideUnformattedTextTag &&
+				trimmedLine.matches("<(pre|textarea).*")) {
 
-				continue;
+				insideUnformattedTextTag = true;
 			}
-
-			insideUnformattedTextTag = true;
 		}
 
 		return content;
@@ -505,11 +503,9 @@ public class JSPIndentationCheck extends BaseFileCheck {
 
 			int tabCount = getLeadingTabCount(line);
 
-			if ((minimumTabCount != -1) && (tabCount >= minimumTabCount)) {
-				continue;
+			if ((minimumTabCount == -1) || (tabCount < minimumTabCount)) {
+				minimumTabCount = tabCount;
 			}
-
-			minimumTabCount = tabCount;
 		}
 
 		return minimumTabCount;

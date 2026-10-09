@@ -101,14 +101,13 @@ public class CommerceShipmentSearchPermissionFilterContributor
 						String.valueOf(accountEntry.getAccountEntryId()));
 				}
 
-				if (!_userGroupRoleLocalService.hasUserGroupRole(
+				if (_userGroupRoleLocalService.hasUserGroupRole(
 						userId, accountEntryGroupId,
 						AccountRoleConstants.ROLE_NAME_ACCOUNT_SUPPLIER)) {
 
-					continue;
+					supplierAccountEntryIds.add(
+						accountEntry.getAccountEntryId());
 				}
-
-				supplierAccountEntryIds.add(accountEntry.getAccountEntryId());
 			}
 
 			if (!manageCommerceAccountIdsTermsFilter.isEmpty()) {
@@ -141,14 +140,13 @@ public class CommerceShipmentSearchPermissionFilterContributor
 								commerceChannel.getCommerceChannelId()));
 					}
 
-					if (!supplierAccountEntryIds.contains(
+					if (supplierAccountEntryIds.contains(
 							commerceChannel.getAccountEntryId())) {
 
-						continue;
+						supplierCommerceChannelIdsTermsFilter.addValue(
+							String.valueOf(
+								commerceChannel.getCommerceChannelId()));
 					}
-
-					supplierCommerceChannelIdsTermsFilter.addValue(
-						String.valueOf(commerceChannel.getCommerceChannelId()));
 				}
 			}
 

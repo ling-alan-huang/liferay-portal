@@ -157,11 +157,9 @@ public class AssetTagLocalServiceImpl extends AssetTagLocalServiceBaseImpl {
 					null, userId, group.getGroupId(), name, serviceContext);
 			}
 
-			if (tag == null) {
-				continue;
+			if (tag != null) {
+				tags.add(tag);
 			}
-
-			tags.add(tag);
 		}
 
 		return tags;

@@ -195,11 +195,9 @@ public class DebugUtil {
 		for (String checkName : checkNames) {
 			Double processingTime = _processingTimeMap.get(checkName);
 
-			if (processingTime == null) {
-				continue;
+			if (processingTime != null) {
+				checkTypeProcessingTimeMap.put(checkName, processingTime);
 			}
-
-			checkTypeProcessingTimeMap.put(checkName, processingTime);
 		}
 
 		if (checkTypeProcessingTimeMap.isEmpty()) {

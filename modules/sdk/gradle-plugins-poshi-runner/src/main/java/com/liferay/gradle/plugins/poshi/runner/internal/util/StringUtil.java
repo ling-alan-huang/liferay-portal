@@ -27,15 +27,13 @@ public class StringUtil extends com.liferay.gradle.util.StringUtil {
 
 			offset += count;
 
-			if (offset != buffer.length) {
-				continue;
+			if (offset == buffer.length) {
+				byte[] newBuffer = new byte[buffer.length << 1];
+
+				System.arraycopy(buffer, 0, newBuffer, 0, buffer.length);
+
+				buffer = newBuffer;
 			}
-
-			byte[] newBuffer = new byte[buffer.length << 1];
-
-			System.arraycopy(buffer, 0, newBuffer, 0, buffer.length);
-
-			buffer = newBuffer;
 		}
 
 		if (offset == 0) {

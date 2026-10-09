@@ -807,13 +807,11 @@ public class DataSourceFaroController extends BaseFaroController {
 		Map<String, List<Field>> fieldsMap = new HashMap<>();
 
 		for (List<Field> fields : fieldsList) {
-			if (!ListUtil.isNotNull(fields)) {
-				continue;
+			if (ListUtil.isNotNull(fields)) {
+				Field field = fields.get(0);
+
+				fieldsMap.put(field.getName(), fields);
 			}
-
-			Field field = fields.get(0);
-
-			fieldsMap.put(field.getName(), fields);
 		}
 
 		return TransformUtil.transform(
@@ -874,11 +872,9 @@ public class DataSourceFaroController extends BaseFaroController {
 				for (ChannelsConfiguration.Channel channel : channels) {
 					Set<Long> groupIds = channel.getGroupIds();
 
-					if (SetUtil.isEmpty(groupIds)) {
-						continue;
+					if (SetUtil.isNotEmpty(groupIds)) {
+						groupsCount += groupIds.size();
 					}
-
-					groupsCount += groupIds.size();
 				}
 			}
 
@@ -904,11 +900,9 @@ public class DataSourceFaroController extends BaseFaroController {
 				for (ChannelsConfiguration.Channel channel : channels) {
 					Set<Long> groupIds = channel.getGroupIds();
 
-					if (SetUtil.isEmpty(groupIds)) {
-						continue;
+					if (SetUtil.isNotEmpty(groupIds)) {
+						groupsCount += groupIds.size();
 					}
-
-					groupsCount += groupIds.size();
 				}
 			}
 

@@ -92,24 +92,20 @@ public class UpgradeLayoutTypeSettings extends BasePortletIdUpgradeProcess {
 			(UnicodeProperties)oldtypeSettingsUnicodeProperties.clone();
 
 		for (String key : oldtypeSettingsUnicodeProperties.keySet()) {
-			if (!StringUtil.startsWith(
-					key, LayoutTypePortletConstants.COLUMN_PREFIX) &&
-				!StringUtil.startsWith(
+			if (StringUtil.startsWith(
+					key, LayoutTypePortletConstants.COLUMN_PREFIX) ||
+				StringUtil.startsWith(
 					key, LayoutTypePortletConstants.NESTED_COLUMN_IDS)) {
 
-				continue;
+				String[] portletIds = StringUtil.split(
+					oldtypeSettingsUnicodeProperties.getProperty(key));
+
+				if (ArrayUtil.isEmpty(portletIds) ||
+					Validator.isNull(portletIds[0])) {
+
+					newtypeSettingsUnicodeProperties.remove(key);
+				}
 			}
-
-			String[] portletIds = StringUtil.split(
-				oldtypeSettingsUnicodeProperties.getProperty(key));
-
-			if (ArrayUtil.isNotEmpty(portletIds) &&
-				Validator.isNotNull(portletIds[0])) {
-
-				continue;
-			}
-
-			newtypeSettingsUnicodeProperties.remove(key);
 		}
 
 		return newtypeSettingsUnicodeProperties;

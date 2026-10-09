@@ -43,15 +43,13 @@ public class IncorrectFilePathCheck extends BaseFileCheck {
 			}
 
 			for (String illegalCharacter : _ILLEGAL_CHARACTERS) {
-				if (!path.contains(illegalCharacter)) {
-					continue;
+				if (path.contains(illegalCharacter)) {
+					addMessage(
+						fileName,
+						StringBundler.concat(
+							"Do not use \"", illegalCharacter, "\" in file or ",
+							"folder names \"", path, "\""));
 				}
-
-				addMessage(
-					fileName,
-					StringBundler.concat(
-						"Do not use \"", illegalCharacter, "\" in file or ",
-						"folder names \"", path, "\""));
 			}
 		}
 

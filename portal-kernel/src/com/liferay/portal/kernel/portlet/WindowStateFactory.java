@@ -49,15 +49,14 @@ public class WindowStateFactory {
 			{
 				try {
 					for (Field field : LiferayWindowState.class.getFields()) {
-						if (!Modifier.isStatic(field.getModifiers()) ||
-							(field.getType() != WindowState.class)) {
+						if (Modifier.isStatic(field.getModifiers()) &&
+							(field.getType() == WindowState.class)) {
 
-							continue;
+							WindowState windowState = (WindowState)field.get(
+								null);
+
+							put(windowState.toString(), windowState);
 						}
-
-						WindowState windowState = (WindowState)field.get(null);
-
-						put(windowState.toString(), windowState);
 					}
 				}
 				catch (IllegalAccessException illegalAccessException) {

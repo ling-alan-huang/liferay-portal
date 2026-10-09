@@ -157,15 +157,13 @@ public class ItemClassIndexUtil {
 
 				Class<?> fieldClass = field.getType();
 
-				if (isIterable(fieldClass) || isMap(fieldClass) ||
-					isSingleColumnAdoptableArray(fieldClass) ||
-					isSingleColumnAdoptableValue(fieldClass) ||
-					Objects.equals(clazz, fieldClass)) {
+				if (!isIterable(fieldClass) && !isMap(fieldClass) &&
+					!isSingleColumnAdoptableArray(fieldClass) &&
+					!isSingleColumnAdoptableValue(fieldClass) &&
+					!Objects.equals(clazz, fieldClass)) {
 
-					continue;
+					queue.add(clazz);
 				}
-
-				queue.add(clazz);
 			}
 
 			if (Objects.equals(

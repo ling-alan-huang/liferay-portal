@@ -85,13 +85,13 @@ public class AssertFailCheck extends BaseCheck {
 			DetailAST firstChildDetailAST =
 				previousSiblingDetailAST.getFirstChild();
 
-			if ((firstChildDetailAST.getType() != TokenTypes.METHOD_CALL) ||
-				equals(methodCallDetailAST, firstChildDetailAST)) {
-
+			if (firstChildDetailAST.getType() != TokenTypes.METHOD_CALL) {
 				continue;
 			}
 
-			log(methodCallDetailAST, _MSG_AVOID_ASSERT_FAIL);
+			if (!equals(methodCallDetailAST, firstChildDetailAST)) {
+				log(methodCallDetailAST, _MSG_AVOID_ASSERT_FAIL);
+			}
 		}
 	}
 

@@ -82,14 +82,12 @@ public class JSPUnusedTermsCheck extends BaseJSPTermsCheck {
 			className = className.substring(
 				className.lastIndexOf(CharPool.PERIOD) + 1);
 
-			if (!hasUnusedJSPTerm(
+			if (hasUnusedJSPTerm(
 					fileName, content, "\\W" + className + "[^\\w\"]", "class",
 					checkedFileNames, includeFileNames, getContentsMap())) {
 
-				continue;
+				unneededImports.add(importLine);
 			}
-
-			unneededImports.add(importLine);
 		}
 	}
 
@@ -115,14 +113,12 @@ public class JSPUnusedTermsCheck extends BaseJSPTermsCheck {
 				StringPool.LESS_THAN, prefix, ":|\\$\\{", prefix,
 				StringPool.COLON);
 
-			if (!hasUnusedJSPTerm(
+			if (hasUnusedJSPTerm(
 					fileName, content, regex, "taglib", checkedFileNames,
 					includeFileNames, getContentsMap())) {
 
-				continue;
+				unneededTaglibs.add(taglibLine);
 			}
-
-			unneededTaglibs.add(taglibLine);
 		}
 	}
 
@@ -148,13 +144,9 @@ public class JSPUnusedTermsCheck extends BaseJSPTermsCheck {
 				}
 			}
 
-			if ((x >= y) ||
-				!_isJSPDuplicateImport(fileName, importLine, false)) {
-
-				continue;
+			if ((x < y) && _isJSPDuplicateImport(fileName, importLine, false)) {
+				duplicateImports.add(importLine);
 			}
-
-			duplicateImports.add(importLine);
 		}
 
 		return duplicateImports;
@@ -174,13 +166,13 @@ public class JSPUnusedTermsCheck extends BaseJSPTermsCheck {
 
 			int y = content.indexOf("<%@ taglib uri=");
 
-			if ((y == -1) || (x >= y) ||
-				!_isJSPDuplicateTaglib(fileName, taglibLine, false)) {
-
+			if (y == -1) {
 				continue;
 			}
 
-			duplicateTaglibs.add(taglibLine);
+			if ((x < y) && _isJSPDuplicateTaglib(fileName, taglibLine, false)) {
+				duplicateTaglibs.add(taglibLine);
+			}
 		}
 
 		return duplicateTaglibs;
@@ -414,11 +406,9 @@ public class JSPUnusedTermsCheck extends BaseJSPTermsCheck {
 		String line = null;
 
 		while ((line = unsyncBufferedReader.readLine()) != null) {
-			if (!line.contains("import=")) {
-				continue;
+			if (line.contains("import=")) {
+				importLines.add(line);
 			}
-
-			importLines.add(line);
 		}
 
 		List<String> unneededImports = _getJSPDuplicateImports(
@@ -484,11 +474,9 @@ public class JSPUnusedTermsCheck extends BaseJSPTermsCheck {
 		String line = null;
 
 		while ((line = unsyncBufferedReader.readLine()) != null) {
-			if (!line.contains("uri=")) {
-				continue;
+			if (line.contains("uri=")) {
+				taglibLines.add(line);
 			}
-
-			taglibLines.add(line);
 		}
 
 		List<String> unneededTaglibs = _getJSPDuplicateTaglibs(

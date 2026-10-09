@@ -403,13 +403,11 @@ public class ObjectEntryInfoItemFormProviderUtil {
 									DELETION_TYPE_DISASSOCIATE,
 								false)) {
 
-					if (!objectRelationship.compareType(
+					if (objectRelationship.compareType(
 							ObjectRelationshipConstants.TYPE_MANY_TO_MANY)) {
 
-						continue;
+						objectRelationships.add(objectRelationship);
 					}
-
-					objectRelationships.add(objectRelationship);
 				}
 
 				for (ObjectRelationship objectRelationship :

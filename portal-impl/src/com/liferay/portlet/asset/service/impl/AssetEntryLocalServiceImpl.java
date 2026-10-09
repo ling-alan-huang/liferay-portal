@@ -843,21 +843,17 @@ public class AssetEntryLocalServiceImpl extends AssetEntryLocalServiceBaseImpl {
 						entryId);
 
 					for (AssetTag oldTag : oldTags) {
-						if (tags.contains(oldTag)) {
-							continue;
+						if (!tags.contains(oldTag)) {
+							_assetTagLocalService.decrementAssetCount(
+								oldTag.getTagId(), classNameId);
 						}
-
-						_assetTagLocalService.decrementAssetCount(
-							oldTag.getTagId(), classNameId);
 					}
 
 					for (AssetTag tag : tags) {
-						if (oldTags.contains(tag)) {
-							continue;
+						if (!oldTags.contains(tag)) {
+							_assetTagLocalService.incrementAssetCount(
+								tag.getTagId(), classNameId);
 						}
-
-						_assetTagLocalService.incrementAssetCount(
-							tag.getTagId(), classNameId);
 					}
 				}
 			}
@@ -1230,15 +1226,13 @@ public class AssetEntryLocalServiceImpl extends AssetEntryLocalServiceBaseImpl {
 			_assetCategoryLocalService.getCategories(className, classPK);
 
 		for (AssetCategory category : oldCategories) {
-			if (ArrayUtil.contains(categoryIds, category.getCategoryId()) ||
-				AssetCategoryPermission.contains(
+			if (!ArrayUtil.contains(categoryIds, category.getCategoryId()) &&
+				!AssetCategoryPermission.contains(
 					permissionChecker, category, ActionKeys.VIEW)) {
 
-				continue;
+				categoryIds = ArrayUtil.append(
+					categoryIds, category.getCategoryId());
 			}
-
-			categoryIds = ArrayUtil.append(
-				categoryIds, category.getCategoryId());
 		}
 
 		return categoryIds;
@@ -1429,12 +1423,10 @@ public class AssetEntryLocalServiceImpl extends AssetEntryLocalServiceBaseImpl {
 				entry.getEntryId());
 
 			for (AssetTag tag : tags) {
-				if (!entry.isVisible()) {
-					continue;
+				if (entry.isVisible()) {
+					_assetTagLocalService.decrementAssetCount(
+						tag.getTagId(), entry.getClassNameId());
 				}
-
-				_assetTagLocalService.decrementAssetCount(
-					tag.getTagId(), entry.getClassNameId());
 			}
 
 			// Entry

@@ -707,12 +707,10 @@ public class ContentTargetingUpgradeProcessTest {
 					for (UpgradeStep upgradeStep : upgradeSteps) {
 						Class<?> clazz = upgradeStep.getClass();
 
-						if (!Objects.equals(clazz.getName(), _CLASS_NAME)) {
-							continue;
+						if (Objects.equals(clazz.getName(), _CLASS_NAME)) {
+							_contentTargetingUpgradeProcess =
+								(UpgradeProcess)upgradeStep;
 						}
-
-						_contentTargetingUpgradeProcess =
-							(UpgradeProcess)upgradeStep;
 					}
 				}
 

@@ -101,11 +101,9 @@ public class GetObjectEntriesValuesStrutsAction implements StrutsAction {
 				themeDisplay.getLocale(), objectDefinition, objectEntry,
 				new HashSet<>());
 
-			if (resultJSONObject == null) {
-				continue;
+			if (resultJSONObject != null) {
+				resultJSONArray.put(resultJSONObject);
 			}
-
-			resultJSONArray.put(resultJSONObject);
 		}
 
 		ServletResponseUtil.write(

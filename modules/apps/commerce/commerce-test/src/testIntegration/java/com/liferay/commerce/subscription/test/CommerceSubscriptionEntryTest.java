@@ -305,13 +305,11 @@ public class CommerceSubscriptionEntryTest {
 			CPSubscriptionInfo cpSubscriptionInfo =
 				cpInstance.getCPSubscriptionInfo();
 
-			if (cpSubscriptionInfo == null) {
-				continue;
+			if (cpSubscriptionInfo != null) {
+				CommerceTestUtil.addCommerceOrderItem(
+					commerceOrder.getCommerceOrderId(),
+					cpInstance.getCPInstanceId(), BigDecimal.ONE);
 			}
-
-			CommerceTestUtil.addCommerceOrderItem(
-				commerceOrder.getCommerceOrderId(),
-				cpInstance.getCPInstanceId(), BigDecimal.ONE);
 		}
 
 		_commerceSubscriptionEntryHelper.checkCommerceSubscriptions(

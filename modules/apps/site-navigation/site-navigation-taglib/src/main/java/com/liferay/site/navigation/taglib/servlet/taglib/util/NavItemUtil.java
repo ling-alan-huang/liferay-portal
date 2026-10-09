@@ -284,15 +284,13 @@ public class NavItemUtil {
 		while (iterator.hasNext()) {
 			Layout layout = iterator.next();
 
-			if (!layout.isHidden() && layout.isPublished() &&
-				LayoutPermissionUtil.contains(
+			if (layout.isHidden() || !layout.isPublished() ||
+				!LayoutPermissionUtil.contains(
 					themeDisplay.getPermissionChecker(), layout,
 					ActionKeys.VIEW)) {
 
-				continue;
+				iterator.remove();
 			}
-
-			iterator.remove();
 		}
 
 		return layouts;

@@ -474,25 +474,23 @@ public class ExportImportConfigurationParameterMapFactoryImpl
 						true));
 			}
 
-			if ((!defaultState && !portletDataAll) ||
-				(portletDataHandlerBoolean.getClassName() == null)) {
+			if ((defaultState || portletDataAll) &&
+				(portletDataHandlerBoolean.getClassName() != null)) {
 
-				continue;
-			}
+				String referrerClassName =
+					portletDataHandlerBoolean.getReferrerClassName();
 
-			String referrerClassName =
-				portletDataHandlerBoolean.getReferrerClassName();
-
-			if (referrerClassName == null) {
-				parameterMap.put(
-					portletDataHandlerBoolean.getClassName(),
-					new String[] {Boolean.TRUE.toString()});
-			}
-			else {
-				parameterMap.put(
-					portletDataHandlerBoolean.getClassName() +
-						StringPool.POUND + referrerClassName,
-					new String[] {Boolean.TRUE.toString()});
+				if (referrerClassName == null) {
+					parameterMap.put(
+						portletDataHandlerBoolean.getClassName(),
+						new String[] {Boolean.TRUE.toString()});
+				}
+				else {
+					parameterMap.put(
+						portletDataHandlerBoolean.getClassName() +
+							StringPool.POUND + referrerClassName,
+						new String[] {Boolean.TRUE.toString()});
+				}
 			}
 		}
 	}
@@ -611,22 +609,20 @@ public class ExportImportConfigurationParameterMapFactoryImpl
 
 				String[] portletDataValues = parameterMap.get(portletDataKey);
 
-				if (!portletDataAll &&
-					((portletDataValues == null) ||
-					 !GetterUtil.getBoolean(portletDataValues[0]))) {
+				if (portletDataAll ||
+					((portletDataValues != null) &&
+					 GetterUtil.getBoolean(portletDataValues[0]))) {
 
-					continue;
+					_populatePortletResourceNames(
+						parameterMap, dataSiteAndInstanceLevelPortlet);
+
+					_populateStagedModelTypes(
+						parameterMap, dataSiteAndInstanceLevelPortlet);
+
+					_addModelParameter(
+						parameterMap, dataSiteAndInstanceLevelPortlet,
+						portletDataAll);
 				}
-
-				_populatePortletResourceNames(
-					parameterMap, dataSiteAndInstanceLevelPortlet);
-
-				_populateStagedModelTypes(
-					parameterMap, dataSiteAndInstanceLevelPortlet);
-
-				_addModelParameter(
-					parameterMap, dataSiteAndInstanceLevelPortlet,
-					portletDataAll);
 			}
 
 			parameterMap.put(

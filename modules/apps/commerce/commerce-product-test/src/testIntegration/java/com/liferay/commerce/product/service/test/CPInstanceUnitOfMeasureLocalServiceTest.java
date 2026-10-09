@@ -428,11 +428,9 @@ public class CPInstanceUnitOfMeasureLocalServiceTest {
 		for (CPInstanceUnitOfMeasure cpInstanceUnitOfMeasure :
 				cpInstanceUnitOfMeasures) {
 
-			if (!cpInstanceUnitOfMeasure.isPrimary()) {
-				continue;
+			if (cpInstanceUnitOfMeasure.isPrimary()) {
+				primaryCPInstanceUnitOfMeasureCount++;
 			}
-
-			primaryCPInstanceUnitOfMeasureCount++;
 		}
 
 		Assert.assertEquals(1, primaryCPInstanceUnitOfMeasureCount);

@@ -144,13 +144,11 @@ public class AssetRendererFactoryRegistryUtil {
 				_classNameAssetRenderFactoriesServiceTrackerMap.getService(
 					key));
 
-			if (!assetRendererFactory.isActive(companyId) ||
-				(filterSelectable && !assetRendererFactory.isSelectable())) {
+			if (assetRendererFactory.isActive(companyId) &&
+				(!filterSelectable || assetRendererFactory.isSelectable())) {
 
-				continue;
+				filteredAssetRendererFactories.add(assetRendererFactory);
 			}
-
-			filteredAssetRendererFactories.add(assetRendererFactory);
 		}
 
 		return filteredAssetRendererFactories;

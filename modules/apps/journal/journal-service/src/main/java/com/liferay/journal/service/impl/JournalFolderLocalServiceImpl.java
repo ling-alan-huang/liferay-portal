@@ -174,14 +174,12 @@ public class JournalFolderLocalServiceImpl
 			folder.getGroupId(), folder.getFolderId());
 
 		for (JournalFolder curFolder : folders) {
-			if (!includeTrashedEntries &&
-				_trashHelper.isInTrashExplicitly(curFolder)) {
+			if (includeTrashedEntries ||
+				!_trashHelper.isInTrashExplicitly(curFolder)) {
 
-				continue;
+				journalFolderLocalService.deleteFolder(
+					curFolder, includeTrashedEntries);
 			}
-
-			journalFolderLocalService.deleteFolder(
-				curFolder, includeTrashedEntries);
 		}
 
 		// Folder
@@ -254,12 +252,10 @@ public class JournalFolderLocalServiceImpl
 					JournalFolder.class.getName(), folder.getFolderId(),
 					ddmStructureLink.getStructureId());
 
-			if (workflowDefinitionLink == null) {
-				continue;
+			if (workflowDefinitionLink != null) {
+				_workflowDefinitionLinkLocalService.
+					deleteWorkflowDefinitionLink(workflowDefinitionLink);
 			}
-
-			_workflowDefinitionLinkLocalService.deleteWorkflowDefinitionLink(
-				workflowDefinitionLink);
 		}
 
 		return folder;
@@ -932,23 +928,19 @@ public class JournalFolderLocalServiceImpl
 		}
 
 		for (Long ddmStructureId : ddmStructureIds) {
-			if (originalDDMStructureIds.contains(ddmStructureId)) {
-				continue;
+			if (!originalDDMStructureIds.contains(ddmStructureId)) {
+				_ddmStructureLinkLocalService.addStructureLink(
+					_classNameLocalService.getClassNameId(JournalFolder.class),
+					folder.getFolderId(), ddmStructureId);
 			}
-
-			_ddmStructureLinkLocalService.addStructureLink(
-				_classNameLocalService.getClassNameId(JournalFolder.class),
-				folder.getFolderId(), ddmStructureId);
 		}
 
 		for (Long originalDDMStructureId : originalDDMStructureIds) {
-			if (ddmStructureIds.contains(originalDDMStructureId)) {
-				continue;
+			if (!ddmStructureIds.contains(originalDDMStructureId)) {
+				_ddmStructureLinkLocalService.deleteStructureLink(
+					_classNameLocalService.getClassNameId(JournalFolder.class),
+					folder.getFolderId(), originalDDMStructureId);
 			}
-
-			_ddmStructureLinkLocalService.deleteStructureLink(
-				_classNameLocalService.getClassNameId(JournalFolder.class),
-				folder.getFolderId(), originalDDMStructureId);
 		}
 	}
 
@@ -1161,16 +1153,16 @@ public class JournalFolderLocalServiceImpl
 
 					// Workflow
 
-					if (curArticleOldStatus !=
+					if (curArticleOldStatus ==
 							WorkflowConstants.STATUS_PENDING) {
 
-						continue;
+						_workflowInstanceLinkLocalService.
+							deleteWorkflowInstanceLink(
+								curArticle.getCompanyId(),
+								curArticle.getGroupId(),
+								JournalArticle.class.getName(),
+								curArticle.getId());
 					}
-
-					_workflowInstanceLinkLocalService.
-						deleteWorkflowInstanceLink(
-							curArticle.getCompanyId(), curArticle.getGroupId(),
-							JournalArticle.class.getName(), curArticle.getId());
 				}
 
 				// Asset
@@ -1282,11 +1274,10 @@ public class JournalFolderLocalServiceImpl
 
 					// Trash
 
-					if (trashVersion == null) {
-						continue;
+					if (trashVersion != null) {
+						_trashVersionLocalService.deleteTrashVersion(
+							trashVersion);
 					}
-
-					_trashVersionLocalService.deleteTrashVersion(trashVersion);
 				}
 
 				// Asset

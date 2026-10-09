@@ -187,14 +187,12 @@ public abstract class BaseAWSSecretsManagerSecretProvider
 
 							String name = secretListEntry.getName();
 
-							if ((name == null) ||
-								!name.startsWith(secretNamePrefix)) {
+							if ((name != null) &&
+								name.startsWith(secretNamePrefix)) {
 
-								continue;
+								secretIdentifiers.add(
+									name.substring(secretNamePrefix.length()));
 							}
-
-							secretIdentifiers.add(
-								name.substring(secretNamePrefix.length()));
 						}
 
 						String nextToken = listSecretsResult.getNextToken();

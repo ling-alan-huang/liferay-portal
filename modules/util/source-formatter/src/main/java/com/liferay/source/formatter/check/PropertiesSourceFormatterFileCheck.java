@@ -283,16 +283,14 @@ public class PropertiesSourceFormatterFileCheck extends BaseFileCheck {
 
 				File file = getFile(propertyFileName, getMaxDirLevel());
 
-				if (file != null) {
-					continue;
+				if (file == null) {
+					addMessage(
+						fileName,
+						StringBundler.concat(
+							"Property value \"", propertyFileName,
+							"\" points to file or directory that does not ",
+							"exist"));
 				}
-
-				addMessage(
-					fileName,
-					StringBundler.concat(
-						"Property value \"", propertyFileName,
-						"\" points to file or directory that does not ",
-						"exist"));
 			}
 		}
 

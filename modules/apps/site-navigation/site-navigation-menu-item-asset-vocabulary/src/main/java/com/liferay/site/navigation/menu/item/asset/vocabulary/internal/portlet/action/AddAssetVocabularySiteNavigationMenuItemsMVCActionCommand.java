@@ -123,13 +123,11 @@ public class AddAssetVocabularySiteNavigationMenuItemsMVCActionCommand
 
 				int order = ParamUtil.getInteger(actionRequest, "order", -1);
 
-				if (order < 0) {
-					continue;
+				if (order >= 0) {
+					_siteNavigationMenuItemService.updateSiteNavigationMenuItem(
+						siteNavigationMenuItem.getSiteNavigationMenuItemId(),
+						parentSiteNavigationMenuItemId, order + i);
 				}
-
-				_siteNavigationMenuItemService.updateSiteNavigationMenuItem(
-					siteNavigationMenuItem.getSiteNavigationMenuItemId(),
-					parentSiteNavigationMenuItemId, order + i);
 			}
 
 			String message = _language.format(

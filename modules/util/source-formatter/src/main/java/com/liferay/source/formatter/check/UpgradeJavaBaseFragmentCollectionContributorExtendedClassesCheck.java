@@ -58,17 +58,15 @@ public class UpgradeJavaBaseFragmentCollectionContributorExtendedClassesCheck
 
 			List<JavaParameter> javaParameters = javaSignature.getParameters();
 
-			if (!Objects.equals(
-					childJavaTerm.getName(), "getFragmentCollectionKey") ||
-				!javaParameters.isEmpty()) {
+			if (Objects.equals(
+					childJavaTerm.getName(), "getFragmentCollectionKey") &&
+				javaParameters.isEmpty()) {
 
-				continue;
-			}
+				Matcher matcher = _pattern.matcher(javaClass.getContent());
 
-			Matcher matcher = _pattern.matcher(javaClass.getContent());
-
-			if (matcher.find()) {
-				return matcher.group(1);
+				if (matcher.find()) {
+					return matcher.group(1);
+				}
 			}
 		}
 

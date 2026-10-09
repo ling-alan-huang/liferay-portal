@@ -966,11 +966,9 @@ public class MainServlet extends HttpServlet {
 
 			portletBagFactory.create(portlet);
 
-			if (i != 0) {
-				continue;
+			if (i == 0) {
+				_initPortletApp(portlet, servletContext);
 			}
-
-			_initPortletApp(portlet, servletContext);
 		}
 
 		servletContext.setAttribute(WebKeys.PLUGIN_PORTLETS, portlets);

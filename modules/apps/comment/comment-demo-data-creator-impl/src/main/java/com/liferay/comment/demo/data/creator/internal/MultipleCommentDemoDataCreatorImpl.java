@@ -74,13 +74,11 @@ public class MultipleCommentDemoDataCreatorImpl
 
 			commentsCount++;
 
-			if (level >= _MAX_LEVEL) {
-				continue;
+			if (level < _MAX_LEVEL) {
+				commentsCount += _addComments(
+					userIds, classedModel, comment.getCommentId(),
+					maxComments - commentsCount, level + 1);
 			}
-
-			commentsCount += _addComments(
-				userIds, classedModel, comment.getCommentId(),
-				maxComments - commentsCount, level + 1);
 		}
 
 		return commentsCount;

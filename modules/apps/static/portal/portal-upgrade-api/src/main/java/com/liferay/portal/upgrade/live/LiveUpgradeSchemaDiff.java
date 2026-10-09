@@ -60,12 +60,10 @@ public class LiveUpgradeSchemaDiff {
 		Map<String, String> defaultValuesMap = new HashMap<>();
 
 		for (Column column : _resultColumnsMap.values()) {
-			if (column.getDefaultValue() == null) {
-				continue;
+			if (column.getDefaultValue() != null) {
+				defaultValuesMap.put(
+					column.getNewColumnName(), column.getDefaultValue());
 			}
-
-			defaultValuesMap.put(
-				column.getNewColumnName(), column.getDefaultValue());
 		}
 
 		return defaultValuesMap;

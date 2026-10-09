@@ -66,11 +66,9 @@ public class CommerceVirtualOrderItemFinderImpl
 			while (iterator.hasNext()) {
 				Long l = iterator.next();
 
-				if (l == null) {
-					continue;
+				if (l != null) {
+					count += l.intValue();
 				}
-
-				count += l.intValue();
 			}
 
 			return count;

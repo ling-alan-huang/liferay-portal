@@ -94,14 +94,12 @@ public class CommercePriceModifierHelperImpl
 						originalCommerceCurrency);
 				}
 
-				if ((lowestPrice != null) &&
-					(actualPrice.compareTo(lowestPrice) >= 0)) {
+				if ((lowestPrice == null) ||
+					(actualPrice.compareTo(lowestPrice) < 0)) {
 
-					continue;
+					lowestPrice = actualPrice;
+					priceModifierKey = commercePriceModifierType.getKey();
 				}
-
-				lowestPrice = actualPrice;
-				priceModifierKey = commercePriceModifierType.getKey();
 			}
 		}
 

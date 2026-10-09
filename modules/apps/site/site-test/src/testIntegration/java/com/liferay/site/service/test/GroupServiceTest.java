@@ -1469,13 +1469,11 @@ public class GroupServiceTest {
 				"A group cannot be its own parent", _group.getGroupId(),
 				selectableGroupId);
 
-			if (!staging) {
-				continue;
+			if (staging) {
+				Assert.assertNotEquals(
+					"A group cannot have its live group as parent",
+					_group.getLiveGroupId(), selectableGroupId);
 			}
-
-			Assert.assertNotEquals(
-				"A group cannot have its live group as parent",
-				_group.getLiveGroupId(), selectableGroupId);
 		}
 	}
 

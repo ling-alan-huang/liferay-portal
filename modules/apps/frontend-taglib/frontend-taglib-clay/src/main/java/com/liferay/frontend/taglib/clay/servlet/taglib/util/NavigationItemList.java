@@ -19,11 +19,9 @@ public class NavigationItemList extends ArrayList<NavigationItem> {
 		NavigationItemList navigationItemList = new NavigationItemList();
 
 		for (NavigationItem navigationItem : navigationItems) {
-			if (navigationItem == null) {
-				continue;
+			if (navigationItem != null) {
+				navigationItemList.add(navigationItem);
 			}
-
-			navigationItemList.add(navigationItem);
 		}
 
 		return navigationItemList;

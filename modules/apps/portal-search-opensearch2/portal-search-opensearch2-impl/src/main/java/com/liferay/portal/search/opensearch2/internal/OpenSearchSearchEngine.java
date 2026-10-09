@@ -377,19 +377,17 @@ public class OpenSearchSearchEngine
 				connectionInformation.getNodeInformationList();
 
 			for (NodeInformation nodeInformation : nodeInformationList) {
-				if (meetsMinimumVersionRequirement(
+				if (!meetsMinimumVersionRequirement(
 						minimumVersion, nodeInformation.getVersion())) {
 
-					continue;
+					_log.error(
+						StringBundler.concat(
+							"OpenSearch node ", nodeInformation.getName(),
+							" does not meet the minimum version requirement ",
+							"of ", minimumVersionString));
+
+					System.exit(1);
 				}
-
-				_log.error(
-					StringBundler.concat(
-						"OpenSearch node ", nodeInformation.getName(),
-						" does not meet the minimum version requirement of ",
-						minimumVersionString));
-
-				System.exit(1);
 			}
 		}
 	}

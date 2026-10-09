@@ -99,11 +99,9 @@ public class ConfigurationEnvBuilderTest extends ConfigurationEnvBuilder {
 		List<String> leftoverList = new ArrayList<>();
 
 		for (String line : actualList) {
-			if (expectedList.remove(line)) {
-				continue;
+			if (!expectedList.remove(line)) {
+				leftoverList.add(line);
 			}
-
-			leftoverList.add(line);
 		}
 
 		Assert.assertTrue(

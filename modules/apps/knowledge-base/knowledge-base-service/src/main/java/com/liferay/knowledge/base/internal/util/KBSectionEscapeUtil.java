@@ -36,13 +36,11 @@ public class KBSectionEscapeUtil {
 		for (int i = 0; i < sectionsArray.length; i++) {
 			String section = sectionsArray[i];
 
-			if (!StringUtil.startsWith(section, StringPool.UNDERLINE) ||
-				!StringUtil.endsWith(section, StringPool.UNDERLINE)) {
+			if (StringUtil.startsWith(section, StringPool.UNDERLINE) &&
+				StringUtil.endsWith(section, StringPool.UNDERLINE)) {
 
-				continue;
+				sectionsArray[i] = section.substring(1, section.length() - 1);
 			}
-
-			sectionsArray[i] = section.substring(1, section.length() - 1);
 		}
 
 		return sectionsArray;

@@ -102,12 +102,10 @@ public class AuditPortalSettingsConfigurationScreenWrapperTest {
 
 			String key = configurationScreen.getKey();
 
-			if (!key.startsWith(AuditConfiguration.class.getName())) {
-				continue;
+			if (key.startsWith(AuditConfiguration.class.getName())) {
+				configurationScreens.put(
+					configurationScreen.getScope(), configurationScreen);
 			}
-
-			configurationScreens.put(
-				configurationScreen.getScope(), configurationScreen);
 		}
 
 		return configurationScreens;

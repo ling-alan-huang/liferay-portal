@@ -222,14 +222,12 @@ public class PortletHotDeployListener extends BaseHotDeployListener {
 		while (iterator.hasNext()) {
 			Portlet portlet = iterator.next();
 
-			if (portletAppInitialized) {
-				continue;
+			if (!portletAppInitialized) {
+				initPortletApp(
+					servletContextName, servletContext, classLoader, portlet);
+
+				portletAppInitialized = true;
 			}
-
-			initPortletApp(
-				servletContextName, servletContext, classLoader, portlet);
-
-			portletAppInitialized = true;
 		}
 
 		String xml = StreamUtil.toString(

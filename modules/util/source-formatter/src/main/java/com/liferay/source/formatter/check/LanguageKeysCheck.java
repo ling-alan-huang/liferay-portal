@@ -261,11 +261,9 @@ public class LanguageKeysCheck extends BaseFileCheck {
 				String subdirectoryPath = SourceUtil.getAbsolutePath(
 					subdirectory);
 
-				if (!subdirectoryPath.endsWith("-lang")) {
-					continue;
+				if (subdirectoryPath.endsWith("-lang")) {
+					langModulePaths.add(subdirectoryPath);
 				}
-
-				langModulePaths.add(subdirectoryPath);
 			}
 
 			if (isSubrepository() &&
@@ -282,13 +280,11 @@ public class LanguageKeysCheck extends BaseFileCheck {
 					new String[] {"**/resources/content/Language.properties"},
 					new SourceFormatterExcludes(), true);
 
-			if (languagePropertyFileNames.isEmpty()) {
-				continue;
+			if (!languagePropertyFileNames.isEmpty()) {
+				properties.load(
+					new FileInputStream(
+						new File(languagePropertyFileNames.get(0))));
 			}
-
-			properties.load(
-				new FileInputStream(
-					new File(languagePropertyFileNames.get(0))));
 		}
 
 		if (absolutePath.contains("/modules/dxp/apps/")) {

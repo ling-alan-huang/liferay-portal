@@ -426,12 +426,10 @@ public class PageDefinitionDTOConverter
 
 							String key = entry.getKey();
 
-							if (!key.startsWith("lfr-theme:")) {
-								continue;
+							if (key.startsWith("lfr-theme:")) {
+								themeSettingsUnicodeProperties.setProperty(
+									key, entry.getValue());
 							}
-
-							themeSettingsUnicodeProperties.setProperty(
-								key, entry.getValue());
 						}
 
 						if (themeSettingsUnicodeProperties.isEmpty()) {

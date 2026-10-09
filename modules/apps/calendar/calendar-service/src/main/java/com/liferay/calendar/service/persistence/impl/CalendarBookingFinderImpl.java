@@ -546,11 +546,9 @@ public class CalendarBookingFinderImpl
 		for (int i = 0; i < calendarIds.length; i++) {
 			sb.append("calendarId = ? ");
 
-			if ((i + 1) == calendarIds.length) {
-				continue;
+			if ((i + 1) != calendarIds.length) {
+				sb.append("OR ");
 			}
-
-			sb.append("OR ");
 		}
 
 		sb.append(") AND");
@@ -571,11 +569,9 @@ public class CalendarBookingFinderImpl
 		for (int i = 0; i < calendarResourceIds.length; i++) {
 			sb.append("calendarResourceId = ? ");
 
-			if ((i + 1) == calendarResourceIds.length) {
-				continue;
+			if ((i + 1) != calendarResourceIds.length) {
+				sb.append("OR ");
 			}
-
-			sb.append("OR ");
 		}
 
 		sb.append(") AND");
@@ -595,11 +591,9 @@ public class CalendarBookingFinderImpl
 		for (int i = 0; i < groupIds.length; i++) {
 			sb.append("groupId = ?");
 
-			if ((i + 1) >= groupIds.length) {
-				continue;
+			if ((i + 1) < groupIds.length) {
+				sb.append(" OR ");
 			}
-
-			sb.append(" OR ");
 		}
 
 		sb.append(") AND");
@@ -627,11 +621,9 @@ public class CalendarBookingFinderImpl
 		for (int i = 0; i < statuses.length; i++) {
 			sb.append("status = ? ");
 
-			if ((i + 1) == statuses.length) {
-				continue;
+			if ((i + 1) != statuses.length) {
+				sb.append("OR ");
 			}
-
-			sb.append("OR ");
 		}
 
 		sb.append(") ");

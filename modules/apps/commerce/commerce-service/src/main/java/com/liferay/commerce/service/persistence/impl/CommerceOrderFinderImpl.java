@@ -173,11 +173,9 @@ public class CommerceOrderFinderImpl
 		for (int i = 0; i < orderStatuses.length; i++) {
 			sb.append(orderStatuses[i]);
 
-			if (i == (orderStatuses.length - 1)) {
-				continue;
+			if (i != (orderStatuses.length - 1)) {
+				sb.append(", ");
 			}
-
-			sb.append(", ");
 		}
 
 		return StringUtil.replace(sql, "[$ORDER_STATUS$]", sb.toString());

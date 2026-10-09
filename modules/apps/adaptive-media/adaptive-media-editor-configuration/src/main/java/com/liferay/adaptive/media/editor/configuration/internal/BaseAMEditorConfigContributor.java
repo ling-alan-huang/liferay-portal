@@ -62,13 +62,12 @@ public abstract class BaseAMEditorConfigContributor
 		for (ItemSelectorCriterion itemSelectorCriterion :
 				itemSelectorCriteria) {
 
-			if (!isItemSelectorCriterionOverridable(itemSelectorCriterion)) {
-				continue;
+			if (isItemSelectorCriterionOverridable(itemSelectorCriterion)) {
+				addAMImageFileEntryItemSelectorReturnType(
+					itemSelectorCriterion);
+
+				amImageURLItemSelectorReturnTypeAdded = true;
 			}
-
-			addAMImageFileEntryItemSelectorReturnType(itemSelectorCriterion);
-
-			amImageURLItemSelectorReturnTypeAdded = true;
 		}
 
 		if (!amImageURLItemSelectorReturnTypeAdded) {

@@ -436,13 +436,11 @@ public class FolderStagedModelDataHandler
 				defaultFileEntryTypeUuid = dlFileEntryType.getUuid();
 			}
 
-			if (!dlFileEntryType.isExportable()) {
-				continue;
+			if (dlFileEntryType.isExportable()) {
+				StagedModelDataHandlerUtil.exportReferenceStagedModel(
+					portletDataContext, folder, dlFileEntryType,
+					PortletDataContext.REFERENCE_TYPE_STRONG);
 			}
-
-			StagedModelDataHandlerUtil.exportReferenceStagedModel(
-				portletDataContext, folder, dlFileEntryType,
-				PortletDataContext.REFERENCE_TYPE_STRONG);
 		}
 
 		folderElement.addAttribute(
@@ -492,14 +490,12 @@ public class FolderStagedModelDataHandler
 			currentFolderFileEntryTypeIds.add(
 				existingDLFileEntryType.getFileEntryTypeId());
 
-			if (!defaultFileEntryTypeUuid.equals(
+			if (defaultFileEntryTypeUuid.equals(
 					referenceElement.attributeValue("uuid"))) {
 
-				continue;
+				defaultFileEntryTypeId =
+					existingDLFileEntryType.getFileEntryTypeId();
 			}
-
-			defaultFileEntryTypeId =
-				existingDLFileEntryType.getFileEntryTypeId();
 		}
 
 		if (GetterUtil.getBoolean(

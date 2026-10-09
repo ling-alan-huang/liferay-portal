@@ -108,19 +108,18 @@ public class InitUtil {
 
 			Class<?> driverClass = driver.getClass();
 
-			if (!PortalClassLoaderUtil.isPortalClassLoader(
+			if (PortalClassLoaderUtil.isPortalClassLoader(
 					driverClass.getClassLoader())) {
 
-				continue;
-			}
-
-			try {
-				DriverManager.deregisterDriver(driver);
-			}
-			catch (SQLException sqlException) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(
-						"Unable to deregister driver " + driver, sqlException);
+				try {
+					DriverManager.deregisterDriver(driver);
+				}
+				catch (SQLException sqlException) {
+					if (_log.isWarnEnabled()) {
+						_log.warn(
+							"Unable to deregister driver " + driver,
+							sqlException);
+					}
 				}
 			}
 		}

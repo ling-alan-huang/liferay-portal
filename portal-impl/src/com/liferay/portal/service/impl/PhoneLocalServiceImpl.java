@@ -139,13 +139,11 @@ public class PhoneLocalServiceImpl extends PhoneLocalServiceBaseImpl {
 				companyId, classNameId, classPK, primary);
 
 			for (Phone phone : phones) {
-				if ((phoneId > 0) && (phone.getPhoneId() == phoneId)) {
-					continue;
+				if ((phoneId <= 0) || (phone.getPhoneId() != phoneId)) {
+					phone.setPrimary(false);
+
+					phonePersistence.update(phone);
 				}
-
-				phone.setPrimary(false);
-
-				phonePersistence.update(phone);
 			}
 		}
 	}

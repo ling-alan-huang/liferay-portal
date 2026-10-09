@@ -561,13 +561,11 @@ public class ElementImpl extends BranchImpl implements Element {
 		for (Element element : elements) {
 			element.detach();
 
-			if (!elementName.equals(element.getName())) {
-				continue;
+			if (elementName.equals(element.getName())) {
+				String attributeValue = element.attributeValue(attributeName);
+
+				elementsMap.put(attributeValue, element);
 			}
-
-			String attributeValue = element.attributeValue(attributeName);
-
-			elementsMap.put(attributeValue, element);
 		}
 
 		for (Element element : elements) {
@@ -617,13 +615,12 @@ public class ElementImpl extends BranchImpl implements Element {
 		for (Element element : elements) {
 			element.detach();
 
-			if (!elementName.equals(element.getName())) {
-				continue;
+			if (elementName.equals(element.getName())) {
+				String childElementValue = element.elementText(
+					childElementName);
+
+				elementsMap.put(childElementValue, element);
 			}
-
-			String childElementValue = element.elementText(childElementName);
-
-			elementsMap.put(childElementValue, element);
 		}
 
 		for (Element element : elements) {

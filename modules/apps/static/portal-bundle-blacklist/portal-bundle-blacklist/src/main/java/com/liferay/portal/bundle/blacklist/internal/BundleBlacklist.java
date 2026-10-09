@@ -100,24 +100,22 @@ public class BundleBlacklist {
 
 			String symbolicName = entry.getKey();
 
-			if (_blacklistBundleSymbolicNames.contains(symbolicName)) {
-				continue;
+			if (!_blacklistBundleSymbolicNames.contains(symbolicName)) {
+				if (_log.isInfoEnabled()) {
+					_log.info("Reinstalling bundle " + symbolicName);
+				}
+
+				UninstalledBundleData uninstalledBundleData = entry.getValue();
+
+				BundleUtil.installBundle(
+					bundleContext, _lpkgDeployer,
+					uninstalledBundleData.getLocation(),
+					uninstalledBundleData.getStartLevel());
+
+				iterator.remove();
+
+				_removeFromBlacklistFile(symbolicName);
 			}
-
-			if (_log.isInfoEnabled()) {
-				_log.info("Reinstalling bundle " + symbolicName);
-			}
-
-			UninstalledBundleData uninstalledBundleData = entry.getValue();
-
-			BundleUtil.installBundle(
-				bundleContext, _lpkgDeployer,
-				uninstalledBundleData.getLocation(),
-				uninstalledBundleData.getStartLevel());
-
-			iterator.remove();
-
-			_removeFromBlacklistFile(symbolicName);
 		}
 	}
 
@@ -161,14 +159,12 @@ public class BundleBlacklist {
 
 			Matcher matcher = _pattern.matcher(value);
 
-			if (!matcher.matches()) {
-				continue;
+			if (matcher.matches()) {
+				_uninstalledBundles.put(
+					(String)entry.getKey(),
+					new UninstalledBundleData(
+						matcher.group(1), Integer.valueOf(matcher.group(2))));
 			}
-
-			_uninstalledBundles.put(
-				(String)entry.getKey(),
-				new UninstalledBundleData(
-					matcher.group(1), Integer.valueOf(matcher.group(2))));
 		}
 	}
 
@@ -230,13 +226,11 @@ public class BundleBlacklist {
 		List<Bundle> uninstalledBundles = new ArrayList<>();
 
 		for (Bundle bundle : bundleContext.getBundles()) {
-			if ((bundle.getState() == Bundle.UNINSTALLED) ||
-				!_processBundle(bundle)) {
+			if ((bundle.getState() != Bundle.UNINSTALLED) &&
+				_processBundle(bundle)) {
 
-				continue;
+				uninstalledBundles.add(bundle);
 			}
-
-			uninstalledBundles.add(bundle);
 		}
 
 		if (!uninstalledBundles.isEmpty()) {

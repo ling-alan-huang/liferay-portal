@@ -184,11 +184,9 @@ public class BuildQueueRebalancer {
 		int count = 0;
 
 		for (RebalanceAction rebalanceAction : _rebalanceActions) {
-			if (rebalanceAction.getType() != type) {
-				continue;
+			if (rebalanceAction.getType() == type) {
+				count++;
 			}
-
-			count++;
 		}
 
 		return count;
@@ -243,14 +241,12 @@ public class BuildQueueRebalancer {
 			for (JenkinsMaster jenkinsMaster : _jenkinsMasters) {
 				int queueSize = _jenkinsMasterQueueSizes.get(jenkinsMaster);
 
-				if ((mostAvailableJenkinsMaster != null) &&
-					(queueSize >= smallestQueueSize)) {
+				if ((mostAvailableJenkinsMaster == null) ||
+					(queueSize < smallestQueueSize)) {
 
-					continue;
+					mostAvailableJenkinsMaster = jenkinsMaster;
+					smallestQueueSize = queueSize;
 				}
-
-				mostAvailableJenkinsMaster = jenkinsMaster;
-				smallestQueueSize = queueSize;
 			}
 
 			if (mostAvailableJenkinsMaster == null) {
@@ -317,13 +313,11 @@ public class BuildQueueRebalancer {
 				for (JenkinsMaster.QueueItem queueItem :
 						availableJenkinsMaster.getQueueItems()) {
 
-					if (!Objects.equals(
+					if (Objects.equals(
 							queueItem.getPrimaryLabel(), _primaryLabel)) {
 
-						continue;
+						queueSize++;
 					}
-
-					queueSize++;
 				}
 
 				_jenkinsMasterQueueSizes.put(availableJenkinsMaster, queueSize);

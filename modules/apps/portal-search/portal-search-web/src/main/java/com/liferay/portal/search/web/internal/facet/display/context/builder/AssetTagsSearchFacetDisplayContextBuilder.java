@@ -293,11 +293,9 @@ public class AssetTagsSearchFacetDisplayContextBuilder {
 				buildBucketDisplayContext(
 					termCollector, maxCount, minCount, multiplier);
 
-			if (bucketDisplayContext == null) {
-				continue;
+			if (bucketDisplayContext != null) {
+				bucketDisplayContexts.add(bucketDisplayContext);
 			}
-
-			bucketDisplayContexts.add(bucketDisplayContext);
 		}
 
 		if (_order != null) {

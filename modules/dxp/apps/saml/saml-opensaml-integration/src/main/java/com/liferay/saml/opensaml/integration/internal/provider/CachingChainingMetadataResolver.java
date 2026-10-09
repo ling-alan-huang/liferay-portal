@@ -99,14 +99,12 @@ public class CachingChainingMetadataResolver extends AbstractMetadataResolver {
 			_metadataResolversMap.clear();
 
 			for (MetadataResolver metadataProvider : _metadataResolvers) {
-				if (!(metadataProvider instanceof AbstractMetadataResolver)) {
-					continue;
+				if (metadataProvider instanceof AbstractMetadataResolver) {
+					AbstractMetadataResolver baseMetadataProvider =
+						(AbstractMetadataResolver)metadataProvider;
+
+					baseMetadataProvider.destroy();
 				}
-
-				AbstractMetadataResolver baseMetadataProvider =
-					(AbstractMetadataResolver)metadataProvider;
-
-				baseMetadataProvider.destroy();
 			}
 
 			_metadataResolvers.clear();

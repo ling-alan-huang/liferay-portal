@@ -372,24 +372,23 @@ public class HeaderResponseImpl
 			String[] existingKeyParts = StringUtil.split(
 				existingKey, CharPool.COLON);
 
-			if (existingKeyParts.length != 3) {
-				continue;
-			}
+			if (existingKeyParts.length == 3) {
+				String existingName = existingKeyParts[0];
+				String existingScope = existingKeyParts[1];
 
-			String existingName = existingKeyParts[0];
-			String existingScope = existingKeyParts[1];
+				if (name.equals(existingName) && scope.equals(existingScope)) {
+					String existingVersion = existingKeyParts[2];
 
-			if (name.equals(existingName) && scope.equals(existingScope)) {
-				String existingVersion = existingKeyParts[2];
+					SemVer existingSemVer = new SemVer(existingVersion);
 
-				SemVer existingSemVer = new SemVer(existingVersion);
+					if (existingSemVer.compareTo(semVer) < 0) {
+						iterator.remove();
+						outputData.setDataSB(
+							existingKey, WebKeys.PAGE_TOP, null);
+					}
 
-				if (existingSemVer.compareTo(semVer) < 0) {
-					iterator.remove();
-					outputData.setDataSB(existingKey, WebKeys.PAGE_TOP, null);
+					break;
 				}
-
-				break;
 			}
 		}
 

@@ -590,11 +590,9 @@ public class RoleLocalServiceTest {
 			List<String> actionIdsList = new ArrayList<>();
 
 			for (ResourceAction resourceAction : resourceActions) {
-				if ((resourceAction.getBitwiseValue() & actionIds) == 0) {
-					continue;
+				if ((resourceAction.getBitwiseValue() & actionIds) != 0) {
+					actionIdsList.add(resourceAction.getActionId());
 				}
-
-				actionIdsList.add(resourceAction.getActionId());
 			}
 
 			actionIdsLists.put(role.getName(), actionIdsList);

@@ -342,15 +342,13 @@ public class UpdateArticleMVCActionCommand extends BaseMVCActionCommand {
 						themeDisplay.getCompanyId(), key),
 					excludedGroupIds));
 
-			if (groupIds.isEmpty() ||
-				((groupIds.size() <= 1) &&
-				 Objects.equals(
+			if (!groupIds.isEmpty() &&
+				((groupIds.size() > 1) ||
+				 !Objects.equals(
 					 groupIds.get(0), themeDisplay.getScopeGroupId()))) {
 
-				continue;
+				friendlyURLDuplicatedLocales.add(locale);
 			}
-
-			friendlyURLDuplicatedLocales.add(locale);
 		}
 
 		if (friendlyURLChangedMessages.isEmpty() &&

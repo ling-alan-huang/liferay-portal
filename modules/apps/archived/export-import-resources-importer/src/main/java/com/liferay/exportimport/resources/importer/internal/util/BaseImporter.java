@@ -97,11 +97,11 @@ public abstract class BaseImporter implements Importer {
 					}
 
 					for (String portletId : portletIds) {
-						if (portletId.equals("47") || portletId.equals("58")) {
-							continue;
-						}
+						if (!portletId.equals("47") &&
+							!portletId.equals("58")) {
 
-						existing = true;
+							existing = true;
+						}
 					}
 				}
 			}

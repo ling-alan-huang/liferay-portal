@@ -288,14 +288,12 @@ public class RelatedModelFDSActionProviderTest {
 			Assert.assertEquals(
 				expectedDropdownItemLabels[i], actualDropdownItem.get("label"));
 
-			if (!StringUtil.equals(expectedDropdownItemLabels[i], "view")) {
-				continue;
+			if (StringUtil.equals(expectedDropdownItemLabels[i], "view")) {
+				Map<String, Object> data =
+					(Map<String, Object>)actualDropdownItem.get("data");
+
+				Assert.assertEquals("view", data.get("id"));
 			}
-
-			Map<String, Object> data =
-				(Map<String, Object>)actualDropdownItem.get("data");
-
-			Assert.assertEquals("view", data.get("id"));
 		}
 	}
 

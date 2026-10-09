@@ -292,11 +292,9 @@ public class Entity implements Comparable<Entity> {
 
 			String name = entityColumn.getName();
 
-			if (!name.equals(entityColumn.getDBName())) {
-				continue;
+			if (name.equals(entityColumn.getDBName())) {
+				iterator.remove();
 			}
-
-			iterator.remove();
 		}
 
 		return entityColumns;
@@ -326,13 +324,11 @@ public class Entity implements Comparable<Entity> {
 			_entityFinders.size());
 
 		for (EntityFinder entityFinder : _entityFinders) {
-			if (!entityFinder.isCollection() ||
-				entityFinder.hasCustomComparator()) {
+			if (entityFinder.isCollection() &&
+				!entityFinder.hasCustomComparator()) {
 
-				continue;
+				entityFinders.add(entityFinder);
 			}
-
-			entityFinders.add(entityFinder);
 		}
 
 		return entityFinders;
@@ -718,28 +714,22 @@ public class Entity implements Comparable<Entity> {
 			new LinkedHashMap<>();
 
 		for (EntityColumn entityColumn : _entityColumns) {
-			if (!entityColumn.isUADUserId()) {
-				continue;
+			if (entityColumn.isUADUserId()) {
+				uadAnonymizableEntityColumnsMap.put(
+					entityColumn.getName(), ListUtil.fromArray(entityColumn));
 			}
-
-			uadAnonymizableEntityColumnsMap.put(
-				entityColumn.getName(), ListUtil.fromArray(entityColumn));
 		}
 
 		for (EntityColumn entityColumn : _entityColumns) {
-			if (!entityColumn.isUADUserName()) {
-				continue;
+			if (entityColumn.isUADUserName()) {
+				List<EntityColumn> uadAnonymizableEntityColumns =
+					uadAnonymizableEntityColumnsMap.get(
+						entityColumn.getUADUserIdColumnName());
+
+				if (uadAnonymizableEntityColumns != null) {
+					uadAnonymizableEntityColumns.add(entityColumn);
+				}
 			}
-
-			List<EntityColumn> uadAnonymizableEntityColumns =
-				uadAnonymizableEntityColumnsMap.get(
-					entityColumn.getUADUserIdColumnName());
-
-			if (uadAnonymizableEntityColumns == null) {
-				continue;
-			}
-
-			uadAnonymizableEntityColumns.add(entityColumn);
 		}
 
 		return uadAnonymizableEntityColumnsMap;
@@ -818,11 +808,9 @@ public class Entity implements Comparable<Entity> {
 		while (iterator.hasNext()) {
 			EntityFinder entityFinder = iterator.next();
 
-			if (!entityFinder.isCollection() || entityFinder.isUnique()) {
-				continue;
+			if (entityFinder.isCollection() && !entityFinder.isUnique()) {
+				iterator.remove();
 			}
-
-			iterator.remove();
 		}
 
 		return entityFinders;

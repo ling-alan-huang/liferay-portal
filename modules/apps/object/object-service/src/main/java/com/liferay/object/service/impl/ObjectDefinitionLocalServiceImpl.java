@@ -382,14 +382,12 @@ public class ObjectDefinitionLocalServiceImpl
 				objectDefinition.getDBTableName());
 
 		for (ObjectField oldObjectField : oldObjectFields) {
-			if (!oldObjectField.isSystem() ||
-				ObjectFieldUtil.isMetadata(oldObjectField.getName()) ||
-				_hasObjectField(newObjectFields, oldObjectField)) {
+			if (oldObjectField.isSystem() &&
+				!ObjectFieldUtil.isMetadata(oldObjectField.getName()) &&
+				!_hasObjectField(newObjectFields, oldObjectField)) {
 
-				continue;
+				_objectFieldPersistence.remove(oldObjectField);
 			}
-
-			_objectFieldPersistence.remove(oldObjectField);
 		}
 
 		for (ObjectField newObjectField : newObjectFields) {
@@ -2632,13 +2630,11 @@ public class ObjectDefinitionLocalServiceImpl
 		}
 
 		for (ValidationError validationError : validationErrors) {
-			if (!entryClassName.equals(validationError.getEntryClassName()) ||
-				Validator.isNotNull(validationError.getEntryKey())) {
+			if (entryClassName.equals(validationError.getEntryClassName()) &&
+				Validator.isNull(validationError.getEntryKey())) {
 
-				continue;
+				validationError.setEntryKey(entryKey);
 			}
-
-			validationError.setEntryKey(entryKey);
 		}
 	}
 
@@ -3617,14 +3613,12 @@ public class ObjectDefinitionLocalServiceImpl
 
 			char c = nameCharArray[i];
 
-			if (Validator.isChar(c) || Validator.isDigit(c)) {
-				continue;
+			if (!Validator.isChar(c) && !Validator.isDigit(c)) {
+				_handleException(
+					new ObjectDefinitionNameException.
+						MustOnlyContainLettersAndDigits(),
+					"name", name);
 			}
-
-			_handleException(
-				new ObjectDefinitionNameException.
-					MustOnlyContainLettersAndDigits(),
-				"name", name);
 		}
 
 		if ((system && !Character.isUpperCase(nameCharArray[0])) ||
@@ -3835,43 +3829,44 @@ public class ObjectDefinitionLocalServiceImpl
 					"objectDefinitionSettings", null);
 			}
 
-			if (!objectDefinitionSettingsValuesMap.containsKey(
+			if (objectDefinitionSettingsValuesMap.containsKey(
 					ObjectDefinitionSettingConstants.NAME_ACCEPTED_GROUP_IDS)) {
 
-				continue;
-			}
-
-			if (acceptAllGroups != null) {
-				_handleException(
-					new ObjectDefinitionSettingNameException.NotAllowedNames(
-						objectDefinition.getShortName(),
-						Set.of(
-							ObjectDefinitionSettingConstants.
-								NAME_ACCEPTED_GROUP_IDS)),
-					"objectDefinitionSettings", null);
-			}
-
-			ObjectScopeProvider objectScopeProvider =
-				_objectScopeProviderRegistry.getObjectScopeProvider(
-					objectDefinition.getScope());
-
-			String acceptedGroupIds = objectDefinitionSettingsValuesMap.get(
-				ObjectDefinitionSettingConstants.NAME_ACCEPTED_GROUP_IDS);
-
-			for (String acceptedGroupId : acceptedGroupIds.split("\\s*,\\s*")) {
-				if (objectScopeProvider.isValidGroupId(
-						GetterUtil.getLong(acceptedGroupId))) {
-
-					continue;
+				if (acceptAllGroups != null) {
+					_handleException(
+						new ObjectDefinitionSettingNameException.
+							NotAllowedNames(
+								objectDefinition.getShortName(),
+								Set.of(
+									ObjectDefinitionSettingConstants.
+										NAME_ACCEPTED_GROUP_IDS)),
+						"objectDefinitionSettings", null);
 				}
 
-				_handleException(
-					new ObjectDefinitionSettingValueException.InvalidValue(
-						objectDefinition.getShortName(),
-						ObjectDefinitionSettingConstants.
-							NAME_ACCEPTED_GROUP_IDS,
-						acceptedGroupId),
-					"objectDefinitionSettings", null);
+				ObjectScopeProvider objectScopeProvider =
+					_objectScopeProviderRegistry.getObjectScopeProvider(
+						objectDefinition.getScope());
+
+				String acceptedGroupIds = objectDefinitionSettingsValuesMap.get(
+					ObjectDefinitionSettingConstants.NAME_ACCEPTED_GROUP_IDS);
+
+				for (String acceptedGroupId :
+						acceptedGroupIds.split("\\s*,\\s*")) {
+
+					if (objectScopeProvider.isValidGroupId(
+							GetterUtil.getLong(acceptedGroupId))) {
+
+						continue;
+					}
+
+					_handleException(
+						new ObjectDefinitionSettingValueException.InvalidValue(
+							objectDefinition.getShortName(),
+							ObjectDefinitionSettingConstants.
+								NAME_ACCEPTED_GROUP_IDS,
+							acceptedGroupId),
+						"objectDefinitionSettings", null);
+				}
 			}
 		}
 	}
@@ -4039,21 +4034,19 @@ public class ObjectDefinitionLocalServiceImpl
 				ObjectDefinitionSettingConstants.NAME_ACCEPTED_GROUP_IDS,
 				objectDefinitionSettings);
 
-			if (Validator.isNotNull(acceptedGroupIds) &&
-				ArrayUtil.exists(
+			if (Validator.isNull(acceptedGroupIds) ||
+				!ArrayUtil.exists(
 					acceptedGroupIds.split("\\s*,\\s*"),
 					acceptedGroupId -> acceptedGroupId.equals(
 						String.valueOf(workflowDefinitionLink.getGroupId())))) {
 
-				continue;
+				_handleException(
+					new ObjectDefinitionScopeException(
+						StringBundler.concat(
+							"The group ", workflowDefinitionLink.getGroupId(),
+							" is not included in the object definition scope")),
+					"workflowDefinitionLinks", null);
 			}
-
-			_handleException(
-				new ObjectDefinitionScopeException(
-					StringBundler.concat(
-						"The group ", workflowDefinitionLink.getGroupId(),
-						" is not included in the object definition scope")),
-				"workflowDefinitionLinks", null);
 		}
 	}
 
@@ -4349,11 +4342,9 @@ public class ObjectDefinitionLocalServiceImpl
 							objectDefinitionLocalService.getObjectDefinitions(
 								companyId, WorkflowConstants.STATUS_APPROVED)) {
 
-						if (!objectDefinition.isActive()) {
-							continue;
+						if (objectDefinition.isActive()) {
+							objectDefinitionDeployer.undeploy(objectDefinition);
 						}
-
-						objectDefinitionDeployer.undeploy(objectDefinition);
 					}
 				});
 

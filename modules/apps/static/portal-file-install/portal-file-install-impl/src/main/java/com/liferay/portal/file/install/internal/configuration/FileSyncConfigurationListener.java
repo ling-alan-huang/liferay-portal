@@ -66,11 +66,9 @@ public class FileSyncConfigurationListener implements ConfigurationListener {
 							FileInstallConstants.FELIX_FILE_INSTALL_FILENAME);
 					}
 
-					if (fileName == null) {
-						continue;
+					if (fileName != null) {
+						_pidToFile.put(configuration.getPid(), fileName);
 					}
-
-					_pidToFile.put(configuration.getPid(), fileName);
 				}
 			}
 		}
@@ -130,19 +128,17 @@ public class FileSyncConfigurationListener implements ConfigurationListener {
 					List<String> toRemovePropertyKeys = new ArrayList<>();
 
 					for (String key : configurationProperties.keySet()) {
-						if ((dictionary.get(key) != null) ||
-							Objects.equals(Constants.SERVICE_PID, key) ||
-							Objects.equals(
-								ConfigurationAdmin.SERVICE_FACTORYPID, key) ||
-							Objects.equals(
+						if ((dictionary.get(key) == null) &&
+							!Objects.equals(Constants.SERVICE_PID, key) &&
+							!Objects.equals(
+								ConfigurationAdmin.SERVICE_FACTORYPID, key) &&
+							!Objects.equals(
 								FileInstallConstants.
 									FELIX_FILE_INSTALL_FILENAME,
 								key)) {
 
-							continue;
+							toRemovePropertyKeys.add(key);
 						}
-
-						toRemovePropertyKeys.add(key);
 					}
 
 					Enumeration<String> enumeration = dictionary.keys();
@@ -150,20 +146,18 @@ public class FileSyncConfigurationListener implements ConfigurationListener {
 					while (enumeration.hasMoreElements()) {
 						String key = enumeration.nextElement();
 
-						if (Objects.equals(Constants.SERVICE_PID, key) ||
-							Objects.equals(
-								ConfigurationAdmin.SERVICE_FACTORYPID, key) ||
-							Objects.equals(
+						if (!Objects.equals(Constants.SERVICE_PID, key) &&
+							!Objects.equals(
+								ConfigurationAdmin.SERVICE_FACTORYPID, key) &&
+							!Objects.equals(
 								FileInstallConstants.
 									FELIX_FILE_INSTALL_FILENAME,
 								key)) {
 
-							continue;
+							Object value = dictionary.get(key);
+
+							configurationProperties.put(key, value);
 						}
-
-						Object value = dictionary.get(key);
-
-						configurationProperties.put(key, value);
 					}
 
 					for (String key : toRemovePropertyKeys) {

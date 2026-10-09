@@ -416,13 +416,11 @@ public class RedirectEntryLocalServiceImpl
 						updatedRedirectEntry.getDestinationURL(),
 						groupBaseURL + StringPool.SLASH));
 
-			if (destinationRedirectEntry == null) {
-				continue;
+			if (destinationRedirectEntry != null) {
+				_checkMustNotFormALoopWithAnotherRedirectEntry(
+					updatedRedirectEntry.getDestinationURL(), groupBaseURL,
+					destinationRedirectEntry.getSourceURL());
 			}
-
-			_checkMustNotFormALoopWithAnotherRedirectEntry(
-				updatedRedirectEntry.getDestinationURL(), groupBaseURL,
-				destinationRedirectEntry.getSourceURL());
 		}
 
 		RedirectEntry chainedRedirectEntry =

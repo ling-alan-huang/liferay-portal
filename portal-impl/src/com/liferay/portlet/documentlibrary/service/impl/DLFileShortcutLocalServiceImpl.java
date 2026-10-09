@@ -240,13 +240,11 @@ public class DLFileShortcutLocalServiceImpl
 		for (DLFileShortcut fileShortcut : fileShortcuts) {
 			TrashHelper trashHelper = _trashHelperSnapshot.get();
 
-			if (!includeTrashedEntries &&
-				trashHelper.isInTrashExplicitly(fileShortcut)) {
+			if (includeTrashedEntries ||
+				!trashHelper.isInTrashExplicitly(fileShortcut)) {
 
-				continue;
+				dlFileShortcutLocalService.deleteFileShortcut(fileShortcut);
 			}
-
-			dlFileShortcutLocalService.deleteFileShortcut(fileShortcut);
 		}
 	}
 

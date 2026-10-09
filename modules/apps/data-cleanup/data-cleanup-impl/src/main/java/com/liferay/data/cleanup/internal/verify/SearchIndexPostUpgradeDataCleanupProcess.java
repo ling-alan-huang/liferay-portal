@@ -55,18 +55,16 @@ public class SearchIndexPostUpgradeDataCleanupProcess
 
 			long companyId = GetterUtil.getLong(matcher.group(1));
 
-			if ((companyId == CompanyConstants.SYSTEM) ||
-				(Arrays.binarySearch(companyIds, companyId) >= 0)) {
+			if ((companyId != CompanyConstants.SYSTEM) &&
+				(Arrays.binarySearch(companyIds, companyId) < 0)) {
 
-				continue;
-			}
-
-			if (_log.isWarnEnabled()) {
-				_log.warn(
-					StringBundler.concat(
-						"Index ", indexName, " belongs to deleted company ",
-						companyId, ". Remove it if it is not used anywhere ",
-						"else."));
+				if (_log.isWarnEnabled()) {
+					_log.warn(
+						StringBundler.concat(
+							"Index ", indexName, " belongs to deleted company ",
+							companyId, ". Remove it if it is not used ",
+							"anywhere else."));
+				}
 			}
 		}
 	}

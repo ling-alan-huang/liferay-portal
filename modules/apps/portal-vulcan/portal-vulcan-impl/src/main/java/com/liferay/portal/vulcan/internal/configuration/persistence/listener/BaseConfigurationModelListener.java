@@ -131,11 +131,9 @@ public class BaseConfigurationModelListener
 
 			Object servicePid = properties.get("service.pid");
 
-			if (servicePid.equals(dictionary.get("service.pid"))) {
-				continue;
+			if (!servicePid.equals(dictionary.get("service.pid"))) {
+				configuration.delete();
 			}
-
-			configuration.delete();
 		}
 	}
 

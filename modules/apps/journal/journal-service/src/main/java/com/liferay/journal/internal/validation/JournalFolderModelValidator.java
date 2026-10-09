@@ -70,15 +70,13 @@ public class JournalFolderModelValidator
 		}
 
 		for (JournalFolder curFolder : folders) {
-			if (curFolder.getRestrictionType() ==
+			if (curFolder.getRestrictionType() !=
 					JournalFolderConstants.
 						RESTRICTION_TYPE_DDM_STRUCTURES_AND_WORKFLOW) {
 
-				continue;
+				validateArticleDDMStructures(
+					curFolder.getFolderId(), ddmStructureIds);
 			}
-
-			validateArticleDDMStructures(
-				curFolder.getFolderId(), ddmStructureIds);
 		}
 	}
 

@@ -62,13 +62,11 @@ public class MicrosoftPushNotificationsSender
 		while (iterator.hasNext()) {
 			String key = iterator.next();
 
-			if (key.equals(PushNotificationsConstants.KEY_FROM) ||
-				key.equals(PushNotificationsConstants.KEY_BODY)) {
+			if (!key.equals(PushNotificationsConstants.KEY_FROM) &&
+				!key.equals(PushNotificationsConstants.KEY_BODY)) {
 
-				continue;
+				newPayloadJSONObject.put(key, payloadJSONObject.get(key));
 			}
-
-			newPayloadJSONObject.put(key, payloadJSONObject.get(key));
 		}
 
 		String attributes = _getAttributes(newPayloadJSONObject);

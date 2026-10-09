@@ -299,35 +299,33 @@ public class EditCommerceOrderMVCActionCommand extends BaseMVCActionCommand {
 						commerceOrderItem.
 							getCommerceInventoryBookedQuantityId();
 
-					if (commerceInventoryBookedQuantityId <= 0) {
-						continue;
-					}
+					if (commerceInventoryBookedQuantityId > 0) {
+						CommerceInventoryBookedQuantity
+							commerceInventoryBookedQuantity =
+								_commerceInventoryBookedQuantityLocalService.
+									fetchCommerceInventoryBookedQuantity(
+										commerceOrderItem.
+											getCommerceInventoryBookedQuantityId());
 
-					CommerceInventoryBookedQuantity
-						commerceInventoryBookedQuantity =
+						if (commerceInventoryBookedQuantity != null) {
 							_commerceInventoryBookedQuantityLocalService.
-								fetchCommerceInventoryBookedQuantity(
+								deleteCommerceInventoryBookedQuantity(
+									_portal.getUserId(actionRequest),
 									commerceOrderItem.
-										getCommerceInventoryBookedQuantityId());
-
-					if (commerceInventoryBookedQuantity == null) {
-						continue;
+										getCommerceInventoryBookedQuantityId(),
+									HashMapBuilder.put(
+										CommerceInventoryAuditTypeConstants.
+											ORDER_ID,
+										String.valueOf(
+											commerceOrderItem.
+												getCommerceOrderId())
+									).build(),
+									_commerceInventoryAuditTypeRegistry.
+										getCommerceInventoryAuditType(
+											CommerceInventoryConstants.
+												AUDIT_TYPE_CANCEL_BOOKED_QUANTITY));
+						}
 					}
-
-					_commerceInventoryBookedQuantityLocalService.
-						deleteCommerceInventoryBookedQuantity(
-							_portal.getUserId(actionRequest),
-							commerceOrderItem.
-								getCommerceInventoryBookedQuantityId(),
-							HashMapBuilder.put(
-								CommerceInventoryAuditTypeConstants.ORDER_ID,
-								String.valueOf(
-									commerceOrderItem.getCommerceOrderId())
-							).build(),
-							_commerceInventoryAuditTypeRegistry.
-								getCommerceInventoryAuditType(
-									CommerceInventoryConstants.
-										AUDIT_TYPE_CANCEL_BOOKED_QUANTITY));
 				}
 			}
 

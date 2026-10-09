@@ -59,18 +59,14 @@ public class MapIterationCheck extends BaseCheck {
 			DetailAST typeDetailAST = getVariableTypeDetailAST(
 				keySetMethodCallDetailAST, mapName);
 
-			if ((typeDetailAST == null) || !isCollection(typeDetailAST)) {
-				continue;
+			if ((typeDetailAST != null) && isCollection(typeDetailAST)) {
+				List<DetailAST> wildcardTypeDetailASTs = getAllChildTokens(
+					typeDetailAST, true, TokenTypes.WILDCARD_TYPE);
+
+				if (wildcardTypeDetailASTs.isEmpty()) {
+					log(forEachClauseDetailAST, _MSG_USE_ENTRY_SET);
+				}
 			}
-
-			List<DetailAST> wildcardTypeDetailASTs = getAllChildTokens(
-				typeDetailAST, true, TokenTypes.WILDCARD_TYPE);
-
-			if (!wildcardTypeDetailASTs.isEmpty()) {
-				continue;
-			}
-
-			log(forEachClauseDetailAST, _MSG_USE_ENTRY_SET);
 		}
 	}
 
@@ -92,14 +88,12 @@ public class MapIterationCheck extends BaseCheck {
 
 			firstChildDetailAST = firstChildDetailAST.getFirstChild();
 
-			if (firstChildDetailAST.getType() != TokenTypes.IDENT) {
-				continue;
-			}
+			if (firstChildDetailAST.getType() == TokenTypes.IDENT) {
+				String parameterName = firstChildDetailAST.getText();
 
-			String parameterName = firstChildDetailAST.getText();
-
-			if (parameterName.equals(keyName)) {
-				return true;
+				if (parameterName.equals(keyName)) {
+					return true;
+				}
 			}
 		}
 

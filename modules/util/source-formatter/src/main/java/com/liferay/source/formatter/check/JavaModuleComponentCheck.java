@@ -71,19 +71,17 @@ public class JavaModuleComponentCheck extends BaseJavaTermCheck {
 				break;
 			}
 
-			if (!StringUtil.startsWith(javaClass.getName(), "Base") ||
-				!childJavaTerm.isJavaVariable() || !childJavaTerm.isPrivate()) {
+			if (StringUtil.startsWith(javaClass.getName(), "Base") &&
+				childJavaTerm.isJavaVariable() && childJavaTerm.isPrivate()) {
 
-				continue;
+				addMessage(
+					fileName,
+					StringBundler.concat(
+						"@Reference variable \"", childJavaTerm.getName(),
+						"\" should be protected instead of private in a class ",
+						"without @Component"),
+					childJavaTerm.getLineNumber());
 			}
-
-			addMessage(
-				fileName,
-				StringBundler.concat(
-					"@Reference variable \"", childJavaTerm.getName(),
-					"\" should be protected instead of private in a class ",
-					"without @Component"),
-				childJavaTerm.getLineNumber());
 		}
 
 		return javaTerm.getContent();

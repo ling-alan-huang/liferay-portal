@@ -550,13 +550,11 @@ public class LayoutSetLocalServiceImpl extends LayoutSetLocalServiceBaseImpl {
 					"Invalid host name {" + curVirtualHostname + "}");
 			}
 
-			if (StringUtil.isLowerCase(curVirtualHostname)) {
-				continue;
+			if (!StringUtil.isLowerCase(curVirtualHostname)) {
+				virtualHostnames.putIfAbsent(
+					StringUtil.toLowerCase(curVirtualHostname),
+					virtualHostnames.remove(curVirtualHostname));
 			}
-
-			virtualHostnames.putIfAbsent(
-				StringUtil.toLowerCase(curVirtualHostname),
-				virtualHostnames.remove(curVirtualHostname));
 		}
 
 		LayoutSet layoutSet = layoutSetPersistence.findByG_P(

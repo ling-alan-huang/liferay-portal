@@ -306,11 +306,9 @@ public class LayoutSetBranchLocalServiceImpl
 			for (long plid : deletablePlids) {
 				Layout layout = _layoutPersistence.fetchByPrimaryKey(plid);
 
-				if (layout == null) {
-					continue;
+				if (layout != null) {
+					_layoutLocalService.deleteLayout(layout);
 				}
-
-				_layoutLocalService.deleteLayout(layout);
 			}
 		}
 
@@ -653,11 +651,9 @@ public class LayoutSetBranchLocalServiceImpl
 				}
 			}
 
-			if (!deletableLayout) {
-				continue;
+			if (deletableLayout) {
+				deletablePlids.add(plid);
 			}
-
-			deletablePlids.add(plid);
 		}
 
 		return deletablePlids;

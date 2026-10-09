@@ -123,11 +123,12 @@ public class NaturalOrderStringComparator implements Comparator<String> {
 		char[] chars = s.toCharArray();
 
 		for (char c : chars) {
-			if (!Character.isDigit(c)) {
+			if (Character.isDigit(c)) {
+				sb.append(c);
+			}
+			else {
 				return sb.toString();
 			}
-
-			sb.append(c);
 		}
 
 		return sb.toString();

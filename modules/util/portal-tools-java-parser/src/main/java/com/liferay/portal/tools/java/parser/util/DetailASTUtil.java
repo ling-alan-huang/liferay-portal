@@ -211,21 +211,17 @@ public class DetailASTUtil {
 
 			line = fileContents.getLine(childDetailAST.getLineNo() - 1);
 
-			if (!line.contains(s)) {
-				continue;
+			if (line.contains(s)) {
+				Position childDetailASTEndPosition = new Position(
+					childDetailAST.getLineNo(),
+					childDetailAST.getColumnNo() + s.length());
+
+				if ((endPosition == null) ||
+					(childDetailASTEndPosition.compareTo(endPosition) > 0)) {
+
+					endPosition = childDetailASTEndPosition;
+				}
 			}
-
-			Position childDetailASTEndPosition = new Position(
-				childDetailAST.getLineNo(),
-				childDetailAST.getColumnNo() + s.length());
-
-			if ((endPosition != null) &&
-				(childDetailASTEndPosition.compareTo(endPosition) <= 0)) {
-
-				continue;
-			}
-
-			endPosition = childDetailASTEndPosition;
 		}
 
 		return endPosition;
@@ -248,11 +244,9 @@ public class DetailASTUtil {
 			Position childDetailASTStartPosition = new Position(
 				childDetailAST.getLineNo(), childDetailAST.getColumnNo());
 
-			if (childDetailASTStartPosition.compareTo(startPosition) >= 0) {
-				continue;
+			if (childDetailASTStartPosition.compareTo(startPosition) < 0) {
+				startPosition = childDetailASTStartPosition;
 			}
-
-			startPosition = childDetailASTStartPosition;
 		}
 
 		return startPosition;

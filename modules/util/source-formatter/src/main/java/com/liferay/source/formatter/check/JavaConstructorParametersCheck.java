@@ -491,11 +491,9 @@ public class JavaConstructorParametersCheck extends BaseJavaTermCheck {
 				return _sortAssignCalls(content, parameters);
 			}
 
-			if ((index1 == index2) || (index2 != parameters.size())) {
-				continue;
+			if ((index1 != index2) && (index2 == parameters.size())) {
+				firstFollowingStatement = nextCallMatcher.group();
 			}
-
-			firstFollowingStatement = nextCallMatcher.group();
 		}
 
 		if (firstFollowingStatement != null) {

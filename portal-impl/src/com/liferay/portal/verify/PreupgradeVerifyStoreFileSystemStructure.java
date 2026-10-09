@@ -194,13 +194,11 @@ public class PreupgradeVerifyStoreFileSystemStructure
 					continue;
 				}
 
-				if (_hasAdvancedFileSystemStructureRepositoryIdPath(
+				if (!_hasAdvancedFileSystemStructureRepositoryIdPath(
 						repositoryIdPath)) {
 
-					continue;
+					validPath = false;
 				}
-
-				validPath = false;
 			}
 
 			return validPath;
@@ -281,11 +279,11 @@ public class PreupgradeVerifyStoreFileSystemStructure
 					continue;
 				}
 
-				if (_hasFileSystemStructureRepositoryIdPath(repositoryIdPath)) {
-					continue;
-				}
+				if (!_hasFileSystemStructureRepositoryIdPath(
+						repositoryIdPath)) {
 
-				validPath = false;
+					validPath = false;
+				}
 			}
 
 			return validPath;
@@ -323,17 +321,18 @@ public class PreupgradeVerifyStoreFileSystemStructure
 
 				if (StringUtil.startsWith(
 						versionLabel,
-						DLFileEntryConstants.PRIVATE_WORKING_COPY_VERSION) ||
-					versionLabel.matches("\\d+\\.\\d+.*")) {
+						DLFileEntryConstants.PRIVATE_WORKING_COPY_VERSION)) {
 
 					continue;
 				}
 
-				_log.error(
-					"Unexpected file " + versionLabelPath +
-						" not matching version label pattern");
+				if (!versionLabel.matches("\\d+\\.\\d+.*")) {
+					_log.error(
+						"Unexpected file " + versionLabelPath +
+							" not matching version label pattern");
 
-				validPath = false;
+					validPath = false;
+				}
 			}
 
 			return validPath;
@@ -364,11 +363,9 @@ public class PreupgradeVerifyStoreFileSystemStructure
 					continue;
 				}
 
-				if (_hasFileSystemStructureFileNamePath(fileNamePath)) {
-					continue;
+				if (!_hasFileSystemStructureFileNamePath(fileNamePath)) {
+					validPath = false;
 				}
-
-				validPath = false;
 			}
 
 			return validPath;

@@ -140,12 +140,10 @@ public class DeletionSystemEventExporterImpl
 					BatchEnginePortletDataHandlerRegistryUtil.getByClassName(
 						portletDataContext.getCompanyId(), entry.getKey());
 
-				if (batchEnginePortletDataHandler == null) {
-					continue;
+				if (batchEnginePortletDataHandler != null) {
+					batchEnginePortletDataHandler.exportDeletionSystemEvents(
+						entry.getKey(), portletDataContext, entry.getValue());
 				}
-
-				batchEnginePortletDataHandler.exportDeletionSystemEvents(
-					entry.getKey(), portletDataContext, entry.getValue());
 			}
 		}
 

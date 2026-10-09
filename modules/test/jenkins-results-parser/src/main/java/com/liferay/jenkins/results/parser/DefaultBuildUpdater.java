@@ -387,15 +387,13 @@ public class DefaultBuildUpdater extends BaseBuildUpdater {
 
 				String key = reinvokeBuildParameter.getKey();
 
-				if (!buildParameters.containsKey(key)) {
-					continue;
+				if (buildParameters.containsKey(key)) {
+					String value = reinvokeBuildParameter.getValue();
+
+					buildParameters.put(key, value);
+
+					build.setParameterValue(key, value);
 				}
-
-				String value = reinvokeBuildParameter.getValue();
-
-				buildParameters.put(key, value);
-
-				build.setParameterValue(key, value);
 			}
 		}
 

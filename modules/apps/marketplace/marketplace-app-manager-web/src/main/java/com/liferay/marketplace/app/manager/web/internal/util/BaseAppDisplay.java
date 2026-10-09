@@ -87,11 +87,9 @@ public abstract class BaseAppDisplay implements AppDisplay {
 
 			int bundleState = bundle.getState();
 
-			if (state <= bundleState) {
-				continue;
+			if (state > bundleState) {
+				state = bundleState;
 			}
-
-			state = bundleState;
 		}
 
 		return state;

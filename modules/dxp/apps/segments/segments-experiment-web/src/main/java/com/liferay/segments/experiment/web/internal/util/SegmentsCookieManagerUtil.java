@@ -33,15 +33,13 @@ public class SegmentsCookieManagerUtil {
 		}
 
 		for (Cookie cookie : cookies) {
-			if (!StringUtil.startsWith(
+			if (StringUtil.startsWith(
 					cookie.getName(), _AB_TEST_VARIANT_ID_COOKIE_PREFIX)) {
 
-				continue;
+				CookiesManagerUtil.deleteCookies(
+					CookiesManagerUtil.getDomain(httpServletRequest),
+					httpServletRequest, httpServletResponse, cookie.getName());
 			}
-
-			CookiesManagerUtil.deleteCookies(
-				CookiesManagerUtil.getDomain(httpServletRequest),
-				httpServletRequest, httpServletResponse, cookie.getName());
 		}
 	}
 

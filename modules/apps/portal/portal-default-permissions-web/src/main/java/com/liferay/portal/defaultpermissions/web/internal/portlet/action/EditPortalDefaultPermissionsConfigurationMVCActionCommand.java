@@ -186,17 +186,18 @@ public class EditPortalDefaultPermissionsConfigurationMVCActionCommand
 		ActionParameters actionParameters = actionRequest.getActionParameters();
 
 		for (String name : actionParameters.getNames()) {
-			if (!name.startsWith(roleId + ACTION_SEPARATOR) ||
-				!valuePredicate.test(actionParameters.getValue(name))) {
-
+			if (!name.startsWith(roleId + ACTION_SEPARATOR)) {
 				continue;
 			}
 
-			int pos = name.indexOf(ACTION_SEPARATOR);
+			if (valuePredicate.test(actionParameters.getValue(name))) {
+				int pos = name.indexOf(ACTION_SEPARATOR);
 
-			String actionId = name.substring(pos + ACTION_SEPARATOR.length());
+				String actionId = name.substring(
+					pos + ACTION_SEPARATOR.length());
 
-			actionIds.add(actionId);
+				actionIds.add(actionId);
+			}
 		}
 
 		return actionIds;

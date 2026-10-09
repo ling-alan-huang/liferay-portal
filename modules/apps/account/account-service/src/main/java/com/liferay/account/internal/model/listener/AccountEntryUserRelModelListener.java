@@ -143,14 +143,12 @@ public class AccountEntryUserRelModelListener
 			for (AccountEntryUserRel curAccountEntryUserRel :
 					accountEntryUserRels) {
 
-				if (curAccountEntryUserRel.getAccountEntryId() !=
+				if (curAccountEntryUserRel.getAccountEntryId() ==
 						AccountConstants.ACCOUNT_ENTRY_ID_DEFAULT) {
 
-					continue;
+					_accountEntryUserRelLocalService.deleteAccountEntryUserRel(
+						curAccountEntryUserRel);
 				}
-
-				_accountEntryUserRelLocalService.deleteAccountEntryUserRel(
-					curAccountEntryUserRel);
 			}
 		}
 	}

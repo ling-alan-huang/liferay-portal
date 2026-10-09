@@ -50,11 +50,9 @@ public class CalculateDDMFormRuleActionSerializer
 		Set<String> ddmFormFieldNames = new HashSet<>();
 
 		for (String ddmFormField : ddmFormFieldsMap.keySet()) {
-			if (!expression.contains(ddmFormField)) {
-				continue;
+			if (expression.contains(ddmFormField)) {
+				ddmFormFieldNames.add(ddmFormField);
 			}
-
-			ddmFormFieldNames.add(ddmFormField);
 		}
 
 		String newExpression = buildExpression(expression, ddmFormFieldNames);

@@ -480,11 +480,9 @@ public class LayoutImportBackgroundTaskExecutorTest {
 				objectEntry.getValues(),
 				_OBJECT_FIELD_NAME_ATTACHMENT_SHOW_FILES_IN_DOCS_AND_MEDIA);
 
-			if (fileEntryId == 0) {
-				continue;
+			if (fileEntryId != 0) {
+				_dlFileEntryLocalService.deleteFileEntry(fileEntryId);
 			}
-
-			_dlFileEntryLocalService.deleteFileEntry(fileEntryId);
 		}
 	}
 

@@ -64,14 +64,12 @@ public class UpgradeResourcePermission extends UpgradeProcess {
 						while (resultSet2.next()) {
 							String primKey = resultSet2.getString("primKey");
 
-							if ((GetterUtil.getLong(primKey) > 0) ||
-								primKey.contains(
+							if ((GetterUtil.getLong(primKey) <= 0) &&
+								!primKey.contains(
 									PortletConstants.LAYOUT_SEPARATOR)) {
 
-								continue;
+								primKeys.add(primKey);
 							}
-
-							primKeys.add(primKey);
 						}
 					}
 

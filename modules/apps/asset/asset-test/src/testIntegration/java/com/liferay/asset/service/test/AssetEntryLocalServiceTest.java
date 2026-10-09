@@ -193,13 +193,11 @@ public class AssetEntryLocalServiceTest {
 			for (LogEntry logEntry : logCapture.getLogEntries()) {
 				String message = logEntry.getMessage();
 
-				if (!message.startsWith("select") ||
-					!message.contains("AssetEntry")) {
+				if (message.startsWith("select") &&
+					message.contains("AssetEntry")) {
 
-					continue;
+					selectSQLs.add(message);
 				}
-
-				selectSQLs.add(message);
 			}
 
 			Assert.assertTrue(selectSQLs.toString(), selectSQLs.isEmpty());

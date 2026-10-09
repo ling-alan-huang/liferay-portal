@@ -308,11 +308,9 @@ public class DDMFormTemplateContextProcessor {
 		while (iterator.hasNext()) {
 			String key = iterator.next();
 
-			if (properties.containsKey(key) || key.equals("dataSourceType")) {
-				continue;
+			if (!properties.containsKey(key) && !key.equals("dataSourceType")) {
+				ddmFormField.setProperty(key, jsonObject.get(key));
 			}
-
-			ddmFormField.setProperty(key, jsonObject.get(key));
 		}
 	}
 

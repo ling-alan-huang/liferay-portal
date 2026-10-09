@@ -898,21 +898,19 @@ public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
 				continue;
 			}
 
-			if (_calendarModelResourcePermission.contains(
+			if (!_calendarModelResourcePermission.contains(
 					getPermissionChecker(), calendarBooking.getCalendarId(),
 					CalendarActionKeys.VIEW_BOOKING_DETAILS)) {
 
-				continue;
-			}
+				if (!_calendarModelResourcePermission.contains(
+						getPermissionChecker(), calendarBooking.getCalendarId(),
+						actionId)) {
 
-			if (!_calendarModelResourcePermission.contains(
-					getPermissionChecker(), calendarBooking.getCalendarId(),
-					actionId)) {
-
-				iterator.remove();
-			}
-			else {
-				_filterCalendarBooking(calendarBooking);
+					iterator.remove();
+				}
+				else {
+					_filterCalendarBooking(calendarBooking);
+				}
 			}
 		}
 

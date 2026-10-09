@@ -966,12 +966,10 @@ public class UpgradeJournal extends BaseUpgradePortletPreferences {
 				Long newPrimaryKey = _ddmStructurePKs.get(
 					GetterUtil.getLong(oldPrimaryKey));
 
-				if (Validator.isNull(newPrimaryKey)) {
-					continue;
+				if (Validator.isNotNull(newPrimaryKey)) {
+					newValue = StringUtil.replace(
+						newValue, oldPrimaryKey, String.valueOf(newPrimaryKey));
 				}
-
-				newValue = StringUtil.replace(
-					newValue, oldPrimaryKey, String.valueOf(newPrimaryKey));
 			}
 
 			newValues[i] = newValue;

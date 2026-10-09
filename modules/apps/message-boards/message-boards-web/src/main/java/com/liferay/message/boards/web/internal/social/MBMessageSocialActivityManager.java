@@ -72,12 +72,10 @@ public class MBMessageSocialActivityManager
 
 			long extraDataMessageId = extraDataJSONObject.getLong("messageId");
 
-			if (message.getMessageId() != extraDataMessageId) {
-				continue;
+			if (message.getMessageId() == extraDataMessageId) {
+				_socialActivityLocalService.deleteActivity(
+					socialActivity.getActivityId());
 			}
-
-			_socialActivityLocalService.deleteActivity(
-				socialActivity.getActivityId());
 		}
 	}
 

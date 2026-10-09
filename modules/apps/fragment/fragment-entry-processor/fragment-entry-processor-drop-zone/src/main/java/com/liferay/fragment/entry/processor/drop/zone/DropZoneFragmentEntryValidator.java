@@ -50,11 +50,9 @@ public class DropZoneFragmentEntryValidator
 		for (Element element : elements) {
 			String dropZoneId = element.attr("data-lfr-drop-zone-id");
 
-			if (Validator.isBlank(dropZoneId)) {
-				continue;
+			if (!Validator.isBlank(dropZoneId)) {
+				elementDropZoneIds.add(dropZoneId);
 			}
-
-			elementDropZoneIds.add(dropZoneId);
 		}
 
 		if (!elementDropZoneIds.isEmpty() &&

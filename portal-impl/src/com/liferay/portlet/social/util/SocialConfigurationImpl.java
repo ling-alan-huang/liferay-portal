@@ -71,18 +71,16 @@ public class SocialConfigurationImpl implements SocialConfiguration {
 				for (SocialActivityCounterDefinition activityCounterDefinition :
 						activityDefinition.getActivityCounterDefinitions()) {
 
-					if ((activityCounterDefinition.isTransient() !=
-							transientCounter) ||
-						((ownerType !=
-							SocialActivityCounterConstants.TYPE_ALL) &&
-						 (ownerType !=
+					if ((activityCounterDefinition.isTransient() ==
+							transientCounter) &&
+						((ownerType ==
+							SocialActivityCounterConstants.TYPE_ALL) ||
+						 (ownerType ==
 							 activityCounterDefinition.getOwnerType()))) {
 
-						continue;
+						activityCounterNames.add(
+							activityCounterDefinition.getName());
 					}
-
-					activityCounterNames.add(
-						activityCounterDefinition.getName());
 				}
 			}
 		}

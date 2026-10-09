@@ -178,12 +178,10 @@ public class FIDO2BrowserSetupMFAChecker
 		for (MFAFIDO2CredentialEntry mfaFIDO2CredentialEntry :
 				mfaFIDO2CredentialEntries) {
 
-			if (mfaFIDO2CredentialEntry == null) {
-				continue;
+			if (mfaFIDO2CredentialEntry != null) {
+				_mfaFIDO2CredentialEntryLocalService.
+					deleteMFAFIDO2CredentialEntry(mfaFIDO2CredentialEntry);
 			}
-
-			_mfaFIDO2CredentialEntryLocalService.deleteMFAFIDO2CredentialEntry(
-				mfaFIDO2CredentialEntry);
 		}
 	}
 

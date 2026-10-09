@@ -235,18 +235,16 @@ public class CMSFileTypeUtil {
 						dlFileEntry.getGroupId(), fileEntryClassNameId,
 						urlTitle);
 
-				if ((fileEntryFriendlyURLEntry == null) ||
-					(fileEntryFriendlyURLEntry.getClassPK() ==
-						dlFileEntry.getFileEntryId()) ||
-					!isObjectEntryAttachment(
+				if ((fileEntryFriendlyURLEntry != null) &&
+					(fileEntryFriendlyURLEntry.getClassPK() !=
+						dlFileEntry.getFileEntryId()) &&
+					isObjectEntryAttachment(
 						DLFileEntryLocalServiceUtil.fetchDLFileEntry(
 							fileEntryFriendlyURLEntry.getClassPK()),
 						objectDefinition, objectEntry.getObjectEntryId())) {
 
-					continue;
+					fileEntryIds.add(fileEntryFriendlyURLEntry.getClassPK());
 				}
-
-				fileEntryIds.add(fileEntryFriendlyURLEntry.getClassPK());
 			}
 		}
 

@@ -348,14 +348,12 @@ public class AuthVerifierFilterTracker {
 					_defaultRegistrationProperties);
 
 			for (String key : serviceReference.getPropertyKeys()) {
-				if (!key.startsWith(AUTH_VERIFIER_PROPERTY_PREFIX)) {
-					continue;
+				if (key.startsWith(AUTH_VERIFIER_PROPERTY_PREFIX)) {
+					properties.put(
+						"filter.init." +
+							key.substring(AUTH_VERIFIER_PROPERTY_PREFIX_LENGTH),
+						serviceReference.getProperty(key));
 				}
-
-				properties.put(
-					"filter.init." +
-						key.substring(AUTH_VERIFIER_PROPERTY_PREFIX_LENGTH),
-					serviceReference.getProperty(key));
 			}
 
 			_putWhiteboardProperties(properties, serviceReference);
@@ -396,11 +394,9 @@ public class AuthVerifierFilterTracker {
 			properties.putAll(_defaultWhiteboardProperties);
 
 			for (String key : serviceReference.getPropertyKeys()) {
-				if (!key.startsWith("osgi.http.whiteboard")) {
-					continue;
+				if (key.startsWith("osgi.http.whiteboard")) {
+					properties.put(key, serviceReference.getProperty(key));
 				}
-
-				properties.put(key, serviceReference.getProperty(key));
 			}
 
 			properties.put(

@@ -297,13 +297,11 @@ public class GitHubDevSyncUtil {
 		for (String localGitBranchName :
 				gitWorkingDirectory.getLocalGitBranchNames()) {
 
-			if (!localGitBranchName.matches(_cacheBranchPattern.pattern()) ||
-				localGitBranchName.equals(excludeBranchName)) {
+			if (localGitBranchName.matches(_cacheBranchPattern.pattern()) &&
+				!localGitBranchName.equals(excludeBranchName)) {
 
-				continue;
+				gitWorkingDirectory.deleteLocalGitBranch(localGitBranchName);
 			}
-
-			gitWorkingDirectory.deleteLocalGitBranch(localGitBranchName);
 		}
 	}
 
@@ -471,20 +469,18 @@ public class GitHubDevSyncUtil {
 		for (RemoteGitBranch remoteGitBranch : remoteGitBranches) {
 			String remoteGitBranchName = remoteGitBranch.getName();
 
-			if (!remoteGitBranchName.matches(
+			if (remoteGitBranchName.matches(
 					_cacheBranchPattern.pattern() + "-\\d+")) {
 
-				continue;
+				String baseCacheBranchName = remoteGitBranchName.replaceAll(
+					"(.*)-\\d+", "$1");
+
+				List<RemoteGitBranch> timestampedRemoteGitBranches =
+					remoteGitBranchesMap.computeIfAbsent(
+						baseCacheBranchName, key -> new ArrayList<>());
+
+				timestampedRemoteGitBranches.add(remoteGitBranch);
 			}
-
-			String baseCacheBranchName = remoteGitBranchName.replaceAll(
-				"(.*)-\\d+", "$1");
-
-			List<RemoteGitBranch> timestampedRemoteGitBranches =
-				remoteGitBranchesMap.computeIfAbsent(
-					baseCacheBranchName, key -> new ArrayList<>());
-
-			timestampedRemoteGitBranches.add(remoteGitBranch);
 		}
 
 		for (Map.Entry<String, List<RemoteGitBranch>> entry :
@@ -493,15 +489,13 @@ public class GitHubDevSyncUtil {
 			List<RemoteGitBranch> timestampedRemoteGitBranches =
 				entry.getValue();
 
-			if (timestampedRemoteGitBranches.size() <= 1) {
-				continue;
+			if (timestampedRemoteGitBranches.size() > 1) {
+				timestampedRemoteGitBranches.remove(
+					timestampedRemoteGitBranches.size() - 1);
+
+				deleteRemoteGitBranches(
+					gitWorkingDirectory, timestampedRemoteGitBranches);
 			}
-
-			timestampedRemoteGitBranches.remove(
-				timestampedRemoteGitBranches.size() - 1);
-
-			deleteRemoteGitBranches(
-				gitWorkingDirectory, timestampedRemoteGitBranches);
 		}
 	}
 
@@ -604,21 +598,19 @@ public class GitHubDevSyncUtil {
 		for (RemoteGitBranch cacheRemoteGitBranch : cacheRemoteGitBranches) {
 			String cacheRemoteGitBranchName = cacheRemoteGitBranch.getName();
 
-			if (!cacheRemoteGitBranchName.matches(
+			if (cacheRemoteGitBranchName.matches(
 					_cacheBranchPattern.pattern())) {
 
-				continue;
-			}
+				if (cacheRemoteGitBranchName.matches(
+						_cacheBranchPattern.pattern() + "-\\d+")) {
 
-			if (cacheRemoteGitBranchName.matches(
-					_cacheBranchPattern.pattern() + "-\\d+")) {
-
-				timestampedCacheRemoteGitBranchMap.put(
-					cacheRemoteGitBranchName, cacheRemoteGitBranch);
-			}
-			else {
-				baseCacheRemoteGitBranchesMap.put(
-					cacheRemoteGitBranchName, cacheRemoteGitBranch);
+					timestampedCacheRemoteGitBranchMap.put(
+						cacheRemoteGitBranchName, cacheRemoteGitBranch);
+				}
+				else {
+					baseCacheRemoteGitBranchesMap.put(
+						cacheRemoteGitBranchName, cacheRemoteGitBranch);
+				}
 			}
 		}
 
@@ -637,14 +629,12 @@ public class GitHubDevSyncUtil {
 			for (String timestampedCacheRemoteGitBranchName :
 					timestampedCacheRemoteGitBranchMap.keySet()) {
 
-				if (!timestampedCacheRemoteGitBranchName.matches(
+				if (timestampedCacheRemoteGitBranchName.matches(
 						timestampedCacheRemoteGitBranchNamePattern)) {
 
-					continue;
+					orphanedBaseCacheRemoteGitBranchesMap.remove(
+						baseCacheRemoteGitBranchName);
 				}
-
-				orphanedBaseCacheRemoteGitBranchesMap.remove(
-					baseCacheRemoteGitBranchName);
 			}
 		}
 
@@ -655,14 +645,12 @@ public class GitHubDevSyncUtil {
 				timestampedCacheRemoteGitBranchName.replaceAll(
 					"(.*)-\\d+", "$1");
 
-			if (!baseCacheRemoteGitBranchesMap.containsKey(
+			if (baseCacheRemoteGitBranchesMap.containsKey(
 					baseCacheRemoteGitBranchName)) {
 
-				continue;
+				orphanedTimestampedCacheRemoteGitBranchesMap.remove(
+					timestampedCacheRemoteGitBranchName);
 			}
-
-			orphanedTimestampedCacheRemoteGitBranchesMap.remove(
-				timestampedCacheRemoteGitBranchName);
 		}
 
 		StringBuilder sb = new StringBuilder();
@@ -768,17 +756,15 @@ public class GitHubDevSyncUtil {
 
 			String remoteGitBranchName = entry.getKey();
 
-			if (!remoteGitBranchName.matches(_cacheBranchPattern.pattern())) {
-				continue;
-			}
-
-			if (hasTimestampBranch(remoteGitBranches)) {
-				cacheRemoteGitBranches.add(entry.getValue());
-			}
-			else {
-				deleteCacheRemoteGitBranch(
-					remoteGitBranchName, gitWorkingDirectory,
-					remoteGitBranches);
+			if (remoteGitBranchName.matches(_cacheBranchPattern.pattern())) {
+				if (hasTimestampBranch(remoteGitBranches)) {
+					cacheRemoteGitBranches.add(entry.getValue());
+				}
+				else {
+					deleteCacheRemoteGitBranch(
+						remoteGitBranchName, gitWorkingDirectory,
+						remoteGitBranches);
+				}
 			}
 		}
 
@@ -851,14 +837,12 @@ public class GitHubDevSyncUtil {
 		for (String remoteGitBranchName : remoteGitBranches.keySet()) {
 			Matcher matcher = _cacheBranchPattern.matcher(remoteGitBranchName);
 
-			if (!matcher.matches()) {
-				continue;
-			}
+			if (matcher.matches()) {
+				String lastBlock = matcher.group(2);
 
-			String lastBlock = matcher.group(2);
-
-			if (lastBlock.matches("\\d+")) {
-				return true;
+				if (lastBlock.matches("\\d+")) {
+					return true;
+				}
 			}
 		}
 

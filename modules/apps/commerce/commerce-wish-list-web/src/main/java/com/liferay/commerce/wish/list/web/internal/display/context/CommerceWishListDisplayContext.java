@@ -213,11 +213,9 @@ public class CommerceWishListDisplayContext {
 
 			sb.append(iterator.next());
 
-			if (!iterator.hasNext()) {
-				continue;
+			if (iterator.hasNext()) {
+				sb.append(StringPool.COMMA_AND_SPACE);
 			}
-
-			sb.append(StringPool.COMMA_AND_SPACE);
 		}
 
 		return sb.toString();

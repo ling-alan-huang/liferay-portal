@@ -28,16 +28,17 @@ public class LiferayPortletUtil {
 		}
 
 		while (!(portletRequest instanceof PortletRequestImpl)) {
-			if (!(portletRequest instanceof PortletRequestWrapper)) {
+			if (portletRequest instanceof PortletRequestWrapper) {
+				PortletRequestWrapper portletRequestWrapper =
+					(PortletRequestWrapper)portletRequest;
+
+				portletRequest = portletRequestWrapper.getRequest();
+			}
+			else {
 				throw new RuntimeException(
 					"Unable to unwrap the portlet request from " +
 						portletRequest.getClass());
 			}
-
-			PortletRequestWrapper portletRequestWrapper =
-				(PortletRequestWrapper)portletRequest;
-
-			portletRequest = portletRequestWrapper.getRequest();
 		}
 
 		return (PortletRequestImpl)portletRequest;
@@ -51,16 +52,17 @@ public class LiferayPortletUtil {
 		}
 
 		while (!(portletResponse instanceof PortletResponseImpl)) {
-			if (!(portletResponse instanceof PortletResponseWrapper)) {
+			if (portletResponse instanceof PortletResponseWrapper) {
+				PortletResponseWrapper portletResponseWrapper =
+					(PortletResponseWrapper)portletResponse;
+
+				portletResponse = portletResponseWrapper.getResponse();
+			}
+			else {
 				throw new RuntimeException(
 					"Unable to unwrap the portlet response from " +
 						portletResponse.getClass());
 			}
-
-			PortletResponseWrapper portletResponseWrapper =
-				(PortletResponseWrapper)portletResponse;
-
-			portletResponse = portletResponseWrapper.getResponse();
 		}
 
 		return (PortletResponseImpl)portletResponse;

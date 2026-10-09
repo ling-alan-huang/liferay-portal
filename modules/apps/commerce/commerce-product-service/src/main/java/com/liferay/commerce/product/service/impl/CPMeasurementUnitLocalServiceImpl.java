@@ -350,15 +350,13 @@ public class CPMeasurementUnitLocalServiceImpl
 					companyId, primary, type);
 
 			for (CPMeasurementUnit curCPMeasurementUnit : cpMeasurementUnits) {
-				if (curCPMeasurementUnit.getCPMeasurementUnitId() ==
+				if (curCPMeasurementUnit.getCPMeasurementUnitId() !=
 						cpMeasurementUnitId) {
 
-					continue;
+					curCPMeasurementUnit.setPrimary(false);
+
+					cpMeasurementUnitPersistence.update(curCPMeasurementUnit);
 				}
-
-				curCPMeasurementUnit.setPrimary(false);
-
-				cpMeasurementUnitPersistence.update(curCPMeasurementUnit);
 			}
 		}
 	}

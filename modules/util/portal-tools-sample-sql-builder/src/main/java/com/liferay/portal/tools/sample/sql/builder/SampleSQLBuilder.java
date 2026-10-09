@@ -191,30 +191,30 @@ public class SampleSQLBuilder {
 
 				s = s.trim();
 
-				if (s.length() <= 0) {
-					continue;
-				}
+				if (s.length() > 0) {
+					if (s.startsWith("create") ||
+						s.startsWith("insert into ")) {
 
-				if (s.startsWith("create") || s.startsWith("insert into ")) {
-					if (!s.endsWith(");")) {
-						StringBundler sb = new StringBundler();
+						if (!s.endsWith(");")) {
+							StringBundler sb = new StringBundler();
 
-						while (!s.endsWith(");")) {
+							while (!s.endsWith(");")) {
+								sb.append(s);
+								sb.append(StringPool.NEW_LINE);
+
+								s = unsyncBufferedReader.readLine();
+							}
+
 							sb.append(s);
-							sb.append(StringPool.NEW_LINE);
 
-							s = unsyncBufferedReader.readLine();
+							s = sb.toString();
 						}
 
-						sb.append(s);
-
-						s = sb.toString();
+						compressSQL(db, dir, sqlWriters, insertSQLs, s);
 					}
-
-					compressSQL(db, dir, sqlWriters, insertSQLs, s);
-				}
-				else if (!s.contains("##")) {
-					counterSQLs.add(s);
+					else if (!s.contains("##")) {
+						counterSQLs.add(s);
+					}
 				}
 			}
 		}

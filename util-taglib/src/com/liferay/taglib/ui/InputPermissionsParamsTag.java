@@ -104,14 +104,12 @@ public class InputPermissionsParamsTag extends TagSupport {
 					sb.append(URLCodec.encodeURL(action));
 				}
 
-				if (!guestChecked) {
-					continue;
+				if (guestChecked) {
+					sb.append(StringPool.AMPERSAND);
+					sb.append(renderResponse.getNamespace());
+					sb.append("guestPermissions=");
+					sb.append(URLCodec.encodeURL(action));
 				}
-
-				sb.append(StringPool.AMPERSAND);
-				sb.append(renderResponse.getNamespace());
-				sb.append("guestPermissions=");
-				sb.append(URLCodec.encodeURL(action));
 			}
 
 			String inputPermissionsViewRole = getDefaultViewRole(

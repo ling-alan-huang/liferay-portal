@@ -112,15 +112,13 @@ public class AccountRoleSearchPermissionFilterContributor
 						setAccountEntryIdWithSafeCloseable(accountEntryId)) {
 
 				for (AccountRole accountRole : accountRoles) {
-					if (accountRoleIds.contains(accountRole.getRoleId()) ||
-						!_accountRoleModelResourcePermission.contains(
+					if (!accountRoleIds.contains(accountRole.getRoleId()) &&
+						_accountRoleModelResourcePermission.contains(
 							permissionChecker, accountRole.getAccountRoleId(),
 							ActionKeys.VIEW)) {
 
-						continue;
+						accountRoleIds.add(accountRole.getAccountRoleId());
 					}
-
-					accountRoleIds.add(accountRole.getAccountRoleId());
 				}
 			}
 		}

@@ -156,11 +156,9 @@ public class PreviewableResolverUtil {
 		for (BaseModel<?> fromBaseModel : fromBaseModels) {
 			Serializable toPK = pkMap.get(fromBaseModel.getPrimaryKeyObj());
 
-			if (toPK == null) {
-				continue;
+			if (toPK != null) {
+				toPKs.add(toPK);
 			}
-
-			toPKs.add(toPK);
 		}
 
 		Map<Serializable, PersistedModel> toPersistedModels =

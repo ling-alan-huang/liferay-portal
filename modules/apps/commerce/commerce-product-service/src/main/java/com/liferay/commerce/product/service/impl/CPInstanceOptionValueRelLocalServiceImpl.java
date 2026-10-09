@@ -225,17 +225,15 @@ public class CPInstanceOptionValueRelLocalServiceImpl
 			for (CPInstanceOptionValueRel currCPInstanceOptionValueRel :
 					cpInstanceCPInstanceOptionValueRels) {
 
-				if ((cpInstanceOptionValueRel.getCPDefinitionOptionRelId() !=
+				if ((cpInstanceOptionValueRel.getCPDefinitionOptionRelId() ==
 						currCPInstanceOptionValueRel.
-							getCPDefinitionOptionRelId()) ||
-					(cpInstanceOptionValueRel.getCPDefinitionOptionRelId() !=
+							getCPDefinitionOptionRelId()) &&
+					(cpInstanceOptionValueRel.getCPDefinitionOptionRelId() ==
 						currCPInstanceOptionValueRel.
 							getCPDefinitionOptionRelId())) {
 
-					continue;
+					matchCount++;
 				}
-
-				matchCount++;
 			}
 		}
 

@@ -175,18 +175,16 @@ public class APIApplicationOpenApiContributor implements OpenAPIContributor {
 
 			APIApplication.Schema responseSchema = endpoint.getResponseSchema();
 
-			if (responseSchema == null) {
-				continue;
-			}
+			if (responseSchema != null) {
+				if (Objects.equals(
+						endpoint.getRetrieveType(),
+						APIApplication.Endpoint.RetrieveType.COLLECTION)) {
 
-			if (Objects.equals(
-					endpoint.getRetrieveType(),
-					APIApplication.Endpoint.RetrieveType.COLLECTION)) {
-
-				schemasSet.add("Page" + responseSchema.getName());
-			}
-			else {
-				schemasSet.add(responseSchema.getName());
+					schemasSet.add("Page" + responseSchema.getName());
+				}
+				else {
+					schemasSet.add(responseSchema.getName());
+				}
 			}
 		}
 
@@ -350,13 +348,11 @@ public class APIApplicationOpenApiContributor implements OpenAPIContributor {
 		).build();
 
 		for (String pageSchemaName : schemas.keySet()) {
-			if (!pageSchemaName.startsWith("Page") ||
-				schemasSet.contains(pageSchemaName)) {
+			if (pageSchemaName.startsWith("Page") &&
+				!schemasSet.contains(pageSchemaName)) {
 
-				continue;
+				schemasMap.remove(pageSchemaName);
 			}
-
-			schemasMap.remove(pageSchemaName);
 		}
 
 		return schemasMap;

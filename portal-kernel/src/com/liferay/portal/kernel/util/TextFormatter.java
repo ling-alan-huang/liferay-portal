@@ -162,11 +162,9 @@ public class TextFormatter {
 		}
 
 		for (int i = 0; i < chars.length; i++) {
-			if (chars[i] != ' ') {
-				continue;
+			if (chars[i] == ' ') {
+				chars[i + 1] = Character.toUpperCase(chars[i + 1]);
 			}
-
-			chars[i + 1] = Character.toUpperCase(chars[i + 1]);
 		}
 
 		return new String(chars);
@@ -353,11 +351,9 @@ public class TextFormatter {
 		StringBuilder sb = new StringBuilder(StringUtil.toLowerCase(s));
 
 		for (int i = 0; i < s.length(); i++) {
-			if ((i != 0) && (s.charAt(i - 1) != ' ')) {
-				continue;
+			if ((i == 0) || (s.charAt(i - 1) == ' ')) {
+				sb.setCharAt(i, Character.toUpperCase(s.charAt(i)));
 			}
-
-			sb.setCharAt(i, Character.toUpperCase(s.charAt(i)));
 		}
 
 		return sb.toString();
@@ -419,19 +415,15 @@ public class TextFormatter {
 		for (int i = 0; i < s.length(); i++) {
 			char c = s.charAt(i);
 
-			if (!Character.isUpperCase(c) || (i <= 0) ||
-				((i + 1) >= s.length())) {
+			if (Character.isUpperCase(c) && (i > 0) && ((i + 1) < s.length())) {
+				int delta = sb.length() - s.length();
 
-				continue;
-			}
-
-			int delta = sb.length() - s.length();
-
-			if (Character.isLowerCase(s.charAt(i + 1))) {
-				sb.insert(i + delta, CharPool.DASH);
-			}
-			else if (Character.isLowerCase(s.charAt(i - 1))) {
-				sb.insert(i + delta, CharPool.DASH);
+				if (Character.isLowerCase(s.charAt(i + 1))) {
+					sb.insert(i + delta, CharPool.DASH);
+				}
+				else if (Character.isLowerCase(s.charAt(i - 1))) {
+					sb.insert(i + delta, CharPool.DASH);
+				}
 			}
 		}
 

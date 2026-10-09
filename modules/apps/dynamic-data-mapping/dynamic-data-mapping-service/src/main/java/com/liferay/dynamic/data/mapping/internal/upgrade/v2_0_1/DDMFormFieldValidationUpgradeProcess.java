@@ -183,14 +183,12 @@ public class DDMFormFieldValidationUpgradeProcess extends UpgradeProcess {
 				parameterValue, validationJSONObject,
 				definitionJSONObject.getString("defaultLanguageId"));
 
-			if (Validator.isNull(parameterValue)) {
-				continue;
+			if (Validator.isNotNull(parameterValue)) {
+				expressionJSONObject.put(
+					"value",
+					StringUtil.replace(
+						expressionValue, parameterValue, "{parameter}"));
 			}
-
-			expressionJSONObject.put(
-				"value",
-				StringUtil.replace(
-					expressionValue, parameterValue, "{parameter}"));
 		}
 
 		return definitionJSONObject.toString();

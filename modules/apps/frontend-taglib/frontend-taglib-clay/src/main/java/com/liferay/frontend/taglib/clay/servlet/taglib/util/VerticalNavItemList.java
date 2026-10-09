@@ -42,11 +42,9 @@ public class VerticalNavItemList extends ArrayList<VerticalNavItem> {
 		VerticalNavItemList verticalNavItemList = new VerticalNavItemList();
 
 		for (VerticalNavItem verticalNavItem : verticalNavItems) {
-			if (verticalNavItem == null) {
-				continue;
+			if (verticalNavItem != null) {
+				verticalNavItemList.add(verticalNavItem);
 			}
-
-			verticalNavItemList.add(verticalNavItem);
 		}
 
 		return verticalNavItemList;

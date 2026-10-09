@@ -778,11 +778,9 @@ public abstract class BaseStagedModelDataHandler<T extends StagedModel>
 			AssetTag assetTag = AssetTagLocalServiceUtil.fetchAssetTag(
 				importedStagedAssetTagId);
 
-			if (assetTag == null) {
-				continue;
+			if (assetTag != null) {
+				assetTagNames.add(assetTag.getName());
 			}
-
-			assetTagNames.add(assetTag.getName());
 		}
 
 		if (assetTagNames.isEmpty()) {

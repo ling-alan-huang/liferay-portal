@@ -50,15 +50,13 @@ public class OutputData implements Mergeable<OutputData>, Serializable {
 		for (Map.Entry<DataKey, StringBundler> entry : _dataMap.entrySet()) {
 			DataKey dataKey = entry.getKey();
 
-			if (!dataKey._webKey.equals(webKey)) {
-				continue;
-			}
-
-			if (mergedSB == null) {
-				mergedSB = entry.getValue();
-			}
-			else {
-				mergedSB.append(entry.getValue());
+			if (dataKey._webKey.equals(webKey)) {
+				if (mergedSB == null) {
+					mergedSB = entry.getValue();
+				}
+				else {
+					mergedSB.append(entry.getValue());
+				}
 			}
 		}
 
@@ -82,26 +80,22 @@ public class OutputData implements Mergeable<OutputData>, Serializable {
 
 			String outputKey = dataKey._outputKey;
 
-			if (_outputKeys.contains(outputKey)) {
-				continue;
+			if (!_outputKeys.contains(outputKey)) {
+				StringBundler sb = entry.getValue();
+
+				StringBundler mergedSB = _dataMap.get(dataKey);
+
+				if (mergedSB == null) {
+					_dataMap.put(dataKey, sb);
+				}
+				else {
+					mergedSB.append(sb);
+				}
+
+				if (outputData._outputKeys.contains(outputKey)) {
+					_outputKeys.add(outputKey);
+				}
 			}
-
-			StringBundler sb = entry.getValue();
-
-			StringBundler mergedSB = _dataMap.get(dataKey);
-
-			if (mergedSB == null) {
-				_dataMap.put(dataKey, sb);
-			}
-			else {
-				mergedSB.append(sb);
-			}
-
-			if (!outputData._outputKeys.contains(outputKey)) {
-				continue;
-			}
-
-			_outputKeys.add(outputKey);
 		}
 
 		return this;

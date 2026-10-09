@@ -385,13 +385,12 @@ public class StructureBuilderDisplayContext {
 			JSONObject objectDefinitionJSONObject =
 				_getObjectDefinitionJSONObject(objectDefinition);
 
-			if (objectDefinitionJSONObject == null) {
-				continue;
+			if (objectDefinitionJSONObject != null) {
+				jsonObject.put(
+					objectDefinitionJSONObject.getString(
+						"externalReferenceCode"),
+					objectDefinitionJSONObject);
 			}
-
-			jsonObject.put(
-				objectDefinitionJSONObject.getString("externalReferenceCode"),
-				objectDefinitionJSONObject);
 		}
 
 		return jsonObject;

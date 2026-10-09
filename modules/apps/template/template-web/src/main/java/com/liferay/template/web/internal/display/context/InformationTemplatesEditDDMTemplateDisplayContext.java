@@ -204,22 +204,20 @@ public class InformationTemplatesEditDDMTemplateDisplayContext
 					infoFieldSet.getLabel(_themeDisplay.getLocale()));
 
 			for (InfoField<?> infoField : infoFieldSet.getAllInfoFields()) {
-				if (StringUtil.startsWith(
+				if (!StringUtil.startsWith(
 						infoField.getUniqueId(),
 						PortletDisplayTemplate.DISPLAY_STYLE_PREFIX)) {
 
-					continue;
+					InfoFieldType infoFieldType = infoField.getInfoFieldType();
+
+					templateVariableGroup.addFieldVariable(
+						infoField.getLabel(_themeDisplay.getLocale()),
+						TemplateNode.class, infoField.getUniqueId(),
+						infoField.getLabel(_themeDisplay.getLocale()),
+						infoFieldType.getName(),
+						infoField.isMultivalued() || infoField.isRepeatable(),
+						_templateVariableCodeHandler);
 				}
-
-				InfoFieldType infoFieldType = infoField.getInfoFieldType();
-
-				templateVariableGroup.addFieldVariable(
-					infoField.getLabel(_themeDisplay.getLocale()),
-					TemplateNode.class, infoField.getUniqueId(),
-					infoField.getLabel(_themeDisplay.getLocale()),
-					infoFieldType.getName(),
-					infoField.isMultivalued() || infoField.isRepeatable(),
-					_templateVariableCodeHandler);
 			}
 
 			templateVariableGroups.add(templateVariableGroup);

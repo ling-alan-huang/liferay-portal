@@ -355,11 +355,9 @@ public class PortalJSONObjectUtil {
 			JSONArray elementJSONArray = _addElementValues(
 				new JSONArrayImpl(), content.substring(matcher.end() - 1, x));
 
-			if (elementJSONArray.length() <= 0) {
-				continue;
+			if (elementJSONArray.length() > 0) {
+				xmlDefinitionJSONObject.put(matcher.group(1), elementJSONArray);
 			}
-
-			xmlDefinitionJSONObject.put(matcher.group(1), elementJSONArray);
 		}
 
 		if (xmlDefinitionJSONObject.length() > 0) {

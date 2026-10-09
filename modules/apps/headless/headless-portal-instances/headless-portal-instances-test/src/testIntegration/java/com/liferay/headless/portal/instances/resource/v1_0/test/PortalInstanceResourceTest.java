@@ -649,11 +649,9 @@ public class PortalInstanceResourceTest
 					_companyLocalService.fetchCompanyByVirtualHost(
 						portalInstance.getVirtualHost());
 
-				if (company == null) {
-					continue;
+				if (company != null) {
+					_deletePortalInstance(_toPortalInstance(company));
 				}
-
-				_deletePortalInstance(_toPortalInstance(company));
 			}
 		}
 	}

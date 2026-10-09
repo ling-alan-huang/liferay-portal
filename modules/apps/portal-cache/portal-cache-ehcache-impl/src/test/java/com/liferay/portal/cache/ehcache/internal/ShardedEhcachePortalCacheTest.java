@@ -682,15 +682,13 @@ public class ShardedEhcachePortalCacheTest {
 		for (CacheConfigurationChangeListener cacheConfigurationChangeListener :
 				cacheConfigurationChangeListeners) {
 
-			if (!(cacheConfigurationChangeListener instanceof
-					TestCacheConfigurationChangeListener)) {
+			if (cacheConfigurationChangeListener instanceof
+					TestCacheConfigurationChangeListener) {
 
-				continue;
+				testCacheConfigurationChangeListener =
+					(TestCacheConfigurationChangeListener)
+						cacheConfigurationChangeListener;
 			}
-
-			testCacheConfigurationChangeListener =
-				(TestCacheConfigurationChangeListener)
-					cacheConfigurationChangeListener;
 		}
 
 		Assert.assertNotNull(testCacheConfigurationChangeListener);

@@ -56,12 +56,10 @@ public class SourceFormatterCheckUtil {
 				String attributeName = null;
 
 				for (String keyPrefix : keyPrefixes) {
-					if (!key.startsWith(keyPrefix)) {
-						continue;
+					if (key.startsWith(keyPrefix)) {
+						attributeName = StringUtil.replaceFirst(
+							key, keyPrefix, StringPool.BLANK);
 					}
-
-					attributeName = StringUtil.replaceFirst(
-						key, keyPrefix, StringPool.BLANK);
 				}
 
 				if (attributeName == null) {
@@ -80,12 +78,10 @@ public class SourceFormatterCheckUtil {
 				propertiesAttributesJSONObject.put(attributeName, jsonArray);
 			}
 
-			if (propertiesAttributesJSONObject.length() == 0) {
-				continue;
+			if (propertiesAttributesJSONObject.length() != 0) {
+				attributesJSONObject.put(
+					entry.getKey(), propertiesAttributesJSONObject);
 			}
-
-			attributesJSONObject.put(
-				entry.getKey(), propertiesAttributesJSONObject);
 		}
 
 		return attributesJSONObject;
@@ -124,12 +120,10 @@ public class SourceFormatterCheckUtil {
 				propertiesAttributesJSONObject.put(key, jsonArray);
 			}
 
-			if (propertiesAttributesJSONObject.length() == 0) {
-				continue;
+			if (propertiesAttributesJSONObject.length() != 0) {
+				attributesJSONObject.put(
+					entry.getKey(), propertiesAttributesJSONObject);
 			}
-
-			attributesJSONObject.put(
-				entry.getKey(), propertiesAttributesJSONObject);
 		}
 
 		return attributesJSONObject;
@@ -164,12 +158,10 @@ public class SourceFormatterCheckUtil {
 				propertiesExcludesJSONObject.put(key, jsonArray);
 			}
 
-			if (propertiesExcludesJSONObject.length() == 0) {
-				continue;
+			if (propertiesExcludesJSONObject.length() != 0) {
+				excludesJSONObject.put(
+					entry.getKey(), propertiesExcludesJSONObject);
 			}
-
-			excludesJSONObject.put(
-				entry.getKey(), propertiesExcludesJSONObject);
 		}
 
 		return excludesJSONObject;
@@ -239,16 +231,14 @@ public class SourceFormatterCheckUtil {
 				continue;
 			}
 
-			if ((closestPropertiesFileLocation != null) &&
-				(closestPropertiesFileLocation.length() >=
+			if ((closestPropertiesFileLocation == null) ||
+				(closestPropertiesFileLocation.length() <
 					fileLocation.length())) {
 
-				continue;
+				value = curValue;
+
+				closestPropertiesFileLocation = fileLocation;
 			}
-
-			value = curValue;
-
-			closestPropertiesFileLocation = fileLocation;
 		}
 
 		if (value == null) {

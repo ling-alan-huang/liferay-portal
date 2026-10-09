@@ -49,27 +49,23 @@ public class SelfReferenceCheck extends BaseCheck {
 
 			String methodClassName = firstChildDetailAST.getText();
 
-			if ((firstChildDetailAST.getType() != TokenTypes.LITERAL_THIS) &&
-				(!methodClassName.equals(className) ||
-				 _isInsideAnonymousClass(methodCallDetailAST) ||
-				 _isInsideInnerClass(methodCallDetailAST, className) ||
-				 hasParentWithTokenType(
+			if ((firstChildDetailAST.getType() == TokenTypes.LITERAL_THIS) ||
+				(methodClassName.equals(className) &&
+				 !_isInsideAnonymousClass(methodCallDetailAST) &&
+				 !_isInsideInnerClass(methodCallDetailAST, className) &&
+				 !hasParentWithTokenType(
 					 methodCallDetailAST, TokenTypes.INSTANCE_INIT))) {
 
-				continue;
+				DetailAST secondChildDetailAST =
+					firstChildDetailAST.getNextSibling();
+
+				if (secondChildDetailAST.getType() == TokenTypes.IDENT) {
+					log(
+						methodCallDetailAST, _MSG_UNNEEDED_SELF_REFERENCE,
+						secondChildDetailAST.getText(),
+						firstChildDetailAST.getText() + StringPool.PERIOD);
+				}
 			}
-
-			DetailAST secondChildDetailAST =
-				firstChildDetailAST.getNextSibling();
-
-			if (secondChildDetailAST.getType() != TokenTypes.IDENT) {
-				continue;
-			}
-
-			log(
-				methodCallDetailAST, _MSG_UNNEEDED_SELF_REFERENCE,
-				secondChildDetailAST.getText(),
-				firstChildDetailAST.getText() + StringPool.PERIOD);
 		}
 	}
 

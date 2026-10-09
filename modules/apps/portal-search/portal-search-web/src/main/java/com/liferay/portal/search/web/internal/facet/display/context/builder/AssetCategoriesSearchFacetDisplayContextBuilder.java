@@ -404,13 +404,11 @@ public class AssetCategoriesSearchFacetDisplayContextBuilder
 
 			bucketDisplayContexts.add(bucketDisplayContext);
 
-			if (_order == null) {
-				continue;
+			if (_order != null) {
+				bucketDisplayContexts.sort(
+					BucketDisplayContextComparatorFactoryUtil.
+						getBucketDisplayContextComparator(_order));
 			}
-
-			bucketDisplayContexts.sort(
-				BucketDisplayContextComparatorFactoryUtil.
-					getBucketDisplayContextComparator(_order));
 		}
 
 		return bucketDisplayContexts;

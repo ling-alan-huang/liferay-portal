@@ -361,11 +361,9 @@ public class DLFolderFinderImpl
 			while (iterator.hasNext()) {
 				Long l = iterator.next();
 
-				if (l == null) {
-					continue;
+				if (l != null) {
+					count += l.intValue();
 				}
-
-				count += l.intValue();
 			}
 
 			return count;
@@ -472,11 +470,9 @@ public class DLFolderFinderImpl
 			while (iterator.hasNext()) {
 				Long l = iterator.next();
 
-				if (l == null) {
-					continue;
+				if (l != null) {
+					count += l.intValue();
 				}
-
-				count += l.intValue();
 			}
 
 			return count;
@@ -594,11 +590,9 @@ public class DLFolderFinderImpl
 			while (iterator.hasNext()) {
 				Long l = iterator.next();
 
-				if (l == null) {
-					continue;
+				if (l != null) {
+					count += l.intValue();
 				}
-
-				count += l.intValue();
 			}
 
 			return count;
@@ -1006,11 +1000,9 @@ public class DLFolderFinderImpl
 
 				queryPos.add(folderId);
 
-				if (mimeTypes == null) {
-					continue;
+				if (mimeTypes != null) {
+					queryPos.add(mimeTypes);
 				}
-
-				queryPos.add(mimeTypes);
 			}
 
 			for (int i = 0; i < 2; i++) {
@@ -1019,11 +1011,9 @@ public class DLFolderFinderImpl
 				queryPos.add(queryDefinition.getStatus());
 				queryPos.add(folderId);
 
-				if (mimeTypes == null) {
-					continue;
+				if (mimeTypes != null) {
+					queryPos.add(mimeTypes);
 				}
-
-				queryPos.add(mimeTypes);
 			}
 
 			List<Object> models = new ArrayList<>();
@@ -1170,11 +1160,9 @@ public class DLFolderFinderImpl
 				queryPos.add(queryDefinition.getStatus());
 				queryPos.add(folderId);
 
-				if (mimeTypes == null) {
-					continue;
+				if (mimeTypes != null) {
+					queryPos.add(mimeTypes);
 				}
-
-				queryPos.add(mimeTypes);
 			}
 
 			List<Object> models = new ArrayList<>();
@@ -1436,11 +1424,9 @@ public class DLFolderFinderImpl
 			sb.append(tableName);
 			sb.append(".mimeType = ?");
 
-			if ((i + 1) == mimeTypes.length) {
-				continue;
+			if ((i + 1) != mimeTypes.length) {
+				sb.append(WHERE_OR);
 			}
-
-			sb.append(WHERE_OR);
 		}
 
 		return sb.toString();

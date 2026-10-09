@@ -137,11 +137,9 @@ public class TestrayManagerImpl implements TestrayManager {
 					ObjectEntry objectEntry = _autofillTestrayCaseResult(
 						testrayCaseResult1, testrayCaseResult2, userId);
 
-					if (objectEntry == null) {
-						continue;
+					if (objectEntry != null) {
+						caseAmount++;
 					}
-
-					caseAmount++;
 				}
 			}
 		}

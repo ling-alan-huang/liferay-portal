@@ -242,12 +242,10 @@ public class JspPrecompileTest {
 		for (Class<?> clazz : classes) {
 			Package pkg = clazz.getPackage();
 
-			if (!packages.add(pkg)) {
-				continue;
+			if (packages.add(pkg)) {
+				sb.append(pkg.getName());
+				sb.append(StringPool.COMMA);
 			}
-
-			sb.append(pkg.getName());
-			sb.append(StringPool.COMMA);
 		}
 
 		sb.setIndex(sb.index() - 1);

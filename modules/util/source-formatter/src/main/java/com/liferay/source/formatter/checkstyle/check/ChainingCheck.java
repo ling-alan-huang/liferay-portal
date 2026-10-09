@@ -115,11 +115,9 @@ public class ChainingCheck extends BaseCheck {
 
 			int chainSize = chainedMethodNames.size();
 
-			if (chainSize <= 3) {
-				continue;
+			if (chainSize > 3) {
+				_checkChainOrder(methodCallDetailAST, chainedMethodNames);
 			}
-
-			_checkChainOrder(methodCallDetailAST, chainedMethodNames);
 		}
 	}
 
@@ -332,13 +330,11 @@ public class ChainingCheck extends BaseCheck {
 
 				JavaSignature javaSignature = javaMethod.getSignature();
 
-				if (!Objects.equals(
+				if (Objects.equals(
 						javaClass.getName(), javaSignature.getReturnType())) {
 
-					continue;
+					requiredChainingMethodNames.add(javaMethod.getName());
 				}
-
-				requiredChainingMethodNames.add(javaMethod.getName());
 			}
 
 			_requiredChainingMethodNamesMap.put(

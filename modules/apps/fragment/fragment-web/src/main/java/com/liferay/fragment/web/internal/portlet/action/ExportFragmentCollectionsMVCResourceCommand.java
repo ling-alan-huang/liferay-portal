@@ -81,15 +81,13 @@ public class ExportFragmentCollectionsMVCResourceCommand
 			ZipWriter zipWriter = _zipWriterFactory.getZipWriter();
 
 			for (FragmentCollection fragmentCollection : fragmentCollections) {
-				if ((fragmentCollection.getGroupId() !=
-						themeDisplay.getCompanyGroupId()) &&
-					(fragmentCollection.getGroupId() !=
+				if ((fragmentCollection.getGroupId() ==
+						themeDisplay.getCompanyGroupId()) ||
+					(fragmentCollection.getGroupId() ==
 						themeDisplay.getScopeGroupId())) {
 
-					continue;
+					fragmentCollection.populateZipWriter(zipWriter);
 				}
-
-				fragmentCollection.populateZipWriter(zipWriter);
 			}
 
 			PortletResponseUtil.sendFile(

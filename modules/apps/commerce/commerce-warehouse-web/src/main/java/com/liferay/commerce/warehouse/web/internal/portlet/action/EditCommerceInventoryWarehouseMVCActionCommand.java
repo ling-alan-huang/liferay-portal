@@ -213,14 +213,12 @@ public class EditCommerceInventoryWarehouseMVCActionCommand
 			commerceInventoryWarehouseId);
 
 		for (long commerceChannelId : commerceChannelIds) {
-			if (commerceChannelId == 0) {
-				continue;
+			if (commerceChannelId != 0) {
+				_commerceChannelRelService.addCommerceChannelRel(
+					CommerceInventoryWarehouse.class.getName(),
+					commerceInventoryWarehouseId, commerceChannelId,
+					serviceContext);
 			}
-
-			_commerceChannelRelService.addCommerceChannelRel(
-				CommerceInventoryWarehouse.class.getName(),
-				commerceInventoryWarehouseId, commerceChannelId,
-				serviceContext);
 		}
 	}
 

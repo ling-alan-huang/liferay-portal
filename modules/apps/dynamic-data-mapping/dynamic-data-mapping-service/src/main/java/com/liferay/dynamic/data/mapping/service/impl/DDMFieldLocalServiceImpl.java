@@ -341,15 +341,13 @@ public class DDMFieldLocalServiceImpl extends DDMFieldLocalServiceBaseImpl {
 		}
 
 		for (DDMFieldInfo ddmFieldInfo : ddmFieldInfos) {
-			if ((ddmFieldInfo == rootDDMFieldInfo) ||
-				(ddmFieldInfo._parentInstanceId != null)) {
+			if ((ddmFieldInfo != rootDDMFieldInfo) &&
+				(ddmFieldInfo._parentInstanceId == null)) {
 
-				continue;
+				ddmFormValues.addDDMFormFieldValue(
+					_getDDMFormFieldValue(
+						ddmFieldInfo, ddmFormValues.getDefaultLocale()));
 			}
-
-			ddmFormValues.addDDMFormFieldValue(
-				_getDDMFormFieldValue(
-					ddmFieldInfo, ddmFormValues.getDefaultLocale()));
 		}
 
 		return ddmFormValues;
@@ -764,11 +762,9 @@ public class DDMFieldLocalServiceImpl extends DDMFieldLocalServiceBaseImpl {
 				Locale locale = LocaleUtil.fromLanguageId(
 					entry.getKey(), true, false);
 
-				if (locale == null) {
-					continue;
+				if (locale != null) {
+					value.addString(locale, _getValueString(entry.getValue()));
 				}
-
-				value.addString(locale, _getValueString(entry.getValue()));
 			}
 
 			ddmFormFieldValue.setValue(value);
@@ -1047,13 +1043,11 @@ public class DDMFieldLocalServiceImpl extends DDMFieldLocalServiceBaseImpl {
 		}
 
 		for (DDMFieldInfo ddmFieldInfo : ddmFieldInfosMap.values()) {
-			if (ddmFieldInfo._parentInstanceId != null) {
-				continue;
+			if (ddmFieldInfo._parentInstanceId == null) {
+				ddmFormValues.addDDMFormFieldValue(
+					_getDDMFormFieldValue(
+						ddmFieldInfo, ddmFormValues.getDefaultLocale()));
 			}
-
-			ddmFormValues.addDDMFormFieldValue(
-				_getDDMFormFieldValue(
-					ddmFieldInfo, ddmFormValues.getDefaultLocale()));
 		}
 
 		return ddmFormValues;

@@ -45,18 +45,17 @@ public class CommercePermissionUpgradeProcess extends UpgradeProcess {
 				_resourcePermissionLocalService.getResourcePermissions(
 					AccountEntry.class.getName())) {
 
-			if (!_resourcePermissionLocalService.hasActionId(
-					resourcePermission, resourceAction) ||
-				(resourcePermission.getScope() ==
+			if (_resourcePermissionLocalService.hasActionId(
+					resourcePermission, resourceAction) &&
+				(resourcePermission.getScope() !=
 					ResourceConstants.SCOPE_INDIVIDUAL)) {
 
-				continue;
+				_resourcePermissionLocalService.addResourcePermission(
+					resourcePermission.getCompanyId(),
+					AccountRole.class.getName(), resourcePermission.getScope(),
+					resourcePermission.getPrimKey(),
+					resourcePermission.getRoleId(), ActionKeys.VIEW);
 			}
-
-			_resourcePermissionLocalService.addResourcePermission(
-				resourcePermission.getCompanyId(), AccountRole.class.getName(),
-				resourcePermission.getScope(), resourcePermission.getPrimKey(),
-				resourcePermission.getRoleId(), ActionKeys.VIEW);
 		}
 	}
 

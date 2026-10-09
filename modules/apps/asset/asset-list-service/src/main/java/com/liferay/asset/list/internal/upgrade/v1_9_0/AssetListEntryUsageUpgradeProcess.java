@@ -129,16 +129,14 @@ public class AssetListEntryUsageUpgradeProcess extends UpgradeProcess {
 								insertPreparedStatement, type);
 						}
 
-						if (!collectionJSONObject.has("key")) {
-							continue;
+						if (collectionJSONObject.has("key")) {
+							_addBatch(
+								_portal.getClassNameId(
+									InfoCollectionProvider.class),
+								itemId, collectionJSONObject.getString("key"),
+								layoutPageTemplateStructure,
+								insertPreparedStatement, type);
 						}
-
-						_addBatch(
-							_portal.getClassNameId(
-								InfoCollectionProvider.class),
-							itemId, collectionJSONObject.getString("key"),
-							layoutPageTemplateStructure,
-							insertPreparedStatement, type);
 					}
 				}
 

@@ -554,22 +554,22 @@ public class MiniumSiteInitializer implements SiteInitializer {
 
 				JSONArray skusJSONArray = jsonObject.getJSONArray("skus");
 
-				if (skusJSONArray == null) {
-					continue;
-				}
+				if (skusJSONArray != null) {
+					for (int j = 0; j < skusJSONArray.length(); j++) {
+						JSONObject skuJSONObject = skusJSONArray.getJSONObject(
+							j);
 
-				for (int j = 0; j < skusJSONArray.length(); j++) {
-					JSONObject skuJSONObject = skusJSONArray.getJSONObject(j);
+						String skuExternalReferenceCode =
+							skuJSONObject.getString("externalReferenceCode");
 
-					String skuExternalReferenceCode = skuJSONObject.getString(
-						"externalReferenceCode");
+						String newSkuExternalReferenceCode =
+							skuExternalReferenceCode +
+								_siteInitializerDependencyResolver.getKey();
 
-					String newSkuExternalReferenceCode =
-						skuExternalReferenceCode +
-							_siteInitializerDependencyResolver.getKey();
-
-					skuJSONObject.put(
-						"externalReferenceCode", newSkuExternalReferenceCode);
+						skuJSONObject.put(
+							"externalReferenceCode",
+							newSkuExternalReferenceCode);
+					}
 				}
 			}
 		}

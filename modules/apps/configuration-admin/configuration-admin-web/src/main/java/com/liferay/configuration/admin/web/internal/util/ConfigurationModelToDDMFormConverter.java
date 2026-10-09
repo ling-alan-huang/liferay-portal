@@ -224,12 +224,10 @@ public class ConfigurationModelToDDMFormConverter {
 			ddmForm.getDDMFormFieldsMap(false);
 
 		for (AttributeDefinition attributeDefinition : attributeDefinitions) {
-			if (ddmFormFieldsMap.containsKey(attributeDefinition.getID())) {
-				continue;
+			if (!ddmFormFieldsMap.containsKey(attributeDefinition.getID())) {
+				ddmForm.addDDMFormField(
+					_getDDMFormField(attributeDefinition, required));
 			}
-
-			ddmForm.addDDMFormField(
-				_getDDMFormField(attributeDefinition, required));
 		}
 	}
 

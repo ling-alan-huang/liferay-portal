@@ -134,15 +134,13 @@ public class UserBagFactoryUtil {
 		Set<Organization> organizations = new LinkedHashSet<>();
 
 		for (Organization organization : userOrgs) {
-			if (!organizations.add(organization)) {
-				continue;
+			if (organizations.add(organization)) {
+				List<Organization> ancestorOrganizations =
+					OrganizationLocalServiceUtil.getParentOrganizations(
+						organization.getOrganizationId());
+
+				organizations.addAll(ancestorOrganizations);
 			}
-
-			List<Organization> ancestorOrganizations =
-				OrganizationLocalServiceUtil.getParentOrganizations(
-					organization.getOrganizationId());
-
-			organizations.addAll(ancestorOrganizations);
 		}
 
 		return organizations;

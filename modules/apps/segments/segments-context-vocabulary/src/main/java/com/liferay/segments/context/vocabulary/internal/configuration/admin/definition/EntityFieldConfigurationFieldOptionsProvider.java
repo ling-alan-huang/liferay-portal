@@ -55,13 +55,11 @@ public class EntityFieldConfigurationFieldOptionsProvider
 			_entityModel.getEntityFieldsMap();
 
 		for (EntityField entityField : entityFieldsMap.values()) {
-			if (!Objects.equals(
+			if (Objects.equals(
 					entityField.getType(), EntityField.Type.STRING)) {
 
-				continue;
+				options.add(_toOption(entityField.getName()));
 			}
-
-			options.add(_toOption(entityField.getName()));
 		}
 
 		Collections.sort(options, Comparator.comparing(Option::getValue));

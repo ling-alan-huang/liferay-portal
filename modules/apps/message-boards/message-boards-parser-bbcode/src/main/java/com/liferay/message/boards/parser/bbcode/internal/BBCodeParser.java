@@ -82,11 +82,12 @@ public class BBCodeParser {
 
 			handleData(bbCodeItems, bbCodeLexer, marker, bbCodeToken, text);
 
-			if (bbCodeToken == null) {
+			if (bbCodeToken != null) {
+				handleTagEnd(bbCodeItems, tags, bbCodeToken);
+			}
+			else {
 				break;
 			}
-
-			handleTagEnd(bbCodeItems, tags, bbCodeToken);
 		}
 
 		handleData(bbCodeItems, bbCodeLexer, marker, null, text);

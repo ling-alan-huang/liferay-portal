@@ -293,12 +293,10 @@ public class CustomFacetDisplayContextBuilder {
 				new CustomFacetCalendarDisplayContextBuilder();
 
 		for (String parameterValue : _parameterValues) {
-			if (!parameterValue.startsWith(StringPool.OPEN_CURLY_BRACE)) {
-				continue;
+			if (parameterValue.startsWith(StringPool.OPEN_CURLY_BRACE)) {
+				customFacetCalendarDisplayContextBuilder.rangeString(
+					parameterValue);
 			}
-
-			customFacetCalendarDisplayContextBuilder.rangeString(
-				parameterValue);
 		}
 
 		return customFacetCalendarDisplayContextBuilder.from(

@@ -151,16 +151,14 @@ public class FragmentEntryLinkUpgradeProcess extends UpgradeProcess {
 				String classNameId = backgroundElementItemJSONObject.getString(
 					"classNameId");
 
-				if (!Objects.equals(
+				if (Objects.equals(
 						classNameId, String.valueOf(dlFileEntryClassNameId))) {
 
-					continue;
+					backgroundElementItemJSONObject.put(
+						"classNameId", String.valueOf(fileEntryClassNameId));
+
+					modified = true;
 				}
-
-				backgroundElementItemJSONObject.put(
-					"classNameId", String.valueOf(fileEntryClassNameId));
-
-				modified = true;
 			}
 		}
 
@@ -198,16 +196,14 @@ public class FragmentEntryLinkUpgradeProcess extends UpgradeProcess {
 
 			String classNameId = configJSONObject.getString("classNameId");
 
-			if (!Objects.equals(
+			if (Objects.equals(
 					classNameId, String.valueOf(dlFileEntryClassNameId))) {
 
-				continue;
+				configJSONObject.put(
+					"classNameId", String.valueOf(fileEntryClassNameId));
+
+				modified = true;
 			}
-
-			configJSONObject.put(
-				"classNameId", String.valueOf(fileEntryClassNameId));
-
-			modified = true;
 		}
 
 		return modified;

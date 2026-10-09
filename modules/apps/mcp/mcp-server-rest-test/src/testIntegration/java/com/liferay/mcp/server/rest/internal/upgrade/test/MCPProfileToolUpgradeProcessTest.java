@@ -273,14 +273,12 @@ public class MCPProfileToolUpgradeProcessTest {
 					for (UpgradeStep upgradeStep : upgradeSteps) {
 						Class<?> clazz = upgradeStep.getClass();
 
-						if (!Objects.equals(
+						if (Objects.equals(
 								clazz.getSimpleName(),
 								"MCPProfileToolUpgradeProcess")) {
 
-							continue;
+							versionedUpgradeSteps.add(upgradeStep);
 						}
-
-						versionedUpgradeSteps.add(upgradeStep);
 					}
 				}
 

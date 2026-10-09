@@ -65,12 +65,10 @@ public class SegmentsEntryRelLocalServiceImpl
 		throws PortalException {
 
 		for (long classPK : classPKs) {
-			if (hasSegmentsEntryRel(segmentsEntryId, classNameId, classPK)) {
-				continue;
+			if (!hasSegmentsEntryRel(segmentsEntryId, classNameId, classPK)) {
+				addSegmentsEntryRel(
+					segmentsEntryId, classNameId, classPK, serviceContext);
 			}
-
-			addSegmentsEntryRel(
-				segmentsEntryId, classNameId, classPK, serviceContext);
 		}
 	}
 

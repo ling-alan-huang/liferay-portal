@@ -36,16 +36,15 @@ public class PortletServiceImpl extends PortletServiceBaseImpl {
 		for (Portlet portlet : portlets) {
 			PortletApp portletApp = portlet.getPortletApp();
 
-			if (!portletApp.isWARFile()) {
-				continue;
+			if (portletApp.isWARFile()) {
+				jsonArray.put(
+					JSONUtil.put(
+						"portlet_name", portlet.getPortletName()
+					).put(
+						"servlet_context_name",
+						portletApp.getServletContextName()
+					));
 			}
-
-			jsonArray.put(
-				JSONUtil.put(
-					"portlet_name", portlet.getPortletName()
-				).put(
-					"servlet_context_name", portletApp.getServletContextName()
-				));
 		}
 
 		return jsonArray;

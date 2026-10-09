@@ -189,11 +189,10 @@ public class InfoRequestFieldValuesProviderHelper {
 											regularParameterMap,
 											themeDisplay.getUserId());
 
-										if (value == null) {
-											continue;
+										if (value != null) {
+											unsafeBiConsumer.accept(
+												locale, value);
 										}
-
-										unsafeBiConsumer.accept(locale, value);
 									}
 								}
 							).build()));
@@ -213,11 +212,9 @@ public class InfoRequestFieldValuesProviderHelper {
 					regularParameters != null, infoField,
 					themeDisplay.getLocale(), value);
 
-				if (infoFieldValue == null) {
-					continue;
+				if (infoFieldValue != null) {
+					infoFieldValues.put(inputName, infoFieldValue);
 				}
-
-				infoFieldValues.put(inputName, infoFieldValue);
 			}
 		}
 
@@ -358,33 +355,32 @@ public class InfoRequestFieldValuesProviderHelper {
 		allParameterNames.addAll(regularParameterNames.keySet());
 
 		for (String parameterName : allParameterNames) {
-			if (!parameterName.startsWith(infoField.getUniqueId())) {
-				continue;
-			}
+			if (parameterName.startsWith(infoField.getUniqueId())) {
+				if (((infoField.getInfoFieldType() ==
+						PicklistSelectInfoFieldType.INSTANCE) ||
+					 (infoField.getInfoFieldType() ==
+						 RelationshipInfoFieldType.INSTANCE)) &&
+					parameterName.endsWith("-label")) {
 
-			if (((infoField.getInfoFieldType() ==
-					PicklistSelectInfoFieldType.INSTANCE) ||
-				 (infoField.getInfoFieldType() ==
-					 RelationshipInfoFieldType.INSTANCE)) &&
-				parameterName.endsWith("-label")) {
+					continue;
+				}
 
-				continue;
-			}
+				if (!infoField.isLocalizable()) {
+					inputNames.add(parameterName);
 
-			if (!infoField.isLocalizable()) {
-				inputNames.add(parameterName);
+					continue;
+				}
 
-				continue;
-			}
+				for (String languageId : languageIds) {
+					if (parameterName.endsWith(languageId)) {
+						inputNames.add(
+							StringUtil.replaceLast(
+								parameterName,
+								StringPool.UNDERLINE + languageId,
+								StringPool.BLANK));
 
-			for (String languageId : languageIds) {
-				if (parameterName.endsWith(languageId)) {
-					inputNames.add(
-						StringUtil.replaceLast(
-							parameterName, StringPool.UNDERLINE + languageId,
-							StringPool.BLANK));
-
-					break;
+						break;
+					}
 				}
 			}
 		}

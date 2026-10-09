@@ -131,11 +131,9 @@ public class ExportUsersMVCResourceCommand extends BaseMVCResourceCommand {
 					CSVUtil.encode(_beanProperties.getString(user, field)));
 			}
 
-			if ((i + 1) >= PropsValues.USERS_EXPORT_CSV_FIELDS.length) {
-				continue;
+			if ((i + 1) < PropsValues.USERS_EXPORT_CSV_FIELDS.length) {
+				sb.append(StringPool.COMMA);
 			}
-
-			sb.append(StringPool.COMMA);
 		}
 
 		sb.append(StringPool.NEW_LINE);

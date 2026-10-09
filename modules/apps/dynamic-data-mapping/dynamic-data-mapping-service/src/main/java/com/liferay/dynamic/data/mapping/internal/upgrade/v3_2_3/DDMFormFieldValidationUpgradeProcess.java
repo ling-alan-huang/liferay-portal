@@ -81,21 +81,20 @@ public class DDMFormFieldValidationUpgradeProcess extends UpgradeProcess {
 							JSONObject jsonObject2 =
 								_jsonFactory.createJSONObject(definition);
 
-							if (!_upgradeValidation(
+							if (_upgradeValidation(
 									jsonObject2.getJSONArray("fields"))) {
 
-								continue;
+								preparedStatement4.setString(
+									1, jsonObject2.toString());
+
+								long structureVersionId = resultSet2.getLong(
+									"structureVersionId");
+
+								preparedStatement4.setLong(
+									2, structureVersionId);
+
+								preparedStatement4.addBatch();
 							}
-
-							preparedStatement4.setString(
-								1, jsonObject2.toString());
-
-							long structureVersionId = resultSet2.getLong(
-								"structureVersionId");
-
-							preparedStatement4.setLong(2, structureVersionId);
-
-							preparedStatement4.addBatch();
 						}
 					}
 				}
@@ -192,11 +191,10 @@ public class DDMFormFieldValidationUpgradeProcess extends UpgradeProcess {
 			JSONArray nestedFieldsJSONArray = jsonObject.getJSONArray(
 				"nestedFields");
 
-			if (nestedFieldsJSONArray == null) {
-				continue;
+			if (nestedFieldsJSONArray != null) {
+				upgraded =
+					_upgradeValidation(nestedFieldsJSONArray) || upgraded;
 			}
-
-			upgraded = _upgradeValidation(nestedFieldsJSONArray) || upgraded;
 		}
 
 		return upgraded;

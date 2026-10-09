@@ -68,17 +68,15 @@ public class UpgradeConfigurationPidUpgradeProcessTest {
 					for (UpgradeStep upgradeStep : upgradeSteps) {
 						Class<?> clazz = upgradeStep.getClass();
 
-						if (!Objects.equals(
+						if (Objects.equals(
 								clazz.getName(),
 								"com.liferay.portal.configuration." +
 									"persistence.internal.upgrade.v1_0_0." +
 										"ConfigurationUpgradeProcess")) {
 
-							continue;
+							_upgradeConfigurationPidUpgradeProcess =
+								(UpgradeProcess)upgradeStep;
 						}
-
-						_upgradeConfigurationPidUpgradeProcess =
-							(UpgradeProcess)upgradeStep;
 					}
 				}
 

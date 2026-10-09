@@ -128,22 +128,21 @@ public class EditCPDefinitionLinkMVCActionCommand extends BaseMVCActionCommand {
 
 			long cProductId = cpDefinition.getCProductId();
 
-			if (ArrayUtil.contains(cProductIds, cProductId)) {
-				continue;
+			if (!ArrayUtil.contains(cProductIds, cProductId)) {
+				Calendar calendar = new GregorianCalendar();
+
+				calendar.setTime(new Date());
+
+				_cpDefinitionLinkService.addCPDefinitionLink(
+					cpDefinitionId, cProductId, calendar.get(Calendar.MONTH),
+					calendar.get(Calendar.DAY_OF_MONTH),
+					calendar.get(Calendar.YEAR),
+					calendar.get(Calendar.HOUR_OF_DAY),
+					calendar.get(Calendar.MINUTE), 0, 0, 0, 0, 0, true, 0.0,
+					type, serviceContext);
+
+				successMessage = true;
 			}
-
-			Calendar calendar = new GregorianCalendar();
-
-			calendar.setTime(new Date());
-
-			_cpDefinitionLinkService.addCPDefinitionLink(
-				cpDefinitionId, cProductId, calendar.get(Calendar.MONTH),
-				calendar.get(Calendar.DAY_OF_MONTH),
-				calendar.get(Calendar.YEAR), calendar.get(Calendar.HOUR_OF_DAY),
-				calendar.get(Calendar.MINUTE), 0, 0, 0, 0, 0, true, 0.0, type,
-				serviceContext);
-
-			successMessage = true;
 		}
 
 		if (!successMessage) {

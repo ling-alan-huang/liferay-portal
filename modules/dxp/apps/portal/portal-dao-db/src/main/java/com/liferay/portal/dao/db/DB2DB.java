@@ -352,13 +352,11 @@ public class DB2DB extends BaseDB {
 			sb.append("new.");
 			sb.append(sourceColumnNames[i]);
 
-			if (defaultValue == null) {
-				continue;
+			if (defaultValue != null) {
+				sb.append(", ");
+				sb.append(defaultValue);
+				sb.append(")");
 			}
-
-			sb.append(", ");
-			sb.append(defaultValue);
-			sb.append(")");
 		}
 
 		sb.append(")");
@@ -403,13 +401,11 @@ public class DB2DB extends BaseDB {
 			sb.append("new.");
 			sb.append(sourceColumnNames[i]);
 
-			if (defaultValue == null) {
-				continue;
+			if (defaultValue != null) {
+				sb.append(", ");
+				sb.append(defaultValue);
+				sb.append(")");
 			}
-
-			sb.append(", ");
-			sb.append(defaultValue);
-			sb.append(")");
 		}
 
 		sb.append(" where ");

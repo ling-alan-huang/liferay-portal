@@ -372,12 +372,10 @@ public class ElasticsearchSearchEngine
 
 				Set<String> labels = connectionInformation.getLabels();
 
-				if (!labels.contains("deprecated")) {
-					continue;
+				if (labels.contains("deprecated")) {
+					sb.append(connectionInformation.getConnectionId());
+					sb.append(StringPool.COMMA_AND_SPACE);
 				}
-
-				sb.append(connectionInformation.getConnectionId());
-				sb.append(StringPool.COMMA_AND_SPACE);
 			}
 
 			if (sb.length() > 0) {
@@ -416,19 +414,17 @@ public class ElasticsearchSearchEngine
 				connectionInformation.getNodeInformationList();
 
 			for (NodeInformation nodeInformation : nodeInformationList) {
-				if (meetsMinimumVersionRequirement(
+				if (!meetsMinimumVersionRequirement(
 						minimumVersion, nodeInformation.getVersion())) {
 
-					continue;
+					_log.error(
+						StringBundler.concat(
+							"Elasticsearch node ", nodeInformation.getName(),
+							" does not meet the minimum version requirement ",
+							"of ", minimumVersionString));
+
+					System.exit(1);
 				}
-
-				_log.error(
-					StringBundler.concat(
-						"Elasticsearch node ", nodeInformation.getName(),
-						" does not meet the minimum version requirement of ",
-						minimumVersionString));
-
-				System.exit(1);
 			}
 		}
 	}

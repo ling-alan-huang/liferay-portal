@@ -170,11 +170,9 @@ public class XMLWorkflowValidator implements WorkflowValidator {
 		throws WorkflowException {
 
 		for (Action action : actions) {
-			if (!(action instanceof ScriptAction scriptAction)) {
-				continue;
+			if (action instanceof ScriptAction scriptAction) {
+				_validateScriptLanguage(name, scriptAction.getScriptLanguage());
 			}
-
-			_validateScriptLanguage(name, scriptAction.getScriptLanguage());
 		}
 	}
 
@@ -187,11 +185,10 @@ public class XMLWorkflowValidator implements WorkflowValidator {
 		}
 
 		for (Assignment assignment : assignments) {
-			if (!(assignment instanceof ScriptAssignment scriptAssignment)) {
-				continue;
+			if (assignment instanceof ScriptAssignment scriptAssignment) {
+				_validateScriptLanguage(
+					name, scriptAssignment.getScriptLanguage());
 			}
-
-			_validateScriptLanguage(name, scriptAssignment.getScriptLanguage());
 		}
 	}
 

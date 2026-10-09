@@ -171,11 +171,9 @@ public class DigesterUtil {
 			int read = 0;
 
 			while ((read = inputStream2.read(buffer)) != -1) {
-				if (read <= 0) {
-					continue;
+				if (read > 0) {
+					messageDigest.update(buffer, 0, read);
 				}
-
-				messageDigest.update(buffer, 0, read);
 			}
 		}
 		catch (IOException ioException) {

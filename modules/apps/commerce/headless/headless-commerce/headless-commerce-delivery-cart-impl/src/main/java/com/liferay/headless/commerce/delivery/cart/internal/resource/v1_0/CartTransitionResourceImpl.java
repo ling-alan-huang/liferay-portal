@@ -254,22 +254,20 @@ public class CartTransitionResourceImpl extends BaseCartTransitionResourceImpl {
 					commerceOrder,
 					contextAcceptLanguage.getPreferredLocale())) {
 
-			if (!StringUtil.equals(
+			if (StringUtil.equals(
 					commerceOrder.getShippingOptionName(),
 					commerceShippingOption.getKey())) {
 
-				continue;
-			}
+				CommerceShippingFixedOption commerceShippingFixedOption =
+					_commerceShippingFixedOptionLocalService.
+						fetchCommerceShippingFixedOption(
+							commerceOrder.getCompanyId(),
+							commerceShippingOption.getKey());
 
-			CommerceShippingFixedOption commerceShippingFixedOption =
-				_commerceShippingFixedOptionLocalService.
-					fetchCommerceShippingFixedOption(
-						commerceOrder.getCompanyId(),
-						commerceShippingOption.getKey());
-
-			if (commerceShippingFixedOption != null) {
-				return commerceShippingFixedOption.
-					getCommerceShippingFixedOptionId();
+				if (commerceShippingFixedOption != null) {
+					return commerceShippingFixedOption.
+						getCommerceShippingFixedOptionId();
+				}
 			}
 		}
 

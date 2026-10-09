@@ -418,12 +418,10 @@ public class ObjectFieldLocalServiceImpl
 			_objectFieldSettingLocalService.deleteObjectFieldObjectFieldSetting(
 				objectField);
 
-			if (!objectField.isState()) {
-				continue;
+			if (objectField.isState()) {
+				_objectStateFlowLocalService.deleteObjectFieldObjectStateFlow(
+					objectField.getObjectFieldId());
 			}
-
-			_objectStateFlowLocalService.deleteObjectFieldObjectStateFlow(
-				objectField.getObjectFieldId());
 		}
 	}
 
@@ -1197,22 +1195,20 @@ public class ObjectFieldLocalServiceImpl
 				}
 			}
 
-			if (objectFieldSetting != null) {
-				continue;
+			if (objectFieldSetting == null) {
+				if (objectDefinition.isApproved() &&
+					unmodifiableObjectFieldSettingsNames.contains(
+						oldObjectFieldSetting.getName())) {
+
+					_handleException(
+						new ObjectFieldSettingValueException.UnmodifiableValue(
+							oldObjectFieldSetting.getName()),
+						"objectFieldSettings", null);
+				}
+
+				_objectFieldSettingLocalService.deleteObjectFieldSetting(
+					oldObjectFieldSetting.getObjectFieldSettingId());
 			}
-
-			if (objectDefinition.isApproved() &&
-				unmodifiableObjectFieldSettingsNames.contains(
-					oldObjectFieldSetting.getName())) {
-
-				_handleException(
-					new ObjectFieldSettingValueException.UnmodifiableValue(
-						oldObjectFieldSetting.getName()),
-					"objectFieldSettings", null);
-			}
-
-			_objectFieldSettingLocalService.deleteObjectFieldSetting(
-				oldObjectFieldSetting.getObjectFieldSettingId());
 		}
 
 		objectFieldBusinessType.predefineObjectFieldSettings(
@@ -1799,14 +1795,12 @@ public class ObjectFieldLocalServiceImpl
 				ResourceConstants.SCOPE_INDIVIDUAL, role.getRoleId(), true);
 
 		for (ResourcePermission resourcePermission : resourcePermissions) {
-			if (resourcePermission.hasActionId(actionId)) {
-				continue;
+			if (!resourcePermission.hasActionId(actionId)) {
+				resourcePermission.addResourceAction(actionId);
+
+				_resourcePermissionLocalService.updateResourcePermission(
+					resourcePermission);
 			}
-
-			resourcePermission.addResourceAction(actionId);
-
-			_resourcePermissionLocalService.updateResourcePermission(
-				resourcePermission);
 		}
 	}
 
@@ -2068,13 +2062,12 @@ public class ObjectFieldLocalServiceImpl
 		char[] nameCharArray = name.toCharArray();
 
 		for (char c : nameCharArray) {
-			if (Validator.isChar(c) || Validator.isDigit(c)) {
-				continue;
+			if (!Validator.isChar(c) && !Validator.isDigit(c)) {
+				_handleException(
+					new ObjectFieldNameException.
+						MustOnlyContainLettersAndDigits(),
+					"name", name);
 			}
-
-			_handleException(
-				new ObjectFieldNameException.MustOnlyContainLettersAndDigits(),
-				"name", name);
 		}
 
 		if (!Character.isLowerCase(nameCharArray[0])) {

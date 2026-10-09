@@ -91,11 +91,9 @@ public class LoginConfigurationActionImpl extends DefaultConfigurationAction {
 				String name = enumeration.nextElement();
 
 				for (String discardLegacyKey : discardLegacyKeys) {
-					if (!name.startsWith(discardLegacyKey + "_")) {
-						continue;
+					if (name.startsWith(discardLegacyKey + "_")) {
+						portletPreferences.reset(name);
 					}
-
-					portletPreferences.reset(name);
 				}
 			}
 		}

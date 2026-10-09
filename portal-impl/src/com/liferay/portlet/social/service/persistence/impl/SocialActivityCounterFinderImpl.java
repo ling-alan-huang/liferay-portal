@@ -322,11 +322,9 @@ public class SocialActivityCounterFinderImpl
 		for (int i = 0; i < names.length; i++) {
 			sb.append(StringPool.QUESTION);
 
-			if ((i + 1) >= names.length) {
-				continue;
+			if ((i + 1) < names.length) {
+				sb.append(StringPool.COMMA);
 			}
-
-			sb.append(StringPool.COMMA);
 		}
 
 		return sb.toString();

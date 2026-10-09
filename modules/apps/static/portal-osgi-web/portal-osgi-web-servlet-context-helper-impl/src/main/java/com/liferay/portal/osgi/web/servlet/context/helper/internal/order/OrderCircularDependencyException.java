@@ -41,16 +41,14 @@ public class OrderCircularDependencyException extends Exception {
 
 			String[] names = routes.get(path);
 
-			if (names.length == 0) {
-				continue;
+			if (names.length != 0) {
+				sb.append("\n");
+				sb.append(webXMLDefinition.getFragmentName());
+				sb.append(" ");
+				sb.append(path.name());
+				sb.append(": ");
+				sb.append(Arrays.asList(names));
 			}
-
-			sb.append("\n");
-			sb.append(webXMLDefinition.getFragmentName());
-			sb.append(" ");
-			sb.append(path.name());
-			sb.append(": ");
-			sb.append(Arrays.asList(names));
 		}
 
 		return sb.toString();

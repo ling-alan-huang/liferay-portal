@@ -227,12 +227,10 @@ public class ElementVariationsProviderImpl
 		JSONObject jsonObject = _jsonFactory.createJSONObject();
 
 		for (Map.Entry<Locale, String> entry : valuesMap.entrySet()) {
-			if (Validator.isNull(entry.getValue())) {
-				continue;
+			if (Validator.isNotNull(entry.getValue())) {
+				jsonObject.put(
+					LocaleUtil.toLanguageId(entry.getKey()), entry.getValue());
 			}
-
-			jsonObject.put(
-				LocaleUtil.toLanguageId(entry.getKey()), entry.getValue());
 		}
 
 		return jsonObject;

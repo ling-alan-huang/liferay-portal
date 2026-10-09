@@ -62,11 +62,9 @@ public class ContactsCardTemplateLocalServiceImpl
 				contactsCardTemplatePersistence.fetchByPrimaryKey(
 					Long.valueOf(contactsCardTemplateId));
 
-			if (contactsCardTemplate == null) {
-				continue;
+			if (contactsCardTemplate != null) {
+				contactsCardTemplates.add(contactsCardTemplate);
 			}
-
-			contactsCardTemplates.add(contactsCardTemplate);
 		}
 
 		return contactsCardTemplates;

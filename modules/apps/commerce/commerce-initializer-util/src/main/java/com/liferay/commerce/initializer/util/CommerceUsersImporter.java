@@ -335,11 +335,9 @@ public class CommerceUsersImporter {
 						serviceContext.getCompanyId(),
 						organizationsJSONArray.getString(i));
 
-				if (organization == null) {
-					continue;
+				if (organization != null) {
+					organizationIds.add(organization.getOrganizationId());
 				}
-
-				organizationIds.add(organization.getOrganizationId());
 			}
 		}
 
@@ -354,11 +352,9 @@ public class CommerceUsersImporter {
 				Role role = _roleLocalService.getRole(
 					serviceContext.getCompanyId(), rolesJSONArray.getString(i));
 
-				if (role == null) {
-					continue;
+				if (role != null) {
+					roleIds.add(role.getRoleId());
 				}
-
-				roleIds.add(role.getRoleId());
 			}
 		}
 
@@ -420,44 +416,43 @@ public class CommerceUsersImporter {
 				JSONArray accountRolesJSONArray =
 					accountJSONObject.getJSONArray("roles");
 
-				if (accountRolesJSONArray == null) {
-					continue;
-				}
+				if (accountRolesJSONArray != null) {
+					AccountEntry accountEntry =
+						_accountEntryLocalService.
+							fetchAccountEntryByExternalReferenceCode(
+								_friendlyURLNormalizer.normalize(
+									accountJSONObject.getString("name")),
+								serviceContext.getCompanyId());
 
-				AccountEntry accountEntry =
-					_accountEntryLocalService.
-						fetchAccountEntryByExternalReferenceCode(
-							_friendlyURLNormalizer.normalize(
-								accountJSONObject.getString("name")),
-							serviceContext.getCompanyId());
+					AccountEntryUserRel accountEntryUserRel =
+						_accountEntryUserRelLocalService.
+							fetchAccountEntryUserRel(
+								accountEntry.getAccountEntryId(),
+								user.getUserId());
 
-				AccountEntryUserRel accountEntryUserRel =
-					_accountEntryUserRelLocalService.fetchAccountEntryUserRel(
-						accountEntry.getAccountEntryId(), user.getUserId());
+					if (accountEntryUserRel == null) {
+						List<Long> accountRoleIds = new ArrayList<>();
 
-				if (accountEntryUserRel != null) {
-					continue;
-				}
+						for (int j = 0; j < accountRolesJSONArray.length();
+							 j++) {
 
-				List<Long> accountRoleIds = new ArrayList<>();
+							Role role = _roleLocalService.fetchRole(
+								serviceContext.getCompanyId(),
+								accountRolesJSONArray.getString(j));
 
-				for (int j = 0; j < accountRolesJSONArray.length(); j++) {
-					Role role = _roleLocalService.fetchRole(
-						serviceContext.getCompanyId(),
-						accountRolesJSONArray.getString(j));
+							if (role != null) {
+								accountRoleIds.add(role.getRoleId());
+							}
+						}
 
-					if (role == null) {
-						continue;
+						long[] userIds = {user.getUserId()};
+
+						_commerceAccountHelper.addAccountEntryUserRels(
+							accountEntry.getAccountEntryId(), userIds, null,
+							ArrayUtil.toLongArray(accountRoleIds),
+							serviceContext);
 					}
-
-					accountRoleIds.add(role.getRoleId());
 				}
-
-				long[] userIds = {user.getUserId()};
-
-				_commerceAccountHelper.addAccountEntryUserRels(
-					accountEntry.getAccountEntryId(), userIds, null,
-					ArrayUtil.toLongArray(accountRoleIds), serviceContext);
 			}
 		}
 	}

@@ -36,12 +36,10 @@ public class UpgradeJavaServiceReferenceAnnotationCheck
 
 			annotationBlock = annotationBlock.trim();
 
-			if (!annotationBlock.startsWith("@ServiceReference")) {
-				continue;
+			if (annotationBlock.startsWith("@ServiceReference")) {
+				content = StringUtil.replace(
+					content, annotationBlock, "@Reference");
 			}
-
-			content = StringUtil.replace(
-				content, annotationBlock, "@Reference");
 		}
 
 		return content;

@@ -310,16 +310,15 @@ public class PlaywrightBatchTestClassGroup extends BatchTestClassGroup {
 			for (JobProperty playwrightTestProjectJobProperty :
 					playwrightTestProjectJobProperties) {
 
-				if (playwrightTestProjectJobProperty.getValue() == null) {
-					continue;
+				if (playwrightTestProjectJobProperty.getValue() != null) {
+					String projectNames =
+						playwrightTestProjectJobProperty.getValue();
+
+					_addProjectNames(projectNames);
+
+					playwrightJobProperties.add(
+						playwrightTestProjectJobProperty);
 				}
-
-				String projectNames =
-					playwrightTestProjectJobProperty.getValue();
-
-				_addProjectNames(projectNames);
-
-				playwrightJobProperties.add(playwrightTestProjectJobProperty);
 			}
 
 			List<JobProperty> playwrightExcludeProjectJobProperties =
@@ -330,17 +329,15 @@ public class PlaywrightBatchTestClassGroup extends BatchTestClassGroup {
 			for (JobProperty playwrightExcludeProjectJobProperty :
 					playwrightExcludeProjectJobProperties) {
 
-				if (playwrightExcludeProjectJobProperty.getValue() == null) {
-					continue;
+				if (playwrightExcludeProjectJobProperty.getValue() != null) {
+					String projectNames =
+						playwrightExcludeProjectJobProperty.getValue();
+
+					removeProjectNames(projectNames);
+
+					playwrightJobProperties.add(
+						playwrightExcludeProjectJobProperty);
 				}
-
-				String projectNames =
-					playwrightExcludeProjectJobProperty.getValue();
-
-				removeProjectNames(projectNames);
-
-				playwrightJobProperties.add(
-					playwrightExcludeProjectJobProperty);
 			}
 		}
 
@@ -386,79 +383,79 @@ public class PlaywrightBatchTestClassGroup extends BatchTestClassGroup {
 			SegmentTestClassGroup segmentTestClassGroup =
 				TestClassGroupFactory.newSegmentTestClassGroup(this);
 
-			if (!(segmentTestClassGroup instanceof
-					PlaywrightSegmentTestClassGroup)) {
+			if (segmentTestClassGroup instanceof
+					PlaywrightSegmentTestClassGroup) {
 
-				continue;
-			}
+				PlaywrightSegmentTestClassGroup
+					playwrightSegmentTestClassGroup =
+						(PlaywrightSegmentTestClassGroup)segmentTestClassGroup;
 
-			PlaywrightSegmentTestClassGroup playwrightSegmentTestClassGroup =
-				(PlaywrightSegmentTestClassGroup)segmentTestClassGroup;
+				playwrightSegmentTestClassGroup.setProjectName(projectName);
 
-			playwrightSegmentTestClassGroup.setProjectName(projectName);
+				int axisCount = getAxisCount(testClasses);
 
-			int axisCount = getAxisCount(testClasses);
+				if (axisCount >= 1) {
+					for (int axisIndex = 0; axisIndex < axisCount;
+						 axisIndex++) {
 
-			if (axisCount >= 1) {
-				for (int axisIndex = 0; axisIndex < axisCount; axisIndex++) {
-					AxisTestClassGroup axisTestClassGroup =
-						TestClassGroupFactory.newAxisTestClassGroup(this);
+						AxisTestClassGroup axisTestClassGroup =
+							TestClassGroupFactory.newAxisTestClassGroup(this);
 
-					playwrightSegmentTestClassGroup.addAxisTestClassGroup(
-						axisTestClassGroup);
+						playwrightSegmentTestClassGroup.addAxisTestClassGroup(
+							axisTestClassGroup);
 
-					if (axisCount > 1) {
-						StringBuilder sb = new StringBuilder();
+						if (axisCount > 1) {
+							StringBuilder sb = new StringBuilder();
 
-						sb.append("test --project=");
-						sb.append(projectName);
-						sb.append(" --shard=");
-						sb.append(axisIndex + 1);
-						sb.append("/");
-						sb.append(axisCount);
-						sb.append(" --list");
+							sb.append("test --project=");
+							sb.append(projectName);
+							sb.append(" --shard=");
+							sb.append(axisIndex + 1);
+							sb.append("/");
+							sb.append(axisCount);
+							sb.append(" --list");
 
-						String result;
+							String result;
 
-						if (_hasRunPlaywrightGradleTask()) {
-							result = _callGradleCommand(
-								getPlaywrightBaseDir(),
-								JenkinsResultsParserUtil.combine(
-									"runPlaywright -Pplaywright.args=\"",
-									sb.toString(), "\""),
-								null, 1000 * 60 * 10);
-						}
-						else {
-							result = _callNPMCommand(
-								getPlaywrightBaseDir(), "npx playwright " + sb);
-						}
-
-						for (TestClass testClass : testClasses) {
-							if (!result.contains(testClass.getName())) {
-								continue;
+							if (_hasRunPlaywrightGradleTask()) {
+								result = _callGradleCommand(
+									getPlaywrightBaseDir(),
+									JenkinsResultsParserUtil.combine(
+										"runPlaywright -Pplaywright.args=\"",
+										sb.toString(), "\""),
+									null, 1000 * 60 * 10);
+							}
+							else {
+								result = _callNPMCommand(
+									getPlaywrightBaseDir(),
+									"npx playwright " + sb);
 							}
 
-							axisTestClassGroup.addTestClass(testClass);
+							for (TestClass testClass : testClasses) {
+								if (result.contains(testClass.getName())) {
+									axisTestClassGroup.addTestClass(testClass);
+								}
+							}
 						}
-					}
-					else {
-						for (TestClass testClass : testClasses) {
-							axisTestClassGroup.addTestClass(testClass);
+						else {
+							for (TestClass testClass : testClasses) {
+								axisTestClassGroup.addTestClass(testClass);
+							}
 						}
+
+						addAxisTestClassGroup(axisTestClassGroup);
+
+						playwrightSegmentTestClassGroup.setBaseSlaveLabel(
+							axisTestClassGroup.getBaseSlaveLabel());
 					}
-
-					addAxisTestClassGroup(axisTestClassGroup);
-
-					playwrightSegmentTestClassGroup.setBaseSlaveLabel(
-						axisTestClassGroup.getBaseSlaveLabel());
 				}
-			}
 
-			for (TestClass testClass : testClasses) {
-				addTestClass(testClass);
-			}
+				for (TestClass testClass : testClasses) {
+					addTestClass(testClass);
+				}
 
-			addSegmentTestClassGroup(playwrightSegmentTestClassGroup);
+				addSegmentTestClassGroup(playwrightSegmentTestClassGroup);
+			}
 		}
 
 		List<TestClass> testClasses = getTestClasses();

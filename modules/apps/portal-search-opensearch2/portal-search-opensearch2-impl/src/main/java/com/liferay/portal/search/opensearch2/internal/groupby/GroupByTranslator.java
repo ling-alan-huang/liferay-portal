@@ -115,16 +115,14 @@ public class GroupByTranslator {
 
 			sortFieldNames.add(sortFieldName);
 
-			if (!sortFieldName.equals("_count") &&
-				!sortFieldName.equals("_key")) {
+			if (sortFieldName.equals("_count") ||
+				sortFieldName.equals("_key")) {
 
-				continue;
+				sortOrdersList.add(
+					HashMapBuilder.<String, SortOrder>put(
+						sortFieldName, _getSortOrder(sort)
+					).build());
 			}
-
-			sortOrdersList.add(
-				HashMapBuilder.<String, SortOrder>put(
-					sortFieldName, _getSortOrder(sort)
-				).build());
 		}
 
 		if (!sortOrdersList.isEmpty()) {

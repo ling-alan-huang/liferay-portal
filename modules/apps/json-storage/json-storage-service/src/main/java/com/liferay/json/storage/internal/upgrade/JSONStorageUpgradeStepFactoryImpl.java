@@ -73,13 +73,11 @@ public class JSONStorageUpgradeStepFactoryImpl
 				while (resultSet.next()) {
 					String json = resultSet.getString(_jsonColumnName);
 
-					if (Validator.isNull(json)) {
-						continue;
+					if (Validator.isNotNull(json)) {
+						_jsonStorageEntryLocalService.addJSONStorageEntries(
+							resultSet.getLong("companyId"), classNameId,
+							resultSet.getLong(_primaryKeyName), json);
 					}
-
-					_jsonStorageEntryLocalService.addJSONStorageEntries(
-						resultSet.getLong("companyId"), classNameId,
-						resultSet.getLong(_primaryKeyName), json);
 				}
 			}
 

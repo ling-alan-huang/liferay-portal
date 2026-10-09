@@ -455,12 +455,10 @@ public class LanguageImpl implements Language, Serializable {
 
 			if (ArrayUtil.isNotEmpty(arguments)) {
 				for (int i = 0; i < arguments.length; i++) {
-					if (!translateArguments) {
-						continue;
+					if (translateArguments) {
+						arguments[i] = get(
+							httpServletRequest, arguments[i].toString());
 					}
-
-					arguments[i] = get(
-						httpServletRequest, arguments[i].toString());
 				}
 
 				value = _decorateMessageFormat(
@@ -638,11 +636,9 @@ public class LanguageImpl implements Language, Serializable {
 
 			if (ArrayUtil.isNotEmpty(arguments)) {
 				for (int i = 0; i < arguments.length; i++) {
-					if (!translateArguments) {
-						continue;
+					if (translateArguments) {
+						arguments[i] = get(locale, arguments[i].toString());
 					}
-
-					arguments[i] = get(locale, arguments[i].toString());
 				}
 
 				value = _decorateMessageFormat(locale, pattern, arguments);
@@ -778,11 +774,10 @@ public class LanguageImpl implements Language, Serializable {
 
 			if (ArrayUtil.isNotEmpty(arguments)) {
 				for (int i = 0; i < arguments.length; i++) {
-					if (!translateArguments) {
-						continue;
+					if (translateArguments) {
+						arguments[i] = get(
+							resourceBundle, arguments[i].toString());
 					}
-
-					arguments[i] = get(resourceBundle, arguments[i].toString());
 				}
 
 				value = _decorateMessageFormat(
@@ -1856,11 +1851,9 @@ public class LanguageImpl implements Language, Serializable {
 		for (int i = 0; i < formattedArguments.length; i++) {
 			Object formattedArgument = formattedArguments[i];
 
-			if (!(formattedArgument instanceof Number)) {
-				continue;
+			if (formattedArgument instanceof Number) {
+				messageFormat.setFormat(i, NumberFormat.getInstance(locale));
 			}
-
-			messageFormat.setFormat(i, NumberFormat.getInstance(locale));
 		}
 
 		return messageFormat.format(formattedArguments);

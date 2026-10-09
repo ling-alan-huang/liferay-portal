@@ -31,11 +31,9 @@ public class ListMergeable<T>
 		}
 
 		for (T t : listMergeable._list) {
-			if (_list.contains(t)) {
-				continue;
+			if (!_list.contains(t)) {
+				_list.add(t);
 			}
-
-			_list.add(t);
 		}
 
 		return this;

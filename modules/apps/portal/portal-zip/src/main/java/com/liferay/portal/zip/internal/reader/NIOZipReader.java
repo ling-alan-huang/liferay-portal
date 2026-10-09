@@ -132,11 +132,9 @@ public class NIOZipReader extends BaseZipReader {
 				folderPath)) {
 
 			for (Path filePath : directoryStream) {
-				if (!Files.isRegularFile(filePath)) {
-					continue;
+				if (Files.isRegularFile(filePath)) {
+					folderEntries.add(_getRelativePath(filePath));
 				}
-
-				folderEntries.add(_getRelativePath(filePath));
 			}
 		}
 

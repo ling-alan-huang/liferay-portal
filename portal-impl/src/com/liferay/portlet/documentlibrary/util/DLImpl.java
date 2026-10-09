@@ -1027,19 +1027,18 @@ public class DLImpl implements DL {
 
 				// Only process non wildcard extensions
 
-				if (StringPool.STAR.equals(fileIcons[i])) {
-					continue;
+				if (!StringPool.STAR.equals(fileIcons[i])) {
+
+					// Strip starting period
+
+					String extension = fileIcons[i];
+
+					if (extension.length() > 0) {
+						extension = extension.substring(1);
+					}
+
+					add(extension);
 				}
-
-				// Strip starting period
-
-				String extension = fileIcons[i];
-
-				if (extension.length() > 0) {
-					extension = extension.substring(1);
-				}
-
-				add(extension);
 			}
 		}
 	};

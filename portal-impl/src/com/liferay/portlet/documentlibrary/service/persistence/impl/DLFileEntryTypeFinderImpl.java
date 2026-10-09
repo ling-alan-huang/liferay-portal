@@ -241,11 +241,9 @@ public class DLFileEntryTypeFinderImpl
 			while (iterator.hasNext()) {
 				Long count = iterator.next();
 
-				if (count == null) {
-					continue;
+				if (count != null) {
+					countValue += count.intValue();
 				}
-
-				countValue += count.intValue();
 			}
 
 			return countValue;
@@ -331,11 +329,9 @@ public class DLFileEntryTypeFinderImpl
 			while (iterator.hasNext()) {
 				Long count = iterator.next();
 
-				if (count == null) {
-					continue;
+				if (count != null) {
+					countValue += count.intValue();
 				}
-
-				countValue += count.intValue();
 			}
 
 			return countValue;

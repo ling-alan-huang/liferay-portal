@@ -185,11 +185,9 @@ public class WidgetPageWidgetInstanceDTOConverter
 			String portletSetupTitle = portletPreferences.getValue(
 				"portletSetupTitle_" + LocaleUtil.toLanguageId(locale), null);
 
-			if (Validator.isNull(portletSetupTitle)) {
-				continue;
+			if (Validator.isNotNull(portletSetupTitle)) {
+				map.put(locale, portletSetupTitle);
 			}
-
-			map.put(locale, portletSetupTitle);
 		}
 
 		if (MapUtil.isEmpty(map)) {
@@ -213,11 +211,9 @@ public class WidgetPageWidgetInstanceDTOConverter
 			layout.getTypeSettingsProperties();
 
 		for (String key : unicodeProperties.keySet()) {
-			if (!key.startsWith("_" + portletId)) {
-				continue;
+			if (key.startsWith("_" + portletId)) {
+				portletNestedColumnIds.add(key);
 			}
-
-			portletNestedColumnIds.add(key);
 		}
 
 		return TransformUtil.transformToArray(

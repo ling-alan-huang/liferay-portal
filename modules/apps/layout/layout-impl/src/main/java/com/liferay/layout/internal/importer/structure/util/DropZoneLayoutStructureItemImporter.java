@@ -142,11 +142,9 @@ public class DropZoneLayoutStructureItemImporter
 			String fragmentCollectionKey = _getFragmentCollectionKey(
 				allowedFragmentMap.get(_KEY_KEY), groupIds);
 
-			if (Validator.isNull(fragmentCollectionKey)) {
-				continue;
+			if (Validator.isNotNull(fragmentCollectionKey)) {
+				fragmentCollectionKeys.add(fragmentCollectionKey);
 			}
-
-			fragmentCollectionKeys.add(fragmentCollectionKey);
 		}
 
 		for (String fragmentCollectionKey : fragmentCollectionKeys) {

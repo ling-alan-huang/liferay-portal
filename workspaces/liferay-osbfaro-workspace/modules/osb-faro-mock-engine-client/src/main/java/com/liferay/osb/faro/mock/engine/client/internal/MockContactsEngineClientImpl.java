@@ -134,11 +134,9 @@ public class MockContactsEngineClientImpl
 
 			String fieldName = _liferayFieldNames.get(labels.get(i));
 
-			if ((fieldName == null) || fieldNames.contains(fieldName)) {
-				continue;
+			if ((fieldName != null) && !fieldNames.contains(fieldName)) {
+				fieldNames.add(0, fieldName);
 			}
-
-			fieldNames.add(0, fieldName);
 		}
 
 		return fieldNamesList;

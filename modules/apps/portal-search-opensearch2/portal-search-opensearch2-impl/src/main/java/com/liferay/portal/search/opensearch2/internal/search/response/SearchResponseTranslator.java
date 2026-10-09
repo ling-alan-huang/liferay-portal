@@ -247,11 +247,10 @@ public class SearchResponseTranslator {
 		}
 
 		for (Facet facet : facets.values()) {
-			if (facet.isStatic()) {
-				continue;
+			if (!facet.isStatic()) {
+				facet.setFacetCollector(
+					_getFacetCollector(aggregations, facet));
 			}
-
-			facet.setFacetCollector(_getFacetCollector(aggregations, facet));
 		}
 	}
 

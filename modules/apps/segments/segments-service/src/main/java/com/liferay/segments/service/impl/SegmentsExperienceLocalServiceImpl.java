@@ -683,12 +683,10 @@ public class SegmentsExperienceLocalServiceImpl
 			SegmentsExperience curSegmentsExperience = segmentsExperiences.get(
 				i - 1);
 
-			if (curSegmentsExperience.getPriority() == updatedPriority) {
-				continue;
+			if (curSegmentsExperience.getPriority() != updatedPriority) {
+				_updateSegmentsExperiencePriorityAndFlush(
+					updatedPriority, curSegmentsExperience);
 			}
-
-			_updateSegmentsExperiencePriorityAndFlush(
-				updatedPriority, curSegmentsExperience);
 		}
 
 		segmentsExperiences = new ArrayList<>(
@@ -704,12 +702,10 @@ public class SegmentsExperienceLocalServiceImpl
 			SegmentsExperience curSegmentsExperience = segmentsExperiences.get(
 				i);
 
-			if (curSegmentsExperience.getPriority() == updatedPriority) {
-				continue;
+			if (curSegmentsExperience.getPriority() != updatedPriority) {
+				_updateSegmentsExperiencePriorityAndFlush(
+					updatedPriority, curSegmentsExperience);
 			}
-
-			_updateSegmentsExperiencePriorityAndFlush(
-				updatedPriority, curSegmentsExperience);
 		}
 	}
 

@@ -131,11 +131,9 @@ public class AssetEntryFinderImpl
 
 			sb.append(sql);
 
-			if ((i + 1) >= categoryIds.length) {
-				continue;
+			if ((i + 1) < categoryIds.length) {
+				sb.append(" AND ");
 			}
-
-			sb.append(" AND ");
 		}
 
 		sb.append(StringPool.CLOSE_PARENTHESIS);
@@ -151,19 +149,15 @@ public class AssetEntryFinderImpl
 
 			sb.append(sql);
 
-			if ((i + 1) >= tagIds.length) {
-				continue;
+			if ((i + 1) < tagIds.length) {
+				sb.append(" AND AssetEntry.entryId IN (");
 			}
-
-			sb.append(" AND AssetEntry.entryId IN (");
 		}
 
 		for (int i = 0; i < tagIds.length; i++) {
-			if ((i + 1) >= tagIds.length) {
-				continue;
+			if ((i + 1) < tagIds.length) {
+				sb.append(StringPool.CLOSE_PARENTHESIS);
 			}
-
-			sb.append(StringPool.CLOSE_PARENTHESIS);
 		}
 
 		sb.append(StringPool.CLOSE_PARENTHESIS);
@@ -208,11 +202,9 @@ public class AssetEntryFinderImpl
 			sb.append("AssetTag.tagId = ");
 			sb.append(tagIds[i]);
 
-			if ((i + 1) == tagIds.length) {
-				continue;
+			if ((i + 1) != tagIds.length) {
+				sb.append(" OR ");
 			}
-
-			sb.append(" OR ");
 		}
 
 		sb.append(StringPool.CLOSE_PARENTHESIS);
@@ -313,11 +305,9 @@ public class AssetEntryFinderImpl
 				orderByCol1 = orderByColumn;
 			}
 
-			if (!orderByColumn.equals(entryQuery.getOrderByCol2())) {
-				continue;
+			if (orderByColumn.equals(entryQuery.getOrderByCol2())) {
+				orderByCol2 = orderByColumn;
 			}
-
-			orderByCol2 = orderByColumn;
 		}
 
 		if (orderByCol1.equals("ratings") || orderByCol2.equals("ratings") ||
@@ -661,11 +651,9 @@ public class AssetEntryFinderImpl
 
 			sb.append(sql);
 
-			if ((i + 1) >= categoryIds.length) {
-				continue;
+			if ((i + 1) < categoryIds.length) {
+				sb.append(" OR ");
 			}
-
-			sb.append(" OR ");
 		}
 
 		sb.append(StringPool.CLOSE_PARENTHESIS);
@@ -685,11 +673,9 @@ public class AssetEntryFinderImpl
 
 			sb.append(StringPool.CLOSE_PARENTHESIS);
 
-			if (((i + 1) >= tagIds.length) || (tagIds[i + 1].length <= 0)) {
-				continue;
+			if (((i + 1) < tagIds.length) && (tagIds[i + 1].length > 0)) {
+				sb.append(" OR ");
 			}
-
-			sb.append(" OR ");
 		}
 
 		sb.append(StringPool.CLOSE_PARENTHESIS);
@@ -738,11 +724,9 @@ public class AssetEntryFinderImpl
 
 			sb.append(StringPool.CLOSE_PARENTHESIS);
 
-			if ((i + 1) >= notTagIds.length) {
-				continue;
+			if ((i + 1) < notTagIds.length) {
+				sb.append(" AND ");
 			}
-
-			sb.append(" AND ");
 		}
 
 		sb.append(StringPool.CLOSE_PARENTHESIS);
@@ -823,11 +807,9 @@ public class AssetEntryFinderImpl
 			sb.append("tagId = ");
 			sb.append(tagIds[i]);
 
-			if ((i + 1) == tagIds.length) {
-				continue;
+			if ((i + 1) != tagIds.length) {
+				sb.append(" OR ");
 			}
-
-			sb.append(" OR ");
 		}
 
 		return sb.toString();

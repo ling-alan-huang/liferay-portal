@@ -67,11 +67,9 @@ public class MonitorResult {
 			Status mostSevereStatus = OK;
 
 			for (Status status : statuses) {
-				if (status._severityRank <= mostSevereStatus._severityRank) {
-					continue;
+				if (status._severityRank > mostSevereStatus._severityRank) {
+					mostSevereStatus = status;
 				}
-
-				mostSevereStatus = status;
 			}
 
 			return mostSevereStatus;

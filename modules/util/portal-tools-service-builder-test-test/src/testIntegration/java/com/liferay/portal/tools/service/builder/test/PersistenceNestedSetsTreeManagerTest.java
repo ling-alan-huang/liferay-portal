@@ -107,11 +107,9 @@ public class PersistenceNestedSetsTreeManagerTest {
 	@After
 	public void tearDown() {
 		for (NestedSetsTreeEntry nestedSetsTreeEntry : _nestedSetsTreeEntries) {
-			if (nestedSetsTreeEntry == null) {
-				continue;
+			if (nestedSetsTreeEntry != null) {
+				_nestedSetsTreeEntryPersistence.remove(nestedSetsTreeEntry);
 			}
-
-			_nestedSetsTreeEntryPersistence.remove(nestedSetsTreeEntry);
 		}
 	}
 
@@ -754,13 +752,11 @@ public class PersistenceNestedSetsTreeManagerTest {
 		for (int i = 0; i < _nestedSetsTreeEntries.length; i++) {
 			nestedSetsTreeEntry = _nestedSetsTreeEntries[i];
 
-			if (nestedSetsTreeEntry == null) {
-				continue;
+			if (nestedSetsTreeEntry != null) {
+				_nestedSetsTreeEntries[i] =
+					_nestedSetsTreeEntryPersistence.fetchByPrimaryKey(
+						nestedSetsTreeEntry.getNestedSetsTreeEntryId());
 			}
-
-			_nestedSetsTreeEntries[i] =
-				_nestedSetsTreeEntryPersistence.fetchByPrimaryKey(
-					nestedSetsTreeEntry.getNestedSetsTreeEntryId());
 		}
 	}
 

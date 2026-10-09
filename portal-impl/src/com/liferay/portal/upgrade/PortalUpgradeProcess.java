@@ -204,13 +204,11 @@ public class PortalUpgradeProcess extends UpgradeProcess {
 				break;
 			}
 
-			if (requiredSchemaVersion.getMicro() ==
+			if (requiredSchemaVersion.getMicro() !=
 					nextSchemaVersion.getMicro()) {
 
-				continue;
+				requiredSchemaVersion = nextSchemaVersion;
 			}
-
-			requiredSchemaVersion = nextSchemaVersion;
 		}
 
 		return requiredSchemaVersion;

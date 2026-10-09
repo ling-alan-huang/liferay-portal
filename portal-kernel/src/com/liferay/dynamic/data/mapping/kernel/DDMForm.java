@@ -46,11 +46,10 @@ public class DDMForm implements Serializable {
 		for (DDMFormField ddmFormField : _ddmFormFields) {
 			ddmFormFieldsMap.put(ddmFormField.getName(), ddmFormField);
 
-			if (!includeNestedDDMFormFields) {
-				continue;
+			if (includeNestedDDMFormFields) {
+				ddmFormFieldsMap.putAll(
+					ddmFormField.getNestedDDMFormFieldsMap());
 			}
-
-			ddmFormFieldsMap.putAll(ddmFormField.getNestedDDMFormFieldsMap());
 		}
 
 		return ddmFormFieldsMap;

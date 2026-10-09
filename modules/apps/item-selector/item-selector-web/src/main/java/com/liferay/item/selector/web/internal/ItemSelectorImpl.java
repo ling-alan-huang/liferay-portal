@@ -97,13 +97,11 @@ public class ItemSelectorImpl implements ItemSelector {
 		for (int i = 0; i < itemSelectorCriterionClasses.size(); i++) {
 			String[] values = parameters.get(i + JSON);
 
-			if (ArrayUtil.isEmpty(values)) {
-				continue;
+			if (ArrayUtil.isNotEmpty(values)) {
+				itemSelectorCriteria.add(
+					_itemSelectionCriterionSerializer.deserialize(
+						itemSelectorCriterionClasses.get(i), values[0]));
 			}
-
-			itemSelectorCriteria.add(
-				_itemSelectionCriterionSerializer.deserialize(
-					itemSelectorCriterionClasses.get(i), values[0]));
 		}
 
 		return itemSelectorCriteria;
@@ -124,13 +122,12 @@ public class ItemSelectorImpl implements ItemSelector {
 		for (Map.Entry<String, String[]> entry : parameters.entrySet()) {
 			String parameterName = entry.getKey();
 
-			if (!parameterName.contains(namespace)) {
-				continue;
+			if (parameterName.contains(namespace)) {
+				String key = StringUtil.removeSubstring(
+					parameterName, namespace);
+
+				itemSelectorURLParameterMap.put(key, entry.getValue());
 			}
-
-			String key = StringUtil.removeSubstring(parameterName, namespace);
-
-			itemSelectorURLParameterMap.put(key, entry.getValue());
 		}
 
 		Matcher matcher = _itemSelectorURLPattern.matcher(itemSelectorURL);
@@ -434,12 +431,11 @@ public class ItemSelectorImpl implements ItemSelector {
 				_itemSelectorCriterionHandlerServiceTrackerMap.getService(
 					itemSelectorCriterionClassName);
 
-			if (itemSelectorCriterionHandler == null) {
-				continue;
+			if (itemSelectorCriterionHandler != null) {
+				itemSelectorCriterionClasses.add(
+					itemSelectorCriterionHandler.
+						getItemSelectorCriterionClass());
 			}
-
-			itemSelectorCriterionClasses.add(
-				itemSelectorCriterionHandler.getItemSelectorCriterionClass());
 		}
 
 		return itemSelectorCriterionClasses;

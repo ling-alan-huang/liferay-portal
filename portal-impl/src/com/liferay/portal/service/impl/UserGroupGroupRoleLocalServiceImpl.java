@@ -31,19 +31,17 @@ public class UserGroupGroupRoleLocalServiceImpl
 				userGroupGroupRolePersistence.fetchByU_G_R(
 					userGroupId, groupId, roleId);
 
-			if (userGroupGroupRole != null) {
-				continue;
+			if (userGroupGroupRole == null) {
+				userGroupGroupRole = userGroupGroupRolePersistence.create(
+					counterLocalService.increment(
+						UserGroupGroupRole.class.getName()));
+
+				userGroupGroupRole.setUserGroupId(userGroupId);
+				userGroupGroupRole.setGroupId(groupId);
+				userGroupGroupRole.setRoleId(roleId);
+
+				userGroupGroupRolePersistence.update(userGroupGroupRole);
 			}
-
-			userGroupGroupRole = userGroupGroupRolePersistence.create(
-				counterLocalService.increment(
-					UserGroupGroupRole.class.getName()));
-
-			userGroupGroupRole.setUserGroupId(userGroupId);
-			userGroupGroupRole.setGroupId(groupId);
-			userGroupGroupRole.setRoleId(roleId);
-
-			userGroupGroupRolePersistence.update(userGroupGroupRole);
 		}
 	}
 
@@ -56,19 +54,17 @@ public class UserGroupGroupRoleLocalServiceImpl
 				userGroupGroupRolePersistence.fetchByU_G_R(
 					userGroupId, groupId, roleId);
 
-			if (userGroupGroupRole != null) {
-				continue;
+			if (userGroupGroupRole == null) {
+				userGroupGroupRole = userGroupGroupRolePersistence.create(
+					counterLocalService.increment(
+						UserGroupGroupRole.class.getName()));
+
+				userGroupGroupRole.setUserGroupId(userGroupId);
+				userGroupGroupRole.setGroupId(groupId);
+				userGroupGroupRole.setRoleId(roleId);
+
+				userGroupGroupRolePersistence.update(userGroupGroupRole);
 			}
-
-			userGroupGroupRole = userGroupGroupRolePersistence.create(
-				counterLocalService.increment(
-					UserGroupGroupRole.class.getName()));
-
-			userGroupGroupRole.setUserGroupId(userGroupId);
-			userGroupGroupRole.setGroupId(groupId);
-			userGroupGroupRole.setRoleId(roleId);
-
-			userGroupGroupRolePersistence.update(userGroupGroupRole);
 		}
 	}
 
@@ -92,11 +88,9 @@ public class UserGroupGroupRoleLocalServiceImpl
 				userGroupGroupRolePersistence.fetchByU_G_R(
 					userGroupId, groupId, roleId);
 
-			if (userGroupGroupRole == null) {
-				continue;
+			if (userGroupGroupRole != null) {
+				userGroupGroupRolePersistence.remove(userGroupGroupRole);
 			}
-
-			userGroupGroupRolePersistence.remove(userGroupGroupRole);
 		}
 	}
 
@@ -123,11 +117,9 @@ public class UserGroupGroupRoleLocalServiceImpl
 				userGroupGroupRolePersistence.fetchByU_G_R(
 					userGroupId, groupId, roleId);
 
-			if (userGroupGroupRole == null) {
-				continue;
+			if (userGroupGroupRole != null) {
+				userGroupGroupRolePersistence.remove(userGroupGroupRole);
 			}
-
-			userGroupGroupRolePersistence.remove(userGroupGroupRole);
 		}
 	}
 

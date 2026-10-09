@@ -489,18 +489,16 @@ public class ViewChangesDisplayContext {
 						ModelInfoKey modelInfoKey = new ModelInfoKey(
 							classNameId, classPK);
 
-						if (modelInfoMap.get(modelInfoKey) != null) {
-							continue;
+						if (modelInfoMap.get(modelInfoKey) == null) {
+							modelInfoMap.put(
+								modelInfoKey, new ModelInfo(modelKeyCounter++));
+
+							Set<Long> classPKs =
+								classNameIdClassPKsMap.computeIfAbsent(
+									classNameId, key -> new HashSet<>());
+
+							classPKs.add(classPK);
 						}
-
-						modelInfoMap.put(
-							modelInfoKey, new ModelInfo(modelKeyCounter++));
-
-						Set<Long> classPKs =
-							classNameIdClassPKsMap.computeIfAbsent(
-								classNameId, key -> new HashSet<>());
-
-						classPKs.add(classPK);
 					}
 				}
 			}
@@ -533,11 +531,9 @@ public class ViewChangesDisplayContext {
 				JSONArray changesJSONArray = JSONFactoryUtil.createJSONArray();
 
 				for (ModelInfo modelInfo : modelInfoMap.values()) {
-					if (!modelInfo._ctEntry) {
-						continue;
+					if (modelInfo._ctEntry) {
+						changesJSONArray.put(modelInfo._modelKey);
 					}
-
-					changesJSONArray.put(modelInfo._modelKey);
 				}
 
 				return changesJSONArray;
@@ -651,13 +647,11 @@ public class ViewChangesDisplayContext {
 					JSONFactoryUtil.createJSONObject();
 
 				for (ModelInfo modelInfo : modelInfoMap.values()) {
-					if (modelInfo._jsonObject == null) {
-						continue;
+					if (modelInfo._jsonObject != null) {
+						modelDataJSONObject.put(
+							String.valueOf(modelInfo._modelKey),
+							modelInfo._jsonObject);
 					}
-
-					modelDataJSONObject.put(
-						String.valueOf(modelInfo._modelKey),
-						modelInfo._jsonObject);
 				}
 
 				return modelDataJSONObject;
@@ -704,21 +698,20 @@ public class ViewChangesDisplayContext {
 
 					String groupIdString = String.valueOf(groupId);
 
-					if (siteNamesJSONObject.has(groupIdString)) {
-						continue;
-					}
+					if (!siteNamesJSONObject.has(groupIdString)) {
+						Group group = _groupLocalService.fetchGroup(groupId);
 
-					Group group = _groupLocalService.fetchGroup(groupId);
-
-					if (group == null) {
-						siteNamesJSONObject.put(
-							groupIdString,
-							_language.get(_themeDisplay.getLocale(), "global"));
-					}
-					else {
-						siteNamesJSONObject.put(
-							groupIdString,
-							group.getName(_themeDisplay.getLocale()));
+						if (group == null) {
+							siteNamesJSONObject.put(
+								groupIdString,
+								_language.get(
+									_themeDisplay.getLocale(), "global"));
+						}
+						else {
+							siteNamesJSONObject.put(
+								groupIdString,
+								group.getName(_themeDisplay.getLocale()));
+						}
 					}
 				}
 

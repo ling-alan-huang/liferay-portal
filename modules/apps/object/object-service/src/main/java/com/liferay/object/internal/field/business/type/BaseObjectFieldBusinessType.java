@@ -146,14 +146,12 @@ public abstract class BaseObjectFieldBusinessType
 		for (String notAllowedObjectFieldSettingName :
 				new HashSet<>(notAllowedObjectFieldSettingNames)) {
 
-			if (objectFieldSettingsValues.containsKey(
+			if (!objectFieldSettingsValues.containsKey(
 					notAllowedObjectFieldSettingName)) {
 
-				continue;
+				notAllowedObjectFieldSettingNames.remove(
+					notAllowedObjectFieldSettingName);
 			}
-
-			notAllowedObjectFieldSettingNames.remove(
-				notAllowedObjectFieldSettingName);
 		}
 
 		if (!notAllowedObjectFieldSettingNames.isEmpty()) {

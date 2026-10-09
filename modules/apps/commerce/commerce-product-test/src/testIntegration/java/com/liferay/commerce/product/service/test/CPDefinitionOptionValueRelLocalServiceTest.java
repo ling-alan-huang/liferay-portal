@@ -859,11 +859,9 @@ public class CPDefinitionOptionValueRelLocalServiceTest {
 				"Option value preselected",
 				cpDefinitionOptionValueRel.isPreselected());
 
-			if (targetCPDefinitionOptionValueRel != null) {
-				continue;
+			if (targetCPDefinitionOptionValueRel == null) {
+				targetCPDefinitionOptionValueRel = cpDefinitionOptionValueRel;
 			}
-
-			targetCPDefinitionOptionValueRel = cpDefinitionOptionValueRel;
 		}
 
 		Assert.assertNotEquals(

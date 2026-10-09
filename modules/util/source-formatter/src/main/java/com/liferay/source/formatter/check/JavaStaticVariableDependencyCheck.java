@@ -35,13 +35,11 @@ public class JavaStaticVariableDependencyCheck extends BaseJavaTermCheck {
 		for (int i = 0; i < childJavaTerms.size(); i++) {
 			JavaTerm childJavaTerm = childJavaTerms.get(i);
 
-			if (!childJavaTerm.isJavaVariable() || !childJavaTerm.isStatic()) {
-				continue;
+			if (childJavaTerm.isJavaVariable() && childJavaTerm.isStatic()) {
+				classContent = _formatStaticVariableDependencies(
+					classContent, javaClass.getName(), childJavaTerm,
+					childJavaTerms, i);
 			}
-
-			classContent = _formatStaticVariableDependencies(
-				classContent, javaClass.getName(), childJavaTerm,
-				childJavaTerms, i);
 		}
 
 		return classContent;

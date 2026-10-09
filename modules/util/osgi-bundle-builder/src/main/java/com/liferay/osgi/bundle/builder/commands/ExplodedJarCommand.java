@@ -57,16 +57,16 @@ public class ExplodedJarCommand extends BaseCommand {
 				}
 			}
 
-			if (outputFile.exists() &&
-				(outputFile.lastModified() >= lastModified)) {
+			if (!outputFile.exists() ||
+				(outputFile.lastModified() < lastModified)) {
 
-				continue;
-			}
+				FileUtil.createDirectories(outputFile.getParentFile());
 
-			FileUtil.createDirectories(outputFile.getParentFile());
+				try (OutputStream outputStream = new FileOutputStream(
+						outputFile)) {
 
-			try (OutputStream outputStream = new FileOutputStream(outputFile)) {
-				IO.copy(resource.openInputStream(), outputStream);
+					IO.copy(resource.openInputStream(), outputStream);
+				}
 			}
 		}
 

@@ -525,11 +525,9 @@ public class OIDCUserInfoProcessor {
 		for (int i = 1; i < valueParts.length; ++i) {
 			JSONObject claimJSONObject = (JSONObject)claimObject;
 
-			if (claimJSONObject == null) {
-				continue;
+			if (claimJSONObject != null) {
+				claimObject = claimJSONObject.get(valueParts[i]);
 			}
-
-			claimObject = claimJSONObject.get(valueParts[i]);
 		}
 
 		return claimObject;

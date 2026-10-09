@@ -83,33 +83,31 @@ public class VelocityMigrationUtil {
 				stack.pop();
 			}
 
-			if (!stack.empty()) {
-				continue;
+			if (stack.empty()) {
+				if (statement.equals(
+						VelocityMigrationConstants.VELOCITY_IF_START)) {
+
+					lines[nextLineIndex] = StringUtil.replace(
+						nextLine, VelocityMigrationConstants.VELOCITY_END,
+						"</#if>");
+				}
+				else if (statement.equals(
+							VelocityMigrationConstants.
+								VELOCITY_FOREACH_START)) {
+
+					lines[nextLineIndex] = StringUtil.replace(
+						nextLine, VelocityMigrationConstants.VELOCITY_END,
+						"</#list>");
+				}
+
+				if (statement.equals(
+						VelocityMigrationConstants.VELOCITY_MACRO_START)) {
+
+					lines[nextLineIndex] = StringUtil.replace(
+						nextLine, VelocityMigrationConstants.VELOCITY_END,
+						"</#macro>");
+				}
 			}
-
-			if (statement.equals(
-					VelocityMigrationConstants.VELOCITY_IF_START)) {
-
-				lines[nextLineIndex] = StringUtil.replace(
-					nextLine, VelocityMigrationConstants.VELOCITY_END,
-					"</#if>");
-			}
-			else if (statement.equals(
-						VelocityMigrationConstants.VELOCITY_FOREACH_START)) {
-
-				lines[nextLineIndex] = StringUtil.replace(
-					nextLine, VelocityMigrationConstants.VELOCITY_END,
-					"</#list>");
-			}
-
-			if (!statement.equals(
-					VelocityMigrationConstants.VELOCITY_MACRO_START)) {
-
-				continue;
-			}
-
-			lines[nextLineIndex] = StringUtil.replace(
-				nextLine, VelocityMigrationConstants.VELOCITY_END, "</#macro>");
 		}
 	}
 

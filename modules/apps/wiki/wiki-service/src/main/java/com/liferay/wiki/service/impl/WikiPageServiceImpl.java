@@ -433,13 +433,11 @@ public class WikiPageServiceImpl extends WikiPageServiceBaseImpl {
 					break;
 				}
 
-				if (!_wikiPageModelResourcePermission.contains(
+				if (_wikiPageModelResourcePermission.contains(
 						getPermissionChecker(), page, ActionKeys.VIEW)) {
 
-					continue;
+					pages.add(page);
 				}
-
-				pages.add(page);
 			}
 		}
 

@@ -97,11 +97,9 @@ public class CPInstanceModelPreFilterContributor
 			String fieldValue = GetterUtil.getString(
 				searchContext.getAttribute(fieldName));
 
-			if (Validator.isNull(fieldValue)) {
-				continue;
+			if (Validator.isNotNull(fieldValue)) {
+				booleanFilter.addRequiredTerm(fieldName, fieldValue);
 			}
-
-			booleanFilter.addRequiredTerm(fieldName, fieldValue);
 		}
 	}
 

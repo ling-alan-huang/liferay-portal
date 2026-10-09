@@ -33,11 +33,9 @@ public class PortletPropertyValidator {
 		List<String> invalidKeys = new ArrayList<>();
 
 		for (String key : keys) {
-			if (validate(key)) {
-				continue;
+			if (!validate(key)) {
+				invalidKeys.add(key);
 			}
-
-			invalidKeys.add(key);
 		}
 
 		return invalidKeys;

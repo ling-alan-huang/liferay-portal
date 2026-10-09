@@ -672,11 +672,9 @@ public class ModulesStructureTest {
 						"apply plugin: \"", pluginIdPrefix, pluginIdSuffix,
 						"\"");
 
-					if (!line.equals(pluginLine)) {
-						continue;
+					if (line.equals(pluginLine)) {
+						pluginNames.add(pluginNamePrefix + pluginIdSuffix);
 					}
-
-					pluginNames.add(pluginNamePrefix + pluginIdSuffix);
 				}
 			}
 		}
@@ -1123,16 +1121,14 @@ public class ModulesStructureTest {
 		}
 
 		for (File file : dirPathFiles) {
-			if (!file.isDirectory()) {
-				continue;
-			}
+			if (file.isDirectory()) {
+				String modulePath = file.toString();
 
-			String modulePath = file.toString();
+				if (!modulePath.endsWith("-test") ||
+					!modulePath.endsWith("-test-util")) {
 
-			if (!modulePath.endsWith("-test") ||
-				!modulePath.endsWith("-test-util")) {
-
-				return;
+					return;
+				}
 			}
 		}
 
@@ -1284,20 +1280,16 @@ public class ModulesStructureTest {
 
 		for (String line : gitIgnoreLines) {
 			for (String prefix : _GIT_IGNORE_LINE_PREFIXES) {
-				if (!line.startsWith(prefix)) {
-					continue;
+				if (line.startsWith(prefix)) {
+					validGitIgnoreLines.add(line);
 				}
-
-				validGitIgnoreLines.add(line);
 			}
 		}
 
 		for (String line : _GIT_IGNORE_OPTIONAL_LINES) {
-			if (ArrayUtil.contains(gitIgnoreLines, line)) {
-				continue;
+			if (!ArrayUtil.contains(gitIgnoreLines, line)) {
+				validGitIgnoreLines.remove(line);
 			}
-
-			validGitIgnoreLines.remove(line);
 		}
 
 		Assert.assertEquals(
@@ -1667,24 +1659,20 @@ public class ModulesStructureTest {
 		for (String jsonFileName : _JSON_VERSION_FILE_NAMES) {
 			Path jsonPath = dirPath.resolve(jsonFileName);
 
-			if (!Files.exists(jsonPath)) {
-				continue;
+			if (Files.exists(jsonPath)) {
+				Matcher matcher = _jsonVersionPattern.matcher(
+					ModulesStructureTestUtil.read(jsonPath));
+
+				if (matcher.find()) {
+					String jsonVersion = matcher.group(2);
+
+					Assert.assertTrue(
+						StringBundler.concat(
+							"Version must match the project version (",
+							projectVersion, ") ", jsonPath),
+						jsonVersion.equals(projectVersion));
+				}
 			}
-
-			Matcher matcher = _jsonVersionPattern.matcher(
-				ModulesStructureTestUtil.read(jsonPath));
-
-			if (!matcher.find()) {
-				continue;
-			}
-
-			String jsonVersion = matcher.group(2);
-
-			Assert.assertTrue(
-				StringBundler.concat(
-					"Version must match the project version (", projectVersion,
-					") ", jsonPath),
-				jsonVersion.equals(projectVersion));
 		}
 	}
 

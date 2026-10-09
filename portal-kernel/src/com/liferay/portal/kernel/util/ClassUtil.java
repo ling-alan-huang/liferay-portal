@@ -58,28 +58,28 @@ public class ClassUtil {
 		_setupParseTableForAnnotationProcessing(st);
 
 		while (st.nextToken() != StreamTokenizer.TT_EOF) {
-			if (st.ttype != StreamTokenizer.TT_WORD) {
-				continue;
-			}
+			if (st.ttype == StreamTokenizer.TT_WORD) {
+				if (st.sval.equals("class") || st.sval.equals("enum") ||
+					st.sval.equals("interface") ||
+					st.sval.equals("@interface")) {
 
-			if (st.sval.equals("class") || st.sval.equals("enum") ||
-				st.sval.equals("interface") || st.sval.equals("@interface")) {
-
-				break;
-			}
-			else if (st.sval.startsWith("@")) {
-				st.ordinaryChar(' ');
-				st.wordChars('=', '=');
-				st.wordChars('+', '+');
-				st.wordChars('-', '-');
-
-				String[] annotationClasses = _processAnnotation(st.sval, st);
-
-				for (String annotationClass : annotationClasses) {
-					classes.add(annotationClass);
+					break;
 				}
+				else if (st.sval.startsWith("@")) {
+					st.ordinaryChar(' ');
+					st.wordChars('=', '=');
+					st.wordChars('+', '+');
+					st.wordChars('-', '-');
 
-				_setupParseTableForAnnotationProcessing(st);
+					String[] annotationClasses = _processAnnotation(
+						st.sval, st);
+
+					for (String annotationClass : annotationClasses) {
+						classes.add(annotationClass);
+					}
+
+					_setupParseTableForAnnotationProcessing(st);
+				}
 			}
 		}
 
@@ -131,15 +131,13 @@ public class ClassUtil {
 				return true;
 			}
 
-			if (!b.isInterface()) {
-				continue;
-			}
+			if (b.isInterface()) {
+				Class<?>[] interfaceClasses = x.getInterfaces();
 
-			Class<?>[] interfaceClasses = x.getInterfaces();
-
-			for (Class<?> interfaceClass : interfaceClasses) {
-				if (isSubclass(interfaceClass, b)) {
-					return true;
+				for (Class<?> interfaceClass : interfaceClasses) {
+					if (isSubclass(interfaceClass, b)) {
+						return true;
+					}
 				}
 			}
 		}
@@ -243,15 +241,13 @@ public class ClassUtil {
 		_setupParseTable(st);
 
 		while (st.nextToken() != StreamTokenizer.TT_EOF) {
-			if (st.ttype != StreamTokenizer.TT_WORD) {
-				continue;
-			}
-
-			if (st.sval.indexOf('.') >= 0) {
-				tokens.add(st.sval.substring(0, st.sval.indexOf('.')));
-			}
-			else {
-				tokens.add(st.sval);
+			if (st.ttype == StreamTokenizer.TT_WORD) {
+				if (st.sval.indexOf('.') >= 0) {
+					tokens.add(st.sval.substring(0, st.sval.indexOf('.')));
+				}
+				else {
+					tokens.add(st.sval);
+				}
 			}
 		}
 

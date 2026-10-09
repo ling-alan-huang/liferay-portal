@@ -2212,25 +2212,21 @@ public class CTTableMapperTest {
 			List<Long> leftPrimaryKeysList = new ArrayList<>();
 
 			for (MappingKey mappingKey : _mappingStore.keySet()) {
-				if (rightPrimaryKey != mappingKey._rightPrimaryKey) {
-					continue;
+				if (rightPrimaryKey == mappingKey._rightPrimaryKey) {
+					long leftPrimaryKey = mappingKey._leftPrimaryKey;
+
+					Boolean ctChangeType = _get(
+						leftPrimaryKey, rightPrimaryKey, ctCollectionId);
+					boolean inProduction = _containsKey(
+						leftPrimaryKey, rightPrimaryKey, 0L);
+
+					if ((((ctChangeType != null) && ctChangeType) ||
+						 (inProduction && (ctChangeType == null))) &&
+						!leftPrimaryKeysList.contains(leftPrimaryKey)) {
+
+						leftPrimaryKeysList.add(leftPrimaryKey);
+					}
 				}
-
-				long leftPrimaryKey = mappingKey._leftPrimaryKey;
-
-				Boolean ctChangeType = _get(
-					leftPrimaryKey, rightPrimaryKey, ctCollectionId);
-				boolean inProduction = _containsKey(
-					leftPrimaryKey, rightPrimaryKey, 0L);
-
-				if ((((ctChangeType == null) || !ctChangeType) &&
-					 (!inProduction || (ctChangeType != null))) ||
-					leftPrimaryKeysList.contains(leftPrimaryKey)) {
-
-					continue;
-				}
-
-				leftPrimaryKeysList.add(leftPrimaryKey);
 			}
 
 			return leftPrimaryKeysList;
@@ -2280,25 +2276,21 @@ public class CTTableMapperTest {
 			List<Long> rightPrimaryKeysList = new ArrayList<>();
 
 			for (MappingKey mappingKey : _mappingStore.keySet()) {
-				if (leftPrimaryKey != mappingKey._leftPrimaryKey) {
-					continue;
+				if (leftPrimaryKey == mappingKey._leftPrimaryKey) {
+					long rightPrimaryKey = mappingKey._rightPrimaryKey;
+
+					Boolean ctChangeType = _get(
+						leftPrimaryKey, rightPrimaryKey, ctCollectionId);
+					boolean inProduction = _containsKey(
+						leftPrimaryKey, rightPrimaryKey, 0L);
+
+					if ((((ctChangeType != null) && ctChangeType) ||
+						 (inProduction && (ctChangeType == null))) &&
+						!rightPrimaryKeysList.contains(rightPrimaryKey)) {
+
+						rightPrimaryKeysList.add(rightPrimaryKey);
+					}
 				}
-
-				long rightPrimaryKey = mappingKey._rightPrimaryKey;
-
-				Boolean ctChangeType = _get(
-					leftPrimaryKey, rightPrimaryKey, ctCollectionId);
-				boolean inProduction = _containsKey(
-					leftPrimaryKey, rightPrimaryKey, 0L);
-
-				if ((((ctChangeType == null) || !ctChangeType) &&
-					 (!inProduction || (ctChangeType != null))) ||
-					rightPrimaryKeysList.contains(rightPrimaryKey)) {
-
-					continue;
-				}
-
-				rightPrimaryKeysList.add(rightPrimaryKey);
 			}
 
 			return rightPrimaryKeysList;
@@ -2340,13 +2332,11 @@ public class CTTableMapperTest {
 			List<Long> leftPrimaryKeysList = new ArrayList<>();
 
 			for (MappingKey mappingKey : _mappingStore.keySet()) {
-				if ((rightPrimaryKey != mappingKey._rightPrimaryKey) ||
-					(mappingKey._ctCollectionId != 0)) {
+				if ((rightPrimaryKey == mappingKey._rightPrimaryKey) &&
+					(mappingKey._ctCollectionId == 0)) {
 
-					continue;
+					leftPrimaryKeysList.add(mappingKey._leftPrimaryKey);
 				}
-
-				leftPrimaryKeysList.add(mappingKey._leftPrimaryKey);
 			}
 
 			return leftPrimaryKeysList;
@@ -2378,13 +2368,11 @@ public class CTTableMapperTest {
 			List<Long> rightPrimaryKeysList = new ArrayList<>();
 
 			for (MappingKey mappingKey : _mappingStore.keySet()) {
-				if ((leftPrimaryKey != mappingKey._leftPrimaryKey) ||
-					(mappingKey._ctCollectionId != 0)) {
+				if ((leftPrimaryKey == mappingKey._leftPrimaryKey) &&
+					(mappingKey._ctCollectionId == 0)) {
 
-					continue;
+					rightPrimaryKeysList.add(mappingKey._rightPrimaryKey);
 				}
-
-				rightPrimaryKeysList.add(mappingKey._rightPrimaryKey);
 			}
 
 			return rightPrimaryKeysList;

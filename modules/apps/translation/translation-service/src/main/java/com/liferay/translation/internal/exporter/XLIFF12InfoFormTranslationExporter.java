@@ -107,15 +107,13 @@ public class XLIFF12InfoFormTranslationExporter
 
 			InfoField infoField = infoFieldValue.getInfoField();
 
-			if (!_translationInfoFieldChecker.isTranslatable(infoField)) {
-				continue;
+			if (_translationInfoFieldChecker.isTranslatable(infoField)) {
+				List<InfoFieldValue<Object>> infoFieldValuesList =
+					infoFieldValuesMap.computeIfAbsent(
+						infoField.getUniqueId(), uniqueId -> new ArrayList<>());
+
+				infoFieldValuesList.add(infoFieldValue);
 			}
-
-			List<InfoFieldValue<Object>> infoFieldValuesList =
-				infoFieldValuesMap.computeIfAbsent(
-					infoField.getUniqueId(), uniqueId -> new ArrayList<>());
-
-			infoFieldValuesList.add(infoFieldValue);
 		}
 
 		for (Map.Entry<String, List<InfoFieldValue<Object>>> entry :

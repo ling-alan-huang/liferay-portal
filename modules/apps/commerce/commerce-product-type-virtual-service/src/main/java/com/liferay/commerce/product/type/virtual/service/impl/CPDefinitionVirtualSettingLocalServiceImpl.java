@@ -502,11 +502,9 @@ public class CPDefinitionVirtualSettingLocalServiceImpl
 				for (Map.Entry<Locale, String> entry :
 						termsOfUseContentMap.entrySet()) {
 
-					if (Validator.isNull(entry.getValue())) {
-						continue;
+					if (Validator.isNotNull(entry.getValue())) {
+						empty = false;
 					}
-
-					empty = false;
 				}
 
 				if (empty) {

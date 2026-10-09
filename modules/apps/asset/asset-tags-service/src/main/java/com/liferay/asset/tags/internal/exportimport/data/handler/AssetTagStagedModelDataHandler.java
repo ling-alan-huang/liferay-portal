@@ -315,11 +315,9 @@ public class AssetTagStagedModelDataHandler
 			DepotEntry depotEntry = _depotEntryService.fetchGroupDepotEntry(
 				group.getGroupId());
 
-			if (depotEntry == null) {
-				continue;
+			if (depotEntry != null) {
+				groupIds.add(group.getGroupId());
 			}
-
-			groupIds.add(group.getGroupId());
 		}
 
 		if (groupIds.isEmpty()) {

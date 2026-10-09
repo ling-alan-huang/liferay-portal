@@ -71,11 +71,9 @@ public abstract class BaseExceptionMapper<E extends Throwable>
 			sb.append(args[i + 1]);
 			sb.append("\"");
 
-			if ((i + 2) >= args.length) {
-				continue;
+			if ((i + 2) < args.length) {
+				sb.append(", ");
 			}
-
-			sb.append(", ");
 		}
 
 		sb.append("}}");

@@ -241,13 +241,11 @@ public class MCPPromptUpgradeProcess extends UpgradeProcess {
 				identifiers.add(identifier);
 			}
 
-			if (Validator.isNotNull(identifier) &&
-				Validator.isNotNull(values.get("promptStatus"))) {
+			if (Validator.isNull(identifier) ||
+				Validator.isNull(values.get("promptStatus"))) {
 
-				continue;
+				valuesMap.put(objectEntry, values);
 			}
-
-			valuesMap.put(objectEntry, values);
 		}
 
 		for (Map.Entry<ObjectEntry, Map<String, Serializable>> entry :

@@ -406,11 +406,9 @@ public class ValidationBuild extends BaseBuild {
 			List<Element> failureElements = new ArrayList<>();
 
 			for (TestResult testResult : getTestResults(null)) {
-				if (!testResult.isFailing()) {
-					continue;
+				if (testResult.isFailing()) {
+					failureElements.add(testResult.getGitHubElement());
 				}
-
-				failureElements.add(testResult.getGitHubElement());
 			}
 
 			if (!failureElements.isEmpty()) {

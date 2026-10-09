@@ -289,11 +289,9 @@ public class AssetCategoriesNavigationDisplayContext {
 				GroupLocalServiceUtil.fetchGroupByExternalReferenceCode(
 					groupExternalReferenceCode, _themeDisplay.getCompanyId());
 
-			if (group == null) {
-				continue;
+			if (group != null) {
+				groupIdsMap.put(groupExternalReferenceCode, group.getGroupId());
 			}
-
-			groupIdsMap.put(groupExternalReferenceCode, group.getGroupId());
 		}
 
 		assetVocabularyExternalReferenceCodesMap.put(
@@ -323,11 +321,9 @@ public class AssetCategoriesNavigationDisplayContext {
 				Long assetVocabularyId = _getAssetVocabularyId(
 					assetVocabularyExternalReferenceCodes.poll(), groupId);
 
-				if (assetVocabularyId == null) {
-					continue;
+				if (assetVocabularyId != null) {
+					assetVocabularyIds.add(assetVocabularyId);
 				}
-
-				assetVocabularyIds.add(assetVocabularyId);
 			}
 		}
 		else {

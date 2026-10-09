@@ -55,11 +55,9 @@ public class OrderUtil {
 
 		for (String[] names : namesArray) {
 			for (String name : names) {
-				if (name.equals(Order.OTHERS)) {
-					continue;
+				if (!name.equals(Order.OTHERS)) {
+					map.put(name, 1);
 				}
-
-				map.put(name, 1);
 			}
 		}
 
@@ -252,19 +250,15 @@ public class OrderUtil {
 					x = 0;
 				}
 
-				if (!_isDisordered(
-						webXMLDefinitions[x], webXMLDefinitions[y])) {
+				if (_isDisordered(webXMLDefinitions[x], webXMLDefinitions[y])) {
+					WebXMLDefinition webXMLDefinition = webXMLDefinitions[x];
 
-					continue;
+					webXMLDefinitions[x] = webXMLDefinitions[y];
+
+					webXMLDefinitions[y] = webXMLDefinition;
+
+					attempting = true;
 				}
-
-				WebXMLDefinition webXMLDefinition = webXMLDefinitions[x];
-
-				webXMLDefinitions[x] = webXMLDefinitions[y];
-
-				webXMLDefinitions[y] = webXMLDefinition;
-
-				attempting = true;
 			}
 
 			attempts++;
@@ -372,17 +366,15 @@ public class OrderUtil {
 					curOrder.setRoutes(routes);
 				}
 
-				if (ArrayUtil.isEmpty(curPathNames)) {
-					continue;
+				if (ArrayUtil.isNotEmpty(curPathNames)) {
+					EnumMap<Order.Path, String[]> routes = new EnumMap<>(
+						Order.Path.class);
+
+					routes.put(path, _appendAndSort(pathNames, curPathNames));
+					routes.put(oppositePath, orderRoutes.get(oppositePath));
+
+					order.setRoutes(routes);
 				}
-
-				EnumMap<Order.Path, String[]> routes = new EnumMap<>(
-					Order.Path.class);
-
-				routes.put(path, _appendAndSort(pathNames, curPathNames));
-				routes.put(oppositePath, orderRoutes.get(oppositePath));
-
-				order.setRoutes(routes);
 			}
 		}
 	}

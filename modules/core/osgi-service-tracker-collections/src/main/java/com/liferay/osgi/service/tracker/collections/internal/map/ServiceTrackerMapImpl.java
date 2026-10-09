@@ -139,14 +139,12 @@ public class ServiceTrackerMapImpl<K, SR, TS, R>
 				_serviceTrackerBuckets.remove(emittedKey);
 			}
 
-			if (_serviceTrackerMapListener == null) {
-				continue;
+			if (_serviceTrackerMapListener != null) {
+				_serviceTrackerMapListener.keyRemoved(
+					ServiceTrackerMapImpl.this, emittedKey,
+					keyedServiceReferenceServiceTuple.getService(),
+					serviceTrackerBucket.getContent());
 			}
-
-			_serviceTrackerMapListener.keyRemoved(
-				ServiceTrackerMapImpl.this, emittedKey,
-				keyedServiceReferenceServiceTuple.getService(),
-				serviceTrackerBucket.getContent());
 		}
 
 		emittedKeys.clear();

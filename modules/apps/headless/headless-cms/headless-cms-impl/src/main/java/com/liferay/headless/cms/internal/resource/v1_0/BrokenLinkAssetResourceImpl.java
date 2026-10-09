@@ -188,11 +188,9 @@ public class BrokenLinkAssetResourceImpl
 			Long brokenLinkObjectEntryId = expiredAssetObjectEntryIdsMap.get(
 				outboundLink);
 
-			if (brokenLinkObjectEntryId == null) {
-				continue;
+			if (brokenLinkObjectEntryId != null) {
+				brokenLinkObjectEntryIds.add(brokenLinkObjectEntryId);
 			}
-
-			brokenLinkObjectEntryIds.add(brokenLinkObjectEntryId);
 		}
 
 		long objectDefinitionId = GetterUtil.getLong(

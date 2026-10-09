@@ -73,19 +73,17 @@ public class GroupModelListener extends BaseModelListener<Group> {
 			String[] groupIds = StringUtil.split(
 				unicodeProperties.getProperty("groupIds", StringPool.BLANK));
 
-			if (!ArrayUtil.contains(groupIds, groupId)) {
-				continue;
+			if (ArrayUtil.contains(groupIds, groupId)) {
+				unicodeProperties.setProperty(
+					"groupIds",
+					StringUtil.merge(ArrayUtil.remove(groupIds, groupId)));
+
+				_assetListEntrySegmentsEntryRelLocalService.
+					updateAssetListEntrySegmentsEntryRelTypeSettings(
+						assetListEntrySegmentsEntryRel.getAssetListEntryId(),
+						assetListEntrySegmentsEntryRel.getSegmentsEntryId(),
+						unicodeProperties.toString());
 			}
-
-			unicodeProperties.setProperty(
-				"groupIds",
-				StringUtil.merge(ArrayUtil.remove(groupIds, groupId)));
-
-			_assetListEntrySegmentsEntryRelLocalService.
-				updateAssetListEntrySegmentsEntryRelTypeSettings(
-					assetListEntrySegmentsEntryRel.getAssetListEntryId(),
-					assetListEntrySegmentsEntryRel.getSegmentsEntryId(),
-					unicodeProperties.toString());
 		}
 	}
 

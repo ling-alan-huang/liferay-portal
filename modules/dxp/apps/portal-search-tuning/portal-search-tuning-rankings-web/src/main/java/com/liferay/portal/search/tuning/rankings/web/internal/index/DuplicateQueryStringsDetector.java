@@ -72,11 +72,9 @@ public class DuplicateQueryStringsDetector {
 
 	private void _addQueryClauses(Consumer<Query> consumer, Query... queries) {
 		for (Query query : queries) {
-			if (query == null) {
-				continue;
+			if (query != null) {
+				consumer.accept(query);
 			}
-
-			consumer.accept(query);
 		}
 	}
 

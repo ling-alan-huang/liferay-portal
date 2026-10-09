@@ -160,14 +160,12 @@ public class EqualClauseIfStatementsCheck extends BaseCheck {
 			DetailAST nextSiblingDetailAST =
 				firstChildDetailAST.getNextSibling();
 
-			if (nextSiblingDetailAST.getType() != TokenTypes.IDENT) {
-				continue;
-			}
+			if (nextSiblingDetailAST.getType() == TokenTypes.IDENT) {
+				String methodName = nextSiblingDetailAST.getText();
 
-			String methodName = nextSiblingDetailAST.getText();
-
-			if (methodName.matches("(add|next|put|set).*")) {
-				return true;
+				if (methodName.matches("(add|next|put|set).*")) {
+					return true;
+				}
 			}
 		}
 

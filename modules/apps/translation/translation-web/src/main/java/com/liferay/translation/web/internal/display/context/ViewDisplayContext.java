@@ -206,11 +206,9 @@ public class ViewDisplayContext {
 				_translationEntryLocalService.fetchTranslationEntry(
 					translationEntryId);
 
-			if (translationEntry == null) {
-				continue;
+			if (translationEntry != null) {
+				results.add(translationEntry);
 			}
-
-			results.add(translationEntry);
 		}
 
 		_searchContainer.setResultsAndTotal(() -> results, hits.getLength());

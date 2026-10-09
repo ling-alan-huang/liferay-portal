@@ -495,13 +495,11 @@ public abstract class BaseCommerceProductPriceCalculation
 				cpDefinitionOptionValueRel.getUnitOfMeasureKey(),
 				commerceContext);
 
-			if (!BigDecimalUtil.gt(
+			if (BigDecimalUtil.gt(
 					cpDefinitionOptionMinDynamicPrice, cpInstanceFinalPrice)) {
 
-				continue;
+				cpDefinitionOptionMinDynamicPrice = cpInstanceFinalPrice;
 			}
-
-			cpDefinitionOptionMinDynamicPrice = cpInstanceFinalPrice;
 		}
 
 		return cpDefinitionOptionMinDynamicPrice;
@@ -539,15 +537,13 @@ public abstract class BaseCommerceProductPriceCalculation
 				_getCPDefinitionOptionValueFinalPrice(
 					cpDefinitionOptionValueRel.getPrice(), quantity);
 
-			if (!BigDecimalUtil.gt(
+			if (BigDecimalUtil.gt(
 					cpDefinitionOptionMinStaticPrice,
 					cpDefinitionOptionValueFinalPrice)) {
 
-				continue;
+				cpDefinitionOptionMinStaticPrice =
+					cpDefinitionOptionValueFinalPrice;
 			}
-
-			cpDefinitionOptionMinStaticPrice =
-				cpDefinitionOptionValueFinalPrice;
 		}
 
 		CommerceCurrency commerceCurrency =

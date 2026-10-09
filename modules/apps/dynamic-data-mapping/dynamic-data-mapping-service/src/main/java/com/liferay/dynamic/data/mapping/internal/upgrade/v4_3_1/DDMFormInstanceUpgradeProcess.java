@@ -73,18 +73,16 @@ public class DDMFormInstanceUpgradeProcess extends UpgradeProcess {
 				JSONObject settingsJSONObject = _jsonFactory.createJSONObject(
 					resultSet.getString("settings_"));
 
-				if (!_upgradeSettings(settingsJSONObject)) {
-					continue;
+				if (_upgradeSettings(settingsJSONObject)) {
+					updatePreparedStatement.setString(
+						1, settingsJSONObject.toString());
+					updatePreparedStatement.setLong(
+						2, resultSet.getLong("ctCollectionId"));
+					updatePreparedStatement.setLong(
+						3, resultSet.getLong(idColumnName));
+
+					updatePreparedStatement.addBatch();
 				}
-
-				updatePreparedStatement.setString(
-					1, settingsJSONObject.toString());
-				updatePreparedStatement.setLong(
-					2, resultSet.getLong("ctCollectionId"));
-				updatePreparedStatement.setLong(
-					3, resultSet.getLong(idColumnName));
-
-				updatePreparedStatement.addBatch();
 			}
 		}
 

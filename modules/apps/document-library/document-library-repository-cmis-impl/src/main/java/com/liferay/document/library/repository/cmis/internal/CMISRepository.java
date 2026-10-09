@@ -1641,14 +1641,13 @@ public class CMISRepository extends BaseCmisRepository {
 
 			subfolderIds.add(subfolderId);
 
-			if (!recurse) {
-				continue;
+			if (recurse) {
+				List<Folder> subSubFolders = getFolders(
+					subfolderId, false, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+					null);
+
+				getSubfolderIds(subfolderIds, subSubFolders, recurse);
 			}
-
-			List<Folder> subSubFolders = getFolders(
-				subfolderId, false, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
-
-			getSubfolderIds(subfolderIds, subSubFolders, recurse);
 		}
 	}
 
@@ -1969,11 +1968,9 @@ public class CMISRepository extends BaseCmisRepository {
 			for (int i = 0; i < mimeTypes.length; i++) {
 				sb.append(StringUtil.quote(mimeTypes[i]));
 
-				if ((i + 1) >= mimeTypes.length) {
-					continue;
+				if ((i + 1) < mimeTypes.length) {
+					sb.append(", ");
 				}
-
-				sb.append(", ");
 			}
 
 			sb.append(StringPool.CLOSE_PARENTHESIS);

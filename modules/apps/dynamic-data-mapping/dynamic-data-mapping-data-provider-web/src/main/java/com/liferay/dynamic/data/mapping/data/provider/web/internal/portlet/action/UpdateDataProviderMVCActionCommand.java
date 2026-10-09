@@ -160,15 +160,13 @@ public class UpdateDataProviderMVCActionCommand
 		Value storedValue = storedDDMFormFieldValue.getValue();
 
 		for (Locale availableLocale : value.getAvailableLocales()) {
-			if (!Objects.equals(
+			if (Objects.equals(
 					value.getString(availableLocale),
 					Portal.TEMP_OBFUSCATION_VALUE)) {
 
-				continue;
+				value.addString(
+					availableLocale, storedValue.getString(availableLocale));
 			}
-
-			value.addString(
-				availableLocale, storedValue.getString(availableLocale));
 		}
 	}
 

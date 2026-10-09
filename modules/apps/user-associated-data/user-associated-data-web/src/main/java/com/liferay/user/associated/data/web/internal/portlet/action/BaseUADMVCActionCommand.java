@@ -159,12 +159,10 @@ public abstract class BaseUADMVCActionCommand extends BaseMVCActionCommand {
 		Map<String, String[]> parameterMap = actionRequest.getParameterMap();
 
 		for (String key : parameterMap.keySet()) {
-			if (!key.startsWith("uadRegistryKey__")) {
-				continue;
+			if (key.startsWith("uadRegistryKey__")) {
+				entityTypes.add(
+					StringUtil.removeSubstring(key, "uadRegistryKey__"));
 			}
-
-			entityTypes.add(
-				StringUtil.removeSubstring(key, "uadRegistryKey__"));
 		}
 
 		return entityTypes;

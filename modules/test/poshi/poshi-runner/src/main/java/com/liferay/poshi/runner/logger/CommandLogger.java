@@ -440,18 +440,17 @@ public final class CommandLogger {
 
 			String valueKey = "value" + (i + 1);
 
-			if (!_poshiVariablesContext.containsKeyInExecuteMap(valueKey)) {
-				continue;
+			if (_poshiVariablesContext.containsKeyInExecuteMap(valueKey)) {
+				sb.append(_getLineItemText("misc", " with "));
+				sb.append(_getLineItemText("param-type", valueKey));
+
+				String paramValue =
+					_poshiVariablesContext.getStringFromExecuteMap(valueKey);
+
+				sb.append(
+					_getLineItemText(
+						"param-value", HtmlUtil.escape(paramValue)));
 			}
-
-			sb.append(_getLineItemText("misc", " with "));
-			sb.append(_getLineItemText("param-type", valueKey));
-
-			String paramValue = _poshiVariablesContext.getStringFromExecuteMap(
-				valueKey);
-
-			sb.append(
-				_getLineItemText("param-value", HtmlUtil.escape(paramValue)));
 		}
 
 		return sb.toString();

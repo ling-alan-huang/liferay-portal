@@ -95,16 +95,15 @@ public class JavaUnusedSourceFormatterChecksCheck extends BaseJavaTermCheck {
 			List<String> checkNames = _getCheckNames(
 				absolutePath, configurationFileName, checkElementName);
 
-			if (checkNames.isEmpty() ||
-				checkNames.contains(javaClass.getName()) ||
-				checkNames.contains(javaClass.getName(true))) {
+			if (!checkNames.isEmpty() &&
+				!checkNames.contains(javaClass.getName()) &&
+				!checkNames.contains(javaClass.getName(true))) {
 
-				continue;
+				addMessage(
+					fileName,
+					"Check is not configured in \"" + configurationFileName +
+						"\"");
 			}
-
-			addMessage(
-				fileName,
-				"Check is not configured in \"" + configurationFileName + "\"");
 		}
 	}
 

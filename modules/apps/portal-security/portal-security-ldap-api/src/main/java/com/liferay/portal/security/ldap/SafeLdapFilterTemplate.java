@@ -68,11 +68,9 @@ public class SafeLdapFilterTemplate extends SafeLdapFilter {
 			boolean found = false;
 
 			for (String replaceKey : _replaceKeys) {
-				if (!replaceKey.equals(key)) {
-					continue;
+				if (replaceKey.equals(key)) {
+					found = true;
 				}
-
-				found = true;
 			}
 
 			if (!found) {

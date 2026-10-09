@@ -46,11 +46,9 @@ public class UnrecognizedPropertyExceptionMapper
 					"The property \"", reference.getFieldName(),
 					"\" is not defined in ", clazz.getSimpleName(), "."));
 
-			if ((i + 1) >= references.size()) {
-				continue;
+			if ((i + 1) < references.size()) {
+				sb.append(" ");
 			}
-
-			sb.append(" ");
 		}
 
 		return new Problem(Response.Status.BAD_REQUEST, sb.toString());

@@ -92,15 +92,13 @@ public class PartiallyShippedCommerceOrderStatusImpl
 		for (CommerceOrderItem shippedCommerceOrderItem :
 				commerceOrder.getCommerceOrderItems()) {
 
-			if (!BigDecimalUtil.lt(
+			if (BigDecimalUtil.lt(
 					shippedCommerceOrderItem.getShippedQuantity(),
-					shippedCommerceOrderItem.getQuantity()) ||
-				!shippedCommerceOrderItem.isShippable()) {
+					shippedCommerceOrderItem.getQuantity()) &&
+				shippedCommerceOrderItem.isShippable()) {
 
-				continue;
+				allOrderItemsShipped = false;
 			}
-
-			allOrderItemsShipped = false;
 		}
 
 		return !allOrderItemsShipped;

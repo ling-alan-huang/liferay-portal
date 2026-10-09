@@ -98,12 +98,10 @@ public class AssetCategoryPropertyAssetCategoryLocalServiceWrapper
 				value = GetterUtil.getString(categoryPropertyArray[1]);
 			}
 
-			if (Validator.isNull(key)) {
-				continue;
+			if (Validator.isNotNull(key)) {
+				_assetCategoryPropertyLocalService.addCategoryProperty(
+					userId, assetCategory.getCategoryId(), key, value);
 			}
-
-			_assetCategoryPropertyLocalService.addCategoryProperty(
-				userId, assetCategory.getCategoryId(), key, value);
 		}
 
 		return assetCategory;
@@ -135,14 +133,12 @@ public class AssetCategoryPropertyAssetCategoryLocalServiceWrapper
 				_assetCategoryPropertyLocalService.fetchCategoryProperty(
 					toCategoryId, fromCategoryProperty.getKey());
 
-			if (toCategoryProperty != null) {
-				continue;
+			if (toCategoryProperty == null) {
+				fromCategoryProperty.setCategoryId(toCategoryId);
+
+				_assetCategoryPropertyLocalService.updateAssetCategoryProperty(
+					fromCategoryProperty);
 			}
-
-			fromCategoryProperty.setCategoryId(toCategoryId);
-
-			_assetCategoryPropertyLocalService.updateAssetCategoryProperty(
-				fromCategoryProperty);
 		}
 
 		return super.mergeCategories(fromCategoryId, toCategoryId);
@@ -218,12 +214,10 @@ public class AssetCategoryPropertyAssetCategoryLocalServiceWrapper
 					}
 				}
 
-				if (!addCategoryProperty) {
-					continue;
+				if (addCategoryProperty) {
+					_assetCategoryPropertyLocalService.addCategoryProperty(
+						userId, categoryId, key, value);
 				}
-
-				_assetCategoryPropertyLocalService.addCategoryProperty(
-					userId, categoryId, key, value);
 			}
 		}
 

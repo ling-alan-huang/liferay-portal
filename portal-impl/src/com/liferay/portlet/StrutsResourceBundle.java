@@ -52,11 +52,9 @@ public class StrutsResourceBundle extends ResourceBundle {
 		Set<String> keys = new HashSet<>();
 
 		for (String key : _keys) {
-			if (!parent.containsKey(_buildKey(key))) {
-				continue;
+			if (parent.containsKey(_buildKey(key))) {
+				keys.add(key);
 			}
-
-			keys.add(key);
 		}
 
 		return new ResourceBundleEnumeration(keys, parent.getKeys());

@@ -89,11 +89,9 @@ public class ThreadLocalCacheAdvice extends ChainableMethodAdvice {
 		for (int i = 0; i < arguments.length; i++) {
 			sb.append(StringUtil.toHexString(arguments[i]));
 
-			if ((i + 1) >= arguments.length) {
-				continue;
+			if ((i + 1) < arguments.length) {
+				sb.append(StringPool.POUND);
 			}
-
-			sb.append(StringPool.POUND);
 		}
 
 		return sb.toString();

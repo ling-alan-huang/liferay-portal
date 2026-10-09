@@ -134,16 +134,14 @@ public class FragmentEntryLinkModelListener
 					fragmentEntryLink.getPlid(), fragmentEntryLink.getUserId());
 			}
 
-			if (!fieldValueJSONObject.has("classPK")) {
-				continue;
+			if (fieldValueJSONObject.has("classPK")) {
+				_addAssetListEntryUsage(
+					_portal.getClassNameId(AssetListEntry.class.getName()),
+					fragmentEntryLink.getFragmentEntryLinkId(),
+					fragmentEntryLink.getGroupId(),
+					fieldValueJSONObject.getString("classPK"),
+					fragmentEntryLink.getPlid(), fragmentEntryLink.getUserId());
 			}
-
-			_addAssetListEntryUsage(
-				_portal.getClassNameId(AssetListEntry.class.getName()),
-				fragmentEntryLink.getFragmentEntryLinkId(),
-				fragmentEntryLink.getGroupId(),
-				fieldValueJSONObject.getString("classPK"),
-				fragmentEntryLink.getPlid(), fragmentEntryLink.getUserId());
 		}
 	}
 

@@ -480,19 +480,17 @@ public abstract class BaseFragmentCollectionContributor
 		availableLocales.add(LocaleUtil.getDefault());
 
 		for (Locale locale : availableLocales) {
-			if (Validator.isNull(name)) {
-				continue;
+			if (Validator.isNotNull(name)) {
+				String languageId = LocaleUtil.toLanguageId(locale);
+
+				ResourceBundle resourceBundle =
+					resourceBundleLoader.loadResourceBundle(
+						LocaleUtil.fromLanguageId(languageId));
+
+				names.put(
+					LocaleUtil.fromLanguageId(languageId),
+					LanguageUtil.get(resourceBundle, name, name));
 			}
-
-			String languageId = LocaleUtil.toLanguageId(locale);
-
-			ResourceBundle resourceBundle =
-				resourceBundleLoader.loadResourceBundle(
-					LocaleUtil.fromLanguageId(languageId));
-
-			names.put(
-				LocaleUtil.fromLanguageId(languageId),
-				LanguageUtil.get(resourceBundle, name, name));
 		}
 	}
 

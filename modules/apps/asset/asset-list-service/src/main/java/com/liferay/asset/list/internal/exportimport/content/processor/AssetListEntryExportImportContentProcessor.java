@@ -135,49 +135,46 @@ public class AssetListEntryExportImportContentProcessor
 					_dlFileEntryTypeLocalService.fetchFileEntryType(
 						classTypeId);
 
-				if (dlFileEntryType == null) {
-					continue;
+				if (dlFileEntryType != null) {
+					StagedModelDataHandlerUtil.exportReferenceStagedModel(
+						portletDataContext, stagedModel, dlFileEntryType,
+						PortletDataContext.REFERENCE_TYPE_DEPENDENCY);
 				}
-
-				StagedModelDataHandlerUtil.exportReferenceStagedModel(
-					portletDataContext, stagedModel, dlFileEntryType,
-					PortletDataContext.REFERENCE_TYPE_DEPENDENCY);
 			}
 		}
 
 		for (Map.Entry<String, String> entry : unicodeProperties.entrySet()) {
 			String key = entry.getKey();
 
-			if (!StringUtil.startsWith(key, "queryName") ||
-				!Objects.equals(entry.getValue(), "assetCategories")) {
+			if (StringUtil.startsWith(key, "queryName") &&
+				Objects.equals(entry.getValue(), "assetCategories")) {
 
-				continue;
-			}
+				String index = key.substring(9);
 
-			String index = key.substring(9);
+				String queryValues = unicodeProperties.getProperty(
+					"queryValues" + index);
 
-			String queryValues = unicodeProperties.getProperty(
-				"queryValues" + index);
-
-			if (Validator.isNull(queryValues)) {
-				continue;
-			}
-
-			long[] categoryIds = GetterUtil.getLongValues(
-				queryValues.split(","));
-
-			for (long categoryId : categoryIds) {
-				AssetCategory assetCategory =
-					_assetCategoryLocalService.fetchAssetCategory(categoryId);
-
-				if (assetCategory == null) {
+				if (Validator.isNull(queryValues)) {
 					continue;
 				}
 
-				StagedModelDataHandlerUtil.exportReferenceStagedModel(
-					portletDataContext, stagedModel,
-					_assetCategoryLocalService.getCategory(categoryId),
-					PortletDataContext.REFERENCE_TYPE_DEPENDENCY);
+				long[] categoryIds = GetterUtil.getLongValues(
+					queryValues.split(","));
+
+				for (long categoryId : categoryIds) {
+					AssetCategory assetCategory =
+						_assetCategoryLocalService.fetchAssetCategory(
+							categoryId);
+
+					if (assetCategory == null) {
+						continue;
+					}
+
+					StagedModelDataHandlerUtil.exportReferenceStagedModel(
+						portletDataContext, stagedModel,
+						_assetCategoryLocalService.getCategory(categoryId),
+						PortletDataContext.REFERENCE_TYPE_DEPENDENCY);
+				}
 			}
 		}
 
@@ -365,26 +362,24 @@ public class AssetListEntryExportImportContentProcessor
 					"queryValues" + index, StringUtil.merge(newCategoryIds));
 			}
 
-			if (!StringUtil.startsWith(key, "orderByColumn") ||
-				!StringUtil.startsWith(value, "ddm__keyword__")) {
+			if (StringUtil.startsWith(key, "orderByColumn") &&
+				StringUtil.startsWith(value, "ddm__keyword__")) {
 
-				continue;
+				String[] parts = StringUtil.split(
+					value, StringPool.DOUBLE_UNDERLINE);
+
+				if (parts.length < 4) {
+					continue;
+				}
+
+				Long oldPrimaryKey = Long.valueOf(parts[2]);
+
+				parts[2] = String.valueOf(
+					ddmStructureIds.getOrDefault(oldPrimaryKey, oldPrimaryKey));
+
+				unicodeProperties.setProperty(
+					key, StringUtil.merge(parts, StringPool.DOUBLE_UNDERLINE));
 			}
-
-			String[] parts = StringUtil.split(
-				value, StringPool.DOUBLE_UNDERLINE);
-
-			if (parts.length < 4) {
-				continue;
-			}
-
-			Long oldPrimaryKey = Long.valueOf(parts[2]);
-
-			parts[2] = String.valueOf(
-				ddmStructureIds.getOrDefault(oldPrimaryKey, oldPrimaryKey));
-
-			unicodeProperties.setProperty(
-				key, StringUtil.merge(parts, StringPool.DOUBLE_UNDERLINE));
 		}
 
 		return unicodeProperties.toString();

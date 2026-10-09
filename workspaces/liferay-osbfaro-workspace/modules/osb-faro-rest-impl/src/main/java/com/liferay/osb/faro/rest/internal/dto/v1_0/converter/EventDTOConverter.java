@@ -74,11 +74,9 @@ public class EventDTOConverter
 
 			String name = property.getName();
 
-			if (name == null) {
-				continue;
+			if (name != null) {
+				attributes.put(name, property.getValue());
 			}
-
-			attributes.put(name, property.getValue());
 		}
 
 		return attributes;

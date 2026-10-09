@@ -156,11 +156,9 @@ public class TestrayResultsParserUtil {
 			String testrayTestcaseStatus = _getTestrayTestcaseStatus(
 				testcaseElement);
 
-			if (!testrayTestcaseStatus.equals("passed")) {
-				continue;
+			if (testrayTestcaseStatus.equals("passed")) {
+				numPassed++;
 			}
-
-			numPassed++;
 		}
 
 		Element passedPropertyElement = Dom4JUtil.getNewElement("property");
@@ -188,13 +186,12 @@ public class TestrayResultsParserUtil {
 		List<Element> propertyElements = propertiesElement.elements("property");
 
 		for (Element propertyElement : propertyElements) {
-			if (!_NAME_TESTRAY_TESTCASE_STATUS_PROPERTY.equals(
+			if (_NAME_TESTRAY_TESTCASE_STATUS_PROPERTY.equals(
 					propertyElement.attributeValue("name", ""))) {
 
-				continue;
+				testrayTestcaseStatus = propertyElement.attributeValue(
+					"value", "");
 			}
-
-			testrayTestcaseStatus = propertyElement.attributeValue("value", "");
 		}
 
 		return testrayTestcaseStatus;

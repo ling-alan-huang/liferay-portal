@@ -182,11 +182,9 @@ public class EventRequestSummaryStatistics implements PortletSummaryStatistics {
 			for (RequestStatistics requestStatistics :
 					companyStatistics.getEventRequestStatisticsSet()) {
 
-				if (requestStatistics.getMaxTime() <= maxTime) {
-					continue;
+				if (requestStatistics.getMaxTime() > maxTime) {
+					maxTime = requestStatistics.getMaxTime();
 				}
-
-				maxTime = requestStatistics.getMaxTime();
 			}
 		}
 
@@ -220,11 +218,9 @@ public class EventRequestSummaryStatistics implements PortletSummaryStatistics {
 
 			long curMaxTime = getMaxTimeByPortlet(portletId, companyStatistics);
 
-			if (curMaxTime <= maxTime) {
-				continue;
+			if (curMaxTime > maxTime) {
+				maxTime = curMaxTime;
 			}
-
-			maxTime = curMaxTime;
 		}
 
 		return maxTime;
@@ -256,11 +252,9 @@ public class EventRequestSummaryStatistics implements PortletSummaryStatistics {
 			for (RequestStatistics requestStatistics :
 					companyStatistics.getEventRequestStatisticsSet()) {
 
-				if (requestStatistics.getMinTime() >= minTime) {
-					continue;
+				if (requestStatistics.getMinTime() < minTime) {
+					minTime = requestStatistics.getMinTime();
 				}
-
-				minTime = requestStatistics.getMinTime();
 			}
 		}
 
@@ -294,11 +288,9 @@ public class EventRequestSummaryStatistics implements PortletSummaryStatistics {
 
 			long curMinTime = getMinTimeByPortlet(portletId, companyStatistics);
 
-			if (curMinTime >= minTime) {
-				continue;
+			if (curMinTime < minTime) {
+				minTime = curMinTime;
 			}
-
-			minTime = curMinTime;
 		}
 
 		return minTime;

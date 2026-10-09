@@ -75,13 +75,13 @@ public class TermUsersProvider implements UsersProvider {
 			User user = _userLocalService.getUserByScreenName(
 				notificationContext.getCompanyId(), screenName);
 
-			if (usersMap.containsKey(user.getUserId()) ||
-				!_hasViewPermission(user, notificationContext)) {
-
+			if (usersMap.containsKey(user.getUserId())) {
 				continue;
 			}
 
-			usersMap.put(user.getUserId(), user);
+			if (_hasViewPermission(user, notificationContext)) {
+				usersMap.put(user.getUserId(), user);
+			}
 		}
 
 		for (NotificationTermEvaluator notificationTermEvaluator :
@@ -123,11 +123,9 @@ public class TermUsersProvider implements UsersProvider {
 
 					User user = _userLocalService.getUser(id);
 
-					if (!_hasViewPermission(user, notificationContext)) {
-						continue;
+					if (_hasViewPermission(user, notificationContext)) {
+						usersMap.put(id, user);
 					}
-
-					usersMap.put(id, user);
 				}
 			}
 		}

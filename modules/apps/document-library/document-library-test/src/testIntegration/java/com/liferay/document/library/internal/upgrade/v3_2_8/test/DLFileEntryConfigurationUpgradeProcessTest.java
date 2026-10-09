@@ -84,14 +84,12 @@ public class DLFileEntryConfigurationUpgradeProcessTest {
 		_originalPDFPreviewScopedConfigurationsProperties = new ArrayList<>();
 
 		for (Configuration scopedConfiguration : scopedConfigurations) {
-			if (scopedConfiguration == null) {
-				continue;
+			if (scopedConfiguration != null) {
+				_originalPDFPreviewScopedConfigurationsProperties.add(
+					scopedConfiguration.getProperties());
+
+				scopedConfiguration.delete();
 			}
-
-			_originalPDFPreviewScopedConfigurationsProperties.add(
-				scopedConfiguration.getProperties());
-
-			scopedConfiguration.delete();
 		}
 	}
 
@@ -129,13 +127,12 @@ public class DLFileEntryConfigurationUpgradeProcessTest {
 			Object companyId = properties.get(
 				ExtendedObjectClassDefinition.Scope.COMPANY.getPropertyKey());
 
-			if (companyId == null) {
-				continue;
+			if (companyId != null) {
+				_createScopedConfiguration(
+					_CLASS_NAME_PDF_PREVIEW_CONFIGURATION, properties,
+					ExtendedObjectClassDefinition.Scope.COMPANY,
+					(long)companyId);
 			}
-
-			_createScopedConfiguration(
-				_CLASS_NAME_PDF_PREVIEW_CONFIGURATION, properties,
-				ExtendedObjectClassDefinition.Scope.COMPANY, (long)companyId);
 		}
 	}
 

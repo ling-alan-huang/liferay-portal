@@ -42,11 +42,9 @@ public class PortalCoreJavaUnitTestRelevantRule extends RelevantRule {
 		for (File modifiedDir : modifiedDirsList) {
 			String modifiedDirName = modifiedDir.getName();
 
-			if (!_portalCoreDirNames.contains(modifiedDirName)) {
-				continue;
+			if (_portalCoreDirNames.contains(modifiedDirName)) {
+				modifiedDirNames.add(modifiedDirName);
 			}
-
-			modifiedDirNames.add(modifiedDirName);
 		}
 
 		if (modifiedDirNames.isEmpty()) {

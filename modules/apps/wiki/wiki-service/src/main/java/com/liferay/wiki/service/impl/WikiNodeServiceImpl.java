@@ -125,13 +125,11 @@ public class WikiNodeServiceImpl extends WikiNodeServiceBaseImpl {
 				groupId, status);
 
 			for (WikiNode node : allNodes) {
-				if (!_wikiNodeModelResourcePermission.contains(
+				if (_wikiNodeModelResourcePermission.contains(
 						getPermissionChecker(), node, ActionKeys.VIEW)) {
 
-					continue;
+					nodes.add(node);
 				}
-
-				nodes.add(node);
 			}
 		}
 

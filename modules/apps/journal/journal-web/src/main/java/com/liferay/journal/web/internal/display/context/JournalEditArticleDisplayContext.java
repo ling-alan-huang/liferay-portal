@@ -833,15 +833,13 @@ public class JournalEditArticleDisplayContext {
 						_themeDisplay.getCompanyId(), key),
 					excludedGroupIds));
 
-			if (groupIds.isEmpty() ||
-				((groupIds.size() <= 1) &&
-				 Objects.equals(
+			if (!groupIds.isEmpty() &&
+				((groupIds.size() > 1) ||
+				 !Objects.equals(
 					 groupIds.get(0), _themeDisplay.getScopeGroupId()))) {
 
-				continue;
+				friendlyURLDuplicatedLocales.add(entry.getKey());
 			}
-
-			friendlyURLDuplicatedLocales.add(entry.getKey());
 		}
 
 		if (friendlyURLDuplicatedLocales.isEmpty()) {

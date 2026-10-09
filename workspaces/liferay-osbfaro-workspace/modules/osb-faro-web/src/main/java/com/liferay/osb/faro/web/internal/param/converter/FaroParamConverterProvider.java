@@ -119,14 +119,12 @@ public class FaroParamConverterProvider implements ParamConverterProvider {
 
 	private boolean _containsPathParam(Annotation[] annotations, String param) {
 		for (Annotation annotation : annotations) {
-			if (!(annotation instanceof PathParam)) {
-				continue;
-			}
+			if (annotation instanceof PathParam) {
+				PathParam pathParam = (PathParam)annotation;
 
-			PathParam pathParam = (PathParam)annotation;
-
-			if (StringUtil.equals(pathParam.value(), param)) {
-				return true;
+				if (StringUtil.equals(pathParam.value(), param)) {
+					return true;
+				}
 			}
 		}
 

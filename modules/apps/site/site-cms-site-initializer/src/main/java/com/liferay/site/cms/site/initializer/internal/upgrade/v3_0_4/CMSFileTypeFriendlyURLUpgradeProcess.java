@@ -55,11 +55,9 @@ public class CMSFileTypeFriendlyURLUpgradeProcess extends UpgradeProcess {
 				_objectDefinitionLocalService.getObjectFolderObjectDefinitions(
 					objectFolder.getObjectFolderId())) {
 
-			if (!CMSFileTypeUtil.hasFileObjectField(objectDefinition)) {
-				continue;
+			if (CMSFileTypeUtil.hasFileObjectField(objectDefinition)) {
+				_upgradeObjectDefinition(objectDefinition);
 			}
-
-			_upgradeObjectDefinition(objectDefinition);
 		}
 	}
 

@@ -256,15 +256,13 @@ public class JavaUpgradeVersionCheck extends BaseJavaTermCheck {
 			String fromVersion = StringUtil.removeChar(
 				parameterList.get(0), CharPool.QUOTE);
 
-			if (!fromVersion.equals("0.0.0")) {
-				continue;
+			if (fromVersion.equals("0.0.0")) {
+				addMessage(
+					fileName,
+					"Upgrades from version 0.0.0 for service builder modules " +
+						"are not allowed",
+					javaTerm.getLineNumber(x));
 			}
-
-			addMessage(
-				fileName,
-				"Upgrades from version 0.0.0 for service builder modules are " +
-					"not allowed",
-				javaTerm.getLineNumber(x));
 		}
 	}
 

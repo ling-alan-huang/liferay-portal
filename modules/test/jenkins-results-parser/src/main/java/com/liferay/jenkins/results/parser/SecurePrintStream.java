@@ -347,11 +347,9 @@ public class SecurePrintStream extends PrintStream {
 				_printStream.print(line);
 			}
 
-			if ((line == lastLine) && ((line != lastLine) || !appendNewLine)) {
-				continue;
+			if ((line != lastLine) || ((line == lastLine) && appendNewLine)) {
+				_printStream.println();
 			}
-
-			_printStream.println();
 		}
 	}
 

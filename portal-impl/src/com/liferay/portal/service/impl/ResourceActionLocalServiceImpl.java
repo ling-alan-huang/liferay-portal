@@ -227,11 +227,9 @@ public class ResourceActionLocalServiceImpl
 
 				ownerBitwiseValue |= bitwiseValue;
 
-				if (!groupDefaultActions.contains(actionId)) {
-					continue;
+				if (groupDefaultActions.contains(actionId)) {
+					siteMemberBitwiseValue |= bitwiseValue;
 				}
-
-				siteMemberBitwiseValue |= bitwiseValue;
 			}
 
 			if (guestBitwiseValue > 0) {
@@ -389,13 +387,11 @@ public class ResourceActionLocalServiceImpl
 		}
 
 		for (String key : _resourceActions.keySet()) {
-			if (!key.endsWith(
+			if (key.endsWith(
 					StringPool.AT + CompanyThreadLocal.getCompanyId())) {
 
-				continue;
+				_resourceActions.remove(key);
 			}
-
-			_resourceActions.remove(key);
 		}
 	}
 

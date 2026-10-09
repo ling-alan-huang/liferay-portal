@@ -493,29 +493,28 @@ public class JUnitTestClass extends BaseTestClass {
 				methodIgnored = true;
 			}
 
-			if (!annotations.contains("@Test")) {
-				continue;
-			}
+			if (annotations.contains("@Test")) {
+				String methodName = methodHeaderMatcher.group("methodName");
 
-			String methodName = methodHeaderMatcher.group("methodName");
+				if (annotations.contains("@TestInfo")) {
+					List<String> issuesList = new ArrayList<>();
 
-			if (annotations.contains("@TestInfo")) {
-				List<String> issuesList = new ArrayList<>();
+					String testInfo = annotations.substring(
+						annotations.indexOf("@TestInfo"));
 
-				String testInfo = annotations.substring(
-					annotations.indexOf("@TestInfo"));
+					Matcher matcher = _issuesPattern.matcher(testInfo);
 
-				Matcher matcher = _issuesPattern.matcher(testInfo);
+					while (matcher.find()) {
+						issuesList.add(matcher.group());
+					}
 
-				while (matcher.find()) {
-					issuesList.add(matcher.group());
+					addTestClassMethod(
+						methodIgnored, methodName,
+						String.join(", ", issuesList));
 				}
-
-				addTestClassMethod(
-					methodIgnored, methodName, String.join(", ", issuesList));
-			}
-			else {
-				addTestClassMethod(methodIgnored, methodName);
+				else {
+					addTestClassMethod(methodIgnored, methodName);
+				}
 			}
 		}
 

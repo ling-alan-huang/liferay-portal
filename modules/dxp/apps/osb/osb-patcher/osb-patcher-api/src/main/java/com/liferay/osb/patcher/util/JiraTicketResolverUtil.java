@@ -106,11 +106,9 @@ public class JiraTicketResolverUtil {
 
 			String lpdKey = lpdKeys.get(0);
 
-			if (resolvedTickets.contains(lpdKey)) {
-				continue;
+			if (!resolvedTickets.contains(lpdKey)) {
+				resolvedTickets.add(lpdKey);
 			}
-
-			resolvedTickets.add(lpdKey);
 		}
 
 		return resolvedTickets;

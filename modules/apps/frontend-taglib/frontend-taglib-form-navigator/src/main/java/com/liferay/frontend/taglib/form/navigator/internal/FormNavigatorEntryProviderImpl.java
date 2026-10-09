@@ -89,11 +89,9 @@ public class FormNavigatorEntryProviderImpl
 				_getFormNavigatorEntries(
 					formNavigatorId, categoryKey, formModelBean);
 
-			if (curFormNavigatorEntries == null) {
-				continue;
+			if (curFormNavigatorEntries != null) {
+				formNavigatorEntries.addAll(curFormNavigatorEntries);
 			}
-
-			formNavigatorEntries.addAll(curFormNavigatorEntries);
 		}
 
 		return _filterVisibleFormNavigatorEntries(
@@ -114,11 +112,9 @@ public class FormNavigatorEntryProviderImpl
 		for (FormNavigatorEntry<T> formNavigatorEntry : formNavigatorEntries) {
 			String key = formNavigatorEntry.getKey();
 
-			if (Validator.isNull(key)) {
-				continue;
+			if (Validator.isNotNull(key)) {
+				keys.add(key);
 			}
-
-			keys.add(key);
 		}
 
 		return keys.toArray(new String[0]);
@@ -138,11 +134,9 @@ public class FormNavigatorEntryProviderImpl
 		for (FormNavigatorEntry<T> formNavigatorEntry : formNavigatorEntries) {
 			String label = formNavigatorEntry.getLabel(locale);
 
-			if (Validator.isNull(label)) {
-				continue;
+			if (Validator.isNotNull(label)) {
+				labels.add(label);
 			}
-
-			labels.add(label);
 		}
 
 		return labels.toArray(new String[0]);

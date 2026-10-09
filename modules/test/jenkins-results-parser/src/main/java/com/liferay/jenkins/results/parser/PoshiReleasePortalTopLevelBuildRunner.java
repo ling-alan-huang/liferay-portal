@@ -196,24 +196,22 @@ public class PoshiReleasePortalTopLevelBuildRunner
 
 			RemoteGitBranch remoteGitBranch = entry.getValue();
 
-			if (remoteGitBranch == null) {
-				continue;
+			if (remoteGitBranch != null) {
+				GitWorkingDirectory gitWorkingDirectory = entry.getKey();
+
+				String upstreamBranchName =
+					gitWorkingDirectory.getUpstreamBranchName();
+
+				if (upstreamBranchName.equals("master")) {
+					continue;
+				}
+
+				System.out.println(
+					"Deleting remote git branch: " +
+						gitWorkingDirectory.getGitDirectory());
+
+				gitWorkingDirectory.deleteRemoteGitBranch(remoteGitBranch);
 			}
-
-			GitWorkingDirectory gitWorkingDirectory = entry.getKey();
-
-			String upstreamBranchName =
-				gitWorkingDirectory.getUpstreamBranchName();
-
-			if (upstreamBranchName.equals("master")) {
-				continue;
-			}
-
-			System.out.println(
-				"Deleting remote git branch: " +
-					gitWorkingDirectory.getGitDirectory());
-
-			gitWorkingDirectory.deleteRemoteGitBranch(remoteGitBranch);
 		}
 	}
 
@@ -529,20 +527,18 @@ public class PoshiReleasePortalTopLevelBuildRunner
 		for (WorkspaceGitRepository workspaceGitRepository :
 				workspace.getWorkspaceGitRepositories()) {
 
-			if (!(workspaceGitRepository instanceof
-					PortalWorkspaceGitRepository) &&
-				!(workspaceGitRepository instanceof
-					QAWebsitesWorkspaceGitRepository)) {
+			if (workspaceGitRepository instanceof
+					PortalWorkspaceGitRepository ||
+				workspaceGitRepository instanceof
+					QAWebsitesWorkspaceGitRepository) {
 
-				continue;
+				GitWorkingDirectory gitWorkingDirectory =
+					workspaceGitRepository.getGitWorkingDirectory();
+
+				_pullRequests.put(
+					gitWorkingDirectory,
+					_createPortalPullRequest(gitWorkingDirectory));
 			}
-
-			GitWorkingDirectory gitWorkingDirectory =
-				workspaceGitRepository.getGitWorkingDirectory();
-
-			_pullRequests.put(
-				gitWorkingDirectory,
-				_createPortalPullRequest(gitWorkingDirectory));
 		}
 	}
 

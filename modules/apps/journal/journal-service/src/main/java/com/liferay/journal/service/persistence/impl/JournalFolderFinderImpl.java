@@ -219,11 +219,9 @@ public class JournalFolderFinderImpl
 			while (iterator.hasNext()) {
 				Long l = iterator.next();
 
-				if (l == null) {
-					continue;
+				if (l != null) {
+					count += l.intValue();
 				}
-
-				count += l.intValue();
 			}
 
 			return count;
@@ -479,11 +477,9 @@ public class JournalFolderFinderImpl
 		for (int i = 0; i < excludedStatuses.length; i++) {
 			sb.append(excludedStatuses[i]);
 
-			if (i == (excludedStatuses.length - 1)) {
-				continue;
+			if (i != (excludedStatuses.length - 1)) {
+				sb.append(", ");
 			}
-
-			sb.append(", ");
 		}
 
 		sb.append(")");

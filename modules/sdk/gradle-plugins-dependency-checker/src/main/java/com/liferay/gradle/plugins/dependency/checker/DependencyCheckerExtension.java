@@ -148,11 +148,9 @@ public class DependencyCheckerExtension {
 		for (Object key : keys) {
 			Object value = args.remove(key);
 
-			if (value == null) {
-				continue;
+			if (value != null) {
+				extractedArgs.put(key, value);
 			}
-
-			extractedArgs.put(key, value);
 		}
 
 		return extractedArgs;

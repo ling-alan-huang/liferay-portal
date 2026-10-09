@@ -253,17 +253,15 @@ public class AddFormInstanceRecordMVCActionCommand
 			ddmForm.getDDMFormFieldsMap(true);
 
 		for (DDMFormField ddmFormField : ddmFormFieldsMap.values()) {
-			if (!Objects.equals(ddmFormField.getType(), "select") ||
-				!Objects.equals(
+			if (Objects.equals(ddmFormField.getType(), "select") &&
+				Objects.equals(
 					ddmFormField.getDataSourceType(), "data-provider")) {
 
-				continue;
+				ddmFormField.setProperty(
+					"options",
+					_ddmFormFieldOptionsFactory.create(
+						ddmFormField, ddmFormFieldRenderingContext));
 			}
-
-			ddmFormField.setProperty(
-				"options",
-				_ddmFormFieldOptionsFactory.create(
-					ddmFormField, ddmFormFieldRenderingContext));
 		}
 	}
 

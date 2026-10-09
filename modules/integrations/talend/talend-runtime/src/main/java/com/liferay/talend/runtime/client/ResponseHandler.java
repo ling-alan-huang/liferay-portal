@@ -48,11 +48,9 @@ public class ResponseHandler {
 			while (bufferedReader.ready()) {
 				sb.append(bufferedReader.readLine());
 
-				if (!bufferedReader.ready()) {
-					continue;
+				if (bufferedReader.ready()) {
+					sb.append(" ");
 				}
-
-				sb.append(" ");
 			}
 		}
 		catch (IOException ioException) {

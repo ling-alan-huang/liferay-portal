@@ -347,11 +347,9 @@ public class ReinvokeRule implements Comparable<ReinvokeRule> {
 				testSuiteNamePattern = pattern;
 			}
 
-			if (!name.equals("topLevelJobName")) {
-				continue;
+			if (name.equals("topLevelJobName")) {
+				topLevelBuildJobNamePattern = pattern;
 			}
-
-			topLevelBuildJobNamePattern = pattern;
 		}
 	}
 

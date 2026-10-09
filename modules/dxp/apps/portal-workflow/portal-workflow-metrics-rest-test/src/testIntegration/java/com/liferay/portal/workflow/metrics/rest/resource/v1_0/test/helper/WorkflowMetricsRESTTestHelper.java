@@ -317,11 +317,9 @@ public class WorkflowMetricsRESTTestHelper {
 				instance, node.getName(), node.getId(), processId, version,
 				taskId);
 
-			if (!instance.getCompleted()) {
-				continue;
+			if (instance.getCompleted()) {
+				completeInstance(companyId, instance);
 			}
-
-			completeInstance(companyId, instance);
 		}
 
 		_assertCount(

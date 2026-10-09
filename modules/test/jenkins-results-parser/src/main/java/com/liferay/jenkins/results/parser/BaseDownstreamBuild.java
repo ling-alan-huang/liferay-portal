@@ -466,11 +466,9 @@ public class BaseDownstreamBuild extends BaseBuild implements DownstreamBuild {
 
 				String testMethodName = testClassMethod.getName();
 
-				if (methodNames.contains(testMethodName)) {
-					continue;
+				if (!methodNames.contains(testMethodName)) {
+					methodNames.add(testClassMethod.getName());
 				}
-
-				methodNames.add(testClassMethod.getName());
 			}
 
 			testClassMethodNamesMap.put(
@@ -489,11 +487,9 @@ public class BaseDownstreamBuild extends BaseBuild implements DownstreamBuild {
 		List<TestResult> testResults = new ArrayList<>();
 
 		for (TestResult testResult : getTestResults()) {
-			if (!testStatus.equals(testResult.getStatus())) {
-				continue;
+			if (testStatus.equals(testResult.getStatus())) {
+				testResults.add(testResult);
 			}
-
-			testResults.add(testResult);
 		}
 
 		return testResults;
@@ -504,19 +500,19 @@ public class BaseDownstreamBuild extends BaseBuild implements DownstreamBuild {
 		List<TestResult> uniqueFailureTestResults = new ArrayList<>();
 
 		for (TestResult testResult : getTestResults(null)) {
-			if (!testResult.isFailing() || !testResult.isUniqueFailure()) {
+			if (!testResult.isFailing()) {
 				continue;
 			}
 
-			uniqueFailureTestResults.add(testResult);
+			if (testResult.isUniqueFailure()) {
+				uniqueFailureTestResults.add(testResult);
+			}
 		}
 
 		for (TestResult untestedTestResult : getUntestedTestResults()) {
-			if (!untestedTestResult.isUniqueFailure()) {
-				continue;
+			if (untestedTestResult.isUniqueFailure()) {
+				uniqueFailureTestResults.add(untestedTestResult);
 			}
-
-			uniqueFailureTestResults.add(untestedTestResult);
 		}
 
 		return uniqueFailureTestResults;
@@ -542,11 +538,9 @@ public class BaseDownstreamBuild extends BaseBuild implements DownstreamBuild {
 			List<String> testClassMethodNames =
 				untestedTestClassMethodNamesMap.get(testResultClassName);
 
-			if (testClassMethodNames == null) {
-				continue;
+			if (testClassMethodNames != null) {
+				testClassMethodNames.remove(testResult.getTestName());
 			}
-
-			testClassMethodNames.remove(testResult.getTestName());
 		}
 
 		return untestedTestClassMethodNamesMap;
@@ -618,19 +612,19 @@ public class BaseDownstreamBuild extends BaseBuild implements DownstreamBuild {
 		List<TestResult> upstreamFailureTestResults = new ArrayList<>();
 
 		for (TestResult testResult : getTestResults(null)) {
-			if (!testResult.isFailing() || testResult.isUniqueFailure()) {
+			if (!testResult.isFailing()) {
 				continue;
 			}
 
-			upstreamFailureTestResults.add(testResult);
+			if (!testResult.isUniqueFailure()) {
+				upstreamFailureTestResults.add(testResult);
+			}
 		}
 
 		for (TestResult untestedTestResult : getUntestedTestResults()) {
-			if (untestedTestResult.isUniqueFailure()) {
-				continue;
+			if (!untestedTestResult.isUniqueFailure()) {
+				upstreamFailureTestResults.add(untestedTestResult);
 			}
-
-			upstreamFailureTestResults.add(untestedTestResult);
 		}
 
 		return upstreamFailureTestResults;

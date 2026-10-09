@@ -71,12 +71,10 @@ public class DocumentLibraryConvertProcess extends BaseConvertProcess {
 		for (String storeType : storeTypes) {
 			Class<?> clazz = _store.getClass();
 
-			if (storeType.equals(clazz.getName())) {
-				continue;
+			if (!storeType.equals(clazz.getName())) {
+				sb.append(storeType);
+				sb.append(StringPool.SEMICOLON);
 			}
-
-			sb.append(storeType);
-			sb.append(StringPool.SEMICOLON);
 		}
 
 		return new String[] {

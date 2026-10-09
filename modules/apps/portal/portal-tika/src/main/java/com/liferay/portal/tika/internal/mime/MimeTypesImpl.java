@@ -221,13 +221,11 @@ public class MimeTypesImpl implements MimeTypes, MimeTypesReaderMetKeys {
 
 			String extension = pattern.substring(1);
 
-			if (extension.contains("*") || extension.contains("?") ||
-				extension.contains("[")) {
+			if (!extension.contains("*") && !extension.contains("?") &&
+				!extension.contains("[")) {
 
-				continue;
+				extensions.add(extension);
 			}
-
-			extensions.add(extension);
 		}
 
 		if (extensions.isEmpty()) {

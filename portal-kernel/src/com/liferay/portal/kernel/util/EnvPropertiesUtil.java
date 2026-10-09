@@ -111,15 +111,14 @@ public class EnvPropertiesUtil {
 			Map<String, Character> charPoolChars = new HashMap<>();
 
 			for (Field field : CharPool.class.getFields()) {
-				if (!Modifier.isStatic(field.getModifiers()) ||
-					(field.getType() != char.class)) {
+				if (Modifier.isStatic(field.getModifiers()) &&
+					(field.getType() == char.class)) {
 
-					continue;
+					charPoolChars.put(
+						StringUtil.removeChar(
+							field.getName(), CharPool.UNDERLINE),
+						field.getChar(null));
 				}
-
-				charPoolChars.put(
-					StringUtil.removeChar(field.getName(), CharPool.UNDERLINE),
-					field.getChar(null));
 			}
 
 			return charPoolChars;

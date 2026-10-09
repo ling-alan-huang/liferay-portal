@@ -51,19 +51,18 @@ public class LogEntriesException extends Exception {
 
 			Throwable throwable = logEntry.getThrowable();
 
-			if (throwable == null) {
-				continue;
+			if (throwable != null) {
+				UnsyncStringWriter unsyncStringWriter =
+					new UnsyncStringWriter();
+
+				try (PrintWriter printWriter = new PrintWriter(
+						unsyncStringWriter)) {
+
+					throwable.printStackTrace(printWriter);
+				}
+
+				sb.append(unsyncStringWriter.toString());
 			}
-
-			UnsyncStringWriter unsyncStringWriter = new UnsyncStringWriter();
-
-			try (PrintWriter printWriter = new PrintWriter(
-					unsyncStringWriter)) {
-
-				throwable.printStackTrace(printWriter);
-			}
-
-			sb.append(unsyncStringWriter.toString());
 		}
 
 		return sb.toString();

@@ -73,11 +73,9 @@ public class JavaStringBundlerInitialCapacityCheck extends BaseJavaTermCheck {
 
 				int partCount = _getCount(part, varName, 1);
 
-				if (partCount <= maxCount) {
-					continue;
+				if (partCount > maxCount) {
+					maxCount = partCount;
 				}
-
-				maxCount = partCount;
 			}
 
 			count += maxCount;
@@ -158,13 +156,11 @@ public class JavaStringBundlerInitialCapacityCheck extends BaseJavaTermCheck {
 				break;
 			}
 
-			if (ToolsUtil.isInsideQuotes(s, x) ||
-				(getLevel(s.substring(0, x), "{", "}") != level)) {
+			if (!ToolsUtil.isInsideQuotes(s, x) &&
+				(getLevel(s.substring(0, x), "{", "}") == level)) {
 
-				continue;
+				count++;
 			}
-
-			count++;
 		}
 
 		count = _addCountForStatements(

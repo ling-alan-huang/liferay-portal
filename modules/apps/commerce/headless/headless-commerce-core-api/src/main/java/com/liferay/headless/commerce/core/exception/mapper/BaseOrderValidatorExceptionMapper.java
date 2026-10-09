@@ -44,12 +44,10 @@ public class BaseOrderValidatorExceptionMapper
 		for (CommerceOrderValidatorResult commerceOrderValidatorResult :
 				commerceOrderValidatorResults) {
 
-			if (!commerceOrderValidatorResult.hasMessageResult()) {
-				continue;
+			if (commerceOrderValidatorResult.hasMessageResult()) {
+				sb.append(commerceOrderValidatorResult.getLocalizedMessage());
+				sb.append(StringPool.COMMA_AND_SPACE);
 			}
-
-			sb.append(commerceOrderValidatorResult.getLocalizedMessage());
-			sb.append(StringPool.COMMA_AND_SPACE);
 		}
 
 		if (sb.index() > 0) {

@@ -180,11 +180,9 @@ public abstract class BaseReportFillManager implements ReportFillManager {
 				value = new ArrayList<>(listValue);
 			}
 
-			if (value == null) {
-				continue;
+			if (value != null) {
+				reportParameters.put(name, value);
 			}
-
-			reportParameters.put(name, value);
 		}
 
 		return reportParameters;

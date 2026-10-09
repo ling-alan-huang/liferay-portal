@@ -43,11 +43,9 @@ public class EntityExtensionHandler {
 				extensionProvider.getExtendedProperties(
 					companyId, userId, _className, entity);
 
-			if (extensionProviderExtendedProperties == null) {
-				continue;
+			if (extensionProviderExtendedProperties != null) {
+				extendedProperties.putAll(extensionProviderExtendedProperties);
 			}
-
-			extendedProperties.putAll(extensionProviderExtendedProperties);
 		}
 
 		return extendedProperties;
@@ -65,11 +63,9 @@ public class EntityExtensionHandler {
 					extensionProvider.getExtendedPropertyDefinitions(
 						companyId, className);
 
-			if (extensionProviderExtendedProperties == null) {
-				continue;
+			if (extensionProviderExtendedProperties != null) {
+				propertyDefinitions.putAll(extensionProviderExtendedProperties);
 			}
-
-			propertyDefinitions.putAll(extensionProviderExtendedProperties);
 		}
 
 		return propertyDefinitions;
@@ -82,12 +78,10 @@ public class EntityExtensionHandler {
 			Collection<String> extensionProviderFilteredPropertyNames =
 				extensionProvider.getFilteredPropertyNames(companyId, entity);
 
-			if (extensionProviderFilteredPropertyNames == null) {
-				continue;
+			if (extensionProviderFilteredPropertyNames != null) {
+				filteredPropertyNames.addAll(
+					extensionProviderFilteredPropertyNames);
 			}
-
-			filteredPropertyNames.addAll(
-				extensionProviderFilteredPropertyNames);
 		}
 
 		return filteredPropertyNames;
@@ -122,12 +116,10 @@ public class EntityExtensionHandler {
 			for (Map.Entry<String, Serializable> entry :
 					extendedProperties.entrySet()) {
 
-				if (!extendedPropertyDefinitions.containsKey(entry.getKey())) {
-					continue;
+				if (extendedPropertyDefinitions.containsKey(entry.getKey())) {
+					extensionProviderExtendedProperties.put(
+						entry.getKey(), entry.getValue());
 				}
-
-				extensionProviderExtendedProperties.put(
-					entry.getKey(), entry.getValue());
 			}
 
 			extensionProvider.setExtendedProperties(
@@ -149,11 +141,10 @@ public class EntityExtensionHandler {
 					extensionProvider.getExtendedPropertyDefinitions(
 						companyId, _className);
 
-			if (extensionProviderPropertyDefinitions == null) {
-				continue;
+			if (extensionProviderPropertyDefinitions != null) {
+				propertyDefinitions.putAll(
+					extensionProviderPropertyDefinitions);
 			}
-
-			propertyDefinitions.putAll(extensionProviderPropertyDefinitions);
 		}
 
 		List<String> unknownPropertyNames = new ArrayList<>();
@@ -196,12 +187,10 @@ public class EntityExtensionHandler {
 		for (PropertyDefinition propertyDefinition :
 				propertyDefinitions.values()) {
 
-			if (!propertyDefinition.isRequired()) {
-				continue;
+			if (propertyDefinition.isRequired()) {
+				missingRequiredPropertyNames.add(
+					propertyDefinition.getPropertyName());
 			}
-
-			missingRequiredPropertyNames.add(
-				propertyDefinition.getPropertyName());
 		}
 
 		if (ListUtil.isNotEmpty(missingRequiredPropertyNames)) {

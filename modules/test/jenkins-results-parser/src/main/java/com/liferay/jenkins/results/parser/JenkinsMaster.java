@@ -380,11 +380,9 @@ public class JenkinsMaster implements JenkinsNode<JenkinsMaster> {
 		List<DefaultBuild> oldDefaultBuilds = new ArrayList<>();
 
 		for (DefaultBuild defaultBuild : _defaultBuilds) {
-			if (buildURLs.remove(defaultBuild.getBuildURL())) {
-				continue;
+			if (!buildURLs.remove(defaultBuild.getBuildURL())) {
+				oldDefaultBuilds.add(defaultBuild);
 			}
-
-			oldDefaultBuilds.add(defaultBuild);
 		}
 
 		_defaultBuilds.removeAll(oldDefaultBuilds);
@@ -471,22 +469,26 @@ public class JenkinsMaster implements JenkinsNode<JenkinsMaster> {
 			}
 
 			for (JenkinsSlave jenkinsSlave : _jenkinsSlavesMap.values()) {
-				if (jenkinsSlave.isOffline() || jenkinsSlave.isIdle()) {
+				if (jenkinsSlave.isOffline()) {
 					continue;
 				}
 
-				idleSlavesCount--;
+				if (!jenkinsSlave.isIdle()) {
+					idleSlavesCount--;
+				}
 			}
 
 			return idleSlavesCount;
 		}
 
 		for (JenkinsSlave jenkinsSlave : _jenkinsSlavesMap.values()) {
-			if (jenkinsSlave.isOffline() || !jenkinsSlave.isIdle()) {
+			if (jenkinsSlave.isOffline()) {
 				continue;
 			}
 
-			idleSlavesCount++;
+			if (jenkinsSlave.isIdle()) {
+				idleSlavesCount++;
+			}
 		}
 
 		return idleSlavesCount;
@@ -630,11 +632,9 @@ public class JenkinsMaster implements JenkinsNode<JenkinsMaster> {
 		int offlineJenkinsSlavesCount = 0;
 
 		for (JenkinsSlave jenkinsSlave : _jenkinsSlavesMap.values()) {
-			if (!jenkinsSlave.isOffline()) {
-				continue;
+			if (jenkinsSlave.isOffline()) {
+				offlineJenkinsSlavesCount++;
 			}
-
-			offlineJenkinsSlavesCount++;
 		}
 
 		return offlineJenkinsSlavesCount;
@@ -644,11 +644,9 @@ public class JenkinsMaster implements JenkinsNode<JenkinsMaster> {
 		List<JenkinsSlave> onlineJenkinsSlaves = new ArrayList<>();
 
 		for (JenkinsSlave jenkinsSlave : _jenkinsSlavesMap.values()) {
-			if (jenkinsSlave.isOffline()) {
-				continue;
+			if (!jenkinsSlave.isOffline()) {
+				onlineJenkinsSlaves.add(jenkinsSlave);
 			}
-
-			onlineJenkinsSlaves.add(jenkinsSlave);
 		}
 
 		return onlineJenkinsSlaves;
@@ -658,11 +656,9 @@ public class JenkinsMaster implements JenkinsNode<JenkinsMaster> {
 		int onlineJenkinsSlavesCount = 0;
 
 		for (JenkinsSlave jenkinsSlave : _jenkinsSlavesMap.values()) {
-			if (jenkinsSlave.isOffline()) {
-				continue;
+			if (!jenkinsSlave.isOffline()) {
+				onlineJenkinsSlavesCount++;
 			}
-
-			onlineJenkinsSlavesCount++;
 		}
 
 		return onlineJenkinsSlavesCount;
@@ -910,11 +906,9 @@ public class JenkinsMaster implements JenkinsNode<JenkinsMaster> {
 
 				Date buildDate = new Date(buildJSONObject.getLong("timestamp"));
 
-				if (!buildDate.after(date)) {
-					continue;
+				if (buildDate.after(date)) {
+					buildsCount++;
 				}
-
-				buildsCount++;
 			}
 		}
 
@@ -1162,34 +1156,30 @@ public class JenkinsMaster implements JenkinsNode<JenkinsMaster> {
 
 			String computerClassName = computerJSONObject.getString("_class");
 
-			if (!computerClassName.contains("EC2FleetNodeComputer") &&
-				!computerClassName.contains("hudson.slaves.SlaveComputer")) {
+			if (computerClassName.contains("EC2FleetNodeComputer") ||
+				computerClassName.contains("hudson.slaves.SlaveComputer")) {
 
-				continue;
-			}
+				JSONArray executorsJSONArray = computerJSONObject.getJSONArray(
+					"executors");
 
-			JSONArray executorsJSONArray = computerJSONObject.getJSONArray(
-				"executors");
+				for (int j = 0; j < executorsJSONArray.length(); j++) {
+					JSONObject executorJSONObject =
+						executorsJSONArray.getJSONObject(j);
 
-			for (int j = 0; j < executorsJSONArray.length(); j++) {
-				JSONObject executorJSONObject =
-					executorsJSONArray.getJSONObject(j);
+					if (executorJSONObject.has("currentExecutable") &&
+						(executorJSONObject.get("currentExecutable") !=
+							JSONObject.NULL)) {
 
-				if (!executorJSONObject.has("currentExecutable") ||
-					(executorJSONObject.get("currentExecutable") ==
-						JSONObject.NULL)) {
+						JSONObject currentExecutableJSONObject =
+							executorJSONObject.getJSONObject(
+								"currentExecutable");
 
-					continue;
+						if (currentExecutableJSONObject.has("url")) {
+							buildURLs.add(
+								currentExecutableJSONObject.getString("url"));
+						}
+					}
 				}
-
-				JSONObject currentExecutableJSONObject =
-					executorJSONObject.getJSONObject("currentExecutable");
-
-				if (!currentExecutableJSONObject.has("url")) {
-					continue;
-				}
-
-				buildURLs.add(currentExecutableJSONObject.getString("url"));
 			}
 		}
 
@@ -1761,14 +1751,12 @@ public class JenkinsMaster implements JenkinsNode<JenkinsMaster> {
 		jenkinsNodes.add(this);
 
 		for (JenkinsNode jenkinsNode : jenkinsNodes) {
-			if (!_matchesLabels(
-					labelExpression, jenkinsNode.getAssignedLabels()) ||
-				jenkinsNode.isIdle() || jenkinsNode.isOffline()) {
+			if (_matchesLabels(
+					labelExpression, jenkinsNode.getAssignedLabels()) &&
+				!jenkinsNode.isIdle() && !jenkinsNode.isOffline()) {
 
-				continue;
+				busyNodesCount++;
 			}
-
-			busyNodesCount++;
 		}
 
 		return busyNodesCount;
@@ -1792,14 +1780,12 @@ public class JenkinsMaster implements JenkinsNode<JenkinsMaster> {
 				}
 			}
 
-			if (!_matchesLabels(
-					labelExpression, jenkinsNode.getAssignedLabels()) ||
-				!jenkinsNode.isIdle() || jenkinsNode.isOffline()) {
+			if (_matchesLabels(
+					labelExpression, jenkinsNode.getAssignedLabels()) &&
+				jenkinsNode.isIdle() && !jenkinsNode.isOffline()) {
 
-				continue;
+				idleNodesCount++;
 			}
-
-			idleNodesCount++;
 		}
 
 		List<AWSFleetCloud> awsFleetClouds = getAWSFleetClouds();
@@ -1816,11 +1802,9 @@ public class JenkinsMaster implements JenkinsNode<JenkinsMaster> {
 			int idleAWSFleetCloudSlavesCount = awsFleetCloud.getMaxSize();
 
 			for (JenkinsSlave jenkinsSlave : awsFleetCloud.getJenkinsSlaves()) {
-				if (jenkinsSlave.isIdle() && !jenkinsSlave.isOffline()) {
-					continue;
+				if (!jenkinsSlave.isIdle() || jenkinsSlave.isOffline()) {
+					idleAWSFleetCloudSlavesCount--;
 				}
-
-				idleAWSFleetCloudSlavesCount--;
 			}
 
 			idleNodesCount += idleAWSFleetCloudSlavesCount;
@@ -1844,22 +1828,21 @@ public class JenkinsMaster implements JenkinsNode<JenkinsMaster> {
 		}
 
 		for (JenkinsSlave jenkinsSlave : getJenkinsSlaves()) {
-			if (jenkinsSlave.isEC2FleetNodeComputer() ||
-				!_matchesLabels(
-					labelExpression, jenkinsSlave.getAssignedLabels())) {
-
+			if (jenkinsSlave.isEC2FleetNodeComputer()) {
 				continue;
 			}
 
-			labels.addAll(jenkinsSlave.getAssignedLabels());
+			if (_matchesLabels(
+					labelExpression, jenkinsSlave.getAssignedLabels())) {
+
+				labels.addAll(jenkinsSlave.getAssignedLabels());
+			}
 		}
 
 		for (AWSFleetCloud awsFleetCloud : getAWSFleetClouds()) {
-			if (!_matchesLabels(labelExpression, awsFleetCloud.getLabels())) {
-				continue;
+			if (_matchesLabels(labelExpression, awsFleetCloud.getLabels())) {
+				labels.addAll(awsFleetCloud.getLabels());
 			}
-
-			labels.addAll(awsFleetCloud.getLabels());
 		}
 
 		_labelExpressionLabels.put(labelExpression, new ArrayList<>(labels));
@@ -1873,13 +1856,13 @@ public class JenkinsMaster implements JenkinsNode<JenkinsMaster> {
 		List<String> labels = _getLabels(labelExpression);
 
 		for (QueueItem queueItem : getQueueItems()) {
-			if (!queueItem.isValidQueueItem() ||
-				!_matchesLabels(queueItem.getLabelExpression(), labels)) {
-
+			if (!queueItem.isValidQueueItem()) {
 				continue;
 			}
 
-			queueItemsCount++;
+			if (_matchesLabels(queueItem.getLabelExpression(), labels)) {
+				queueItemsCount++;
+			}
 		}
 
 		return queueItemsCount;
@@ -1918,13 +1901,11 @@ public class JenkinsMaster implements JenkinsNode<JenkinsMaster> {
 					continue;
 				}
 
-				if ((labelExpression != null) &&
-					!_matchesLabels(label, labels)) {
+				if ((labelExpression == null) ||
+					_matchesLabels(label, labels)) {
 
-					continue;
+					recentBatchSizesTotal += entry.getValue();
 				}
-
-				recentBatchSizesTotal += entry.getValue();
 			}
 
 			for (Long expiredTimestamp : expiredTimestamps) {
@@ -1955,23 +1936,19 @@ public class JenkinsMaster implements JenkinsNode<JenkinsMaster> {
 		}
 
 		for (JenkinsSlave jenkinsSlave : getJenkinsSlaves()) {
-			if (jenkinsSlave.isEC2FleetNodeComputer() ||
-				jenkinsSlave.isOffline() ||
-				!_matchesLabels(
+			if (!jenkinsSlave.isEC2FleetNodeComputer() &&
+				!jenkinsSlave.isOffline() &&
+				_matchesLabels(
 					labelExpression, jenkinsSlave.getAssignedLabels())) {
 
-				continue;
+				usableNodesCount++;
 			}
-
-			usableNodesCount++;
 		}
 
 		for (AWSFleetCloud awsFleetCloud : getAWSFleetClouds()) {
-			if (!_matchesLabels(labelExpression, awsFleetCloud.getLabels())) {
-				continue;
+			if (_matchesLabels(labelExpression, awsFleetCloud.getLabels())) {
+				usableNodesCount += awsFleetCloud.getMaxSize();
 			}
-
-			usableNodesCount += awsFleetCloud.getMaxSize();
 		}
 
 		return usableNodesCount;
@@ -2081,11 +2058,9 @@ public class JenkinsMaster implements JenkinsNode<JenkinsMaster> {
 		boolean matchesNegativeLabelExpression = false;
 
 		for (String label : labels) {
-			if (!Objects.equals(label, negativeLabelExpression)) {
-				continue;
+			if (Objects.equals(label, negativeLabelExpression)) {
+				matchesNegativeLabelExpression = true;
 			}
-
-			matchesNegativeLabelExpression = true;
 		}
 
 		return !matchesNegativeLabelExpression;

@@ -191,11 +191,9 @@ public class DateRangeFacetSearchContributorImpl
 				Map<String, String> rangesMap = _getRangesMap(_rangesJSONArray);
 
 				for (String selectedRange : _selectedRanges) {
-					if (!rangesMap.containsValue(selectedRange)) {
-						continue;
+					if (rangesMap.containsValue(selectedRange)) {
+						ranges.add(selectedRange);
 					}
-
-					ranges.add(selectedRange);
 				}
 			}
 

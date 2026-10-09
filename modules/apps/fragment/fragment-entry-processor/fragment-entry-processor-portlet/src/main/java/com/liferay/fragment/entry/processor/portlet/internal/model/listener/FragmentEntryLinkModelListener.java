@@ -112,11 +112,9 @@ public class FragmentEntryLinkModelListener
 				String portletName = PortletIdCodec.decodePortletName(
 					portletId);
 
-				if (!portletNames.contains(portletName)) {
-					continue;
+				if (portletNames.contains(portletName)) {
+					usedPortletNames.add(portletName);
 				}
-
-				usedPortletNames.add(portletName);
 			}
 		}
 

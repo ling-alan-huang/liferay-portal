@@ -34,11 +34,9 @@ public class FinderPath {
 		for (int i = 0; i < tableNames.length; i++) {
 			sb.append(tableNames[i]);
 
-			if ((i + 1) >= tableNames.length) {
-				continue;
+			if ((i + 1) < tableNames.length) {
+				sb.append(_TABLE_SEPARATOR);
 			}
-
-			sb.append(_TABLE_SEPARATOR);
 		}
 
 		return sb.toString();

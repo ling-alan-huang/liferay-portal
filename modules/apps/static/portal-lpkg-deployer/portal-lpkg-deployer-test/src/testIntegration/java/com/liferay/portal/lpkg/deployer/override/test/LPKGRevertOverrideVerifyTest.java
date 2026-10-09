@@ -107,11 +107,9 @@ public class LPKGRevertOverrideVerifyTest {
 		leftoverEntries.addAll(jars.entrySet());
 
 		for (Map.Entry<String, String> entry : leftoverEntries) {
-			if (entry.getValue() != null) {
-				continue;
+			if (entry.getValue() == null) {
+				leftoverEntries.remove(entry);
 			}
-
-			leftoverEntries.remove(entry);
 		}
 
 		Collections.sort(

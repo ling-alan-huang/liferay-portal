@@ -230,12 +230,10 @@ public class JavaInnerClassImportsCheck extends BaseFileCheck {
 			String outerClassFullyQualifiedName =
 				innerClassFullyQualifiedName.substring(0, x);
 
-			if (!imports.contains(outerClassFullyQualifiedName)) {
-				continue;
+			if (imports.contains(outerClassFullyQualifiedName)) {
+				content = _stripRedundantOuterClass(
+					content, innerClassName, matcher.group(1));
 			}
-
-			content = _stripRedundantOuterClass(
-				content, innerClassName, matcher.group(1));
 		}
 
 		return content;

@@ -330,11 +330,9 @@ public class ActionUtil {
 		List<WikiNode> nodes = new ArrayList<>();
 
 		for (long nodeId : nodeIds) {
-			if (nodeId == 0) {
-				continue;
+			if (nodeId != 0) {
+				nodes.add(WikiNodeServiceUtil.getNode(nodeId));
 			}
-
-			nodes.add(WikiNodeServiceUtil.getNode(nodeId));
 		}
 
 		return nodes;
@@ -411,11 +409,9 @@ public class ActionUtil {
 		long nodeId = ParamUtil.getLong(portletRequest, "nodeId");
 
 		for (String title : titles) {
-			if (Validator.isNull(title)) {
-				continue;
+			if (Validator.isNotNull(title)) {
+				pages.add(WikiPageServiceUtil.getPage(nodeId, title));
 			}
-
-			pages.add(WikiPageServiceUtil.getPage(nodeId, title));
 		}
 
 		return pages;

@@ -262,17 +262,15 @@ public class DDMFormInstanceFieldSettingsValidator {
 		for (Map.Entry<DDMFormEvaluatorFieldContextKey, Map<String, Object>>
 				entry : ddmFormFieldsPropertyChanges.entrySet()) {
 
-			if (MapUtil.getBoolean(entry.getValue(), "valid", true)) {
-				continue;
+			if (!MapUtil.getBoolean(entry.getValue(), "valid", true)) {
+				DDMFormEvaluatorFieldContextKey ddmFormFieldContextKey =
+					entry.getKey();
+
+				DDMFormField propertyFormField = ddmFormFieldsMap.get(
+					ddmFormFieldContextKey.getName());
+
+				ddmFormFields.add(_getFieldLabel(propertyFormField, locale));
 			}
-
-			DDMFormEvaluatorFieldContextKey ddmFormFieldContextKey =
-				entry.getKey();
-
-			DDMFormField propertyFormField = ddmFormFieldsMap.get(
-				ddmFormFieldContextKey.getName());
-
-			ddmFormFields.add(_getFieldLabel(propertyFormField, locale));
 		}
 
 		return ddmFormFields;

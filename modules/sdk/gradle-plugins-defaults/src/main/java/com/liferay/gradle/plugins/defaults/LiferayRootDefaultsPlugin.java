@@ -40,11 +40,9 @@ public class LiferayRootDefaultsPlugin implements Plugin<Project> {
 		for (Project subproject : project.getSubprojects()) {
 			Map<String, Project> childProjects = subproject.getChildProjects();
 
-			if (!childProjects.isEmpty()) {
-				continue;
+			if (childProjects.isEmpty()) {
+				GradleUtil.applyPlugin(subproject, LiferayDefaultsPlugin.class);
 			}
-
-			GradleUtil.applyPlugin(subproject, LiferayDefaultsPlugin.class);
 		}
 	}
 

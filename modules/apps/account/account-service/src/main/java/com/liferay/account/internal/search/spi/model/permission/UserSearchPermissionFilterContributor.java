@@ -64,16 +64,15 @@ public class UserSearchPermissionFilterContributor
 			for (AccountEntryUserRel accountEntryUserRel :
 					accountEntryUserRels) {
 
-				if (!_accountEntryModelResourcePermission.contains(
+				if (_accountEntryModelResourcePermission.contains(
 						permissionChecker,
 						accountEntryUserRel.getAccountEntryId(),
 						AccountActionKeys.VIEW_USERS)) {
 
-					continue;
+					termsFilter.addValue(
+						String.valueOf(
+							accountEntryUserRel.getAccountEntryId()));
 				}
-
-				termsFilter.addValue(
-					String.valueOf(accountEntryUserRel.getAccountEntryId()));
 			}
 
 			UserBag userBag = permissionChecker.getUserBag();
@@ -102,42 +101,40 @@ public class UserSearchPermissionFilterContributor
 					}
 				}
 
-				if (!OrganizationPermissionUtil.contains(
+				if (OrganizationPermissionUtil.contains(
 						permissionChecker, userOrgId,
 						AccountActionKeys.MANAGE_SUBORGANIZATIONS_ACCOUNTS)) {
 
-					continue;
-				}
+					Set<Organization> organizations = new HashSet<>();
 
-				Set<Organization> organizations = new HashSet<>();
-
-				List<Organization> suborganizations =
-					_organizationLocalService.getSuborganizations(
-						companyId, userOrgId);
-
-				while (!suborganizations.isEmpty()) {
-					organizations.addAll(suborganizations);
-
-					suborganizations =
+					List<Organization> suborganizations =
 						_organizationLocalService.getSuborganizations(
-							suborganizations);
-				}
+							companyId, userOrgId);
 
-				for (Organization organization : organizations) {
-					List<AccountEntryOrganizationRel>
-						accountEntryOrganizationRels =
-							_accountEntryOrganizationRelLocalService.
-								getAccountEntryOrganizationRelsByOrganizationId(
-									organization.getOrganizationId());
+					while (!suborganizations.isEmpty()) {
+						organizations.addAll(suborganizations);
 
-					for (AccountEntryOrganizationRel
-							accountEntryOrganizationRel :
-								accountEntryOrganizationRels) {
+						suborganizations =
+							_organizationLocalService.getSuborganizations(
+								suborganizations);
+					}
 
-						termsFilter.addValue(
-							String.valueOf(
-								accountEntryOrganizationRel.
-									getAccountEntryId()));
+					for (Organization organization : organizations) {
+						List<AccountEntryOrganizationRel>
+							accountEntryOrganizationRels =
+								_accountEntryOrganizationRelLocalService.
+									getAccountEntryOrganizationRelsByOrganizationId(
+										organization.getOrganizationId());
+
+						for (AccountEntryOrganizationRel
+								accountEntryOrganizationRel :
+									accountEntryOrganizationRels) {
+
+							termsFilter.addValue(
+								String.valueOf(
+									accountEntryOrganizationRel.
+										getAccountEntryId()));
+						}
 					}
 				}
 			}

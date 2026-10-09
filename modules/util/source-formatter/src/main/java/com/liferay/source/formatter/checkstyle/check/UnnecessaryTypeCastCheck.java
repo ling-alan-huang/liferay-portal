@@ -117,15 +117,13 @@ public class UnnecessaryTypeCastCheck extends BaseCheck {
 
 			String s = genericType.substring(y, x);
 
-			if (StringUtil.count(s, CharPool.LESS_THAN) != StringUtil.count(
+			if (StringUtil.count(s, CharPool.LESS_THAN) == StringUtil.count(
 					s, CharPool.GREATER_THAN)) {
 
-				continue;
+				genericTypeNames.add(StringUtil.trim(s));
+
+				y = x + 1;
 			}
-
-			genericTypeNames.add(StringUtil.trim(s));
-
-			y = x + 1;
 		}
 	}
 

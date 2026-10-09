@@ -140,14 +140,12 @@ public class FriendlyURLEntryLocalizationConstraintResolverTest {
 					conflictInfoMap.entrySet()) {
 
 				for (ConflictInfo conflictInfo : entry.getValue()) {
-					if (conflictInfo.isResolved()) {
-						continue;
+					if (!conflictInfo.isResolved()) {
+						ClassName className =
+							_classNameLocalService.getClassName(entry.getKey());
+
+						unresolvedClassNames.add(className.getValue());
 					}
-
-					ClassName className = _classNameLocalService.getClassName(
-						entry.getKey());
-
-					unresolvedClassNames.add(className.getValue());
 				}
 			}
 

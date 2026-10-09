@@ -44,14 +44,13 @@ public class GradlePetraModuleDependenciesCheck extends BaseFileCheck {
 			String dependencies = dependenciesBlock.substring(x, y + 1);
 
 			for (String line : StringUtil.splitLines(dependencies)) {
-				if (Validator.isNull(line) || line.contains("petra")) {
-					continue;
+				if (Validator.isNotNull(line) && !line.contains("petra")) {
+					addMessage(
+						fileName,
+						"Only modules/core/petra dependencies are allowed",
+						SourceUtil.getLineNumber(
+							content, content.indexOf(line)));
 				}
-
-				addMessage(
-					fileName,
-					"Only modules/core/petra dependencies are allowed",
-					SourceUtil.getLineNumber(content, content.indexOf(line)));
 			}
 		}
 

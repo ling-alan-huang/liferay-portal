@@ -139,13 +139,11 @@ public class TensorFlowImageAssetAutoTagProvider
 		List<String> labels = new ArrayList<>();
 
 		for (int i = 0; i < labelProbabilities.length; i++) {
-			if (!(labelProbabilities[i] >= confidenceThreshold) ||
-				(i >= _labels.length)) {
+			if ((labelProbabilities[i] >= confidenceThreshold) &&
+				(i < _labels.length)) {
 
-				continue;
+				labels.add(_labels[i]);
 			}
-
-			labels.add(_labels[i]);
 		}
 
 		return labels;

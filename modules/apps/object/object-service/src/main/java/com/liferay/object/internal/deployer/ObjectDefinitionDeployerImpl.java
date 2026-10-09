@@ -287,14 +287,12 @@ public class ObjectDefinitionDeployerImpl implements ObjectDefinitionDeployer {
 		_unregister(_getServiceRegistrationKey(objectDefinition, null));
 
 		for (String serviceRegistrationKey : _serviceRegistrations.keySet()) {
-			if (!serviceRegistrationKey.startsWith(
+			if (serviceRegistrationKey.startsWith(
 					_getServiceRegistrationKey(objectDefinition, null) +
 						StringPool.POUND)) {
 
-				continue;
+				_unregister(serviceRegistrationKey);
 			}
-
-			_unregister(serviceRegistrationKey);
 		}
 	}
 

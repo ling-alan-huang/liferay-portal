@@ -67,11 +67,9 @@ public abstract class BaseVisitor<T> implements Visitor<T> {
 
 			T nodeResult = node.accept(this);
 
-			if (nodeResult == null) {
-				continue;
+			if (nodeResult != null) {
+				nodeResults.add(nodeResult);
 			}
-
-			nodeResults.add(nodeResult);
 		}
 
 		return handleElement(element, attributeResults, nodeResults);

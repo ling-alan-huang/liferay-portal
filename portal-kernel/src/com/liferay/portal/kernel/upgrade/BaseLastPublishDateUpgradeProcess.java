@@ -113,24 +113,23 @@ public abstract class BaseLastPublishDateUpgradeProcess extends UpgradeProcess {
 				while (resultSet.next()) {
 					String preferences = resultSet.getString("preferences");
 
-					if (Validator.isNull(preferences)) {
-						continue;
-					}
+					if (Validator.isNotNull(preferences)) {
+						int x = preferences.lastIndexOf(
+							"last-publish-date</name><value>");
 
-					int x = preferences.lastIndexOf(
-						"last-publish-date</name><value>");
+						if (x < 0) {
+							break;
+						}
 
-					if (x < 0) {
-						break;
-					}
+						int y = preferences.indexOf("</value>", x);
 
-					int y = preferences.indexOf("</value>", x);
+						String lastPublishDateString = preferences.substring(
+							x, y);
 
-					String lastPublishDateString = preferences.substring(x, y);
-
-					if (Validator.isNotNull(lastPublishDateString)) {
-						return new Date(
-							GetterUtil.getLong(lastPublishDateString));
+						if (Validator.isNotNull(lastPublishDateString)) {
+							return new Date(
+								GetterUtil.getLong(lastPublishDateString));
+						}
 					}
 				}
 

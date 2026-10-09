@@ -61,21 +61,17 @@ public class JNDIUtil {
 
 			// Add aggregated foreign class loaders
 
-			if (!(classLoader instanceof AggregateClassLoader)) {
-				continue;
-			}
+			if (classLoader instanceof AggregateClassLoader) {
+				AggregateClassLoader aggregateClassLoader =
+					(AggregateClassLoader)classLoader;
 
-			AggregateClassLoader aggregateClassLoader =
-				(AggregateClassLoader)classLoader;
+				for (ClassLoader currentClassLoader :
+						aggregateClassLoader.getClassLoaders()) {
 
-			for (ClassLoader currentClassLoader :
-					aggregateClassLoader.getClassLoaders()) {
-
-				if (familyClassLoaders.contains(currentClassLoader)) {
-					continue;
+					if (!familyClassLoaders.contains(currentClassLoader)) {
+						lookupClassLoaders.add(currentClassLoader);
+					}
 				}
-
-				lookupClassLoaders.add(currentClassLoader);
 			}
 		}
 		while ((classLoader = classLoader.getParent()) != null);

@@ -32,11 +32,9 @@ public class StringCastCheck extends BaseCheck {
 			String variableTypeName = getVariableTypeName(
 				methodCallDetailAST, getName(dotDetailAST), false);
 
-			if (!variableTypeName.equals("String")) {
-				continue;
+			if (variableTypeName.equals("String")) {
+				log(methodCallDetailAST, _MSG_UNNEEDED_STRING_CAST);
 			}
-
-			log(methodCallDetailAST, _MSG_UNNEEDED_STRING_CAST);
 		}
 	}
 

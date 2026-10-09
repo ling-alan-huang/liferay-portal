@@ -199,11 +199,9 @@ public class CustomJspBagRegistryUtil {
 				String currentPortalJsp = getPortalJsp(
 					currentCustomJsp, currentCustomJspBag.getCustomJspDir());
 
-				if (!customJsps.contains(currentPortalJsp)) {
-					continue;
+				if (customJsps.contains(currentPortalJsp)) {
+					conflictingCustomJsps.put(currentPortalJsp, contextName);
 				}
-
-				conflictingCustomJsps.put(currentPortalJsp, contextName);
 			}
 		}
 
@@ -291,11 +289,9 @@ public class CustomJspBagRegistryUtil {
 
 					sb.append(customJsp);
 
-					if ((i + 1) >= customJsps.size()) {
-						continue;
+					if ((i + 1) < customJsps.size()) {
+						sb.append(StringPool.NEW_LINE);
 					}
-
-					sb.append(StringPool.NEW_LINE);
 				}
 
 				Log log = SanitizerLogWrapper.allowCRLF(_log);

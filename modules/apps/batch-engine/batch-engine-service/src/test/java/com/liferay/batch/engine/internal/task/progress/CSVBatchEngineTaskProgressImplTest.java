@@ -44,11 +44,9 @@ public class CSVBatchEngineTaskProgressImplTest
 		while (iterator.hasNext()) {
 			sb.append(iterator.next());
 
-			if (!iterator.hasNext()) {
-				continue;
+			if (iterator.hasNext()) {
+				sb.append(StringPool.COMMA);
 			}
-
-			sb.append(StringPool.COMMA);
 		}
 
 		for (int i = 0; i < expectedTotalItemsCount; i++) {

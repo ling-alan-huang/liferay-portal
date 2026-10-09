@@ -33,11 +33,9 @@ public class LegacyDataArchiveGroup {
 
 	public void commitLegacyDataArchives() throws IOException {
 		for (LegacyDataArchive legacyDataArchive : _legacyDataArchives) {
-			if (legacyDataArchive.isUpdated()) {
-				continue;
+			if (!legacyDataArchive.isUpdated()) {
+				legacyDataArchive.stageLegacyDataArchive();
 			}
-
-			legacyDataArchive.stageLegacyDataArchive();
 		}
 
 		String status = _legacyGitWorkingDirectory.status();

@@ -150,13 +150,11 @@ public class ViewSystemPropertiesDisplayContext {
 
 			String keywords = _getKeywords();
 
-			if (Validator.isNotNull(keywords) && !property.contains(keywords) &&
-				!value.contains(keywords)) {
+			if (Validator.isNull(keywords) || property.contains(keywords) ||
+				value.contains(keywords)) {
 
-				continue;
+				filteredProperties.put(property, value);
 			}
-
-			filteredProperties.put(property, value);
 		}
 
 		_filteredProperties = ListUtil.fromCollection(

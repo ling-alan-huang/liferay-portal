@@ -36,11 +36,9 @@ public class SocialBookmarksRegistryUtil {
 		List<String> validTypes = new ArrayList<>();
 
 		for (String type : types) {
-			if (!supportedTypes.contains(type)) {
-				continue;
+			if (supportedTypes.contains(type)) {
+				validTypes.add(type);
 			}
-
-			validTypes.add(type);
 		}
 
 		return validTypes.toArray(new String[0]);

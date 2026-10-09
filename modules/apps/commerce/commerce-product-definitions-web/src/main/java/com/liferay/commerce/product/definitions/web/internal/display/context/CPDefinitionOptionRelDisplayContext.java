@@ -311,18 +311,16 @@ public class CPDefinitionOptionRelDisplayContext
 				MultiselectInfoFieldType.OPTIONS);
 
 		for (OptionInfoFieldType optionInfoFieldType : optionInfoFieldTypes) {
-			if (!ArrayUtil.contains(
+			if (ArrayUtil.contains(
 					categoryIds, optionInfoFieldType.getValue())) {
 
-				continue;
+				multiselectItems.add(
+					MultiselectItemBuilder.setLabel(
+						optionInfoFieldType.getLabel(locale)
+					).setValue(
+						optionInfoFieldType.getValue()
+					).build());
 			}
-
-			multiselectItems.add(
-				MultiselectItemBuilder.setLabel(
-					optionInfoFieldType.getLabel(locale)
-				).setValue(
-					optionInfoFieldType.getValue()
-				).build());
 		}
 
 		return multiselectItems;

@@ -533,11 +533,9 @@ public class JournalArticleLayoutClassedModelUsageUpgradeProcessTest {
 		for (LayoutClassedModelUsage layoutClassedModelUsage :
 				layoutClassedModelUsages) {
 
-			if (layoutClassedModelUsage.getGroupId() != groupId) {
-				continue;
+			if (layoutClassedModelUsage.getGroupId() == groupId) {
+				count++;
 			}
-
-			count++;
 		}
 
 		return count;

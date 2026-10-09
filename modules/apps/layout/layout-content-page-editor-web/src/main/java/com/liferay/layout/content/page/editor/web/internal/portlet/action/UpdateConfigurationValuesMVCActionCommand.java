@@ -91,15 +91,14 @@ public class UpdateConfigurationValuesMVCActionCommand
 				editableFragmentEntryProcessorJSONObject.keySet();
 
 			for (String editableId : editableIds) {
-				if (defaultEditableFragmentEntryProcessorJSONObject.has(
+				if (!defaultEditableFragmentEntryProcessorJSONObject.has(
 						editableId)) {
 
-					continue;
+					defaultEditableFragmentEntryProcessorJSONObject.put(
+						editableId,
+						editableFragmentEntryProcessorJSONObject.get(
+							editableId));
 				}
-
-				defaultEditableFragmentEntryProcessorJSONObject.put(
-					editableId,
-					editableFragmentEntryProcessorJSONObject.get(editableId));
 			}
 		}
 	}

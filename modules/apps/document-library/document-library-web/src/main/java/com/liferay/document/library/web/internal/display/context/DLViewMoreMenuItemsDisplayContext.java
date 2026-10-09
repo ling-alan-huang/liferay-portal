@@ -173,22 +173,20 @@ public class DLViewMoreMenuItemsDisplayContext {
 		while (folderId != DLFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
 			Folder folder = DLAppServiceUtil.getFolder(folderId);
 
-			if ((folder == null) || !(folder.getModel() instanceof DLFolder)) {
-				continue;
+			if ((folder != null) && (folder.getModel() instanceof DLFolder)) {
+				DLFolder dlFolder = (DLFolder)folder.getModel();
+
+				if (dlFolder.getRestrictionType() ==
+						DLFolderConstants.
+							RESTRICTION_TYPE_FILE_ENTRY_TYPES_AND_WORKFLOW) {
+
+					_inherited = false;
+
+					break;
+				}
+
+				folderId = dlFolder.getParentFolderId();
 			}
-
-			DLFolder dlFolder = (DLFolder)folder.getModel();
-
-			if (dlFolder.getRestrictionType() ==
-					DLFolderConstants.
-						RESTRICTION_TYPE_FILE_ENTRY_TYPES_AND_WORKFLOW) {
-
-				_inherited = false;
-
-				break;
-			}
-
-			folderId = dlFolder.getParentFolderId();
 		}
 
 		return folderId;

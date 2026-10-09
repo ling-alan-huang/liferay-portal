@@ -46,54 +46,55 @@ public class CommerceSubscriptionEntryHelperImpl
 				commerceOrder.getCommerceOrderId());
 
 		for (CommerceOrderItem commerceOrderItem : commerceOrderItems) {
-			if (!_isNewSubscription(commerceOrderItem)) {
-				continue;
+			if (_isNewSubscription(commerceOrderItem)) {
+				CPInstance cpInstance = commerceOrderItem.fetchCPInstance();
+
+				if (cpInstance == null) {
+					continue;
+				}
+
+				CPSubscriptionInfo cpSubscriptionInfo =
+					cpInstance.getCPSubscriptionInfo();
+
+				if (cpSubscriptionInfo != null) {
+					String subscriptionType = null;
+
+					CPDefinition cpDefinition = cpInstance.getCPDefinition();
+
+					if (cpInstance.isSubscriptionEnabled() ||
+						cpDefinition.isSubscriptionEnabled()) {
+
+						subscriptionType =
+							cpSubscriptionInfo.getSubscriptionType();
+					}
+
+					String deliverySubscriptionType = null;
+
+					if (cpInstance.isDeliverySubscriptionEnabled() ||
+						cpDefinition.isDeliverySubscriptionEnabled()) {
+
+						deliverySubscriptionType =
+							cpSubscriptionInfo.getDeliverySubscriptionType();
+					}
+
+					_commerceSubscriptionEntryLocalService.
+						addCommerceSubscriptionEntry(
+							accountEntry.getUserId(),
+							commerceOrder.getGroupId(),
+							commerceOrderItem.getCommerceOrderItemId(),
+							cpSubscriptionInfo.getSubscriptionLength(),
+							subscriptionType,
+							cpSubscriptionInfo.getMaxSubscriptionCycles(),
+							cpSubscriptionInfo.
+								getSubscriptionTypeSettingsUnicodeProperties(),
+							cpSubscriptionInfo.getDeliverySubscriptionLength(),
+							deliverySubscriptionType,
+							cpSubscriptionInfo.
+								getDeliveryMaxSubscriptionCycles(),
+							cpSubscriptionInfo.
+								getDeliverySubscriptionTypeSettingsUnicodeProperties());
+				}
 			}
-
-			CPInstance cpInstance = commerceOrderItem.fetchCPInstance();
-
-			if (cpInstance == null) {
-				continue;
-			}
-
-			CPSubscriptionInfo cpSubscriptionInfo =
-				cpInstance.getCPSubscriptionInfo();
-
-			if (cpSubscriptionInfo == null) {
-				continue;
-			}
-
-			String subscriptionType = null;
-
-			CPDefinition cpDefinition = cpInstance.getCPDefinition();
-
-			if (cpInstance.isSubscriptionEnabled() ||
-				cpDefinition.isSubscriptionEnabled()) {
-
-				subscriptionType = cpSubscriptionInfo.getSubscriptionType();
-			}
-
-			String deliverySubscriptionType = null;
-
-			if (cpInstance.isDeliverySubscriptionEnabled() ||
-				cpDefinition.isDeliverySubscriptionEnabled()) {
-
-				deliverySubscriptionType =
-					cpSubscriptionInfo.getDeliverySubscriptionType();
-			}
-
-			_commerceSubscriptionEntryLocalService.addCommerceSubscriptionEntry(
-				accountEntry.getUserId(), commerceOrder.getGroupId(),
-				commerceOrderItem.getCommerceOrderItemId(),
-				cpSubscriptionInfo.getSubscriptionLength(), subscriptionType,
-				cpSubscriptionInfo.getMaxSubscriptionCycles(),
-				cpSubscriptionInfo.
-					getSubscriptionTypeSettingsUnicodeProperties(),
-				cpSubscriptionInfo.getDeliverySubscriptionLength(),
-				deliverySubscriptionType,
-				cpSubscriptionInfo.getDeliveryMaxSubscriptionCycles(),
-				cpSubscriptionInfo.
-					getDeliverySubscriptionTypeSettingsUnicodeProperties());
 		}
 	}
 

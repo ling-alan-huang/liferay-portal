@@ -68,13 +68,11 @@ public class AnalyticsSettingsManagerImpl implements AnalyticsSettingsManager {
 			UnicodeProperties typeSettingsUnicodeProperties =
 				group.getTypeSettingsProperties();
 
-			if (typeSettingsUnicodeProperties.remove("analyticsChannelId") ==
+			if (typeSettingsUnicodeProperties.remove("analyticsChannelId") !=
 					null) {
 
-				continue;
+				_groupLocalService.updateGroup(group);
 			}
-
-			_groupLocalService.updateGroup(group);
 		}
 
 		_configurationProvider.deleteCompanyConfiguration(
@@ -140,15 +138,13 @@ public class AnalyticsSettingsManagerImpl implements AnalyticsSettingsManager {
 			UnicodeProperties typeSettingsUnicodeProperties =
 				group.getTypeSettingsProperties();
 
-			if (!Objects.equals(
+			if (Objects.equals(
 					analyticsChannelId,
 					typeSettingsUnicodeProperties.getProperty(
 						"analyticsChannelId"))) {
 
-				continue;
+				groupIds.add(GetterUtil.getLong(groupId));
 			}
-
-			groupIds.add(GetterUtil.getLong(groupId));
 		}
 
 		return groupIds.toArray(new Long[0]);
@@ -261,11 +257,9 @@ public class AnalyticsSettingsManagerImpl implements AnalyticsSettingsManager {
 		Set<String> allKeys = settingsDescriptor.getAllKeys();
 
 		for (Map.Entry<String, Object> entry : properties.entrySet()) {
-			if (!allKeys.contains(entry.getKey())) {
-				continue;
+			if (allKeys.contains(entry.getKey())) {
+				configurationProperties.put(entry.getKey(), entry.getValue());
 			}
-
-			configurationProperties.put(entry.getKey(), entry.getValue());
 		}
 
 		for (String multiValuedKey : settingsDescriptor.getMultiValuedKeys()) {

@@ -96,11 +96,9 @@ public class BaseUpgradePortletIdTest extends BasePortletIdUpgradeProcess {
 					portletResourceAction);
 			}
 
-			if (portlet.isUndeployedPortlet()) {
-				continue;
+			if (!portlet.isUndeployedPortlet()) {
+				_portletLocalService.deployPortlet(portlet);
 			}
-
-			_portletLocalService.deployPortlet(portlet);
 		}
 
 		_portlets.clear();

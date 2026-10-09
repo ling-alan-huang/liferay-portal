@@ -26,11 +26,9 @@ public class MonitorScheduler {
 			JenkinsResultsParserUtil.getCurrentTimeMillis();
 
 		for (Monitor monitor : monitors) {
-			if (!_isDue(currentTimeMillis, monitor)) {
-				continue;
+			if (_isDue(currentTimeMillis, monitor)) {
+				dueMonitors.add(monitor);
 			}
-
-			dueMonitors.add(monitor);
 		}
 
 		return dueMonitors;

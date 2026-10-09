@@ -349,11 +349,10 @@ public class DataLayoutResourceImpl extends BaseDataLayoutResourceImpl {
 
 			DDMFormField ddmFormField = ddmFormFieldsMap.get(fieldName);
 
-			if (ddmFormField == null) {
-				continue;
+			if (ddmFormField != null) {
+				_addDataDefinitionFieldLinks(
+					dataLayoutId, ddmFormField, siteId);
 			}
-
-			_addDataDefinitionFieldLinks(dataLayoutId, ddmFormField, siteId);
 		}
 	}
 

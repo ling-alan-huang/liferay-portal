@@ -735,16 +735,14 @@ public class SourceFormatter {
 		for (Object key : properties.keySet()) {
 			String s = (String)key;
 
-			if (!s.matches("working.dir.checkout.private.apps.(\\w)+.dirs")) {
-				continue;
-			}
+			if (s.matches("working.dir.checkout.private.apps.(\\w)+.dirs")) {
+				List<String> dirs = ListUtil.fromString(
+					properties.getProperty(s), StringPool.COMMA);
 
-			List<String> dirs = ListUtil.fromString(
-				properties.getProperty(s), StringPool.COMMA);
-
-			for (String dir : dirs) {
-				_sourceFormatterExcludes.addDefaultExcludeSyntaxPatterns(
-					_getExcludeSyntaxPatterns("**/" + dir + "/**"));
+				for (String dir : dirs) {
+					_sourceFormatterExcludes.addDefaultExcludeSyntaxPatterns(
+						_getExcludeSyntaxPatterns("**/" + dir + "/**"));
+				}
 			}
 		}
 	}
@@ -793,16 +791,14 @@ public class SourceFormatter {
 
 				String message = sourceMismatchException.getMessage();
 
-				if (Objects.isNull(message)) {
-					continue;
+				if (Objects.nonNull(message)) {
+					sb.append(index);
+					sb.append(": ");
+					sb.append(message);
+					sb.append("\n");
+
+					index = index + 1;
 				}
-
-				sb.append(index);
-				sb.append(": ");
-				sb.append(message);
-				sb.append("\n");
-
-				index = index + 1;
 			}
 		}
 
@@ -1022,13 +1018,11 @@ public class SourceFormatter {
 		for (Map.Entry<String, Properties> entry : _propertiesMap.entrySet()) {
 			Properties properties = entry.getValue();
 
-			if (!properties.containsKey(key)) {
-				continue;
+			if (properties.containsKey(key)) {
+				propertyValues.addAll(
+					ListUtil.fromString(
+						properties.getProperty(key), StringPool.COMMA));
 			}
-
-			propertyValues.addAll(
-				ListUtil.fromString(
-					properties.getProperty(key), StringPool.COMMA));
 		}
 
 		return propertyValues;
@@ -1411,14 +1405,12 @@ public class SourceFormatter {
 
 			String content = FileUtil.read(new File(gitRepoFileName));
 
-			if (!content.contains("mode = pull")) {
-				continue;
+			if (content.contains("mode = pull")) {
+				int y = gitRepoFileName.lastIndexOf("/");
+
+				pullModeGitRepoDirLocations.add(
+					gitRepoFileName.substring(x + 1, y));
 			}
-
-			int y = gitRepoFileName.lastIndexOf("/");
-
-			pullModeGitRepoDirLocations.add(
-				gitRepoFileName.substring(x + 1, y));
 		}
 
 		if (pullModeGitRepoDirLocations.isEmpty()) {

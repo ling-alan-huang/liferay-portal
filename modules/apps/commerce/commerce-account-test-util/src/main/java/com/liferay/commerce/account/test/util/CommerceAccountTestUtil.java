@@ -65,14 +65,12 @@ public class CommerceAccountTestUtil {
 						new long[] {userId});
 				}
 
-				if (ArrayUtil.contains(
+				if (!ArrayUtil.contains(
 						user.getGroupIds(), serviceContext.getScopeGroupId())) {
 
-					continue;
+					UserLocalServiceUtil.addGroupUsers(
+						serviceContext.getScopeGroupId(), new long[] {userId});
 				}
-
-				UserLocalServiceUtil.addGroupUsers(
-					serviceContext.getScopeGroupId(), new long[] {userId});
 			}
 		}
 	}

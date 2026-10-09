@@ -95,23 +95,21 @@ public class TermCommerceCheckoutStepDisplayContext {
 		for (CommerceShippingOption commerceShippingOption :
 				commerceShippingOptions) {
 
-			if (!shippingOptionName.equals(commerceShippingOption.getKey())) {
-				continue;
-			}
+			if (shippingOptionName.equals(commerceShippingOption.getKey())) {
+				CommerceShippingFixedOption commerceShippingFixedOption =
+					_commerceShippingFixedOptionLocalService.
+						fetchCommerceShippingFixedOption(
+							_commerceOrder.getCompanyId(),
+							commerceShippingOption.getKey());
 
-			CommerceShippingFixedOption commerceShippingFixedOption =
-				_commerceShippingFixedOptionLocalService.
-					fetchCommerceShippingFixedOption(
-						_commerceOrder.getCompanyId(),
-						commerceShippingOption.getKey());
-
-			if (commerceShippingFixedOption != null) {
-				return _commerceTermEntryLocalService.
-					getDeliveryCommerceTermEntries(
-						_commerceOrder.getCompanyId(),
-						_commerceOrder.getCommerceOrderTypeId(),
-						commerceShippingFixedOption.
-							getCommerceShippingFixedOptionId());
+				if (commerceShippingFixedOption != null) {
+					return _commerceTermEntryLocalService.
+						getDeliveryCommerceTermEntries(
+							_commerceOrder.getCompanyId(),
+							_commerceOrder.getCommerceOrderTypeId(),
+							commerceShippingFixedOption.
+								getCommerceShippingFixedOptionId());
+				}
 			}
 		}
 

@@ -210,17 +210,15 @@ public class ProjectTemplatesTest implements BaseProjectTemplatesTestCase {
 				String template = fileName.substring(
 					FileTestUtil.PROJECT_TEMPLATE_DIR_PREFIX.length());
 
-				if (template.equals(WorkspaceUtil.WORKSPACE)) {
-					continue;
+				if (!template.equals(WorkspaceUtil.WORKSPACE)) {
+					Properties properties = FileUtil.readProperties(
+						path.resolve("bnd.bnd"));
+
+					String bundleDescription = properties.getProperty(
+						"Bundle-Description");
+
+					expectedTemplates.put(template, bundleDescription);
 				}
-
-				Properties properties = FileUtil.readProperties(
-					path.resolve("bnd.bnd"));
-
-				String bundleDescription = properties.getProperty(
-					"Bundle-Description");
-
-				expectedTemplates.put(template, bundleDescription);
 			}
 		}
 

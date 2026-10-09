@@ -110,11 +110,9 @@ public class CommerceShippingAddressCommerceQualifierMetadata
 				CompanyThreadLocal.getCompanyId(), name,
 				AccountListTypeConstants.ACCOUNT_ENTRY_ADDRESS);
 
-			if (listType == null) {
-				continue;
+			if (listType != null) {
+				listTypeIds.add(listType.getListTypeId());
 			}
-
-			listTypeIds.add(listType.getListTypeId());
 		}
 
 		return listTypeIds.toArray(new Long[0]);

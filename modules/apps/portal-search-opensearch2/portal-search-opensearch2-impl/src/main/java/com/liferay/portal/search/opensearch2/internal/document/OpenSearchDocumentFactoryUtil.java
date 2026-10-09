@@ -172,13 +172,11 @@ public class OpenSearchDocumentFactoryUtil {
 
 				_addLegacyField(field, localizedName, translatedFields, value);
 
-				if (!field.isSortable()) {
-					continue;
+				if (field.isSortable()) {
+					_addLegacyField(
+						field, _getSortableLegacyFieldName(localizedName),
+						translatedFields, value);
 				}
-
-				_addLegacyField(
-					field, _getSortableLegacyFieldName(localizedName),
-					translatedFields, value);
 			}
 		}
 	}

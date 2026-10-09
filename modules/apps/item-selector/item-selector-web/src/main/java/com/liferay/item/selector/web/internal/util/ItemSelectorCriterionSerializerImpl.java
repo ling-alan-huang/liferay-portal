@@ -255,11 +255,9 @@ public class ItemSelectorCriterionSerializerImpl
 				Iterator<ItemSelectorReturnType> iterator =
 					itemSelectorReturnTypes.iterator();
 
-				if (!iterator.hasNext()) {
-					continue;
+				if (iterator.hasNext()) {
+					desiredItemSelectorReturnTypes.add(iterator.next());
 				}
-
-				desiredItemSelectorReturnTypes.add(iterator.next());
 			}
 
 			if (desiredItemSelectorReturnTypes.isEmpty()) {

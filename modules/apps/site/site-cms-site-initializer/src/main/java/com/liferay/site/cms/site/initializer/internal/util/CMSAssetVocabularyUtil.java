@@ -51,14 +51,12 @@ public class CMSAssetVocabularyUtil {
 				hasConnectedSpaceDepotEntry = true;
 			}
 
-			if ((depotEntryType != DepotConstants.TYPE_PROJECT) &&
-				(depotEntryType != DepotConstants.TYPE_SPACE)) {
+			if ((depotEntryType == DepotConstants.TYPE_PROJECT) ||
+				(depotEntryType == DepotConstants.TYPE_SPACE)) {
 
-				continue;
+				assetVocabularies.addAll(
+					_getAssetVocabulariesByGroupRels(groupId, depotEntryType));
 			}
-
-			assetVocabularies.addAll(
-				_getAssetVocabulariesByGroupRels(groupId, depotEntryType));
 		}
 
 		if (hasConnectedProjectDepotEntry) {

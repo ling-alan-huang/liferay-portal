@@ -111,11 +111,9 @@ public class UserModelListener extends BaseModelListener<User> {
 		throws PortalException {
 
 		for (Group group : _groupLocalService.getUserGroupGroups(userGroupId)) {
-			if (!group.isDepot()) {
-				continue;
+			if (group.isDepot()) {
+				_addUserNotificationEvent(group.getGroupId(), user);
 			}
-
-			_addUserNotificationEvent(group.getGroupId(), user);
 		}
 	}
 

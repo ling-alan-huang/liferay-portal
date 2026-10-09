@@ -774,15 +774,13 @@ public class DataDefinitionResourceTest
 			for (DataDefinitionField dataDefinitionField :
 					dataDefinition.getDataDefinitionFields()) {
 
-				if (Validator.isNotNull(dataDefinitionField.getFieldType()) &&
-					Validator.isNotNull(dataDefinitionField.getLabel()) &&
-					Validator.isNotNull(dataDefinitionField.getName()) &&
-					Validator.isNotNull(dataDefinitionField.getTip())) {
+				if (Validator.isNull(dataDefinitionField.getFieldType()) ||
+					Validator.isNull(dataDefinitionField.getLabel()) ||
+					Validator.isNull(dataDefinitionField.getName()) ||
+					Validator.isNull(dataDefinitionField.getTip())) {
 
-					continue;
+					valid = false;
 				}
-
-				valid = false;
 			}
 		}
 		else {
@@ -1002,12 +1000,10 @@ public class DataDefinitionResourceTest
 			DataDefinitionField[] nestedDataDefinitionFields =
 				dataDefinitionField.getNestedDataDefinitionFields();
 
-			if (nestedDataDefinitionFields == null) {
-				continue;
+			if (nestedDataDefinitionFields != null) {
+				allDataDefinitionFields.addAll(
+					_getAllDataDefinitionFields(nestedDataDefinitionFields));
 			}
-
-			allDataDefinitionFields.addAll(
-				_getAllDataDefinitionFields(nestedDataDefinitionFields));
 		}
 
 		return allDataDefinitionFields;
@@ -1099,16 +1095,14 @@ public class DataDefinitionResourceTest
 					customProperties2.get("fieldReference"));
 			}
 
-			if (customProperties1.containsKey("structureId") ||
-				Objects.equals(
+			if (!customProperties1.containsKey("structureId") &&
+				!Objects.equals(
 					dataDefinitionFields1[i].getFieldType(), "fieldset")) {
 
-				continue;
+				_testCopiedDataDefinitionFields(
+					dataDefinitionFields1[i].getNestedDataDefinitionFields(),
+					dataDefinitionFields2[i].getNestedDataDefinitionFields());
 			}
-
-			_testCopiedDataDefinitionFields(
-				dataDefinitionFields1[i].getNestedDataDefinitionFields(),
-				dataDefinitionFields2[i].getNestedDataDefinitionFields());
 		}
 	}
 

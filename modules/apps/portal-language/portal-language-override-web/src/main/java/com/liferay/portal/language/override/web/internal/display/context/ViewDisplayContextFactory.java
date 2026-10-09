@@ -177,13 +177,11 @@ public class ViewDisplayContextFactory {
 				for (PLOEntry ploEntry : keyPLOEntriesMap.get(key)) {
 					overrideLanguageIds.add(ploEntry.getLanguageId());
 
-					if (!Objects.equals(
+					if (Objects.equals(
 							selectedLanguageId, ploEntry.getLanguageId())) {
 
-						continue;
+						languageItemDisplay.setOverrideSelectedLanguageId(true);
 					}
-
-					languageItemDisplay.setOverrideSelectedLanguageId(true);
 				}
 
 				languageItemDisplay.setOverrideLanguageIdsString(
@@ -235,11 +233,9 @@ public class ViewDisplayContextFactory {
 				sb.append(overrideLanguageId);
 			}
 
-			if (!iterator.hasNext()) {
-				continue;
+			if (iterator.hasNext()) {
+				sb.append(StringPool.COMMA_AND_SPACE);
 			}
-
-			sb.append(StringPool.COMMA_AND_SPACE);
 		}
 
 		return sb.toString();
@@ -290,41 +286,38 @@ public class ViewDisplayContextFactory {
 			String value = LanguageUtil.get(
 				selectedLocale, key, StringPool.BLANK);
 
-			if (!keyMatchPredicate.test(key) &&
-				!valueMatchPredicate.test(value)) {
+			if (keyMatchPredicate.test(key) ||
+				valueMatchPredicate.test(value)) {
 
-				continue;
-			}
+				LanguageItemDisplay languageItemDisplay =
+					new LanguageItemDisplay(key, value);
 
-			LanguageItemDisplay languageItemDisplay = new LanguageItemDisplay(
-				key, value);
+				languageItemDisplay.setOverride(true);
 
-			languageItemDisplay.setOverride(true);
+				Set<String> overrideLanguageIds = new TreeSet<>();
 
-			Set<String> overrideLanguageIds = new TreeSet<>();
+				for (PLOEntry ploEntry : entry.getValue()) {
+					overrideLanguageIds.add(ploEntry.getLanguageId());
 
-			for (PLOEntry ploEntry : entry.getValue()) {
-				overrideLanguageIds.add(ploEntry.getLanguageId());
+					if (Objects.equals(
+							selectedLanguageId, ploEntry.getLanguageId())) {
 
-				if (!Objects.equals(
-						selectedLanguageId, ploEntry.getLanguageId())) {
+						languageItemDisplay.setOverrideSelectedLanguageId(true);
+					}
+				}
+
+				if (limitToSelectedLanguage &&
+					!languageItemDisplay.isOverrideSelectedLanguageId()) {
 
 					continue;
 				}
 
-				languageItemDisplay.setOverrideSelectedLanguageId(true);
+				languageItemDisplay.setOverrideLanguageIdsString(
+					_getLanguageIdsString(
+						overrideLanguageIds, selectedLanguageId));
+
+				languageItemDisplays.add(languageItemDisplay);
 			}
-
-			if (limitToSelectedLanguage &&
-				!languageItemDisplay.isOverrideSelectedLanguageId()) {
-
-				continue;
-			}
-
-			languageItemDisplay.setOverrideLanguageIdsString(
-				_getLanguageIdsString(overrideLanguageIds, selectedLanguageId));
-
-			languageItemDisplays.add(languageItemDisplay);
 		}
 
 		return languageItemDisplays;

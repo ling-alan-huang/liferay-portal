@@ -943,17 +943,15 @@ public class OAuth2ApplicationLocalServiceImpl
 
 			index = domainAndPath.indexOf(StringPool.SLASH);
 
-			if (index <= -1) {
-				continue;
-			}
+			if (index > -1) {
+				String path = domainAndPath.substring(index);
 
-			String path = domainAndPath.substring(index);
+				String normalizedPath = HttpComponentsUtil.normalizePath(path);
 
-			String normalizedPath = HttpComponentsUtil.normalizePath(path);
-
-			if (!Objects.equals(path, normalizedPath)) {
-				throw new OAuth2ApplicationRedirectURIPathException(
-					redirectURI);
+				if (!Objects.equals(path, normalizedPath)) {
+					throw new OAuth2ApplicationRedirectURIPathException(
+						redirectURI);
+				}
 			}
 		}
 	}

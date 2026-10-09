@@ -297,11 +297,9 @@ public class ProjectTemplateFilesTest {
 
 				definitionsVmPath = projectTemplateDirPath.resolve(fileName);
 
-				if (!Files.exists(definitionsVmPath)) {
-					continue;
+				if (Files.exists(definitionsVmPath)) {
+					definitionsVmPaths.add(definitionsVmPath);
 				}
-
-				definitionsVmPaths.add(definitionsVmPath);
 			}
 		}
 
@@ -323,11 +321,9 @@ public class ProjectTemplateFilesTest {
 
 			messageSuffix.append(", ");
 
-			if (i != (definitionsVmPaths.size() - 1)) {
-				continue;
+			if (i == (definitionsVmPaths.size() - 1)) {
+				messageSuffix.append("or ");
 			}
-
-			messageSuffix.append("or ");
 		}
 
 		Path archetypePomXmlPath = projectTemplateDirPath.resolve(
@@ -622,24 +618,22 @@ public class ProjectTemplateFilesTest {
 			Element idElement = XMLTestUtil.getChildElement(
 				executionElement, "id");
 
-			if (idElement == null) {
-				continue;
+			if (idElement != null) {
+				String id = idElement.getTextContent();
+
+				Assert.assertFalse(
+					"Execution ID \"" + id + "\" in " + pomXmlPath +
+						" cannot start with \"default-\"",
+					id.startsWith("default-"));
+
+				Matcher matcher = _pomXmlExecutionIdPattern.matcher(id);
+
+				Assert.assertTrue(
+					"Execution ID \"" + id + "\" in " + pomXmlPath +
+						" must match pattern \"" +
+							_pomXmlExecutionIdPattern.pattern() + "\"",
+					matcher.matches());
 			}
-
-			String id = idElement.getTextContent();
-
-			Assert.assertFalse(
-				"Execution ID \"" + id + "\" in " + pomXmlPath +
-					" cannot start with \"default-\"",
-				id.startsWith("default-"));
-
-			Matcher matcher = _pomXmlExecutionIdPattern.matcher(id);
-
-			Assert.assertTrue(
-				"Execution ID \"" + id + "\" in " + pomXmlPath +
-					" must match pattern \"" +
-						_pomXmlExecutionIdPattern.pattern() + "\"",
-				matcher.matches());
 		}
 
 		Path buildGradlePath = archetypeResourcesDirPath.resolve(
@@ -728,17 +722,15 @@ public class ProjectTemplateFilesTest {
 
 			String key = artifactId + ".version";
 
-			if (!systemProperties.containsKey(key)) {
-				continue;
+			if (systemProperties.containsKey(key)) {
+				Element versionElement = XMLTestUtil.getChildElement(
+					element, "version");
+
+				Assert.assertEquals(
+					"Incorrect version of " + name + " \"" + artifactId +
+						"\" in " + pomXmlPath,
+					"@" + key + "@", versionElement.getTextContent());
 			}
-
-			Element versionElement = XMLTestUtil.getChildElement(
-				element, "version");
-
-			Assert.assertEquals(
-				"Incorrect version of " + name + " \"" + artifactId + "\" in " +
-					pomXmlPath,
-				"@" + key + "@", versionElement.getTextContent());
 		}
 	}
 
@@ -993,11 +985,9 @@ public class ProjectTemplateFilesTest {
 			while (matcher.find()) {
 				String name = matcher.group(1);
 
-				if (text.contains("#set ($" + name + " = ")) {
-					continue;
+				if (!text.contains("#set ($" + name + " = ")) {
+					archetypeResourceExpressions.add(name);
 				}
-
-				archetypeResourceExpressions.add(name);
 			}
 		}
 	}

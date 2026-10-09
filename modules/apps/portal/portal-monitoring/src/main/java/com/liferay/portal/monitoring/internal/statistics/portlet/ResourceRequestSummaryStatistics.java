@@ -183,11 +183,9 @@ public class ResourceRequestSummaryStatistics
 			for (RequestStatistics requestStatistics :
 					companyStatistics.getResourceRequestStatisticsSet()) {
 
-				if (requestStatistics.getMaxTime() <= maxTime) {
-					continue;
+				if (requestStatistics.getMaxTime() > maxTime) {
+					maxTime = requestStatistics.getMaxTime();
 				}
-
-				maxTime = requestStatistics.getMaxTime();
 			}
 		}
 
@@ -221,11 +219,9 @@ public class ResourceRequestSummaryStatistics
 
 			long curMaxTime = getMaxTimeByPortlet(portletId, companyStatistics);
 
-			if (curMaxTime <= maxTime) {
-				continue;
+			if (curMaxTime > maxTime) {
+				maxTime = curMaxTime;
 			}
-
-			maxTime = curMaxTime;
 		}
 
 		return maxTime;
@@ -257,11 +253,9 @@ public class ResourceRequestSummaryStatistics
 			for (RequestStatistics requestStatistics :
 					companyStatistics.getResourceRequestStatisticsSet()) {
 
-				if (requestStatistics.getMinTime() >= minTime) {
-					continue;
+				if (requestStatistics.getMinTime() < minTime) {
+					minTime = requestStatistics.getMinTime();
 				}
-
-				minTime = requestStatistics.getMinTime();
 			}
 		}
 
@@ -295,11 +289,9 @@ public class ResourceRequestSummaryStatistics
 
 			long curMinTime = getMinTimeByPortlet(portletId, companyStatistics);
 
-			if (curMinTime >= minTime) {
-				continue;
+			if (curMinTime < minTime) {
+				minTime = curMinTime;
 			}
-
-			minTime = curMinTime;
 		}
 
 		return minTime;

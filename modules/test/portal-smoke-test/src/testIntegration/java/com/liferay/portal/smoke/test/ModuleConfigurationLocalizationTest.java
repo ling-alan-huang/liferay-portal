@@ -107,11 +107,9 @@ public class ModuleConfigurationLocalizationTest {
 				extendedMetaTypeInformation.getObjectClassDefinition(
 					iterator.next(), locale.getLanguage());
 
-			if (_isGenerateUI(extendedObjectClassDefinition)) {
-				continue;
+			if (!_isGenerateUI(extendedObjectClassDefinition)) {
+				iterator.remove();
 			}
-
-			iterator.remove();
 		}
 
 		if (pids.isEmpty()) {
@@ -189,11 +187,9 @@ public class ModuleConfigurationLocalizationTest {
 				ResourceBundleUtil.getString(
 					resourceBundle, extendedAttributeDefinition.getName());
 
-			if (extendedAttributeDefinitionName != null) {
-				continue;
+			if (extendedAttributeDefinitionName == null) {
+				missingAttributeNames.add(extendedAttributeDefinition.getID());
 			}
-
-			missingAttributeNames.add(extendedAttributeDefinition.getID());
 		}
 
 		if (!missingAttributeNames.isEmpty()) {

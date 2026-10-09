@@ -129,11 +129,9 @@ public abstract class CoverageDataContainer
 			V myChildCoverageData = children.putIfAbsent(
 				entry.getKey(), otherChildCoverageData);
 
-			if (myChildCoverageData == null) {
-				continue;
+			if (myChildCoverageData != null) {
+				myChildCoverageData.merge(otherChildCoverageData);
 			}
-
-			myChildCoverageData.merge(otherChildCoverageData);
 		}
 	}
 

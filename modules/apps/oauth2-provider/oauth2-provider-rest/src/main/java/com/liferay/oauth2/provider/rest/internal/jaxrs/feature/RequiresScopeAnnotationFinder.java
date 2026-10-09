@@ -83,11 +83,9 @@ public class RequiresScopeAnnotationFinder {
 		}
 
 		for (Method method : clazz.getMethods()) {
-			if (!_isAnnotatedMethod(method)) {
-				continue;
+			if (_isAnnotatedMethod(method)) {
+				_find(classes, scopes, recurse, method);
 			}
-
-			_find(classes, scopes, recurse, method);
 		}
 
 		classes.remove(clazz);

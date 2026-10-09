@@ -323,13 +323,11 @@ public class JSONWebServiceActionsManagerImpl
 			methodParameterName = StringUtil.toLowerCase(methodParameterName);
 
 			for (String parameterName : parameterNames) {
-				if (!StringUtil.equalsIgnoreCase(
+				if (StringUtil.equalsIgnoreCase(
 						parameterName, methodParameterName)) {
 
-					continue;
+					matched++;
 				}
-
-				matched++;
 			}
 		}
 
@@ -473,15 +471,13 @@ public class JSONWebServiceActionsManagerImpl
 			int count = _countMatchedParameters(
 				parameterNames, jsonWebServiceActionConfigMethodParameters);
 
-			if ((count <= max) ||
-				((hint == -1) && (count < methodParametersCount))) {
+			if ((count > max) &&
+				((hint != -1) || (count >= methodParametersCount))) {
 
-				continue;
+				max = count;
+
+				matchedJSONWebServiceActionConfig = jsonWebServiceActionConfig;
 			}
-
-			max = count;
-
-			matchedJSONWebServiceActionConfig = jsonWebServiceActionConfig;
 		}
 
 		if (_log.isDebugEnabled()) {
@@ -575,15 +571,16 @@ public class JSONWebServiceActionsManagerImpl
 					serviceBeanClass, method);
 
 				if (!JSONWebServiceNamingUtil.isIncludedPath(
-						contextName, contextPath, path) ||
-					!JSONWebServiceNamingUtil.isIncludedMethod(method)) {
+						contextName, contextPath, path)) {
 
 					continue;
 				}
 
-				_registerJSONWebServiceAction(
-					contextName, contextPath, bean, serviceBeanClass, method,
-					path, httpMethod);
+				if (JSONWebServiceNamingUtil.isIncludedMethod(method)) {
+					_registerJSONWebServiceAction(
+						contextName, contextPath, bean, serviceBeanClass,
+						method, path, httpMethod);
+				}
 			}
 		}
 		catch (Exception exception) {
@@ -709,15 +706,12 @@ public class JSONWebServiceActionsManagerImpl
 		for (JSONWebServiceActionConfig jsonWebServiceActionConfig :
 				_signatureIndexedJSONWebServiceActionConfigs.values()) {
 
-			if ((actionObject !=
-					jsonWebServiceActionConfig.getActionObject()) ||
-				!_removeJSONWebServiceActionConfig(
-					jsonWebServiceActionConfig)) {
+			if ((actionObject ==
+					jsonWebServiceActionConfig.getActionObject()) &&
+				_removeJSONWebServiceActionConfig(jsonWebServiceActionConfig)) {
 
-				continue;
+				count++;
 			}
-
-			count++;
 		}
 
 		return count;

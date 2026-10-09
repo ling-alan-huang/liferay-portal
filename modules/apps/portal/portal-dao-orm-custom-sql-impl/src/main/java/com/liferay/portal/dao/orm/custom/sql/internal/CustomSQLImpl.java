@@ -794,13 +794,11 @@ public class CustomSQLImpl implements CustomSQL {
 				continue;
 			}
 
-			if ((c != CharPool.UNDERLINE) && (c != CharPool.PERCENT)) {
-				continue;
+			if ((c == CharPool.UNDERLINE) || (c == CharPool.PERCENT)) {
+				sb.insert(i, CharPool.BACK_SLASH);
+
+				i++;
 			}
-
-			sb.insert(i, CharPool.BACK_SLASH);
-
-			i++;
 		}
 
 		return sb.toString();
@@ -889,11 +887,9 @@ public class CustomSQLImpl implements CustomSQL {
 
 				sb.append(line);
 
-				if (line.endsWith(StringPool.OPEN_PARENTHESIS)) {
-					continue;
+				if (!line.endsWith(StringPool.OPEN_PARENTHESIS)) {
+					sb.append(StringPool.SPACE);
 				}
-
-				sb.append(StringPool.SPACE);
 			}
 		}
 		catch (IOException ioException) {

@@ -84,18 +84,16 @@ public class DDMFormValuesFactoryUtil {
 
 			String key = entry.getKey();
 
-			if ((!key.startsWith(
-					_getEntryKeyPrefix(parentEntryKey, fieldName)) &&
-				 !key.startsWith(
+			if ((key.startsWith(
+					_getEntryKeyPrefix(parentEntryKey, fieldName)) ||
+				 key.startsWith(
 					 fieldName +
 						 DDMFormRendererConstants.
-							 DDM_FORM_FIELD_PARTS_SEPARATOR)) ||
-				!Objects.equals(ddmFormFieldValue.getName(), fieldName)) {
+							 DDM_FORM_FIELD_PARTS_SEPARATOR)) &&
+				Objects.equals(ddmFormFieldValue.getName(), fieldName)) {
 
-				continue;
+				entryKeys.add(key);
 			}
-
-			entryKeys.add(key);
 		}
 
 		return entryKeys;

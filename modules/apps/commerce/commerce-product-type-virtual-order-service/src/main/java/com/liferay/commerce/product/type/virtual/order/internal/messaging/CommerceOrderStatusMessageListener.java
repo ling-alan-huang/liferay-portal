@@ -86,11 +86,9 @@ public class CommerceOrderStatusMessageListener extends BaseMessageListener {
 					true);
 			}
 
-			if (orderStatus != CommerceOrderConstants.ORDER_STATUS_PENDING) {
-				continue;
+			if (orderStatus == CommerceOrderConstants.ORDER_STATUS_PENDING) {
+				_checkLowStockActivity(commerceOrderItem);
 			}
-
-			_checkLowStockActivity(commerceOrderItem);
 		}
 	}
 

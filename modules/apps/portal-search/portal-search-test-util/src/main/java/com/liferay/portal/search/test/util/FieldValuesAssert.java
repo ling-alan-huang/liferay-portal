@@ -75,14 +75,10 @@ public class FieldValuesAssert {
 			Map<String, Object> sourcesMap = _getSourcesMap(searchResponse);
 
 			for (String key : filteredFieldValuesMap.keySet()) {
-				if (!key.endsWith("_sortable") ||
-					!sourcesMap.containsKey(key)) {
-
-					continue;
+				if (key.endsWith("_sortable") && sourcesMap.containsKey(key)) {
+					filteredFieldValuesMap.put(
+						key, _toObjectString(sourcesMap.get(key)));
 				}
-
-				filteredFieldValuesMap.put(
-					key, _toObjectString(sourcesMap.get(key)));
 			}
 
 			AssertUtils.assertEquals(
@@ -172,11 +168,9 @@ public class FieldValuesAssert {
 		Map<String, String> map2 = new HashMap<>();
 
 		for (Map.Entry<String, String> entry : map1.entrySet()) {
-			if (!predicate.test(entry.getKey())) {
-				continue;
+			if (predicate.test(entry.getKey())) {
+				map2.put(entry.getKey(), entry.getValue());
 			}
-
-			map2.put(entry.getKey(), entry.getValue());
 		}
 
 		return map2;

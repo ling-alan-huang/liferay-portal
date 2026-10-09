@@ -111,11 +111,9 @@ public class GetAvailableImageConfigurationsMVCResourceCommand
 				sb.append(condition.getValue());
 				sb.append(StringPool.CLOSE_PARENTHESIS);
 
-				if (conditions.indexOf(condition) == (conditions.size() - 1)) {
-					continue;
+				if (conditions.indexOf(condition) != (conditions.size() - 1)) {
+					sb.append(" and ");
 				}
-
-				sb.append(" and ");
 			}
 
 			List<String> mediaQuerySources = StringUtil.split(

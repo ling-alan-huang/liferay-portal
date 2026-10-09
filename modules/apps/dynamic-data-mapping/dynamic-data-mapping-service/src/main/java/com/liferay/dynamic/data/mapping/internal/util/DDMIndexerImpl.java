@@ -637,11 +637,9 @@ public class DDMIndexerImpl implements DDMIndexer {
 				while (iterator.hasNext()) {
 					sb.append(titleMapJSONObject.getString(iterator.next()));
 
-					if (!iterator.hasNext()) {
-						continue;
+					if (iterator.hasNext()) {
+						sb.append(StringPool.SPACE);
 					}
-
-					sb.append(StringPool.SPACE);
 				}
 			}
 			else if (jsonObject.has("title")) {
@@ -1062,15 +1060,13 @@ public class DDMIndexerImpl implements DDMIndexer {
 				}
 			}
 
-			if (ListUtil.isEmpty(
+			if (ListUtil.isNotEmpty(
 					ddmFormFieldValue.getNestedDDMFormFieldValues())) {
 
-				continue;
+				_extractIndexableAttributes(
+					ddmFormFieldValue.getNestedDDMFormFieldValues(),
+					ddmStructure, defaultLocale, locale, sb);
 			}
-
-			_extractIndexableAttributes(
-				ddmFormFieldValue.getNestedDDMFormFieldValues(), ddmStructure,
-				defaultLocale, locale, sb);
 		}
 	}
 

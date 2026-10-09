@@ -1449,15 +1449,13 @@ public class JournalArticleStagedModelDataHandler
 				_assetDisplayPageEntryLocalService.fetchAssetDisplayPageEntry(
 					assetDisplayPageEntryId);
 
-			if (existingAssetDisplayPageEntry == null) {
-				continue;
+			if (existingAssetDisplayPageEntry != null) {
+				existingAssetDisplayPageEntry.setClassPK(
+					importedArticle.getResourcePrimKey());
+
+				_assetDisplayPageEntryLocalService.updateAssetDisplayPageEntry(
+					existingAssetDisplayPageEntry);
 			}
-
-			existingAssetDisplayPageEntry.setClassPK(
-				importedArticle.getResourcePrimKey());
-
-			_assetDisplayPageEntryLocalService.updateAssetDisplayPageEntry(
-				existingAssetDisplayPageEntry);
 		}
 	}
 
@@ -1498,15 +1496,13 @@ public class JournalArticleStagedModelDataHandler
 				_friendlyURLEntryLocalService.fetchFriendlyURLEntry(
 					friendlyURLEntryId);
 
-			if (existingFriendlyURLEntry == null) {
-				continue;
+			if (existingFriendlyURLEntry != null) {
+				existingFriendlyURLEntry.setClassPK(
+					importedArticle.getResourcePrimKey());
+
+				_friendlyURLEntryLocalService.updateFriendlyURLEntry(
+					existingFriendlyURLEntry);
 			}
-
-			existingFriendlyURLEntry.setClassPK(
-				importedArticle.getResourcePrimKey());
-
-			_friendlyURLEntryLocalService.updateFriendlyURLEntry(
-				existingFriendlyURLEntry);
 		}
 	}
 
@@ -1830,11 +1826,9 @@ public class JournalArticleStagedModelDataHandler
 				update = true;
 			}
 
-			if (!update) {
-				continue;
+			if (update) {
+				_journalArticleLocalService.updateJournalArticle(curArticle);
 			}
-
-			_journalArticleLocalService.updateJournalArticle(curArticle);
 		}
 
 		folderIds.put(key, article.getFolderId());

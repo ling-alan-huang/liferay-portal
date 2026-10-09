@@ -36,11 +36,9 @@ public class SwitchData
 		int numberOfCoveredBranches = 0;
 
 		for (int i = 0; i < _hitCounterArray.length(); i++) {
-			if (_hitCounterArray.get(i) <= 0) {
-				continue;
+			if (_hitCounterArray.get(i) > 0) {
+				numberOfCoveredBranches++;
 			}
-
-			numberOfCoveredBranches++;
 		}
 
 		return numberOfCoveredBranches;

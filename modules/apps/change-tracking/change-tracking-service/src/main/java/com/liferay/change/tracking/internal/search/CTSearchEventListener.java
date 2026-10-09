@@ -225,13 +225,11 @@ public class CTSearchEventListener implements CTEventListener {
 		Set<Serializable> primaryKeys = new HashSet<>();
 
 		for (CTEntry ctEntry : ctEntries) {
-			if (ctEntry.getChangeType() ==
+			if (ctEntry.getChangeType() !=
 					CTConstants.CT_CHANGE_TYPE_DELETION) {
 
-				continue;
+				primaryKeys.add(ctEntry.getModelClassPK());
 			}
-
-			primaryKeys.add(ctEntry.getModelClassPK());
 		}
 
 		if (primaryKeys.isEmpty()) {

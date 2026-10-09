@@ -152,11 +152,9 @@ public class ThemeLocalServiceImpl extends ThemeLocalServiceBaseImpl {
 		while (iterator.hasNext()) {
 			Theme theme = iterator.next();
 
-			if (theme.isControlPanelTheme()) {
-				continue;
+			if (!theme.isControlPanelTheme()) {
+				iterator.remove();
 			}
-
-			iterator.remove();
 		}
 
 		return themes;
@@ -175,11 +173,9 @@ public class ThemeLocalServiceImpl extends ThemeLocalServiceBaseImpl {
 		while (iterator.hasNext()) {
 			Theme theme = iterator.next();
 
-			if (theme.isPageTheme() && theme.isGroupAvailable(groupId)) {
-				continue;
+			if (!theme.isPageTheme() || !theme.isGroupAvailable(groupId)) {
+				iterator.remove();
 			}
-
-			iterator.remove();
 		}
 
 		return themes;
@@ -275,11 +271,9 @@ public class ThemeLocalServiceImpl extends ThemeLocalServiceBaseImpl {
 		while (iterator.hasNext()) {
 			Theme theme = iterator.next();
 
-			if (theme.isWARFile()) {
-				continue;
+			if (!theme.isWARFile()) {
+				iterator.remove();
 			}
-
-			iterator.remove();
 		}
 
 		return themes;
@@ -356,11 +350,9 @@ public class ThemeLocalServiceImpl extends ThemeLocalServiceBaseImpl {
 				themeCompanyId = new ThemeCompanyId(pattern, true);
 			}
 
-			if (themeCompanyId == null) {
-				continue;
+			if (themeCompanyId != null) {
+				includes.add(themeCompanyId);
 			}
-
-			includes.add(themeCompanyId);
 		}
 
 		return includes;
@@ -392,11 +384,9 @@ public class ThemeLocalServiceImpl extends ThemeLocalServiceBaseImpl {
 				themeGroupId = new ThemeGroupId(pattern, true);
 			}
 
-			if (themeGroupId == null) {
-				continue;
+			if (themeGroupId != null) {
+				includes.add(themeGroupId);
 			}
-
-			includes.add(themeGroupId);
 		}
 
 		return includes;
@@ -418,11 +408,9 @@ public class ThemeLocalServiceImpl extends ThemeLocalServiceBaseImpl {
 		for (Map.Entry<String, Theme> entry : _themes.entrySet()) {
 			Theme theme = entry.getValue();
 
-			if (!theme.isCompanyAvailable(companyId)) {
-				continue;
+			if (theme.isCompanyAvailable(companyId)) {
+				themes.put(entry.getKey(), theme);
 			}
-
-			themes.put(entry.getKey(), theme);
 		}
 
 		_themesPool.put(companyId, themes);

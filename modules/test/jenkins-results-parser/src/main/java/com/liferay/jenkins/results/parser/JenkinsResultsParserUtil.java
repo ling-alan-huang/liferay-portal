@@ -1029,11 +1029,9 @@ public class JenkinsResultsParserUtil {
 				throw new RuntimeException(unsupportedEncodingException);
 			}
 
-			if (matcher.hitEnd()) {
-				continue;
+			if (!matcher.hitEnd()) {
+				sb.append("&");
 			}
-
-			sb.append("&");
 		}
 
 		return sb.toString();
@@ -1054,11 +1052,9 @@ public class JenkinsResultsParserUtil {
 			List<Build> downstreamBuilds = parentBuild.getDownstreamBuilds(
 				null);
 
-			if (downstreamBuilds.isEmpty()) {
-				continue;
+			if (!downstreamBuilds.isEmpty()) {
+				flattenedBuilds.addAll(flatten(downstreamBuilds));
 			}
-
-			flattenedBuilds.addAll(flatten(downstreamBuilds));
 		}
 
 		return flattenedBuilds;
@@ -1507,16 +1503,16 @@ public class JenkinsResultsParserUtil {
 		String jobName = null;
 
 		for (String propertyName : buildProperties.stringPropertyNames()) {
-			if (!propertyName.startsWith("job.id[")) {
-				continue;
-			}
+			if (propertyName.startsWith("job.id[")) {
+				String propertyValue = buildProperties.getProperty(
+					propertyName);
 
-			String propertyValue = buildProperties.getProperty(propertyName);
+				if (propertyValue.equals(matcher.group("jobId"))) {
+					jobName = propertyName.substring(
+						7, propertyName.length() - 1);
 
-			if (propertyValue.equals(matcher.group("jobId"))) {
-				jobName = propertyName.substring(7, propertyName.length() - 1);
-
-				break;
+					break;
+				}
 			}
 		}
 
@@ -1713,11 +1709,9 @@ public class JenkinsResultsParserUtil {
 				remoteCurrentTimeSeconds = getRemoteCurrentTimeSeconds(
 					getJenkinsMasterName(getHostName(null)));
 
-				if ((remoteCurrentTimeSeconds != null) || (retry >= 3)) {
-					continue;
+				if ((remoteCurrentTimeSeconds == null) && (retry < 3)) {
+					sleep(1000);
 				}
-
-				sleep(1000);
 			}
 
 			if (remoteCurrentTimeSeconds != null) {
@@ -1779,11 +1773,9 @@ public class JenkinsResultsParserUtil {
 				}
 			}
 
-			if (!containsFile) {
-				continue;
+			if (containsFile) {
+				directoriesContainingFiles.add(directory);
 			}
-
-			directoriesContainingFiles.add(directory);
 		}
 
 		return directoriesContainingFiles;
@@ -1888,11 +1880,9 @@ public class JenkinsResultsParserUtil {
 		List<File> excludedFiles = new ArrayList<>(files.size());
 
 		for (File file : files) {
-			if (!isFileExcluded(excludesPathMatchers, file)) {
-				continue;
+			if (isFileExcluded(excludesPathMatchers, file)) {
+				excludedFiles.add(file);
 			}
-
-			excludedFiles.add(file);
 		}
 
 		return excludedFiles;
@@ -2258,13 +2248,11 @@ public class JenkinsResultsParserUtil {
 		List<File> includedFiles = new ArrayList<>(files.size());
 
 		for (File file : files) {
-			if (!isFileIncluded(
+			if (isFileIncluded(
 					excludesPathMatchers, includesPathMatchers, file)) {
 
-				continue;
+				includedFiles.add(file);
 			}
-
-			includedFiles.add(file);
 		}
 
 		return includedFiles;
@@ -2578,22 +2566,21 @@ public class JenkinsResultsParserUtil {
 							_jenkinsSlavesPropertyNamePattern.matcher(
 								propertyName.toString());
 
-						if (!jenkinsSlavesPropertyNameMatcher.matches()) {
-							continue;
+						if (jenkinsSlavesPropertyNameMatcher.matches()) {
+							String jenkinsMasterName =
+								jenkinsSlavesPropertyNameMatcher.group(1);
+
+							List<String> jenkinsSlaveNames = getSlaves(
+								buildProperties, jenkinsMasterName, null,
+								false);
+
+							if (jenkinsSlaveNames.isEmpty()) {
+								continue;
+							}
+
+							jenkinsNodeMap.put(
+								jenkinsMasterName, jenkinsSlaveNames);
 						}
-
-						String jenkinsMasterName =
-							jenkinsSlavesPropertyNameMatcher.group(1);
-
-						List<String> jenkinsSlaveNames = getSlaves(
-							buildProperties, jenkinsMasterName, null, false);
-
-						if (jenkinsSlaveNames.isEmpty()) {
-							continue;
-						}
-
-						jenkinsNodeMap.put(
-							jenkinsMasterName, jenkinsSlaveNames);
 					}
 
 					if (jenkinsNodeMap.isEmpty()) {
@@ -2762,21 +2749,19 @@ public class JenkinsResultsParserUtil {
 
 			JSONObject actionsJSONObject = actionsJSONArray.getJSONObject(i);
 
-			if (!actionsJSONObject.has("parameters")) {
-				continue;
-			}
+			if (actionsJSONObject.has("parameters")) {
+				JSONArray parametersJSONArray = actionsJSONObject.getJSONArray(
+					"parameters");
 
-			JSONArray parametersJSONArray = actionsJSONObject.getJSONArray(
-				"parameters");
+				for (int j = 0; j < parametersJSONArray.length(); j++) {
+					JSONObject parametersJSONObject =
+						parametersJSONArray.getJSONObject(j);
 
-			for (int j = 0; j < parametersJSONArray.length(); j++) {
-				JSONObject parametersJSONObject =
-					parametersJSONArray.getJSONObject(j);
+					if ("JOB_VARIANT".contains(
+							parametersJSONObject.getString("name"))) {
 
-				if ("JOB_VARIANT".contains(
-						parametersJSONObject.getString("name"))) {
-
-					return parametersJSONObject.getString("value");
+						return parametersJSONObject.getString("value");
+					}
 				}
 			}
 		}
@@ -3058,11 +3043,9 @@ public class JenkinsResultsParserUtil {
 		Properties properties = new Properties();
 
 		for (File propertiesFile : propertiesFiles) {
-			if ((propertiesFile == null) || !propertiesFile.exists()) {
-				continue;
+			if ((propertiesFile != null) && propertiesFile.exists()) {
+				properties.putAll(_getProperties(propertiesFile));
 			}
-
-			properties.putAll(_getProperties(propertiesFile));
 		}
 
 		return new SecureProperties(properties);
@@ -3114,14 +3097,12 @@ public class JenkinsResultsParserUtil {
 		for (Object key : properties.keySet()) {
 			String keyString = key.toString();
 
-			if (!keyString.matches(
+			if (keyString.matches(
 					Pattern.quote(basePropertyName) + "(\\[.*|$)")) {
 
-				continue;
+				matchingProperties.setProperty(
+					keyString, properties.getProperty(keyString));
 			}
-
-			matchingProperties.setProperty(
-				keyString, properties.getProperty(keyString));
 		}
 
 		Set<Set<String>> targetOptSets = _getOrderedOptSets(opts);
@@ -3149,11 +3130,9 @@ public class JenkinsResultsParserUtil {
 					boolean matchesPropertyOptRegex = false;
 
 					for (String propertyOptRegex : propertyOptRegexes) {
-						if (!targetOpt.matches(propertyOptRegex)) {
-							continue;
+						if (targetOpt.matches(propertyOptRegex)) {
+							matchesPropertyOptRegex = true;
 						}
-
-						matchesPropertyOptRegex = true;
 					}
 
 					if (!matchesPropertyOptRegex) {
@@ -3218,13 +3197,11 @@ public class JenkinsResultsParserUtil {
 
 			stack.pop();
 
-			if (!stack.isEmpty()) {
-				continue;
+			if (stack.isEmpty()) {
+				propertyOptions.add(propertyName.substring(start + 1, i));
+
+				start = null;
 			}
-
-			propertyOptions.add(propertyName.substring(start + 1, i));
-
-			start = null;
 		}
 
 		return propertyOptions;
@@ -3563,21 +3540,19 @@ public class JenkinsResultsParserUtil {
 				jenkinsSlavesPropertyNamePattern.matcher(
 					propertyName.toString());
 
-			if (!jenkinsSlavesPropertyNameMatcher.find()) {
-				continue;
-			}
+			if (jenkinsSlavesPropertyNameMatcher.find()) {
+				String slavesString = expandSlaveRange(
+					buildProperties.getProperty(propertyName.toString()));
 
-			String slavesString = expandSlaveRange(
-				buildProperties.getProperty(propertyName.toString()));
+				for (String slave : slavesString.split(",")) {
+					slave = slave.trim();
 
-			for (String slave : slavesString.split(",")) {
-				slave = slave.trim();
+					if (isNullOrEmpty(slave)) {
+						continue;
+					}
 
-				if (isNullOrEmpty(slave)) {
-					continue;
+					slaves.add(slave);
 				}
-
-				slaves.add(slave);
 			}
 		}
 
@@ -4480,11 +4455,9 @@ public class JenkinsResultsParserUtil {
 
 				String item = row[columnNumber];
 
-				if (maxColumnWidth[columnNumber] > item.length()) {
-					continue;
+				if (maxColumnWidth[columnNumber] <= item.length()) {
+					maxColumnWidth[columnNumber] = item.length();
 				}
-
-				maxColumnWidth[columnNumber] = item.length();
 			}
 		}
 
@@ -4759,11 +4732,9 @@ public class JenkinsResultsParserUtil {
 		List<String> strings = new ArrayList<>();
 
 		for (String string : delimitedString.split(delimiter)) {
-			if (strings.contains(string)) {
-				continue;
+			if (!strings.contains(string)) {
+				strings.add(string);
 			}
-
-			strings.add(string);
 		}
 
 		return join(",", strings);
@@ -6090,11 +6061,9 @@ public class JenkinsResultsParserUtil {
 			int count = 0;
 
 			for (String propertyOpt : propertyOptSet) {
-				if (!propertyOpt.contains(".*")) {
-					continue;
+				if (propertyOpt.contains(".*")) {
+					count++;
 				}
-
-				count++;
 			}
 
 			return count;
@@ -6127,11 +6096,9 @@ public class JenkinsResultsParserUtil {
 		List<String> propertyValues = new ArrayList<>();
 
 		for (String value : propertyValue.split("\\s*,\\s*")) {
-			if (value.startsWith("#")) {
-				continue;
+			if (!value.startsWith("#")) {
+				propertyValues.add(value);
 			}
-
-			propertyValues.add(value);
 		}
 
 		return join(",", propertyValues);
@@ -6334,11 +6301,9 @@ public class JenkinsResultsParserUtil {
 				sb.append(path);
 			}
 
-			if (sb.length() <= 0) {
-				continue;
+			if (sb.length() > 0) {
+				sb.append(",");
 			}
-
-			sb.append(",");
 		}
 
 		return sb.toString();
@@ -6650,11 +6615,9 @@ public class JenkinsResultsParserUtil {
 
 		for (int i = optCount; i > 0; i--) {
 			for (Set<String> optSet : optSets) {
-				if (optSet.size() != i) {
-					continue;
+				if (optSet.size() == i) {
+					orderedOptSet.add(optSet);
 				}
-
-				orderedOptSet.add(optSet);
 			}
 		}
 
@@ -6689,11 +6652,9 @@ public class JenkinsResultsParserUtil {
 				basePropertiesFileName.replace(
 					".properties", "." + environment + ".properties"));
 
-			if (!environmentPropertyFile.exists()) {
-				continue;
+			if (environmentPropertyFile.exists()) {
+				propertiesFiles.add(environmentPropertyFile);
 			}
-
-			propertiesFiles.add(environmentPropertyFile);
 		}
 
 		Properties properties = new Properties();
@@ -6723,18 +6684,15 @@ public class JenkinsResultsParserUtil {
 				propertiesFileName.equals("poshi.properties")) {
 
 				for (String poshiDirPropertyName : poshiDirPropertyNames) {
-					if (!temporaryProperties.containsKey(
-							poshiDirPropertyName)) {
-
-						continue;
+					if (temporaryProperties.containsKey(poshiDirPropertyName)) {
+						temporaryProperties.setProperty(
+							poshiDirPropertyName,
+							_fixFilePathPropertyValue(
+								propertiesFile,
+								getProperty(
+									temporaryProperties,
+									poshiDirPropertyName)));
 					}
-
-					temporaryProperties.setProperty(
-						poshiDirPropertyName,
-						_fixFilePathPropertyValue(
-							propertiesFile,
-							getProperty(
-								temporaryProperties, poshiDirPropertyName)));
 				}
 			}
 
@@ -6789,17 +6747,15 @@ public class JenkinsResultsParserUtil {
 
 		while (matcher.find()) {
 			String propertyGroup = matcher.group(0);
-
 			String propertyName = matcher.group(1);
 
-			if (!properties.containsKey(propertyName)) {
-				continue;
+			if (properties.containsKey(propertyName)) {
+				newValue = newValue.replace(
+					propertyGroup,
+					_getProperty(
+						properties, new ArrayList<>(previousNames),
+						propertyName));
 			}
-
-			newValue = newValue.replace(
-				propertyGroup,
-				_getProperty(
-					properties, new ArrayList<>(previousNames), propertyName));
 		}
 
 		return newValue;
@@ -6848,19 +6804,19 @@ public class JenkinsResultsParserUtil {
 				}
 			}
 
-			if ((c != ']') || (start == null)) {
-				continue;
+			if (c == ']') {
+				if (start == null) {
+					continue;
+				}
+
+				stack.pop();
+
+				if (stack.isEmpty()) {
+					indices.add(i);
+
+					start = null;
+				}
 			}
-
-			stack.pop();
-
-			if (!stack.isEmpty()) {
-				continue;
-			}
-
-			indices.add(i);
-
-			start = null;
 		}
 
 		for (int i = 0; i < indices.size(); i++) {
@@ -6988,11 +6944,9 @@ public class JenkinsResultsParserUtil {
 
 				forbiddenRedactToken = forbiddenRedactToken.trim();
 
-				if (isNullOrEmpty(forbiddenRedactToken)) {
-					continue;
+				if (!isNullOrEmpty(forbiddenRedactToken)) {
+					forbiddenRedactTokens.add(forbiddenRedactToken);
 				}
-
-				forbiddenRedactTokens.add(forbiddenRedactToken);
 			}
 		}
 		catch (IOException ioException) {

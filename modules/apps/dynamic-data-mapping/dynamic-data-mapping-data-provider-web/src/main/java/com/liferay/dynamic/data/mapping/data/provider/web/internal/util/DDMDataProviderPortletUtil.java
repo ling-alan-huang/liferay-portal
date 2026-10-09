@@ -56,11 +56,9 @@ public class DDMDataProviderPortletUtil {
 			ddmForm.getDDMFormFieldsMap(true);
 
 		for (DDMFormField ddmFormField : ddmFormFieldsMap.values()) {
-			if (!Objects.equals(type, ddmFormField.getType())) {
-				continue;
+			if (Objects.equals(type, ddmFormField.getType())) {
+				ddmFormFieldNames.add(ddmFormField.getName());
 			}
-
-			ddmFormFieldNames.add(ddmFormField.getName());
 		}
 
 		return ddmFormFieldNames;

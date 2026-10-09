@@ -79,11 +79,9 @@ public class MulticastDatagramHandler implements DatagramHandler {
 
 				c = inputStream.read(buffer, 0, 1500);
 
-				if (c == -1) {
-					continue;
+				if (c != -1) {
+					unsyncByteArrayOutputStream.write(buffer, 0, c);
 				}
-
-				unsyncByteArrayOutputStream.write(buffer, 0, c);
 			}
 		}
 

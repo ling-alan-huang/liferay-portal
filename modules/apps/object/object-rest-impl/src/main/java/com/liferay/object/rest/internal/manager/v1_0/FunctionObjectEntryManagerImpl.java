@@ -286,11 +286,9 @@ public class FunctionObjectEntryManagerImpl
 					sb.append("asc");
 				}
 
-				if (i == (sorts.length - 1)) {
-					continue;
+				if (i != (sorts.length - 1)) {
+					sb.append(StringPool.COMMA);
 				}
-
-				sb.append(StringPool.COMMA);
 			}
 
 			resourcePath = HttpComponentsUtil.addParameter(

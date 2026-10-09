@@ -200,13 +200,11 @@ public class MarketplaceUtil {
 			JSONObject deploymentJSONObject =
 				deploymentsJSONArray.getJSONObject(i);
 
-			if (!Objects.equals(
+			if (Objects.equals(
 					deploymentJSONObject.getString("id"), deploymentId)) {
 
-				continue;
+				deploymentsJSONArray.remove(i);
 			}
-
-			deploymentsJSONArray.remove(i);
 		}
 	}
 

@@ -295,11 +295,9 @@ public class DDMFormTemplateSynchonizerTest extends BaseDDMTestCase {
 		while (iterator.hasNext()) {
 			DDMFormField ddmFormField = iterator.next();
 
-			if (!fieldName.equals(ddmFormField.getName())) {
-				continue;
+			if (fieldName.equals(ddmFormField.getName())) {
+				iterator.remove();
 			}
-
-			iterator.remove();
 		}
 	}
 
@@ -418,11 +416,9 @@ public class DDMFormTemplateSynchonizerTest extends BaseDDMTestCase {
 		List<DDMFormField> ddmFormFields = ddmForm.getDDMFormFields();
 
 		for (DDMFormField ddmFormField : ddmFormFields) {
-			if (!fieldName.equals(ddmFormField.getName())) {
-				continue;
+			if (fieldName.equals(ddmFormField.getName())) {
+				ddmFormField.setRequired(required);
 			}
-
-			ddmFormField.setRequired(required);
 		}
 	}
 

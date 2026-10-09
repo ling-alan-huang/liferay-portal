@@ -154,21 +154,17 @@ public abstract class BasePortletDataHandlerTestCase {
 			boolean contains = false;
 
 			for (Node node : stagedModelNodes) {
-				if (!(node instanceof Element)) {
-					continue;
+				if (node instanceof Element) {
+					Element nodeElement = (Element)node;
+
+					Attribute uuidAttribute = nodeElement.attribute("uuid");
+
+					String uuid = uuidAttribute.getValue();
+
+					if (Objects.equals(stagedModel.getUuid(), uuid)) {
+						contains = true;
+					}
 				}
-
-				Element nodeElement = (Element)node;
-
-				Attribute uuidAttribute = nodeElement.attribute("uuid");
-
-				String uuid = uuidAttribute.getValue();
-
-				if (!Objects.equals(stagedModel.getUuid(), uuid)) {
-					continue;
-				}
-
-				contains = true;
 			}
 
 			Assert.assertTrue(contains);

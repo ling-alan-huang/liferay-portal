@@ -406,13 +406,11 @@ public class GetLayoutReportsLayoutItemDataStrutsAction
 		for (int i = 0; i < layoutStructureHierarchy.size(); i++) {
 			sb.append(layoutStructureHierarchy.get(i));
 
-			if (i >= (layoutStructureHierarchy.size() - 1)) {
-				continue;
+			if (i < (layoutStructureHierarchy.size() - 1)) {
+				sb.append(StringPool.SPACE);
+				sb.append(StringPool.GREATER_THAN);
+				sb.append(StringPool.SPACE);
 			}
-
-			sb.append(StringPool.SPACE);
-			sb.append(StringPool.GREATER_THAN);
-			sb.append(StringPool.SPACE);
 		}
 
 		return sb.toString();

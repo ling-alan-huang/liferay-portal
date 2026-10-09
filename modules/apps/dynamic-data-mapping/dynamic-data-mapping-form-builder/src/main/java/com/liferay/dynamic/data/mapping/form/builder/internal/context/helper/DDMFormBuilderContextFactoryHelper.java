@@ -523,13 +523,9 @@ public class DDMFormBuilderContextFactoryHelper {
 			for (Map<String, Object> field : fields) {
 				_fieldConsumer.accept(field);
 
-				if (!(field.get("nestedFields") instanceof
-						List<?> nestedFields)) {
-
-					continue;
+				if (field.get("nestedFields") instanceof List<?> nestedFields) {
+					traverseFields((List<Map<String, Object>>)nestedFields);
 				}
-
-				traverseFields((List<Map<String, Object>>)nestedFields);
 			}
 		}
 

@@ -168,12 +168,10 @@ public class SearchPortletUpgradeProcessTest {
 					for (UpgradeStep upgradeStep : upgradeSteps) {
 						Class<?> clazz = upgradeStep.getClass();
 
-						if (!Objects.equals(clazz.getName(), _CLASS_NAME)) {
-							continue;
+						if (Objects.equals(clazz.getName(), _CLASS_NAME)) {
+							_searchPortletUpgradeProcess =
+								(UpgradeProcess)upgradeStep;
 						}
-
-						_searchPortletUpgradeProcess =
-							(UpgradeProcess)upgradeStep;
 					}
 				}
 

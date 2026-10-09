@@ -30,11 +30,9 @@ public class DataCleanupTestUtil {
 					ClassNameLocalServiceUtil.getClassNames(
 						QueryUtil.ALL_POS, QueryUtil.ALL_POS)) {
 
-				if (classNames.contains(className)) {
-					continue;
+				if (!classNames.contains(className)) {
+					ClassNameLocalServiceUtil.deleteClassName(className);
 				}
-
-				ClassNameLocalServiceUtil.deleteClassName(className);
 			}
 		};
 	}
@@ -49,12 +47,10 @@ public class DataCleanupTestUtil {
 					ResourceActionLocalServiceUtil.getResourceActions(
 						QueryUtil.ALL_POS, QueryUtil.ALL_POS)) {
 
-				if (resourceActions.contains(resourceAction)) {
-					continue;
+				if (!resourceActions.contains(resourceAction)) {
+					ResourceActionLocalServiceUtil.deleteResourceAction(
+						resourceAction);
 				}
-
-				ResourceActionLocalServiceUtil.deleteResourceAction(
-					resourceAction);
 			}
 		};
 	}
@@ -69,11 +65,9 @@ public class DataCleanupTestUtil {
 					SystemEventLocalServiceUtil.getSystemEvents(
 						QueryUtil.ALL_POS, QueryUtil.ALL_POS)) {
 
-				if (systemEvents.contains(systemEvent)) {
-					continue;
+				if (!systemEvents.contains(systemEvent)) {
+					SystemEventLocalServiceUtil.deleteSystemEvent(systemEvent);
 				}
-
-				SystemEventLocalServiceUtil.deleteSystemEvent(systemEvent);
 			}
 		};
 	}

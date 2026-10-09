@@ -180,16 +180,14 @@ public class CMSObjectRelationshipEdgeUpgradeProcess extends UpgradeProcess {
 				long objectDefinitionId1 =
 					objectRelationship.getObjectDefinitionId1();
 
-				if (ListUtil.exists(
+				if (!ListUtil.exists(
 						objectRelationships,
 						parentObjectRelationship ->
 							parentObjectRelationship.getObjectDefinitionId2() ==
 								objectDefinitionId1)) {
 
-					continue;
+					rootObjectRelationships.add(objectRelationship);
 				}
-
-				rootObjectRelationships.add(objectRelationship);
 			}
 
 			if (rootObjectRelationships.isEmpty()) {

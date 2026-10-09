@@ -386,11 +386,9 @@ public class PortletPreferencesImpl
 				preferenceElement.addElement("value", value);
 			}
 
-			if (!preference.isReadOnly()) {
-				continue;
+			if (preference.isReadOnly()) {
+				preferenceElement.addElement("read-only", Boolean.TRUE);
 			}
-
-			preferenceElement.addElement("read-only", Boolean.TRUE);
 		}
 
 		return portletPreferencesElement.toXMLString();

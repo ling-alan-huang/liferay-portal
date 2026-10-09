@@ -1347,11 +1347,9 @@ public class PortletURLImpl
 				String value = httpServletRequest.getParameter(
 					autopropagatedParameter);
 
-				if (value == null) {
-					continue;
+				if (value != null) {
+					setParameter(autopropagatedParameter, value);
 				}
-
-				setParameter(autopropagatedParameter, value);
 			}
 
 			_escapeXml = MapUtil.getBoolean(
@@ -1675,15 +1673,13 @@ public class PortletURLImpl
 
 					String renderParameterName = entry.getKey();
 
-					if (!MimeResponse.Copy.ALL.equals(_copy) &&
-						!liferayRenderParametersImpl.isPublic(
+					if (MimeResponse.Copy.ALL.equals(_copy) ||
+						liferayRenderParametersImpl.isPublic(
 							renderParameterName)) {
 
-						continue;
+						mutableRenderParameterMap.put(
+							renderParameterName, entry.getValue());
 					}
-
-					mutableRenderParameterMap.put(
-						renderParameterName, entry.getValue());
 				}
 			}
 		}

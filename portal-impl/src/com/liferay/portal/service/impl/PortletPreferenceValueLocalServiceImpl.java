@@ -60,11 +60,9 @@ public class PortletPreferenceValueLocalServiceImpl
 
 				values[i] = portletPreferenceValue.getValue();
 
-				if (!portletPreferenceValue.isReadOnly()) {
-					continue;
+				if (portletPreferenceValue.isReadOnly()) {
+					readOnly = true;
 				}
-
-				readOnly = true;
 			}
 
 			preferenceMap.put(name, new Preference(name, values, readOnly));

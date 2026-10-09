@@ -509,11 +509,9 @@ public class JSONServiceAction extends JSONAction {
 					String t2 = getTypeNameOrClassDescriptor(
 						curParameterTypes[j]);
 
-					if (t1.equals(t2)) {
-						continue;
+					if (!t1.equals(t2)) {
+						match = false;
 					}
-
-					match = false;
 				}
 
 				if (match) {

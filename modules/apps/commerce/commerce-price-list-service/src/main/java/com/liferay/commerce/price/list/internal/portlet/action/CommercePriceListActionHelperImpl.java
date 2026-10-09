@@ -47,11 +47,9 @@ public class CommercePriceListActionHelperImpl
 				_commercePriceEntryService.fetchCommercePriceEntry(
 					commercePriceEntryId);
 
-			if (commercePriceEntry == null) {
-				continue;
+			if (commercePriceEntry != null) {
+				commercePriceEntries.add(commercePriceEntry);
 			}
-
-			commercePriceEntries.add(commercePriceEntry);
 		}
 
 		return commercePriceEntries;
@@ -132,11 +130,9 @@ public class CommercePriceListActionHelperImpl
 				_commercePriceListService.fetchCommercePriceList(
 					commercePriceListId);
 
-			if (commercePriceList == null) {
-				continue;
+			if (commercePriceList != null) {
+				commercePriceLists.add(commercePriceList);
 			}
-
-			commercePriceLists.add(commercePriceList);
 		}
 
 		return commercePriceLists;
@@ -158,11 +154,9 @@ public class CommercePriceListActionHelperImpl
 				_commerceTierPriceEntryService.fetchCommerceTierPriceEntry(
 					commerceTierPriceEntryId);
 
-			if (commerceTierPriceEntry == null) {
-				continue;
+			if (commerceTierPriceEntry != null) {
+				commerceTierPriceEntries.add(commerceTierPriceEntry);
 			}
-
-			commerceTierPriceEntries.add(commerceTierPriceEntry);
 		}
 
 		return commerceTierPriceEntries;

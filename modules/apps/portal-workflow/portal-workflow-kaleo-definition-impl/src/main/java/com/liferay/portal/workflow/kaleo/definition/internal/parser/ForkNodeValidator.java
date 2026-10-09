@@ -65,11 +65,9 @@ public class ForkNodeValidator extends BaseNodeValidator<Fork> {
 				node = transition.getTargetNode();
 			}
 
-			if (nodes.contains(node)) {
-				continue;
+			if (!nodes.contains(node)) {
+				unvisitedNodes.add(node);
 			}
-
-			unvisitedNodes.add(node);
 		}
 
 		return unvisitedNodes;

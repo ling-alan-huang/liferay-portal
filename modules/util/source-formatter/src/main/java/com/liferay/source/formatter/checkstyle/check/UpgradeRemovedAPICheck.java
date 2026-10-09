@@ -173,18 +173,16 @@ public class UpgradeRemovedAPICheck extends BaseAPICheck {
 			JSONObject upgradeToClassJSONObject =
 				upgradeToJavaClassesJSONObject.getJSONObject(typeName);
 
-			if ((upgradeFromClassJSONObject == null) ||
-				(upgradeToClassJSONObject != null)) {
+			if ((upgradeFromClassJSONObject != null) &&
+				(upgradeToClassJSONObject == null)) {
 
-				continue;
-			}
+				Set<Integer> lineNumbers = entry.getValue();
 
-			Set<Integer> lineNumbers = entry.getValue();
-
-			for (int lineNumber : lineNumbers) {
-				_logRemovedClass(
-					typeName, lineNumber, upgradeToVersion,
-					upgradeToJavaClassesJSONObject);
+				for (int lineNumber : lineNumbers) {
+					_logRemovedClass(
+						typeName, lineNumber, upgradeToVersion,
+						upgradeToJavaClassesJSONObject);
+				}
 			}
 		}
 	}
@@ -242,17 +240,15 @@ public class UpgradeRemovedAPICheck extends BaseAPICheck {
 			JSONObject upgradeToClassJSONObject =
 				upgradeToJavaClassesJSONObject.getJSONObject(importName);
 
-			if ((upgradeFromClassJSONObject == null) ||
-				(upgradeToClassJSONObject != null)) {
+			if ((upgradeFromClassJSONObject != null) &&
+				(upgradeToClassJSONObject == null)) {
 
-				continue;
+				_logRemovedClass(
+					importName, detailAST.getLineNo(), upgradeToVersion,
+					upgradeToJavaClassesJSONObject);
+
+				removedImportNames.add(importName);
 			}
-
-			_logRemovedClass(
-				importName, detailAST.getLineNo(), upgradeToVersion,
-				upgradeToJavaClassesJSONObject);
-
-			removedImportNames.add(importName);
 		}
 
 		return removedImportNames;
@@ -269,11 +265,9 @@ public class UpgradeRemovedAPICheck extends BaseAPICheck {
 		List<String> classNames = new ArrayList<>();
 
 		for (String className : upgradeToJavaClassesJSONObject.keySet()) {
-			if (!className.endsWith(s)) {
-				continue;
+			if (className.endsWith(s)) {
+				classNames.add(className);
 			}
-
-			classNames.add(className);
 		}
 
 		if (classNames.isEmpty()) {

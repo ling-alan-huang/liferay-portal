@@ -125,11 +125,9 @@ public class SelectDDMFormFieldValueAccessor
 			for (int i = 0; i < jsonArray.length(); i++) {
 				sb.append(jsonArray.get(i));
 
-				if (i >= (jsonArray.length() - 1)) {
-					continue;
+				if (i < (jsonArray.length() - 1)) {
+					sb.append(CharPool.COMMA);
 				}
-
-				sb.append(CharPool.COMMA);
 			}
 
 			return sb.toString();

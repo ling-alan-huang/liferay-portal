@@ -115,11 +115,9 @@ public class DDMStructureModelListener extends BaseModelListener<DDMStructure> {
 
 			ServiceRegistration<?> serviceRegistration = entry.getValue();
 
-			if (serviceRegistration == null) {
-				continue;
+			if (serviceRegistration != null) {
+				serviceRegistration.unregister();
 			}
-
-			serviceRegistration.unregister();
 		}
 	}
 

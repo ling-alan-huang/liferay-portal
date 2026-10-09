@@ -89,11 +89,9 @@ public class IndexerHelper {
 		Set<Long> deleteClassPKs = new HashSet<>();
 
 		for (Long oldClassPK : oldClassPKs) {
-			if (addClassPKs.remove(oldClassPK)) {
-				continue;
+			if (!addClassPKs.remove(oldClassPK)) {
+				deleteClassPKs.add(oldClassPK);
 			}
-
-			deleteClassPKs.add(oldClassPK);
 		}
 
 		long classNameId = _portal.getClassNameId(User.class);

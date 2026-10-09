@@ -118,14 +118,12 @@ public class LayoutUtilityPageEntryImportDisplayContext {
 		for (LayoutsImporterResultEntry layoutsImporterResultEntry :
 				layoutsImporterResultEntries) {
 
-			if (ArrayUtil.isNotEmpty(
+			if (ArrayUtil.isEmpty(
 					layoutsImporterResultEntry.getWarningMessages())) {
 
-				continue;
+				importedLayoutsImporterResultEntries.add(
+					layoutsImporterResultEntry);
 			}
-
-			importedLayoutsImporterResultEntries.add(
-				layoutsImporterResultEntry);
 		}
 
 		_importedLayoutsImporterResultEntries =
@@ -162,14 +160,12 @@ public class LayoutUtilityPageEntryImportDisplayContext {
 		for (LayoutsImporterResultEntry layoutsImporterResultEntry :
 				layoutsImporterResultEntries) {
 
-			if (ArrayUtil.isEmpty(
+			if (ArrayUtil.isNotEmpty(
 					layoutsImporterResultEntry.getWarningMessages())) {
 
-				continue;
+				layoutsImporterResultEntriesWithWarnings.add(
+					layoutsImporterResultEntry);
 			}
-
-			layoutsImporterResultEntriesWithWarnings.add(
-				layoutsImporterResultEntry);
 		}
 
 		_layoutsImporterResultEntriesWithWarnings =
@@ -244,13 +240,12 @@ public class LayoutUtilityPageEntryImportDisplayContext {
 				 List<LayoutsImporterResultEntry>> entrySet :
 					layoutsImporterResultEntryMap.entrySet()) {
 
-			if (entrySet.getKey() ==
+			if (entrySet.getKey() !=
 					LayoutsImporterResultEntry.Status.IMPORTED) {
 
-				continue;
+				notImportedLayoutsImporterResultEntries.addAll(
+					entrySet.getValue());
 			}
-
-			notImportedLayoutsImporterResultEntries.addAll(entrySet.getValue());
 		}
 
 		_notImportedLayoutsImporterResultEntries =

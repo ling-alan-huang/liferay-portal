@@ -194,11 +194,9 @@ public class DiffImpl implements com.liferay.diff.Diff {
 		}
 
 		for (; i < startPos; i++) {
-			if (i >= stringList.size()) {
-				continue;
+			if (i < stringList.size()) {
+				changedLines.add(stringList.get(i));
 			}
-
-			changedLines.add(stringList.get(i));
 		}
 
 		return changedLines;
@@ -460,12 +458,11 @@ public class DiffImpl implements com.liferay.diff.Diff {
 							difference.getDeletedStart() + 1;
 				}
 
-				if (difference.getAddedEnd() == Difference.NONE) {
-					continue;
+				if (difference.getAddedEnd() != Difference.NONE) {
+					addedChars +=
+						difference.getAddedEnd() - difference.getAddedStart() +
+							1;
 				}
-
-				addedChars +=
-					difference.getAddedEnd() - difference.getAddedStart() + 1;
 			}
 		}
 

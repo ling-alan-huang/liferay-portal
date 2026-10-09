@@ -227,20 +227,18 @@ public class JSPTagAttributesCheck extends BaseTagAttributesCheck {
 					attributeName, "<%= " + attributeValue + " %>");
 			}
 
-			if (!dataType.equals("java.lang.String") &&
-				!dataType.equals("String")) {
+			if (dataType.equals("java.lang.String") ||
+				dataType.equals("String")) {
 
-				continue;
+				attributeValue = StringUtil.replace(
+					attributeValue, new String[] {"=\"false\"", "=\"true\""},
+					new String[] {
+						"=\"<%= Boolean.FALSE.toString() %>\"",
+						"=\"<%= Boolean.TRUE.toString() %>\""
+					});
+
+				tag.putAttribute(attributeName, attributeValue);
 			}
-
-			attributeValue = StringUtil.replace(
-				attributeValue, new String[] {"=\"false\"", "=\"true\""},
-				new String[] {
-					"=\"<%= Boolean.FALSE.toString() %>\"",
-					"=\"<%= Boolean.TRUE.toString() %>\""
-				});
-
-			tag.putAttribute(attributeName, attributeValue);
 		}
 
 		return tag;

@@ -102,12 +102,10 @@ public class LiferaySchemaListProperties extends ComponentPropertiesImpl {
 
 				String operationPath = entry.getKey();
 
-				if (!operationPath.endsWith("{id}")) {
-					continue;
+				if (operationPath.endsWith("{id}")) {
+					schemaNames.add(
+						new SimpleNamedThing(entry.getKey(), entry.getValue()));
 				}
-
-				schemaNames.add(
-					new SimpleNamedThing(entry.getKey(), entry.getValue()));
 			}
 		}
 		catch (Exception exception) {

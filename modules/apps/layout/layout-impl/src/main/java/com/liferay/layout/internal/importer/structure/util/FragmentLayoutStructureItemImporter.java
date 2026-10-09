@@ -206,14 +206,12 @@ public class FragmentLayoutStructureItemImporter
 					layoutStructureItemImporterContext, fragmentConfigMap);
 
 				for (String key : commonStylesJSONObject.keySet()) {
-					if (Validator.isNotNull(
+					if (Validator.isNull(
 							configStylesJSONObject.getString(key))) {
 
-						continue;
+						configStylesJSONObject.put(
+							key, commonStylesJSONObject.get(key));
 					}
-
-					configStylesJSONObject.put(
-						key, commonStylesJSONObject.get(key));
 				}
 
 				JSONObject jsonObject = JSONUtil.put(
@@ -508,11 +506,9 @@ public class FragmentLayoutStructureItemImporter
 			List<String> namespaceKeys = new ArrayList<>();
 
 			for (String key : editableJSONObject.keySet()) {
-				if (!key.contains(_NAMESPACE_PLACEHOLDER)) {
-					continue;
+				if (key.contains(_NAMESPACE_PLACEHOLDER)) {
+					namespaceKeys.add(key);
 				}
-
-				namespaceKeys.add(key);
 			}
 
 			for (String key : namespaceKeys) {
@@ -775,34 +771,32 @@ public class FragmentLayoutStructureItemImporter
 			Map<String, Object> classPKReferenceMap =
 				(Map<String, Object>)entry.getValue();
 
-			if (!Objects.equals(
+			if (Objects.equals(
 					classPKReferenceMap.get("className"),
 					FileEntry.class.getName())) {
 
-				continue;
-			}
+				long fileEntryId = GetterUtil.getLong(
+					classPKReferenceMap.get("classPK"));
 
-			long fileEntryId = GetterUtil.getLong(
-				classPKReferenceMap.get("classPK"));
+				try {
+					FileEntry fileEntry =
+						_portletFileRepository.getPortletFileEntry(fileEntryId);
 
-			try {
-				FileEntry fileEntry =
-					_portletFileRepository.getPortletFileEntry(fileEntryId);
-
-				jsonObject.put(
-					entry.getKey(),
-					JSONUtil.put(
-						"fileEntryId", fileEntryId
-					).put(
-						"url",
-						DLURLHelperUtil.getDownloadURL(
-							fileEntry, fileEntry.getFileVersion(), null,
-							StringPool.BLANK, false, false)
-					));
-			}
-			catch (PortalException portalException) {
-				if (_log.isWarnEnabled()) {
-					_log.warn("Unable to get file entry", portalException);
+					jsonObject.put(
+						entry.getKey(),
+						JSONUtil.put(
+							"fileEntryId", fileEntryId
+						).put(
+							"url",
+							DLURLHelperUtil.getDownloadURL(
+								fileEntry, fileEntry.getFileVersion(), null,
+								StringPool.BLANK, false, false)
+						));
+				}
+				catch (PortalException portalException) {
+					if (_log.isWarnEnabled()) {
+						_log.warn("Unable to get file entry", portalException);
+					}
 				}
 			}
 		}

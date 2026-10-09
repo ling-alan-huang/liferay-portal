@@ -3311,14 +3311,12 @@ public class JournalArticleLocalServiceTest {
 					value.getString(LocaleUtil.SPAIN));
 			}
 
-			if (ListUtil.isEmpty(
+			if (ListUtil.isNotEmpty(
 					ddmFormFieldValue.getNestedDDMFormFieldValues())) {
 
-				continue;
+				_validateDDMFormFieldValues(
+					ddmFormFieldValue.getNestedDDMFormFieldValues());
 			}
-
-			_validateDDMFormFieldValues(
-				ddmFormFieldValue.getNestedDDMFormFieldValues());
 		}
 	}
 

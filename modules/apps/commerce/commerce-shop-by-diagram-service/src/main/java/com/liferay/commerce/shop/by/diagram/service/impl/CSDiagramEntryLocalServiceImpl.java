@@ -103,16 +103,14 @@ public class CSDiagramEntryLocalServiceImpl
 				QueryUtil.ALL_POS);
 
 		for (CSDiagramPin csDiagramPin : csDiagramPins) {
-			if ((csDiagramEntry.getCPDefinitionId() !=
-					csDiagramPin.getCPDefinitionId()) ||
-				!Objects.equals(
+			if ((csDiagramEntry.getCPDefinitionId() ==
+					csDiagramPin.getCPDefinitionId()) &&
+				Objects.equals(
 					csDiagramEntry.getSequence(), csDiagramPin.getSequence())) {
 
-				continue;
+				_csDiagramPinLocalService.deleteCSDiagramPin(
+					csDiagramPin.getCSDiagramPinId());
 			}
-
-			_csDiagramPinLocalService.deleteCSDiagramPin(
-				csDiagramPin.getCSDiagramPinId());
 		}
 
 		_expandoRowLocalService.deleteRows(

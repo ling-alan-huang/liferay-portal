@@ -296,16 +296,14 @@ public class LayoutSetPrototypeStagedModelDataHandlerTest
 					String layoutPrototypeUuid = element.attributeValue(
 						"layout-prototype-uuid");
 
-					if (Validator.isNull(layoutPrototypeUuid)) {
-						continue;
+					if (Validator.isNotNull(layoutPrototypeUuid)) {
+						String path = element.attributeValue("path");
+
+						Layout layout = (Layout)portletDataContext.fromXML(
+							zipReader.getEntryAsString(path));
+
+						importedLayouts.add(layout);
 					}
-
-					String path = element.attributeValue("path");
-
-					Layout layout = (Layout)portletDataContext.fromXML(
-						zipReader.getEntryAsString(path));
-
-					importedLayouts.add(layout);
 				}
 
 				Assert.assertEquals(

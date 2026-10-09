@@ -110,21 +110,17 @@ public class LibraryReferenceTest {
 
 				String moduleName = moduleSourceDir.substring(x + 1, y - 1);
 
-				if (modules.contains(moduleName)) {
-					continue;
+				if (!modules.contains(moduleName)) {
+					missingModules.add(moduleName);
 				}
-
-				missingModules.add(moduleName);
 			}
 
-			if (missingModules.isEmpty()) {
-				continue;
+			if (!missingModules.isEmpty()) {
+				sb.append(entry.getKey());
+				sb.append(" is missing orderEntry elements for modules: ");
+				sb.append(missingModules);
+				sb.append(StringPool.NEW_LINE);
 			}
-
-			sb.append(entry.getKey());
-			sb.append(" is missing orderEntry elements for modules: ");
-			sb.append(missingModules);
-			sb.append(StringPool.NEW_LINE);
 		}
 
 		Assert.assertEquals(sb.toString(), 0, sb.index());
@@ -349,12 +345,10 @@ public class LibraryReferenceTest {
 			for (int i = 0; i < nodeList.getLength(); i++) {
 				Element element = (Element)nodeList.item(i);
 
-				if (!Objects.equals(element.getAttribute("type"), "module")) {
-					continue;
+				if (Objects.equals(element.getAttribute("type"), "module")) {
+					intelliJModuleSourceModules.add(
+						element.getAttribute("module-name"));
 				}
-
-				intelliJModuleSourceModules.add(
-					element.getAttribute("module-name"));
 			}
 
 			_intelliJModuleSourceModules.put(
@@ -514,13 +508,11 @@ public class LibraryReferenceTest {
 
 			String location = locationNode.getTextContent();
 
-			if (!location.startsWith(_MODULES_DIR_NAME + CharPool.SLASH) ||
-				!location.endsWith(CharPool.SLASH + _SRC_JAVA_DIR_NAME)) {
+			if (location.startsWith(_MODULES_DIR_NAME + CharPool.SLASH) &&
+				location.endsWith(CharPool.SLASH + _SRC_JAVA_DIR_NAME)) {
 
-				continue;
+				_netBeansModuleSourceDirs.add(location);
 			}
-
-			_netBeansModuleSourceDirs.add(location);
 		}
 	}
 
@@ -557,11 +549,9 @@ public class LibraryReferenceTest {
 
 			jars.add(jar);
 
-			if (Validator.isNull(version)) {
-				continue;
+			if (Validator.isNotNull(version)) {
+				_versionsJarsVersions.put(jar, version);
 			}
-
-			_versionsJarsVersions.put(jar, version);
 		}
 	}
 
@@ -578,11 +568,9 @@ public class LibraryReferenceTest {
 			String line = null;
 
 			while ((line = unsyncBufferedReader.readLine()) != null) {
-				if (Validator.isNull(line)) {
-					continue;
+				if (Validator.isNotNull(line)) {
+					lines.add(line);
 				}
-
-				lines.add(line);
 			}
 		}
 	}

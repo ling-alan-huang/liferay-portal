@@ -73,16 +73,17 @@ public class UnusedParameterCheck extends BaseCheck {
 		for (String parameterName :
 				getParameterNames(constructorOrMethodDetailAST)) {
 
-			if (names.contains(parameterName) ||
-				_isReferencedMethod(
-					classDetailAST, constructorOrMethodDetailAST)) {
-
+			if (names.contains(parameterName)) {
 				continue;
 			}
 
-			log(
-				constructorOrMethodDetailAST, _MSG_UNUSED_PARAMETER,
-				parameterName);
+			if (!_isReferencedMethod(
+					classDetailAST, constructorOrMethodDetailAST)) {
+
+				log(
+					constructorOrMethodDetailAST, _MSG_UNUSED_PARAMETER,
+					parameterName);
+			}
 		}
 	}
 

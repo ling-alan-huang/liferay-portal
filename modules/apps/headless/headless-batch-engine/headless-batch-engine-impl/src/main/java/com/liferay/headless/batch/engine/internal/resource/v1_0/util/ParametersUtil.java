@@ -49,11 +49,9 @@ public class ParametersUtil {
 
 			List<String> values = entry.getValue();
 
-			if (values.isEmpty()) {
-				continue;
+			if (!values.isEmpty()) {
+				parameters.put(key, values.get(0));
 			}
-
-			parameters.put(key, values.get(0));
 		}
 
 		return parameters;

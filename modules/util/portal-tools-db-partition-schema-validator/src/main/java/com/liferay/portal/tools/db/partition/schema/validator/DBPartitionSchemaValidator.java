@@ -269,24 +269,22 @@ public class DBPartitionSchemaValidator {
 					continue;
 				}
 
-				if (!_hasColumn(partitionName, tableName, "companyId")) {
-					continue;
-				}
+				if (_hasColumn(partitionName, tableName, "companyId")) {
+					int count = _getInvalidRecordsCount(
+						companyId, partitionName, tableName, defaultPartition);
 
-				int count = _getInvalidRecordsCount(
-					companyId, partitionName, tableName, defaultPartition);
+					if (count > 0) {
+						System.out.println(
+							"Table " + tableName + " contains " + count +
+								" records with an invalid company ID");
 
-				if (count > 0) {
-					System.out.println(
-						"Table " + tableName + " contains " + count +
-							" records with an invalid company ID");
-
-					validPartition = false;
-				}
-				else if (_debug) {
-					System.out.println(
-						"Table " + tableName + " does not contain invalid " +
-							"records");
+						validPartition = false;
+					}
+					else if (_debug) {
+						System.out.println(
+							"Table " + tableName + " does not contain " +
+								"invalid records");
+					}
 				}
 			}
 

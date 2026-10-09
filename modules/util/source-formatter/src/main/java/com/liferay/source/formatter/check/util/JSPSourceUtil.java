@@ -58,11 +58,9 @@ public class JSPSourceUtil {
 			fileName = StringUtil.replace(
 				fileName, CharPool.SLASH, CharPool.BACK_SLASH);
 
-			if (fileNames.contains(fileName)) {
-				continue;
+			if (!fileNames.contains(fileName)) {
+				fileNames.add(fileName);
 			}
-
-			fileNames.add(fileName);
 		}
 
 		return addIncludedAndReferencedFileNames(
@@ -215,15 +213,13 @@ public class JSPSourceUtil {
 			includeFileName = buildFullPathIncludeFileName(
 				fileName, includeFileName, contentsMap);
 
-			if ((!includeFileName.endsWith("jsp") &&
-				 !includeFileName.endsWith("jspf") &&
-				 !includeFileName.endsWith("tag")) ||
-				fileNames.contains(includeFileName)) {
+			if ((includeFileName.endsWith("jsp") ||
+				 includeFileName.endsWith("jspf") ||
+				 includeFileName.endsWith("tag")) &&
+				!fileNames.contains(includeFileName)) {
 
-				continue;
+				includeFileNames.add(includeFileName);
 			}
-
-			includeFileNames.add(includeFileName);
 		}
 
 		return includeFileNames;

@@ -62,12 +62,10 @@ public class CommerceCurrencyModelDocumentContributor
 			String commerceCurrencyDefaultLanguageId =
 				_localization.getDefaultLanguageId(commerceCurrency.getName());
 
-			if (!languageId.equals(commerceCurrencyDefaultLanguageId)) {
-				continue;
+			if (languageId.equals(commerceCurrencyDefaultLanguageId)) {
+				document.addText(Field.NAME, name);
+				document.addText("defaultLanguageId", languageId);
 			}
-
-			document.addText(Field.NAME, name);
-			document.addText("defaultLanguageId", languageId);
 		}
 	}
 

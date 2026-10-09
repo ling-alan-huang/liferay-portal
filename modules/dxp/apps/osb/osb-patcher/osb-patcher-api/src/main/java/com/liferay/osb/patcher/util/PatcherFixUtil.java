@@ -194,13 +194,11 @@ public class PatcherFixUtil {
 		for (PatcherFix patcherFix : patcherFixes) {
 			List<String> tickets = PatcherUtil.getTickets(patcherFix.getName());
 
-			if (longestTicketSize >= tickets.size()) {
-				continue;
+			if (longestTicketSize < tickets.size()) {
+				longestTicketSize = tickets.size();
+
+				longestTicketPatcherFix = patcherFix;
 			}
-
-			longestTicketSize = tickets.size();
-
-			longestTicketPatcherFix = patcherFix;
 		}
 
 		return longestTicketPatcherFix;
@@ -342,11 +340,9 @@ public class PatcherFixUtil {
 		List<PatcherFix> patcherFixes = toPatcherFixes(fixIds);
 
 		for (PatcherFix patcherFix : patcherFixes) {
-			if (patcherFix.getStatus() != patcherFixStatus) {
-				continue;
+			if (patcherFix.getStatus() == patcherFixStatus) {
+				patcherFixIds.add(patcherFix.getPatcherFixId());
 			}
-
-			patcherFixIds.add(patcherFix.getPatcherFixId());
 		}
 
 		if (patcherFixIds.size() > 1) {

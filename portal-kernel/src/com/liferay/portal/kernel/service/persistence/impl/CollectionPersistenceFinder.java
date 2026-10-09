@@ -55,11 +55,9 @@ public class CollectionPersistenceFinder
 		List<Integer> arrayableIndexes = new ArrayList<>();
 
 		for (int i = 0; i < finderColumns.length; i++) {
-			if (!(finderColumns[i] instanceof ArrayableFinderColumn)) {
-				continue;
+			if (finderColumns[i] instanceof ArrayableFinderColumn) {
+				arrayableIndexes.add(i);
 			}
-
-			arrayableIndexes.add(i);
 		}
 
 		if (arrayableIndexes.isEmpty()) {

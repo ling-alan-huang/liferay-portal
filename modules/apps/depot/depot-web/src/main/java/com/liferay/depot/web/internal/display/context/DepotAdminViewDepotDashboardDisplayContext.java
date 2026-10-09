@@ -79,13 +79,11 @@ public class DepotAdminViewDepotDashboardDisplayContext {
 			PanelCategory panelCategory =
 				PanelCategoryRegistryUtil.getPanelCategory(panelCategoryKey);
 
-			if ((panelCategory == null) ||
-				!panelCategory.isShow(_permissionChecker, _group)) {
+			if ((panelCategory != null) &&
+				panelCategory.isShow(_permissionChecker, _group)) {
 
-				continue;
+				panelCategories.add(panelCategory);
 			}
-
-			panelCategories.add(panelCategory);
 		}
 
 		return panelCategories;

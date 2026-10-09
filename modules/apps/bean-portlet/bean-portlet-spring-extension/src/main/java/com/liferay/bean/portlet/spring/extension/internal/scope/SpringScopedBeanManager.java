@@ -102,22 +102,18 @@ public class SpringScopedBeanManager {
 
 				Object value = portletSession.getAttribute(name);
 
-				if (!(value instanceof ScopedBean)) {
-					continue;
+				if (value instanceof ScopedBean) {
+					SpringScopedBean springScopedBean = (SpringScopedBean)value;
+
+					if (Objects.equals(
+							springScopedBean.getScopeName(),
+							RedirectScoped.class.getSimpleName())) {
+
+						springScopedBean.destroy();
+
+						portletSession.removeAttribute(name);
+					}
 				}
-
-				SpringScopedBean springScopedBean = (SpringScopedBean)value;
-
-				if (!Objects.equals(
-						springScopedBean.getScopeName(),
-						RedirectScoped.class.getSimpleName())) {
-
-					continue;
-				}
-
-				springScopedBean.destroy();
-
-				portletSession.removeAttribute(name);
 			}
 		}
 
@@ -126,19 +122,17 @@ public class SpringScopedBeanManager {
 		while (enumeration.hasMoreElements()) {
 			String name = enumeration.nextElement();
 
-			if (!name.startsWith(_ATTRIBUTE_NAME_PREFIX)) {
-				continue;
+			if (name.startsWith(_ATTRIBUTE_NAME_PREFIX)) {
+				Object value = _portletRequest.getAttribute(name);
+
+				if ((value != null) && (value instanceof ScopedBean)) {
+					ScopedBean<?> scopedBean = (ScopedBean)value;
+
+					scopedBean.destroy();
+				}
+
+				_portletRequest.removeAttribute(name);
 			}
-
-			Object value = _portletRequest.getAttribute(name);
-
-			if ((value != null) && (value instanceof ScopedBean)) {
-				ScopedBean<?> scopedBean = (ScopedBean)value;
-
-				scopedBean.destroy();
-			}
-
-			_portletRequest.removeAttribute(name);
 		}
 	}
 

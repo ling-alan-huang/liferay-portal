@@ -68,14 +68,12 @@ public class JavaSQLStatementCheck extends BaseFileCheck {
 						fileName, methodCall, sqlStatementParts, lineNumber);
 				}
 
-				if (!methodName.equals("connection.prepareStatement") &&
-					!methodName.startsWith("AutoBatchPreparedStatementUtil")) {
+				if (methodName.equals("connection.prepareStatement") ||
+					methodName.startsWith("AutoBatchPreparedStatementUtil")) {
 
-					continue;
+					_checkMissingParameterizedStatement(
+						fileName, sqlStatementParts, lineNumber);
 				}
-
-				_checkMissingParameterizedStatement(
-					fileName, sqlStatementParts, lineNumber);
 			}
 		}
 
@@ -243,17 +241,15 @@ public class JavaSQLStatementCheck extends BaseFileCheck {
 
 			String linePart = parameters.substring(0, x);
 
-			if ((ToolsUtil.getLevel(linePart, "(", ")") != 0) ||
-				(ToolsUtil.getLevel(linePart, "{", "}") != 0)) {
+			if ((ToolsUtil.getLevel(linePart, "(", ")") == 0) &&
+				(ToolsUtil.getLevel(linePart, "{", "}") == 0)) {
 
-				continue;
+				parametersList.add(StringUtil.trim(linePart));
+
+				parameters = parameters.substring(x + 1);
+
+				x = -1;
 			}
-
-			parametersList.add(StringUtil.trim(linePart));
-
-			parameters = parameters.substring(x + 1);
-
-			x = -1;
 		}
 	}
 

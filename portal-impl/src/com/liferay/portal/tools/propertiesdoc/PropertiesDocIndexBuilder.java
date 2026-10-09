@@ -58,14 +58,12 @@ public class PropertiesDocIndexBuilder {
 		for (File file : files) {
 			String fileName = file.getName();
 
-			if (!fileName.endsWith(".properties.html")) {
-				continue;
+			if (fileName.endsWith(".properties.html")) {
+				String propertiesHTMLFileName = fileName.substring(
+					0, fileName.length() - 5);
+
+				propertiesHTMLFileNames.add(propertiesHTMLFileName);
 			}
-
-			String propertiesHTMLFileName = fileName.substring(
-				0, fileName.length() - 5);
-
-			propertiesHTMLFileNames.add(propertiesHTMLFileName);
 		}
 
 		if (propertiesHTMLFileNames.isEmpty()) {

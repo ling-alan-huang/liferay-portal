@@ -196,11 +196,9 @@ public class FileUtil {
 			File[] files = baseDir.listFiles();
 
 			for (File file : files) {
-				if (!file.isDirectory() && !file.isFile()) {
-					continue;
+				if (file.isDirectory() || file.isFile()) {
+					fileNames.add(file.getName());
 				}
-
-				fileNames.add(file.getName());
 			}
 		}
 

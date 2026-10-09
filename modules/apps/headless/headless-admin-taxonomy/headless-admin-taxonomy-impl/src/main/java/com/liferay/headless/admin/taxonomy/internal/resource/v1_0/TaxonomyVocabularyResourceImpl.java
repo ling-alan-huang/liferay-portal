@@ -963,14 +963,12 @@ public class TaxonomyVocabularyResourceImpl
 			Long classTypePK = _getClassTypePK(
 				classNameId, assetType.getSubtype(), groupId);
 
-			if (classTypePK == null) {
-				continue;
+			if (classTypePK != null) {
+				classTypePKs[i] = classTypePK;
+
+				requiredClassNameIds[i] = GetterUtil.getBoolean(
+					assetType.getRequired());
 			}
-
-			classTypePKs[i] = classTypePK;
-
-			requiredClassNameIds[i] = GetterUtil.getBoolean(
-				assetType.getRequired());
 		}
 
 		assetVocabularySettingsHelper.setClassNameIdsAndClassTypePKs(

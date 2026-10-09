@@ -711,11 +711,9 @@ public class DLFileEntryFinderImpl
 		for (int i = 0; i < ddmStructureIds.length; i++) {
 			sb.append("DDMStructureLink.structureId = ?");
 
-			if ((i + 1) == ddmStructureIds.length) {
-				continue;
+			if ((i + 1) != ddmStructureIds.length) {
+				sb.append(WHERE_OR);
 			}
-
-			sb.append(WHERE_OR);
 		}
 
 		sb.append(StringPool.CLOSE_PARENTHESIS);
@@ -803,11 +801,9 @@ public class DLFileEntryFinderImpl
 			sb.append(".folderId = ");
 			sb.append(folderIds.get(i));
 
-			if ((i + 1) == folderIds.size()) {
-				continue;
+			if ((i + 1) != folderIds.size()) {
+				sb.append(WHERE_OR);
 			}
-
-			sb.append(WHERE_OR);
 		}
 
 		sb.append(StringPool.CLOSE_PARENTHESIS);
@@ -826,11 +822,9 @@ public class DLFileEntryFinderImpl
 			sb.append(tableName);
 			sb.append(".mimeType = ?");
 
-			if ((i + 1) == mimeTypes.length) {
-				continue;
+			if ((i + 1) != mimeTypes.length) {
+				sb.append(WHERE_OR);
 			}
-
-			sb.append(WHERE_OR);
 		}
 
 		return sb.toString();
@@ -851,11 +845,9 @@ public class DLFileEntryFinderImpl
 			sb.append(tableName);
 			sb.append(".repositoryId = ? ");
 
-			if ((i + 1) == repositoryIds.size()) {
-				continue;
+			if ((i + 1) != repositoryIds.size()) {
+				sb.append(WHERE_OR);
 			}
-
-			sb.append(WHERE_OR);
 		}
 
 		sb.append(StringPool.CLOSE_PARENTHESIS);

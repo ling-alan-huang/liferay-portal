@@ -286,12 +286,10 @@ public class LocalProcessLauncher {
 					shutdownCode = ShutdownHook.UNKNOWN_CODE;
 				}
 
-				if (shutdownCode == 0) {
-					continue;
+				if (shutdownCode != 0) {
+					_detach = _shutdownHook.shutdown(
+						shutdownCode, shutdownThrowable);
 				}
-
-				_detach = _shutdownHook.shutdown(
-					shutdownCode, shutdownThrowable);
 			}
 
 			AtomicReference<HeartbeatThread> heartBeatThreadReference =

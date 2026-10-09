@@ -165,11 +165,9 @@ public class MailMessageListener extends BaseMessageListener {
 			InternetAddress filteredInternetAddress = filterInternetAddress(
 				internetAddress);
 
-			if (filteredInternetAddress == null) {
-				continue;
+			if (filteredInternetAddress != null) {
+				filteredInternetAddresses.add(filteredInternetAddress);
 			}
-
-			filteredInternetAddresses.add(filteredInternetAddress);
 		}
 
 		return filteredInternetAddresses.toArray(new InternetAddress[0]);

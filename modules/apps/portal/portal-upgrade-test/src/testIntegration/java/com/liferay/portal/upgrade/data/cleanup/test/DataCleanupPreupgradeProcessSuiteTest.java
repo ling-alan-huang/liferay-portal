@@ -155,11 +155,9 @@ public class DataCleanupPreupgradeProcessSuiteTest
 			for (LogEntry logEntry : logCapture.getLogEntries()) {
 				String message = logEntry.getMessage();
 
-				if (!message.contains("Skipping blacklisted")) {
-					continue;
+				if (message.contains("Skipping blacklisted")) {
+					logEntries.add(logEntry);
 				}
-
-				logEntries.add(logEntry);
 			}
 
 			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());

@@ -69,11 +69,9 @@ public class GradleIndentationCheck extends BaseFileCheck {
 					tabCount = _getTabCount(line, insideQuotes, tabCount);
 				}
 
-				if (line.indexOf(_getQuoteString(line)) == -1) {
-					continue;
+				if (line.indexOf(_getQuoteString(line)) != -1) {
+					insideQuotes = !insideQuotes;
 				}
-
-				insideQuotes = !insideQuotes;
 			}
 		}
 

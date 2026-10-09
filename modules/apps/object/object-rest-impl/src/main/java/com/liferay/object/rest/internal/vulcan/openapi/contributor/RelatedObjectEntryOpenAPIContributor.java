@@ -79,14 +79,12 @@ public class RelatedObjectEntryOpenAPIContributor
 
 			String path = openAPIContext.getPath();
 
-			if (!path.contains(
+			if (path.contains(
 					jaxRsApplicationDescriptor.getApplicationPath())) {
 
-				continue;
+				systemObjectDefinitionManagerMap.put(
+					systemObjectDefinition, systemObjectDefinitionManager);
 			}
-
-			systemObjectDefinitionManagerMap.put(
-				systemObjectDefinition, systemObjectDefinitionManager);
 		}
 
 		for (Map.Entry<ObjectDefinition, SystemObjectDefinitionManager> entry :

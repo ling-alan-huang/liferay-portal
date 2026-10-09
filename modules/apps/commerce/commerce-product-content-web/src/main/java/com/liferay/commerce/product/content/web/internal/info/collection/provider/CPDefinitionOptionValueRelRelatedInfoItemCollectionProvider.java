@@ -208,11 +208,9 @@ public class CPDefinitionOptionValueRelRelatedInfoItemCollectionProvider
 					assetVocabulary.getVocabularyId(), QueryUtil.ALL_POS,
 					QueryUtil.ALL_POS, null);
 
-			if (companyAssetCategories.isEmpty()) {
-				continue;
+			if (!companyAssetCategories.isEmpty()) {
+				assetCategories.addAll(companyAssetCategories);
 			}
-
-			assetCategories.addAll(companyAssetCategories);
 		}
 
 		return assetCategories;

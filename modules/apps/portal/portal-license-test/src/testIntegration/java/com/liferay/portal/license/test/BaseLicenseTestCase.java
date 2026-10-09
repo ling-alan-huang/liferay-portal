@@ -281,13 +281,11 @@ public abstract class BaseLicenseTestCase implements Serializable {
 		for (Field field : _lifecycleActionClass.getDeclaredFields()) {
 			field.setAccessible(true);
 
-			if (Modifier.isFinal(field.getModifiers()) ||
-				!Objects.equals(field.getType(), long.class)) {
+			if (!Modifier.isFinal(field.getModifiers()) &&
+				Objects.equals(field.getType(), long.class)) {
 
-				continue;
+				field.set(_lifecycleAction, 0L);
 			}
-
-			field.set(_lifecycleAction, 0L);
 		}
 	}
 
@@ -357,38 +355,35 @@ public abstract class BaseLicenseTestCase implements Serializable {
 					for (Field field :
 							_lifecycleActionClass.getDeclaredFields()) {
 
-						if (!Map.class.isAssignableFrom(field.getType())) {
-							continue;
-						}
+						if (Map.class.isAssignableFrom(field.getType())) {
+							field.setAccessible(true);
 
-						field.setAccessible(true);
+							if (!Modifier.isFinal(field.getModifiers())) {
+								Object bundleData = field.get(_lifecycleAction);
 
-						if (!Modifier.isFinal(field.getModifiers())) {
-							Object bundleData = field.get(_lifecycleAction);
-
-							if (bundleData != null) {
-								method.invoke(
-									_lifecycleAction,
-									SystemBundleUtil.getBundleContext(),
-									bundleData,
-									ModuleFrameworkUtil.getFramework());
-							}
-						}
-						else {
-							Map<?, ?> map = (Map<?, ?>)field.get(
-								_lifecycleAction);
-
-							for (Object object : map.values()) {
-								if (!Map.class.isAssignableFrom(
-										object.getClass())) {
-
-									continue;
+								if (bundleData != null) {
+									method.invoke(
+										_lifecycleAction,
+										SystemBundleUtil.getBundleContext(),
+										bundleData,
+										ModuleFrameworkUtil.getFramework());
 								}
+							}
+							else {
+								Map<?, ?> map = (Map<?, ?>)field.get(
+									_lifecycleAction);
 
-								method.invoke(
-									_lifecycleAction,
-									SystemBundleUtil.getBundleContext(), object,
-									ModuleFrameworkUtil.getFramework());
+								for (Object object : map.values()) {
+									if (Map.class.isAssignableFrom(
+											object.getClass())) {
+
+										method.invoke(
+											_lifecycleAction,
+											SystemBundleUtil.getBundleContext(),
+											object,
+											ModuleFrameworkUtil.getFramework());
+									}
+								}
 							}
 						}
 					}
@@ -687,11 +682,9 @@ public abstract class BaseLicenseTestCase implements Serializable {
 		List<LogEntry> logEntries = new ArrayList<>();
 
 		for (LogEntry logEntry : logCapture.getLogEntries()) {
-			if (!Objects.equals(priority, logEntry.getPriority())) {
-				continue;
+			if (Objects.equals(priority, logEntry.getPriority())) {
+				logEntries.add(logEntry);
 			}
-
-			logEntries.add(logEntry);
 		}
 
 		if (!logEntries.isEmpty()) {

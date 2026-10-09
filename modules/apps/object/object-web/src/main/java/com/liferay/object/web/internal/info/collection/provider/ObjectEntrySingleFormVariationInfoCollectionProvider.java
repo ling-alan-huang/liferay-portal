@@ -307,13 +307,11 @@ public class ObjectEntrySingleFormVariationInfoCollectionProvider
 			String[] assetCategoryIdsArray = configuration.get(
 				String.valueOf(assetVocabulary.getVocabularyId()));
 
-			if ((assetCategoryIdsArray == null) ||
-				StringUtil.equals(assetCategoryIdsArray[0], "null")) {
+			if ((assetCategoryIdsArray != null) &&
+				!StringUtil.equals(assetCategoryIdsArray[0], "null")) {
 
-				continue;
+				Collections.addAll(assetCategoryIds, assetCategoryIdsArray);
 			}
-
-			Collections.addAll(assetCategoryIds, assetCategoryIdsArray);
 		}
 
 		searchContext.setAssetCategoryIds(
@@ -736,26 +734,25 @@ public class ObjectEntrySingleFormVariationInfoCollectionProvider
 							assetCategory.getName()),
 						String.valueOf(assetCategory.getCategoryId())));
 
-			if (optionInfoFieldTypes.isEmpty()) {
-				continue;
+			if (!optionInfoFieldTypes.isEmpty()) {
+				fieldSetEntries.add(
+					InfoField.builder(
+					).infoFieldType(
+						MultiselectInfoFieldType.INSTANCE
+					).namespace(
+						StringPool.BLANK
+					).name(
+						String.valueOf(assetVocabulary.getVocabularyId())
+					).attribute(
+						MultiselectInfoFieldType.OPTIONS, optionInfoFieldTypes
+					).labelInfoLocalizedValue(
+						InfoLocalizedValue.singleValue(
+							assetVocabulary.getTitle(
+								serviceContext.getLocale()))
+					).localizable(
+						true
+					).build());
 			}
-
-			fieldSetEntries.add(
-				InfoField.builder(
-				).infoFieldType(
-					MultiselectInfoFieldType.INSTANCE
-				).namespace(
-					StringPool.BLANK
-				).name(
-					String.valueOf(assetVocabulary.getVocabularyId())
-				).attribute(
-					MultiselectInfoFieldType.OPTIONS, optionInfoFieldTypes
-				).labelInfoLocalizedValue(
-					InfoLocalizedValue.singleValue(
-						assetVocabulary.getTitle(serviceContext.getLocale()))
-				).localizable(
-					true
-				).build());
 		}
 
 		return fieldSetEntries;

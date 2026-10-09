@@ -110,15 +110,13 @@ public class ShippedCommerceOrderStatusImpl implements CommerceOrderStatus {
 		for (CommerceOrderItem shippedCommerceOrderItem :
 				commerceOrder.getCommerceOrderItems()) {
 
-			if (!BigDecimalUtil.lt(
+			if (BigDecimalUtil.lt(
 					shippedCommerceOrderItem.getShippedQuantity(),
-					shippedCommerceOrderItem.getQuantity()) ||
-				!shippedCommerceOrderItem.isShippable()) {
+					shippedCommerceOrderItem.getQuantity()) &&
+				shippedCommerceOrderItem.isShippable()) {
 
-				continue;
+				allOrderItemsShipped = false;
 			}
-
-			allOrderItemsShipped = false;
 		}
 
 		if (((commerceOrder.getOrderStatus() ==

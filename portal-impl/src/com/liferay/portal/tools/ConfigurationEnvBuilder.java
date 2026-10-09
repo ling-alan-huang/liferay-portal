@@ -132,11 +132,9 @@ public class ConfigurationEnvBuilder {
 			ObjectDef objectDef = _createObjectDef(
 				realPath, configurationFilePath);
 
-			if (objectDef == null) {
-				continue;
+			if (objectDef != null) {
+				objectDefs.add(objectDef);
 			}
-
-			objectDefs.add(objectDef);
 		}
 
 		return _postProcessObjectDefs(objectDefs);

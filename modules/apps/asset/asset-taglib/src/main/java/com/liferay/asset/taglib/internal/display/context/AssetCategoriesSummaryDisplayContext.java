@@ -96,14 +96,12 @@ public class AssetCategoriesSummaryDisplayContext {
 		List<AssetCategory> filteredCategories = new ArrayList<>();
 
 		for (AssetCategory category : categories) {
-			if ((category.getVocabularyId() != vocabulary.getVocabularyId()) ||
-				!ArrayUtil.contains(
+			if ((category.getVocabularyId() == vocabulary.getVocabularyId()) &&
+				ArrayUtil.contains(
 					_visibleTypes, vocabulary.getVisibilityType())) {
 
-				continue;
+				filteredCategories.add(category);
 			}
-
-			filteredCategories.add(category);
 		}
 
 		return filteredCategories;

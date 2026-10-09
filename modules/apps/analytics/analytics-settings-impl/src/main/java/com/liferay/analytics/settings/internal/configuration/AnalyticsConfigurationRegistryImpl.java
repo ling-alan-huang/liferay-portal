@@ -113,25 +113,24 @@ public class AnalyticsConfigurationRegistryImpl
 			_analyticsConfigurationManagedServiceFactory.getCompanyIdsMap();
 
 		for (Map.Entry<String, Long> entry : companyIdsMap.entrySet()) {
-			if (!Objects.equals(entry.getValue(), companyId)) {
-				continue;
-			}
+			if (Objects.equals(entry.getValue(), companyId)) {
+				try {
+					Configuration configuration =
+						_configurationAdmin.getConfiguration(
+							entry.getKey(), StringPool.QUESTION);
 
-			try {
-				Configuration configuration =
-					_configurationAdmin.getConfiguration(
-						entry.getKey(), StringPool.QUESTION);
-
-				return configuration.getProperties();
-			}
-			catch (Exception exception) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(
-						"Unable to get configuration for company " + companyId,
-						exception);
+					return configuration.getProperties();
 				}
+				catch (Exception exception) {
+					if (_log.isWarnEnabled()) {
+						_log.warn(
+							"Unable to get configuration for company " +
+								companyId,
+							exception);
+					}
 
-				break;
+					break;
+				}
 			}
 		}
 

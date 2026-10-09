@@ -862,13 +862,11 @@ public class JUnitBatchTestClassGroup extends BatchTestClassGroup {
 					this, javaTestClassFile);
 			}
 
-			if ((testClass == null) || testClass.isIgnored() ||
-				!testClass.hasTestClassMethods()) {
+			if ((testClass != null) && !testClass.isIgnored() &&
+				testClass.hasTestClassMethods()) {
 
-				continue;
+				addTestClass(testClass);
 			}
-
-			addTestClass(testClass);
 		}
 
 		long duration = System.currentTimeMillis() - start;
@@ -922,13 +920,11 @@ public class JUnitBatchTestClassGroup extends BatchTestClassGroup {
 			TestClass testClass = TestClassFactory.newTestClass(
 				batchTestClassGroup, javaTestClassFile);
 
-			if ((testClass == null) || testClass.isIgnored() ||
-				!testClass.hasTestClassMethods()) {
+			if ((testClass != null) && !testClass.isIgnored() &&
+				testClass.hasTestClassMethods()) {
 
-				continue;
+				addTestClass(testClass);
 			}
-
-			addTestClass(testClass);
 		}
 
 		long duration = System.currentTimeMillis() - start;

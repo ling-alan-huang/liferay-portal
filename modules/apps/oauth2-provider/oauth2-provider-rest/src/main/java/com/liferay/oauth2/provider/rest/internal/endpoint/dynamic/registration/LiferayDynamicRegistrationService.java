@@ -711,11 +711,9 @@ public class LiferayDynamicRegistrationService
 				responseGrantType = OAuthConstants.AUTHORIZATION_CODE_GRANT;
 			}
 
-			if (responseGrantTypes.contains(responseGrantType)) {
-				continue;
+			if (!responseGrantTypes.contains(responseGrantType)) {
+				responseGrantTypes.add(responseGrantType);
 			}
-
-			responseGrantTypes.add(responseGrantType);
 		}
 
 		return responseGrantTypes;
@@ -772,15 +770,13 @@ public class LiferayDynamicRegistrationService
 
 		if (responseTypes != null) {
 			for (String responseType : responseTypes) {
-				if (allowedResponseTypes.contains(responseType)) {
-					continue;
+				if (!allowedResponseTypes.contains(responseType)) {
+					OAuth2ErrorUtil.reportInvalidRequestError(
+						"Invalid response type " + responseType,
+						OAuth2ProviderRESTEndpointConstants.
+							ERROR_INVALID_CLIENT_METADATA,
+						Response.Status.BAD_REQUEST);
 				}
-
-				OAuth2ErrorUtil.reportInvalidRequestError(
-					"Invalid response type " + responseType,
-					OAuth2ProviderRESTEndpointConstants.
-						ERROR_INVALID_CLIENT_METADATA,
-					Response.Status.BAD_REQUEST);
 			}
 		}
 
@@ -806,15 +802,13 @@ public class LiferayDynamicRegistrationService
 		}
 
 		for (String requestedValue : requestedValues) {
-			if (allowedValuesSet.contains(requestedValue)) {
-				continue;
+			if (!allowedValuesSet.contains(requestedValue)) {
+				OAuth2ErrorUtil.reportInvalidRequestError(
+					StringBundler.concat(
+						label, StringPool.SPACE, requestedValue,
+						" is not allowed for open registration"),
+					error, Response.Status.BAD_REQUEST);
 			}
-
-			OAuth2ErrorUtil.reportInvalidRequestError(
-				StringBundler.concat(
-					label, StringPool.SPACE, requestedValue,
-					" is not allowed for open registration"),
-				error, Response.Status.BAD_REQUEST);
 		}
 	}
 
@@ -906,13 +900,11 @@ public class LiferayDynamicRegistrationService
 				}
 			}
 
-			if (matched) {
-				continue;
+			if (!matched) {
+				_reportInvalidRedirectURIError(
+					"Redirect URI " + redirectURI +
+						" is not allowed for open registration");
 			}
-
-			_reportInvalidRedirectURIError(
-				"Redirect URI " + redirectURI +
-					" is not allowed for open registration");
 		}
 	}
 

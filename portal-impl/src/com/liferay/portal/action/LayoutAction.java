@@ -245,25 +245,24 @@ public class LayoutAction implements Action {
 		for (Portlet curPortlet : allPortlets) {
 			String curPortletId = curPortlet.getPortletId();
 
-			if (!curPortletId.equals(portletId) &&
-				!curPortlet.isPartialActionServeResource()) {
+			if (curPortletId.equals(portletId) ||
+				curPortlet.isPartialActionServeResource()) {
 
-				continue;
+				BufferCacheServletResponse bufferCacheServletResponse =
+					new BufferCacheServletResponse(httpServletResponse);
+
+				PortletContainerUtil.preparePortlet(
+					httpServletRequest, curPortlet);
+
+				PortletContainerUtil.serveResource(
+					httpServletRequest, bufferCacheServletResponse, curPortlet);
+
+				RenderData renderData = new RenderData(
+					bufferCacheServletResponse.getContentType(),
+					bufferCacheServletResponse.getString());
+
+				renderDataMap.put(curPortletId, renderData);
 			}
-
-			BufferCacheServletResponse bufferCacheServletResponse =
-				new BufferCacheServletResponse(httpServletResponse);
-
-			PortletContainerUtil.preparePortlet(httpServletRequest, curPortlet);
-
-			PortletContainerUtil.serveResource(
-				httpServletRequest, bufferCacheServletResponse, curPortlet);
-
-			RenderData renderData = new RenderData(
-				bufferCacheServletResponse.getContentType(),
-				bufferCacheServletResponse.getString());
-
-			renderDataMap.put(curPortletId, renderData);
 		}
 
 		return RenderStateUtil.generateJSON(

@@ -475,12 +475,11 @@ public class EditorTag extends BaseValidatorTagSupport {
 		while (enumeration.hasMoreElements()) {
 			String attributeName = enumeration.nextElement();
 
-			if (!attributeName.startsWith(getAttributeNamespace())) {
-				continue;
+			if (attributeName.startsWith(getAttributeNamespace())) {
+				attributes.put(
+					attributeName,
+					httpServletRequest.getAttribute(attributeName));
 			}
-
-			attributes.put(
-				attributeName, httpServletRequest.getAttribute(attributeName));
 		}
 
 		attributes.put(getAttributeNamespace() + "namespace", _getNamespace());

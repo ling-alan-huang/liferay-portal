@@ -775,13 +775,11 @@ public class CommercePriceListLocalServiceImpl
 					BigDecimal actualPrice = commercePriceModifierType.evaluate(
 						originalPrice, commercePriceModifier);
 
-					if (!BigDecimalUtil.lt(actualPrice, lowestPrice)) {
-						continue;
+					if (BigDecimalUtil.lt(actualPrice, lowestPrice)) {
+						commercePriceListId =
+							commercePriceList.getCommercePriceListId();
+						lowestPrice = actualPrice;
 					}
-
-					commercePriceListId =
-						commercePriceList.getCommercePriceListId();
-					lowestPrice = actualPrice;
 				}
 			}
 		}

@@ -873,11 +873,9 @@ public class DDMImpl implements DDM {
 			String prefix = StringUtil.extractFirst(
 				fieldsDisplayValue, INSTANCE_SEPARATOR);
 
-			if (!prefix.equals(fieldName)) {
-				continue;
+			if (prefix.equals(fieldName)) {
+				count++;
 			}
-
-			count++;
 		}
 
 		return count;
@@ -942,15 +940,13 @@ public class DDMImpl implements DDM {
 		String prefix = fieldName.concat(INSTANCE_SEPARATOR);
 
 		for (String fieldsDisplayValue : fieldsDisplayValues) {
-			if (!fieldsDisplayValue.startsWith(prefix)) {
-				continue;
-			}
+			if (fieldsDisplayValue.startsWith(prefix)) {
+				index--;
 
-			index--;
-
-			if (index < 0) {
-				return StringUtil.extractLast(
-					fieldsDisplayValue, DDMImpl.INSTANCE_SEPARATOR);
+				if (index < 0) {
+					return StringUtil.extractLast(
+						fieldsDisplayValue, DDMImpl.INSTANCE_SEPARATOR);
+				}
 			}
 		}
 
@@ -980,11 +976,9 @@ public class DDMImpl implements DDM {
 				String fieldNameValue = StringUtil.extractFirst(
 					namespacedFieldName, INSTANCE_SEPARATOR);
 
-				if (!fieldNameValue.equals(fieldName)) {
-					continue;
+				if (fieldNameValue.equals(fieldName)) {
+					fieldNames.add(fieldNamespace + namespacedFieldName);
 				}
-
-				fieldNames.add(fieldNamespace + namespacedFieldName);
 			}
 		}
 
@@ -1003,18 +997,16 @@ public class DDMImpl implements DDM {
 		String prefix = fieldName.concat(INSTANCE_SEPARATOR);
 
 		for (String fieldsDisplayValue : fieldsDisplayValues) {
-			if (!fieldsDisplayValue.startsWith(prefix)) {
-				continue;
+			if (fieldsDisplayValue.startsWith(prefix)) {
+				String fieldIstanceId = StringUtil.extractLast(
+					fieldsDisplayValue, DDMImpl.INSTANCE_SEPARATOR);
+
+				if (fieldIstanceId.equals(instanceId)) {
+					return offset;
+				}
+
+				offset++;
 			}
-
-			String fieldIstanceId = StringUtil.extractLast(
-				fieldsDisplayValue, DDMImpl.INSTANCE_SEPARATOR);
-
-			if (fieldIstanceId.equals(instanceId)) {
-				return offset;
-			}
-
-			offset++;
 		}
 
 		return -1;

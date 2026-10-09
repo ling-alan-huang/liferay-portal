@@ -509,17 +509,15 @@ public class LayoutLocalServiceWrapper
 				_segmentsExperienceLocalService.fetchSegmentsExperience(
 					entry.getKey());
 
-			if (targetSegmentsExperience.getPriority() ==
+			if (targetSegmentsExperience.getPriority() !=
 					sourceSegmentsExperience.getPriority()) {
 
-				continue;
+				targetSegmentsExperience.setPriority(
+					sourceSegmentsExperience.getPriority());
+
+				_segmentsExperienceLocalService.updateSegmentsExperience(
+					targetSegmentsExperience);
 			}
-
-			targetSegmentsExperience.setPriority(
-				sourceSegmentsExperience.getPriority());
-
-			_segmentsExperienceLocalService.updateSegmentsExperience(
-				targetSegmentsExperience);
 		}
 
 		_fragmentEntryLinkLocalService.deleteFragmentEntryLinks(
@@ -864,18 +862,17 @@ public class LayoutLocalServiceWrapper
 				_layoutClassedModelUsageLocalService.
 					getLayoutClassedModelUsagesByPlid(targetLayout.getPlid())) {
 
-			if (ArrayUtil.contains(
+			if (!ArrayUtil.contains(
 					classNameIds,
-					targetLayoutClassedModelUsage.getContainerType()) ||
-				_hasLayoutClassedModelUsage(
+					targetLayoutClassedModelUsage.getContainerType()) &&
+				!_hasLayoutClassedModelUsage(
 					sourceLayoutLayoutClassedModelUsages,
 					targetLayoutClassedModelUsage)) {
 
-				continue;
+				_layoutClassedModelUsageLocalService.
+					deleteLayoutClassedModelUsage(
+						targetLayoutClassedModelUsage);
 			}
-
-			_layoutClassedModelUsageLocalService.deleteLayoutClassedModelUsage(
-				targetLayoutClassedModelUsage);
 		}
 	}
 
@@ -894,12 +891,10 @@ public class LayoutLocalServiceWrapper
 				_fragmentEntryLinkLocalService.fetchFragmentEntryLink(
 					fragmentEntryLinkId);
 
-			if (fragmentEntryLink == null) {
-				continue;
+			if (fragmentEntryLink != null) {
+				_fragmentEntryLinkLocalService.deleteFragmentEntryLink(
+					fragmentEntryLink);
 			}
-
-			_fragmentEntryLinkLocalService.deleteFragmentEntryLink(
-				fragmentEntryLink);
 		}
 	}
 

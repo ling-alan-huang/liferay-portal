@@ -78,14 +78,12 @@ public class PropertiesFeatureFlagsCheck extends BaseFileCheck {
 
 			String value = properties.getProperty(key);
 
-			if (!StringUtil.equals(value, "dev")) {
-				continue;
+			if (StringUtil.equals(value, "dev")) {
+				addMessage(
+					fileName,
+					"Remove unnecessary property \"" + key +
+						"\", since \"dev\" is the default value");
 			}
-
-			addMessage(
-				fileName,
-				"Remove unnecessary property \"" + key +
-					"\", since \"dev\" is the default value");
 		}
 	}
 
@@ -308,16 +306,14 @@ public class PropertiesFeatureFlagsCheck extends BaseFileCheck {
 								"\" must be in Language.properties");
 					}
 
-					if (portalLanguageProperties.containsKey(
+					if (!portalLanguageProperties.containsKey(
 							featureFlagUIPropertyName)) {
 
-						continue;
+						addMessage(
+							fileName,
+							"Missing property \"" + featureFlagUIPropertyName +
+								"\" in Language.properties");
 					}
-
-					addMessage(
-						fileName,
-						"Missing property \"" + featureFlagUIPropertyName +
-							"\" in Language.properties");
 				}
 			}
 

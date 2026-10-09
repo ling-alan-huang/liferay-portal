@@ -355,11 +355,9 @@ public class Baseline {
 				}
 			}
 
-			if (delta.compareTo(highestDelta) <= 0) {
-				continue;
+			if (delta.compareTo(highestDelta) > 0) {
+				highestDelta = delta;
 			}
-
-			highestDelta = delta;
 		}
 
 		if (highestDelta == Delta.MAJOR) {

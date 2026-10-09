@@ -361,16 +361,14 @@ public class CheckIndividualSegmentsSchedulerJobConfiguration
 		for (Individual.DataSourceIndividualPK dataSourceIndividualPK :
 				individual.getDataSourceIndividualPKs()) {
 
-			if (!Objects.equals(
+			if (Objects.equals(
 					dataSourceId, dataSourceIndividualPK.getDataSourceId())) {
 
-				continue;
-			}
+				for (String individualPK :
+						dataSourceIndividualPK.getIndividualPKs()) {
 
-			for (String individualPK :
-					dataSourceIndividualPK.getIndividualPKs()) {
-
-				return individualPK;
+					return individualPK;
+				}
 			}
 		}
 

@@ -157,18 +157,16 @@ public class DirectServletRegistryUtil {
 					previousLastModified = lastModified;
 				}
 
-				if ((lastModified != 0) &&
-					(lastModified == previousLastModified.longValue())) {
+				if ((lastModified == 0) ||
+					(lastModified != previousLastModified.longValue())) {
 
-					continue;
-				}
+					reloadServlet = true;
 
-				reloadServlet = true;
+					_dependantTimestamps.put(dependant, lastModified);
 
-				_dependantTimestamps.put(dependant, lastModified);
-
-				if (_log.isDebugEnabled()) {
-					_log.debug("Reload dependant " + dependant);
+					if (_log.isDebugEnabled()) {
+						_log.debug("Reload dependant " + dependant);
+					}
 				}
 			}
 

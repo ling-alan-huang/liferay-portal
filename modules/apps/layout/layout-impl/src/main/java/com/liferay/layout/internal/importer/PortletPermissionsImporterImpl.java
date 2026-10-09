@@ -114,12 +114,10 @@ public class PortletPermissionsImporterImpl
 				(List<String>)widgetPermissionsMap.get("actionKeys"),
 				resourceActionsIds::contains);
 
-			if (ListUtil.isEmpty(actionKeys)) {
-				continue;
+			if (ListUtil.isNotEmpty(actionKeys)) {
+				roleIdsToActionIds.put(
+					role.getRoleId(), actionKeys.toArray(new String[0]));
 			}
-
-			roleIdsToActionIds.put(
-				role.getRoleId(), actionKeys.toArray(new String[0]));
 		}
 
 		if (MapUtil.isNotEmpty(roleIdsToActionIds)) {

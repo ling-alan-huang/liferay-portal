@@ -72,22 +72,18 @@ public class CTClosureImpl implements CTClosure {
 			while (!queue.isEmpty()) {
 				Collection<Node> grandchildNodes = closureMap.get(queue.poll());
 
-				if (grandchildNodes == null) {
-					continue;
-				}
+				if (grandchildNodes != null) {
+					for (Node grandchildNode : grandchildNodes) {
+						grandchildNode = _nodeMap.get(grandchildNode);
 
-				for (Node grandchildNode : grandchildNodes) {
-					grandchildNode = _nodeMap.get(grandchildNode);
+						int grandchildIndex = grandchildNode.getIndex();
 
-					int grandchildIndex = grandchildNode.getIndex();
+						if (!bitSet.get(grandchildIndex)) {
+							bitSet.set(grandchildIndex);
 
-					if (bitSet.get(grandchildIndex)) {
-						continue;
+							queue.add(grandchildNode);
+						}
 					}
-
-					bitSet.set(grandchildIndex);
-
-					queue.add(grandchildNode);
 				}
 			}
 

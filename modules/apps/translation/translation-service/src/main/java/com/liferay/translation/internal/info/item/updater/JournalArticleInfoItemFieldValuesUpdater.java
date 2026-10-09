@@ -96,48 +96,47 @@ public class JournalArticleInfoItemFieldValuesUpdater
 			InfoLocalizedValue<Object> infoLocalizedValue =
 				_getInfoLocalizedValue(infoFieldValue);
 
-			if (infoLocalizedValue == null) {
-				continue;
-			}
+			if (infoLocalizedValue != null) {
+				InfoField infoField = infoFieldValue.getInfoField();
 
-			InfoField infoField = infoFieldValue.getInfoField();
+				for (Locale locale : infoLocalizedValue.getAvailableLocales()) {
+					if ((infoFieldValue.getValue(locale) != null) &&
+						(infoFieldValue.getValue(locale) instanceof String)) {
 
-			for (Locale locale : infoLocalizedValue.getAvailableLocales()) {
-				if ((infoFieldValue.getValue(locale) == null) ||
-					!(infoFieldValue.getValue(locale) instanceof String)) {
+						translatedLocales.add(locale);
 
-					continue;
-				}
+						String fieldName = infoField.getName();
+						String fieldUniqueId = infoField.getUniqueId();
 
-				translatedLocales.add(locale);
+						String valueString = String.valueOf(
+							infoFieldValue.getValue(locale));
 
-				String fieldName = infoField.getName();
-				String fieldUniqueId = infoField.getUniqueId();
+						if (Objects.equals(fieldName, "description") &&
+							fieldUniqueId.startsWith(
+								JournalArticle.class.getSimpleName() +
+									StringPool.UNDERLINE)) {
 
-				String valueString = String.valueOf(
-					infoFieldValue.getValue(locale));
+							importedLocaleDescriptionMap.put(
+								locale, valueString);
+						}
+						else if (Objects.equals(fieldName, "title") &&
+								 fieldUniqueId.startsWith(
+									 JournalArticle.class.getSimpleName() +
+										 StringPool.UNDERLINE)) {
 
-				if (Objects.equals(fieldName, "description") &&
-					fieldUniqueId.startsWith(
-						JournalArticle.class.getSimpleName() +
-							StringPool.UNDERLINE)) {
+							importedLocaleTitleMap.put(locale, valueString);
+						}
+						else {
+							List<String> values =
+								fieldNameContentMap.computeIfAbsent(
+									fieldName, name -> new ArrayList<>());
 
-					importedLocaleDescriptionMap.put(locale, valueString);
-				}
-				else if (Objects.equals(fieldName, "title") &&
-						 fieldUniqueId.startsWith(
-							 JournalArticle.class.getSimpleName() +
-								 StringPool.UNDERLINE)) {
+							values.add(valueString);
 
-					importedLocaleTitleMap.put(locale, valueString);
-				}
-				else {
-					List<String> values = fieldNameContentMap.computeIfAbsent(
-						fieldName, name -> new ArrayList<>());
-
-					values.add(valueString);
-
-					importedLocaleContentMap.put(locale, fieldNameContentMap);
+							importedLocaleContentMap.put(
+								locale, fieldNameContentMap);
+						}
+					}
 				}
 			}
 		}

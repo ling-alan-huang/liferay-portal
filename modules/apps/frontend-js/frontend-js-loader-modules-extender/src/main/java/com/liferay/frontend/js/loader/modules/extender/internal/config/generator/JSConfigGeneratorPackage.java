@@ -247,16 +247,14 @@ public class JSConfigGeneratorPackage {
 
 			String submoduleName = submodulePath.substring(0, index);
 
-			if (!exportAll &&
-				!ArrayUtil.exists(
+			if (exportAll ||
+				ArrayUtil.exists(
 					jsSubmodulesExport,
 					item -> _matchesWildcard(submoduleName, item))) {
 
-				continue;
+				mapsConfigurationJSONObject.put(
+					submoduleName, moduleRootPath.concat(submoduleName));
 			}
-
-			mapsConfigurationJSONObject.put(
-				submoduleName, moduleRootPath.concat(submoduleName));
 		}
 
 		return mapsConfigurationJSONObject;

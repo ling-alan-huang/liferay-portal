@@ -763,11 +763,9 @@ public class Main {
 		for (DiffEntry diff : diffs) {
 			String newPath = diff.getNewPath();
 
-			if (!newPath.endsWith(".md")) {
-				continue;
+			if (newPath.endsWith(".md")) {
+				_diffFileNames.add("/" + newPath);
 			}
-
-			_diffFileNames.add("/" + newPath);
 		}
 	}
 

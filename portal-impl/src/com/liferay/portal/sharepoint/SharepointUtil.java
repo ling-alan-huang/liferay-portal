@@ -117,11 +117,9 @@ public class SharepointUtil {
 			String className = PropsUtil.get(
 				PropsKeys.SHAREPOINT_STORAGE_CLASS, filter);
 
-			if (Validator.isNull(className)) {
-				continue;
+			if (Validator.isNotNull(className)) {
+				_storageMap.put(className, token);
 			}
-
-			_storageMap.put(className, token);
 		}
 	}
 

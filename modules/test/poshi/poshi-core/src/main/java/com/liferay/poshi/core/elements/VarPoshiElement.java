@@ -70,11 +70,9 @@ public class VarPoshiElement extends PoshiElement {
 			List<Node> cdataNodes = new ArrayList<>();
 
 			for (Node node : Dom4JUtil.toNodeList(content())) {
-				if (!(node instanceof CDATA)) {
-					continue;
+				if (node instanceof CDATA) {
+					cdataNodes.add(node);
 				}
-
-				cdataNodes.add(node);
 			}
 
 			StringBuilder sb = new StringBuilder();

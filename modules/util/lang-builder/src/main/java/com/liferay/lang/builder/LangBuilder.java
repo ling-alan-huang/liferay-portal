@@ -450,18 +450,16 @@ public class LangBuilder {
 					}
 				}
 
-				if (Validator.isNull(translatedText) &&
-					!key.endsWith("-delimiter")) {
+				if (Validator.isNotNull(translatedText) ||
+					key.endsWith("-delimiter")) {
 
-					continue;
+					translatedText = _fixTranslation(translatedText);
+
+					sb.append(key);
+					sb.append(StringPool.EQUAL);
+					sb.append(translatedText);
+					sb.append("\n");
 				}
-
-				translatedText = _fixTranslation(translatedText);
-
-				sb.append(key);
-				sb.append(StringPool.EQUAL);
-				sb.append(translatedText);
-				sb.append("\n");
 			}
 		}
 
@@ -541,16 +539,14 @@ public class LangBuilder {
 
 			value = _fixContraction(value, contraction, replacement);
 
-			if (contraction.startsWith("I'")) {
-				continue;
+			if (!contraction.startsWith("I'")) {
+				value = _fixContraction(
+					value,
+					Character.toLowerCase(contraction.charAt(0)) +
+						contraction.substring(1),
+					Character.toLowerCase(replacement.charAt(0)) +
+						replacement.substring(1));
 			}
-
-			value = _fixContraction(
-				value,
-				Character.toLowerCase(contraction.charAt(0)) +
-					contraction.substring(1),
-				Character.toLowerCase(replacement.charAt(0)) +
-					replacement.substring(1));
 		}
 
 		return value;
@@ -642,11 +638,9 @@ public class LangBuilder {
 			String key = (String)entry.getKey();
 			String value = (String)entry.getValue();
 
-			if (value.equals(backupLanguageProperties.get(key))) {
-				continue;
+			if (!value.equals(backupLanguageProperties.get(key))) {
+				_keysWithUpdatedValues.add(key);
 			}
-
-			_keysWithUpdatedValues.add(key);
 		}
 	}
 

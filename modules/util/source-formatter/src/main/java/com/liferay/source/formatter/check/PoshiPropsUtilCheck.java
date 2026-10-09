@@ -75,17 +75,15 @@ public class PoshiPropsUtilCheck extends BaseFileCheck {
 			String followingCode = _getFollowingCode(content, matcher.end());
 			String variableName = matcher.group(1);
 
-			if (!_isUnnecessaryAssign(followingCode, variableName)) {
-				continue;
+			if (_isUnnecessaryAssign(followingCode, variableName)) {
+				addMessage(
+					fileName,
+					StringBundler.concat(
+						"Pass \"", matcher.group(2),
+						"\" directly instead of assigning value to variable \"",
+						variableName, "\""),
+					getLineNumber(content, matcher.start()) + 1);
 			}
-
-			addMessage(
-				fileName,
-				StringBundler.concat(
-					"Pass \"", matcher.group(2),
-					"\" directly instead of assigning value to variable \"",
-					variableName, "\""),
-				getLineNumber(content, matcher.start()) + 1);
 		}
 
 		String password = properties.getProperty(

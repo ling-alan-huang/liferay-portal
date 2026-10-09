@@ -70,11 +70,9 @@ public class FriendlyURLEntryImpl extends FriendlyURLEntryBaseImpl {
 				AssetCategoryLocalServiceUtil.fetchCategory(
 					assetEntryAssetCategoryRel.getAssetCategoryId());
 
-			if (assetCategory == null) {
-				continue;
+			if (assetCategory != null) {
+				assetCategories.add(assetCategory);
 			}
-
-			assetCategories.add(assetCategory);
 		}
 
 		if (assetCategories.isEmpty()) {

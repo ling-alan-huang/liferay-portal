@@ -301,11 +301,9 @@ public class ElasticsearchConfigurationWrapper
 			String property = properties.getProperty(
 				StringUtil.toLowerCase(key));
 
-			if (Validator.isBlank(property)) {
-				continue;
+			if (!Validator.isBlank(property)) {
+				propsMap.put(key, property);
 			}
-
-			propsMap.put(key, property);
 		}
 
 		return propsMap;

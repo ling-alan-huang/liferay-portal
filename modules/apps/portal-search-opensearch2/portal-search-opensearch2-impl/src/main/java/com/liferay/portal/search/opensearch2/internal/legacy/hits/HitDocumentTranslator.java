@@ -54,11 +54,9 @@ public class HitDocumentTranslator {
 			jsonObject.keySet();
 
 			for (String fieldName : jsonObject.keySet()) {
-				if (document.getField(fieldName) != null) {
-					continue;
+				if (document.getField(fieldName) == null) {
+					_addFieldFromSource(document, fieldName, jsonObject);
 				}
-
-				_addFieldFromSource(document, fieldName, jsonObject);
 			}
 		}
 

@@ -81,22 +81,20 @@ public class ConfigurationPortalInstanceLifecycleListener
 				new UnsyncByteArrayInputStream(
 					dictionaryString.getBytes(StringPool.UTF8)));
 
-			if (dictionary.get("service.factoryPid") == null) {
-				continue;
+			if (dictionary.get("service.factoryPid") != null) {
+				if (dictionary.get("companyId") != null) {
+					dictionary.put("companyId", company.getCompanyId());
+				}
+
+				Configuration configuration =
+					_configurationAdmin.createFactoryConfiguration(
+						(String)dictionary.get("service.factoryPid"),
+						StringPool.QUESTION);
+
+				dictionary.put("service.pid", configuration.getPid());
+
+				configuration.update(dictionary);
 			}
-
-			if (dictionary.get("companyId") != null) {
-				dictionary.put("companyId", company.getCompanyId());
-			}
-
-			Configuration configuration =
-				_configurationAdmin.createFactoryConfiguration(
-					(String)dictionary.get("service.factoryPid"),
-					StringPool.QUESTION);
-
-			dictionary.put("service.pid", configuration.getPid());
-
-			configuration.update(dictionary);
 		}
 	}
 
@@ -112,11 +110,9 @@ public class ConfigurationPortalInstanceLifecycleListener
 			Configuration configuration = _configurationAdmin.getConfiguration(
 				pid, "?");
 
-			if (configuration == null) {
-				continue;
+			if (configuration != null) {
+				configuration.delete();
 			}
-
-			configuration.delete();
 		}
 
 		_configurationMap.remove(company.getCompanyId());

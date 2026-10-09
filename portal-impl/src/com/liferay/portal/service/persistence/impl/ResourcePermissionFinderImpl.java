@@ -266,11 +266,9 @@ public class ResourcePermissionFinderImpl
 		for (int i = 0; i < scopes.length; i++) {
 			sb.append("ResourcePermission.scope = ? ");
 
-			if ((i + 1) == scopes.length) {
-				continue;
+			if ((i + 1) != scopes.length) {
+				sb.append("OR ");
 			}
-
-			sb.append("OR ");
 		}
 
 		sb.append(StringPool.CLOSE_PARENTHESIS);

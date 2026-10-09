@@ -268,13 +268,11 @@ public class NestedFieldsSetterUtil {
 
 				field.set(item, value);
 
-				if (childNestedField == null) {
-					continue;
+				if (childNestedField != null) {
+					_setFieldValues(
+						value, Collections.singletonList(childNestedField),
+						nestedFieldsContext, nestedFieldsSetterCustomizer);
 				}
-
-				_setFieldValues(
-					value, Collections.singletonList(childNestedField),
-					nestedFieldsContext, nestedFieldsSetterCustomizer);
 			}
 		}
 	}
@@ -513,13 +511,12 @@ public class NestedFieldsSetterUtil {
 				args[i] = _getMethodArgValueFromItem(
 					item, resourceMethodArgNameTypeEntries[i]);
 
-				if (args[i] != null) {
-					continue;
+				if (args[i] == null) {
+					args[i] = _getMethodArgValueFromRequest(
+						contextDataInjector, fieldName,
+						resourceMethodArgNameTypeEntries[i],
+						nestedFieldsContext);
 				}
-
-				args[i] = _getMethodArgValueFromRequest(
-					contextDataInjector, fieldName,
-					resourceMethodArgNameTypeEntries[i], nestedFieldsContext);
 			}
 
 			return args;

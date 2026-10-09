@@ -76,11 +76,9 @@ public class JournalMoveEntriesDisplayContext {
 			JournalArticle article = JournalArticleServiceUtil.fetchArticle(
 				themeDisplay.getScopeGroupId(), articleId);
 
-			if (article == null) {
-				continue;
+			if (article != null) {
+				articles.add(article);
 			}
-
-			articles.add(article);
 		}
 
 		return articles;
@@ -96,11 +94,9 @@ public class JournalMoveEntriesDisplayContext {
 			JournalFolder folder = JournalFolderServiceUtil.fetchFolder(
 				folderId);
 
-			if (folder == null) {
-				continue;
+			if (folder != null) {
+				folders.add(folder);
 			}
-
-			folders.add(folder);
 		}
 
 		return folders;

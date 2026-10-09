@@ -209,17 +209,15 @@ public class JavaMultiPlusConcatCheck extends BaseJavaTermCheck {
 		for (int i = x;; i--) {
 			char c = content.charAt(i);
 
-			if ((!ArrayUtil.contains(startChars, c) &&
-				 !Character.isWhitespace(c)) ||
-				ToolsUtil.isInsideQuotes(content, i)) {
+			if ((ArrayUtil.contains(startChars, c) ||
+				 Character.isWhitespace(c)) &&
+				!ToolsUtil.isInsideQuotes(content, i)) {
 
-				continue;
-			}
+				String s = content.substring(i + 1, x);
 
-			String s = content.substring(i + 1, x);
-
-			if (Validator.isNotNull(s) && (getLevel(s) == 0)) {
-				return i + 1;
+				if (Validator.isNotNull(s) && (getLevel(s) == 0)) {
+					return i + 1;
+				}
 			}
 		}
 	}

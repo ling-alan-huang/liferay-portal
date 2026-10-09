@@ -45,15 +45,13 @@ public class APISchemaEntityModel implements EntityModel {
 			EntityField entityField = _findDeepestEntityField(
 				entityModelEntityFieldsMap, property);
 
-			if ((entityField == null) ||
-				(entityField instanceof ComplexEntityField)) {
+			if ((entityField != null) &&
+				!(entityField instanceof ComplexEntityField)) {
 
-				continue;
+				entityFieldsMap.put(
+					property.getName(),
+					_toAPIPropertyEntityField(entityField, property));
 			}
-
-			entityFieldsMap.put(
-				property.getName(),
-				_toAPIPropertyEntityField(entityField, property));
 		}
 
 		return entityFieldsMap;

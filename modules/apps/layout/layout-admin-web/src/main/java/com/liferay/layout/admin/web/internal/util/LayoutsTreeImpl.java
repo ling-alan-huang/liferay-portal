@@ -301,11 +301,9 @@ public class LayoutsTreeImpl implements LayoutsTree {
 					httpServletRequest, includeActions, layout,
 					layoutActionsHelper, themeDisplay));
 
-			if (!includeActions) {
-				continue;
+			if (includeActions) {
+				afterDeleteSelectedLayout = layout;
 			}
-
-			afterDeleteSelectedLayout = layout;
 		}
 
 		return layoutsJSONArray;

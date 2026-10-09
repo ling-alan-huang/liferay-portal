@@ -223,13 +223,11 @@ public class FriendlyURLEntryStagedModelDataHandler
 				_assetCategoryLocalService.fetchCategory(
 					assetEntryAssetCategoryRel.getAssetCategoryId());
 
-			if (assetCategory == null) {
-				continue;
+			if (assetCategory != null) {
+				StagedModelDataHandlerUtil.exportReferenceStagedModel(
+					portletDataContext, friendlyURLEntry, assetCategory,
+					PortletDataContext.REFERENCE_TYPE_DEPENDENCY);
 			}
-
-			StagedModelDataHandlerUtil.exportReferenceStagedModel(
-				portletDataContext, friendlyURLEntry, assetCategory,
-				PortletDataContext.REFERENCE_TYPE_DEPENDENCY);
 		}
 	}
 

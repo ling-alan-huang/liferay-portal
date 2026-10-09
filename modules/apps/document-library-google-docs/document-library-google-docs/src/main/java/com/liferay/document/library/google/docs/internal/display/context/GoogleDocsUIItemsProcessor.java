@@ -100,11 +100,9 @@ public class GoogleDocsUIItemsProcessor {
 		while (iterator.hasNext()) {
 			T item = iterator.next();
 
-			if (!keys.contains(function.apply(item))) {
-				continue;
+			if (keys.contains(function.apply(item))) {
+				iterator.remove();
 			}
-
-			iterator.remove();
 		}
 	}
 

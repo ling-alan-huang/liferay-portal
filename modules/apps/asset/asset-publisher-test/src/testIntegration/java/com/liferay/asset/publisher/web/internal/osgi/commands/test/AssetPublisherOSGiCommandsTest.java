@@ -305,11 +305,10 @@ public class AssetPublisherOSGiCommandsTest {
 			String assetEntryXml = AssetPublisherTestUtil.getAssetEntryXml(
 				assetEntry);
 
-			if (ArrayUtil.contains(assetEntryXmls, assetEntryXml)) {
-				continue;
+			if (!ArrayUtil.contains(assetEntryXmls, assetEntryXml)) {
+				assetEntryXmls = ArrayUtil.append(
+					assetEntryXmls, assetEntryXml);
 			}
-
-			assetEntryXmls = ArrayUtil.append(assetEntryXmls, assetEntryXml);
 		}
 
 		portletPreferences.setValues("assetEntryXml", assetEntryXmls);

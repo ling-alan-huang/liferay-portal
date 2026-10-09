@@ -405,23 +405,20 @@ public class MediaWikiImporter {
 
 					count++;
 
-					if ((i % 5) != 0) {
-						continue;
+					if ((i % 5) == 0) {
+						_wikiPageLocalService.addPageAttachments(
+							userId, node.getNodeId(),
+							WikiPageConstants.SHARED_IMAGES_TITLE,
+							inputStreamOVPs);
+
+						inputStreamOVPs.clear();
+
+						if (progressTracker != null) {
+							percentage = Math.min(50 + ((i * 50) / total), 99);
+
+							progressTracker.setPercent(percentage);
+						}
 					}
-
-					_wikiPageLocalService.addPageAttachments(
-						userId, node.getNodeId(),
-						WikiPageConstants.SHARED_IMAGES_TITLE, inputStreamOVPs);
-
-					inputStreamOVPs.clear();
-
-					if (progressTracker == null) {
-						continue;
-					}
-
-					percentage = Math.min(50 + ((i * 50) / total), 99);
-
-					progressTracker.setPercent(percentage);
 				}
 
 				if (!inputStreamOVPs.isEmpty()) {
@@ -569,11 +566,9 @@ public class MediaWikiImporter {
 			_assetTagLocalService.checkTags(
 				userId, node.getGroupId(), new String[] {categoryName});
 
-			if ((i % 5) != 0) {
-				continue;
+			if ((i % 5) == 0) {
+				progressTracker.setPercent((i * 10) / pageElements.size());
 			}
-
-			progressTracker.setPercent((i * 10) / pageElements.size());
 		}
 	}
 

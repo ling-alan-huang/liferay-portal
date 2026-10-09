@@ -79,27 +79,25 @@ public class JournalArticleFriendlyURLFormatUpgradeProcess
 
 				ResultSet resultSet2 = preparedStatement2.executeQuery();
 
-				if (!resultSet2.next()) {
-					continue;
+				if (resultSet2.next()) {
+					String languageId = resultSet1.getString("languageId");
+
+					String defaultLanguageId = resultSet2.getString(
+						"defaultLanguageId");
+
+					if (defaultLanguageId.equals(languageId)) {
+						updatePreparedStatement.setString(1, urlTitle);
+						updatePreparedStatement.setLong(
+							2, resultSet1.getLong("ctCollectionId"));
+						updatePreparedStatement.setLong(3, classPK);
+
+						updatePreparedStatement.addBatch();
+					}
+
+					_updateFriendlyURLEntry(
+						resultSet1.getLong("friendlyURLEntryId"), languageId,
+						urlTitle);
 				}
-
-				String languageId = resultSet1.getString("languageId");
-
-				String defaultLanguageId = resultSet2.getString(
-					"defaultLanguageId");
-
-				if (defaultLanguageId.equals(languageId)) {
-					updatePreparedStatement.setString(1, urlTitle);
-					updatePreparedStatement.setLong(
-						2, resultSet1.getLong("ctCollectionId"));
-					updatePreparedStatement.setLong(3, classPK);
-
-					updatePreparedStatement.addBatch();
-				}
-
-				_updateFriendlyURLEntry(
-					resultSet1.getLong("friendlyURLEntryId"), languageId,
-					urlTitle);
 			}
 
 			updatePreparedStatement.executeBatch();

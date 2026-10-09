@@ -29,14 +29,14 @@ public class FolderSearcher extends BaseSearcher {
 		List<String> folderClassNames = new ArrayList<>();
 
 		for (Indexer<?> indexer : IndexerRegistryUtil.getIndexers()) {
-			if (!(indexer instanceof FolderIndexer)) {
-				continue;
-			}
+			if (indexer instanceof FolderIndexer) {
+				FolderIndexer folderIndexer = (FolderIndexer)indexer;
 
-			FolderIndexer folderIndexer = (FolderIndexer)indexer;
+				for (String folderClassName :
+						folderIndexer.getFolderClassNames()) {
 
-			for (String folderClassName : folderIndexer.getFolderClassNames()) {
-				folderClassNames.add(folderClassName);
+					folderClassNames.add(folderClassName);
+				}
 			}
 		}
 

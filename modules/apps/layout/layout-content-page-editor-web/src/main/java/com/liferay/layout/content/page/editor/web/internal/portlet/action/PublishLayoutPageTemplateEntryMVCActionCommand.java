@@ -105,11 +105,9 @@ public class PublishLayoutPageTemplateEntryMVCActionCommand
 
 			String key = entry.getKey();
 
-			if (!key.startsWith("mapped-") && !key.startsWith("sitemap-")) {
-				continue;
+			if (key.startsWith("mapped-") || key.startsWith("sitemap-")) {
+				layouTypeSettingsUnicodeProperties.put(key, entry.getValue());
 			}
-
-			layouTypeSettingsUnicodeProperties.put(key, entry.getValue());
 		}
 
 		return layouTypeSettingsUnicodeProperties.toString();

@@ -342,18 +342,14 @@ public class CalendarICalDataHandler implements CalendarDataHandler {
 								_EXDATE_FORMAT, year, month, day, hour, minute,
 								second));
 
-						if (!listIterator.hasNext()) {
-							continue;
+						if (listIterator.hasNext()) {
+							sb.append(StringPool.COMMA);
 						}
+					}
 
+					if (iterator.hasNext()) {
 						sb.append(StringPool.COMMA);
 					}
-
-					if (!iterator.hasNext()) {
-						continue;
-					}
-
-					sb.append(StringPool.COMMA);
 				}
 
 				recurrence = sb.toString();

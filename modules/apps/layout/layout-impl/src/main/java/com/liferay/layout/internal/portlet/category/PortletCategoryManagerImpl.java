@@ -333,26 +333,24 @@ public class PortletCategoryManagerImpl implements PortletCategoryManager {
 				httpServletRequest, layoutDecodedPortletNames,
 				currentPortletCategory, themeDisplay);
 
-			if ((childPortletCategoriesJSONArray.length() <= 0) &&
-				(portletsJSONArray.length() <= 0)) {
+			if ((childPortletCategoriesJSONArray.length() > 0) ||
+				(portletsJSONArray.length() > 0)) {
 
-				continue;
+				portletCategoryJSONObjectsMap.put(
+					portletCategoryKey,
+					JSONUtil.put(
+						"categories", childPortletCategoriesJSONArray
+					).put(
+						"path", portletCategoryKey
+					).put(
+						"portlets", portletsJSONArray
+					).put(
+						"title",
+						_getPortletCategoryTitle(
+							httpServletRequest, currentPortletCategory,
+							themeDisplay)
+					));
 			}
-
-			portletCategoryJSONObjectsMap.put(
-				portletCategoryKey,
-				JSONUtil.put(
-					"categories", childPortletCategoriesJSONArray
-				).put(
-					"path", portletCategoryKey
-				).put(
-					"portlets", portletsJSONArray
-				).put(
-					"title",
-					_getPortletCategoryTitle(
-						httpServletRequest, currentPortletCategory,
-						themeDisplay)
-				));
 		}
 
 		return portletCategoryJSONObjectsMap;

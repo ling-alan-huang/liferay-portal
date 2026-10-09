@@ -34,13 +34,11 @@ public class PluginUtil {
 				PluginSettingLocalServiceUtil.getPluginSetting(
 					companyId, plugin.getPluginId(), plugin.getPluginType());
 
-			if (!pluginSetting.isActive() ||
-				!pluginSetting.hasPermission(userId, groupId)) {
+			if (pluginSetting.isActive() &&
+				pluginSetting.hasPermission(userId, groupId)) {
 
-				continue;
+				visiblePlugins.add(plugin);
 			}
-
-			visiblePlugins.add(plugin);
 		}
 
 		return visiblePlugins;

@@ -70,12 +70,10 @@ public class LogAssertionTestRule
 				for (LogEntry logEntry : logCapture.getLogEntries()) {
 					String message = logEntry.getMessage();
 
-					if (isExpected(expectedLogsList, message)) {
-						continue;
+					if (!isExpected(expectedLogsList, message)) {
+						sb.append(message);
+						sb.append("\n\n");
 					}
-
-					sb.append(message);
-					sb.append("\n\n");
 				}
 			}
 			finally {

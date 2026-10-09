@@ -79,11 +79,9 @@ public class LanguageKeyResolverImpl implements LanguageKeyResolver {
 			Map<String, String> translations = _resolve((String)value);
 
 			for (Map.Entry<String, String> entry : translations.entrySet()) {
-				if (jsonObject.has(entry.getKey())) {
-					continue;
+				if (!jsonObject.has(entry.getKey())) {
+					jsonObject.put(entry.getKey(), entry.getValue());
 				}
-
-				jsonObject.put(entry.getKey(), entry.getValue());
 			}
 		}
 		else if (object instanceof List) {

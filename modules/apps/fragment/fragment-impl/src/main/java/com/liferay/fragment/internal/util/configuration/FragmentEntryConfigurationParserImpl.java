@@ -222,21 +222,18 @@ public class FragmentEntryConfigurationParserImpl
 				}
 			}
 
-			if (!StringUtil.equalsIgnoreCase(
+			if (StringUtil.equalsIgnoreCase(
 					fragmentConfigurationField.getType(),
 					"navigationMenuSelector")) {
 
-				continue;
+				Object contextObject = _getNavItemsContextObject(
+					configurationValuesJSONObject.getString(name));
+
+				if (contextObject != null) {
+					contextObjects.put(
+						name + _CONTEXT_OBJECT_SUFFIX, contextObject);
+				}
 			}
-
-			Object contextObject = _getNavItemsContextObject(
-				configurationValuesJSONObject.getString(name));
-
-			if (contextObject == null) {
-				continue;
-			}
-
-			contextObjects.put(name + _CONTEXT_OBJECT_SUFFIX, contextObject);
 		}
 
 		return contextObjects;

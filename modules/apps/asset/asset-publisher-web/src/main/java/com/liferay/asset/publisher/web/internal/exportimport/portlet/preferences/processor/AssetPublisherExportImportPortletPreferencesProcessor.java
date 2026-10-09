@@ -636,15 +636,13 @@ public class AssetPublisherExportImportPortletPreferencesProcessor
 				continue;
 			}
 
-			if (portletDataContext.addPrimaryKey(
+			if (!portletDataContext.addPrimaryKey(
 					AssetEntry.class, assetRenderer.getUuid())) {
 
-				continue;
+				StagedModelDataHandlerUtil.exportReferenceStagedModel(
+					portletDataContext, portletDataContext.getPortletId(),
+					(StagedModel)assetRenderer.getAssetObject());
 			}
-
-			StagedModelDataHandlerUtil.exportReferenceStagedModel(
-				portletDataContext, portletDataContext.getPortletId(),
-				(StagedModel)assetRenderer.getAssetObject());
 		}
 	}
 
@@ -1004,14 +1002,12 @@ public class AssetPublisherExportImportPortletPreferencesProcessor
 			long[] newAnyCategoryIds = new long[0];
 
 			for (long originalAnyCategoryId : originalAnyCategoryIds) {
-				if (!ArrayUtil.contains(
+				if (ArrayUtil.contains(
 						vocabularyCategoryIds, originalAnyCategoryId)) {
 
-					continue;
+					newAnyCategoryIds = ArrayUtil.append(
+						newAnyCategoryIds, originalAnyCategoryId);
 				}
-
-				newAnyCategoryIds = ArrayUtil.append(
-					newAnyCategoryIds, originalAnyCategoryId);
 			}
 
 			assetEntryQuery.setAnyCategoryIds(newAnyCategoryIds);

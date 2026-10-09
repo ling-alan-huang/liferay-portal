@@ -52,11 +52,9 @@ public class LocalGitMirrorFailureMessageGenerator
 		for (String string : new String[] {"error: ", "fatal: "}) {
 			int index = consoleText.indexOf(string);
 
-			if ((index == -1) || (index >= minIndex)) {
-				continue;
+			if ((index != -1) && (index < minIndex)) {
+				minIndex = index;
 			}
-
-			minIndex = index;
 		}
 
 		int gitCommandIndex = consoleText.lastIndexOf("+ git", minIndex);

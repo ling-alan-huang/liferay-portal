@@ -88,18 +88,17 @@ public class ShareEntryMVCActionCommand extends BaseMVCActionCommand {
 						User user = _userLocalService.fetchUserByEmailAddress(
 							themeDisplay.getCompanyId(), curUserEmailAddresses);
 
-						if ((user == null) ||
-							(user.getUserId() == themeDisplay.getUserId())) {
+						if ((user != null) &&
+							(user.getUserId() != themeDisplay.getUserId())) {
 
-							continue;
+							_sharingEntryService.addOrUpdateSharingEntry(
+								null, 0, 0, user.getUserId(), classNameId,
+								classPK, themeDisplay.getScopeGroupId(),
+								shareable,
+								sharingEntryPermissionDisplayAction.
+									getSharingEntryActions(),
+								expirationDate, serviceContext);
 						}
-
-						_sharingEntryService.addOrUpdateSharingEntry(
-							null, 0, 0, user.getUserId(), classNameId, classPK,
-							themeDisplay.getScopeGroupId(), shareable,
-							sharingEntryPermissionDisplayAction.
-								getSharingEntryActions(),
-							expirationDate, serviceContext);
 					}
 
 					return null;

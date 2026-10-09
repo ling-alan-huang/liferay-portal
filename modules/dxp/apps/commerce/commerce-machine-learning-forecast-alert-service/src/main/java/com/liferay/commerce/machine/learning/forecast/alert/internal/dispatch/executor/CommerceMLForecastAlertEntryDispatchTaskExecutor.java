@@ -112,25 +112,27 @@ public class CommerceMLForecastAlertEntryDispatchTaskExecutor
 
 			float percentChange = (delta / forecast) * 100;
 
-			if (!(percentChange > commerceMLForecastAlertEntryThreshold) &&
-				!(percentChange < -commerceMLForecastAlertEntryThreshold)) {
+			if ((percentChange > commerceMLForecastAlertEntryThreshold) ||
+				(percentChange < -commerceMLForecastAlertEntryThreshold)) {
 
-				continue;
+				if (_log.isWarnEnabled()) {
+					_log.warn(
+						String.format(
+							"Actual value exceed threshold %s: change " +
+								"percent: %s",
+							commerceMLForecastAlertEntryThreshold,
+							percentChange));
+				}
+
+				_commerceMLForecastAlertEntryLocalService.
+					addOrUpdateCommerceMLForecastAlertEntry(
+						dispatchTrigger.getCompanyId(),
+						dispatchTrigger.getUserId(),
+						commerceAccountCommerceMLForecast.
+							getCommerceAccountId(),
+						commerceAccountCommerceMLForecast.getTimestamp(),
+						actual, forecast, percentChange);
 			}
-
-			if (_log.isWarnEnabled()) {
-				_log.warn(
-					String.format(
-						"Actual value exceed threshold %s: change percent: %s",
-						commerceMLForecastAlertEntryThreshold, percentChange));
-			}
-
-			_commerceMLForecastAlertEntryLocalService.
-				addOrUpdateCommerceMLForecastAlertEntry(
-					dispatchTrigger.getCompanyId(), dispatchTrigger.getUserId(),
-					commerceAccountCommerceMLForecast.getCommerceAccountId(),
-					commerceAccountCommerceMLForecast.getTimestamp(), actual,
-					forecast, percentChange);
 		}
 	}
 

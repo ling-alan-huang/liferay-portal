@@ -93,12 +93,10 @@ public class FacetTranslator {
 				postProcessAggregation(
 					containerBuilder, facetProcessorContext, facetName);
 
-			if (postProcessContainerBuilder == null) {
-				continue;
+			if (postProcessContainerBuilder != null) {
+				searchRequestBuilder.aggregations(
+					facetName, postProcessContainerBuilder.build());
 			}
-
-			searchRequestBuilder.aggregations(
-				facetName, postProcessContainerBuilder.build());
 		}
 
 		if (ListUtil.isNotEmpty(postFilterQueries)) {

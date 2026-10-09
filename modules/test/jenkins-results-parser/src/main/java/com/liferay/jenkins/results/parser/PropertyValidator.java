@@ -195,13 +195,11 @@ public class PropertyValidator {
 		List<ConsumedKeyFailure> consumedKeyFailures = new ArrayList<>();
 
 		for (ConsumedKey consumedKey : consumedKeys) {
-			if (!consumedKey.isStrict() || consumedKey.isPrefix() ||
-				_isDefined(definedKeys, consumedKey.getKey())) {
+			if (consumedKey.isStrict() && !consumedKey.isPrefix() &&
+				!_isDefined(definedKeys, consumedKey.getKey())) {
 
-				continue;
+				consumedKeyFailures.add(new ConsumedKeyFailure(consumedKey));
 			}
-
-			consumedKeyFailures.add(new ConsumedKeyFailure(consumedKey));
 		}
 
 		return consumedKeyFailures;
@@ -266,11 +264,9 @@ public class PropertyValidator {
 		int lineNumber = 1;
 
 		for (int i = 0; i < offset; i++) {
-			if (content.charAt(i) != '\n') {
-				continue;
+			if (content.charAt(i) == '\n') {
+				lineNumber++;
 			}
-
-			lineNumber++;
 		}
 
 		return lineNumber;
@@ -306,19 +302,15 @@ public class PropertyValidator {
 
 			int index = key.indexOf('[');
 
-			if (index == -1) {
-				continue;
+			if (index != -1) {
+				consumedPrefixes.add(key.substring(0, index + 1));
 			}
-
-			consumedPrefixes.add(key.substring(0, index + 1));
 		}
 
 		for (String definedKey : definedKeys) {
-			if (_isConsumed(consumedKeyNames, consumedPrefixes, definedKey)) {
-				continue;
+			if (!_isConsumed(consumedKeyNames, consumedPrefixes, definedKey)) {
+				unconsumedKeys.add(definedKey);
 			}
-
-			unconsumedKeys.add(definedKey);
 		}
 
 		return unconsumedKeys;
@@ -454,11 +446,9 @@ public class PropertyValidator {
 
 				String fileName = file.getName();
 
-				if (fileName.equals("build-properties.xml")) {
-					continue;
+				if (!fileName.equals("build-properties.xml")) {
+					files.add(file);
 				}
-
-				files.add(file);
 			}
 
 			return files;
@@ -576,11 +566,9 @@ public class PropertyValidator {
 			for (File file : portalFiles) {
 				String fileName = file.getName();
 
-				if (!fileName.matches(".*\\.properties|build.*\\.xml")) {
-					continue;
+				if (fileName.matches(".*\\.properties|build.*\\.xml")) {
+					files.add(file);
 				}
-
-				files.add(file);
 			}
 
 			return files;

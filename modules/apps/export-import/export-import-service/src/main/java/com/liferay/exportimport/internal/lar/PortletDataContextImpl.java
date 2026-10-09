@@ -2681,29 +2681,27 @@ public class PortletDataContextImpl implements PortletDataContext {
 				typePK = ddmPrimaryKeys.getOrDefault(typePK, typePK);
 			}
 
-			if ((workflowDefinition == null) ||
-				WorkflowDefinitionLinkLocalServiceUtil.
+			if ((workflowDefinition != null) &&
+				!WorkflowDefinitionLinkLocalServiceUtil.
 					hasWorkflowDefinitionLink(
 						getCompanyId(), getScopeGroupId(), className,
 						newPrimaryKey, typePK)) {
 
-				continue;
-			}
+				PermissionChecker permissionChecker =
+					PermissionThreadLocal.getPermissionChecker();
 
-			PermissionChecker permissionChecker =
-				PermissionThreadLocal.getPermissionChecker();
-
-			try {
-				WorkflowDefinitionLinkLocalServiceUtil.
-					addWorkflowDefinitionLink(
-						null, permissionChecker.getUserId(), getCompanyId(),
-						getScopeGroupId(), className, newPrimaryKey, typePK,
-						workflowDefinition.getName(),
-						workflowDefinition.getVersion());
-			}
-			catch (PortalException portalException) {
-				throw new PortletDataException(
-					portalException.getMessage(), portalException);
+				try {
+					WorkflowDefinitionLinkLocalServiceUtil.
+						addWorkflowDefinitionLink(
+							null, permissionChecker.getUserId(), getCompanyId(),
+							getScopeGroupId(), className, newPrimaryKey, typePK,
+							workflowDefinition.getName(),
+							workflowDefinition.getVersion());
+				}
+				catch (PortalException portalException) {
+					throw new PortletDataException(
+						portalException.getMessage(), portalException);
+				}
 			}
 		}
 	}

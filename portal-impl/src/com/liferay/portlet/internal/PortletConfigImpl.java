@@ -91,12 +91,10 @@ public class PortletConfigImpl implements LiferayPortletConfig {
 
 			String name = portletAppContainerRuntimeOption.getKey();
 
-			if (name.startsWith(className)) {
-				continue;
+			if (!name.startsWith(className)) {
+				containerRuntimeOptions.put(
+					name, portletAppContainerRuntimeOption.getValue());
 			}
-
-			containerRuntimeOptions.put(
-				name, portletAppContainerRuntimeOption.getValue());
 		}
 
 		// PLT 8.4: If the deployment descriptor contains
@@ -109,13 +107,11 @@ public class PortletConfigImpl implements LiferayPortletConfig {
 
 			String name = portletAppContainerRuntimeOption.getKey();
 
-			if (!name.startsWith(_containerRuntimeOptionPrefix)) {
-				continue;
+			if (name.startsWith(_containerRuntimeOptionPrefix)) {
+				containerRuntimeOptions.put(
+					name.substring(_containerRuntimeOptionPrefix.length()),
+					portletAppContainerRuntimeOption.getValue());
 			}
-
-			containerRuntimeOptions.put(
-				name.substring(_containerRuntimeOptionPrefix.length()),
-				portletAppContainerRuntimeOption.getValue());
 		}
 
 		Set<String> keySet = containerRuntimeOptions.keySet();

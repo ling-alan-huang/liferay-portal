@@ -91,15 +91,14 @@ public class PropertiesArchivedModulesCheck extends BaseFileCheck {
 						"apps/archived/(.+?)/.*", "$1");
 				}
 
-				if (!archivedModuleDirectoryNames.contains(moduleName)) {
-					continue;
+				if (archivedModuleDirectoryNames.contains(moduleName)) {
+					addMessage(
+						fileName,
+						StringBundler.concat(
+							"Remove dependency \"", moduleName,
+							"\" in property \"", key,
+							"\", since it points to an archived module"));
 				}
-
-				addMessage(
-					fileName,
-					StringBundler.concat(
-						"Remove dependency \"", moduleName, "\" in property \"",
-						key, "\", since it points to an archived module"));
 			}
 		}
 

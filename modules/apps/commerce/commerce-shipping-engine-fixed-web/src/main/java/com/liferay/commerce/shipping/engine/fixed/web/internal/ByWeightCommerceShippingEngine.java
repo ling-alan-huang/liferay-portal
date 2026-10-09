@@ -289,11 +289,9 @@ public class ByWeightCommerceShippingEngine implements CommerceShippingEngine {
 					commerceOrder, locale, commerceAddress,
 					commerceShippingFixedOption);
 
-			if (commerceShippingOption == null) {
-				continue;
+			if (commerceShippingOption != null) {
+				commerceShippingOptions.add(commerceShippingOption);
 			}
-
-			commerceShippingOptions.add(commerceShippingOption);
 		}
 
 		return ListUtil.sort(
@@ -307,11 +305,9 @@ public class ByWeightCommerceShippingEngine implements CommerceShippingEngine {
 			commerceOrder.getCommerceOrderItems();
 
 		for (CommerceOrderItem commerceOrderItem : commerceOrderItems) {
-			if (!commerceOrderItem.isShippable()) {
-				continue;
+			if (commerceOrderItem.isShippable()) {
+				subtotal = subtotal.add(commerceOrderItem.getFinalPrice());
 			}
-
-			subtotal = subtotal.add(commerceOrderItem.getFinalPrice());
 		}
 
 		return subtotal;

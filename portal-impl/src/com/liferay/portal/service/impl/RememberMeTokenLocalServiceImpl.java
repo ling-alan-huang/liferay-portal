@@ -57,11 +57,9 @@ public class RememberMeTokenLocalServiceImpl
 		for (RememberMeToken rememberMeToken :
 				rememberMeTokenPersistence.findByUserId(userId)) {
 
-			if (!rememberMeToken.isExpired()) {
-				continue;
+			if (rememberMeToken.isExpired()) {
+				deleteRememberMeToken(rememberMeToken);
 			}
-
-			deleteRememberMeToken(rememberMeToken);
 		}
 	}
 

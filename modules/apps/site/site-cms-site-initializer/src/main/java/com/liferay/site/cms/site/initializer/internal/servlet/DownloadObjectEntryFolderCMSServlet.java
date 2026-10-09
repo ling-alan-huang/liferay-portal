@@ -381,18 +381,16 @@ public class DownloadObjectEntryFolderCMSServlet extends BaseCMSServlet {
 				QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 
 		for (ObjectEntryFolder objectEntryFolder : objectEntryFolders) {
-			if (!_objectEntryFolderModelResourcePermission.contains(
+			if (_objectEntryFolderModelResourcePermission.contains(
 					themeDisplay.getPermissionChecker(), objectEntryFolder,
 					ActionKeys.VIEW)) {
 
-				continue;
+				_zipObjectEntryFolder(
+					groupId, objectEntryFolder.getObjectEntryFolderId(),
+					StringBundler.concat(
+						path, StringPool.SLASH, objectEntryFolder.getName()),
+					themeDisplay, zipWriter);
 			}
-
-			_zipObjectEntryFolder(
-				groupId, objectEntryFolder.getObjectEntryFolderId(),
-				StringBundler.concat(
-					path, StringPool.SLASH, objectEntryFolder.getName()),
-				themeDisplay, zipWriter);
 		}
 	}
 

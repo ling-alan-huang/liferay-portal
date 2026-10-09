@@ -71,18 +71,14 @@ public class ServiceTrackerResourceBundleLoader
 			ResourceBundleLoader resourceBundleLoader =
 				serviceTracker.getService();
 
-			if (resourceBundleLoader == null) {
-				continue;
+			if (resourceBundleLoader != null) {
+				ResourceBundle resourceBundle =
+					resourceBundleLoader.loadResourceBundle(locale);
+
+				if (resourceBundle != null) {
+					resourceBundles.add(resourceBundle);
+				}
 			}
-
-			ResourceBundle resourceBundle =
-				resourceBundleLoader.loadResourceBundle(locale);
-
-			if (resourceBundle == null) {
-				continue;
-			}
-
-			resourceBundles.add(resourceBundle);
 		}
 
 		if (resourceBundles.isEmpty()) {

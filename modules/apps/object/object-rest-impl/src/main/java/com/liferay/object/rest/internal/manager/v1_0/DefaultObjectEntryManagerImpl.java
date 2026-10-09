@@ -1991,11 +1991,9 @@ public class DefaultObjectEntryManagerImpl
 					dtoConverterContext.getUserId());
 			}
 
-			if (!properties.containsKey(entry.getKey())) {
-				continue;
+			if (properties.containsKey(entry.getKey())) {
+				NestedFieldsSupplier.addNestedField(entry.getKey());
 			}
-
-			NestedFieldsSupplier.addNestedField(entry.getKey());
 		}
 
 		return objectEntryLocalService.getObjectEntry(
@@ -2877,11 +2875,9 @@ public class DefaultObjectEntryManagerImpl
 					fetchObjectRelationshipByObjectDefinitionId(
 						objectDefinition.getObjectDefinitionId(), key);
 
-			if (objectRelationship == null) {
-				continue;
+			if (objectRelationship != null) {
+				objectRelationships.put(key, objectRelationship);
 			}
-
-			objectRelationships.put(key, objectRelationship);
 		}
 
 		return objectRelationships;
@@ -3494,11 +3490,9 @@ public class DefaultObjectEntryManagerImpl
 						objectDefinition, objectField, entry.getValue(),
 						scopeKey, serviceContext);
 
-					if (fileEntryId <= 0) {
-						continue;
+					if (fileEntryId > 0) {
+						entry.setValue(fileEntryId);
 					}
-
-					entry.setValue(fileEntryId);
 				}
 
 				return;
@@ -3582,14 +3576,12 @@ public class DefaultObjectEntryManagerImpl
 				objectDefinition.getObjectDefinitionId());
 
 		for (ObjectField objectField : objectFields) {
-			if (!ObjectFieldUtil.isReadOnly(
+			if (ObjectFieldUtil.isReadOnly(
 					ddmExpressionFactory, objectField,
 					objectEntry.getProperties())) {
 
-				continue;
+				properties.remove(objectField.getName());
 			}
-
-			properties.remove(objectField.getName());
 		}
 	}
 

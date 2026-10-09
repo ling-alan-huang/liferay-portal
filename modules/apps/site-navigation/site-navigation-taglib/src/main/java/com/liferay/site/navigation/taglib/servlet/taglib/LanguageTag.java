@@ -338,11 +338,9 @@ public class LanguageTag extends IncludeTag {
 		for (Locale locale : locales) {
 			Integer count = counts.get(locale.getLanguage());
 
-			if (count.intValue() == 1) {
-				continue;
+			if (count.intValue() != 1) {
+				duplicateLanguages.add(locale.getLanguage());
 			}
-
-			duplicateLanguages.add(locale.getLanguage());
 		}
 
 		HttpServletRequest httpServletRequest = getRequest();

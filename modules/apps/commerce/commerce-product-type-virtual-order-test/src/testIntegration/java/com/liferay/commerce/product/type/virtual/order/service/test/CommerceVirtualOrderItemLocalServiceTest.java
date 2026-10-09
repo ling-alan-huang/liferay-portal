@@ -184,14 +184,13 @@ public class CommerceVirtualOrderItemLocalServiceTest {
 				commerceVirtualOrderItem.getActivationStatus());
 			Assert.assertEquals(0L, commerceVirtualOrderItem.getDuration());
 
-			if (!Objects.equals(
+			if (Objects.equals(
 					commerceVirtualOrderItem.getActivationStatus(),
 					commerceOrder.getOrderStatus())) {
 
-				continue;
+				Assert.assertEquals(
+					null, commerceVirtualOrderItem.getEndDate());
 			}
-
-			Assert.assertEquals(null, commerceVirtualOrderItem.getEndDate());
 		}
 	}
 

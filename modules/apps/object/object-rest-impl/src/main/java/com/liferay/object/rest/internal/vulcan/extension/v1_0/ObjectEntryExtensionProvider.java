@@ -118,14 +118,12 @@ public class ObjectEntryExtensionProvider extends BaseObjectExtensionProvider {
 				for (Map.Entry<String, Serializable> entry :
 						i18nValuesMap.entrySet()) {
 
-					if (!(entry.getValue() instanceof String)) {
-						continue;
+					if (entry.getValue() instanceof String) {
+						entry.setValue(
+							objectFieldBusinessType.getDTOValue(
+								dtoConverterContext, objectDefinition, null,
+								objectField, entry.getValue()));
 					}
-
-					entry.setValue(
-						objectFieldBusinessType.getDTOValue(
-							dtoConverterContext, objectDefinition, null,
-							objectField, entry.getValue()));
 				}
 			}
 

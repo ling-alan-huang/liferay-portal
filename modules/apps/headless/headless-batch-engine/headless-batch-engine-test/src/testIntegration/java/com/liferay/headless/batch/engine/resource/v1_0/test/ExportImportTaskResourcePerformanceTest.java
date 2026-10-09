@@ -254,11 +254,9 @@ public class ExportImportTaskResourcePerformanceTest {
 
 			sb.append(json);
 
-			if (i >= (count - 1)) {
-				continue;
+			if (i < (count - 1)) {
+				sb.append(StringPool.COMMA);
 			}
-
-			sb.append(StringPool.COMMA);
 		}
 
 		sb.append(StringPool.CLOSE_BRACKET);

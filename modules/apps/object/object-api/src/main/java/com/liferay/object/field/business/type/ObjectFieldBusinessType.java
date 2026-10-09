@@ -228,15 +228,13 @@ public interface ObjectFieldBusinessType {
 		for (String requiredObjectFieldSettingName :
 				getRequiredObjectFieldSettingsNames(objectField)) {
 
-			if (Validator.isNotNull(
+			if (Validator.isNull(
 					objectFieldSettingsValuesMap.get(
 						requiredObjectFieldSettingName))) {
 
-				continue;
+				missingRequiredObjectFieldSettingsNames.add(
+					requiredObjectFieldSettingName);
 			}
-
-			missingRequiredObjectFieldSettingsNames.add(
-				requiredObjectFieldSettingName);
 		}
 
 		if (!missingRequiredObjectFieldSettingsNames.isEmpty()) {

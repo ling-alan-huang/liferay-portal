@@ -67,14 +67,12 @@ public class InfoFieldUtil {
 			String name = entry.getKey();
 			String type = entry.getValue();
 
-			if (name.equals(defaultElementName) || !_isTextFieldType(type)) {
-				continue;
+			if (!name.equals(defaultElementName) && _isTextFieldType(type)) {
+				consumer.accept(
+					_getInfoField(
+						fragmentEntryLink.getFragmentEntryLinkId(), name, type),
+					type, fragmentEntryLink::getEditableValuesJSONObject);
 			}
-
-			consumer.accept(
-				_getInfoField(
-					fragmentEntryLink.getFragmentEntryLinkId(), name, type),
-				type, fragmentEntryLink::getEditableValuesJSONObject);
 		}
 	}
 

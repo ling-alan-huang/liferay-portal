@@ -458,11 +458,9 @@ public class GradleUtil {
 
 			String s = _nameMatcher.find(taskName, taskContainer.getNames());
 
-			if (s == null) {
-				continue;
+			if (s != null) {
+				fullyQualifiedTaskNames.add(s);
 			}
-
-			fullyQualifiedTaskNames.add(s);
 		}
 
 		return fullyQualifiedTaskNames;
@@ -523,13 +521,11 @@ public class GradleUtil {
 		while (iterator.hasNext()) {
 			Dependency dependency = iterator.next();
 
-			if (!ArrayUtil.contains(
+			if (ArrayUtil.contains(
 					dependencyNotations, _getDependencyNotation(dependency))) {
 
-				continue;
+				iterator.remove();
 			}
-
-			iterator.remove();
 		}
 	}
 

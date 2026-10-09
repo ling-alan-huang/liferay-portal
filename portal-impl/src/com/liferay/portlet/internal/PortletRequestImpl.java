@@ -416,11 +416,9 @@ public abstract class PortletRequestImpl implements LiferayPortletRequest {
 			while (enumeration.hasMoreElements()) {
 				String header = enumeration.nextElement();
 
-				if (header == null) {
-					continue;
+				if (header != null) {
+					values.add(header);
 				}
-
-				values.add(header);
 			}
 		}
 
@@ -492,15 +490,13 @@ public abstract class PortletRequestImpl implements LiferayPortletRequest {
 		for (Map.Entry<String, String[]> entry : parameterMap.entrySet()) {
 			String name = entry.getKey();
 
-			if (_portlet.getPublicRenderParameter(name) == null) {
-				continue;
-			}
+			if (_portlet.getPublicRenderParameter(name) != null) {
+				if (publicParameterMap == null) {
+					publicParameterMap = new HashMap<>(parameterMap.size(), 1);
+				}
 
-			if (publicParameterMap == null) {
-				publicParameterMap = new HashMap<>(parameterMap.size(), 1);
+				publicParameterMap.put(name, entry.getValue());
 			}
-
-			publicParameterMap.put(name, entry.getValue());
 		}
 
 		if (publicParameterMap == null) {
@@ -746,16 +742,17 @@ public abstract class PortletRequestImpl implements LiferayPortletRequest {
 					privateRenderParameterNames.add(requestParameter.getName());
 				}
 
-				if ((requestParameter.getValues() == null) ||
-					(!requestParameter.isPortletNamespaced() &&
-					 portlet.isRequiresNamespacedParameters())) {
-
+				if (requestParameter.getValues() == null) {
 					continue;
 				}
 
-				dynamicServletRequest.setParameterValues(
-					requestParameter.getName(facesPortlet),
-					requestParameter.getValues());
+				if (requestParameter.isPortletNamespaced() ||
+					!portlet.isRequiresNamespacedParameters()) {
+
+					dynamicServletRequest.setParameterValues(
+						requestParameter.getName(facesPortlet),
+						requestParameter.getValues());
+				}
 			}
 
 			if ((Objects.equals(getLifecycle(), PortletRequest.HEADER_PHASE) ||
@@ -905,12 +902,10 @@ public abstract class PortletRequestImpl implements LiferayPortletRequest {
 					PortletQNameUtil.getPublicRenderParameterName(
 						publicRenderParameter.getQName()));
 
-				if (values == null) {
-					continue;
+				if (values != null) {
+					allRenderParameters.put(
+						publicRenderParameter.getIdentifier(), values);
 				}
-
-				allRenderParameters.put(
-					publicRenderParameter.getIdentifier(), values);
 			}
 
 			Map<String, String[]> privateRenderParameters =
@@ -965,16 +960,14 @@ public abstract class PortletRequestImpl implements LiferayPortletRequest {
 			for (String privateRenderParameterName :
 					privateRenderParameterNames) {
 
-				if (nullValueParameterNames.contains(
+				if (!nullValueParameterNames.contains(
 						privateRenderParameterName)) {
 
-					continue;
+					allRenderParameters.putIfAbsent(
+						privateRenderParameterName,
+						dynamicServletRequest.getParameterValues(
+							privateRenderParameterName));
 				}
-
-				allRenderParameters.putIfAbsent(
-					privateRenderParameterName,
-					dynamicServletRequest.getParameterValues(
-						privateRenderParameterName));
 			}
 		}
 		else {
@@ -1011,12 +1004,11 @@ public abstract class PortletRequestImpl implements LiferayPortletRequest {
 					requestParameter.setValues(null);
 				}
 
-				if (requestParameter.getValues() == null) {
-					continue;
+				if (requestParameter.getValues() != null) {
+					allRenderParameters.put(
+						requestParameter.getName(),
+						requestParameter.getValues());
 				}
-
-				allRenderParameters.put(
-					requestParameter.getName(), requestParameter.getValues());
 			}
 		}
 
@@ -1138,11 +1130,9 @@ public abstract class PortletRequestImpl implements LiferayPortletRequest {
 		while (enumeration.hasMoreElements()) {
 			String name = enumeration.nextElement();
 
-			if (name.equals(JavaConstants.JAKARTA_SERVLET_INCLUDE_PATH_INFO)) {
-				continue;
+			if (!name.equals(JavaConstants.JAKARTA_SERVLET_INCLUDE_PATH_INFO)) {
+				names.add(name);
 			}
-
-			names.add(name);
 		}
 	}
 
@@ -1427,14 +1417,12 @@ public abstract class PortletRequestImpl implements LiferayPortletRequest {
 
 			if ((values != null) && (portletSpecMajorVersion >= 3)) {
 				for (int i = 0; i < values.length; i++) {
-					if (!Objects.equals(
+					if (Objects.equals(
 							values[i],
 							LiferayMutablePortletParameters.NULL_PARAM_VALUE)) {
 
-						continue;
+						values[i] = null;
 					}
-
-					values[i] = null;
 				}
 			}
 

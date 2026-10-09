@@ -66,14 +66,12 @@ public class ScopedTestEntityResourceImpl
 		List<ScopedTestEntity> scopedTestEntities = new ArrayList<>();
 
 		for (ScopedTestEntity scopedTestEntity : _scopedTestEntities) {
-			if (!Objects.equals(
+			if (Objects.equals(
 					String.valueOf(assetLibraryId),
 					scopedTestEntity.getAssetLibraryKey())) {
 
-				continue;
+				scopedTestEntities.add(scopedTestEntity);
 			}
-
-			scopedTestEntities.add(scopedTestEntity);
 		}
 
 		return Page.of(
@@ -118,11 +116,9 @@ public class ScopedTestEntityResourceImpl
 		List<ScopedTestEntity> scopedTestEntities = new ArrayList<>();
 
 		for (ScopedTestEntity scopedTestEntity : _scopedTestEntities) {
-			if (!Objects.equals(siteId, scopedTestEntity.getSiteId())) {
-				continue;
+			if (Objects.equals(siteId, scopedTestEntity.getSiteId())) {
+				scopedTestEntities.add(scopedTestEntity);
 			}
-
-			scopedTestEntities.add(scopedTestEntity);
 		}
 
 		return Page.of(
@@ -314,18 +310,16 @@ public class ScopedTestEntityResourceImpl
 		while (iterator.hasNext()) {
 			ScopedTestEntity existingScopedTestEntity = iterator.next();
 
-			if (!Objects.equals(
+			if (Objects.equals(
 					existingScopedTestEntity.getExternalReferenceCode(),
-					existingScopedTestEntityExternalReferenceCode) ||
-				!Objects.equals(
+					existingScopedTestEntityExternalReferenceCode) &&
+				Objects.equals(
 					assetLibraryKey,
-					existingScopedTestEntity.getAssetLibraryKey()) ||
-				!Objects.equals(siteId, existingScopedTestEntity.getSiteId())) {
+					existingScopedTestEntity.getAssetLibraryKey()) &&
+				Objects.equals(siteId, existingScopedTestEntity.getSiteId())) {
 
-				continue;
+				iterator.remove();
 			}
-
-			iterator.remove();
 		}
 	}
 
@@ -388,14 +382,12 @@ public class ScopedTestEntityResourceImpl
 		while (iterator.hasNext()) {
 			ScopedTestEntity existingScopedTestEntity = iterator.next();
 
-			if (!Objects.equals(
+			if (Objects.equals(
 					existingScopedTestEntity.getExternalReferenceCode(),
 					existingScopedTestEntityExternalReferenceCode)) {
 
-				continue;
+				iterator.set(scopedTestEntity);
 			}
-
-			iterator.set(scopedTestEntity);
 		}
 	}
 

@@ -946,14 +946,12 @@ public class ObjectDefinitionDeployerImpl implements ObjectDefinitionDeployer {
 			boolean groupAware = objectScopeProvider.isGroupAware();
 			boolean hasScope = value.contains("scopes");
 
-			if ((groupAware || !hasScope) &&
-				(!groupAware || hasScope ||
-				 value.startsWith("/{objectEntryId}"))) {
+			if ((!groupAware && hasScope) ||
+				(groupAware && !hasScope &&
+				 !value.startsWith("/{objectEntryId}"))) {
 
-				continue;
+				excludedOperationIds.add(method.getName());
 			}
-
-			excludedOperationIds.add(method.getName());
 		}
 	}
 

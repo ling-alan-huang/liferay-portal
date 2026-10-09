@@ -132,13 +132,11 @@ public class EditClientExtensionEntryDisplayContext<T extends CET> {
 					selectedPortletCategoryName.equals(
 						portletCategory.getName())));
 
-			if (!Objects.equals(
+			if (Objects.equals(
 					portletCategory.getName(), "category.client-extensions")) {
 
-				continue;
+				found = true;
 			}
-
-			found = true;
 		}
 
 		if (!found) {

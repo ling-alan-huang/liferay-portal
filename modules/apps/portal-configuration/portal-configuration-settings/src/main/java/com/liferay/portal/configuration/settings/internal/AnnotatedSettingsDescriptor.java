@@ -55,11 +55,9 @@ public class AnnotatedSettingsDescriptor implements SettingsDescriptor {
 		for (Method propertyMethod : _getPropertyMethods()) {
 			Class<?> clazz = propertyMethod.getReturnType();
 
-			if (clazz != String[].class) {
-				continue;
+			if (clazz == String[].class) {
+				multiValuedKeys.add(_getPropertyName(propertyMethod));
 			}
-
-			multiValuedKeys.add(_getPropertyName(propertyMethod));
 		}
 
 		return multiValuedKeys;
@@ -80,13 +78,13 @@ public class AnnotatedSettingsDescriptor implements SettingsDescriptor {
 
 			String name = method.getName();
 
-			if (name.equals("getClass") ||
-				(!name.startsWith("get") && !name.startsWith("is"))) {
-
+			if (name.equals("getClass")) {
 				continue;
 			}
 
-			propertyMethods.add(method);
+			if (name.startsWith("get") || name.startsWith("is")) {
+				propertyMethods.add(method);
+			}
 		}
 
 		return propertyMethods.toArray(new Method[0]);

@@ -118,11 +118,9 @@ public class DDMFormValuesMergerImpl implements DDMFormValuesMerger {
 		for (Locale locale : existingValue.getAvailableLocales()) {
 			String value = newValue.getString(locale);
 
-			if (value != null) {
-				continue;
+			if (value == null) {
+				newValue.addString(locale, existingValue.getString(locale));
 			}
-
-			newValue.addString(locale, existingValue.getString(locale));
 		}
 	}
 

@@ -24,26 +24,25 @@ public class OverrideBothEqualsAndHashcodeRule
 		for (int i = 0; i < astImplementsList.jjtGetNumChildren(); i++) {
 			Node node = astImplementsList.jjtGetChild(i);
 
-			if (!(node instanceof ASTClassOrInterfaceType)) {
-				continue;
-			}
+			if (node instanceof ASTClassOrInterfaceType) {
+				ASTClassOrInterfaceType astClassOrInterfaceType =
+					(ASTClassOrInterfaceType)node;
 
-			ASTClassOrInterfaceType astClassOrInterfaceType =
-				(ASTClassOrInterfaceType)node;
+				if ((astClassOrInterfaceType.getType() != null) &&
+					node.hasImageEqualTo("Comparable")) {
 
-			if ((astClassOrInterfaceType.getType() != null) &&
-				node.hasImageEqualTo("Comparable")) {
+					try {
+						_implementsComparableField.set(this, true);
+					}
+					catch (ReflectiveOperationException
+								reflectiveOperationException) {
 
-				try {
-					_implementsComparableField.set(this, true);
+						throw new RuntimeException(
+							reflectiveOperationException);
+					}
+
+					return data;
 				}
-				catch (ReflectiveOperationException
-							reflectiveOperationException) {
-
-					throw new RuntimeException(reflectiveOperationException);
-				}
-
-				return data;
 			}
 		}
 

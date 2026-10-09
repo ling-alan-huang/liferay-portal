@@ -1201,14 +1201,13 @@ public class CPDefinitionOptionRelLocalServiceImpl
 		for (CPDefinitionOptionValueRel cpDefinitionOptionValueRel :
 				cpDefinitionOptionValueRels) {
 
-			if (cpDefinitionOptionValueRel.getPrice() != null) {
-				continue;
+			if (cpDefinitionOptionValueRel.getPrice() == null) {
+				cpDefinitionOptionValueRel.setPrice(BigDecimal.ZERO);
+
+				cpDefinitionOptionValueRelLocalService.
+					updateCPDefinitionOptionValueRel(
+						cpDefinitionOptionValueRel);
 			}
-
-			cpDefinitionOptionValueRel.setPrice(BigDecimal.ZERO);
-
-			cpDefinitionOptionValueRelLocalService.
-				updateCPDefinitionOptionValueRel(cpDefinitionOptionValueRel);
 		}
 	}
 

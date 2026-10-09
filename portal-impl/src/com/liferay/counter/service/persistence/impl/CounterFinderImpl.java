@@ -131,13 +131,11 @@ public class CounterFinderImpl implements CacheRegistryItem, CounterFinder {
 		}
 
 		for (String key : _counterRegisterMap.keySet()) {
-			if (!key.endsWith(
+			if (key.endsWith(
 					StringPool.AT + CompanyThreadLocal.getCompanyId())) {
 
-				continue;
+				_counterRegisterMap.remove(key);
 			}
-
-			_counterRegisterMap.remove(key);
 		}
 	}
 

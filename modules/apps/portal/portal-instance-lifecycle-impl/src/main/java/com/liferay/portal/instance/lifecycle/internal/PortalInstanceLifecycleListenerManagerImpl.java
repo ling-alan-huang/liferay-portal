@@ -395,23 +395,21 @@ public class PortalInstanceLifecycleListenerManagerImpl
 				Company fetchedCompany = _companyLocalService.fetchCompanyById(
 					company.getCompanyId());
 
-				if (fetchedCompany != null) {
-					continue;
-				}
+				if (fetchedCompany == null) {
+					try {
+						TransactionInvokerUtil.invoke(
+							_transactionConfig,
+							() -> {
+								unregisterCompany(company);
 
-				try {
-					TransactionInvokerUtil.invoke(
-						_transactionConfig,
-						() -> {
-							unregisterCompany(company);
+								return null;
+							});
+					}
+					catch (Throwable throwable) {
+						_log.error(throwable.getMessage());
 
-							return null;
-						});
-				}
-				catch (Throwable throwable) {
-					_log.error(throwable.getMessage());
-
-					return portalInstanceLifecycleListener;
+						return portalInstanceLifecycleListener;
+					}
 				}
 			}
 

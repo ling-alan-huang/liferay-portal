@@ -72,11 +72,9 @@ public class InfoPanelMVCResourceCommand extends BaseMVCResourceCommand {
 					fetchLayoutPageTemplateCollection(
 						layoutPageTemplateCollectionId);
 
-			if (layoutPageTemplateCollection == null) {
-				continue;
+			if (layoutPageTemplateCollection != null) {
+				layoutPageTemplateCollections.add(layoutPageTemplateCollection);
 			}
-
-			layoutPageTemplateCollections.add(layoutPageTemplateCollection);
 		}
 
 		return layoutPageTemplateCollections;
@@ -97,11 +95,9 @@ public class InfoPanelMVCResourceCommand extends BaseMVCResourceCommand {
 				_layoutPageTemplateEntryService.fetchLayoutPageTemplateEntry(
 					layoutPageTemplateEntryId);
 
-			if (layoutPageTemplateEntry == null) {
-				continue;
+			if (layoutPageTemplateEntry != null) {
+				layoutPageTemplateEntries.add(layoutPageTemplateEntry);
 			}
-
-			layoutPageTemplateEntries.add(layoutPageTemplateEntry);
 		}
 
 		return layoutPageTemplateEntries;

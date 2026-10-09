@@ -409,11 +409,9 @@ public class PortletRenderUtil {
 		for (int i = 0; i < urls.size(); i++) {
 			String url = urls.get(i);
 
-			if (!url.startsWith("nocombo:")) {
-				continue;
+			if (url.startsWith("nocombo:")) {
+				urls.set(i, url.substring(8));
 			}
-
-			urls.set(i, url.substring(8));
 		}
 
 		return urls;

@@ -192,16 +192,15 @@ public class BrowserSnifferUtilTest {
 					break;
 				}
 
-				if (!matches) {
-					continue;
+				if (matches) {
+					MockHttpServletRequest mockHttpServletRequest =
+						new MockHttpServletRequest();
+
+					mockHttpServletRequest.addHeader(
+						HttpHeaders.USER_AGENT, line);
+
+					requestConsumer.accept(mockHttpServletRequest);
 				}
-
-				MockHttpServletRequest mockHttpServletRequest =
-					new MockHttpServletRequest();
-
-				mockHttpServletRequest.addHeader(HttpHeaders.USER_AGENT, line);
-
-				requestConsumer.accept(mockHttpServletRequest);
 			}
 		}
 	}

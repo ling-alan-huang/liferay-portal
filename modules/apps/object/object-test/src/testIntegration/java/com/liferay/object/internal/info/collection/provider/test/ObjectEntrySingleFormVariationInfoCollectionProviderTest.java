@@ -356,19 +356,18 @@ public class ObjectEntrySingleFormVariationInfoCollectionProviderTest {
 
 				expectedObjectEntries.add(objectEntry);
 
-				if (!enableObjectEntryVersioning) {
-					continue;
+				if (enableObjectEntryVersioning) {
+					_objectEntryLocalService.partialUpdateObjectEntry(
+						TestPropsValues.getUserId(),
+						objectEntry.getObjectEntryId(),
+						objectEntry.getObjectEntryFolderId(),
+						HashMapBuilder.<String, Serializable>put(
+							"status", WorkflowConstants.STATUS_PENDING
+						).put(
+							"textObjectFieldName", RandomTestUtil.randomString()
+						).build(),
+						ServiceContextTestUtil.getServiceContext());
 				}
-
-				_objectEntryLocalService.partialUpdateObjectEntry(
-					TestPropsValues.getUserId(), objectEntry.getObjectEntryId(),
-					objectEntry.getObjectEntryFolderId(),
-					HashMapBuilder.<String, Serializable>put(
-						"status", WorkflowConstants.STATUS_PENDING
-					).put(
-						"textObjectFieldName", RandomTestUtil.randomString()
-					).build(),
-					ServiceContextTestUtil.getServiceContext());
 			}
 
 			InfoCollectionProvider<ObjectEntry> infoCollectionProvider =

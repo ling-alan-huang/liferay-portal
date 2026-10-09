@@ -36,11 +36,9 @@ public class ResourceBundleEnumeration implements Enumeration<String> {
 
 					_nextElement = _enumeration.nextElement();
 
-					if (!_set.contains(_nextElement)) {
-						continue;
+					if (_set.contains(_nextElement)) {
+						_nextElement = null;
 					}
-
-					_nextElement = null;
 				}
 			}
 		}

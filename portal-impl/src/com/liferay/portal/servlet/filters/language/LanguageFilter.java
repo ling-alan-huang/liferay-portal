@@ -110,12 +110,10 @@ public class LanguageFilter extends BasePortalFilter {
 
 			int index = parameterName.indexOf(CharPool.COLON);
 
-			if (index <= 0) {
-				continue;
+			if (index > 0) {
+				portletConfig = PortletConfigFactoryUtil.get(
+					parameterName.substring(0, index));
 			}
-
-			portletConfig = PortletConfigFactoryUtil.get(
-				parameterName.substring(0, index));
 		}
 
 		PortletConfig finalPortletConfig = portletConfig;

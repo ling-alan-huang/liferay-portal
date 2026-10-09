@@ -142,12 +142,10 @@ public class JavaStagedModelDataHandlerCheck extends BaseJavaTermCheck {
 		String packageName = null;
 
 		for (String importName : importNames) {
-			if (!importName.endsWith("." + stagedModelType)) {
-				continue;
+			if (importName.endsWith("." + stagedModelType)) {
+				packageName = importName.substring(
+					0, importName.length() - stagedModelType.length() - 1);
 			}
-
-			packageName = importName.substring(
-				0, importName.length() - stagedModelType.length() - 1);
 		}
 
 		if (packageName == null) {
@@ -208,17 +206,16 @@ public class JavaStagedModelDataHandlerCheck extends BaseJavaTermCheck {
 				for (Element columnElement :
 						(List<Element>)entityElement.elements("column")) {
 
-					if (!GetterUtil.getBoolean(
+					if (GetterUtil.getBoolean(
 							columnElement.attributeValue("primary"))) {
 
-						continue;
+						_kernelPrimaryKeysList.add(
+							new String[] {
+								entityElement.attributeValue("name"),
+								apiPackagePath,
+								columnElement.attributeValue("name")
+							});
 					}
-
-					_kernelPrimaryKeysList.add(
-						new String[] {
-							entityElement.attributeValue("name"),
-							apiPackagePath, columnElement.attributeValue("name")
-						});
 				}
 			}
 		}

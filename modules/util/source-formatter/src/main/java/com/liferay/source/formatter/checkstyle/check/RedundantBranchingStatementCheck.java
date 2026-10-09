@@ -63,15 +63,13 @@ public class RedundantBranchingStatementCheck extends BaseCheck {
 			DetailAST firstChildDetailAST =
 				lastStatementDetailAST.getFirstChild();
 
-			if ((firstChildDetailAST == null) ||
-				(firstChildDetailAST.getType() != TokenTypes.SEMI)) {
+			if ((firstChildDetailAST != null) &&
+				(firstChildDetailAST.getType() == TokenTypes.SEMI)) {
 
-				continue;
+				log(
+					lastStatementDetailAST, _MSG_REDUNDANT_BRANCHING_STATEMENT,
+					lastStatementDetailAST.getText());
 			}
-
-			log(
-				lastStatementDetailAST, _MSG_REDUNDANT_BRANCHING_STATEMENT,
-				lastStatementDetailAST.getText());
 		}
 	}
 

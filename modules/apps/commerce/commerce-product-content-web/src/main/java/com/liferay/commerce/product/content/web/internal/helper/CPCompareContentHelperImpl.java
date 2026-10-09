@@ -350,13 +350,11 @@ public class CPCompareContentHelperImpl implements CPCompareContentHelper {
 				cpSpecificationOptions.add(cpSpecificationOption);
 			}
 
-			if (categorized ||
-				(cpSpecificationOption.getCPOptionCategoryId() != 0)) {
+			if (!categorized &&
+				(cpSpecificationOption.getCPOptionCategoryId() == 0)) {
 
-				continue;
+				cpSpecificationOptions.add(cpSpecificationOption);
 			}
-
-			cpSpecificationOptions.add(cpSpecificationOption);
 		}
 
 		return cpSpecificationOptions;
@@ -379,13 +377,11 @@ public class CPCompareContentHelperImpl implements CPCompareContentHelper {
 				_commerceOptionTypeRegistry.getCommerceOptionType(
 					cpDefinitionOptionRel.getCommerceOptionTypeKey());
 
-			if ((commerceOptionType == null) ||
-				!commerceOptionType.hasValues()) {
+			if ((commerceOptionType != null) &&
+				commerceOptionType.hasValues()) {
 
-				continue;
+				multiValueCPDefinitionOptionRels.add(cpDefinitionOptionRel);
 			}
-
-			multiValueCPDefinitionOptionRels.add(cpDefinitionOptionRel);
 		}
 
 		return multiValueCPDefinitionOptionRels;

@@ -37,21 +37,17 @@ public class MarketplaceAppManagerSearchUtil {
 			bundles, StringPool.BLANK, BundleStateConstants.ANY, locale);
 
 		for (AppDisplay appDisplay : appDisplays) {
-			if (!_hasAppDisplayKeywordsMatch(appDisplay, keywordsRegex)) {
-				continue;
+			if (_hasAppDisplayKeywordsMatch(appDisplay, keywordsRegex)) {
+				results.add(appDisplay);
 			}
-
-			results.add(appDisplay);
 		}
 
 		// Bundle
 
 		for (Bundle bundle : bundles) {
-			if (!_hasBundleKeywordsMatch(bundle, keywordsRegex)) {
-				continue;
+			if (_hasBundleKeywordsMatch(bundle, keywordsRegex)) {
+				results.add(bundle);
 			}
-
-			results.add(bundle);
 		}
 
 		return results;

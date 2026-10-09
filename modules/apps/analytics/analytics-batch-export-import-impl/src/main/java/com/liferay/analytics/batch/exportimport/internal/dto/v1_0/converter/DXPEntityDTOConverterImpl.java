@@ -524,11 +524,9 @@ public class DXPEntityDTOConverterImpl implements DXPEntityDTOConverter {
 		for (long userGroupId : user.getGroupIds()) {
 			Group group = _groupPersistence.findByPrimaryKey(userGroupId);
 
-			if (!group.isSite()) {
-				continue;
+			if (group.isSite()) {
+				userSiteGroups.add(group);
 			}
-
-			userSiteGroups.add(group);
 		}
 
 		if ((organizationIds.length != 0) || (userGroupIds.length != 0)) {
@@ -536,11 +534,9 @@ public class DXPEntityDTOConverterImpl implements DXPEntityDTOConverter {
 				user.getUserId(), true);
 
 			for (Group userGroup : userGroups) {
-				if (!userGroup.isSite()) {
-					continue;
+				if (userGroup.isSite()) {
+					userSiteGroups.add(userGroup);
 				}
-
-				userSiteGroups.add(userGroup);
 			}
 		}
 

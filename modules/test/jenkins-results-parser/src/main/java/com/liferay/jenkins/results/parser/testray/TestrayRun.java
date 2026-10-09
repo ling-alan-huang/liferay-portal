@@ -301,14 +301,12 @@ public class TestrayRun {
 				continue;
 			}
 
-			if ((matchingValueKey != null) &&
-				(valueKey.length() <= matchingValueKey.length())) {
+			if ((matchingValueKey == null) ||
+				(valueKey.length() > matchingValueKey.length())) {
 
-				continue;
+				matchingValueKey = valueKey;
+				matchingPropertyName = propertyName;
 			}
-
-			matchingValueKey = valueKey;
-			matchingPropertyName = propertyName;
 		}
 
 		if (!JenkinsResultsParserUtil.isNullOrEmpty(matchingPropertyName)) {
@@ -398,12 +396,10 @@ public class TestrayRun {
 				sb.append(" ");
 			}
 
-			if (word.length() <= 0) {
-				continue;
+			if (word.length() > 0) {
+				sb.append(Character.toUpperCase(word.charAt(0)));
+				sb.append(word.substring(1));
 			}
-
-			sb.append(Character.toUpperCase(word.charAt(0)));
-			sb.append(word.substring(1));
 		}
 
 		return sb.toString();

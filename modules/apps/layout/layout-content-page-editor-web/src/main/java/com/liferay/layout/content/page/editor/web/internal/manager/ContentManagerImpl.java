@@ -1337,16 +1337,14 @@ public class ContentManagerImpl implements ContentManager {
 			JSONObject linkJSONObject =
 				containerStyledLayoutStructureItem.getLinkJSONObject();
 
-			if (linkJSONObject == null) {
-				continue;
+			if (linkJSONObject != null) {
+				_getLayoutDisplayPageObjectProvider(
+					linkJSONObject, layoutDisplayPageObjectProviders,
+					uniqueLayoutClassedModelUsageKeys);
+				_getLocalizedLayoutDisplayPageObjectProviders(
+					linkJSONObject, layoutDisplayPageObjectProviders,
+					uniqueLayoutClassedModelUsageKeys);
 			}
-
-			_getLayoutDisplayPageObjectProvider(
-				linkJSONObject, layoutDisplayPageObjectProviders,
-				uniqueLayoutClassedModelUsageKeys);
-			_getLocalizedLayoutDisplayPageObjectProviders(
-				linkJSONObject, layoutDisplayPageObjectProviders,
-				uniqueLayoutClassedModelUsageKeys);
 		}
 	}
 
@@ -1740,11 +1738,9 @@ public class ContentManagerImpl implements ContentManager {
 				}
 			}
 
-			if (!restrictedPortletId) {
-				continue;
+			if (restrictedPortletId) {
+				restrictedPortletIds.add(entry.getKey());
 			}
-
-			restrictedPortletIds.add(entry.getKey());
 		}
 
 		return restrictedPortletIds;

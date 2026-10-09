@@ -93,14 +93,12 @@ public class PortletSetupUtil {
 		for (Locale locale : LanguageUtil.getAvailableLocales()) {
 			String languageId = LocaleUtil.toLanguageId(locale);
 
-			if (Validator.isNull(languageId)) {
-				continue;
+			if (Validator.isNotNull(languageId)) {
+				String title = portletPreferences.getValue(
+					"portletSetupTitle_" + languageId, null);
+
+				titlesJSONObject.put(languageId, title);
 			}
-
-			String title = portletPreferences.getValue(
-				"portletSetupTitle_" + languageId, null);
-
-			titlesJSONObject.put(languageId, title);
 		}
 
 		String portletDecoratorId = GetterUtil.getString(

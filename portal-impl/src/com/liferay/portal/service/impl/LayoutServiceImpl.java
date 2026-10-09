@@ -1871,11 +1871,9 @@ public class LayoutServiceImpl extends LayoutServiceBaseImpl {
 			Portlet portlet = _portletLocalService.fetchPortletById(
 				layout.getCompanyId(), portletId);
 
-			if (portlet == null) {
-				continue;
+			if (portlet != null) {
+				portletIds.add(portletId);
 			}
-
-			portletIds.add(portletId);
 		}
 
 		return portletIds;
@@ -1907,11 +1905,9 @@ public class LayoutServiceImpl extends LayoutServiceBaseImpl {
 
 			start = start + interval;
 
-			if (layouts.size() >= interval) {
-				continue;
+			if (layouts.size() < interval) {
+				hasNext = false;
 			}
-
-			hasNext = false;
 		}
 
 		return null;

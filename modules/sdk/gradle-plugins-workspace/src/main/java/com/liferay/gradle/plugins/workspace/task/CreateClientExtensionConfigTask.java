@@ -371,11 +371,9 @@ public class CreateClientExtensionConfigTask extends DefaultTask {
 					_typeSettingsToSiteInitializerJsonKeyMap.get(
 						entry.getKey());
 
-				if (jsonMapKey == null) {
-					continue;
+				if (jsonMapKey != null) {
+					jsonMap.put(jsonMapKey, entry.getValue());
 				}
-
-				jsonMap.put(jsonMapKey, entry.getValue());
 			}
 
 			ObjectMapper objectMapper = new ObjectMapper();
@@ -423,22 +421,20 @@ public class CreateClientExtensionConfigTask extends DefaultTask {
 				}
 			}
 
-			if (!(currentValue instanceof List)) {
-				continue;
-			}
+			if (currentValue instanceof List) {
+				List<String> values = new ArrayList<>();
 
-			List<String> values = new ArrayList<>();
-
-			for (String value : (List<String>)currentValue) {
-				if (key.contains("url") && _isWildcardValue(value)) {
-					values.addAll(_getMatchingPaths(staticDirPath, value));
+				for (String value : (List<String>)currentValue) {
+					if (key.contains("url") && _isWildcardValue(value)) {
+						values.addAll(_getMatchingPaths(staticDirPath, value));
+					}
+					else {
+						values.add(value);
+					}
 				}
-				else {
-					values.add(value);
-				}
-			}
 
-			entry.setValue(values);
+				entry.setValue(values);
+			}
 		}
 	}
 

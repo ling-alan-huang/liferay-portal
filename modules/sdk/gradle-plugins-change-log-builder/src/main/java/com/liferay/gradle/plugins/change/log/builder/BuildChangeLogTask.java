@@ -302,11 +302,9 @@ public class BuildChangeLogTask extends DefaultTask {
 		for (RevCommit revCommit : revCommits) {
 			String ticketId = _getTicketId(revCommit);
 
-			if (Validator.isNull(ticketId)) {
-				continue;
+			if (Validator.isNotNull(ticketId)) {
+				ticketIds.add(ticketId);
 			}
-
-			ticketIds.add(ticketId);
 		}
 
 		if (rangeStart.equals(GitUtil.getHashOldest(repository))) {

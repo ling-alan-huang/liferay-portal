@@ -61,11 +61,9 @@ public abstract class BasePermissionPropagator implements PermissionPropagator {
 		Set<String> parentAndChildCommonActionIds = new HashSet<>();
 
 		for (String actionId : childActionIds) {
-			if (!parentActionIds.contains(actionId)) {
-				continue;
+			if (parentActionIds.contains(actionId)) {
+				parentAndChildCommonActionIds.add(actionId);
 			}
-
-			parentAndChildCommonActionIds.add(actionId);
 		}
 
 		Set<String> parentAvailableActionIds = getAvailableActionIds(
@@ -78,19 +76,15 @@ public abstract class BasePermissionPropagator implements PermissionPropagator {
 		List<String> actionIds = new ArrayList<>();
 
 		for (String actionId : parentAndChildCommonActionIds) {
-			if (!parentAvailableActionIds.contains(actionId)) {
-				continue;
+			if (parentAvailableActionIds.contains(actionId)) {
+				actionIds.add(actionId);
 			}
-
-			actionIds.add(actionId);
 		}
 
 		for (String actionId : childAvailableActionIds) {
-			if (parentAndChildCommonActionIds.contains(actionId)) {
-				continue;
+			if (!parentAndChildCommonActionIds.contains(actionId)) {
+				actionIds.add(actionId);
 			}
-
-			actionIds.add(actionId);
 		}
 
 		ResourcePermissionServiceUtil.setIndividualResourcePermissions(

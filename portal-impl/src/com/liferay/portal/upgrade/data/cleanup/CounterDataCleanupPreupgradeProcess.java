@@ -146,11 +146,10 @@ public class CounterDataCleanupPreupgradeProcess
 				_checkSpecificCounter(
 					counterName, counterValue, dbInspector, tableName);
 
-				if (counterName.equals(DLFileEntry.class.getName())) {
-					continue;
+				if (!counterName.equals(DLFileEntry.class.getName())) {
+					excludedTableNames.add(
+						dbInspector.normalizeName(tableName));
 				}
-
-				excludedTableNames.add(dbInspector.normalizeName(tableName));
 			}
 
 			_checkKernelCounter(
@@ -205,12 +204,10 @@ public class CounterDataCleanupPreupgradeProcess
 		for (Map.Entry<String, Long> entry : maxValues.entrySet()) {
 			long maxValue = entry.getValue();
 
-			if (maxValue <= latestCounterValue) {
-				continue;
+			if (maxValue > latestCounterValue) {
+				latestCounterValue = maxValue;
+				maxValueTableName = entry.getKey();
 			}
-
-			latestCounterValue = maxValue;
-			maxValueTableName = entry.getKey();
 		}
 
 		long counterValue = 0L;

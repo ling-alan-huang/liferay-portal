@@ -294,16 +294,14 @@ public class EditCompanyMVCActionCommand extends BaseFormMVCActionCommand {
 				String curName = enumeration.nextElement();
 
 				for (String discardLegacyKey : discardLegacyKeys) {
-					if (!curName.startsWith(discardLegacyKey + "_")) {
-						continue;
-					}
+					if (curName.startsWith(discardLegacyKey + "_")) {
+						if (_log.isDebugEnabled()) {
+							_log.debug("Discarding property key " + curName);
+						}
 
-					if (_log.isDebugEnabled()) {
-						_log.debug("Discarding property key " + curName);
+						portletPreferences.reset(curName);
+						unicodeProperties.remove(curName);
 					}
-
-					portletPreferences.reset(curName);
-					unicodeProperties.remove(curName);
 				}
 			}
 

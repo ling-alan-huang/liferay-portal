@@ -58,27 +58,25 @@ public class BufferedIncrementRunnable implements Runnable {
 					throwable);
 			}
 
-			if (!_bufferedIncrementConfiguration.isStandbyEnabled() ||
-				!CTCollectionThreadLocal.isProductionMode()) {
+			if (_bufferedIncrementConfiguration.isStandbyEnabled() &&
+				CTCollectionThreadLocal.isProductionMode()) {
 
-				continue;
-			}
+				int queueLength = _queueLengthTracker.decrementAndGet();
 
-			int queueLength = _queueLengthTracker.decrementAndGet();
+				long standbyTime =
+					_bufferedIncrementConfiguration.calculateStandbyTime(
+						queueLength);
 
-			long standbyTime =
-				_bufferedIncrementConfiguration.calculateStandbyTime(
-					queueLength);
-
-			try {
-				Thread.sleep(standbyTime);
-			}
-			catch (InterruptedException interruptedException) {
-				if (_log.isDebugEnabled()) {
-					_log.debug(interruptedException);
+				try {
+					Thread.sleep(standbyTime);
 				}
+				catch (InterruptedException interruptedException) {
+					if (_log.isDebugEnabled()) {
+						_log.debug(interruptedException);
+					}
 
-				break;
+					break;
+				}
 			}
 		}
 

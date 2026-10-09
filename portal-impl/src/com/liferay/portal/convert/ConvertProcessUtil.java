@@ -37,11 +37,9 @@ public class ConvertProcessUtil {
 		while (iterator.hasNext()) {
 			ConvertProcess convertProcess = iterator.next();
 
-			if (convertProcess.isEnabled()) {
-				continue;
+			if (!convertProcess.isEnabled()) {
+				iterator.remove();
 			}
-
-			iterator.remove();
 		}
 
 		return convertProcesses;

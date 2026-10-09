@@ -34,12 +34,11 @@ public class AssignAsUsedCheck extends BaseAsUsedCheck {
 
 			parentDetailAST = parentDetailAST.getParent();
 
-			if (parentDetailAST.getType() != TokenTypes.SLIST) {
-				continue;
+			if (parentDetailAST.getType() == TokenTypes.SLIST) {
+				_checkAssign(
+					detailAST, assignDetailAST,
+					getEndLineNumber(parentDetailAST));
 			}
-
-			_checkAssign(
-				detailAST, assignDetailAST, getEndLineNumber(parentDetailAST));
 		}
 	}
 

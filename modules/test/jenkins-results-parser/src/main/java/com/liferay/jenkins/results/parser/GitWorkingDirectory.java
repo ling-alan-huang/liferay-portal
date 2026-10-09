@@ -306,11 +306,9 @@ public class GitWorkingDirectory {
 			".*", Pattern.quote(getUpstreamBranchName()), "-temp", ".*");
 
 		for (String localGitBranchName : localGitBranchNames) {
-			if (!localGitBranchName.matches(pattern)) {
-				continue;
+			if (localGitBranchName.matches(pattern)) {
+				tempBranchNames.add(localGitBranchName);
 			}
-
-			tempBranchNames.add(localGitBranchName);
 		}
 
 		if (!tempBranchNames.isEmpty()) {
@@ -571,11 +569,9 @@ public class GitWorkingDirectory {
 				deleted = lockFile.delete();
 			}
 
-			if (deleted) {
-				continue;
+			if (!deleted) {
+				System.out.println("Unable to delete " + lockFile.getPath());
 			}
-
-			System.out.println("Unable to delete " + lockFile.getPath());
 		}
 	}
 
@@ -1695,13 +1691,11 @@ public class GitWorkingDirectory {
 						(_DEEPEN_STEP_SIZE_MILLIS << deepenAttempt));
 
 				for (LocalGitBranch localGitBranch : localGitBranches) {
-					if (!deepenLocalGitBranch(
+					if (deepenLocalGitBranch(
 							localGitBranch, shallowSinceDate)) {
 
-						continue;
+						deepened = true;
 					}
-
-					deepened = true;
 				}
 			}
 
@@ -3021,12 +3015,10 @@ public class GitWorkingDirectory {
 		for (String line : inputLines) {
 			Matcher matcher = GitRemote.gitLsRemotePattern.matcher(line);
 
-			if (!matcher.find()) {
-				continue;
+			if (matcher.find()) {
+				localGitBranchesShaMap.put(
+					matcher.group("name"), matcher.group("sha"));
 			}
-
-			localGitBranchesShaMap.put(
-				matcher.group("name"), matcher.group("sha"));
 		}
 
 		return localGitBranchesShaMap;
@@ -3159,11 +3151,9 @@ public class GitWorkingDirectory {
 
 			retries++;
 
-			if (retries < 24) {
-				continue;
+			if (retries >= 24) {
+				file.delete();
 			}
-
-			file.delete();
 		}
 	}
 

@@ -88,18 +88,17 @@ public class SocialRequestInterpreterLocalServiceImpl
 			SocialRequestInterpreterImpl socialRequestInterpreterImpl =
 				(SocialRequestInterpreterImpl)requestInterpreter;
 
-			if (!matches(socialRequestInterpreterImpl, className, request)) {
-				continue;
-			}
+			if (matches(socialRequestInterpreterImpl, className, request)) {
+				SocialRequestFeedEntry requestFeedEntry =
+					socialRequestInterpreterImpl.interpret(
+						request, themeDisplay);
 
-			SocialRequestFeedEntry requestFeedEntry =
-				socialRequestInterpreterImpl.interpret(request, themeDisplay);
+				if (requestFeedEntry != null) {
+					requestFeedEntry.setPortletId(
+						socialRequestInterpreterImpl.getPortletId());
 
-			if (requestFeedEntry != null) {
-				requestFeedEntry.setPortletId(
-					socialRequestInterpreterImpl.getPortletId());
-
-				return requestFeedEntry;
+					return requestFeedEntry;
+				}
 			}
 		}
 
@@ -132,15 +131,14 @@ public class SocialRequestInterpreterLocalServiceImpl
 			SocialRequestInterpreterImpl socialRequestInterpreterImpl =
 				(SocialRequestInterpreterImpl)requestInterpreter;
 
-			if (!matches(socialRequestInterpreterImpl, className, request)) {
-				continue;
-			}
+			if (matches(socialRequestInterpreterImpl, className, request)) {
+				boolean value =
+					socialRequestInterpreterImpl.processConfirmation(
+						request, themeDisplay);
 
-			boolean value = socialRequestInterpreterImpl.processConfirmation(
-				request, themeDisplay);
-
-			if (value) {
-				return;
+				if (value) {
+					return;
+				}
 			}
 		}
 	}
@@ -172,15 +170,13 @@ public class SocialRequestInterpreterLocalServiceImpl
 			SocialRequestInterpreterImpl socialRequestInterpreterImpl =
 				(SocialRequestInterpreterImpl)requestInterpreter;
 
-			if (!matches(socialRequestInterpreterImpl, className, request)) {
-				continue;
-			}
+			if (matches(socialRequestInterpreterImpl, className, request)) {
+				boolean value = socialRequestInterpreterImpl.processRejection(
+					request, themeDisplay);
 
-			boolean value = socialRequestInterpreterImpl.processRejection(
-				request, themeDisplay);
-
-			if (value) {
-				return;
+				if (value) {
+					return;
+				}
 			}
 		}
 	}

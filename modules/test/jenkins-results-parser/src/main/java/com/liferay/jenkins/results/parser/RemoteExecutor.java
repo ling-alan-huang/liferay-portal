@@ -186,11 +186,9 @@ public class RemoteExecutor {
 			for (int i = 0; i < commands.length; i++) {
 				sb.append(commands[i]);
 
-				if (i >= (commands.length - 1)) {
-					continue;
+				if (i < (commands.length - 1)) {
+					sb.append(" ; ");
 				}
-
-				sb.append(" ; ");
 			}
 
 			sb.append("'");

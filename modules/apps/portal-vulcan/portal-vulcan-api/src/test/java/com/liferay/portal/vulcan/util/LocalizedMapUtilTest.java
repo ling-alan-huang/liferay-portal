@@ -289,11 +289,9 @@ public class LocalizedMapUtilTest {
 			List<Locale> missingNotFoundLocales = new ArrayList<>();
 
 			for (Locale notFoundLocale : notFoundLocales) {
-				if (message.contains(notFoundLocale.toString())) {
-					continue;
+				if (!message.contains(notFoundLocale.toString())) {
+					missingNotFoundLocales.add(notFoundLocale);
 				}
-
-				missingNotFoundLocales.add(notFoundLocale);
 			}
 
 			Assert.assertTrue(missingNotFoundLocales.isEmpty());

@@ -2639,26 +2639,22 @@ public class CompanyLocalServiceImpl extends CompanyLocalServiceBaseImpl {
 
 			if (ListUtil.isNotEmpty(removedLanguageIds)) {
 				for (String removedLanguageId : removedLanguageIds) {
-					if (!ArrayUtil.contains(
+					if (ArrayUtil.contains(
 							groupLanguageIds, removedLanguageId)) {
 
-						continue;
+						groupLanguageIds = ArrayUtil.remove(
+							groupLanguageIds, removedLanguageId);
+
+						updateLocales = true;
 					}
-
-					groupLanguageIds = ArrayUtil.remove(
-						groupLanguageIds, removedLanguageId);
-
-					updateLocales = true;
 				}
 			}
 
-			if (!updateLocales) {
-				continue;
+			if (updateLocales) {
+				_updateGroupLocales(
+					group, groupTypeSettingsUnicodeProperties,
+					StringUtil.merge(groupLanguageIds, StringPool.COMMA));
 			}
-
-			_updateGroupLocales(
-				group, groupTypeSettingsUnicodeProperties,
-				StringUtil.merge(groupLanguageIds, StringPool.COMMA));
 		}
 	}
 

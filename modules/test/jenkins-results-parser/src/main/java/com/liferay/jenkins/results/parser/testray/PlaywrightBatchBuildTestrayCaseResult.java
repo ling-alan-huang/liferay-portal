@@ -227,14 +227,12 @@ public class PlaywrightBatchBuildTestrayCaseResult
 		for (TestClassReport testClassReport :
 				downstreamBuildReport.getTestClassReports()) {
 
-			if (!Objects.equals(
+			if (Objects.equals(
 					playwrightJUnitTestClass.getSpecFilePath(),
 					testClassReport.getTestClassName())) {
 
-				continue;
+				playwrightTestClassReport = testClassReport;
 			}
-
-			playwrightTestClassReport = testClassReport;
 		}
 
 		if (playwrightTestClassReport == null) {

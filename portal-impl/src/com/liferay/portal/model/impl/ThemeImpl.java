@@ -114,11 +114,9 @@ public class ThemeImpl extends PluginBaseImpl implements Theme {
 
 			ThemeSetting themeSetting = entry.getValue();
 
-			if (!themeSetting.isConfigurable()) {
-				continue;
+			if (themeSetting.isConfigurable()) {
+				configurableSettings.put(entry.getKey(), entry.getValue());
 			}
-
-			configurableSettings.put(entry.getKey(), entry.getValue());
 		}
 
 		return configurableSettings;
@@ -309,11 +307,9 @@ public class ThemeImpl extends PluginBaseImpl implements Theme {
 
 			ThemeSetting setting = entry.getValue();
 
-			if (setting == null) {
-				continue;
+			if (setting != null) {
+				properties.setProperty(entry.getKey(), setting.getValue());
 			}
-
-			properties.setProperty(entry.getKey(), setting.getValue());
 		}
 
 		return properties;

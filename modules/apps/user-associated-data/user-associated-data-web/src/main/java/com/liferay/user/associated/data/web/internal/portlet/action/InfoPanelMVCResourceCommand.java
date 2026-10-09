@@ -52,12 +52,10 @@ public class InfoPanelMVCResourceCommand extends BaseMVCResourceCommand {
 		Map<String, String[]> parameterMap = resourceRequest.getParameterMap();
 
 		for (String key : parameterMap.keySet()) {
-			if (!key.startsWith("uadRegistryKey__")) {
-				continue;
+			if (key.startsWith("uadRegistryKey__")) {
+				entityTypes.add(
+					StringUtil.removeSubstring(key, "uadRegistryKey__"));
 			}
-
-			entityTypes.add(
-				StringUtil.removeSubstring(key, "uadRegistryKey__"));
 		}
 
 		for (String entityType : entityTypes) {
@@ -82,12 +80,10 @@ public class InfoPanelMVCResourceCommand extends BaseMVCResourceCommand {
 				uadEntities.add(uadEntity);
 			}
 
-			if (uadEntities.isEmpty()) {
-				continue;
+			if (!uadEntities.isEmpty()) {
+				uadInfoPanelDisplay.addUADEntities(uadEntities);
+				uadInfoPanelDisplay.setUADDisplay(uadDisplay);
 			}
-
-			uadInfoPanelDisplay.addUADEntities(uadEntities);
-			uadInfoPanelDisplay.setUADDisplay(uadDisplay);
 		}
 
 		if (uadInfoPanelDisplay.getUADEntitiesCount() != 1) {

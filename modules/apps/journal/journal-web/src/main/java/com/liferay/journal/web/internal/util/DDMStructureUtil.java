@@ -52,11 +52,9 @@ public class DDMStructureUtil {
 				DDMStructureLocalServiceUtil.fetchDDMStructure(
 					GetterUtil.getLong(highlightedDDMStructureId));
 
-			if (ddmStructure == null) {
-				continue;
+			if (ddmStructure != null) {
+				highlightedDDMStructures.add(ddmStructure);
 			}
-
-			highlightedDDMStructures.add(ddmStructure);
 		}
 
 		return highlightedDDMStructures;

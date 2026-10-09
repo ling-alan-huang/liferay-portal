@@ -115,12 +115,11 @@ public class UpdateFormItemConfigMVCActionCommand
 						"inputFieldId", "string", "", false, "text"),
 					themeDisplay.getLocale()));
 
-			if (Validator.isNull(inputFieldId)) {
-				continue;
+			if (Validator.isNotNull(inputFieldId)) {
+				inputFields.put(
+					inputFieldId,
+					fragmentStyledLayoutStructureItem.getItemId());
 			}
-
-			inputFields.put(
-				inputFieldId, fragmentStyledLayoutStructureItem.getItemId());
 		}
 
 		return inputFields;
@@ -233,11 +232,11 @@ public class UpdateFormItemConfigMVCActionCommand
 					ParamUtil.getString(actionRequest, "fields"));
 
 				for (String uniqueInfoFieldId : uniqueInfoFieldIds) {
-					if (currentUniqueInfoFieldIds.contains(uniqueInfoFieldId)) {
-						continue;
-					}
+					if (!currentUniqueInfoFieldIds.contains(
+							uniqueInfoFieldId)) {
 
-					newUniqueInfoFieldIds.add(uniqueInfoFieldId);
+						newUniqueInfoFieldIds.add(uniqueInfoFieldId);
+					}
 				}
 
 				if (ListUtil.isNotEmpty(newUniqueInfoFieldIds)) {
@@ -258,14 +257,12 @@ public class UpdateFormItemConfigMVCActionCommand
 				for (String currentUniqueInfoFieldId :
 						currentUniqueInfoFieldIds) {
 
-					if (ArrayUtil.contains(
+					if (!ArrayUtil.contains(
 							uniqueInfoFieldIds, currentUniqueInfoFieldId)) {
 
-						continue;
+						removedItemIds.add(
+							currentInputFields.get(currentUniqueInfoFieldId));
 					}
-
-					removedItemIds.add(
-						currentInputFields.get(currentUniqueInfoFieldId));
 				}
 
 				if (ListUtil.isNotEmpty(removedItemIds)) {

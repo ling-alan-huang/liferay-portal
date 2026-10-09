@@ -372,15 +372,12 @@ public class AssetListAssetEntryProviderImpl
 			String queryName = unicodeProperties.getProperty(
 				"queryName" + i, StringPool.BLANK);
 
-			if (!Objects.equals(queryName, "assetCategories") ||
-				!queryContains ||
-				(!queryAndOperator && (queryValues.length != 1))) {
+			if (Objects.equals(queryName, "assetCategories") && queryContains &&
+				(queryAndOperator || (queryValues.length == 1))) {
 
-				continue;
+				assetCategoryIds = ArrayUtil.append(
+					assetCategoryIds, GetterUtil.getLongValues(queryValues));
 			}
-
-			assetCategoryIds = ArrayUtil.append(
-				assetCategoryIds, GetterUtil.getLongValues(queryValues));
 		}
 
 		return assetCategoryIds;
@@ -466,13 +463,11 @@ public class AssetListAssetEntryProviderImpl
 			String queryName = unicodeProperties.getProperty(
 				"queryName" + i, StringPool.BLANK);
 
-			if (!Objects.equals(queryName, "assetTags") || !queryContains ||
-				(!queryAndOperator && (queryValues.length != 1))) {
+			if (Objects.equals(queryName, "assetTags") && queryContains &&
+				(queryAndOperator || (queryValues.length == 1))) {
 
-				continue;
+				Collections.addAll(allAssetTagNames, queryValues);
 			}
-
-			Collections.addAll(allAssetTagNames, queryValues);
 		}
 
 		return allAssetTagNames.toArray(new String[0]);
@@ -885,13 +880,11 @@ public class AssetListAssetEntryProviderImpl
 			String queryName = unicodeProperties.getProperty(
 				"queryName" + i, StringPool.BLANK);
 
-			if (!Objects.equals(queryName, "keywords") || !queryContains ||
-				(!queryAndOperator && (queryValues.length != 1))) {
+			if (Objects.equals(queryName, "keywords") && queryContains &&
+				(queryAndOperator || (queryValues.length == 1))) {
 
-				continue;
+				allKeywords = queryValues;
 			}
-
-			allKeywords = queryValues;
 		}
 
 		return allKeywords;

@@ -72,11 +72,9 @@ public class ViewUADEntitiesDisplay {
 		List<UADEntity<?>> entities = _searchContainer.getResults();
 
 		for (UADEntity<?> entity : entities) {
-			if (!entity.isUserOwned()) {
-				continue;
+			if (entity.isUserOwned()) {
+				userOwnedPKs.add(String.valueOf(entity.getPrimaryKey()));
 			}
-
-			userOwnedPKs.add(String.valueOf(entity.getPrimaryKey()));
 		}
 
 		return StringUtil.merge(

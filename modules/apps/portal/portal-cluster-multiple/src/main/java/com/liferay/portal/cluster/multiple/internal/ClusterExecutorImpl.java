@@ -419,13 +419,11 @@ public class ClusterExecutorImpl implements ClusterExecutor {
 		while (iterator.hasNext()) {
 			ClusterNodeStatus clusterNodeStatus = iterator.next();
 
-			if (!departAddresses.contains(clusterNodeStatus.getAddress())) {
-				continue;
+			if (departAddresses.contains(clusterNodeStatus.getAddress())) {
+				departClusterNodes.add(clusterNodeStatus.getClusterNode());
+
+				iterator.remove();
 			}
-
-			departClusterNodes.add(clusterNodeStatus.getClusterNode());
-
-			iterator.remove();
 		}
 
 		if (departClusterNodes.isEmpty()) {

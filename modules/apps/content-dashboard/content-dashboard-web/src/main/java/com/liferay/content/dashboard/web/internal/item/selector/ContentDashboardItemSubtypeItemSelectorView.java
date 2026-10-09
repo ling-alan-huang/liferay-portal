@@ -183,14 +183,12 @@ public class ContentDashboardItemSubtypeItemSelectorView
 					contentDashboardItemFactory.
 						getContentDashboardItemSubtypeFactory();
 
-			if (contentDashboardItemSubtypeFactory == null) {
-				continue;
+			if (contentDashboardItemSubtypeFactory != null) {
+				_populateContentDashboardItemTypesJSONArray(
+					className, contentDashboardItemSubtypeFactory,
+					checkedContentDashboardItemSubtypesInfoItemReferences,
+					contentDashboardItemTypesJSONArray, themeDisplay);
 			}
-
-			_populateContentDashboardItemTypesJSONArray(
-				className, contentDashboardItemSubtypeFactory,
-				checkedContentDashboardItemSubtypesInfoItemReferences,
-				contentDashboardItemTypesJSONArray, themeDisplay);
 		}
 
 		return contentDashboardItemTypesJSONArray;

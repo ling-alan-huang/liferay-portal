@@ -184,16 +184,14 @@ public class TemplatePortletDataHandler extends BasePortletDataHandler {
 		List<Element> ddmTemplateElements = ddmTemplatesElement.elements();
 
 		for (Element ddmTemplateElement : ddmTemplateElements) {
-			if (!classNameIds.contains(
+			if (classNameIds.contains(
 					_portal.getClassNameId(
 						ddmTemplateElement.attributeValue(
 							"attached-class-name")))) {
 
-				continue;
+				StagedModelDataHandlerUtil.importStagedModel(
+					portletDataContext, ddmTemplateElement);
 			}
-
-			StagedModelDataHandlerUtil.importStagedModel(
-				portletDataContext, ddmTemplateElement);
 		}
 
 		Element templateEntriesElement =
@@ -255,16 +253,17 @@ public class TemplatePortletDataHandler extends BasePortletDataHandler {
 			ClassName className = _classNameLocalService.fetchClassName(
 				templateHandler.getClassName());
 
-			if ((className == null) ||
-				!portletDataContext.getBooleanParameter(
-					NAMESPACE,
-					templateHandler.getName(LocaleUtil.getSiteDefault()))) {
-
+			if (className == null) {
 				continue;
 			}
 
-			classNameIds.add(
-				_portal.getClassNameId(templateHandler.getClassName()));
+			if (portletDataContext.getBooleanParameter(
+					NAMESPACE,
+					templateHandler.getName(LocaleUtil.getSiteDefault()))) {
+
+				classNameIds.add(
+					_portal.getClassNameId(templateHandler.getClassName()));
+			}
 		}
 
 		return classNameIds;

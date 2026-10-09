@@ -154,64 +154,54 @@ public class CalendarDisplayContext {
 		Calendar defaultCalendar = null;
 
 		for (Calendar groupCalendar : groupCalendars) {
-			if (!groupCalendar.isDefaultCalendar() ||
-				!CalendarPermission.contains(
+			if (groupCalendar.isDefaultCalendar() &&
+				CalendarPermission.contains(
 					_themeDisplay.getPermissionChecker(), groupCalendar,
 					CalendarActionKeys.MANAGE_BOOKINGS)) {
 
-				continue;
+				defaultCalendar = groupCalendar;
 			}
-
-			defaultCalendar = groupCalendar;
 		}
 
 		if (defaultCalendar == null) {
 			for (Calendar userCalendar : userCalendars) {
-				if (!userCalendar.isDefaultCalendar()) {
-					continue;
+				if (userCalendar.isDefaultCalendar()) {
+					defaultCalendar = userCalendar;
 				}
-
-				defaultCalendar = userCalendar;
 			}
 		}
 
 		if (defaultCalendar == null) {
 			for (Calendar groupCalendar : groupCalendars) {
-				if (!CalendarPermission.contains(
+				if (CalendarPermission.contains(
 						_themeDisplay.getPermissionChecker(), groupCalendar,
 						CalendarActionKeys.MANAGE_BOOKINGS)) {
 
-					continue;
+					defaultCalendar = groupCalendar;
 				}
-
-				defaultCalendar = groupCalendar;
 			}
 		}
 
 		if (defaultCalendar == null) {
 			for (Calendar groupCalendar : groupCalendars) {
-				if (!groupCalendar.isDefaultCalendar() ||
-					!CalendarPermission.contains(
+				if (groupCalendar.isDefaultCalendar() &&
+					CalendarPermission.contains(
 						_themeDisplay.getPermissionChecker(), groupCalendar,
 						CalendarActionKeys.VIEW_BOOKING_DETAILS)) {
 
-					continue;
+					defaultCalendar = groupCalendar;
 				}
-
-				defaultCalendar = groupCalendar;
 			}
 		}
 
 		if (defaultCalendar == null) {
 			for (Calendar groupCalendar : groupCalendars) {
-				if (!CalendarPermission.contains(
+				if (CalendarPermission.contains(
 						_themeDisplay.getPermissionChecker(), groupCalendar,
 						CalendarActionKeys.VIEW_BOOKING_DETAILS)) {
 
-					continue;
+					defaultCalendar = groupCalendar;
 				}
-
-				defaultCalendar = groupCalendar;
 			}
 		}
 

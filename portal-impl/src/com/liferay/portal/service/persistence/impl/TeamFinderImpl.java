@@ -240,11 +240,9 @@ public class TeamFinderImpl extends TeamFinderBaseImpl implements TeamFinder {
 		StringBundler sb = new StringBundler(params.size());
 
 		for (Map.Entry<String, Object> entry : params.entrySet()) {
-			if (Validator.isNull(entry.getValue())) {
-				continue;
+			if (Validator.isNotNull(entry.getValue())) {
+				sb.append(getJoin(entry.getKey()));
 			}
-
-			sb.append(getJoin(entry.getKey()));
 		}
 
 		return sb.toString();
@@ -279,11 +277,9 @@ public class TeamFinderImpl extends TeamFinderBaseImpl implements TeamFinder {
 		StringBundler sb = new StringBundler(params.size());
 
 		for (Map.Entry<String, Object> entry : params.entrySet()) {
-			if (Validator.isNull(entry.getValue())) {
-				continue;
+			if (Validator.isNotNull(entry.getValue())) {
+				sb.append(getWhere(entry.getKey()));
 			}
-
-			sb.append(getWhere(entry.getKey()));
 		}
 
 		return sb.toString();
@@ -325,17 +321,13 @@ public class TeamFinderImpl extends TeamFinderBaseImpl implements TeamFinder {
 		for (Map.Entry<String, Object> entry : params.entrySet()) {
 			Object value = entry.getValue();
 
-			if (!(value instanceof Long)) {
-				continue;
+			if (value instanceof Long) {
+				Long valueLong = (Long)value;
+
+				if (Validator.isNotNull(valueLong)) {
+					queryPos.add(valueLong);
+				}
 			}
-
-			Long valueLong = (Long)value;
-
-			if (Validator.isNull(valueLong)) {
-				continue;
-			}
-
-			queryPos.add(valueLong);
 		}
 	}
 

@@ -65,20 +65,17 @@ public class UnnecessaryMethodCallCheck extends BaseCheck {
 				parentDetailAST = parentDetailAST.getParent();
 			}
 
-			if (!parentDetailAST.equals(detailAST)) {
-				continue;
+			if (parentDetailAST.equals(detailAST)) {
+				String replacementValue = _getReplacementValue(
+					methodCallDetailAST,
+					returnVariableNamesMap.get(methodName));
+
+				if (replacementValue != null) {
+					log(
+						methodCallDetailAST, _MSG_UNNECESSARY_METHOD_CALL,
+						replacementValue, methodName);
+				}
 			}
-
-			String replacementValue = _getReplacementValue(
-				methodCallDetailAST, returnVariableNamesMap.get(methodName));
-
-			if (replacementValue == null) {
-				continue;
-			}
-
-			log(
-				methodCallDetailAST, _MSG_UNNECESSARY_METHOD_CALL,
-				replacementValue, methodName);
 		}
 	}
 

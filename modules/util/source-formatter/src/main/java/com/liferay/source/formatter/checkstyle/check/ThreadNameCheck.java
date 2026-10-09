@@ -65,11 +65,9 @@ public class ThreadNameCheck extends BaseCheck {
 			String expectedName = StringUtil.getTitleCase(
 				matcher.replaceAll("$1 $2"), false);
 
-			if (name.equals(expectedName)) {
-				continue;
+			if (!name.equals(expectedName)) {
+				log(firstChildDetailAST, _MSG_RENAME_THREAD, expectedName);
 			}
-
-			log(firstChildDetailAST, _MSG_RENAME_THREAD, expectedName);
 		}
 	}
 

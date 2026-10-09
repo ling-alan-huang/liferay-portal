@@ -204,11 +204,9 @@ public class PortletExportControllerImpl implements PortletExportController {
 				AssetLink assetLink = _assetLinkLocalService.fetchAssetLink(
 					assetLinkId);
 
-				if ((assetLink == null) || assetLinks.contains(assetLink)) {
-					continue;
+				if ((assetLink != null) && !assetLinks.contains(assetLink)) {
+					assetLinks.add(assetLink);
 				}
-
-				assetLinks.add(assetLink);
 			}
 
 			for (AssetLink assetLink : assetLinks) {
@@ -1035,11 +1033,9 @@ public class PortletExportControllerImpl implements PortletExportController {
 				Set<String> scopedLayoutPrimaryKeys = new HashSet<>();
 
 				for (String oldScopedPrimaryKey : oldScopedPrimaryKeys) {
-					if (!oldScopedPrimaryKey.contains(Layout.class.getName())) {
-						continue;
+					if (oldScopedPrimaryKey.contains(Layout.class.getName())) {
+						scopedLayoutPrimaryKeys.add(oldScopedPrimaryKey);
 					}
-
-					scopedLayoutPrimaryKeys.add(oldScopedPrimaryKey);
 				}
 
 				portletDataContext.addScopedPrimaryKeys(

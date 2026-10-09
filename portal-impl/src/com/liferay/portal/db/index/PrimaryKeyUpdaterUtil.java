@@ -47,19 +47,17 @@ public class PrimaryKeyUpdaterUtil {
 			BundleContext bundleContext = SystemBundleUtil.getBundleContext();
 
 			for (Bundle bundle : bundleContext.getBundles()) {
-				if (!BundleUtil.isLiferayRequireSchemaVersionBundle(bundle) &&
-					!BundleUtil.isLiferayServiceBundle(bundle)) {
+				if (BundleUtil.isLiferayRequireSchemaVersionBundle(bundle) ||
+					BundleUtil.isLiferayServiceBundle(bundle)) {
 
-					continue;
-				}
-
-				try {
-					_addUpdatePrimaryKeysFutures(
-						DBResourceUtil.getModuleTablesPrimaryKeyColumnNames(
-							bundle));
-				}
-				catch (Exception exception) {
-					_log.error(exception);
+					try {
+						_addUpdatePrimaryKeysFutures(
+							DBResourceUtil.getModuleTablesPrimaryKeyColumnNames(
+								bundle));
+					}
+					catch (Exception exception) {
+						_log.error(exception);
+					}
 				}
 			}
 

@@ -125,15 +125,14 @@ public class FragmentEntryProcessorRegistryImpl
 				fragmentEntryProcessor.getDefaultEditableValuesJSONObject(
 					configurationJSONObject, html);
 
-			if ((defaultEditableValuesJSONObject == null) ||
-				(defaultEditableValuesJSONObject.length() <= 0)) {
+			if ((defaultEditableValuesJSONObject != null) &&
+				(defaultEditableValuesJSONObject.length() > 0)) {
 
-				continue;
+				Class<?> clazz = fragmentEntryProcessor.getClass();
+
+				jsonObject.put(
+					clazz.getName(), defaultEditableValuesJSONObject);
 			}
-
-			Class<?> clazz = fragmentEntryProcessor.getClass();
-
-			jsonObject.put(clazz.getName(), defaultEditableValuesJSONObject);
 		}
 
 		Document document = _getDocument(html);
@@ -147,15 +146,13 @@ public class FragmentEntryProcessorRegistryImpl
 					getDefaultEditableValuesJSONObject(
 						configurationJSONObject, document);
 
-			if ((defaultEditableValuesJSONObject == null) ||
-				(defaultEditableValuesJSONObject.length() <= 0)) {
+			if ((defaultEditableValuesJSONObject != null) &&
+				(defaultEditableValuesJSONObject.length() > 0)) {
 
-				continue;
+				jsonObject.put(
+					defaultEditableValuesFragmentEntryProcessor.getKey(),
+					defaultEditableValuesJSONObject);
 			}
-
-			jsonObject.put(
-				defaultEditableValuesFragmentEntryProcessor.getKey(),
-				defaultEditableValuesJSONObject);
 		}
 
 		return jsonObject;
@@ -194,23 +191,21 @@ public class FragmentEntryProcessorRegistryImpl
 		while (defaultEditableValuesIterator.hasNext()) {
 			String key = defaultEditableValuesIterator.next();
 
-			if (!editableFragmentEntryProcessorJSONObject.has(key)) {
-				continue;
+			if (editableFragmentEntryProcessorJSONObject.has(key)) {
+				JSONObject editableValueJSONObject =
+					editableFragmentEntryProcessorJSONObject.getJSONObject(key);
+
+				JSONObject defaultEditableValueJSONObject =
+					defaultEditableFragmentEntryProcessorJSONObject.
+						getJSONObject(key);
+
+				editableValueJSONObject.put(
+					"defaultValue",
+					defaultEditableValueJSONObject.get("defaultValue"));
+
+				defaultEditableFragmentEntryProcessorJSONObject.put(
+					key, editableValueJSONObject);
 			}
-
-			JSONObject editableValueJSONObject =
-				editableFragmentEntryProcessorJSONObject.getJSONObject(key);
-
-			JSONObject defaultEditableValueJSONObject =
-				defaultEditableFragmentEntryProcessorJSONObject.getJSONObject(
-					key);
-
-			editableValueJSONObject.put(
-				"defaultValue",
-				defaultEditableValueJSONObject.get("defaultValue"));
-
-			defaultEditableFragmentEntryProcessorJSONObject.put(
-				key, editableValueJSONObject);
 		}
 
 		Iterator<String> editableValuesIterator =
@@ -219,12 +214,10 @@ public class FragmentEntryProcessorRegistryImpl
 		while (editableValuesIterator.hasNext()) {
 			String key = editableValuesIterator.next();
 
-			if (defaultEditableFragmentEntryProcessorJSONObject.has(key)) {
-				continue;
+			if (!defaultEditableFragmentEntryProcessorJSONObject.has(key)) {
+				defaultEditableFragmentEntryProcessorJSONObject.put(
+					key, editableFragmentEntryProcessorJSONObject.get(key));
 			}
-
-			defaultEditableFragmentEntryProcessorJSONObject.put(
-				key, editableFragmentEntryProcessorJSONObject.get(key));
 		}
 
 		editableValuesJSONObject.put(

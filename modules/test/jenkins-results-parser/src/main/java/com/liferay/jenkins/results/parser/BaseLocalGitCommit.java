@@ -40,12 +40,10 @@ public abstract class BaseLocalGitCommit
 		for (String line : patch.split("\n")) {
 			Matcher matcher = _diffGitHeaderPattern.matcher(line);
 
-			if (!matcher.matches()) {
-				continue;
+			if (matcher.matches()) {
+				_changedFiles.add(
+					new File(workingDirectory, matcher.group("file")));
 			}
-
-			_changedFiles.add(
-				new File(workingDirectory, matcher.group("file")));
 		}
 
 		return _changedFiles;

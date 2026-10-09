@@ -50,32 +50,30 @@ public class ConfigurationOverridePropertiesUtil {
 		for (String key : properties.stringPropertyNames()) {
 			int index = key.indexOf(CharPool.UNDERLINE);
 
-			if (index <= 0) {
-				continue;
-			}
+			if (index > 0) {
+				Map<String, Object> overrideProperties =
+					overridePropertiesMap.computeIfAbsent(
+						key.substring(0, index), pid -> new HashMap<>());
 
-			Map<String, Object> overrideProperties =
-				overridePropertiesMap.computeIfAbsent(
-					key.substring(0, index), pid -> new HashMap<>());
+				try {
+					String valueString = properties.getProperty(key);
 
-			try {
-				String valueString = properties.getProperty(key);
+					Object value = ConfigurationHandler.read(valueString);
 
-				Object value = ConfigurationHandler.read(valueString);
-
-				if ((value == null) && !valueString.isEmpty()) {
-					_log.error(
-						StringBundler.concat(
-							"Key ", key,
-							" was overridden with incorrectly formatted ",
-							"content"));
+					if ((value == null) && !valueString.isEmpty()) {
+						_log.error(
+							StringBundler.concat(
+								"Key ", key,
+								" was overridden with incorrectly formatted ",
+								"content"));
+					}
+					else {
+						overrideProperties.put(key.substring(index + 1), value);
+					}
 				}
-				else {
-					overrideProperties.put(key.substring(index + 1), value);
+				catch (IOException ioException) {
+					_log.error("Unable to parse property", ioException);
 				}
-			}
-			catch (IOException ioException) {
-				_log.error("Unable to parse property", ioException);
 			}
 		}
 

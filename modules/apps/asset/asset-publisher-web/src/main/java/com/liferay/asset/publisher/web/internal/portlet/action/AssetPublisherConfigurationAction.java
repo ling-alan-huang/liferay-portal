@@ -704,11 +704,9 @@ public class AssetPublisherConfigurationAction extends BaseConfigurationAction {
 		int j = 0;
 
 		for (; i < manualEntries.length; i++) {
-			if (i == assetEntryOrder) {
-				continue;
+			if (i != assetEntryOrder) {
+				newEntries[j++] = manualEntries[i];
 			}
-
-			newEntries[j++] = manualEntries[i];
 		}
 
 		portletPreferences.setValues("assetEntryXml", newEntries);

@@ -144,13 +144,15 @@ public class PropertiesDocBuilder {
 				sb.append(trimmedLine.trim());
 			}
 
-			if ((trimmedLine.length() >= 3) || (sb.index() == 0)) {
-				continue;
+			if (trimmedLine.length() < 3) {
+				if (sb.index() == 0) {
+					continue;
+				}
+
+				comments.add(sb.toString());
+
+				sb = new StringBundler();
 			}
-
-			comments.add(sb.toString());
-
-			sb = new StringBundler();
 		}
 
 		return comments;

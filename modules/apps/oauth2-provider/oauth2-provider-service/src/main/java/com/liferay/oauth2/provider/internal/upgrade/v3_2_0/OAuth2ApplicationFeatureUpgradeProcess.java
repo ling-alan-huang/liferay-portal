@@ -54,11 +54,9 @@ public class OAuth2ApplicationFeatureUpgradeProcess extends UpgradeProcess {
 					"oAuth2ApplicationId = ?")) {
 
 			for (int i = 0; i < features.length; i++) {
-				if (!features[i].equals("token_introspection")) {
-					continue;
+				if (features[i].equals("token_introspection")) {
+					features[i] = "token.introspection";
 				}
-
-				features[i] = "token.introspection";
 			}
 
 			preparedStatement.setString(1, StringUtil.merge(features));

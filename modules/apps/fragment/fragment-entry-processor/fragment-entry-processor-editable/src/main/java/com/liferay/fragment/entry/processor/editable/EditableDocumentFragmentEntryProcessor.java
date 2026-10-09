@@ -227,18 +227,16 @@ public class EditableDocumentFragmentEntryProcessor
 				element.removeAttr("view-tag-name");
 			}
 
-			if (!analyticsEnabled ||
-				!fragmentEntryProcessorContext.isViewMode()) {
+			if (analyticsEnabled &&
+				fragmentEntryProcessorContext.isViewMode()) {
 
-				continue;
+				_setAnalyticsAttributes(
+					element,
+					AnalyticsAttributesUtil.getAnalyticsAttributes(
+						editableValueJSONObject, fragmentEntryProcessorContext,
+						_fragmentEntryProcessorHelper, infoDisplaysFieldValues,
+						_infoItemServiceRegistry));
 			}
-
-			_setAnalyticsAttributes(
-				element,
-				AnalyticsAttributesUtil.getAnalyticsAttributes(
-					editableValueJSONObject, fragmentEntryProcessorContext,
-					_fragmentEntryProcessorHelper, infoDisplaysFieldValues,
-					_infoItemServiceRegistry));
 		}
 
 		if ((fragmentEntryProcessorContext.getPreviewClassNameId() > 0) &&

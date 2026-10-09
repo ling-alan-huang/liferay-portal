@@ -99,15 +99,13 @@ public class LayoutCommonTag extends IncludeTag {
 				(HttpServletResponse)pageContext.getResponse();
 
 			for (String portletId : _LAYOUT_STATIC_PORTLETS_ALL) {
-				if (!PortletLocalServiceUtil.hasPortlet(
+				if (PortletLocalServiceUtil.hasPortlet(
 						company.getCompanyId(), portletId)) {
 
-					continue;
+					RuntimeTag.doTag(
+						portletId, pageContext, httpServletRequest,
+						httpServletResponse);
 				}
-
-				RuntimeTag.doTag(
-					portletId, pageContext, httpServletRequest,
-					httpServletResponse);
 			}
 		}
 

@@ -125,14 +125,12 @@ public class CommonStylesUtil {
 				String customCSS = _getCustomCSS(
 					styledLayoutStructureItem, viewportSize);
 
-				if (Validator.isNull(customCSS)) {
-					continue;
+				if (Validator.isNotNull(customCSS)) {
+					cssSB.append(
+						StringUtil.replace(
+							customCSS, "[$FRAGMENT_CLASS$]",
+							styledLayoutStructureItem.getUniqueCssClass()));
 				}
-
-				cssSB.append(
-					StringUtil.replace(
-						customCSS, "[$FRAGMENT_CLASS$]",
-						styledLayoutStructureItem.getUniqueCssClass()));
 			}
 
 			if (cssSB.length() == 0) {
@@ -300,11 +298,9 @@ public class CommonStylesUtil {
 		List<String> responsiveStyleNames = new ArrayList<>();
 
 		for (String availableStyleName : getAvailableStyleNames()) {
-			if (!isResponsive(availableStyleName)) {
-				continue;
+			if (isResponsive(availableStyleName)) {
+				responsiveStyleNames.add(availableStyleName);
 			}
-
-			responsiveStyleNames.add(availableStyleName);
 		}
 
 		_responsiveStyleNames = responsiveStyleNames;

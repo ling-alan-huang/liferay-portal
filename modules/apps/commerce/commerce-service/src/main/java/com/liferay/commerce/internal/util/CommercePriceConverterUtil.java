@@ -130,13 +130,11 @@ public class CommercePriceConverterUtil {
 			currentPercentage, _SCALE, roundingMode);
 
 		for (int i = 0; i < percentages.length; i++) {
-			if ((percentages[i] == null) ||
-				BigDecimalUtil.isZero(percentages[i])) {
+			if ((percentages[i] != null) &&
+				!BigDecimalUtil.isZero(percentages[i])) {
 
-				continue;
+				percentages[i] = percentages[i].multiply(percentageRatio);
 			}
-
-			percentages[i] = percentages[i].multiply(percentageRatio);
 		}
 
 		return percentages;

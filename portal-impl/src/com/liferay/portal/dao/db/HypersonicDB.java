@@ -140,13 +140,11 @@ public class HypersonicDB extends BaseDB {
 			sb.append("new.");
 			sb.append(sourceColumnNames[i]);
 
-			if (defaultValue == null) {
-				continue;
+			if (defaultValue != null) {
+				sb.append(", ");
+				sb.append(defaultValue);
+				sb.append(")");
 			}
-
-			sb.append(", ");
-			sb.append(defaultValue);
-			sb.append(")");
 		}
 
 		sb.append(")");
@@ -192,13 +190,11 @@ public class HypersonicDB extends BaseDB {
 			sb.append("new.");
 			sb.append(sourceColumnNames[i]);
 
-			if (defaultValue == null) {
-				continue;
+			if (defaultValue != null) {
+				sb.append(", ");
+				sb.append(defaultValue);
+				sb.append(")");
 			}
-
-			sb.append(", ");
-			sb.append(defaultValue);
-			sb.append(")");
 		}
 
 		sb.append(" where ");

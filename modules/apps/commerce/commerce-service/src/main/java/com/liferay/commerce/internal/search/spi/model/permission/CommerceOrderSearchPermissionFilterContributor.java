@@ -50,11 +50,9 @@ public class CommerceOrderSearchPermissionFilterContributor
 			TermsFilter groupsTermsFilter = new TermsFilter(Field.GROUP_ID);
 
 			for (long groupId : groupIds) {
-				if (!_hasRoleAccountSupplier(permissionChecker, groupId)) {
-					continue;
+				if (_hasRoleAccountSupplier(permissionChecker, groupId)) {
+					groupsTermsFilter.addValue(String.valueOf(groupId));
 				}
-
-				groupsTermsFilter.addValue(String.valueOf(groupId));
 			}
 
 			if (!groupsTermsFilter.isEmpty()) {

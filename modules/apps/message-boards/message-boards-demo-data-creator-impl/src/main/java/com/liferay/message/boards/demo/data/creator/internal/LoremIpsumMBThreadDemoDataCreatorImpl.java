@@ -72,11 +72,9 @@ public class LoremIpsumMBThreadDemoDataCreatorImpl
 				}
 			}
 
-			if (thread != null) {
-				continue;
+			if (thread == null) {
+				thread = firstLevelReplyMessage.getThread();
 			}
-
-			thread = firstLevelReplyMessage.getThread();
 		}
 
 		return thread;

@@ -179,13 +179,11 @@ public class ProductionReadinessCheckUtil {
 
 			gcNames.add(name);
 
-			if (!name.contains("G1") && !name.contains("Shenandoah") &&
-				!name.contains("ZGC")) {
+			if (name.contains("G1") || name.contains("Shenandoah") ||
+				name.contains("ZGC")) {
 
-				continue;
+				pass = true;
 			}
-
-			pass = true;
 		}
 
 		ProductionReadinessResult.Builder builder =
@@ -673,11 +671,9 @@ public class ProductionReadinessCheckUtil {
 				int threads = GetterUtil.getInteger(
 					mBeanServer.getAttribute(name, "maxThreads"));
 
-				if (threads <= maxThreads) {
-					continue;
+				if (threads > maxThreads) {
+					maxThreads = threads;
 				}
-
-				maxThreads = threads;
 			}
 
 			return maxThreads;

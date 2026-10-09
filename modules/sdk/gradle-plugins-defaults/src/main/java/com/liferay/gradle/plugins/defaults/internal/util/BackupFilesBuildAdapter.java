@@ -45,12 +45,10 @@ public class BackupFilesBuildAdapter extends BuildAdapter {
 
 				Path backupPath = _getBackupPath(path);
 
-				if (!Files.exists(backupPath)) {
-					continue;
+				if (Files.exists(backupPath)) {
+					Files.move(
+						backupPath, path, StandardCopyOption.REPLACE_EXISTING);
 				}
-
-				Files.move(
-					backupPath, path, StandardCopyOption.REPLACE_EXISTING);
 			}
 		}
 		catch (IOException ioException) {

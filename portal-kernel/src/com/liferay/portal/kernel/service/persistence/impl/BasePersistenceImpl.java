@@ -1474,11 +1474,9 @@ public class BasePersistenceImpl
 			for (Serializable primaryKey : primaryKeys) {
 				T model = fetchByPrimaryKey(primaryKey);
 
-				if (model == null) {
-					continue;
+				if (model != null) {
+					map.put(primaryKey, model);
 				}
-
-				map.put(primaryKey, model);
 			}
 
 			return map;
@@ -1505,19 +1503,17 @@ public class BasePersistenceImpl
 				}
 			}
 
-			if (serializable == nullModel) {
-				continue;
-			}
+			if (serializable != nullModel) {
+				if (serializable == null) {
+					if (uncachedPrimaryKeys == null) {
+						uncachedPrimaryKeys = new TreeSet<>();
+					}
 
-			if (serializable == null) {
-				if (uncachedPrimaryKeys == null) {
-					uncachedPrimaryKeys = new TreeSet<>();
+					uncachedPrimaryKeys.add(primaryKey);
 				}
-
-				uncachedPrimaryKeys.add(primaryKey);
-			}
-			else {
-				map.put(primaryKey, (T)serializable);
+				else {
+					map.put(primaryKey, (T)serializable);
+				}
 			}
 		}
 
@@ -1702,11 +1698,9 @@ public class BasePersistenceImpl
 				type = _getType(alias.getExpression());
 			}
 
-			if (type == null) {
-				continue;
+			if (type != null) {
+				aliasTypes.add(String.valueOf(type));
 			}
-
-			aliasTypes.add(String.valueOf(type));
 		}
 
 		return aliasTypes.toArray(new String[0]);

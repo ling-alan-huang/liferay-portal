@@ -83,22 +83,18 @@ public class DataLayoutTaglibUtil {
 			}
 
 			for (JSONObject jsonObject : (Iterable<JSONObject>)jsonArray) {
-				if (!ListUtil.exists(
+				if (ListUtil.exists(
 						Arrays.asList(
 							StringUtil.split(jsonObject.getString("scope"))),
 						scopes::contains)) {
 
-					continue;
+					fieldTypesJSONArray.put(jsonObject);
+
+					if (searchableFieldsDisabled) {
+						_setFieldIndexTypeNone(
+							jsonObject.getJSONObject("settingsContext"));
+					}
 				}
-
-				fieldTypesJSONArray.put(jsonObject);
-
-				if (!searchableFieldsDisabled) {
-					continue;
-				}
-
-				_setFieldIndexTypeNone(
-					jsonObject.getJSONObject("settingsContext"));
 			}
 
 			return fieldTypesJSONArray;

@@ -83,13 +83,11 @@ public class AggregationContextProvider
 					aggregationTermParts[1]);
 			}
 
-			if (entityField == null) {
-				continue;
+			if (entityField != null) {
+				aggregationTerms.put(
+					aggregationTerm,
+					_getAggregationTermValue(acceptLanguage, entityField));
 			}
-
-			aggregationTerms.put(
-				aggregationTerm,
-				_getAggregationTermValue(acceptLanguage, entityField));
 		}
 
 		return aggregation;

@@ -110,11 +110,9 @@ public class TestrayTestTaskHistory extends BaseTestTaskHistory {
 		for (TestrayTestTaskEntry testrayTestTaskEntry :
 				_testrayTestTaskEntries.values()) {
 
-			if (longestDuration > testrayTestTaskEntry.getDuration()) {
-				continue;
+			if (longestDuration <= testrayTestTaskEntry.getDuration()) {
+				longestDuration = testrayTestTaskEntry.getDuration();
 			}
-
-			longestDuration = testrayTestTaskEntry.getDuration();
 		}
 
 		return longestDuration;

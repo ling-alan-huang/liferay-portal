@@ -379,11 +379,9 @@ public class SalesforceObjectEntryManagerImpl
 				sb.append(objectField.getExternalReferenceCode());
 			}
 
-			if (!sort.isReverse()) {
-				continue;
+			if (sort.isReverse()) {
+				sb.append(" DESC");
 			}
-
-			sb.append(" DESC");
 		}
 
 		return sb.toString();

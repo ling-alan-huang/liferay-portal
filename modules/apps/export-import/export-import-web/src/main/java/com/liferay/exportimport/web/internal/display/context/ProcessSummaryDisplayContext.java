@@ -216,14 +216,12 @@ public class ProcessSummaryDisplayContext {
 
 			pageNames.add(childPageName);
 
-			if (!childLayoutJSONObject.getBoolean("hasChildren")) {
-				continue;
+			if (childLayoutJSONObject.getBoolean("hasChildren")) {
+				pageNames.addAll(
+					_getChildPageNames(
+						childPageName,
+						childLayoutJSONObject.getJSONObject("children")));
 			}
-
-			pageNames.addAll(
-				_getChildPageNames(
-					childPageName,
-					childLayoutJSONObject.getJSONObject("children")));
 		}
 
 		return pageNames;

@@ -265,11 +265,9 @@ public class SXPBlueprintResourceTest extends BaseSXPBlueprintResourceTestCase {
 		for (SXPBlueprint sxpBlueprint : page.getItems()) {
 			String title = sxpBlueprint.getTitle();
 
-			if (!title.startsWith(_TITLE_PREFIX)) {
-				continue;
+			if (title.startsWith(_TITLE_PREFIX)) {
+				sxpBlueprintResource.deleteSXPBlueprint(sxpBlueprint.getId());
 			}
-
-			sxpBlueprintResource.deleteSXPBlueprint(sxpBlueprint.getId());
 		}
 	}
 

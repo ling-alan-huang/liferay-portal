@@ -570,11 +570,9 @@ public abstract class BaseTopLevelBuild
 		ValidationBuild validationBuild = null;
 
 		for (Build downstreamBuild : getDownstreamBuilds()) {
-			if (!(downstreamBuild instanceof ValidationBuild)) {
-				continue;
+			if (downstreamBuild instanceof ValidationBuild) {
+				validationBuild = (ValidationBuild)downstreamBuild;
 			}
-
-			validationBuild = (ValidationBuild)downstreamBuild;
 		}
 
 		if (validationBuild == null) {
@@ -1012,37 +1010,34 @@ public abstract class BaseTopLevelBuild
 			sb.append("\nUnique Failures:");
 
 			for (Build failedDownstreamBuild : failedDownstreamBuilds) {
-				if (!failedDownstreamBuild.isUniqueFailure()) {
-					continue;
-				}
+				if (failedDownstreamBuild.isUniqueFailure()) {
+					sb.append("\n");
+					sb.append(failedDownstreamBuild.getDisplayName());
 
-				sb.append("\n");
-				sb.append(failedDownstreamBuild.getDisplayName());
+					for (TestResult testResult :
+							failedDownstreamBuild.
+								getUniqueFailureTestResults()) {
 
-				for (TestResult testResult :
-						failedDownstreamBuild.getUniqueFailureTestResults()) {
-
-					sb.append("\n\t");
-					sb.append(testResult.getDisplayName());
+						sb.append("\n\t");
+						sb.append(testResult.getDisplayName());
+					}
 				}
 			}
 
 			sb.append("\n\nUpstream Failures:");
 
 			for (Build failedDownstreamBuild : failedDownstreamBuilds) {
-				if (failedDownstreamBuild.isUniqueFailure()) {
-					continue;
-				}
+				if (!failedDownstreamBuild.isUniqueFailure()) {
+					sb.append("\n");
+					sb.append(failedDownstreamBuild.getDisplayName());
 
-				sb.append("\n");
-				sb.append(failedDownstreamBuild.getDisplayName());
+					for (TestResult testResult :
+							failedDownstreamBuild.
+								getUpstreamJobFailureTestResults()) {
 
-				for (TestResult testResult :
-						failedDownstreamBuild.
-							getUpstreamJobFailureTestResults()) {
-
-					sb.append("\n\t");
-					sb.append(testResult.getDisplayName());
+						sb.append("\n\t");
+						sb.append(testResult.getDisplayName());
+					}
 				}
 			}
 
@@ -1073,12 +1068,10 @@ public abstract class BaseTopLevelBuild
 				failedDownstreamBuild.
 					getGitHubMessageUpstreamJobFailureElement();
 
-			if (gitHubMessageUpstreamJobFailureElement == null) {
-				continue;
+			if (gitHubMessageUpstreamJobFailureElement != null) {
+				upstreamBuildFailureElements.add(
+					gitHubMessageUpstreamJobFailureElement);
 			}
-
-			upstreamBuildFailureElements.add(
-				gitHubMessageUpstreamJobFailureElement);
 		}
 
 		List<Element> buildFailureElements = new ArrayList<>();
@@ -1755,52 +1748,50 @@ public abstract class BaseTopLevelBuild
 		Element jobSummaryListElement = Dom4JUtil.getNewElement("ul");
 
 		for (Build build : builds) {
-			if (Objects.equals(getResult(), "SUCCESS") != success) {
-				continue;
-			}
+			if (Objects.equals(getResult(), "SUCCESS") == success) {
+				count++;
 
-			count++;
+				if (count > _MAX_JOB_SUMMARY_LIST_SIZE) {
+					Element jobSummaryListItemElement = Dom4JUtil.getNewElement(
+						"li", jobSummaryListElement);
 
-			if (count > _MAX_JOB_SUMMARY_LIST_SIZE) {
+					jobSummaryListItemElement.addText("...");
+
+					break;
+				}
+
+				if (build instanceof DownstreamBuild) {
+					DownstreamBuild downstreamBuild = (DownstreamBuild)build;
+
+					if (!Objects.equals(
+							batchName, downstreamBuild.getBatchName())) {
+
+						batchName = downstreamBuild.getBatchName();
+
+						Element batchListItemElement = Dom4JUtil.getNewElement(
+							"li", jobSummaryListElement);
+
+						batchListItemElement.addText(batchName);
+
+						batchListElement = Dom4JUtil.getNewElement(
+							"ul", batchListItemElement);
+					}
+
+					Element batchListItemElement = Dom4JUtil.getNewElement(
+						"li", batchListElement);
+
+					batchListItemElement.add(
+						build.getGitHubMessageBuildAnchorElement());
+
+					continue;
+				}
+
 				Element jobSummaryListItemElement = Dom4JUtil.getNewElement(
 					"li", jobSummaryListElement);
 
-				jobSummaryListItemElement.addText("...");
-
-				break;
-			}
-
-			if (build instanceof DownstreamBuild) {
-				DownstreamBuild downstreamBuild = (DownstreamBuild)build;
-
-				if (!Objects.equals(
-						batchName, downstreamBuild.getBatchName())) {
-
-					batchName = downstreamBuild.getBatchName();
-
-					Element batchListItemElement = Dom4JUtil.getNewElement(
-						"li", jobSummaryListElement);
-
-					batchListItemElement.addText(batchName);
-
-					batchListElement = Dom4JUtil.getNewElement(
-						"ul", batchListItemElement);
-				}
-
-				Element batchListItemElement = Dom4JUtil.getNewElement(
-					"li", batchListElement);
-
-				batchListItemElement.add(
+				jobSummaryListItemElement.add(
 					build.getGitHubMessageBuildAnchorElement());
-
-				continue;
 			}
-
-			Element jobSummaryListItemElement = Dom4JUtil.getNewElement(
-				"li", jobSummaryListElement);
-
-			jobSummaryListItemElement.add(
-				build.getGitHubMessageBuildAnchorElement());
 		}
 
 		return jobSummaryListElement;
@@ -2109,12 +2100,10 @@ public abstract class BaseTopLevelBuild
 				StatsDMetricsUtil.generateGaugeDeltaMetric(
 					"build_slave_usage_gauge", slaveUsage, metricLabels);
 
-			if (buildMetricMessage == null) {
-				continue;
+			if (buildMetricMessage != null) {
+				sb.append(buildMetricMessage);
+				sb.append("\n");
 			}
-
-			sb.append(buildMetricMessage);
-			sb.append("\n");
 		}
 
 		if (sb.length() > 0) {
@@ -2329,11 +2318,9 @@ public abstract class BaseTopLevelBuild
 			List<String> downstreamBadBuildURLs =
 				downstreamBuild.getBadBuildURLs();
 
-			if (downstreamBadBuildURLs == null) {
-				continue;
+			if (downstreamBadBuildURLs != null) {
+				downstreamBuildURLs.addAll(downstreamBadBuildURLs);
 			}
-
-			downstreamBuildURLs.addAll(downstreamBadBuildURLs);
 		}
 
 		Map<String, String> urlAxisNames = new HashMap<>();
@@ -2412,11 +2399,9 @@ public abstract class BaseTopLevelBuild
 		List<Build> cachedDownstreamBuilds = new ArrayList<>();
 
 		for (Build downstreamBuild : getDownstreamBuilds()) {
-			if (!downstreamBuild.isBuildCached()) {
-				continue;
+			if (downstreamBuild.isBuildCached()) {
+				cachedDownstreamBuilds.add(downstreamBuild);
 			}
-
-			cachedDownstreamBuilds.add(downstreamBuild);
 		}
 
 		return cachedDownstreamBuilds;
@@ -2476,13 +2461,11 @@ public abstract class BaseTopLevelBuild
 		for (String propertyName : properties.stringPropertyNames()) {
 			String badBuildURLsString = properties.getProperty(propertyName);
 
-			if (badBuildURLsString.isEmpty()) {
-				continue;
+			if (!badBuildURLsString.isEmpty()) {
+				String[] badBuildURLs = badBuildURLsString.split(",");
+
+				totalReinvocationCount += badBuildURLs.length;
 			}
-
-			String[] badBuildURLs = badBuildURLsString.split(",");
-
-			totalReinvocationCount += badBuildURLs.length;
 		}
 
 		return totalReinvocationCount;

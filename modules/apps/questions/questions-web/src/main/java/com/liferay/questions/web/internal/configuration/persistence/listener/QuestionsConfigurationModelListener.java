@@ -188,11 +188,9 @@ public class QuestionsConfigurationModelListener
 		for (ServiceRegistration<?> serviceRegistration :
 				_serviceRegistrations) {
 
-			if (serviceRegistration == null) {
-				continue;
+			if (serviceRegistration != null) {
+				serviceRegistration.unregister();
 			}
-
-			serviceRegistration.unregister();
 		}
 	}
 

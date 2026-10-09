@@ -97,16 +97,15 @@ public abstract class BaseTestClassResult implements TestClassResult {
 				continue;
 			}
 
-			if ((uniqueFailures != null) &&
-				(!uniqueFailures || !testResult.isUniqueFailure()) &&
-				(uniqueFailures || testResult.isUniqueFailure())) {
+			if ((uniqueFailures == null) ||
+				(uniqueFailures && testResult.isUniqueFailure()) ||
+				(!uniqueFailures && !testResult.isUniqueFailure())) {
 
-				continue;
+				failureElements.add(
+					Dom4JUtil.getNewAnchorElement(
+						testResult.getTestReportURL(),
+						testResult.getTestName()));
 			}
-
-			failureElements.add(
-				Dom4JUtil.getNewAnchorElement(
-					testResult.getTestReportURL(), testResult.getTestName()));
 		}
 
 		if (failureElements.isEmpty()) {

@@ -49,11 +49,9 @@ public class FileUtil extends com.liferay.gradle.util.FileUtil {
 				dirPath)) {
 
 			for (Path path : directoryStream) {
-				if (!Files.isSymbolicLink(path)) {
-					continue;
+				if (Files.isSymbolicLink(path)) {
+					Files.delete(path);
 				}
-
-				Files.delete(path);
 			}
 		}
 	}

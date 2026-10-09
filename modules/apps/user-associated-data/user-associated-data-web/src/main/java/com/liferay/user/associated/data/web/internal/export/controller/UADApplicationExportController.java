@@ -67,24 +67,25 @@ public class UADApplicationExportController {
 
 			File file = uadExporter.exportAll(userId, _zipWriterFactory);
 
-			if (!file.exists()) {
-				continue;
-			}
+			if (file.exists()) {
+				try (ZipReader zipReader = _zipReaderFactory.getZipReader(
+						file)) {
 
-			try (ZipReader zipReader = _zipReaderFactory.getZipReader(file)) {
-				List<String> entries = zipReader.getEntries();
+					List<String> entries = zipReader.getEntries();
 
-				for (String entry : entries) {
-					zipWriter.addEntry(
-						_getEntryPath(applicationKey, uadRegistryKey, entry),
-						zipReader.getEntryAsInputStream(entry));
+					for (String entry : entries) {
+						zipWriter.addEntry(
+							_getEntryPath(
+								applicationKey, uadRegistryKey, entry),
+							zipReader.getEntryAsInputStream(entry));
 
-					_uadExportBackgroundTaskStatusMessageSender.
-						sendStatusMessage("entity", uadRegistryKey);
+						_uadExportBackgroundTaskStatusMessageSender.
+							sendStatusMessage("entity", uadRegistryKey);
+					}
 				}
-			}
-			catch (IOException ioException) {
-				throw new PortalException(ioException);
+				catch (IOException ioException) {
+					throw new PortalException(ioException);
+				}
 			}
 		}
 

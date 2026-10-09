@@ -545,11 +545,9 @@ public class OrderResourceImpl extends BaseOrderResourceImpl {
 		for (OrderItem orderItem : orderItems) {
 			String externalReferenceCode = orderItem.getExternalReferenceCode();
 
-			if (Objects.isNull(externalReferenceCode)) {
-				continue;
+			if (Objects.nonNull(externalReferenceCode)) {
+				orderItemExternalReferenceCodes.add(externalReferenceCode);
 			}
-
-			orderItemExternalReferenceCodes.add(externalReferenceCode);
 		}
 
 		if (orderItemExternalReferenceCodes.isEmpty()) {
@@ -568,11 +566,9 @@ public class OrderResourceImpl extends BaseOrderResourceImpl {
 		for (OrderItem orderItem : orderItems) {
 			Long id = orderItem.getId();
 
-			if (Objects.isNull(id)) {
-				continue;
+			if (Objects.nonNull(id)) {
+				orderItemIds.add(id);
 			}
-
-			orderItemIds.add(id);
 		}
 
 		if (orderItemIds.isEmpty()) {
@@ -705,13 +701,11 @@ public class OrderResourceImpl extends BaseOrderResourceImpl {
 				Map<String, ?> expandoAttributes = _getExpandoBridgeAttributes(
 					orderItem);
 
-				if (MapUtil.isEmpty(expandoAttributes)) {
-					continue;
+				if (MapUtil.isNotEmpty(expandoAttributes)) {
+					ExpandoUtil.updateExpando(
+						contextCompany.getCompanyId(), CommerceOrderItem.class,
+						commerceOrderItem.getPrimaryKey(), expandoAttributes);
 				}
-
-				ExpandoUtil.updateExpando(
-					contextCompany.getCompanyId(), CommerceOrderItem.class,
-					commerceOrderItem.getPrimaryKey(), expandoAttributes);
 			}
 		}
 

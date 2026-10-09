@@ -234,15 +234,13 @@ public class CTConflictChecker<T extends CTModel<T>> {
 						ctEntry.getModelClassPK(), false));
 			}
 
-			if (!ctEntryConflictHelper.hasDeletionModificationConflict(
+			if (ctEntryConflictHelper.hasDeletionModificationConflict(
 					ctEntry, _targetCTCollectionId)) {
 
-				continue;
+				conflictInfos.add(
+					new DeletionModificationConflictInfo(
+						ctEntry.getModelClassPK()));
 			}
-
-			conflictInfos.add(
-				new DeletionModificationConflictInfo(
-					ctEntry.getModelClassPK()));
 		}
 	}
 
@@ -690,14 +688,12 @@ public class CTConflictChecker<T extends CTModel<T>> {
 				ignorablePrimaryKeys.add(ctEntry.getModelClassPK());
 			}
 
-			if ((changeType != CTConstants.CT_CHANGE_TYPE_ADDITION) &&
-				(!modificationConflictCheckEnabled ||
-				 (changeType != CTConstants.CT_CHANGE_TYPE_MODIFICATION))) {
+			if ((changeType == CTConstants.CT_CHANGE_TYPE_ADDITION) ||
+				(modificationConflictCheckEnabled &&
+				 (changeType == CTConstants.CT_CHANGE_TYPE_MODIFICATION))) {
 
-				continue;
+				verifyPrimaryKeys.add(ctEntry.getModelClassPK());
 			}
-
-			verifyPrimaryKeys.add(ctEntry.getModelClassPK());
 		}
 
 		if (verifyPrimaryKeys.isEmpty()) {
@@ -1120,12 +1116,10 @@ public class CTConflictChecker<T extends CTModel<T>> {
 
 				CTEntry ctEntry = _modificationCTEntries.get(pk);
 
-				if (ctEntry == null) {
-					continue;
+				if (ctEntry != null) {
+					_ctEntryLocalService.updateModelMvccVersion(
+						ctEntry.getCtEntryId(), resultSet.getLong(2));
 				}
-
-				_ctEntryLocalService.updateModelMvccVersion(
-					ctEntry.getCtEntryId(), resultSet.getLong(2));
 			}
 		}
 		catch (PortalException portalException) {

@@ -160,12 +160,10 @@ public class CommerceRecipientCommerceDefinitionTermContributor
 				accountEntryUserRel.getAccountUserId(),
 				accountEntry.getAccountEntryGroupId());
 
-			if (!userRoles.contains(role)) {
-				continue;
+			if (userRoles.contains(role)) {
+				resultsSB.append(accountEntryUserRel.getAccountUserId());
+				resultsSB.append(",");
 			}
-
-			resultsSB.append(accountEntryUserRel.getAccountUserId());
-			resultsSB.append(",");
 		}
 
 		return resultsSB.toString();

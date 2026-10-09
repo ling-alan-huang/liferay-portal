@@ -98,11 +98,9 @@ public class Java2WsddTask {
 		for (int i = packagePaths.length - 1; i >= 0; i--) {
 			namespace += packagePaths[i];
 
-			if (i <= 0) {
-				continue;
+			if (i > 0) {
+				namespace += ".";
 			}
-
-			namespace += ".";
 		}
 
 		String location = "http://localhost/services/" + serviceName;

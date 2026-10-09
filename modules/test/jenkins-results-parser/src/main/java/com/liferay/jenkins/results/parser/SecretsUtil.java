@@ -921,11 +921,9 @@ public abstract class SecretsUtil {
 			List<Vault> vaults = new ArrayList<>();
 
 			for (Vault vault : vaultsMap.values()) {
-				if (vaults.contains(vault)) {
-					continue;
+				if (!vaults.contains(vault)) {
+					vaults.add(vault);
 				}
-
-				vaults.add(vault);
 			}
 
 			return vaults;

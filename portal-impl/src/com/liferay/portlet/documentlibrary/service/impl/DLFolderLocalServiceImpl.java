@@ -1246,12 +1246,10 @@ public class DLFolderLocalServiceImpl extends DLFolderLocalServiceBaseImpl {
 					DLFolder.class.getName(), dlFolder.getFolderId(),
 					fileEntryTypeId);
 
-			if (workflowDefinitionLink == null) {
-				continue;
+			if (workflowDefinitionLink != null) {
+				_workflowDefinitionLinkLocalService.
+					deleteWorkflowDefinitionLink(workflowDefinitionLink);
 			}
-
-			_workflowDefinitionLinkLocalService.deleteWorkflowDefinitionLink(
-				workflowDefinitionLink);
 		}
 	}
 
@@ -1270,18 +1268,16 @@ public class DLFolderLocalServiceImpl extends DLFolderLocalServiceBaseImpl {
 			for (DLFolder curDLFolder : dlFolders) {
 				TrashHelper trashHelper = _trashHelperSnapshot.get();
 
-				if (!includeTrashedEntries &&
-					trashHelper.isInTrashExplicitly(curDLFolder)) {
+				if (includeTrashedEntries ||
+					!trashHelper.isInTrashExplicitly(curDLFolder)) {
 
-					continue;
+					repositoryEventTrigger.trigger(
+						RepositoryEventType.Delete.class, Folder.class,
+						new LiferayFolder(curDLFolder));
+
+					dlFolderLocalService.deleteFolder(
+						curDLFolder, includeTrashedEntries);
 				}
-
-				repositoryEventTrigger.trigger(
-					RepositoryEventType.Delete.class, Folder.class,
-					new LiferayFolder(curDLFolder));
-
-				dlFolderLocalService.deleteFolder(
-					curDLFolder, includeTrashedEntries);
 			}
 		}
 		catch (UndeployedExternalRepositoryException

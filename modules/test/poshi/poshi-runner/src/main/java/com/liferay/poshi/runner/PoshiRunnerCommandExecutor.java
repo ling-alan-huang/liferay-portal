@@ -109,14 +109,12 @@ public class PoshiRunnerCommandExecutor {
 			for (String poshiRunnerExtPropertyFileName :
 					poshiRunnerExtPropertyFileNames.split(",")) {
 
-				if (!FileUtil.exists(poshiRunnerExtPropertyFileName)) {
-					continue;
-				}
+				if (FileUtil.exists(poshiRunnerExtPropertyFileName)) {
+					try (InputStream inputStream = new FileInputStream(
+							poshiRunnerExtPropertyFileName)) {
 
-				try (InputStream inputStream = new FileInputStream(
-						poshiRunnerExtPropertyFileName)) {
-
-					systemProperties.load(inputStream);
+						systemProperties.load(inputStream);
+					}
 				}
 			}
 		}

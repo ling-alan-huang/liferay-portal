@@ -42,13 +42,11 @@ public class ArrayCheck extends BaseFileCheck {
 		Matcher matcher = pattern.matcher(content);
 
 		while (matcher.find()) {
-			if (ToolsUtil.isInsideQuotes(content, matcher.start())) {
-				continue;
+			if (!ToolsUtil.isInsideQuotes(content, matcher.start())) {
+				addMessage(
+					fileName, "Use Collections.addAll",
+					getLineNumber(content, matcher.start()));
 			}
-
-			addMessage(
-				fileName, "Use Collections.addAll",
-				getLineNumber(content, matcher.start()));
 		}
 	}
 

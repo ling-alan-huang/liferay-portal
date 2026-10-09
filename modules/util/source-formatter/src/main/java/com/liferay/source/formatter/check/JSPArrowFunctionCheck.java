@@ -25,13 +25,11 @@ public class JSPArrowFunctionCheck extends BaseFileCheck {
 				return content;
 			}
 
-			if (ToolsUtil.isInsideQuotes(content, x)) {
-				continue;
+			if (!ToolsUtil.isInsideQuotes(content, x)) {
+				addMessage(
+					fileName, "Do not use arrow function",
+					getLineNumber(content, x));
 			}
-
-			addMessage(
-				fileName, "Do not use arrow function",
-				getLineNumber(content, x));
 		}
 	}
 

@@ -231,11 +231,9 @@ public class WorkspaceBundlePersistentResourceTest
 		File workspacesDir = new File(portalDir, "workspaces");
 
 		for (File workspaceDir : workspacesDir.listFiles()) {
-			if (!workspaceDir.isDirectory()) {
-				continue;
+			if (workspaceDir.isDirectory()) {
+				workspaceNames.add(workspaceDir.getName());
 			}
-
-			workspaceNames.add(workspaceDir.getName());
 		}
 
 		Assert.assertFalse(workspaceNames.isEmpty());

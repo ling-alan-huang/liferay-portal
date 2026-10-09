@@ -79,17 +79,16 @@ public class UpgradeCTSchemaVersionTest {
 					String toSchemaVersionString, UpgradeStep... upgradeSteps) {
 
 					for (UpgradeStep upgradeStep : upgradeSteps) {
-						if (!fromSchemaVersionString.equals("2.3.0")) {
-							continue;
-						}
+						if (fromSchemaVersionString.equals("2.3.0")) {
+							UpgradeProcess upgradeProcess =
+								(UpgradeProcess)upgradeStep;
 
-						UpgradeProcess upgradeProcess =
-							(UpgradeProcess)upgradeStep;
+							for (UpgradeStep innerUpgradeStep :
+									upgradeProcess.getUpgradeSteps()) {
 
-						for (UpgradeStep innerUpgradeStep :
-								upgradeProcess.getUpgradeSteps()) {
-
-							_upgradeSteps.add((UpgradeProcess)innerUpgradeStep);
+								_upgradeSteps.add(
+									(UpgradeProcess)innerUpgradeStep);
+							}
 						}
 					}
 				}

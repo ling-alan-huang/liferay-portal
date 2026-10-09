@@ -504,11 +504,9 @@ public class MBCommentManagerImpl implements CommentManager {
 
 		if (messages.size() > 1) {
 			for (MBMessage curMessage : messages) {
-				if (curMessage.isRoot()) {
-					continue;
+				if (!curMessage.isRoot()) {
+					classPKs.add(curMessage.getMessageId());
 				}
-
-				classPKs.add(curMessage.getMessageId());
 			}
 		}
 

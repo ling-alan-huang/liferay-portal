@@ -59,11 +59,9 @@ public abstract class BaseJob implements Job {
 		for (BatchTestClassGroup batchTestClassGroup :
 				getBatchTestClassGroups()) {
 
-			if (!batchTestClassGroup.isTestAnalyticsCloud()) {
-				continue;
+			if (batchTestClassGroup.isTestAnalyticsCloud()) {
+				batchNames.add(batchTestClassGroup.getBatchName());
 			}
-
-			batchNames.add(batchTestClassGroup.getBatchName());
 		}
 
 		return batchNames;
@@ -75,11 +73,9 @@ public abstract class BaseJob implements Job {
 		for (SegmentTestClassGroup segmentTestClassGroup :
 				getSegmentTestClassGroups()) {
 
-			if (!segmentTestClassGroup.isTestAnalyticsCloud()) {
-				continue;
+			if (segmentTestClassGroup.isTestAnalyticsCloud()) {
+				segmentNames.add(segmentTestClassGroup.getSegmentName());
 			}
-
-			segmentNames.add(segmentTestClassGroup.getSegmentName());
 		}
 
 		return segmentNames;
@@ -425,11 +421,9 @@ public abstract class BaseJob implements Job {
 
 			String batchName = batchTestClassGroup.getBatchName();
 
-			if (standaloneTestBatchNames.contains(batchName)) {
-				continue;
+			if (!standaloneTestBatchNames.contains(batchName)) {
+				batchNames.add(batchName);
 			}
-
-			batchNames.add(batchName);
 		}
 
 		return batchNames;
@@ -671,11 +665,9 @@ public abstract class BaseJob implements Job {
 
 			String batchName = batchTestClassGroup.getBatchName();
 
-			if (!standaloneTestBatchNames.contains(batchName)) {
-				continue;
+			if (standaloneTestBatchNames.contains(batchName)) {
+				batchNames.add(batchName);
 			}
-
-			batchNames.add(batchName);
 		}
 
 		return batchNames;
@@ -697,13 +689,11 @@ public abstract class BaseJob implements Job {
 		for (SegmentTestClassGroup segmentTestClassGroup :
 				getSegmentTestClassGroups()) {
 
-			if (!standaloneTestBatchNames.contains(
+			if (standaloneTestBatchNames.contains(
 					segmentTestClassGroup.getBatchName())) {
 
-				continue;
+				segmentNames.add(segmentTestClassGroup.getSegmentName());
 			}
-
-			segmentNames.add(segmentTestClassGroup.getSegmentName());
 		}
 
 		return segmentNames;
@@ -893,11 +883,9 @@ public abstract class BaseJob implements Job {
 			String workspaceName =
 				playwrightSegmentTestClassGroup.getWorkspaceName();
 
-			if (JenkinsResultsParserUtil.isNullOrEmpty(workspaceName)) {
-				continue;
+			if (!JenkinsResultsParserUtil.isNullOrEmpty(workspaceName)) {
+				workspaceNames.add(workspaceName);
 			}
-
-			workspaceNames.add(workspaceName);
 		}
 
 		return workspaceNames;

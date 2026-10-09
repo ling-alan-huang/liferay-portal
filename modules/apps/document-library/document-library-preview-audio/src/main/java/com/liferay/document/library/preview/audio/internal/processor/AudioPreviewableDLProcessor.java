@@ -239,13 +239,11 @@ public class AudioPreviewableDLProcessor
 			}
 
 			for (String previewType : _PREVIEW_TYPES) {
-				if (!previewType.equals("mp3") && !previewType.equals("ogg")) {
-					continue;
+				if (previewType.equals("mp3") || previewType.equals("ogg")) {
+					exportPreview(
+						portletDataContext, fileEntry, fileEntryElement,
+						"audio", previewType);
 				}
-
-				exportPreview(
-					portletDataContext, fileEntry, fileEntryElement, "audio",
-					previewType);
 			}
 		}
 	}
@@ -280,13 +278,11 @@ public class AudioPreviewableDLProcessor
 		}
 
 		for (String previewType : _PREVIEW_TYPES) {
-			if (!previewType.equals("mp3") && !previewType.equals("ogg")) {
-				continue;
+			if (previewType.equals("mp3") || previewType.equals("ogg")) {
+				importPreview(
+					portletDataContext, fileEntry, importedFileEntry,
+					fileEntryElement, "audio", previewType);
 			}
-
-			importPreview(
-				portletDataContext, fileEntry, importedFileEntry,
-				fileEntryElement, "audio", previewType);
 		}
 	}
 

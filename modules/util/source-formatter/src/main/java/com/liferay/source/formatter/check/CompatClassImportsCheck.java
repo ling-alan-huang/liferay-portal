@@ -113,11 +113,9 @@ public class CompatClassImportsCheck extends BaseFileCheck {
 			String extendedClassName = StringUtil.removeSubstring(
 				compatClassName, "compat.");
 
-			if (!content.contains("extends " + extendedClassName)) {
-				continue;
+			if (content.contains("extends " + extendedClassName)) {
+				_compatClassNamesMap.put(compatClassName, extendedClassName);
 			}
-
-			_compatClassNamesMap.put(compatClassName, extendedClassName);
 		}
 
 		return _compatClassNamesMap;

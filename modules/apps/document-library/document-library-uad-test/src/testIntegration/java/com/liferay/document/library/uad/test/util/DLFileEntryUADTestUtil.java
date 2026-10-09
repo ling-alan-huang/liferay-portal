@@ -86,11 +86,9 @@ public class DLFileEntryUADTestUtil {
 
 			long dlFolderId = dlFileEntry.getFolderId();
 
-			if (dlFolderId == DLFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
-				continue;
+			if (dlFolderId != DLFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
+				dlFolderLocalService.deleteFolder(dlFileEntry.getFolderId());
 			}
-
-			dlFolderLocalService.deleteFolder(dlFileEntry.getFolderId());
 		}
 	}
 

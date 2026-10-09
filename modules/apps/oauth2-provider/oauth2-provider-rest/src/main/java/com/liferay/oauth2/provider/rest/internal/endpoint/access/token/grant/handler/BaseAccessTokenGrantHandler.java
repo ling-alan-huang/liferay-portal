@@ -120,14 +120,12 @@ public abstract class BaseAccessTokenGrantHandler
 		}
 
 		for (String resource : resources) {
-			if (_isValidResource(resource)) {
-				continue;
+			if (!_isValidResource(resource)) {
+				OAuth2ErrorUtil.reportInvalidRequestError(
+					"The resource parameter must be an absolute URI without " +
+						"a fragment",
+					"invalid_target", Response.Status.BAD_REQUEST);
 			}
-
-			OAuth2ErrorUtil.reportInvalidRequestError(
-				"The resource parameter must be an absolute URI without a " +
-					"fragment",
-				"invalid_target", Response.Status.BAD_REQUEST);
 		}
 
 		return resources;

@@ -58,14 +58,10 @@ public class WidgetLayoutTypeSettingsUpgradeProcess extends UpgradeProcess {
 			UnicodeProperties typeSettingsUnicodeProperties =
 				layout.getTypeSettingsProperties();
 
-			if (!_isWidgetLayoutSettingsCleared(
-					typeSettingsUnicodeProperties)) {
-
-				continue;
+			if (_isWidgetLayoutSettingsCleared(typeSettingsUnicodeProperties)) {
+				_layoutLocalService.updateTypeSettings(
+					layout, typeSettingsUnicodeProperties.toString());
 			}
-
-			_layoutLocalService.updateTypeSettings(
-				layout, typeSettingsUnicodeProperties.toString());
 		}
 	}
 

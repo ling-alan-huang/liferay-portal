@@ -74,28 +74,23 @@ public class PortletConfigurationIconTracker {
 			String path = portletConfigurationIconLocator.getPath(
 				portletRequest);
 
-			if (path.isEmpty()) {
-				continue;
+			if (!path.isEmpty()) {
+				if (paths == _defaultPaths) {
+					paths = new HashSet<>();
+				}
+
+				paths.add(path);
+
+				if (!path.equals(StringPool.DASH)) {
+					List<String> defaultViews =
+						portletConfigurationIconLocator.getDefaultViews(
+							portletId);
+
+					if (defaultViews.contains(path)) {
+						paths.add(StringPool.DASH);
+					}
+				}
 			}
-
-			if (paths == _defaultPaths) {
-				paths = new HashSet<>();
-			}
-
-			paths.add(path);
-
-			if (path.equals(StringPool.DASH)) {
-				continue;
-			}
-
-			List<String> defaultViews =
-				portletConfigurationIconLocator.getDefaultViews(portletId);
-
-			if (!defaultViews.contains(path)) {
-				continue;
-			}
-
-			paths.add(StringPool.DASH);
 		}
 
 		return paths;
@@ -150,14 +145,12 @@ public class PortletConfigurationIconTracker {
 						continue;
 					}
 
-					if (filter &&
-						!portletConfigurationIcon.isShow(
+					if (!filter ||
+						portletConfigurationIcon.isShow(
 							portletRequestWrapper)) {
 
-						continue;
+						portletConfigurationIcons.add(portletConfigurationIcon);
 					}
-
-					portletConfigurationIcons.add(portletConfigurationIcon);
 				}
 			}
 
@@ -178,15 +171,13 @@ public class PortletConfigurationIconTracker {
 					continue;
 				}
 
-				if (portletConfigurationIcons.contains(
-						portletConfigurationIcon) ||
-					(filter &&
-					 !portletConfigurationIcon.isShow(portletRequestWrapper))) {
+				if (!portletConfigurationIcons.contains(
+						portletConfigurationIcon) &&
+					(!filter ||
+					 portletConfigurationIcon.isShow(portletRequestWrapper))) {
 
-					continue;
+					portletConfigurationIcons.add(portletConfigurationIcon);
 				}
-
-				portletConfigurationIcons.add(portletConfigurationIcon);
 			}
 		}
 

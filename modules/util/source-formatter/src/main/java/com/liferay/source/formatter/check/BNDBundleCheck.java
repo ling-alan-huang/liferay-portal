@@ -84,11 +84,9 @@ public class BNDBundleCheck extends BaseFileCheck {
 			content, "Liferay-Releng-Supported", "${liferay.releng.supported}");
 
 		for (String instruction : _REQUIRED_INSTRUCTIONS) {
-			if (content.contains(instruction + ":")) {
-				continue;
+			if (!content.contains(instruction + ":")) {
+				content = StringBundler.concat(content, "\n", instruction, ":");
 			}
-
-			content = StringBundler.concat(content, "\n", instruction, ":");
 		}
 
 		return content;

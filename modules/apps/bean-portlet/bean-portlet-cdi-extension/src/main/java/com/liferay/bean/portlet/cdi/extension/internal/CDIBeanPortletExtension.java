@@ -431,13 +431,11 @@ public class CDIBeanPortletExtension implements Extension {
 
 			Object value = httpSession.getAttribute(name);
 
-			if (!(value instanceof ScopedBean)) {
-				continue;
+			if (value instanceof ScopedBean) {
+				ScopedBean<?> scopedBean = (ScopedBean<?>)value;
+
+				scopedBean.destroy();
 			}
-
-			ScopedBean<?> scopedBean = (ScopedBean<?>)value;
-
-			scopedBean.destroy();
 		}
 	}
 

@@ -53,11 +53,9 @@ public class CPDataSourceRegistryImpl implements CPDataSourceRegistry {
 		List<CPDataSource> cpDataSources = new ArrayList<>();
 
 		for (CPDataSource cpDataSource : _serviceTrackerList) {
-			if (Validator.isNull(cpDataSource.getName())) {
-				continue;
+			if (Validator.isNotNull(cpDataSource.getName())) {
+				cpDataSources.add(cpDataSource);
 			}
-
-			cpDataSources.add(cpDataSource);
 		}
 
 		return Collections.unmodifiableList(cpDataSources);

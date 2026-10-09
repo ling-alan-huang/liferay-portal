@@ -97,11 +97,12 @@ public class MethodPropertyAccessor implements PropertyAccessStrategy {
 			for (int i = 0; i < sb.length(); i++) {
 				char c = sb.charAt(i);
 
-				if ((c < 'a') || (c > 'z')) {
+				if ((c >= 'a') && (c <= 'z')) {
+					sb.setCharAt(i, (char)(c - 32));
+				}
+				else {
 					break;
 				}
-
-				sb.setCharAt(i, (char)(c - 32));
 			}
 
 			return sb.toString();

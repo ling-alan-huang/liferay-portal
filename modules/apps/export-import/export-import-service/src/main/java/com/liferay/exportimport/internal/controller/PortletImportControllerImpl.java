@@ -803,14 +803,12 @@ public class PortletImportControllerImpl implements PortletImportController {
 
 			Lock lock = (Lock)portletDataContext.getZipEntryAsObject(path);
 
-			if (lock == null) {
-				continue;
+			if (lock != null) {
+				String className = assetElement.attributeValue("class-name");
+				String key = assetElement.attributeValue("key");
+
+				portletDataContext.addLocks(className, key, lock);
 			}
-
-			String className = assetElement.attributeValue("class-name");
-			String key = assetElement.attributeValue("key");
-
-			portletDataContext.addLocks(className, key, lock);
 		}
 	}
 
@@ -1514,15 +1512,13 @@ public class PortletImportControllerImpl implements PortletImportController {
 
 			String scopeType = portletDataContext.getScopeType();
 
-			if (ArrayUtil.contains(dataPortletPreferences, name) &&
-				(Validator.isNotNull(portletDataContext.getScopeLayoutUuid()) ||
-				 !scopeType.equals("company"))) {
+			if (!ArrayUtil.contains(dataPortletPreferences, name) ||
+				(Validator.isNull(portletDataContext.getScopeLayoutUuid()) &&
+				 scopeType.equals("company"))) {
 
-				continue;
+				jxPortletPreferences.setValues(
+					name, newJXPortletPreferences.getValues(name, null));
 			}
-
-			jxPortletPreferences.setValues(
-				name, newJXPortletPreferences.getValues(name, null));
 		}
 
 		_portletPreferencesLocalService.updatePreferences(

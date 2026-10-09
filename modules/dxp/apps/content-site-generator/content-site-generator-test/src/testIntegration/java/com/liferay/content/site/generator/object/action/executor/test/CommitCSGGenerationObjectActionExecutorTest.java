@@ -91,12 +91,10 @@ public class CommitCSGGenerationObjectActionExecutorTest {
 					fetchListTypeDefinitionByExternalReferenceCode(
 						externalReferenceCode, TestPropsValues.getCompanyId());
 
-			if (listTypeDefinition == null) {
-				continue;
+			if (listTypeDefinition != null) {
+				_listTypeDefinitionLocalService.deleteListTypeDefinition(
+					listTypeDefinition);
 			}
-
-			_listTypeDefinitionLocalService.deleteListTypeDefinition(
-				listTypeDefinition);
 		}
 
 		GroupTestUtil.deleteGroup(_group);

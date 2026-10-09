@@ -201,21 +201,19 @@ public abstract class BasePreviewableDLProcessor implements DLProcessor {
 			String[] previewTypes = getPreviewTypes();
 
 			for (String previewType : previewTypes) {
-				if (!hasPreview(sourceFileVersion, previewType) ||
-					hasPreview(destinationFileVersion, previewType)) {
+				if (hasPreview(sourceFileVersion, previewType) &&
+					!hasPreview(destinationFileVersion, previewType)) {
 
-					continue;
+					String previewFilePath = getPreviewFilePath(
+						destinationFileVersion, previewType);
+
+					InputStream inputStream = doGetPreviewAsStream(
+						sourceFileVersion, previewType);
+
+					addFileToStore(
+						destinationFileVersion.getCompanyId(), PREVIEW_PATH,
+						previewFilePath, inputStream);
 				}
-
-				String previewFilePath = getPreviewFilePath(
-					destinationFileVersion, previewType);
-
-				InputStream inputStream = doGetPreviewAsStream(
-					sourceFileVersion, previewType);
-
-				addFileToStore(
-					destinationFileVersion.getCompanyId(), PREVIEW_PATH,
-					previewFilePath, inputStream);
 			}
 		}
 		catch (Exception exception) {
@@ -893,11 +891,9 @@ public abstract class BasePreviewableDLProcessor implements DLProcessor {
 		String[] previewTypes = getPreviewTypes();
 
 		for (String previewType : previewTypes) {
-			if (!hasPreview(fileVersion, previewType)) {
-				continue;
+			if (hasPreview(fileVersion, previewType)) {
+				count++;
 			}
-
-			count++;
 		}
 
 		if (count == previewTypes.length) {

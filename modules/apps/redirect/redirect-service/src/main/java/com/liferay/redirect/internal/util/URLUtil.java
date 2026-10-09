@@ -48,11 +48,9 @@ public class URLUtil {
 		while (pos != -1) {
 			pos = domain.lastIndexOf(StringPool.PERIOD, pos - 1);
 
-			if (pos <= 0) {
-				continue;
+			if (pos > 0) {
+				terms.add(domain.substring(pos + 1));
 			}
-
-			terms.add(domain.substring(pos + 1));
 		}
 
 		return terms.toArray(new String[0]);

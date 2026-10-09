@@ -102,22 +102,21 @@ public class PropertiesLanguageKeysContextCheck extends BaseFileCheck {
 
 			String bracketsContent = matcher.group(1);
 
-			if ((bracketsContent.length() != 0) &&
-				((bracketsContent.length() != 1) ||
-				 bracketsContent.equals("n") || bracketsContent.equals("v")) &&
-				(!bracketsContent.matches("\\d+") || key.contains("code") ||
-				 key.contains("status")) &&
-				!forbiddenContextNames.contains(bracketsContent)) {
+			if ((bracketsContent.length() == 0) ||
+				((bracketsContent.length() == 1) &&
+				 !bracketsContent.equals("n") &&
+				 !bracketsContent.equals("v")) ||
+				(bracketsContent.matches("\\d+") && !key.contains("code") &&
+				 !key.contains("status")) ||
+				forbiddenContextNames.contains(bracketsContent)) {
 
-				continue;
+				addMessage(
+					fileName,
+					StringBundler.concat(
+						"The context \"", bracketsContent,
+						"\" is invalid in the key \"", key, "\""),
+					lineNumber);
 			}
-
-			addMessage(
-				fileName,
-				StringBundler.concat(
-					"The context \"", bracketsContent,
-					"\" is invalid in the key \"", key, "\""),
-				lineNumber);
 		}
 
 		return content;

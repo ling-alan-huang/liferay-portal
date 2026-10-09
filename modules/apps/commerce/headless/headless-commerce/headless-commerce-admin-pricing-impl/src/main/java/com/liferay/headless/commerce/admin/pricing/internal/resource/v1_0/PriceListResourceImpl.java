@@ -367,14 +367,12 @@ public class PriceListResourceImpl extends BasePriceListResourceImpl {
 
 				TierPrice[] tierPrices = priceEntry.getTierPrices();
 
-				if (tierPrices == null) {
-					continue;
-				}
-
-				for (TierPrice tierPrice : tierPrices) {
-					TierPriceUtil.addOrUpdateCommerceTierPriceEntry(
-						_commerceTierPriceEntryService, tierPrice,
-						commercePriceEntry, serviceContext);
+				if (tierPrices != null) {
+					for (TierPrice tierPrice : tierPrices) {
+						TierPriceUtil.addOrUpdateCommerceTierPriceEntry(
+							_commerceTierPriceEntryService, tierPrice,
+							commercePriceEntry, serviceContext);
+					}
 				}
 			}
 		}

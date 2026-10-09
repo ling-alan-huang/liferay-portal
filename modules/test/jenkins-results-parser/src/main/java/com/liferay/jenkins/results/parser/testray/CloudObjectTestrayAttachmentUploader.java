@@ -64,12 +64,10 @@ public class CloudObjectTestrayAttachmentUploader
 						preparedFile, preparedFilesBaseDir),
 					preparedFile);
 
-			if (topLevelBuildReport == null) {
-				continue;
+			if (topLevelBuildReport != null) {
+				topLevelBuildReport.addTestrayAttachmentURL(
+					testrayCloudObject.getURL());
 			}
-
-			topLevelBuildReport.addTestrayAttachmentURL(
-				testrayCloudObject.getURL());
 		}
 
 		uploadBuildReportTestrayAttachment();

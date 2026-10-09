@@ -130,11 +130,9 @@ public class LiveUsers {
 			_getLiveUsers(companyId), groupId);
 
 		for (long userId : userIds) {
-			if (_getUserTrackers(companyId, userId) == null) {
-				continue;
+			if (_getUserTrackers(companyId, userId) != null) {
+				groupUsers.add(userId);
 			}
-
-			groupUsers.add(userId);
 		}
 	}
 
@@ -417,11 +415,9 @@ public class LiveUsers {
 		while (iterator.hasNext()) {
 			UserTracker curUserTracker = iterator.next();
 
-			if (!sessionId.equals(curUserTracker.getSessionId())) {
-				continue;
+			if (sessionId.equals(curUserTracker.getSessionId())) {
+				iterator.remove();
 			}
-
-			iterator.remove();
 		}
 
 		if (userTrackers.isEmpty()) {

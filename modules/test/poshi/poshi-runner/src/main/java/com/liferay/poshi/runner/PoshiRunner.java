@@ -76,12 +76,10 @@ public class PoshiRunner {
 
 			int failures = testResultMessages.size() - passes;
 
-			if ((passes <= 0) || (failures <= 0)) {
-				continue;
+			if ((passes > 0) && (failures > 0)) {
+				sb.append("\n");
+				sb.append(testResult.getKey());
 			}
-
-			sb.append("\n");
-			sb.append(testResult.getKey());
 		}
 
 		if (sb.length() != 0) {

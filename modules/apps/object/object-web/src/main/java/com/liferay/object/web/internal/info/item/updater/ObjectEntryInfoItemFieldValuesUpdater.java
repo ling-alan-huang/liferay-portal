@@ -385,19 +385,18 @@ public class ObjectEntryInfoItemFieldValuesUpdater
 
 			Object value = infoFieldValue.getValue();
 
-			if (!(value instanceof List)) {
-				continue;
-			}
+			if (value instanceof List) {
+				List<String> relatedObjectEntryIds = (List<String>)value;
 
-			List<String> relatedObjectEntryIds = (List<String>)value;
-
-			for (String relatedObjectEntryId : relatedObjectEntryIds) {
-				ObjectRelationshipLocalServiceUtil.
-					addObjectRelationshipMappingTableValues(
-						userId, objectRelationship.getObjectRelationshipId(),
-						objectEntry.getPrimaryKey(),
-						GetterUtil.getLong(relatedObjectEntryId),
-						serviceContext);
+				for (String relatedObjectEntryId : relatedObjectEntryIds) {
+					ObjectRelationshipLocalServiceUtil.
+						addObjectRelationshipMappingTableValues(
+							userId,
+							objectRelationship.getObjectRelationshipId(),
+							objectEntry.getPrimaryKey(),
+							GetterUtil.getLong(relatedObjectEntryId),
+							serviceContext);
+				}
 			}
 		}
 	}

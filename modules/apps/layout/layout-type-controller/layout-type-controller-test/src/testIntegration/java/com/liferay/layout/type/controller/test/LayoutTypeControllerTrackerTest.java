@@ -113,11 +113,9 @@ public class LayoutTypeControllerTrackerTest {
 		boolean found = false;
 
 		for (String type : types) {
-			if (!type.equals("testLayoutTypeController")) {
-				continue;
+			if (type.equals("testLayoutTypeController")) {
+				found = true;
 			}
-
-			found = true;
 		}
 
 		Assert.assertTrue(found);

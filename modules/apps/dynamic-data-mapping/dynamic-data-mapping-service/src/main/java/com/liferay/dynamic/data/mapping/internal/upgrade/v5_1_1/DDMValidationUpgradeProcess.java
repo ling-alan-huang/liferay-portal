@@ -77,24 +77,22 @@ public class DDMValidationUpgradeProcess extends UpgradeProcess {
 				JSONObject definitionJSONObject = _jsonFactory.createJSONObject(
 					resultSet.getString("definition"));
 
-				if (!_upgradeDefinition(definitionJSONObject)) {
-					continue;
+				if (_upgradeDefinition(definitionJSONObject)) {
+					updatePreparedStatement1.setString(
+						1, definitionJSONObject.toString());
+					updatePreparedStatement1.setLong(
+						2, resultSet.getLong("ctCollectionId"));
+
+					long structureId = resultSet.getLong("structureId");
+
+					updatePreparedStatement1.setLong(3, structureId);
+
+					updatePreparedStatement1.addBatch();
+
+					_upgradeDDMStructureVersion(
+						selectPreparedStatement2, structureId,
+						updatePreparedStatement2);
 				}
-
-				updatePreparedStatement1.setString(
-					1, definitionJSONObject.toString());
-				updatePreparedStatement1.setLong(
-					2, resultSet.getLong("ctCollectionId"));
-
-				long structureId = resultSet.getLong("structureId");
-
-				updatePreparedStatement1.setLong(3, structureId);
-
-				updatePreparedStatement1.addBatch();
-
-				_upgradeDDMStructureVersion(
-					selectPreparedStatement2, structureId,
-					updatePreparedStatement2);
 			}
 		}
 	}
@@ -111,18 +109,16 @@ public class DDMValidationUpgradeProcess extends UpgradeProcess {
 				JSONObject definitionJSONObject = _jsonFactory.createJSONObject(
 					resultSet.getString("definition"));
 
-				if (!_upgradeDefinition(definitionJSONObject)) {
-					continue;
+				if (_upgradeDefinition(definitionJSONObject)) {
+					updatePreparedStatement.setString(
+						1, definitionJSONObject.toString());
+					updatePreparedStatement.setLong(
+						2, resultSet.getLong("ctCollectionId"));
+					updatePreparedStatement.setLong(
+						3, resultSet.getLong("structureVersionId"));
+
+					updatePreparedStatement.addBatch();
 				}
-
-				updatePreparedStatement.setString(
-					1, definitionJSONObject.toString());
-				updatePreparedStatement.setLong(
-					2, resultSet.getLong("ctCollectionId"));
-				updatePreparedStatement.setLong(
-					3, resultSet.getLong("structureVersionId"));
-
-				updatePreparedStatement.addBatch();
 			}
 		}
 	}

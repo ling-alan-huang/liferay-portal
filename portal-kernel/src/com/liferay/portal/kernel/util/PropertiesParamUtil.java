@@ -449,15 +449,14 @@ public class PropertiesParamUtil {
 			httpServletRequest.getParameterMap();
 
 		for (String param : parameterMap.keySet()) {
-			if (!param.startsWith(prefix)) {
-				continue;
+			if (param.startsWith(prefix)) {
+				String key = param.substring(
+					prefix.length(), param.length() - 2);
+
+				String value = httpServletRequest.getParameter(param);
+
+				unicodeProperties.setProperty(key, value);
 			}
-
-			String key = param.substring(prefix.length(), param.length() - 2);
-
-			String value = httpServletRequest.getParameter(param);
-
-			unicodeProperties.setProperty(key, value);
 		}
 
 		return unicodeProperties;
@@ -471,24 +470,23 @@ public class PropertiesParamUtil {
 		Map<String, String[]> parameterMap = portletRequest.getParameterMap();
 
 		for (String param : parameterMap.keySet()) {
-			if (!param.startsWith(prefix)) {
-				continue;
+			if (param.startsWith(prefix)) {
+				String key = param.substring(
+					prefix.length(), param.length() - 2);
+
+				String[] values = portletRequest.getParameterValues(param);
+
+				// Portlets that opt-in to Portlet 3.0 functionality might have
+				// null values in the array. Make the array compatible with the
+				// call to StringUtil.merge(String[]) below by replacing each
+				// null value with the empty string.
+
+				unicodeProperties.setProperty(
+					key,
+					StringUtil.merge(
+						values, s -> Objects.toString(s, StringPool.BLANK),
+						StringPool.COMMA));
 			}
-
-			String key = param.substring(prefix.length(), param.length() - 2);
-
-			String[] values = portletRequest.getParameterValues(param);
-
-			// Portlets that opt-in to Portlet 3.0 functionality might have
-			// null values in the array. Make the array compatible with the
-			// call to StringUtil.merge(String[]) below by replacing each
-			// null value with the empty string.
-
-			unicodeProperties.setProperty(
-				key,
-				StringUtil.merge(
-					values, s -> Objects.toString(s, StringPool.BLANK),
-					StringPool.COMMA));
 		}
 
 		return unicodeProperties;
@@ -502,15 +500,14 @@ public class PropertiesParamUtil {
 		Map<String, Serializable> attributes = serviceContext.getAttributes();
 
 		for (String param : attributes.keySet()) {
-			if (!param.startsWith(prefix)) {
-				continue;
+			if (param.startsWith(prefix)) {
+				String key = param.substring(
+					prefix.length(), param.length() - 2);
+
+				String value = ParamUtil.getString(serviceContext, param);
+
+				unicodeProperties.setProperty(key, value);
 			}
-
-			String key = param.substring(prefix.length(), param.length() - 2);
-
-			String value = ParamUtil.getString(serviceContext, param);
-
-			unicodeProperties.setProperty(key, value);
 		}
 
 		return unicodeProperties;

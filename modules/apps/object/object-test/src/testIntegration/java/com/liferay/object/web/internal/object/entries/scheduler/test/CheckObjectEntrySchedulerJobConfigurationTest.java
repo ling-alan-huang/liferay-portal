@@ -481,14 +481,12 @@ public class CheckObjectEntrySchedulerJobConfigurationTest {
 
 			long classPK = jsonObject.getLong("classPK");
 
-			if ((classPK != objectEntry1.getObjectEntryId()) &&
-				(classPK != objectEntry2.getObjectEntryId())) {
+			if ((classPK == objectEntry1.getObjectEntryId()) ||
+				(classPK == objectEntry2.getObjectEntryId())) {
 
-				continue;
+				payloadJSONObject = jsonObject;
+				testUserNotificationEvents.add(userNotificationEvent);
 			}
-
-			payloadJSONObject = jsonObject;
-			testUserNotificationEvents.add(userNotificationEvent);
 		}
 
 		Assert.assertEquals(
@@ -713,13 +711,11 @@ public class CheckObjectEntrySchedulerJobConfigurationTest {
 			JSONObject jsonObject = JSONFactoryUtil.createJSONObject(
 				userNotificationEvent.getPayload());
 
-			if (jsonObject.getLong("classPK") !=
+			if (jsonObject.getLong("classPK") ==
 					objectEntry.getObjectEntryId()) {
 
-				continue;
+				count++;
 			}
-
-			count++;
 		}
 
 		return count;

@@ -104,11 +104,9 @@ public class HashMapDictionaryBuilder<K, V> extends BaseMapBuilder {
 				for (K key : keyCollection) {
 					V value = unsafeFunction.apply(key);
 
-					if (value == null) {
-						continue;
+					if (value != null) {
+						_hashMapDictionary.put(key, value);
 					}
-
-					_hashMapDictionary.put(key, value);
 				}
 			}
 			catch (Exception exception) {

@@ -53,14 +53,12 @@ public class CookiesPreAction extends Action {
 		for (Cookie cookie : cookies) {
 			String cookieName = cookie.getName();
 
-			if (!cookieName.equals(
-					CookiesConstants.NAME_USER_CONSENT_CONFIGURED) &&
-				!cookieName.startsWith("CONSENT_TYPE_")) {
+			if (cookieName.equals(
+					CookiesConstants.NAME_USER_CONSENT_CONFIGURED) ||
+				cookieName.startsWith("CONSENT_TYPE_")) {
 
-				continue;
+				cookieValues.put(cookieName, cookie.getValue());
 			}
-
-			cookieValues.put(cookieName, cookie.getValue());
 		}
 
 		return cookieValues;

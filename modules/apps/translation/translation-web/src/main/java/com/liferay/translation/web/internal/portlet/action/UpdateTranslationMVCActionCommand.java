@@ -191,15 +191,13 @@ public class UpdateTranslationMVCActionCommand extends BaseMVCActionCommand {
 		Map<String, String[]> parameterMap = portletRequest.getParameterMap();
 
 		for (String parameterName : parameterMap.keySet()) {
-			if (!parameterName.startsWith(_PARAMETER_NAME_INFO_FIELD)) {
-				continue;
+			if (parameterName.startsWith(_PARAMETER_NAME_INFO_FIELD)) {
+				values.put(
+					parameterName.substring(
+						_PARAMETER_NAME_INFO_FIELD.length(),
+						parameterName.length() - 2),
+					portletRequest.getParameterValues(parameterName));
 			}
-
-			values.put(
-				parameterName.substring(
-					_PARAMETER_NAME_INFO_FIELD.length(),
-					parameterName.length() - 2),
-				portletRequest.getParameterValues(parameterName));
 		}
 
 		return values;
@@ -218,32 +216,30 @@ public class UpdateTranslationMVCActionCommand extends BaseMVCActionCommand {
 			String[] infoFieldParameterValue = infoFieldParameterValues.get(
 				infoField.getUniqueId());
 
-			if (ArrayUtil.isEmpty(infoFieldParameterValue)) {
-				continue;
-			}
+			if (ArrayUtil.isNotEmpty(infoFieldParameterValue)) {
+				Locale sourceLocale = _getSourceLocale(actionRequest);
 
-			Locale sourceLocale = _getSourceLocale(actionRequest);
+				List<InfoFieldValue<Object>> sourceInfoFieldValues =
+					new ArrayList<>(
+						infoItemFieldValues.getInfoFieldValues(
+							infoField.getUniqueId()));
 
-			List<InfoFieldValue<Object>> sourceInfoFieldValues =
-				new ArrayList<>(
-					infoItemFieldValues.getInfoFieldValues(
-						infoField.getUniqueId()));
+				for (int i = 0; i < infoFieldParameterValue.length; i++) {
+					InfoFieldValue<Object> sourceInfoFieldValue =
+						sourceInfoFieldValues.get(i);
 
-			for (int i = 0; i < infoFieldParameterValue.length; i++) {
-				InfoFieldValue<Object> sourceInfoFieldValue =
-					sourceInfoFieldValues.get(i);
-
-				infoFieldValues.add(
-					new InfoFieldValue<>(
-						infoField,
-						InfoLocalizedValue.builder(
-						).value(
-							_getTargetLocale(actionRequest),
-							infoFieldParameterValue[i]
-						).value(
-							sourceLocale,
-							sourceInfoFieldValue.getValue(sourceLocale)
-						).build()));
+					infoFieldValues.add(
+						new InfoFieldValue<>(
+							infoField,
+							InfoLocalizedValue.builder(
+							).value(
+								_getTargetLocale(actionRequest),
+								infoFieldParameterValue[i]
+							).value(
+								sourceLocale,
+								sourceInfoFieldValue.getValue(sourceLocale)
+							).build()));
+				}
 			}
 		}
 

@@ -55,18 +55,16 @@ public class PortletTitleTest {
 			ResourceBundle resourceBundle = portletConfig.getResourceBundle(
 				LocaleUtil.getDefault());
 
-			if ((resourceBundle == null) ||
-				resourceBundle.containsKey(
-					"jakarta.portlet.title.".concat(rootPortletId)) ||
-				StringUtil.startsWith(
+			if ((resourceBundle != null) &&
+				!resourceBundle.containsKey(
+					"jakarta.portlet.title.".concat(rootPortletId)) &&
+				!StringUtil.startsWith(
 					rootPortletId,
 					"com_liferay_object_web_internal_object_definitions_" +
 						"portlet_ObjectDefinitionsPortlet")) {
 
-				continue;
+				portletIdsWithMissingTitles.add(rootPortletId);
 			}
-
-			portletIdsWithMissingTitles.add(rootPortletId);
 		}
 
 		Assert.assertTrue(

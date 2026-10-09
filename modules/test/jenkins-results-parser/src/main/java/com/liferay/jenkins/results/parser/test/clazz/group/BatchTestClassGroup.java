@@ -917,17 +917,15 @@ public abstract class BatchTestClassGroup extends BaseTestClassGroup {
 		}
 
 		for (String relevantTestBatchName : jobPropertyValue.split(",")) {
-			if (!relevantTestBatchName.startsWith("integration-") &&
-				!relevantTestBatchName.startsWith("modules-integration") &&
-				!relevantTestBatchName.startsWith("modules-unit") &&
-				!relevantTestBatchName.startsWith("unit-") &&
-				!relevantTestBatchName.startsWith("workspaces-integration") &&
-				!relevantTestBatchName.startsWith("workspaces-unit")) {
+			if (relevantTestBatchName.startsWith("integration-") ||
+				relevantTestBatchName.startsWith("modules-integration") ||
+				relevantTestBatchName.startsWith("modules-unit") ||
+				relevantTestBatchName.startsWith("unit-") ||
+				relevantTestBatchName.startsWith("workspaces-integration") ||
+				relevantTestBatchName.startsWith("workspaces-unit")) {
 
-				continue;
+				relevantIntegrationUnitBatchNames.add(relevantTestBatchName);
 			}
-
-			relevantIntegrationUnitBatchNames.add(relevantTestBatchName);
 		}
 
 		return relevantIntegrationUnitBatchNames;

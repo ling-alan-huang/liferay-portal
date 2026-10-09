@@ -77,11 +77,9 @@ public class AccountFaroController extends BaseFaroController {
 				FieldMappingConstants.getAccountFieldMappingLanguageKey(
 					fieldName);
 
-			if (languageKey == null) {
-				continue;
+			if (languageKey != null) {
+				field.setName(languageKey);
 			}
-
-			field.setName(languageKey);
 		}
 
 		return new FaroFDSResultsDisplay(

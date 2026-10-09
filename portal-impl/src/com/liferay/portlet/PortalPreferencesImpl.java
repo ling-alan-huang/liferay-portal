@@ -124,11 +124,10 @@ public class PortalPreferencesImpl
 
 			PortalPreferenceKey portalPreferenceKey = entry.getKey();
 
-			if (!portalPreferenceKey.matchNamespace(namespace)) {
-				continue;
+			if (portalPreferenceKey.matchNamespace(namespace)) {
+				preferenceMap.put(
+					portalPreferenceKey.getKey(), entry.getValue());
 			}
-
-			preferenceMap.put(portalPreferenceKey.getKey(), entry.getValue());
 		}
 
 		return preferenceMap;
@@ -248,11 +247,9 @@ public class PortalPreferencesImpl
 
 				PortalPreferenceKey portalPreferenceKey = entry.getKey();
 
-				if (!portalPreferenceKey.matchNamespace(namespace)) {
-					continue;
+				if (portalPreferenceKey.matchNamespace(namespace)) {
+					reset(namespace, portalPreferenceKey.getKey());
 				}
-
-				reset(namespace, portalPreferenceKey.getKey());
 			}
 		}
 		catch (ConcurrentModificationException

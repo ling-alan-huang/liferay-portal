@@ -257,11 +257,9 @@ public class DDMFormValuesToPropertiesConverter {
 			Serializable simpleDDMFormFieldValue = _toSimpleValue(
 				ddmFormFieldValue);
 
-			if (Validator.isBlank(simpleDDMFormFieldValue.toString())) {
-				continue;
+			if (!Validator.isBlank(simpleDDMFormFieldValue.toString())) {
+				values.add(simpleDDMFormFieldValue);
 			}
-
-			values.add(simpleDDMFormFieldValue);
 		}
 
 		return values;

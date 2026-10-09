@@ -94,13 +94,11 @@ public class UpgradeSocial extends UpgradeProcess {
 						extraDataFactory, groupId, companyId, userId,
 						classNameId, classPK, type, extraData);
 
-					if (newExtraData == null) {
-						continue;
+					if (newExtraData != null) {
+						long activityId = resultSet.getLong("activityId");
+
+						extraDataMap.put(activityId, newExtraData);
 					}
-
-					long activityId = resultSet.getLong("activityId");
-
-					extraDataMap.put(activityId, newExtraData);
 				}
 			}
 		}

@@ -1199,13 +1199,11 @@ public class ResourceFolderResourceTest
 			String externalReferenceCode = resourceFolderJSONObject.getString(
 				"externalReferenceCode");
 
-			if (!externalReferenceCode.equals(
+			if (externalReferenceCode.equals(
 					postResourceFolder.getExternalReferenceCode())) {
 
-				continue;
+				importJSONArray.put(resourceFolderJSONObject);
 			}
-
-			importJSONArray.put(resourceFolderJSONObject);
 		}
 
 		try (SafeCloseable safeCloseable =

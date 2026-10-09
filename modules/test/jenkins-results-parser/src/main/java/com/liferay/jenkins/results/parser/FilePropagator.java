@@ -330,11 +330,9 @@ public class FilePropagator {
 		for (int i = 0; i < commands.size(); i++) {
 			sb.append(commands.get(i));
 
-			if (i >= (commands.size() - 1)) {
-				continue;
+			if (i < (commands.size() - 1)) {
+				sb.append(" ; ");
 			}
-
-			sb.append(" ; ");
 		}
 
 		if (!JenkinsResultsParserUtil.isNullOrEmpty(_postDistCommand)) {

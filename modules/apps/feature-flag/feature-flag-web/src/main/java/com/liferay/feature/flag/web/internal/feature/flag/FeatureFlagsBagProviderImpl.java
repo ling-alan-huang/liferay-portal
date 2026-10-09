@@ -239,16 +239,14 @@ public class FeatureFlagsBagProviderImpl
 		for (String stringPropertyName :
 				_featureFlagProperties.stringPropertyNames()) {
 
-			if (!stringPropertyName.endsWith(".system") ||
-				!GetterUtil.getBoolean(
+			if (stringPropertyName.endsWith(".system") &&
+				GetterUtil.getBoolean(
 					_featureFlagProperties.getProperty(stringPropertyName))) {
 
-				continue;
+				_systemFeatureFlags.add(
+					stringPropertyName.substring(
+						0, stringPropertyName.length() - 7));
 			}
-
-			_systemFeatureFlags.add(
-				stringPropertyName.substring(
-					0, stringPropertyName.length() - 7));
 		}
 	}
 
@@ -293,19 +291,19 @@ public class FeatureFlagsBagProviderImpl
 
 			boolean system = _systemFeatureFlags.contains(stringPropertyName);
 
-			if ((!system || (companyId != CompanyConstants.SYSTEM)) &&
-				(system || (companyId == CompanyConstants.SYSTEM))) {
+			if ((system && (companyId == CompanyConstants.SYSTEM)) ||
+				(!system && (companyId != CompanyConstants.SYSTEM))) {
 
-				continue;
+				FeatureFlag featureFlag = new FeatureFlagImpl(
+					stringPropertyName);
+
+				featureFlag = new LanguageAwareFeatureFlag(
+					featureFlag, _language);
+				featureFlag = new PreferenceAwareFeatureFlag(
+					companyId, featureFlag, _featureFlagPreferencesManager);
+
+				featureFlags.put(featureFlag.getKey(), featureFlag);
 			}
-
-			FeatureFlag featureFlag = new FeatureFlagImpl(stringPropertyName);
-
-			featureFlag = new LanguageAwareFeatureFlag(featureFlag, _language);
-			featureFlag = new PreferenceAwareFeatureFlag(
-				companyId, featureFlag, _featureFlagPreferencesManager);
-
-			featureFlags.put(featureFlag.getKey(), featureFlag);
 		}
 
 		for (Map.Entry<String, FeatureFlag> entry : featureFlags.entrySet()) {
@@ -342,32 +340,28 @@ public class FeatureFlagsBagProviderImpl
 						dependencyKey);
 				}
 
-				if (dependencyFeatureFlag == null) {
-					continue;
-				}
+				if (dependencyFeatureFlag != null) {
+					if (!ArrayUtil.contains(
+							dependencyFeatureFlag.getDependencyKeys(),
+							featureFlag.getKey())) {
 
-				if (!ArrayUtil.contains(
-						dependencyFeatureFlag.getDependencyKeys(),
-						featureFlag.getKey())) {
-
-					dependencyFeatureFlags.add(dependencyFeatureFlag);
-				}
-				else {
-					_log.error(
-						StringBundler.concat(
-							"Skipping circular dependency ", dependencyKey,
-							" for feature flag ", featureFlag.getKey()));
+						dependencyFeatureFlags.add(dependencyFeatureFlag);
+					}
+					else {
+						_log.error(
+							StringBundler.concat(
+								"Skipping circular dependency ", dependencyKey,
+								" for feature flag ", featureFlag.getKey()));
+					}
 				}
 			}
 
-			if (ListUtil.isEmpty(dependencyFeatureFlags)) {
-				continue;
+			if (ListUtil.isNotEmpty(dependencyFeatureFlags)) {
+				entry.setValue(
+					new DependencyAwareFeatureFlag(
+						featureFlag,
+						dependencyFeatureFlags.toArray(new FeatureFlag[0])));
 			}
-
-			entry.setValue(
-				new DependencyAwareFeatureFlag(
-					featureFlag,
-					dependencyFeatureFlags.toArray(new FeatureFlag[0])));
 		}
 	}
 

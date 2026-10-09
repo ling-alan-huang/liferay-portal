@@ -1374,12 +1374,10 @@ public class CartResourceImpl extends BaseCartResourceImpl {
 				long cartItemShippingAddressId = GetterUtil.getLong(
 					cartItem.getShippingAddressId());
 
-				if (cartItemShippingAddressId <= 0) {
-					continue;
+				if (cartItemShippingAddressId > 0) {
+					_commerceAddressService.getCommerceAddress(
+						cartItemShippingAddressId);
 				}
-
-				_commerceAddressService.getCommerceAddress(
-					cartItemShippingAddressId);
 			}
 		}
 

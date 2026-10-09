@@ -297,11 +297,9 @@ public class GCloudNaturalLanguageDocumentAssetAutoTagProvider
 				for (String tagNamePart2 : tagNameParts2) {
 					tagNamePart2 = tagNamePart2.trim();
 
-					if (tagNamePart2.isEmpty()) {
-						continue;
+					if (!tagNamePart2.isEmpty()) {
+						tagNames.add(tagNamePart2);
 					}
-
-					tagNames.add(tagNamePart2);
 				}
 			}
 		}

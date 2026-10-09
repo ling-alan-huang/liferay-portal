@@ -242,13 +242,11 @@ public class AssetPublisherServiceTest {
 
 			assetEntries.add(assetEntry);
 
-			if (!manualMode) {
-				continue;
+			if (manualMode) {
+				_assetEntryXmls = ArrayUtil.append(
+					_assetEntryXmls,
+					AssetPublisherTestUtil.getAssetEntryXml(assetEntry));
 			}
-
-			_assetEntryXmls = ArrayUtil.append(
-				_assetEntryXmls,
-				AssetPublisherTestUtil.getAssetEntryXml(assetEntry));
 		}
 
 		return assetEntries;

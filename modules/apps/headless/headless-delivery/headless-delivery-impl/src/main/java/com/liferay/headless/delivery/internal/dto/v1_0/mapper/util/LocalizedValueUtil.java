@@ -29,11 +29,9 @@ public class LocalizedValueUtil {
 				List<String> availableLanguageIds = getAvailableLanguageIds();
 
 				for (String key : jsonObject.keySet()) {
-					if (!availableLanguageIds.contains(key)) {
-						continue;
+					if (availableLanguageIds.contains(key)) {
+						put(key, jsonObject.getString(key));
 					}
-
-					put(key, jsonObject.getString(key));
 				}
 			}
 		};

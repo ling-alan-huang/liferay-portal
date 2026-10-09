@@ -813,11 +813,9 @@ public class GraphQLServletTest {
 			for (int i = 0; i < length; i++) {
 				sb.append(_serializeValue(Array.get(value, i)));
 
-				if (i >= (length - 1)) {
-					continue;
+				if (i < (length - 1)) {
+					sb.append(", ");
 				}
-
-				sb.append(", ");
 			}
 
 			sb.append("]");

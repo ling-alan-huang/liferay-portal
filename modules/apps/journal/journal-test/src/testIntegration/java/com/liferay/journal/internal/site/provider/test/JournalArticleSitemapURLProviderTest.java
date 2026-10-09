@@ -585,13 +585,11 @@ public class JournalArticleSitemapURLProviderTest {
 		for (String availableLanguageId :
 				journalArticle.getAvailableLanguageIds()) {
 
-			if (!siteAvailableLocales.contains(
+			if (siteAvailableLocales.contains(
 					LocaleUtil.fromLanguageId(availableLanguageId))) {
 
-				continue;
+				availableLanguageIds.add(availableLanguageId);
 			}
-
-			availableLanguageIds.add(availableLanguageId);
 		}
 
 		return ArrayUtil.toStringArray(availableLanguageIds);

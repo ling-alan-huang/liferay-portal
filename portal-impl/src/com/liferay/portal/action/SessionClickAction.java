@@ -52,21 +52,20 @@ public class SessionClickAction implements Action {
 			while (enumeration.hasMoreElements()) {
 				String name = enumeration.nextElement();
 
-				if (StringUtil.equals(name, "cmd") ||
-					StringUtil.equals(name, "doAsUserId") ||
-					StringUtil.equals(name, "key") ||
-					StringUtil.equals(name, "p_auth")) {
+				if (!StringUtil.equals(name, "cmd") &&
+					!StringUtil.equals(name, "doAsUserId") &&
+					!StringUtil.equals(name, "key") &&
+					!StringUtil.equals(name, "p_auth")) {
 
-					continue;
-				}
+					String value = ParamUtil.getString(
+						httpServletRequest, name);
 
-				String value = ParamUtil.getString(httpServletRequest, name);
-
-				if (useHttpSession) {
-					SessionClicks.put(httpSession, name, value);
-				}
-				else {
-					SessionClicks.put(httpServletRequest, name, value);
+					if (useHttpSession) {
+						SessionClicks.put(httpSession, name, value);
+					}
+					else {
+						SessionClicks.put(httpServletRequest, name, value);
+					}
 				}
 			}
 

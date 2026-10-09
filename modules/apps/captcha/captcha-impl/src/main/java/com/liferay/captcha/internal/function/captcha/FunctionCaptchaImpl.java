@@ -206,11 +206,9 @@ public class FunctionCaptchaImpl extends SimpleCaptchaImpl {
 			for (int i = 0; i < jsonArray.length(); i++) {
 				sb.append(jsonArray.getString(i));
 
-				if (i >= (jsonArray.length() - 1)) {
-					continue;
+				if (i < (jsonArray.length() - 1)) {
+					sb.append(StringPool.COMMA_AND_SPACE);
 				}
-
-				sb.append(StringPool.COMMA_AND_SPACE);
 			}
 
 			throw new CaptchaConfigurationException(

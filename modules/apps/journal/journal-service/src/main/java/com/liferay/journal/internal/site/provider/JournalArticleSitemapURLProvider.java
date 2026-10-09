@@ -208,11 +208,9 @@ public class JournalArticleSitemapURLProvider implements SitemapURLProvider {
 
 			Locale locale = LocaleUtil.fromLanguageId(availableLanguageId);
 
-			if (!siteAvailableLocales.contains(locale)) {
-				continue;
+			if (siteAvailableLocales.contains(locale)) {
+				availableLocales.add(locale);
 			}
-
-			availableLocales.add(locale);
 		}
 
 		return availableLocales;

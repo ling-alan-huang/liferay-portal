@@ -121,11 +121,9 @@ public class DDMStructureUpgradeProcess extends UpgradeProcess {
 
 			iterator.next();
 
-			if (!iterator.hasNext()) {
-				continue;
+			if (iterator.hasNext()) {
+				sb.append(",");
 			}
-
-			sb.append(",");
 		}
 
 		sb.append(")");
@@ -218,28 +216,27 @@ public class DDMStructureUpgradeProcess extends UpgradeProcess {
 						_structureIds.add(resultSet.getLong("structureId"));
 					}
 
-					if (!pagination && !hasMoreThanOneDDMFormFieldPerColumn) {
-						continue;
+					if (pagination || hasMoreThanOneDDMFormFieldPerColumn) {
+						DDMFormLayoutSerializerSerializeResponse
+							ddmFormLayoutSerializerSerializeResponse =
+								_ddmFormLayoutSerializer.serialize(
+									DDMFormLayoutSerializerSerializeRequest.
+										Builder.newBuilder(
+											ddmFormLayout
+										).build());
+
+						preparedStatement2.setString(
+							1,
+							ddmFormLayoutSerializerSerializeResponse.
+								getContent());
+
+						long structureLayoutId = resultSet.getLong(
+							"structureLayoutId");
+
+						preparedStatement2.setLong(2, structureLayoutId);
+
+						preparedStatement2.addBatch();
 					}
-
-					DDMFormLayoutSerializerSerializeResponse
-						ddmFormLayoutSerializerSerializeResponse =
-							_ddmFormLayoutSerializer.serialize(
-								DDMFormLayoutSerializerSerializeRequest.Builder.
-									newBuilder(
-										ddmFormLayout
-									).build());
-
-					preparedStatement2.setString(
-						1,
-						ddmFormLayoutSerializerSerializeResponse.getContent());
-
-					long structureLayoutId = resultSet.getLong(
-						"structureLayoutId");
-
-					preparedStatement2.setLong(2, structureLayoutId);
-
-					preparedStatement2.addBatch();
 				}
 
 				preparedStatement2.executeBatch();
@@ -265,20 +262,19 @@ public class DDMStructureUpgradeProcess extends UpgradeProcess {
 					List<String> ddmFormFieldNames =
 						ddmFormLayoutColumn.getDDMFormFieldNames();
 
-					if (ddmFormFieldNames.size() <= 1) {
-						continue;
+					if (ddmFormFieldNames.size() > 1) {
+						String ddmFormFieldName =
+							DDMFormFieldUtil.getDDMFormFieldName("Field");
+
+						ddmFormFieldTuples.add(
+							new Tuple(
+								ddmFormFieldName, "Fields Group",
+								ddmFormLayoutColumn.getSize(),
+								ddmFormFieldNames));
+
+						ddmFormLayoutColumn.setDDMFormFieldNames(
+							Arrays.asList(ddmFormFieldName));
 					}
-
-					String ddmFormFieldName =
-						DDMFormFieldUtil.getDDMFormFieldName("Field");
-
-					ddmFormFieldTuples.add(
-						new Tuple(
-							ddmFormFieldName, "Fields Group",
-							ddmFormLayoutColumn.getSize(), ddmFormFieldNames));
-
-					ddmFormLayoutColumn.setDDMFormFieldNames(
-						Arrays.asList(ddmFormFieldName));
 				}
 			}
 		}
@@ -316,18 +312,16 @@ public class DDMStructureUpgradeProcess extends UpgradeProcess {
 					long structureVersionId = resultSet.getLong(
 						"structureVersionId");
 
-					if (_nestedFieldsMap.get(structureVersionId) == null) {
-						continue;
+					if (_nestedFieldsMap.get(structureVersionId) != null) {
+						preparedStatement2.setString(
+							1,
+							_upgradeDDMStructureVersionDefinition(
+								resultSet.getString("definition"),
+								structureVersionId));
+						preparedStatement2.setLong(2, structureVersionId);
+
+						preparedStatement2.addBatch();
 					}
-
-					preparedStatement2.setString(
-						1,
-						_upgradeDDMStructureVersionDefinition(
-							resultSet.getString("definition"),
-							structureVersionId));
-					preparedStatement2.setLong(2, structureVersionId);
-
-					preparedStatement2.addBatch();
 				}
 
 				preparedStatement2.executeBatch();

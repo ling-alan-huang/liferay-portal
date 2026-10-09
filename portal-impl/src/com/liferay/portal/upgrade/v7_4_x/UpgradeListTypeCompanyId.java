@@ -178,14 +178,12 @@ public class UpgradeListTypeCompanyId extends UpgradeProcess {
 		List<ListTypeEntry> listTypeEntries = _getListTypes();
 
 		for (long companyId : companyIds) {
-			if (companyId == defaultCompanyId) {
-				continue;
+			if (companyId != defaultCompanyId) {
+				HashMap<Long, Long> listTypeIds = _insertListTypes(
+					listTypeEntries, companyId);
+
+				_updateListTypeReferences(listTypeIds, companyId);
 			}
-
-			HashMap<Long, Long> listTypeIds = _insertListTypes(
-				listTypeEntries, companyId);
-
-			_updateListTypeReferences(listTypeIds, companyId);
 		}
 	}
 

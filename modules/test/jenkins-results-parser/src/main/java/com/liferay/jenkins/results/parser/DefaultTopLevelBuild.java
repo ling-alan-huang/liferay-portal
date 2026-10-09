@@ -34,11 +34,9 @@ public class DefaultTopLevelBuild extends BaseTopLevelBuild {
 					return null;
 				}
 
-				if (downstreamBuildResult.equals("SUCCESS")) {
-					continue;
+				if (!downstreamBuildResult.equals("SUCCESS")) {
+					hasFailure = true;
 				}
-
-				hasFailure = true;
 			}
 
 			if (hasFailure) {

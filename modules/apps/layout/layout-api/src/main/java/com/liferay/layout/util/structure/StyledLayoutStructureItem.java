@@ -355,25 +355,23 @@ public abstract class StyledLayoutStructureItem extends LayoutStructureItem {
 			CommonStylesUtil.getAvailableStyleNames();
 
 		for (String styleName : availableStyleNames) {
-			if (!newJSONObject.has(styleName)) {
-				continue;
-			}
+			if (newJSONObject.has(styleName)) {
+				Object styleValue = newJSONObject.get(styleName);
 
-			Object styleValue = newJSONObject.get(styleName);
+				if (Objects.equals(
+						styleValue,
+						CommonStylesUtil.getDefaultStyleValue(styleName))) {
 
-			if (Objects.equals(
-					styleValue,
-					CommonStylesUtil.getDefaultStyleValue(styleName))) {
-
-				currentJSONObject.remove(styleName);
-			}
-			else {
-				if (Objects.equals(styleName, "backgroundImage")) {
-					styleValue = _getBackgroundImageStyleValueJSONObject(
-						styleValue);
+					currentJSONObject.remove(styleName);
 				}
+				else {
+					if (Objects.equals(styleName, "backgroundImage")) {
+						styleValue = _getBackgroundImageStyleValueJSONObject(
+							styleValue);
+					}
 
-				currentJSONObject.put(styleName, styleValue);
+					currentJSONObject.put(styleName, styleValue);
+				}
 			}
 		}
 	}
@@ -409,12 +407,10 @@ public abstract class StyledLayoutStructureItem extends LayoutStructureItem {
 				JSONFactoryUtil.createJSONObject());
 
 		for (String styleName : availableStyleNames) {
-			if (!newStylesJSONObject.has(styleName)) {
-				continue;
+			if (newStylesJSONObject.has(styleName)) {
+				currentViewportStyleJSONObject.put(
+					styleName, newStylesJSONObject.get(styleName));
 			}
-
-			currentViewportStyleJSONObject.put(
-				styleName, newStylesJSONObject.get(styleName));
 		}
 
 		viewportStyleJSONObjects.put(

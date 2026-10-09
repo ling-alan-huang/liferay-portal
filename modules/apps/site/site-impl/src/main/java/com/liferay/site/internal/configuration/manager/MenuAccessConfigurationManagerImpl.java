@@ -53,17 +53,15 @@ public class MenuAccessConfigurationManagerImpl
 			String[] accessToControlMenuRoleIds = (String[])properties.get(
 				"accessToControlMenuRoleIds");
 
-			if (!ArrayUtil.contains(accessToControlMenuRoleIds, roleId)) {
-				continue;
+			if (ArrayUtil.contains(accessToControlMenuRoleIds, roleId)) {
+				accessToControlMenuRoleIds = ArrayUtil.remove(
+					accessToControlMenuRoleIds, roleId);
+
+				properties.put(
+					"accessToControlMenuRoleIds", accessToControlMenuRoleIds);
+
+				configuration.update(properties);
 			}
-
-			accessToControlMenuRoleIds = ArrayUtil.remove(
-				accessToControlMenuRoleIds, roleId);
-
-			properties.put(
-				"accessToControlMenuRoleIds", accessToControlMenuRoleIds);
-
-			configuration.update(properties);
 		}
 	}
 

@@ -93,13 +93,11 @@ public class PortletSessionImpl implements LiferayPortletSession {
 		while (enumeration.hasMoreElements()) {
 			String name = enumeration.nextElement();
 
-			if (!name.startsWith(scopePrefix)) {
-				continue;
+			if (name.startsWith(scopePrefix)) {
+				name = name.substring(scopePrefix.length());
+
+				attributeNames.add(name);
 			}
-
-			name = name.substring(scopePrefix.length());
-
-			attributeNames.add(name);
 		}
 
 		return Collections.enumeration(attributeNames);

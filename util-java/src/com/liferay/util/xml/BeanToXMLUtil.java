@@ -39,36 +39,35 @@ public class BeanToXMLUtil {
 		for (Method method : methods) {
 			String methodName = method.getName();
 
-			if (!methodName.startsWith("get") ||
-				methodName.equals("getClass")) {
+			if (methodName.startsWith("get") &&
+				!methodName.equals("getClass")) {
 
-				continue;
-			}
+				String memberName = StringUtil.removeSubstring(
+					methodName, "get");
 
-			String memberName = StringUtil.removeSubstring(methodName, "get");
+				memberName = TextFormatter.format(memberName, TextFormatter.I);
+				memberName = TextFormatter.format(memberName, TextFormatter.K);
 
-			memberName = TextFormatter.format(memberName, TextFormatter.I);
-			memberName = TextFormatter.format(memberName, TextFormatter.K);
+				try {
+					Object returnValue = method.invoke(object, new Object[0]);
 
-			try {
-				Object returnValue = method.invoke(object, new Object[0]);
+					if (returnValue instanceof List<?>) {
+						List<Object> list = (List<Object>)returnValue;
 
-				if (returnValue instanceof List<?>) {
-					List<Object> list = (List<Object>)returnValue;
+						Element listEl = parentEl.addElement(memberName);
 
-					Element listEl = parentEl.addElement(memberName);
-
-					for (Object curObject : list) {
-						addBean(curObject, listEl);
+						for (Object curObject : list) {
+							addBean(curObject, listEl);
+						}
+					}
+					else {
+						_add(parentEl, memberName, returnValue.toString());
 					}
 				}
-				else {
-					_add(parentEl, memberName, returnValue.toString());
-				}
-			}
-			catch (Exception exception) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(exception);
+				catch (Exception exception) {
+					if (_log.isWarnEnabled()) {
+						_log.warn(exception);
+					}
 				}
 			}
 		}

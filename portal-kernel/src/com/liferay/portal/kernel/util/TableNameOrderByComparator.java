@@ -49,11 +49,9 @@ public class TableNameOrderByComparator<T> extends OrderByComparator<T> {
 			sb.append(_tableName);
 			sb.append(StringUtil.trim(columnName));
 
-			if (i >= (columnNames.length - 1)) {
-				continue;
+			if (i < (columnNames.length - 1)) {
+				sb.append(StringPool.COMMA_AND_SPACE);
 			}
-
-			sb.append(StringPool.COMMA_AND_SPACE);
 		}
 
 		return sb.toString();

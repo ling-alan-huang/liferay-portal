@@ -582,11 +582,9 @@ public class SiteResourceImpl extends BaseSiteResourceImpl {
 			String typeSettingValue = oldUnicodeProperties.get(
 				excludedTypeSetting);
 
-			if (typeSettingValue == null) {
-				continue;
+			if (typeSettingValue != null) {
+				unicodeProperties.put(excludedTypeSetting, typeSettingValue);
 			}
-
-			unicodeProperties.put(excludedTypeSetting, typeSettingValue);
 		}
 
 		return unicodeProperties.toString();
@@ -655,12 +653,10 @@ public class SiteResourceImpl extends BaseSiteResourceImpl {
 							String description = group.getDescription(
 								availableLanguageId, false);
 
-							if (Validator.isNull(description)) {
-								continue;
+							if (Validator.isNotNull(description)) {
+								descriptionMap.put(
+									availableLanguageId, description);
 							}
-
-							descriptionMap.put(
-								availableLanguageId, description);
 						}
 
 						return descriptionMap;

@@ -75,11 +75,9 @@ public class NestedFieldsSupplier<T> {
 		for (String nestedField : nestedFieldsContext.getNestedFields()) {
 			T value = unsafeFunction.apply(nestedField);
 
-			if (value == null) {
-				continue;
+			if (value != null) {
+				nestedFieldValues.put(nestedField, value);
 			}
-
-			nestedFieldValues.put(nestedField, value);
 		}
 
 		nestedFieldsContext.decrementCurrentDepth();

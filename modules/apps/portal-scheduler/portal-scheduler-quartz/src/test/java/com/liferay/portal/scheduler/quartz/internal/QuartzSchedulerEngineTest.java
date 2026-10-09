@@ -623,11 +623,9 @@ public class QuartzSchedulerEngineTest {
 			List<String> groupNames = new ArrayList<>();
 
 			for (JobKey jobKey : _jobs.keySet()) {
-				if (groupNames.contains(jobKey.getGroup())) {
-					continue;
+				if (!groupNames.contains(jobKey.getGroup())) {
+					groupNames.add(jobKey.getGroup());
 				}
-
-				groupNames.add(jobKey.getGroup());
 			}
 
 			return groupNames;
@@ -640,11 +638,9 @@ public class QuartzSchedulerEngineTest {
 			String groupName = groupMatcher.getCompareToValue();
 
 			for (JobKey jobKey : _jobs.keySet()) {
-				if (!Objects.equals(jobKey.getGroup(), groupName)) {
-					continue;
+				if (Objects.equals(jobKey.getGroup(), groupName)) {
+					jobKeys.add(jobKey);
 				}
-
-				jobKeys.add(jobKey);
 			}
 
 			return jobKeys;
@@ -762,11 +758,9 @@ public class QuartzSchedulerEngineTest {
 			String groupName = groupMatcher.getCompareToValue();
 
 			for (JobKey jobKey : _jobs.keySet()) {
-				if (!Objects.equals(jobKey.getGroup(), groupName)) {
-					continue;
+				if (Objects.equals(jobKey.getGroup(), groupName)) {
+					pauseJob(jobKey);
 				}
-
-				pauseJob(jobKey);
 			}
 		}
 
@@ -822,11 +816,9 @@ public class QuartzSchedulerEngineTest {
 			String groupName = groupMatcher.getCompareToValue();
 
 			for (JobKey jobKey : _jobs.keySet()) {
-				if (!Objects.equals(jobKey.getGroup(), groupName)) {
-					continue;
+				if (Objects.equals(jobKey.getGroup(), groupName)) {
+					resumeJob(jobKey);
 				}
-
-				resumeJob(jobKey);
 			}
 		}
 

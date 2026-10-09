@@ -119,11 +119,9 @@ public class VelocityTemplateContextHelper extends TemplateContextHelper {
 			for (Map.Entry<String, Object> entry : vmVariables.entrySet()) {
 				String key = entry.getKey();
 
-				if (Validator.isNull(key)) {
-					continue;
+				if (Validator.isNotNull(key)) {
+					contextObjects.put(key, entry.getValue());
 				}
-
-				contextObjects.put(key, entry.getValue());
 			}
 		}
 

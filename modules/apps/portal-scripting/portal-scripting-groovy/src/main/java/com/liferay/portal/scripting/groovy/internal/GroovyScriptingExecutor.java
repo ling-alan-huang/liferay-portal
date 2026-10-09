@@ -79,11 +79,10 @@ public class GroovyScriptingExecutor implements ScriptingExecutor {
 			Map<String, Object> outputObjects = new HashMap<>();
 
 			for (String outputName : outputNames) {
-				if (!binding.hasVariable(outputName)) {
-					continue;
+				if (binding.hasVariable(outputName)) {
+					outputObjects.put(
+						outputName, binding.getVariable(outputName));
 				}
-
-				outputObjects.put(outputName, binding.getVariable(outputName));
 			}
 
 			return outputObjects;

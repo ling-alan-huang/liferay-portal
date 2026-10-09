@@ -186,13 +186,11 @@ public class DDMFormInstanceUpgradeProcess extends UpgradeProcess {
 		for (ResourceAction resourceAction : resourceActionList) {
 			long bitwiseValue = resourceAction.getBitwiseValue();
 
-			if ((oldActionIds & bitwiseValue) != bitwiseValue) {
-				continue;
+			if ((oldActionIds & bitwiseValue) == bitwiseValue) {
+				actionsIdsSet.add(
+					MapUtil.getString(
+						_resourceActionIdsMap, resourceAction.getActionId()));
 			}
-
-			actionsIdsSet.add(
-				MapUtil.getString(
-					_resourceActionIdsMap, resourceAction.getActionId()));
 		}
 	}
 

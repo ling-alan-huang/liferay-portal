@@ -39,11 +39,9 @@ public class SQLQueryTableNamesUtil {
 
 			int[] indexes = _getTableNameIndexes(lowerCaseSQL, index);
 
-			if (indexes == null) {
-				continue;
+			if (indexes != null) {
+				tableNameSet.add(sql.substring(indexes[0], indexes[1]));
 			}
-
-			tableNameSet.add(sql.substring(indexes[0], indexes[1]));
 		}
 
 		// Find table name from the "join" clause
@@ -55,11 +53,9 @@ public class SQLQueryTableNamesUtil {
 
 			int[] indexes = _getTableNameIndexes(lowerCaseSQL, index);
 
-			if (indexes == null) {
-				continue;
+			if (indexes != null) {
+				tableNameSet.add(sql.substring(indexes[0], indexes[1]));
 			}
-
-			tableNameSet.add(sql.substring(indexes[0], indexes[1]));
 		}
 
 		tableNames = tableNameSet.toArray(new String[0]);

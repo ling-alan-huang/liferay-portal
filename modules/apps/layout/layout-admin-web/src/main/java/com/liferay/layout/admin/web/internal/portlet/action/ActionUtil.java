@@ -208,17 +208,15 @@ public class ActionUtil {
 			String value = ParamUtil.getString(
 				actionRequest, property, themeSetting.getValue());
 
-			if ((!isLayout ||
-				 Objects.equals(
+			if ((isLayout &&
+				 !Objects.equals(
 					 value,
-					 layout.getDefaultThemeSetting(key, "regular", false))) &&
-				(isLayout || value.equals(themeSetting.getValue()))) {
+					 layout.getDefaultThemeSetting(key, "regular", false))) ||
+				(!isLayout && !value.equals(themeSetting.getValue()))) {
 
-				continue;
+				typeSettingsUnicodeProperties.setProperty(
+					ThemeSettingImpl.namespaceProperty("regular", key), value);
 			}
-
-			typeSettingsUnicodeProperties.setProperty(
-				ThemeSettingImpl.namespaceProperty("regular", key), value);
 		}
 	}
 

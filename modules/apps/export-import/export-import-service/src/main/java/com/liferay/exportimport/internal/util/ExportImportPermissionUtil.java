@@ -38,12 +38,10 @@ public class ExportImportPermissionUtil {
 					companyId, resourceName, ResourceConstants.SCOPE_INDIVIDUAL,
 					resourcePrimKey, roleId);
 
-			if (resourcePermission == null) {
-				continue;
+			if (resourcePermission != null) {
+				ResourcePermissionLocalServiceUtil.deleteResourcePermission(
+					resourcePermission.getResourcePermissionId());
 			}
-
-			ResourcePermissionLocalServiceUtil.deleteResourcePermission(
-				resourcePermission.getResourcePermissionId());
 		}
 	}
 
@@ -111,11 +109,9 @@ public class ExportImportPermissionUtil {
 
 			String[] actionIds = importedRoleIdsToActionIds.remove(roleId);
 
-			if (actionIds == null) {
-				continue;
+			if (actionIds != null) {
+				mergedRoleIdsToActionIds.put(roleId, actionIds);
 			}
-
-			mergedRoleIdsToActionIds.put(roleId, actionIds);
 		}
 
 		mergedRoleIdsToActionIds.putAll(importedRoleIdsToActionIds);
@@ -146,13 +142,11 @@ public class ExportImportPermissionUtil {
 		Set<Long> roleIds = new HashSet<>();
 
 		for (ResourcePermission resourcePermission : resourcePermissions) {
-			if (roleIdsToActionIds.containsKey(
+			if (!roleIdsToActionIds.containsKey(
 					resourcePermission.getRoleId())) {
 
-				continue;
+				roleIds.add(resourcePermission.getRoleId());
 			}
-
-			roleIds.add(resourcePermission.getRoleId());
 		}
 
 		if (!roleIds.isEmpty()) {

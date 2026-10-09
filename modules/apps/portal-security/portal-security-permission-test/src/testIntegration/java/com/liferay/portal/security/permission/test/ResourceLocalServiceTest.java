@@ -72,11 +72,9 @@ public class ResourceLocalServiceTest {
 		int successCount = 0;
 
 		for (DoAsUserThread doAsUserThread : doAsUserThreads) {
-			if (!doAsUserThread.isSuccess()) {
-				continue;
+			if (doAsUserThread.isSuccess()) {
+				successCount++;
 			}
-
-			successCount++;
 		}
 
 		Assert.assertTrue(

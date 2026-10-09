@@ -170,16 +170,14 @@ public class CPDefinitionOptionRelIndexer
 			document.addText(
 				_localization.getLocalizedName(Field.NAME, languageId), name);
 
-			if (!languageId.equals(cpDefinitionOptionRelDefaultLanguageId)) {
-				continue;
+			if (languageId.equals(cpDefinitionOptionRelDefaultLanguageId)) {
+				document.addText(
+					CPField.DEFINITION_OPTION_VALUE_REL_NAME,
+					cpDefinitionOptionValueRelNames);
+				document.addText(Field.DESCRIPTION, description);
+				document.addText(Field.NAME, name);
+				document.addText("defaultLanguageId", languageId);
 			}
-
-			document.addText(
-				CPField.DEFINITION_OPTION_VALUE_REL_NAME,
-				cpDefinitionOptionValueRelNames);
-			document.addText(Field.DESCRIPTION, description);
-			document.addText(Field.NAME, name);
-			document.addText("defaultLanguageId", languageId);
 		}
 
 		if (_log.isDebugEnabled()) {

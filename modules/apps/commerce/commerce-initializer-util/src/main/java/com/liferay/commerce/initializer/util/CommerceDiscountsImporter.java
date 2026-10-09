@@ -103,14 +103,13 @@ public class CommerceDiscountsImporter {
 				for (AssetCategory assetCategory : assetCategories) {
 					String name = assetCategory.getName();
 
-					if (!name.contains(category)) {
-						continue;
+					if (name.contains(category)) {
+						_commerceDiscountRelLocalService.addCommerceDiscountRel(
+							commerceDiscount.getCommerceDiscountId(),
+							AssetCategory.class.getName(),
+							assetCategory.getPrimaryKey(), null,
+							serviceContext);
 					}
-
-					_commerceDiscountRelLocalService.addCommerceDiscountRel(
-						commerceDiscount.getCommerceDiscountId(),
-						AssetCategory.class.getName(),
-						assetCategory.getPrimaryKey(), null, serviceContext);
 				}
 			}
 		}

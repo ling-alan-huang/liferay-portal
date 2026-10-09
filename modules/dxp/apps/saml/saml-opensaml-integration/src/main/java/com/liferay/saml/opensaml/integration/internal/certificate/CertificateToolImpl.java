@@ -137,11 +137,9 @@ public class CertificateToolImpl implements CertificateTool {
 		for (int i = 0; i < digest.length; i++) {
 			sb.append(String.format("%02X", digest[i]));
 
-			if ((i + 1) >= digest.length) {
-				continue;
+			if ((i + 1) < digest.length) {
+				sb.append(CharPool.COLON);
 			}
-
-			sb.append(CharPool.COLON);
 		}
 
 		return sb.toString();

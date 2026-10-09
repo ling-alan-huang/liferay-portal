@@ -217,11 +217,9 @@ public class RuntimeTag extends TagSupport implements DirectTag {
 
 			String key = entry.getKey();
 
-			if (!key.startsWith(portletNamespace)) {
-				continue;
+			if (key.startsWith(portletNamespace)) {
+				parameterMap.put(key, entry.getValue());
 			}
-
-			parameterMap.put(key, entry.getValue());
 		}
 
 		if (Validator.isNotNull(queryString)) {

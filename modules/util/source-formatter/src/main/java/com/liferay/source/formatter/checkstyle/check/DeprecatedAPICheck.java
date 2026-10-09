@@ -51,15 +51,11 @@ public class DeprecatedAPICheck extends BaseAPICheck {
 				detailAST, javaClassesJSONObject);
 
 			for (String deprecatedImportName : deprecatedImportNames) {
-				if (!hasUndeprecatedReference(
-						detailAST, deprecatedImportName)) {
-
-					continue;
+				if (hasUndeprecatedReference(detailAST, deprecatedImportName)) {
+					log(
+						getImportLineNumber(detailAST, deprecatedImportName),
+						_MSG_DEPRECATED_TYPE_CALL, deprecatedImportName);
 				}
-
-				log(
-					getImportLineNumber(detailAST, deprecatedImportName),
-					_MSG_DEPRECATED_TYPE_CALL, deprecatedImportName);
 			}
 
 			_checkDeprecatedConstructors(
@@ -116,13 +112,11 @@ public class DeprecatedAPICheck extends BaseAPICheck {
 			JSONObject classJSONObject = javaClassesJSONObject.getJSONObject(
 				importName);
 
-			if ((classJSONObject == null) ||
-				!classJSONObject.has("deprecated")) {
+			if ((classJSONObject != null) &&
+				classJSONObject.has("deprecated")) {
 
-				continue;
+				deprecatedImportNames.add(importName);
 			}
-
-			deprecatedImportNames.add(importName);
 		}
 
 		return deprecatedImportNames;
@@ -173,17 +167,15 @@ public class DeprecatedAPICheck extends BaseAPICheck {
 			JSONObject classJSONObject = javaClassesJSONObject.getJSONObject(
 				typeName);
 
-			if ((classJSONObject == null) ||
-				!classJSONObject.has("deprecated")) {
+			if ((classJSONObject != null) &&
+				classJSONObject.has("deprecated")) {
 
-				continue;
-			}
+				Set<Integer> lineNumbers = entry.getValue();
 
-			Set<Integer> lineNumbers = entry.getValue();
-
-			for (int lineNumber : lineNumbers) {
-				deprecatedTypeNamesMap = addTypeName(
-					deprecatedTypeNamesMap, typeName, lineNumber);
+				for (int lineNumber : lineNumbers) {
+					deprecatedTypeNamesMap = addTypeName(
+						deprecatedTypeNamesMap, typeName, lineNumber);
+				}
 			}
 		}
 
@@ -203,13 +195,11 @@ public class DeprecatedAPICheck extends BaseAPICheck {
 			JSONObject variableJSONObject = getVariableJSONObject(
 				variableCall, javaClassesJSONObject);
 
-			if ((variableJSONObject == null) ||
-				!variableJSONObject.has("deprecated")) {
+			if ((variableJSONObject != null) &&
+				variableJSONObject.has("deprecated")) {
 
-				continue;
+				deprecatedVariableCalls.add(variableCall);
 			}
-
-			deprecatedVariableCalls.add(variableCall);
 		}
 
 		return deprecatedVariableCalls;

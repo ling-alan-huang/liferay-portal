@@ -192,11 +192,9 @@ public class KBArticleFinderImpl
 		for (int i = 0; i < status.length; i++) {
 			sb.append(status[i]);
 
-			if (i == (status.length - 1)) {
-				continue;
+			if (i != (status.length - 1)) {
+				sb.append(", ");
 			}
-
-			sb.append(", ");
 		}
 
 		return StringUtil.replace(sql, "[$WORKFLOW_STATUS$]", sb.toString());

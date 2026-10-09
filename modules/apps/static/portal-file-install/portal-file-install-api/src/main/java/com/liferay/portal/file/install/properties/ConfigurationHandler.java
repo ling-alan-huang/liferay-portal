@@ -109,11 +109,12 @@ public class ConfigurationHandler {
 		for (int i = 0; i < buffer.length; i++) {
 			int c = _read(pushbackReader);
 
-			if (c < 0) {
+			if (c >= 0) {
+				buffer[i] = (char)c;
+			}
+			else {
 				return i;
 			}
-
-			buffer[i] = (char)c;
 		}
 
 		return buffer.length;

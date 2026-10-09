@@ -128,11 +128,9 @@ public class EclipseDefaultsPlugin extends BaseDefaultsPlugin<EclipsePlugin> {
 					String kind = abstractClasspathEntry.getKind();
 					String path = abstractClasspathEntry.getPath();
 
-					if (!kind.equals("lib") || !path.endsWith(".pom")) {
-						continue;
+					if (kind.equals("lib") && path.endsWith(".pom")) {
+						iterator.remove();
 					}
-
-					iterator.remove();
 				}
 			}
 

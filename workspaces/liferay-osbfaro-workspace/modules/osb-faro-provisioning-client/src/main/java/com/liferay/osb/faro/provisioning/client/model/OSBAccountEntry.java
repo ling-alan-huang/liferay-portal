@@ -32,17 +32,15 @@ public class OSBAccountEntry {
 
 		if (ArrayUtil.isNotEmpty(externalLinks)) {
 			for (ExternalLink externalLink : externalLinks) {
-				if (!StringUtil.equals(
+				if (StringUtil.equals(
 						externalLink.getDomain(),
-						KoroneikiConstants.DOMAIN_DOSSIERA) ||
-					!StringUtil.equals(
+						KoroneikiConstants.DOMAIN_DOSSIERA) &&
+					StringUtil.equals(
 						externalLink.getEntityId(),
 						KoroneikiConstants.ENTITY_NAME_ACCOUNT)) {
 
-					continue;
+					_dossieraAccountKey = externalLink.getEntityId();
 				}
-
-				_dossieraAccountKey = externalLink.getEntityId();
 			}
 		}
 

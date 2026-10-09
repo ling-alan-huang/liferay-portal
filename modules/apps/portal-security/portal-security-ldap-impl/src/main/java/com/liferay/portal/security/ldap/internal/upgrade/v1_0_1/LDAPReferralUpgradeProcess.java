@@ -39,16 +39,17 @@ public class LDAPReferralUpgradeProcess extends UpgradeProcess {
 			Dictionary<String, Object> properties =
 				configuration.getProperties();
 
-			if ((properties == null) ||
-				!Objects.equals(
-					properties.get(LDAPConstants.REFERRAL), "throws")) {
-
+			if (properties == null) {
 				continue;
 			}
 
-			properties.put(LDAPConstants.REFERRAL, LDAPReferralModes.THROW);
+			if (Objects.equals(
+					properties.get(LDAPConstants.REFERRAL), "throws")) {
 
-			configuration.update(properties);
+				properties.put(LDAPConstants.REFERRAL, LDAPReferralModes.THROW);
+
+				configuration.update(properties);
+			}
 		}
 	}
 

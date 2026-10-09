@@ -81,35 +81,29 @@ public class MathUtil {
 		int limit = (int)Math.sqrt(crossedOut.length);
 
 		for (int i = 2; i <= limit; i++) {
-			if (crossedOut[i]) {
-				continue;
-			}
+			if (!crossedOut[i]) {
+				for (int multiple = 2 * i; multiple < crossedOut.length;
+					 multiple += i) {
 
-			for (int multiple = 2 * i; multiple < crossedOut.length;
-				 multiple += i) {
-
-				crossedOut[multiple] = true;
+					crossedOut[multiple] = true;
+				}
 			}
 		}
 
 		int uncrossedCount = 0;
 
 		for (int i = 2; i < crossedOut.length; i++) {
-			if (crossedOut[i]) {
-				continue;
+			if (!crossedOut[i]) {
+				uncrossedCount++;
 			}
-
-			uncrossedCount++;
 		}
 
 		int[] result = new int[uncrossedCount];
 
 		for (int i = 2, j = 0; i < crossedOut.length; i++) {
-			if (crossedOut[i]) {
-				continue;
+			if (!crossedOut[i]) {
+				result[j++] = i;
 			}
-
-			result[j++] = i;
 		}
 
 		return result;

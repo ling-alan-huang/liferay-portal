@@ -92,24 +92,20 @@ public class ConfigurationDBPartitionUpgradeProcess extends UpgradeProcess {
 		}
 
 		for (ScopeConfiguration scopeConfiguration : _scopeConfigurations) {
-			if (!_isApplicable(
+			if (_isApplicable(
 					scopeConfiguration, CompanyThreadLocal.getCompanyId())) {
 
-				continue;
+				_insertConfiguration(
+					scopeConfiguration.getConfigurationId(),
+					scopeConfiguration.getDictionary());
+
+				if (!Objects.equals(
+						scopeConfiguration.getScope(),
+						ExtendedObjectClassDefinition.Scope.PORTLET_INSTANCE)) {
+
+					_scopeConfigurations.remove(scopeConfiguration);
+				}
 			}
-
-			_insertConfiguration(
-				scopeConfiguration.getConfigurationId(),
-				scopeConfiguration.getDictionary());
-
-			if (Objects.equals(
-					scopeConfiguration.getScope(),
-					ExtendedObjectClassDefinition.Scope.PORTLET_INSTANCE)) {
-
-				continue;
-			}
-
-			_scopeConfigurations.remove(scopeConfiguration);
 		}
 
 		int remainingCompanies = _atomicInteger.decrementAndGet();
@@ -129,19 +125,18 @@ public class ConfigurationDBPartitionUpgradeProcess extends UpgradeProcess {
 							" does not exist"));
 				}
 
-				if (!Objects.equals(
+				if (Objects.equals(
 						scopeConfiguration.getScope(),
 						ExtendedObjectClassDefinition.Scope.GROUP)) {
 
-					continue;
+					_log.warn(
+						StringBundler.concat(
+							"Group scope configuration with ID ",
+							scopeConfiguration.getConfigurationId(),
+							" has been removed because the group ID ",
+							scopeConfiguration.getScopePK(),
+							" does not exist"));
 				}
-
-				_log.warn(
-					StringBundler.concat(
-						"Group scope configuration with ID ",
-						scopeConfiguration.getConfigurationId(),
-						" has been removed because the group ID ",
-						scopeConfiguration.getScopePK(), " does not exist"));
 			}
 		}
 	}

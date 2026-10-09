@@ -69,11 +69,9 @@ public class DBInspector {
 		List<String> controlTableNames = new ArrayList<>();
 
 		for (String tableName : tableNames) {
-			if (!isControlTable(tableName)) {
-				continue;
+			if (isControlTable(tableName)) {
+				controlTableNames.add(normalizeName(tableName));
 			}
-
-			controlTableNames.add(normalizeName(tableName));
 		}
 
 		return controlTableNames;

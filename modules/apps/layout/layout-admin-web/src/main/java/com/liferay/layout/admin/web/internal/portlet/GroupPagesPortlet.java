@@ -172,17 +172,16 @@ public class GroupPagesPortlet extends MVCPortlet {
 							fetchFirstLayoutPageTemplateEntry(
 								layoutPrototype.getLayoutPrototypeId());
 
-					if (layoutPageTemplateEntry != null) {
-						continue;
-					}
+					if (layoutPageTemplateEntry == null) {
+						try (SafeCloseable safeCloseable =
+								CTCollectionThreadLocal.
+									setCTCollectionIdWithSafeCloseable(
+										group.getCtCollectionId())) {
 
-					try (SafeCloseable safeCloseable =
-							CTCollectionThreadLocal.
-								setCTCollectionIdWithSafeCloseable(
-									group.getCtCollectionId())) {
-
-						_layoutPageTemplateEntryLocalService.
-							addGlobalLayoutPageTemplateEntry(layoutPrototype);
+							_layoutPageTemplateEntryLocalService.
+								addGlobalLayoutPageTemplateEntry(
+									layoutPrototype);
+						}
 					}
 				}
 

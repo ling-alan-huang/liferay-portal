@@ -171,11 +171,9 @@ public class BuildHistoryProcessor {
 						new HashSet<>();
 
 					for (BuildJSONObject buildJSONObject : buildJSONObjects) {
-						if (!buildJSONObject.isTopLevelBuild()) {
-							continue;
+						if (buildJSONObject.isTopLevelBuild()) {
+							topLevelBuildJSONObjects.add(buildJSONObject);
 						}
-
-						topLevelBuildJSONObjects.add(buildJSONObject);
 					}
 
 					_addToBuildHistoriesMap(
@@ -289,11 +287,9 @@ public class BuildHistoryProcessor {
 				Matcher jobNameIncludesMatcher = jobNameIncludesPattern.matcher(
 					buildJSONObject.getJobName());
 
-				if (!jobNameIncludesMatcher.matches()) {
-					continue;
+				if (jobNameIncludesMatcher.matches()) {
+					buildJSONObjects.add(buildJSONObject);
 				}
-
-				buildJSONObjects.add(buildJSONObject);
 			}
 
 			buildHistoryBiConsumer.accept(buildJSONObjects, buildHistoriesMap);

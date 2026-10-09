@@ -133,13 +133,11 @@ public class ExportDisplayPagesMVCResourceCommandTest {
 			while (enumeration.hasMoreElements()) {
 				ZipEntry zipEntry = enumeration.nextElement();
 
-				if (zipEntry.isDirectory()) {
-					continue;
+				if (!zipEntry.isDirectory()) {
+					_validateZipEntry(new String[] {name}, zipEntry, zipFile);
+
+					count++;
 				}
-
-				_validateZipEntry(new String[] {name}, zipEntry, zipFile);
-
-				count++;
 			}
 
 			Assert.assertEquals(3, count);
@@ -239,14 +237,12 @@ public class ExportDisplayPagesMVCResourceCommandTest {
 			while (enumeration.hasMoreElements()) {
 				ZipEntry zipEntry = enumeration.nextElement();
 
-				if (zipEntry.isDirectory()) {
-					continue;
+				if (!zipEntry.isDirectory()) {
+					_validateZipEntry(
+						new String[] {name1, name2}, zipEntry, zipFile);
+
+					count++;
 				}
-
-				_validateZipEntry(
-					new String[] {name1, name2}, zipEntry, zipFile);
-
-				count++;
 			}
 
 			Assert.assertEquals(6, count);

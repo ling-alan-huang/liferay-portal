@@ -601,13 +601,11 @@ public class LayoutLocalServiceStagingAdvice {
 		for (Layout layout : layouts) {
 			Layout wrappedLayout = wrapLayout(layout);
 
-			if (!showIncomplete &&
-				_staging.isIncomplete(wrappedLayout, layoutSetBranchId)) {
+			if (showIncomplete ||
+				!_staging.isIncomplete(wrappedLayout, layoutSetBranchId)) {
 
-				continue;
+				wrappedLayouts.add(wrappedLayout);
 			}
-
-			wrappedLayouts.add(wrappedLayout);
 		}
 
 		return wrappedLayouts;

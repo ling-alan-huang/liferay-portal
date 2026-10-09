@@ -617,13 +617,11 @@ public class AsyncAntivirusDLStoreTest {
 						filterString));
 			}
 
-			if (serviceReferences != null) {
-				continue;
+			if (serviceReferences == null) {
+				Thread.sleep(_SLEEP_TIME);
+
+				waitTime += _SLEEP_TIME;
 			}
-
-			Thread.sleep(_SLEEP_TIME);
-
-			waitTime += _SLEEP_TIME;
 		}
 
 		return _bundleContext.getService(serviceReferences[0]);

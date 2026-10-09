@@ -73,12 +73,10 @@ public class ImageTypeContentAttributesUpgradeProcess extends UpgradeProcess {
 				dynamicContentElement.addAttribute("type", "journal");
 			}
 
-			if (Validator.isNull(articleImageId)) {
-				continue;
+			if (Validator.isNotNull(articleImageId)) {
+				imageElement.addAttribute(
+					"instance-id", _getImageInstanceId(articleImageId));
 			}
-
-			imageElement.addAttribute(
-				"instance-id", _getImageInstanceId(articleImageId));
 		}
 
 		return document.formattedString();

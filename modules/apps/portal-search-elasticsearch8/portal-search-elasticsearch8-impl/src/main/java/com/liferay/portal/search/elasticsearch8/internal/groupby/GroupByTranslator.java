@@ -113,14 +113,12 @@ public class GroupByTranslator {
 
 			sortFieldNames.add(sortFieldName);
 
-			if (!sortFieldName.equals("_count") &&
-				!sortFieldName.equals("_key")) {
+			if (sortFieldName.equals("_count") ||
+				sortFieldName.equals("_key")) {
 
-				continue;
+				sortOrdersList.add(
+					NamedValue.of(sortFieldName, _getSortOrder(sort)));
 			}
-
-			sortOrdersList.add(
-				NamedValue.of(sortFieldName, _getSortOrder(sort)));
 		}
 
 		if (!sortOrdersList.isEmpty()) {

@@ -166,11 +166,9 @@ public class EditableValuesTransformerUtil {
 			while (valueKeysIterator.hasNext()) {
 				String valueKey = valueKeysIterator.next();
 
-				if (valueKey.startsWith(_ID_PREFIX)) {
-					continue;
+				if (!valueKey.startsWith(_ID_PREFIX)) {
+					newJSONObject.put(valueKey, jsonObject.get(valueKey));
 				}
-
-				newJSONObject.put(valueKey, jsonObject.get(valueKey));
 			}
 
 			return newJSONObject;

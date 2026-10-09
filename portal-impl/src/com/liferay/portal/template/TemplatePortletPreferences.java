@@ -42,14 +42,12 @@ public class TemplatePortletPreferences {
 
 			if (valueObject instanceof Collection) {
 				for (Object value : (Collection)valueObject) {
-					if (!(value instanceof String)) {
-						continue;
+					if (value instanceof String) {
+						sb.append("<value>");
+						sb.append(
+							PreferencesValueUtil.toCompactSafe((String)value));
+						sb.append("</value>");
 					}
-
-					sb.append("<value>");
-					sb.append(
-						PreferencesValueUtil.toCompactSafe((String)value));
-					sb.append("</value>");
 				}
 			}
 			else if (valueObject instanceof String) {

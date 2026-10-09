@@ -135,11 +135,9 @@ public class DDMFormValuesUtil {
 			groupId);
 
 		for (Locale availableLocale : availableLocales) {
-			if (!siteAvailableLocales.contains(availableLocale)) {
-				continue;
+			if (siteAvailableLocales.contains(availableLocale)) {
+				locales.add(availableLocale);
 			}
-
-			locales.add(availableLocale);
 		}
 
 		return locales;

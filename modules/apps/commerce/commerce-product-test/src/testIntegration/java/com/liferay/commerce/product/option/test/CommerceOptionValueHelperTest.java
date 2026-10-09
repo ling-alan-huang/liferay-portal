@@ -228,11 +228,9 @@ public class CommerceOptionValueHelperTest {
 					cpDefinitionOptionRel.getKey(),
 					cpDefinitionOptionValueRel.getKey()));
 
-			if (!iterator.hasNext()) {
-				continue;
+			if (iterator.hasNext()) {
+				sb.append(StringPool.COMMA);
 			}
-
-			sb.append(StringPool.COMMA);
 		}
 
 		sb.append(StringPool.CLOSE_BRACKET);

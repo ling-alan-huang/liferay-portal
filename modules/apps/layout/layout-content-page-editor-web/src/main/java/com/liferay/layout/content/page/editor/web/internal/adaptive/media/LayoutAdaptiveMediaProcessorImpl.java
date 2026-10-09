@@ -189,11 +189,9 @@ public class LayoutAdaptiveMediaProcessorImpl
 				sb.append(condition.getValue());
 				sb.append(StringPool.CLOSE_PARENTHESIS);
 
-				if (conditions.indexOf(condition) == (conditions.size() - 1)) {
-					continue;
+				if (conditions.indexOf(condition) != (conditions.size() - 1)) {
+					sb.append(" and ");
 				}
-
-				sb.append(" and ");
 			}
 
 			sb.append(StringPool.OPEN_CURLY_BRACE);
@@ -243,13 +241,11 @@ public class LayoutAdaptiveMediaProcessorImpl
 					_getMediaQuery(StringPool.PERIOD + cssClass, fileEntryId));
 			}
 
-			if (sb.length() <= 0) {
-				continue;
+			if (sb.length() > 0) {
+				Element newStyleElement = styledElement.prependElement("style");
+
+				newStyleElement.text(sb.toString());
 			}
-
-			Element newStyleElement = styledElement.prependElement("style");
-
-			newStyleElement.text(sb.toString());
 		}
 	}
 

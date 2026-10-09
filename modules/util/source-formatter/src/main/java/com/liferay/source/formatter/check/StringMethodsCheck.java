@@ -75,16 +75,17 @@ public class StringMethodsCheck extends BaseFileCheck {
 			String variableTypeName = getVariableTypeName(
 				content, null, content, fileName, s);
 
-			if ((variableTypeName == null) ||
-				(!s.equals("String") &&
-				 !Objects.equals(variableTypeName, "String"))) {
-
+			if (variableTypeName == null) {
 				continue;
 			}
 
-			addMessage(
-				fileName, "Use StringUtil." + methodName,
-				getLineNumber(content, matcher.start(1)));
+			if (s.equals("String") ||
+				Objects.equals(variableTypeName, "String")) {
+
+				addMessage(
+					fileName, "Use StringUtil." + methodName,
+					getLineNumber(content, matcher.start(1)));
+			}
 		}
 	}
 

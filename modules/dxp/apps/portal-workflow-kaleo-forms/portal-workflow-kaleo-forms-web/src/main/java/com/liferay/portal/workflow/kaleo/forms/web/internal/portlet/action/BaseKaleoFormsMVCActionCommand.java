@@ -285,17 +285,16 @@ public abstract class BaseKaleoFormsMVCActionCommand
 					currentDDMFormFieldValue.getName(),
 					currentDDMFormFieldValue.getInstanceId());
 
-			if (actualDDMFormFieldValue == null) {
-				continue;
-			}
-
-			if (actualDDMFormFieldValue.equals(currentDDMFormFieldValue)) {
-				pendingRemovalDDMFormFieldValues.add(currentDDMFormFieldValue);
-			}
-			else {
-				_removeRemovedByReviewerDDMFormFieldValues(
-					currentDDMFormFieldValue.getNestedDDMFormFieldValues(),
-					actualDDMFormFieldValue.getNestedDDMFormFieldValues());
+			if (actualDDMFormFieldValue != null) {
+				if (actualDDMFormFieldValue.equals(currentDDMFormFieldValue)) {
+					pendingRemovalDDMFormFieldValues.add(
+						currentDDMFormFieldValue);
+				}
+				else {
+					_removeRemovedByReviewerDDMFormFieldValues(
+						currentDDMFormFieldValue.getNestedDDMFormFieldValues(),
+						actualDDMFormFieldValue.getNestedDDMFormFieldValues());
+				}
 			}
 		}
 

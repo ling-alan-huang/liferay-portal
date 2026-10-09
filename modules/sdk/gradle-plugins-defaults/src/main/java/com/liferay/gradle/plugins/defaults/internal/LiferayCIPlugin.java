@@ -254,11 +254,9 @@ public class LiferayCIPlugin implements Plugin<Project> {
 				}
 			}
 
-			if (changed) {
-				continue;
+			if (!changed) {
+				args.add(key + value);
 			}
-
-			args.add(key + value);
 		}
 
 		npmInstallTask.setArgs(args);

@@ -148,33 +148,34 @@ public class HttpSessionWrapper implements HttpSession, Serializable {
 				httpSessionListener.sessionDestroyed(sessionEvent);
 			}
 
-			if (!clazz.equals(HttpSessionBindingListener.class) &&
-				!clazz.equals(HttpSessionAttributeListener.class)) {
+			if (clazz.equals(HttpSessionBindingListener.class) ||
+				clazz.equals(HttpSessionAttributeListener.class)) {
 
-				continue;
-			}
+				Enumeration<String> attributeNameEnumeration =
+					getAttributeNames();
 
-			Enumeration<String> attributeNameEnumeration = getAttributeNames();
+				while (attributeNameEnumeration.hasMoreElements()) {
+					String attributeName =
+						attributeNameEnumeration.nextElement();
 
-			while (attributeNameEnumeration.hasMoreElements()) {
-				String attributeName = attributeNameEnumeration.nextElement();
+					HttpSessionBindingEvent sessionBindingEvent =
+						new HttpSessionBindingEvent(this, attributeName);
 
-				HttpSessionBindingEvent sessionBindingEvent =
-					new HttpSessionBindingEvent(this, attributeName);
+					if (clazz.equals(HttpSessionAttributeListener.class)) {
+						HttpSessionAttributeListener
+							httpSessionAttributeListener =
+								(HttpSessionAttributeListener)eventListener;
 
-				if (clazz.equals(HttpSessionAttributeListener.class)) {
-					HttpSessionAttributeListener httpSessionAttributeListener =
-						(HttpSessionAttributeListener)eventListener;
+						httpSessionAttributeListener.attributeRemoved(
+							sessionBindingEvent);
+					}
+					else if (clazz.equals(HttpSessionBindingListener.class)) {
+						HttpSessionBindingListener httpSessionBindingListener =
+							(HttpSessionBindingListener)eventListener;
 
-					httpSessionAttributeListener.attributeRemoved(
-						sessionBindingEvent);
-				}
-				else if (clazz.equals(HttpSessionBindingListener.class)) {
-					HttpSessionBindingListener httpSessionBindingListener =
-						(HttpSessionBindingListener)eventListener;
-
-					httpSessionBindingListener.valueUnbound(
-						sessionBindingEvent);
+						httpSessionBindingListener.valueUnbound(
+							sessionBindingEvent);
+					}
 				}
 			}
 		}
@@ -305,11 +306,10 @@ public class HttpSessionWrapper implements HttpSession, Serializable {
 		while (attributeNameEnumeration.hasMoreElements()) {
 			String attribute = attributeNameEnumeration.nextElement();
 
-			if (!attribute.startsWith(_attributePrefix)) {
-				continue;
+			if (attribute.startsWith(_attributePrefix)) {
+				attributeNames.add(
+					attribute.substring(_attributePrefix.length()));
 			}
-
-			attributeNames.add(attribute.substring(_attributePrefix.length()));
 		}
 
 		return attributeNames;

@@ -836,14 +836,12 @@ public class SiteResourceImpl
 		List<Site> selectedSites = new ArrayList<>();
 
 		for (Site site : sites) {
-			if (!ArrayUtil.contains(
+			if (ArrayUtil.contains(
 					selectedExternalReferenceCodes,
 					site.getExternalReferenceCode())) {
 
-				continue;
+				selectedSites.add(site);
 			}
-
-			selectedSites.add(site);
 		}
 
 		return selectedSites;
@@ -1068,11 +1066,9 @@ public class SiteResourceImpl
 			String typeSettingValue = oldUnicodeProperties.get(
 				excludedTypeSetting);
 
-			if (typeSettingValue == null) {
-				continue;
+			if (typeSettingValue != null) {
+				unicodeProperties.put(excludedTypeSetting, typeSettingValue);
 			}
-
-			unicodeProperties.put(excludedTypeSetting, typeSettingValue);
 		}
 
 		return unicodeProperties.toString();

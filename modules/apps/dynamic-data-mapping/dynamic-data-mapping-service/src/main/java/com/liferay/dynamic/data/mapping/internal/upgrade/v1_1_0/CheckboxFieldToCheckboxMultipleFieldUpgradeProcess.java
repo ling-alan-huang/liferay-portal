@@ -249,11 +249,9 @@ public class CheckboxFieldToCheckboxMultipleFieldUpgradeProcess
 			JSONArray nestedFieldsJSONArray = fieldJSONObject.getJSONArray(
 				"nestedFields");
 
-			if (nestedFieldsJSONArray == null) {
-				continue;
+			if (nestedFieldsJSONArray != null) {
+				_upgradeRecordSetStructureFields(nestedFieldsJSONArray);
 			}
-
-			_upgradeRecordSetStructureFields(nestedFieldsJSONArray);
 		}
 	}
 

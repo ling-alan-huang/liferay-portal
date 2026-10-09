@@ -75,11 +75,9 @@ public class CPTypeRegistryImpl implements CPTypeRegistry {
 
 			CPType cpType = cpTypeServiceWrapper.getService();
 
-			if (!cpType.isActive()) {
-				continue;
+			if (cpType.isActive()) {
+				cpTypes.add(cpType);
 			}
-
-			cpTypes.add(cpType);
 		}
 
 		return Collections.unmodifiableList(cpTypes);

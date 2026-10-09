@@ -3119,16 +3119,14 @@ public class CommerceOrderLocalServiceImpl
 				}
 			}
 
-			if (defaultCommerceShippingOption == null) {
-				continue;
+			if (defaultCommerceShippingOption != null) {
+				commerceOrder.setCommerceShippingMethodId(
+					commerceShippingMethod.getCommerceShippingMethodId());
+				commerceOrder.setShippingAmount(
+					defaultCommerceShippingOption.getAmount());
+				commerceOrder.setShippingOptionName(
+					defaultCommerceShippingOption.getKey());
 			}
-
-			commerceOrder.setCommerceShippingMethodId(
-				commerceShippingMethod.getCommerceShippingMethodId());
-			commerceOrder.setShippingAmount(
-				defaultCommerceShippingOption.getAmount());
-			commerceOrder.setShippingOptionName(
-				defaultCommerceShippingOption.getKey());
 		}
 	}
 

@@ -120,11 +120,10 @@ public class AkismetEditMessageMVCActionCommand extends BaseMVCActionCommand {
 					message.getThreadId(), 0);
 
 			for (MBMessage threadMessage : threadMessages) {
-				if (threadMessage.getParentMessageId() != messageId) {
-					continue;
+				if (threadMessage.getParentMessageId() == messageId) {
+					threadMessage.setParentMessageId(
+						message.getRootMessageId());
 				}
-
-				threadMessage.setParentMessageId(message.getRootMessageId());
 			}
 
 			_akismetClient.submitSpam(message);

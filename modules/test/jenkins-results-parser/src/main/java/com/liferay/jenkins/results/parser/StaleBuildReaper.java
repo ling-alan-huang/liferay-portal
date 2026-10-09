@@ -22,11 +22,9 @@ public class StaleBuildReaper {
 		int reapedBuildsCount = 0;
 
 		for (ReapAction reapAction : _reapActions) {
-			if (!reapAction.isExecuted()) {
-				continue;
+			if (reapAction.isExecuted()) {
+				reapedBuildsCount++;
 			}
-
-			reapedBuildsCount++;
 		}
 
 		return reapedBuildsCount;

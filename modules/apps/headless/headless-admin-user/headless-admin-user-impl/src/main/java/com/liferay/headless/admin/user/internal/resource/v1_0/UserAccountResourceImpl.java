@@ -799,13 +799,12 @@ public class UserAccountResourceImpl extends BaseUserAccountResourceImpl {
 
 				RoleBrief[] accountRoleBriefs = accountBrief.getRoleBriefs();
 
-				if (accountRoleBriefs == null) {
-					continue;
-				}
-
-				for (RoleBrief roleBrief : accountRoleBriefs) {
-					_accountRoleService.associateUser(
-						accountBrief.getId(), roleBrief.getId(), userAccountId);
+				if (accountRoleBriefs != null) {
+					for (RoleBrief roleBrief : accountRoleBriefs) {
+						_accountRoleService.associateUser(
+							accountBrief.getId(), roleBrief.getId(),
+							userAccountId);
+					}
 				}
 			}
 		}

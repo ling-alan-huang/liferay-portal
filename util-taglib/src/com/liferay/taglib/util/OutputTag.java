@@ -122,14 +122,13 @@ public class OutputTag extends PositionTagSupport {
 
 			String subcontent = content.substring(x, y);
 
-			if (subcontent.contains(attributeName)) {
-				continue;
+			if (!subcontent.contains(attributeName)) {
+				content = StringUtil.insert(
+					content,
+					StringBundler.concat(
+						" ", attributeName, "=", attributeValue),
+					x + tagName.length() + 1);
 			}
-
-			content = StringUtil.insert(
-				content,
-				StringBundler.concat(" ", attributeName, "=", attributeValue),
-				x + tagName.length() + 1);
 		}
 
 		return content;

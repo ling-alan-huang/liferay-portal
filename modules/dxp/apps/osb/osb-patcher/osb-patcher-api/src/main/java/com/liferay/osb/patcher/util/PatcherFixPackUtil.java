@@ -347,11 +347,9 @@ public class PatcherFixPackUtil {
 			for (String token : tokens) {
 				String[] split = token.split(">=");
 
-				if (split[0].equals(patcherFixComponent.getName())) {
-					continue;
+				if (!split[0].equals(patcherFixComponent.getName())) {
+					requirements.add(token);
 				}
-
-				requirements.add(token);
 			}
 		}
 

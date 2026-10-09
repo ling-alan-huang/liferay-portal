@@ -61,11 +61,9 @@ public class QuartzGroupUpgradeProcess extends UpgradeProcess {
 
 				_loadCompanyId(companyIds, jobName, jobDataMap);
 
-				if (!companyIds.containsKey(jobName)) {
-					continue;
+				if (companyIds.containsKey(jobName)) {
+					jobGroups.put(jobName, resultSet.getString("job_group"));
 				}
-
-				jobGroups.put(jobName, resultSet.getString("job_group"));
 			}
 		}
 
@@ -78,11 +76,9 @@ public class QuartzGroupUpgradeProcess extends UpgradeProcess {
 			String newJobGroup = StringBundler.concat(
 				jobGroups.get(jobName), StringPool.AT, entry.getValue());
 
-			if (!renamedJobGroups.contains(newJobGroup)) {
-				continue;
+			if (renamedJobGroups.contains(newJobGroup)) {
+				deleteJobNames.add(jobName);
 			}
-
-			deleteJobNames.add(jobName);
 		}
 
 		Set<String> jobNames = companyIds.keySet();

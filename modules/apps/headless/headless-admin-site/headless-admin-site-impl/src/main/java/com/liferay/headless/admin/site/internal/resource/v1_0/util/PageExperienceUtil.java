@@ -73,14 +73,12 @@ public class PageExperienceUtil {
 					pageExperience.getKey());
 			}
 
-			if (!Objects.equals(
+			if (Objects.equals(
 					pageExperience.getKey(),
 					SegmentsExperienceConstants.KEY_DEFAULT)) {
 
-				continue;
+				defaultPageExperience = pageExperience;
 			}
-
-			defaultPageExperience = pageExperience;
 		}
 
 		if (defaultPageExperience == null) {

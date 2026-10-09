@@ -58,11 +58,9 @@ public class ExceptionPrintStackTraceCheck extends BaseCheck {
 			List<DetailAST> parameterExprDetailASTs =
 				getParameterExprDetailASTs(methodCallDetailAST);
 
-			if (!parameterExprDetailASTs.isEmpty()) {
-				continue;
+			if (parameterExprDetailASTs.isEmpty()) {
+				log(methodCallDetailAST, _MSG_AVOID_METHOD_CALL);
 			}
-
-			log(methodCallDetailAST, _MSG_AVOID_METHOD_CALL);
 		}
 	}
 

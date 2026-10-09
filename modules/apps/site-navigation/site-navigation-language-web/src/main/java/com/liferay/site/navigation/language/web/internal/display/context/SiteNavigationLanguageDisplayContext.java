@@ -65,16 +65,14 @@ public class SiteNavigationLanguageDisplayContext {
 			getAvailableLanguageIds());
 
 		for (String languageId : availableLanguageIdsSet) {
-			if (Arrays.binarySearch(languageIds, languageId) >= 0) {
-				continue;
+			if (Arrays.binarySearch(languageIds, languageId) < 0) {
+				Locale locale = LocaleUtil.fromLanguageId(languageId);
+
+				availableLanguageIdKVPs.add(
+					new KeyValuePair(
+						languageId,
+						locale.getDisplayName(_themeDisplay.getLocale())));
 			}
-
-			Locale locale = LocaleUtil.fromLanguageId(languageId);
-
-			availableLanguageIdKVPs.add(
-				new KeyValuePair(
-					languageId,
-					locale.getDisplayName(_themeDisplay.getLocale())));
 		}
 
 		return ListUtil.sort(
@@ -167,13 +165,9 @@ public class SiteNavigationLanguageDisplayContext {
 			List<String> filteredLanguageIds = new ArrayList<>();
 
 			for (String languageId : _languageIds) {
-				if (!ArrayUtil.contains(
-						getAvailableLanguageIds(), languageId)) {
-
-					continue;
+				if (ArrayUtil.contains(getAvailableLanguageIds(), languageId)) {
+					filteredLanguageIds.add(languageId);
 				}
-
-				filteredLanguageIds.add(languageId);
 			}
 
 			_languageIds = ArrayUtil.toStringArray(filteredLanguageIds);

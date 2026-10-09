@@ -747,11 +747,9 @@ public class BaseAutoDeployer implements AutoDeployer {
 			sb.append(license.getName());
 			sb.append("</license>\r\n");
 
-			if ((i + 1) != licenses.size()) {
-				continue;
+			if ((i + 1) == licenses.size()) {
+				sb.append("\t");
 			}
-
-			sb.append("\t");
 		}
 
 		return sb.toString();
@@ -777,11 +775,9 @@ public class BaseAutoDeployer implements AutoDeployer {
 			sb.append(liferayVersion);
 			sb.append("</liferay-version>\r\n");
 
-			if ((i + 1) != liferayVersions.size()) {
-				continue;
+			if ((i + 1) == liferayVersions.size()) {
+				sb.append("\t");
 			}
-
-			sb.append("\t");
 		}
 
 		return sb.toString();
@@ -824,11 +820,9 @@ public class BaseAutoDeployer implements AutoDeployer {
 			sb.append(requiredDeploymentContext);
 			sb.append("</required-deployment-context>\r\n");
 
-			if ((i + 1) != requiredDeploymentContexts.size()) {
-				continue;
+			if ((i + 1) == requiredDeploymentContexts.size()) {
+				sb.append("\t");
 			}
-
-			sb.append("\t");
 		}
 
 		return sb.toString();
@@ -852,11 +846,9 @@ public class BaseAutoDeployer implements AutoDeployer {
 			sb.append(tag);
 			sb.append("</tag>\r\n");
 
-			if ((i + 1) != tags.size()) {
-				continue;
+			if ((i + 1) == tags.size()) {
+				sb.append("\t");
 			}
-
-			sb.append("\t");
 		}
 
 		return sb.toString();

@@ -42,13 +42,11 @@ public class LocalizedValueUtil {
 			Locale locale = LocaleUtil.fromLanguageId(
 				entry.getKey(), true, false);
 
-			if ((locale == null) || !availableLocales.contains(locale)) {
-				continue;
+			if ((locale != null) && availableLocales.contains(locale)) {
+				jsonObject.put(
+					LocaleUtil.toLanguageId(locale),
+					unsafeFunction.apply(entry.getValue()));
 			}
-
-			jsonObject.put(
-				LocaleUtil.toLanguageId(locale),
-				unsafeFunction.apply(entry.getValue()));
 		}
 
 		return jsonObject;
@@ -74,15 +72,11 @@ public class LocalizedValueUtil {
 				for (String key : jsonObject.keySet()) {
 					Locale locale = LocaleUtil.fromLanguageId(key, true, false);
 
-					if ((locale == null) ||
-						!availableLocales.contains(locale)) {
-
-						continue;
+					if ((locale != null) && availableLocales.contains(locale)) {
+						put(
+							LocaleUtil.toBCP47LanguageId(key),
+							unsafeFunction.apply(key));
 					}
-
-					put(
-						LocaleUtil.toBCP47LanguageId(key),
-						unsafeFunction.apply(key));
 				}
 			}
 		};

@@ -51,14 +51,12 @@ public class ObjectFieldUpgradeProcess extends UpgradeProcess {
 					_alterColumnType(
 						resultSet.getString("dbTableName"), dbColumnName);
 
-					if (!resultSet.getBoolean("localized")) {
-						continue;
+					if (resultSet.getBoolean("localized")) {
+						_alterColumnType(
+							resultSet.getString("objectDefinitionDBTableName") +
+								"_l",
+							dbColumnName);
 					}
-
-					_alterColumnType(
-						resultSet.getString("objectDefinitionDBTableName") +
-							"_l",
-						dbColumnName);
 				}
 			}
 		}

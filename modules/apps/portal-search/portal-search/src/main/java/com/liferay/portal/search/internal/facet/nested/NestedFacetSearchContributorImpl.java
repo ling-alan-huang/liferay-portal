@@ -185,13 +185,12 @@ public class NestedFacetSearchContributorImpl
 				for (String key :
 						_additionalFacetConfigurationDataJSONObject.keySet()) {
 
-					if (jsonObject.has(key)) {
-						continue;
+					if (!jsonObject.has(key)) {
+						jsonObject.put(
+							key,
+							_additionalFacetConfigurationDataJSONObject.get(
+								key));
 					}
-
-					jsonObject.put(
-						key,
-						_additionalFacetConfigurationDataJSONObject.get(key));
 				}
 			}
 

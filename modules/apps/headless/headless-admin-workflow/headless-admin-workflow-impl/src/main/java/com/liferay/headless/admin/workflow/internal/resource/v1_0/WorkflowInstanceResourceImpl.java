@@ -172,11 +172,9 @@ public class WorkflowInstanceResourceImpl
 		Map<String, Serializable> workflowContext = new HashMap<>();
 
 		for (Map.Entry<String, ?> entry : context.entrySet()) {
-			if (!(entry.getValue() instanceof Serializable value)) {
-				continue;
+			if (entry.getValue() instanceof Serializable value) {
+				workflowContext.put(entry.getKey(), value);
 			}
-
-			workflowContext.put(entry.getKey(), value);
 		}
 
 		if (readOnly) {

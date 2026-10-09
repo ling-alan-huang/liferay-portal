@@ -307,11 +307,9 @@ public class AnalyticsAttributesUtil {
 				AssetVocabularyLocalServiceUtil.fetchAssetVocabulary(
 					vocabularyId);
 
-			if (assetVocabulary == null) {
-				continue;
+			if (assetVocabulary != null) {
+				assetVocabularies.add(assetVocabulary);
 			}
-
-			assetVocabularies.add(assetVocabulary);
 		}
 
 		if (ListUtil.isEmpty(assetVocabularies)) {

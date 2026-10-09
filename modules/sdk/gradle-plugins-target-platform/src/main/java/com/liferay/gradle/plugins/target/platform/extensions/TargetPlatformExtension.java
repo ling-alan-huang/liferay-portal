@@ -142,11 +142,9 @@ public class TargetPlatformExtension {
 		while (iterator.hasNext()) {
 			Object object = iterator.next();
 
-			if (!(object instanceof String)) {
-				continue;
+			if (object instanceof String) {
+				configurationNamesList.add((String)object);
 			}
-
-			configurationNamesList.add((String)object);
 		}
 
 		TargetPlatformPluginUtil.configureTargetPlatform(

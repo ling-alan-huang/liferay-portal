@@ -431,16 +431,14 @@ public class ObjectActionLocalServiceTest {
 		for (NotificationRecipientSetting notificationRecipientSetting :
 				notificationRecipient.getNotificationRecipientSettings()) {
 
-			if (!Objects.equals(
+			if (Objects.equals(
 					notificationRecipientSetting.getName(),
 					NotificationRecipientSettingConstants.NAME_TO)) {
 
-				continue;
+				Assert.assertEquals(
+					user.getEmailAddress(),
+					notificationRecipientSetting.getValue());
 			}
-
-			Assert.assertEquals(
-				user.getEmailAddress(),
-				notificationRecipientSetting.getValue());
 		}
 
 		_notificationQueueEntryLocalService.deleteNotificationQueueEntry(

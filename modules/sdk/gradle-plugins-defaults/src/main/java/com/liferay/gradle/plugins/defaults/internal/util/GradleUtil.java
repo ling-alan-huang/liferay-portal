@@ -148,14 +148,12 @@ public class GradleUtil extends com.liferay.gradle.util.GradleUtil {
 
 	public static Project getProject(Project rootProject, String name) {
 		for (Project project : rootProject.getAllprojects()) {
-			if (!name.equals(project.getName())) {
-				continue;
-			}
+			if (name.equals(project.getName())) {
+				Set<Project> subprojects = project.getSubprojects();
 
-			Set<Project> subprojects = project.getSubprojects();
-
-			if (subprojects.isEmpty()) {
-				return project;
+				if (subprojects.isEmpty()) {
+					return project;
+				}
 			}
 		}
 

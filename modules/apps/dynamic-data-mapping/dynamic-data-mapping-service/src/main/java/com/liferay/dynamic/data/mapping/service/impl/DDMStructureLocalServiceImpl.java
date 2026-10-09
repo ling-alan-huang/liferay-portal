@@ -1793,11 +1793,9 @@ public class DDMStructureLocalServiceImpl
 				ddmFormField.getProperty("ddmDataProviderInstanceId"));
 
 			for (long ddmDataProviderInstanceId : ddmDataProviderInstanceIds) {
-				if (ddmDataProviderInstanceId <= 0) {
-					continue;
+				if (ddmDataProviderInstanceId > 0) {
+					dataProviderInstanceIds.add(ddmDataProviderInstanceId);
 				}
-
-				dataProviderInstanceIds.add(ddmDataProviderInstanceId);
 			}
 		}
 
@@ -1833,12 +1831,10 @@ public class DDMStructureLocalServiceImpl
 						fetchDDMDataProviderInstanceByUuidAndGroupId(
 							dataProviderUuid, groupId);
 
-				if (dataProviderInstance == null) {
-					continue;
+				if (dataProviderInstance != null) {
+					dataProviderInstanceIds.add(
+						dataProviderInstance.getDataProviderInstanceId());
 				}
-
-				dataProviderInstanceIds.add(
-					dataProviderInstance.getDataProviderInstanceId());
 			}
 		}
 

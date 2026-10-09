@@ -241,21 +241,17 @@ public class WebSsoProfileIntegrationTest extends BaseSamlTestCase {
 		while (iterator.hasNext()) {
 			XMLObject xmlObject = iterator.next();
 
-			if (!(xmlObject instanceof SigningMethod)) {
-				continue;
+			if (xmlObject instanceof SigningMethod) {
+				SigningMethod signingMethod = (SigningMethod)xmlObject;
+
+				String algorithm = signingMethod.getAlgorithm();
+
+				if (!algorithm.equals(
+						"http://www.w3.org/2001/04/xmldsig-more#rsa-sha512")) {
+
+					iterator.remove();
+				}
 			}
-
-			SigningMethod signingMethod = (SigningMethod)xmlObject;
-
-			String algorithm = signingMethod.getAlgorithm();
-
-			if (algorithm.equals(
-					"http://www.w3.org/2001/04/xmldsig-more#rsa-sha512")) {
-
-				continue;
-			}
-
-			iterator.remove();
 		}
 
 		OpenSamlUtil.signObject(assertion, credential, spSSODescriptor);

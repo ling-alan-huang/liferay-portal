@@ -139,11 +139,9 @@ public class SavePortalSettingsFormMVCActionCommand
 
 			String oldValue = settings.getValue(name, null);
 
-			if (value.equals(oldValue)) {
-				continue;
+			if (!value.equals(oldValue)) {
+				modifiableSettings.setValue(name, value);
 			}
-
-			modifiableSettings.setValue(name, value);
 		}
 
 		modifiableSettings.store();

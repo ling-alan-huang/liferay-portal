@@ -105,11 +105,9 @@ public class PortletPermissionsExporterImpl
 			for (ResourceAction resourceAction : resourceActions) {
 				long bitwiseValue = resourceAction.getBitwiseValue();
 
-				if ((actionIds & bitwiseValue) != bitwiseValue) {
-					continue;
+				if ((actionIds & bitwiseValue) == bitwiseValue) {
+					actionIdsSet.add(resourceAction.getActionId());
 				}
-
-				actionIdsSet.add(resourceAction.getActionId());
 			}
 
 			String roleKey = role.getName();

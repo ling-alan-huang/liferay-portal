@@ -227,14 +227,12 @@ public class DropZoneFragmentEntryLinkListenerTest {
 			LayoutStructureItem childLayoutStructureItem =
 				layoutStructure.getLayoutStructureItem(childrenItemId);
 
-			if (!(childLayoutStructureItem instanceof
-					FragmentDropZoneLayoutStructureItem) ||
-				layoutStructure.isItemMarkedForDeletion(childrenItemId)) {
+			if ((childLayoutStructureItem instanceof
+					FragmentDropZoneLayoutStructureItem) &&
+				!layoutStructure.isItemMarkedForDeletion(childrenItemId)) {
 
-				continue;
+				count++;
 			}
-
-			count++;
 		}
 
 		return count;

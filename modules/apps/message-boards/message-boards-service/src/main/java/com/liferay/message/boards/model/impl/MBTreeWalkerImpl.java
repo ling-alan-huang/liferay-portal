@@ -33,13 +33,11 @@ public class MBTreeWalkerImpl implements MBTreeWalker {
 
 				long parentMessageId = curMessage.getParentMessageId();
 
-				if (curMessage.isRoot() ||
-					_messageIdsMap.containsKey(parentMessageId)) {
+				if (!curMessage.isRoot() &&
+					!_messageIdsMap.containsKey(parentMessageId)) {
 
-					continue;
+					_messageIdsMap.put(parentMessageId, i);
 				}
-
-				_messageIdsMap.put(parentMessageId, i);
 			}
 		}
 		catch (Exception exception) {
@@ -81,11 +79,12 @@ public class MBTreeWalkerImpl implements MBTreeWalker {
 		for (int i = range[0]; i < _messages.size(); i++) {
 			MBMessage curMessage = _messages.get(i);
 
-			if (curMessage.getParentMessageId() != messageId) {
+			if (curMessage.getParentMessageId() == messageId) {
+				range[1] = i + 1;
+			}
+			else {
 				break;
 			}
-
-			range[1] = i + 1;
 		}
 
 		return range;

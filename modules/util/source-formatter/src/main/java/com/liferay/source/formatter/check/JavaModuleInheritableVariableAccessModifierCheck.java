@@ -81,20 +81,18 @@ public class JavaModuleInheritableVariableAccessModifierCheck
 			String accessModifier = javaVariable.getAccessModifier();
 			String variableContent = javaVariable.getContent();
 
-			if (!accessModifier.equals("private") ||
-				!variableContent.contains("@Reference")) {
+			if (accessModifier.equals("private") &&
+				variableContent.contains("@Reference")) {
 
-				continue;
+				addMessage(
+					fileName,
+					StringBundler.concat(
+						"The access modifier of variable \"",
+						javaVariable.getName(),
+						"\" should be protected as the subclass has ",
+						"\"-dsannotations-options: inherit\" in bnd.bnd"),
+					javaVariable.getLineNumber());
 			}
-
-			addMessage(
-				fileName,
-				StringBundler.concat(
-					"The access modifier of variable \"",
-					javaVariable.getName(),
-					"\" should be protected as the subclass has ",
-					"\"-dsannotations-options: inherit\" in bnd.bnd"),
-				javaVariable.getLineNumber());
 		}
 
 		return javaTerm.getContent();
@@ -169,20 +167,18 @@ public class JavaModuleInheritableVariableAccessModifierCheck
 			String superClassName = _getSuperClassName(
 				FileUtil.read(file), className);
 
-			if (superClassName == null) {
-				continue;
+			if (superClassName != null) {
+				List<String> subclassNames = _osgiComponentFileNamesMap.get(
+					superClassName);
+
+				if (subclassNames == null) {
+					subclassNames = new ArrayList<>();
+				}
+
+				subclassNames.add(className);
+
+				_osgiComponentFileNamesMap.put(superClassName, subclassNames);
 			}
-
-			List<String> subclassNames = _osgiComponentFileNamesMap.get(
-				superClassName);
-
-			if (subclassNames == null) {
-				subclassNames = new ArrayList<>();
-			}
-
-			subclassNames.add(className);
-
-			_osgiComponentFileNamesMap.put(superClassName, subclassNames);
 		}
 
 		return _osgiComponentFileNamesMap;

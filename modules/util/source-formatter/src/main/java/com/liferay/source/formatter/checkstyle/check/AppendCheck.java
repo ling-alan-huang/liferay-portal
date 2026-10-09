@@ -119,15 +119,13 @@ public class AppendCheck extends BaseStringConcatenationCheck {
 			DetailAST previousMethodCallFirstParameterDetailAST =
 				previousMethodCallFirstParameterExprDetailAST.getFirstChild();
 
-			if (previousMethodCallFirstParameterDetailAST.getType() ==
+			if (previousMethodCallFirstParameterDetailAST.getType() !=
 					TokenTypes.STRING_LITERAL) {
 
-				continue;
+				checkCombineOperand(
+					methodCallFirstParameterDetailAST,
+					previousMethodCallFirstParameterDetailAST);
 			}
-
-			checkCombineOperand(
-				methodCallFirstParameterDetailAST,
-				previousMethodCallFirstParameterDetailAST);
 		}
 	}
 

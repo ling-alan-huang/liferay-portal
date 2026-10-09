@@ -315,45 +315,43 @@ public class SiteNavigationSiteMapDisplayContext {
 		}
 		else {
 			for (Layout curLayout : layouts) {
-				if ((!showHiddenPages && curLayout.isHidden()) ||
-					!LayoutPermissionUtil.contains(
+				if ((showHiddenPages || !curLayout.isHidden()) &&
+					LayoutPermissionUtil.contains(
 						themeDisplay.getPermissionChecker(), curLayout,
 						ActionKeys.VIEW)) {
 
-					continue;
-				}
+					sb.append("<li>");
 
-				sb.append("<li>");
+					String cssClass = StringPool.BLANK;
 
-				String cssClass = StringPool.BLANK;
-
-				if (curLayout.getPlid() == layout.getPlid()) {
-					cssClass = "current";
-				}
-
-				_buildLayoutView(
-					curLayout, cssClass, useHtmlTitle, themeDisplay, sb);
-
-				if ((displayDepth == 0) || (displayDepth > curDepth)) {
-					if (showHiddenPages) {
-						_buildSitemap(
-							layout, curLayout.getChildren(), rootLayout,
-							includeRootInTree, displayDepth, showCurrentPage,
-							useHtmlTitle, showHiddenPages, curDepth + 1,
-							themeDisplay, sb);
+					if (curLayout.getPlid() == layout.getPlid()) {
+						cssClass = "current";
 					}
-					else {
-						_buildSitemap(
-							layout,
-							curLayout.getChildren(
-								themeDisplay.getPermissionChecker()),
-							rootLayout, includeRootInTree, displayDepth,
-							showCurrentPage, useHtmlTitle, showHiddenPages,
-							curDepth + 1, themeDisplay, sb);
-					}
-				}
 
-				sb.append("</li>");
+					_buildLayoutView(
+						curLayout, cssClass, useHtmlTitle, themeDisplay, sb);
+
+					if ((displayDepth == 0) || (displayDepth > curDepth)) {
+						if (showHiddenPages) {
+							_buildSitemap(
+								layout, curLayout.getChildren(), rootLayout,
+								includeRootInTree, displayDepth,
+								showCurrentPage, useHtmlTitle, showHiddenPages,
+								curDepth + 1, themeDisplay, sb);
+						}
+						else {
+							_buildSitemap(
+								layout,
+								curLayout.getChildren(
+									themeDisplay.getPermissionChecker()),
+								rootLayout, includeRootInTree, displayDepth,
+								showCurrentPage, useHtmlTitle, showHiddenPages,
+								curDepth + 1, themeDisplay, sb);
+						}
+					}
+
+					sb.append("</li>");
+				}
 			}
 		}
 

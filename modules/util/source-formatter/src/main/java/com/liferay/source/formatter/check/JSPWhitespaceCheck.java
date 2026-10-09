@@ -80,12 +80,10 @@ public class JSPWhitespaceCheck extends WhitespaceCheck {
 			newDirectiveLine = formatIncorrectSyntax(
 				newDirectiveLine, "= ", "=", false);
 
-			if (directiveLine.equals(newDirectiveLine)) {
-				continue;
+			if (!directiveLine.equals(newDirectiveLine)) {
+				content = StringUtil.replace(
+					content, directiveLine, newDirectiveLine);
 			}
-
-			content = StringUtil.replace(
-				content, directiveLine, newDirectiveLine);
 		}
 
 		return content.replaceAll(
@@ -188,11 +186,10 @@ public class JSPWhitespaceCheck extends WhitespaceCheck {
 						break;
 					}
 
-					if (line.charAt(pos + 3) == CharPool.SPACE) {
-						continue;
+					if (line.charAt(pos + 3) != CharPool.SPACE) {
+						line = StringUtil.replaceFirst(
+							line, "<%=", "<%= ", pos);
 					}
-
-					line = StringUtil.replaceFirst(line, "<%=", "<%= ", pos);
 				}
 
 				if (trimmedLine.startsWith(StringPool.DOUBLE_SLASH) ||

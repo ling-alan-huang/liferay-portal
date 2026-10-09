@@ -181,12 +181,10 @@ public class PlaywrightSegmentTestClassGroup extends SegmentTestClassGroup {
 		StringBuilder sb = new StringBuilder();
 
 		for (JobProperty jobProperty : jobProperties) {
-			if (jobProperty.getValue() == null) {
-				continue;
+			if (jobProperty.getValue() != null) {
+				sb.append(jobProperty.getValue());
+				sb.append(delimiter);
 			}
-
-			sb.append(jobProperty.getValue());
-			sb.append(delimiter);
 		}
 
 		if (sb.length() > 0) {
@@ -207,11 +205,9 @@ public class PlaywrightSegmentTestClassGroup extends SegmentTestClassGroup {
 		List<JobProperty> filteredJobProperties = new ArrayList<>();
 
 		for (JobProperty jobProperty : jobProperties) {
-			if (!propertyName.equals(jobProperty.getBasePropertyName())) {
-				continue;
+			if (propertyName.equals(jobProperty.getBasePropertyName())) {
+				filteredJobProperties.add(jobProperty);
 			}
-
-			filteredJobProperties.add(jobProperty);
 		}
 
 		return filteredJobProperties;

@@ -69,11 +69,9 @@ public class StaticSiteExportDocument {
 			while (iterator.hasNext()) {
 				String url = importsJSONObject.getString(iterator.next());
 
-				if (url.endsWith(StringPool.SLASH)) {
-					continue;
+				if (!url.endsWith(StringPool.SLASH)) {
+					urls.add(url);
 				}
-
-				urls.add(url);
 			}
 		}
 
@@ -89,11 +87,9 @@ public class StaticSiteExportDocument {
 
 				String path = pathFunction.apply(url);
 
-				if (path == null) {
-					continue;
+				if (path != null) {
+					element.attr(attributeName, path);
 				}
-
-				element.attr(attributeName, path);
 			}
 		}
 
@@ -136,11 +132,9 @@ public class StaticSiteExportDocument {
 				String path = pathFunction.apply(
 					importsJSONObject.getString(specifier));
 
-				if (path == null) {
-					continue;
+				if (path != null) {
+					importsJSONObject.put(specifier, path);
 				}
-
-				importsJSONObject.put(specifier, path);
 			}
 
 			element.text(jsonObject.toString());

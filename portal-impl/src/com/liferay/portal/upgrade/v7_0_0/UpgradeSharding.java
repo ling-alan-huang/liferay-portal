@@ -124,11 +124,9 @@ public class UpgradeSharding extends UpgradeProcess {
 				PropsUtil.get("shard.default.name"), "default");
 
 			for (String uniqueShardName : uniqueShardNames) {
-				if (uniqueShardName.equals(defaultShardName)) {
-					continue;
+				if (!uniqueShardName.equals(defaultShardName)) {
+					copyControlTables(uniqueShardName);
 				}
-
-				copyControlTables(uniqueShardName);
 			}
 		}
 	}

@@ -45,11 +45,9 @@ public class CompileModulesRelevantRule extends ModulesRelevantRule {
 					File lfrbuildPortalFile = new File(
 						modifiedModuleProjectDir, ".lfrbuild-portal");
 
-					if (lfrbuildPortalFile.exists()) {
-						continue;
+					if (!lfrbuildPortalFile.exists()) {
+						moduleDirs.add(modifiedModuleProjectDir);
 					}
-
-					moduleDirs.add(modifiedModuleProjectDir);
 				}
 			}
 

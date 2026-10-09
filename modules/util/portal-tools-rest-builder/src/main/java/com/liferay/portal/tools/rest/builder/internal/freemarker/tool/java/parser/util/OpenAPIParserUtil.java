@@ -279,11 +279,9 @@ public class OpenAPIParserUtil {
 
 			Schema schema = externalSchemas.get(referenceName);
 
-			if (schema == null) {
-				continue;
+			if (schema != null) {
+				externalReferencesMap.put(referenceName, schema);
 			}
-
-			externalReferencesMap.put(referenceName, schema);
 		}
 
 		return externalReferencesMap;
@@ -400,11 +398,9 @@ public class OpenAPIParserUtil {
 				String javaDataType = externalJavaDataTypeMap.get(
 					referenceName);
 
-				if (javaDataType == null) {
-					continue;
+				if (javaDataType != null) {
+					javaDataTypeMap.put(referenceName, javaDataType);
 				}
-
-				javaDataTypeMap.put(referenceName, javaDataType);
 			}
 		}
 		catch (IOException ioException) {
@@ -661,11 +657,9 @@ public class OpenAPIParserUtil {
 
 							Parameter curParameter = parameterMap.get(key);
 
-							if (curParameter == null) {
-								continue;
+							if (curParameter != null) {
+								parameters.set(i, curParameter);
 							}
-
-							parameters.set(i, curParameter);
 						}
 					}
 				}

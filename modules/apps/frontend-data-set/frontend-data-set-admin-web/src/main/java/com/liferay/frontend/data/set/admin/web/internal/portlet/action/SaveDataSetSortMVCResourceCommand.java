@@ -93,22 +93,23 @@ public class SaveDataSetSortMVCResourceCommand
 				boolean defaultProperty = GetterUtil.getBoolean(
 					properties.get("default"));
 
-				if (!defaultProperty) {
-					continue;
+				if (defaultProperty) {
+					Map<String, Serializable> values = new HashMap<>();
+
+					for (Map.Entry<String, Object> entry :
+							properties.entrySet()) {
+
+						values.put(
+							entry.getKey(), (Serializable)entry.getValue());
+					}
+
+					values.put("default", false);
+
+					_objectEntryService.updateObjectEntry(
+						dataSetSortObjectEntry.getId(),
+						dataSetSortObjectEntry.getObjectEntryFolderId(), values,
+						new ServiceContext());
 				}
-
-				Map<String, Serializable> values = new HashMap<>();
-
-				for (Map.Entry<String, Object> entry : properties.entrySet()) {
-					values.put(entry.getKey(), (Serializable)entry.getValue());
-				}
-
-				values.put("default", false);
-
-				_objectEntryService.updateObjectEntry(
-					dataSetSortObjectEntry.getId(),
-					dataSetSortObjectEntry.getObjectEntryFolderId(), values,
-					new ServiceContext());
 			}
 		}
 

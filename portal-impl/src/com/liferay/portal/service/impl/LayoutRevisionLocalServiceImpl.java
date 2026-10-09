@@ -520,15 +520,14 @@ public class LayoutRevisionLocalServiceImpl
 								getPortletPreferencesByPlid(
 									layoutRevision.getLayoutRevisionId())) {
 
-						if (!removePortletIds.contains(
+						if (removePortletIds.contains(
 								portletPreferences.getPortletId())) {
 
-							continue;
+							_portletPreferencesLocalService.
+								deletePortletPreferences(
+									portletPreferences.
+										getPortletPreferencesId());
 						}
-
-						_portletPreferencesLocalService.
-							deletePortletPreferences(
-								portletPreferences.getPortletPreferencesId());
 					}
 				}
 			}
@@ -629,15 +628,13 @@ public class LayoutRevisionLocalServiceImpl
 					layoutRevision.getPlid());
 
 			for (LayoutRevision curLayoutRevision : layoutRevisions) {
-				if (curLayoutRevision.getLayoutRevisionId() ==
+				if (curLayoutRevision.getLayoutRevisionId() !=
 						layoutRevision.getLayoutRevisionId()) {
 
-					continue;
+					curLayoutRevision.setHead(false);
+
+					layoutRevisionPersistence.update(curLayoutRevision);
 				}
-
-				curLayoutRevision.setHead(false);
-
-				layoutRevisionPersistence.update(curLayoutRevision);
 			}
 		}
 		else if (head) {

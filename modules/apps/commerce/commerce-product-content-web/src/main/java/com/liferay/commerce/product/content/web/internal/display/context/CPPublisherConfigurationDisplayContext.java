@@ -111,11 +111,9 @@ public class CPPublisherConfigurationDisplayContext
 		for (long assetTagId : assetTagIds) {
 			AssetTag assetTag = _assetTagLocalService.fetchAssetTag(assetTagId);
 
-			if (assetTag == null) {
-				continue;
+			if (assetTag != null) {
+				filteredAssetTagNames.add(assetTag.getName());
 			}
-
-			filteredAssetTagNames.add(assetTag.getName());
 		}
 
 		return StringUtil.merge(filteredAssetTagNames);

@@ -178,11 +178,9 @@ public class LPKGDeployerRegistrar {
 				0, bundleStringParts[0], bundleStringParts[1],
 				bundleStringParts[2]);
 
-			if (oldTuples.remove(tuple)) {
-				continue;
+			if (!oldTuples.remove(tuple)) {
+				newTuples.add(tuple);
 			}
-
-			newTuples.add(tuple);
 		}
 
 		String[] contextNames = StringUtil.split(
@@ -192,21 +190,17 @@ public class LPKGDeployerRegistrar {
 			Tuple tuple = new Tuple(
 				0, contextName, StringPool.BLANK, contextName);
 
-			if (oldTuples.remove(tuple)) {
-				continue;
+			if (!oldTuples.remove(tuple)) {
+				newTuples.add(tuple);
 			}
-
-			newTuples.add(tuple);
 		}
 
 		for (Tuple tuple : oldTuples) {
 			Module module = _moduleLocalService.fetchModule(tuple._moduleId);
 
-			if (module == null) {
-				continue;
+			if (module != null) {
+				_moduleLocalService.deleteModule(tuple._moduleId);
 			}
-
-			_moduleLocalService.deleteModule(tuple._moduleId);
 		}
 
 		for (Tuple tuple : newTuples) {

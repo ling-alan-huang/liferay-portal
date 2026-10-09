@@ -255,18 +255,17 @@ public class DefaultExportImportContentProcessorTest {
 		int count = 0;
 
 		for (String entry : testReaderWriter.getEntries()) {
-			if (!entry.contains(DLFileEntryConstants.getClassName())) {
-				continue;
+			if (entry.contains(DLFileEntryConstants.getClassName())) {
+				Assert.assertTrue(
+					content,
+					content.contains(
+						"[$dl-reference=" + entry +
+							"$,$include-uuid=false$]") ||
+					content.contains(
+						"[$dl-reference=" + entry + "$,$include-uuid=true$]"));
+
+				count++;
 			}
-
-			Assert.assertTrue(
-				content,
-				content.contains(
-					"[$dl-reference=" + entry + "$,$include-uuid=false$]") ||
-				content.contains(
-					"[$dl-reference=" + entry + "$,$include-uuid=true$]"));
-
-			count++;
 		}
 
 		Assert.assertTrue(
@@ -324,17 +323,15 @@ public class DefaultExportImportContentProcessorTest {
 		int count = 0;
 
 		for (String entry : testReaderWriter.getEntries()) {
-			if (!entry.contains(DLFileEntryConstants.getClassName())) {
-				continue;
+			if (entry.contains(DLFileEntryConstants.getClassName())) {
+				Assert.assertTrue(
+					content,
+					content.contains(
+						"[$dl-reference=" + entry +
+							"$,$include-friendly-url=true$]"));
+
+				count++;
 			}
-
-			Assert.assertTrue(
-				content,
-				content.contains(
-					"[$dl-reference=" + entry +
-						"$,$include-friendly-url=true$]"));
-
-			count++;
 		}
 
 		Assert.assertTrue(

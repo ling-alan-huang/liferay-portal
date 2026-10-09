@@ -321,11 +321,9 @@ public class DefaultLDAPToPortalConverter implements LDAPToPortalConverter {
 			String[] value = LDAPUtil.getAttributeStringArray(
 				attributes, expandoMappings, name);
 
-			if (value == null) {
-				continue;
+			if (value != null) {
+				expandoAttributes.put(name, value);
 			}
-
-			expandoAttributes.put(name, value);
 		}
 
 		return expandoAttributes;

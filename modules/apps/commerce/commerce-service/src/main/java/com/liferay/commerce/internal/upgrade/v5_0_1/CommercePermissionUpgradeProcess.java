@@ -167,11 +167,9 @@ public class CommercePermissionUpgradeProcess extends UpgradeProcess {
 			sb.append(_ACTION_IDS[i]);
 			sb.append(StringPool.APOSTROPHE);
 
-			if (i == (_ACTION_IDS.length - 1)) {
-				continue;
+			if (i != (_ACTION_IDS.length - 1)) {
+				sb.append(", ");
 			}
-
-			sb.append(", ");
 		}
 
 		sb.append(")");

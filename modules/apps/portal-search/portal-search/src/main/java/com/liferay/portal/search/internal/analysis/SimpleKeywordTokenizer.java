@@ -122,11 +122,9 @@ public class SimpleKeywordTokenizer implements KeywordTokenizer {
 		for (String keywordToken : keywordTokens) {
 			keyword = keywordToken.trim();
 
-			if (keyword.isEmpty()) {
-				continue;
+			if (!keyword.isEmpty()) {
+				tokens.add(keyword);
 			}
-
-			tokens.add(keyword);
 		}
 	}
 

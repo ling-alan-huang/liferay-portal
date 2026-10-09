@@ -670,11 +670,13 @@ public class IBMS3Store implements Store {
 			while (true) {
 				s3ObjectSummaries.addAll(objectListing.getObjectSummaries());
 
-				if (!objectListing.isTruncated()) {
+				if (objectListing.isTruncated()) {
+					objectListing = _amazonS3.listNextBatchOfObjects(
+						objectListing);
+				}
+				else {
 					break;
 				}
-
-				objectListing = _amazonS3.listNextBatchOfObjects(objectListing);
 			}
 
 			return s3ObjectSummaries;

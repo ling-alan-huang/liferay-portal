@@ -209,13 +209,11 @@ public class DepotAdminRolesDisplayContext {
 
 			Role role = userGroupRole.getRole();
 
-			if (!Objects.equals(
+			if (Objects.equals(
 					role.getName(), DepotRolesConstants.ASSET_LIBRARY_MEMBER)) {
 
-				continue;
+				iterator.remove();
 			}
-
-			iterator.remove();
 		}
 
 		if (_permissionChecker.isCompanyAdmin()) {
@@ -225,11 +223,9 @@ public class DepotAdminRolesDisplayContext {
 		iterator = filteredUserGroupRoles.iterator();
 
 		while (iterator.hasNext()) {
-			if (_contains(iterator.next())) {
-				continue;
+			if (!_contains(iterator.next())) {
+				iterator.remove();
 			}
-
-			iterator.remove();
 		}
 
 		_userGroupRoles = filteredUserGroupRoles;

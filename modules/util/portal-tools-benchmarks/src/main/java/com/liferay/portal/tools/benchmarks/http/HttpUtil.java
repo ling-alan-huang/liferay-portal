@@ -145,21 +145,19 @@ public class HttpUtil {
 			left -= length;
 			offset += length;
 
-			if (left != 0) {
-				continue;
+			if (left == 0) {
+				int newLength = bytes.length * 6 / 5;
+
+				byte[] newBytes = new byte[newLength];
+
+				System.arraycopy(bytes, 0, newBytes, 0, bytes.length);
+
+				left = newLength - bytes.length;
+
+				bytes = newBytes;
+
+				_bytes.set(bytes);
 			}
-
-			int newLength = bytes.length * 6 / 5;
-
-			byte[] newBytes = new byte[newLength];
-
-			System.arraycopy(bytes, 0, newBytes, 0, bytes.length);
-
-			left = newLength - bytes.length;
-
-			bytes = newBytes;
-
-			_bytes.set(bytes);
 		}
 
 		inputStream.close();

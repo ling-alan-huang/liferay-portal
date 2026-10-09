@@ -419,11 +419,9 @@ public class ConfigurationModelIndexer
 				ResourceBundle resourceBundle = _getResourceBundle(
 					locale, resourceBundleLoader);
 
-				if (resourceBundle == null) {
-					continue;
+				if (resourceBundle != null) {
+					translationHelper.accept(resourceBundle, locale);
 				}
-
-				translationHelper.accept(resourceBundle, locale);
 			}
 		}
 

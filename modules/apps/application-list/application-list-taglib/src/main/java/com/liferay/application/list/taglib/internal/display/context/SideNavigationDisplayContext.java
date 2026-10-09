@@ -297,11 +297,9 @@ public class SideNavigationDisplayContext {
 			Map<String, Object> panelCategoryPropsItem =
 				_getPanelCategoryPropsItem(childPanelCategory, null);
 
-			if (panelCategoryPropsItem == null) {
-				continue;
+			if (panelCategoryPropsItem != null) {
+				propsItems.add(panelCategoryPropsItem);
 			}
-
-			propsItems.add(panelCategoryPropsItem);
 		}
 
 		return propsItems;
@@ -333,11 +331,9 @@ public class SideNavigationDisplayContext {
 			Map<String, Object> panelCategoryPropsItem =
 				_getPanelCategoryPropsItem(childPanelCategory, scope);
 
-			if (panelCategoryPropsItem == null) {
-				continue;
+			if (panelCategoryPropsItem != null) {
+				scopePropsItems.add(panelCategoryPropsItem);
 			}
-
-			scopePropsItems.add(panelCategoryPropsItem);
 		}
 
 		return scopePropsItems;

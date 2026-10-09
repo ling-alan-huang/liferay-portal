@@ -247,11 +247,9 @@ public class BaseHttpHandlerImpl implements HttpHandler {
 		int actual = 0;
 
 		for (NameValuePair nameValuePair : parameters) {
-			if (!name.equals(nameValuePair.getName())) {
-				continue;
+			if (name.equals(nameValuePair.getName())) {
+				actual++;
 			}
-
-			actual++;
 		}
 
 		if (expected == actual) {

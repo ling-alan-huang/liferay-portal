@@ -77,11 +77,9 @@ public class JSONTBatchEngineExportTaskItemWriterImpl
 
 			_unsyncPrintWriter.write(_objectWriter.writeValueAsString(item));
 
-			if (!iterator.hasNext()) {
-				continue;
+			if (iterator.hasNext()) {
+				_unsyncPrintWriter.write(StringPool.COMMA);
 			}
-
-			_unsyncPrintWriter.write(StringPool.COMMA);
 		}
 
 		if (!_itemsStarted) {

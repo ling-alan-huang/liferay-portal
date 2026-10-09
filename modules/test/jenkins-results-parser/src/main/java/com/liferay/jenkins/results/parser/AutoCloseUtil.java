@@ -351,24 +351,25 @@ public class AutoCloseUtil {
 					downstreamBuild.getTestResults("REGRESSION"));
 
 				for (TestResult testResult : testResults) {
-					if (!testResult.isUniqueFailure() ||
-						!gitSubrepositoryPackageName.equals(
-							testResult.getPackageName())) {
-
+					if (!testResult.isUniqueFailure()) {
 						continue;
 					}
 
-					failedDownstreamBuild = downstreamBuild;
+					if (gitSubrepositoryPackageName.equals(
+							testResult.getPackageName())) {
 
-					StringBuilder sb = new StringBuilder();
+						failedDownstreamBuild = downstreamBuild;
 
-					sb.append("<a href=\"");
-					sb.append(testResult.getTestReportURL());
-					sb.append("\">");
-					sb.append(testResult.getClassName());
-					sb.append("</a>");
+						StringBuilder sb = new StringBuilder();
 
-					jenkinsJobFailureURLs.add(sb.toString());
+						sb.append("<a href=\"");
+						sb.append(testResult.getTestReportURL());
+						sb.append("\">");
+						sb.append(testResult.getClassName());
+						sb.append("</a>");
+
+						jenkinsJobFailureURLs.add(sb.toString());
+					}
 				}
 			}
 		}
@@ -638,11 +639,10 @@ public class AutoCloseUtil {
 					List<TestResult> uniqueFailureTestResults =
 						downstreamBuild.getUniqueFailureTestResults();
 
-					if (!uniqueFailureTestResults.isEmpty()) {
-						continue;
+					if (uniqueFailureTestResults.isEmpty()) {
+						failingInUpstreamJobDownstreamBuilds.add(
+							downstreamBuild);
 					}
-
-					failingInUpstreamJobDownstreamBuilds.add(downstreamBuild);
 				}
 
 				if (debug) {
@@ -698,19 +698,17 @@ public class AutoCloseUtil {
 
 					String result = downstreamBuild.getResult();
 
-					if ((result == null) || result.equals("SUCCESS")) {
-						continue;
-					}
+					if ((result != null) && !result.equals("SUCCESS")) {
+						if (debug) {
+							System.out.println(
+								JenkinsResultsParserUtil.combine(
+									"Found a matching failed build. ",
+									downstreamBuild.getDisplayName(),
+									" has failed."));
+						}
 
-					if (debug) {
-						System.out.println(
-							JenkinsResultsParserUtil.combine(
-								"Found a matching failed build. ",
-								downstreamBuild.getDisplayName(),
-								" has failed."));
+						failedDownstreamBuilds.add(downstreamBuild);
 					}
-
-					failedDownstreamBuilds.add(downstreamBuild);
 				}
 
 				if (failedDownstreamBuilds.size() > failLimit) {
@@ -770,17 +768,13 @@ public class AutoCloseUtil {
 
 				String jobName = downstreamBuild.getJobName();
 
-				if ((jobName == null) || jobName.isEmpty()) {
-					continue;
+				if ((jobName != null) && !jobName.isEmpty()) {
+					Matcher matcher = rulePattern.matcher(jobName);
+
+					if (matcher.matches()) {
+						filteredDownstreamBuilds.add(downstreamBuild);
+					}
 				}
-
-				Matcher matcher = rulePattern.matcher(jobName);
-
-				if (!matcher.matches()) {
-					continue;
-				}
-
-				filteredDownstreamBuilds.add(downstreamBuild);
 			}
 
 			return filteredDownstreamBuilds;

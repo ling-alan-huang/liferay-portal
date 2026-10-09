@@ -90,20 +90,16 @@ public class AssertEqualsCheck extends BaseCheck {
 			variableName = _getVariableNameForMethodCall(
 				firstChildDetailAST, "size");
 
-			if (variableName == null) {
-				continue;
+			if (variableName != null) {
+				DetailAST typeDetailAST = getVariableTypeDetailAST(
+					methodCallDetailAST, variableName);
+
+				if ((typeDetailAST != null) && isCollection(typeDetailAST)) {
+					log(
+						methodCallDetailAST, _MSG_ASSERT_ADD_INFORMATION,
+						variableName + ".toString()");
+				}
 			}
-
-			DetailAST typeDetailAST = getVariableTypeDetailAST(
-				methodCallDetailAST, variableName);
-
-			if ((typeDetailAST == null) || !isCollection(typeDetailAST)) {
-				continue;
-			}
-
-			log(
-				methodCallDetailAST, _MSG_ASSERT_ADD_INFORMATION,
-				variableName + ".toString()");
 		}
 	}
 

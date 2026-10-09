@@ -273,11 +273,9 @@ public class VerifyProcessTrackerOSGiCommands {
 		for (Map.Entry<String, Object> entry : properties.entrySet()) {
 			String key = entry.getKey();
 
-			if (!key.startsWith("osgi.command.")) {
-				continue;
+			if (key.startsWith("osgi.command.")) {
+				osgiCommandProperties.put(key, entry.getValue());
 			}
-
-			osgiCommandProperties.put(key, entry.getValue());
 		}
 
 		_serviceRegistration = bundleContext.registerService(

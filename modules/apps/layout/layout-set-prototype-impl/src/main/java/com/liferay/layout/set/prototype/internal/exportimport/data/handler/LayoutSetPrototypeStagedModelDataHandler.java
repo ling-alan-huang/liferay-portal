@@ -287,12 +287,10 @@ public class LayoutSetPrototypeStagedModelDataHandler
 				PortletDataContext.REFERENCE_TYPE_DEPENDENCY,
 				!exportLayoutPrototypes);
 
-			if (!exportLayoutPrototypes) {
-				continue;
+			if (exportLayoutPrototypes) {
+				StagedModelDataHandlerUtil.exportStagedModel(
+					portletDataContext, layoutPrototype);
 			}
-
-			StagedModelDataHandlerUtil.exportStagedModel(
-				portletDataContext, layoutPrototype);
 		}
 	}
 

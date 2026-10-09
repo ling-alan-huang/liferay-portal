@@ -33,14 +33,12 @@ public class JSPLanguageUtilCheck extends BaseFileCheck {
 		matcher = _languageUtilPattern2.matcher(content);
 
 		while (matcher.find()) {
-			if (ToolsUtil.isInsideQuotes(content, matcher.start())) {
-				continue;
+			if (!ToolsUtil.isInsideQuotes(content, matcher.start())) {
+				addMessage(
+					fileName,
+					"Use <liferay-ui:message> tag instead of LanguageUtil.get",
+					getLineNumber(content, matcher.start()));
 			}
-
-			addMessage(
-				fileName,
-				"Use <liferay-ui:message> tag instead of LanguageUtil.get",
-				getLineNumber(content, matcher.start()));
 		}
 
 		return content;

@@ -285,11 +285,9 @@ public class LayoutPageTemplateEntryModelListener
 		for (String key : jsonObject.keySet()) {
 			Object object = jsonObject.get(key);
 
-			if (!(object instanceof JSONObject)) {
-				continue;
+			if (object instanceof JSONObject) {
+				_removeMappedFields((JSONObject)object);
 			}
-
-			_removeMappedFields((JSONObject)object);
 		}
 
 		return jsonObject;

@@ -436,17 +436,15 @@ public class EditCPInstanceMVCActionCommand extends BaseMVCActionCommand {
 				cpInstance.getPromoPrice(), cpInstance.getCost(),
 				serviceContext);
 
-			if (!Objects.equals(
+			if (Objects.equals(
 					_getCommercePricingConfigurationKey(),
 					CommercePricingConstants.VERSION_2_0)) {
 
-				continue;
+				_updateCommercePriceEntries(
+					cpInstance, cpInstance.getPrice(), false,
+					cpInstance.getPromoPrice(),
+					ServiceContextFactory.getInstance(actionRequest));
 			}
-
-			_updateCommercePriceEntries(
-				cpInstance, cpInstance.getPrice(), false,
-				cpInstance.getPromoPrice(),
-				ServiceContextFactory.getInstance(actionRequest));
 		}
 	}
 

@@ -322,15 +322,13 @@ public class LiferayContextController {
 		String endpointRegistrationName = endpointRegistration.getName();
 
 		for (FilterRegistration filterRegistration : _filterRegistrations) {
-			if (Objects.isNull(
+			if (Objects.nonNull(
 					filterRegistration.match(
-						extension, endpointRegistrationName, requestURI)) ||
-				matchingFilterRegistrations.contains(filterRegistration)) {
+						extension, endpointRegistrationName, requestURI)) &&
+				!matchingFilterRegistrations.contains(filterRegistration)) {
 
-				continue;
+				matchingFilterRegistrations.add(filterRegistration);
 			}
-
-			matchingFilterRegistrations.add(filterRegistration);
 		}
 
 		return new LiferayDispatchTargets(

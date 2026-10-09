@@ -233,11 +233,9 @@ public class JUnitTestResult extends BaseTestResult {
 		for (int i = 0; i < sb.length(); i++) {
 			char c = sb.charAt(i);
 
-			if (Character.isJavaIdentifierPart(c)) {
-				continue;
+			if (!Character.isJavaIdentifierPart(c)) {
+				sb.setCharAt(i, '_');
 			}
-
-			sb.setCharAt(i, '_');
 		}
 
 		return sb.toString();

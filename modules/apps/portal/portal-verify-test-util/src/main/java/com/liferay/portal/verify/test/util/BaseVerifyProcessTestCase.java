@@ -74,15 +74,13 @@ public abstract class BaseVerifyProcessTestCase {
 
 				Connection connection = objectValuePair.getKey();
 
-				if (connection.isClosed()) {
-					continue;
-				}
-
-				if (exception == null) {
-					exception = objectValuePair.getValue();
-				}
-				else {
-					exception.addSuppressed(objectValuePair.getValue());
+				if (!connection.isClosed()) {
+					if (exception == null) {
+						exception = objectValuePair.getValue();
+					}
+					else {
+						exception.addSuppressed(objectValuePair.getValue());
+					}
 				}
 			}
 

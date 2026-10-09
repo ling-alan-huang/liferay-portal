@@ -1370,11 +1370,9 @@ public class DDMFormAdminDisplayContext {
 			List<String> scopes = Arrays.asList(
 				StringUtil.split(jsonObject.getString("scope")));
 
-			if (!scopes.contains("forms")) {
-				continue;
+			if (scopes.contains("forms")) {
+				newJSONArray.put(jsonObject);
 			}
-
-			newJSONArray.put(jsonObject);
 		}
 
 		return newJSONArray;

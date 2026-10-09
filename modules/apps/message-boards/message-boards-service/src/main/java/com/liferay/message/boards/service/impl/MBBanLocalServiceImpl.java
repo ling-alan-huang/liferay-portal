@@ -137,18 +137,16 @@ public class MBBanLocalServiceImpl extends MBBanLocalServiceBaseImpl {
 
 			long unbanTime = unbanDate.getTime();
 
-			if (now < unbanTime) {
-				continue;
-			}
+			if (now >= unbanTime) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(
+						StringBundler.concat(
+							"Auto expiring ban ", ban.getBanId(), " on user ",
+							ban.getBanUserId()));
+				}
 
-			if (_log.isDebugEnabled()) {
-				_log.debug(
-					StringBundler.concat(
-						"Auto expiring ban ", ban.getBanId(), " on user ",
-						ban.getBanUserId()));
+				mbBanPersistence.remove(ban);
 			}
-
-			mbBanPersistence.remove(ban);
 		}
 	}
 

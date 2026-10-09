@@ -87,14 +87,12 @@ public class IndexEntryTest {
 						field.get(_indexEntryPersistence));
 				}
 
-				if ((finderPath == null) ||
-					_hasIndex(
+				if ((finderPath != null) &&
+					!_hasIndex(
 						databaseMetaData, finderPath, indexMetadatas, unique)) {
 
-					continue;
+					missingIndexForFinderNames.add(finderName);
 				}
-
-				missingIndexForFinderNames.add(finderName);
 			}
 		}
 

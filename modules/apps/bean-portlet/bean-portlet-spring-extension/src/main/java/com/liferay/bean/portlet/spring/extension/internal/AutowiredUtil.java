@@ -23,14 +23,12 @@ public class AutowiredUtil {
 
 		if (beanName != null) {
 			for (String curBeanName : beanNames) {
-				if ((configurableBeanFactory == null) ||
-					!configurableBeanFactory.containsBean(curBeanName)) {
+				if ((configurableBeanFactory != null) &&
+					configurableBeanFactory.containsBean(curBeanName)) {
 
-					continue;
+					configurableBeanFactory.registerDependentBean(
+						curBeanName, beanName);
 				}
-
-				configurableBeanFactory.registerDependentBean(
-					curBeanName, beanName);
 			}
 		}
 	}

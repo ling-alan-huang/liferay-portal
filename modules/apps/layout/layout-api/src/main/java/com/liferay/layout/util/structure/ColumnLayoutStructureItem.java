@@ -124,16 +124,16 @@ public class ColumnLayoutStructureItem extends LayoutStructureItem {
 		}
 
 		for (ViewportSize viewportSize : _viewportSizes) {
-			if (viewportSize.equals(ViewportSize.DESKTOP) ||
-				!itemConfigJSONObject.has(viewportSize.getViewportSizeId())) {
-
+			if (viewportSize.equals(ViewportSize.DESKTOP)) {
 				continue;
 			}
 
-			setViewportConfiguration(
-				viewportSize.getViewportSizeId(),
-				itemConfigJSONObject.getJSONObject(
-					viewportSize.getViewportSizeId()));
+			if (itemConfigJSONObject.has(viewportSize.getViewportSizeId())) {
+				setViewportConfiguration(
+					viewportSize.getViewportSizeId(),
+					itemConfigJSONObject.getJSONObject(
+						viewportSize.getViewportSizeId()));
+			}
 		}
 	}
 

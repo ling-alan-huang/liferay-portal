@@ -19,11 +19,9 @@ public class TabsItemList extends ArrayList<TabsItem> {
 		TabsItemList tabsItemList = new TabsItemList();
 
 		for (TabsItem tabsItem : tabsItems) {
-			if (tabsItem == null) {
-				continue;
+			if (tabsItem != null) {
+				tabsItemList.add(tabsItem);
 			}
-
-			tabsItemList.add(tabsItem);
 		}
 
 		return tabsItemList;

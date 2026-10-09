@@ -53,16 +53,14 @@ public class CommercePriceListSearchPermissionFilterContributor
 					QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 
 			for (AccountEntry accountEntry : accountEntries) {
-				if (!_userGroupRoleLocalService.hasUserGroupRole(
+				if (_userGroupRoleLocalService.hasUserGroupRole(
 						permissionChecker.getUserId(),
 						accountEntry.getAccountEntryGroupId(),
 						AccountRoleConstants.ROLE_NAME_ACCOUNT_SUPPLIER)) {
 
-					continue;
+					termsFilter.addValue(
+						String.valueOf(accountEntry.getAccountEntryId()));
 				}
-
-				termsFilter.addValue(
-					String.valueOf(accountEntry.getAccountEntryId()));
 			}
 
 			if (!termsFilter.isEmpty()) {

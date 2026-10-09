@@ -79,15 +79,13 @@ public class SystemProperties {
 		for (Map.Entry<String, String> entry : _properties.entrySet()) {
 			String key = entry.getKey();
 
-			if (!key.startsWith(prefix)) {
-				continue;
-			}
+			if (key.startsWith(prefix)) {
+				if (removePrefix) {
+					key = key.substring(prefix.length());
+				}
 
-			if (removePrefix) {
-				key = key.substring(prefix.length());
+				properties.put(key, _resolveReference(entry.getValue()));
 			}
-
-			properties.put(key, _resolveReference(entry.getValue()));
 		}
 
 		return properties;
@@ -119,11 +117,9 @@ public class SystemProperties {
 
 				_load(url, properties);
 
-				if (urls == null) {
-					continue;
+				if (urls != null) {
+					urls.add(url);
 				}
-
-				urls.add(url);
 			}
 		}
 		catch (IOException ioException) {
@@ -141,11 +137,9 @@ public class SystemProperties {
 
 				_load(url, properties);
 
-				if (urls == null) {
-					continue;
+				if (urls != null) {
+					urls.add(url);
 				}
-
-				urls.add(url);
 			}
 		}
 		catch (IOException ioException) {
@@ -167,13 +161,11 @@ public class SystemProperties {
 			for (Map.Entry<Object, Object> entry : properties.entrySet()) {
 				String key = String.valueOf(entry.getKey());
 
-				if (!systemPropertiesSetOverride &&
-					Validator.isNotNull(System.getProperty(key))) {
+				if (systemPropertiesSetOverride ||
+					Validator.isNull(System.getProperty(key))) {
 
-					continue;
+					System.setProperty(key, String.valueOf(entry.getValue()));
 				}
-
-				System.setProperty(key, String.valueOf(entry.getValue()));
 			}
 
 			if (!systemPropertiesSetOverride) {
@@ -184,11 +176,9 @@ public class SystemProperties {
 
 					String key = String.valueOf(entry.getKey());
 
-					if (Validator.isNull(properties.get(key))) {
-						continue;
+					if (Validator.isNotNull(properties.get(key))) {
+						properties.put(key, entry.getValue());
 					}
-
-					properties.put(key, entry.getValue());
 				}
 			}
 		}

@@ -116,12 +116,10 @@ public class DDMFormValues implements Serializable {
 
 			ddmFormFieldValues.add(ddmFormFieldValue);
 
-			if (!includeNestedDDMFormFieldValues) {
-				continue;
+			if (includeNestedDDMFormFieldValues) {
+				ddmFormFieldValue.populateNestedDDMFormFieldValuesReferencesMap(
+					ddmFormFieldValuesReferencesMap);
 			}
-
-			ddmFormFieldValue.populateNestedDDMFormFieldValuesReferencesMap(
-				ddmFormFieldValuesReferencesMap);
 		}
 
 		return ddmFormFieldValuesReferencesMap;

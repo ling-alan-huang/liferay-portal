@@ -85,11 +85,9 @@ public class XmlRpcUtil {
 					for (int i = 0; i < arguments.length; i++) {
 						sb.append(arguments[i]);
 
-						if (i >= (arguments.length - 1)) {
-							continue;
+						if (i < (arguments.length - 1)) {
+							sb.append(", ");
 						}
-
-						sb.append(", ");
 					}
 				}
 

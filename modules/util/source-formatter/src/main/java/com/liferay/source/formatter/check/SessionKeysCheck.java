@@ -108,13 +108,11 @@ public class SessionKeysCheck extends BaseFileCheck {
 			boolean alphaNumericKey = true;
 
 			for (char c : oldKey.toCharArray()) {
-				if (Validator.isChar(c) || Validator.isDigit(c) ||
-					(c == CharPool.DASH) || (c == CharPool.UNDERLINE)) {
+				if (!Validator.isChar(c) && !Validator.isDigit(c) &&
+					(c != CharPool.DASH) && (c != CharPool.UNDERLINE)) {
 
-					continue;
+					alphaNumericKey = false;
 				}
-
-				alphaNumericKey = false;
 			}
 
 			if (!alphaNumericKey) {

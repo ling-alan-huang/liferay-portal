@@ -68,11 +68,9 @@ public class SharedSession implements HttpSession {
 			while (portalHttpSessionNamesEnumeration.hasMoreElements()) {
 				String name = portalHttpSessionNamesEnumeration.nextElement();
 
-				if (!containsSharedAttribute(name)) {
-					continue;
+				if (containsSharedAttribute(name)) {
+					namesList.add(name);
 				}
-
-				namesList.add(name);
 			}
 
 			namesEnumeration = Collections.enumeration(namesList);

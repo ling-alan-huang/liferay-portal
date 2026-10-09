@@ -133,46 +133,45 @@ public class DDMContentUpgradeProcess extends UpgradeProcess {
 			"fieldValues");
 
 		for (DDMFormField fieldSetDDMFormField : fieldSetDDMFormFields) {
-			if (_hasDDMFormField(fieldSetDDMFormField, fieldValuesJSONArray)) {
-				continue;
-			}
+			if (!_hasDDMFormField(fieldSetDDMFormField, fieldValuesJSONArray)) {
+				Map<String, DDMFormField> nestedDDMFormFieldsMap =
+					fieldSetDDMFormField.getNestedDDMFormFieldsMap();
 
-			Map<String, DDMFormField> nestedDDMFormFieldsMap =
-				fieldSetDDMFormField.getNestedDDMFormFieldsMap();
+				Set<String> nestedDDMFormFieldNames =
+					nestedDDMFormFieldsMap.keySet();
 
-			Set<String> nestedDDMFormFieldNames =
-				nestedDDMFormFieldsMap.keySet();
+				JSONArray nestedFieldValuesJSONArray =
+					_jsonFactory.createJSONArray();
 
-			JSONArray nestedFieldValuesJSONArray =
-				_jsonFactory.createJSONArray();
+				JSONArray newFieldValuesJSONArray =
+					_jsonFactory.createJSONArray();
 
-			JSONArray newFieldValuesJSONArray = _jsonFactory.createJSONArray();
+				Iterator<JSONObject> iterator = fieldValuesJSONArray.iterator();
 
-			Iterator<JSONObject> iterator = fieldValuesJSONArray.iterator();
+				while (iterator.hasNext()) {
+					JSONObject fieldValueJSONObject = iterator.next();
 
-			while (iterator.hasNext()) {
-				JSONObject fieldValueJSONObject = iterator.next();
+					if (nestedDDMFormFieldNames.contains(
+							fieldValueJSONObject.getString("name"))) {
 
-				if (nestedDDMFormFieldNames.contains(
-						fieldValueJSONObject.getString("name"))) {
-
-					nestedFieldValuesJSONArray.put(fieldValueJSONObject);
+						nestedFieldValuesJSONArray.put(fieldValueJSONObject);
+					}
+					else {
+						newFieldValuesJSONArray.put(fieldValueJSONObject);
+					}
 				}
-				else {
-					newFieldValuesJSONArray.put(fieldValueJSONObject);
-				}
+
+				newFieldValuesJSONArray.put(
+					JSONUtil.put(
+						"instanceId", StringUtil.randomString(8)
+					).put(
+						"name", fieldSetDDMFormField.getName()
+					).put(
+						"nestedFieldValues", nestedFieldValuesJSONArray
+					));
+
+				fieldValuesJSONArray = newFieldValuesJSONArray;
 			}
-
-			newFieldValuesJSONArray.put(
-				JSONUtil.put(
-					"instanceId", StringUtil.randomString(8)
-				).put(
-					"name", fieldSetDDMFormField.getName()
-				).put(
-					"nestedFieldValues", nestedFieldValuesJSONArray
-				));
-
-			fieldValuesJSONArray = newFieldValuesJSONArray;
 		}
 
 		dataJSONObject.put("fieldValues", fieldValuesJSONArray);

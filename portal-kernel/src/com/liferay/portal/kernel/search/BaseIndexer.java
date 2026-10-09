@@ -658,13 +658,11 @@ public abstract class BaseIndexer<T> implements Indexer<T> {
 		for (Facet facet : facets) {
 			BooleanClause<Query> facetBooleanClause = facet.getFacetClause();
 
-			if (facetBooleanClause == null) {
-				continue;
+			if (facetBooleanClause != null) {
+				facetBooleanQuery.add(
+					facetBooleanClause.getClause(),
+					facetBooleanClause.getBooleanClauseOccur());
 			}
-
-			facetBooleanQuery.add(
-				facetBooleanClause.getClause(),
-				facetBooleanClause.getBooleanClauseOccur());
 		}
 
 		if (!facetBooleanQuery.hasClauses()) {

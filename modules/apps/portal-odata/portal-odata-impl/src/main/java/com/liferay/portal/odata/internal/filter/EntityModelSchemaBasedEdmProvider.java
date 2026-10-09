@@ -102,28 +102,24 @@ public class EntityModelSchemaBasedEdmProvider extends SchemaBasedEdmProvider {
 			CsdlProperty csdlProperty = _createCsdlProperty(
 				namespace, curEntityField);
 
-			if (csdlProperty == null) {
-				continue;
+			if (csdlProperty != null) {
+				csdlProperties.add(csdlProperty);
+
+				if (Objects.equals(
+						curEntityField.getType(), EntityField.Type.COMPLEX)) {
+
+					ComplexEntityField curComplexEntityField =
+						(ComplexEntityField)curEntityField;
+
+					_handleComplexType(
+						_createCsdlComplexType(
+							depth++, curComplexEntityField, _NAMESPACE,
+							objectValuePairs),
+						depth, objectValuePairs);
+
+					depth--;
+				}
 			}
-
-			csdlProperties.add(csdlProperty);
-
-			if (!Objects.equals(
-					curEntityField.getType(), EntityField.Type.COMPLEX)) {
-
-				continue;
-			}
-
-			ComplexEntityField curComplexEntityField =
-				(ComplexEntityField)curEntityField;
-
-			_handleComplexType(
-				_createCsdlComplexType(
-					depth++, curComplexEntityField, _NAMESPACE,
-					objectValuePairs),
-				depth, objectValuePairs);
-
-			depth--;
 		}
 
 		csdlComplexType.setProperties(csdlProperties);
@@ -141,13 +137,11 @@ public class EntityModelSchemaBasedEdmProvider extends SchemaBasedEdmProvider {
 			CsdlComplexType csdlComplexType = _createCsdlComplexType(
 				1, entityField, namespace, objectValuePairs);
 
-			if (csdlComplexType == null) {
-				continue;
+			if (csdlComplexType != null) {
+				objectValuePairs.put(
+					csdlComplexType.getName(),
+					new ObjectValuePair<>(0, csdlComplexType));
 			}
-
-			objectValuePairs.put(
-				csdlComplexType.getName(),
-				new ObjectValuePair<>(0, csdlComplexType));
 		}
 
 		return TransformUtil.transform(
@@ -231,11 +225,9 @@ public class EntityModelSchemaBasedEdmProvider extends SchemaBasedEdmProvider {
 			CsdlProperty csdlProperty = _createCsdlProperty(
 				namespace, entityField);
 
-			if (csdlProperty == null) {
-				continue;
+			if (csdlProperty != null) {
+				csdlProperties.add(csdlProperty);
 			}
-
-			csdlProperties.add(csdlProperty);
 		}
 
 		return csdlProperties;

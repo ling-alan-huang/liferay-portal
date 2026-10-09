@@ -98,11 +98,9 @@ public class OrganizationModelDocumentContributor
 
 			String name = _getOrganizationName(organizationIdString);
 
-			if (name == null) {
-				continue;
+			if (name != null) {
+				organizationNames.add(name);
 			}
-
-			organizationNames.add(name);
 		}
 
 		return StringUtil.merge(organizationNames, " > ");

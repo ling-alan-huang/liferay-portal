@@ -53,15 +53,13 @@ public class UnavailableComponentUtil {
 						componentDependencyDeclaration :
 							componentDeclaration.getComponentDependencies()) {
 
-					if (componentDependencyDeclaration.getState() !=
+					if (componentDependencyDeclaration.getState() ==
 							ComponentDependencyDeclaration.
 								STATE_UNAVAILABLE_REQUIRED) {
 
-						continue;
+						componentDependencyDeclarations.add(
+							componentDependencyDeclaration);
 					}
-
-					componentDependencyDeclarations.add(
-						componentDependencyDeclaration);
 				}
 			}
 

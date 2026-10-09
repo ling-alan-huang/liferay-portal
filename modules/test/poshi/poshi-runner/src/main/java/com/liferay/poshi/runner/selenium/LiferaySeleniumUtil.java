@@ -87,41 +87,40 @@ public class LiferaySeleniumUtil {
 		for (Element eventElement : eventElements) {
 			String level = eventElement.attributeValue("level");
 
-			if (!level.equals("ERROR") && !level.equals("FATAL") &&
-				!level.equals("WARN")) {
+			if (level.equals("ERROR") || level.equals("FATAL") ||
+				level.equals("WARN")) {
 
-				continue;
-			}
+				String timestamp = eventElement.attributeValue("timestamp");
 
-			String timestamp = eventElement.attributeValue("timestamp");
+				if (_errorTimestamps.contains(timestamp)) {
+					continue;
+				}
 
-			if (_errorTimestamps.contains(timestamp)) {
-				continue;
-			}
+				_errorTimestamps.add(timestamp);
 
-			_errorTimestamps.add(timestamp);
+				Element messageElement = eventElement.element("message");
 
-			Element messageElement = eventElement.element("message");
+				String messageText = messageElement.getText();
 
-			String messageText = messageElement.getText();
+				if (isIgnorableErrorLine(messageText)) {
+					continue;
+				}
 
-			if (isIgnorableErrorLine(messageText)) {
-				continue;
-			}
+				StringBuilder sb = new StringBuilder();
 
-			StringBuilder sb = new StringBuilder();
+				sb.append("LIFERAY_ERROR: ");
+				sb.append(messageText);
 
-			sb.append("LIFERAY_ERROR: ");
-			sb.append(messageText);
+				System.out.println(sb.toString());
 
-			System.out.println(sb.toString());
-
-			if (liferayLogException == null) {
-				liferayLogException = new LiferayLogException(sb.toString());
-			}
-			else {
-				PoshiRunnerWarningException.addException(
-					new LiferayLogException(sb.toString()));
+				if (liferayLogException == null) {
+					liferayLogException = new LiferayLogException(
+						sb.toString());
+				}
+				else {
+					PoshiRunnerWarningException.addException(
+						new LiferayLogException(sb.toString()));
+				}
 			}
 		}
 
@@ -144,11 +143,9 @@ public class LiferaySeleniumUtil {
 		for (PoshiRunnerWarningException poshiRunnerWarningException :
 				PoshiRunnerWarningException.getPoshiRunnerWarningExceptions()) {
 
-			if (!(poshiRunnerWarningException instanceof JavaScriptException)) {
-				continue;
+			if (poshiRunnerWarningException instanceof JavaScriptException) {
+				javaScriptExceptions.add(poshiRunnerWarningException);
 			}
-
-			javaScriptExceptions.add(poshiRunnerWarningException);
 		}
 
 		if (!javaScriptExceptions.isEmpty()) {
@@ -164,11 +161,9 @@ public class LiferaySeleniumUtil {
 		for (PoshiRunnerWarningException poshiRunnerWarningException :
 				PoshiRunnerWarningException.getPoshiRunnerWarningExceptions()) {
 
-			if (!(poshiRunnerWarningException instanceof JavaScriptException)) {
-				continue;
+			if (poshiRunnerWarningException instanceof JavaScriptException) {
+				liferayLogExceptions.add(poshiRunnerWarningException);
 			}
-
-			liferayLogExceptions.add(poshiRunnerWarningException);
 		}
 
 		if (!liferayLogExceptions.isEmpty()) {
@@ -198,11 +193,9 @@ public class LiferaySeleniumUtil {
 				continue;
 			}
 
-			if (!(poshiRunnerWarningException instanceof LiferayLogException)) {
-				continue;
+			if (poshiRunnerWarningException instanceof LiferayLogException) {
+				liferayLogExceptions.add(poshiRunnerWarningException);
 			}
-
-			liferayLogExceptions.add(poshiRunnerWarningException);
 		}
 
 		StringBuilder sb = new StringBuilder();
@@ -334,11 +327,9 @@ public class LiferaySeleniumUtil {
 			String filePath = FileUtil.getCanonicalPath(
 				baseDirName + FileUtil.getSeparator() + fileName);
 
-			if (!FileUtil.exists(filePath)) {
-				continue;
+			if (FileUtil.exists(filePath)) {
+				filePaths.add(filePath);
 			}
-
-			filePaths.add(filePath);
 		}
 
 		if (filePaths.size() > 1) {
@@ -471,16 +462,14 @@ public class LiferaySeleniumUtil {
 
 			Element throwableElement = eventElement.element("throwable");
 
-			if (throwableElement == null) {
-				continue;
-			}
+			if (throwableElement != null) {
+				String throwableText = throwableElement.getText();
 
-			String throwableText = throwableElement.getText();
+				matcher = pattern.matcher(throwableText);
 
-			matcher = pattern.matcher(throwableText);
-
-			if (matcher.find()) {
-				return true;
+				if (matcher.find()) {
+					return true;
+				}
 			}
 		}
 
@@ -613,14 +602,12 @@ public class LiferaySeleniumUtil {
 		while ((line = bufferedReader.readLine()) != null) {
 			System.out.println(line);
 
-			if (!line.contains(poshiProperties.printJavaProcessOnFail)) {
-				continue;
+			if (line.contains(poshiProperties.printJavaProcessOnFail)) {
+				pid = line.substring(0, line.indexOf(" "));
+
+				System.out.println(
+					poshiProperties.printJavaProcessOnFail + " PID: " + pid);
 			}
-
-			pid = line.substring(0, line.indexOf(" "));
-
-			System.out.println(
-				poshiProperties.printJavaProcessOnFail + " PID: " + pid);
 		}
 
 		if (Validator.isNotNull(pid)) {

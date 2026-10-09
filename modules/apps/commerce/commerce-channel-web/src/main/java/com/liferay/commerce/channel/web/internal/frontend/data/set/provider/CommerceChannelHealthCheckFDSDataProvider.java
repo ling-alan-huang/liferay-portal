@@ -89,14 +89,12 @@ public class CommerceChannelHealthCheckFDSDataProvider
 		for (CommerceChannelHealthStatus commerceChannelHealthStatus :
 				commerceChannelHealthStatuses) {
 
-			if (commerceChannelHealthStatus.isFixed(
+			if (!commerceChannelHealthStatus.isFixed(
 					commerceChannel.getCompanyId(),
 					commerceChannel.getCommerceChannelId())) {
 
-				continue;
+				healthStatusToFixCount++;
 			}
-
-			healthStatusToFixCount++;
 		}
 
 		return healthStatusToFixCount;

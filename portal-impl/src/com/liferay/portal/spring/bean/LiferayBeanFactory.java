@@ -137,21 +137,19 @@ public class LiferayBeanFactory extends DefaultListableBeanFactory {
 				for (BeanPostProcessor beanPostProcessor :
 						getBeanPostProcessors()) {
 
-					if (!(beanPostProcessor instanceof
+					if (beanPostProcessor instanceof
 							InstantiationAwareBeanPostProcessor
-								instantiationAwareBeanPostProcessor)) {
+								instantiationAwareBeanPostProcessor) {
 
-						continue;
-					}
+						propertyValues =
+							instantiationAwareBeanPostProcessor.
+								postProcessProperties(
+									propertyValues,
+									beanWrapper.getWrappedInstance(), beanName);
 
-					propertyValues =
-						instantiationAwareBeanPostProcessor.
-							postProcessProperties(
-								propertyValues,
-								beanWrapper.getWrappedInstance(), beanName);
-
-					if (propertyValues == null) {
-						return;
+						if (propertyValues == null) {
+							return;
+						}
 					}
 				}
 			}
@@ -221,21 +219,20 @@ public class LiferayBeanFactory extends DefaultListableBeanFactory {
 			for (BeanPostProcessor beanPostProcessor :
 					getBeanPostProcessors()) {
 
-				if (!(beanPostProcessor instanceof
-						InstantiationAwareBeanPostProcessor)) {
+				if (beanPostProcessor instanceof
+						InstantiationAwareBeanPostProcessor) {
 
-					continue;
-				}
+					InstantiationAwareBeanPostProcessor
+						instantiationAwareBeanPostProcessor =
+							(InstantiationAwareBeanPostProcessor)
+								beanPostProcessor;
 
-				InstantiationAwareBeanPostProcessor
-					instantiationAwareBeanPostProcessor =
-						(InstantiationAwareBeanPostProcessor)beanPostProcessor;
+					if (!instantiationAwareBeanPostProcessor.
+							postProcessAfterInstantiation(
+								beanWrapper.getWrappedInstance(), beanName)) {
 
-				if (!instantiationAwareBeanPostProcessor.
-						postProcessAfterInstantiation(
-							beanWrapper.getWrappedInstance(), beanName)) {
-
-					return false;
+						return false;
+					}
 				}
 			}
 		}

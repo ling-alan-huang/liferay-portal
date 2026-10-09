@@ -487,11 +487,9 @@ public class FileImpl implements com.liferay.portal.kernel.util.File {
 		File[] fileArray = file.listFiles();
 
 		for (int i = 0; (fileArray != null) && (i < fileArray.length); i++) {
-			if (!fileArray[i].isDirectory()) {
-				continue;
+			if (fileArray[i].isDirectory()) {
+				dirs.add(fileArray[i].getName());
 			}
-
-			dirs.add(fileArray[i].getName());
 		}
 
 		return dirs.toArray(new String[0]);
@@ -509,11 +507,9 @@ public class FileImpl implements com.liferay.portal.kernel.util.File {
 		File[] fileArray = file.listFiles();
 
 		for (int i = 0; (fileArray != null) && (i < fileArray.length); i++) {
-			if (!fileArray[i].isFile()) {
-				continue;
+			if (fileArray[i].isFile()) {
+				files.add(fileArray[i].getName());
 			}
-
-			files.add(fileArray[i].getName());
 		}
 
 		return files.toArray(new String[0]);

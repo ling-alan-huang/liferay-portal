@@ -269,11 +269,9 @@ public class IndexUpdaterUtil {
 						StringPool.COMMA_AND_SPACE),
 					orderByColumns + " asc");
 
-			if (!duplicateUniqueFinderRowsCleaner.deleteDuplicates()) {
-				continue;
+			if (duplicateUniqueFinderRowsCleaner.deleteDuplicates()) {
+				duplicatesDeleted = true;
 			}
-
-			duplicatesDeleted = true;
 		}
 
 		return duplicatesDeleted;

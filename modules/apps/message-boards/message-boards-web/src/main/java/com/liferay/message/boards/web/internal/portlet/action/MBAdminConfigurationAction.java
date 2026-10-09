@@ -105,15 +105,14 @@ public class MBAdminConfigurationAction
 					actionRequest,
 					StringBundler.concat("priorityValue", j, "_", languageId));
 
-				if (Validator.isNull(name) && Validator.isNull(image) &&
-					(value == 0.0)) {
+				if (Validator.isNotNull(name) || Validator.isNotNull(image) ||
+					(value != 0.0)) {
 
-					continue;
+					priorities.add(
+						StringBundler.concat(
+							name, StringPool.PIPE, image, StringPool.PIPE,
+							value));
 				}
-
-				priorities.add(
-					StringBundler.concat(
-						name, StringPool.PIPE, image, StringPool.PIPE, value));
 			}
 
 			String preferenceName = _localization.getLocalizedName(

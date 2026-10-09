@@ -660,12 +660,10 @@ public class UpdateLanguageActionTest {
 			_testGetRedirectWithLayoutFriendlyURL(
 				StringPool.BLANK, null, locale, virtualHost);
 
-			if (Objects.equals(_defaultLocale, locale)) {
-				continue;
+			if (!Objects.equals(_defaultLocale, locale)) {
+				_testGetRedirectWithLayoutFriendlyURL(
+					StringPool.BLANK, _defaultLocale, locale, virtualHost);
 			}
-
-			_testGetRedirectWithLayoutFriendlyURL(
-				StringPool.BLANK, _defaultLocale, locale, virtualHost);
 		}
 	}
 

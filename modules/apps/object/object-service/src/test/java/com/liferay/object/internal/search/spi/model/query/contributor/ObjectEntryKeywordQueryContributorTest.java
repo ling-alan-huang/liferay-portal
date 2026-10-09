@@ -114,11 +114,9 @@ public class ObjectEntryKeywordQueryContributorTest {
 		int count = 0;
 
 		for (Query query : queries) {
-			if (!(query instanceof NestedQuery)) {
-				continue;
+			if (query instanceof NestedQuery) {
+				count++;
 			}
-
-			count++;
 		}
 
 		return count;
@@ -497,13 +495,12 @@ public class ObjectEntryKeywordQueryContributorTest {
 		Set<String> matchQueryFields = new HashSet<>();
 
 		for (Query query : argumentCaptor.getAllValues()) {
-			if (!(query instanceof NestedQuery)) {
-				continue;
+			if (query instanceof NestedQuery) {
+				NestedQuery nestedQuery = (NestedQuery)query;
+
+				_collectMatchQueryFields(
+					matchQueryFields, nestedQuery.getQuery());
 			}
-
-			NestedQuery nestedQuery = (NestedQuery)query;
-
-			_collectMatchQueryFields(matchQueryFields, nestedQuery.getQuery());
 		}
 
 		String spainLocalizedFieldName = Field.getLocalizedName(

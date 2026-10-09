@@ -1403,13 +1403,11 @@ public class LayoutLocalServiceImpl extends LayoutLocalServiceBaseImpl {
 			for (Layout userGroupLayout : userGroupLayouts) {
 				long userGroupPlid = userGroupLayout.getPlid();
 
-				if (!checkedPlids.add(userGroupPlid)) {
-					continue;
+				if (checkedPlids.add(userGroupPlid)) {
+					layouts.add(userGroupLayout);
+
+					checkParentLayoutIds.add(userGroupLayout.getLayoutId());
 				}
-
-				layouts.add(userGroupLayout);
-
-				checkParentLayoutIds.add(userGroupLayout.getLayoutId());
 			}
 		}
 
@@ -1513,15 +1511,13 @@ public class LayoutLocalServiceImpl extends LayoutLocalServiceBaseImpl {
 				groupId, privateLayout, false);
 
 			for (Layout layout : layouts) {
-				if (!layout.isTypePortlet()) {
-					continue;
-				}
+				if (layout.isTypePortlet()) {
+					LayoutTypePortlet layoutTypePortlet =
+						(LayoutTypePortlet)layout.getLayoutType();
 
-				LayoutTypePortlet layoutTypePortlet =
-					(LayoutTypePortlet)layout.getLayoutType();
-
-				if (layoutTypePortlet.hasPortletId(portletId)) {
-					return layout.getPlid();
+					if (layoutTypePortlet.hasPortletId(portletId)) {
+						return layout.getPlid();
+					}
 				}
 			}
 		}
@@ -1997,13 +1993,11 @@ public class LayoutLocalServiceImpl extends LayoutLocalServiceBaseImpl {
 			for (Layout userGroupLayout : userGroupLayouts) {
 				long userGroupPlid = userGroupLayout.getPlid();
 
-				if (!checkedPlids.add(userGroupPlid)) {
-					continue;
+				if (checkedPlids.add(userGroupPlid)) {
+					layouts.add(userGroupLayout);
+
+					checkParentLayoutIds.add(userGroupLayout.getLayoutId());
 				}
-
-				layouts.add(userGroupLayout);
-
-				checkParentLayoutIds.add(userGroupLayout.getLayoutId());
 			}
 		}
 
@@ -2545,11 +2539,9 @@ public class LayoutLocalServiceImpl extends LayoutLocalServiceBaseImpl {
 			Layout layout = layoutPersistence.findByPrimaryKey(
 				group.getClassPK());
 
-			if (layout.isPrivateLayout() != privateLayout) {
-				continue;
+			if (layout.isPrivateLayout() == privateLayout) {
+				layouts.add(layout);
 			}
-
-			layouts.add(layout);
 		}
 
 		return layouts;
@@ -3648,13 +3640,11 @@ public class LayoutLocalServiceImpl extends LayoutLocalServiceBaseImpl {
 
 			Layout draftLayout = layout.fetchDraftLayout();
 
-			if (draftLayout == null) {
-				continue;
+			if (draftLayout != null) {
+				draftLayout.setPriority(nextPriority);
+
+				layoutPersistence.update(draftLayout);
 			}
-
-			draftLayout.setPriority(nextPriority);
-
-			layoutPersistence.update(draftLayout);
 		}
 	}
 
@@ -3743,11 +3733,9 @@ public class LayoutLocalServiceImpl extends LayoutLocalServiceBaseImpl {
 				layoutPersistence.update(draftLayout);
 			}
 
-			if (!curLayout.equals(layout)) {
-				continue;
+			if (curLayout.equals(layout)) {
+				layout = curLayout;
 			}
-
-			layout = curLayout;
 		}
 
 		return layout;
@@ -4372,11 +4360,9 @@ public class LayoutLocalServiceImpl extends LayoutLocalServiceBaseImpl {
 		for (Locale locale : LanguageUtil.getAvailableLocales(groupId)) {
 			String friendlyURL = friendlyURLMap.get(locale);
 
-			if (Validator.isNull(friendlyURL)) {
-				continue;
+			if (Validator.isNotNull(friendlyURL)) {
+				newFriendlyURLMap.put(locale, _generateFriendlyURLUUID());
 			}
-
-			newFriendlyURLMap.put(locale, _generateFriendlyURLUUID());
 		}
 
 		Locale siteDefaultLocale = LocaleUtil.getSiteDefault();

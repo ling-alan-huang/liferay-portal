@@ -293,11 +293,9 @@ public class SetUpTestableTomcatTask
 
 			String fileName = file.getName();
 
-			if (!fileName.endsWith(".sh")) {
-				continue;
+			if (fileName.endsWith(".sh")) {
+				file.setExecutable(true);
 			}
-
-			file.setExecutable(true);
 		}
 	}
 
@@ -440,17 +438,15 @@ public class SetUpTestableTomcatTask
 		boolean tomcatUsersXmlFileModified = false;
 
 		for (String roleName : _TOMCAT_USERS_ROLE_NAMES) {
-			if (existentRoleNames.contains(roleName)) {
-				continue;
+			if (!existentRoleNames.contains(roleName)) {
+				Element element = document.createElement("role");
+
+				element.setAttribute("rolename", roleName);
+
+				tomcatUsersElement.appendChild(element);
+
+				tomcatUsersXmlFileModified = true;
 			}
-
-			Element element = document.createElement("role");
-
-			element.setAttribute("rolename", roleName);
-
-			tomcatUsersElement.appendChild(element);
-
-			tomcatUsersXmlFileModified = true;
 		}
 
 		if (!tomcatManagerUserExists) {

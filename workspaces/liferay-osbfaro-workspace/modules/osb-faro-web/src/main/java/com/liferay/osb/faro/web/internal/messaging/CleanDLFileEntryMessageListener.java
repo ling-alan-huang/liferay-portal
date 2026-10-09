@@ -123,12 +123,10 @@ public class CleanDLFileEntryMessageListener extends BaseMessageListener {
 
 			String className = dlFileEntry.getClassName();
 
-			if (!className.equals(DataSource.class.getName())) {
-				continue;
+			if (className.equals(DataSource.class.getName())) {
+				_dlFileEntryLocalService.deleteFileEntry(
+					dlFileVersion.getFileEntryId());
 			}
-
-			_dlFileEntryLocalService.deleteFileEntry(
-				dlFileVersion.getFileEntryId());
 		}
 	}
 

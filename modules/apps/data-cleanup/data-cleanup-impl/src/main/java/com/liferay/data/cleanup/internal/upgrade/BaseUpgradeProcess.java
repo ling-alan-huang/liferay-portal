@@ -163,11 +163,9 @@ public abstract class BaseUpgradeProcess extends UpgradeProcess {
 		}
 
 		for (String tableName : tableNames) {
-			if (!hasTable(tableName)) {
-				continue;
+			if (hasTable(tableName)) {
+				runSQL("drop table " + tableName);
 			}
-
-			runSQL("drop table " + tableName);
 		}
 	}
 

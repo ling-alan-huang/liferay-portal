@@ -78,21 +78,19 @@ public class CSDiagramEntryCPDataSourceImpl implements CPDataSource {
 				cpCatalogEntry.getCPDefinitionId());
 
 		for (CSDiagramEntry csDiagramEntry : csDiagramEntries) {
-			if (!_commerceProductViewPermission.contains(
+			if (_commerceProductViewPermission.contains(
 					PermissionThreadLocal.getPermissionChecker(),
 					commerceAccountId,
 					commerceContext.getCommerceChannelGroupId(),
 					csDiagramEntry.getCPDefinitionId())) {
 
-				continue;
+				cpCatalogEntries.add(
+					_cpDefinitionHelper.getCPCatalogEntry(
+						commerceAccountId,
+						commerceContext.getCommerceChannelGroupId(),
+						csDiagramEntry.getCPDefinitionId(),
+						_portal.getLocale(httpServletRequest), false));
 			}
-
-			cpCatalogEntries.add(
-				_cpDefinitionHelper.getCPCatalogEntry(
-					commerceAccountId,
-					commerceContext.getCommerceChannelGroupId(),
-					csDiagramEntry.getCPDefinitionId(),
-					_portal.getLocale(httpServletRequest), false));
 		}
 
 		if (cpCatalogEntries.size() > end) {

@@ -416,20 +416,18 @@ public class ObjectEntryOpenAPIResourceImpl
 
 			dtoProperties.addAll(_getDTOProperties(objectField));
 
-			if (!objectField.isLocalized()) {
-				continue;
+			if (objectField.isLocalized()) {
+				dtoProperties.add(
+					new DTOProperty(
+						Collections.singletonMap("x-parent-map", "properties"),
+						objectField.getI18nObjectFieldName(),
+						Map.class.getSimpleName()) {
+
+						{
+							setRequired(objectField.isRequired());
+						}
+					});
 			}
-
-			dtoProperties.add(
-				new DTOProperty(
-					Collections.singletonMap("x-parent-map", "properties"),
-					objectField.getI18nObjectFieldName(),
-					Map.class.getSimpleName()) {
-
-					{
-						setRequired(objectField.isRequired());
-					}
-				});
 		}
 
 		dtoProperty.setDTOProperties(dtoProperties);

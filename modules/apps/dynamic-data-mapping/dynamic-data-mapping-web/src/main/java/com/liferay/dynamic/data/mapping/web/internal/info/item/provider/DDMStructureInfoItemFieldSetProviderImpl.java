@@ -63,17 +63,15 @@ public class DDMStructureInfoItemFieldSetProviderImpl
 					for (DDMFormField ddmFormField :
 							ddmStructure.getDDMFormFields(false)) {
 
-						if (!ArrayUtil.contains(
+						if (ArrayUtil.contains(
 								InfoItemConstants.
 									SELECTABLE_DDM_STRUCTURE_FIELDS,
 								ddmFormField.getType())) {
 
-							continue;
+							unsafeConsumer.accept(
+								_ddmFormFieldInfoFieldConverter.convert(
+									ddmFormField));
 						}
-
-						unsafeConsumer.accept(
-							_ddmFormFieldInfoFieldConverter.convert(
-								ddmFormField));
 					}
 				}
 			).labelInfoLocalizedValue(

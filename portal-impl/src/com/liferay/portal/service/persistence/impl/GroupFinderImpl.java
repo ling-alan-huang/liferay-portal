@@ -1016,11 +1016,9 @@ public class GroupFinderImpl
 
 			String joinValue = joinMap.get(key);
 
-			if (Validator.isNull(joinValue)) {
-				continue;
+			if (Validator.isNotNull(joinValue)) {
+				sb.append(joinValue);
 			}
-
-			sb.append(joinValue);
 		}
 
 		return sb.toString();
@@ -1364,11 +1362,9 @@ public class GroupFinderImpl
 		int size = 1;
 
 		for (Map<String, Object> param : params) {
-			if (param == null) {
-				continue;
+			if (param != null) {
+				size += param.size() * 5;
 			}
-
-			size += param.size() * 5;
 		}
 
 		StringBundler sb = new StringBundler(size);
@@ -2074,11 +2070,9 @@ public class GroupFinderImpl
 				).withParentheses();
 			}
 
-			if (paramPredicate == null) {
-				continue;
+			if (paramPredicate != null) {
+				predicate = Predicate.and(predicate, paramPredicate);
 			}
-
-			predicate = Predicate.and(predicate, paramPredicate);
 		}
 
 		return predicate;

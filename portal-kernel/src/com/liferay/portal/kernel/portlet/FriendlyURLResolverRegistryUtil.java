@@ -62,13 +62,11 @@ public class FriendlyURLResolverRegistryUtil {
 			new ArrayList<>();
 
 		for (FriendlyURLResolver friendlyURLResolver : _serviceTrackerList) {
-			if ((friendlyURLResolver.getCompanyId() != 0) &&
-				(friendlyURLResolver.getCompanyId() != companyId)) {
+			if ((friendlyURLResolver.getCompanyId() == 0) ||
+				(friendlyURLResolver.getCompanyId() == companyId)) {
 
-				continue;
+				friendlyURLResolvers.add(friendlyURLResolver);
 			}
-
-			friendlyURLResolvers.add(friendlyURLResolver);
 		}
 
 		return friendlyURLResolvers;
@@ -84,11 +82,9 @@ public class FriendlyURLResolverRegistryUtil {
 		List<String> urlSeparatorsList = new ArrayList<>();
 
 		for (FriendlyURLResolver friendlyURLResolver : _serviceTrackerList) {
-			if (friendlyURLResolver == null) {
-				continue;
+			if (friendlyURLResolver != null) {
+				urlSeparatorsList.add(friendlyURLResolver.getURLSeparator());
 			}
-
-			urlSeparatorsList.add(friendlyURLResolver.getURLSeparator());
 		}
 
 		urlSeparators = urlSeparatorsList.toArray(new String[0]);

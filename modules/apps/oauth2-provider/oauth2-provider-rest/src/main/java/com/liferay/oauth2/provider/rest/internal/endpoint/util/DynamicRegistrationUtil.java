@@ -30,11 +30,9 @@ public class DynamicRegistrationUtil {
 			}
 
 			for (String part : allowedValue.split("\\s+")) {
-				if (Validator.isBlank(part)) {
-					continue;
+				if (!Validator.isBlank(part)) {
+					allowedValuesSet.add(part);
 				}
-
-				allowedValuesSet.add(part);
 			}
 		}
 

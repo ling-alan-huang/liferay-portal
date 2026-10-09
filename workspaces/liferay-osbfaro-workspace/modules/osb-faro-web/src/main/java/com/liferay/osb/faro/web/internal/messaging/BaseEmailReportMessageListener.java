@@ -51,28 +51,26 @@ public abstract class BaseEmailReportMessageListener
 				EmailReportPreferences emailReportPreferences =
 					entry.getValue();
 
-				if (!emailReportPreferences.getEnabled() ||
-					!Objects.equals(
+				if (emailReportPreferences.getEnabled() &&
+					Objects.equals(
 						emailReportPreferences.getFrequency(),
 						getFrequency())) {
 
-					continue;
-				}
-
-				try {
-					emailReportHelper.sendEmail(
-						entry.getKey(), getFrequency(),
-						faroPreferences.getGroupId(),
-						faroPreferences.getUserId());
-				}
-				catch (Exception exception) {
-					_log.error(
-						String.format(
-							"Unable to send %s email for channel ID %s and " +
-								"user ID %s",
-							getFrequency(), entry.getKey(),
-							faroPreferences.getUserId()),
-						exception);
+					try {
+						emailReportHelper.sendEmail(
+							entry.getKey(), getFrequency(),
+							faroPreferences.getGroupId(),
+							faroPreferences.getUserId());
+					}
+					catch (Exception exception) {
+						_log.error(
+							String.format(
+								"Unable to send %s email for channel ID %s " +
+									"and user ID %s",
+								getFrequency(), entry.getKey(),
+								faroPreferences.getUserId()),
+							exception);
+					}
 				}
 			}
 		}

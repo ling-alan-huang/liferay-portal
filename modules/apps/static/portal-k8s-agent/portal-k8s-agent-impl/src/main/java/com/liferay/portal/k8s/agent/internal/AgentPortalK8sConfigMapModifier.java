@@ -142,19 +142,17 @@ public class AgentPortalK8sConfigMapModifier
 			String virtualInstanceId = labels.get(
 				"dxp.lxc.liferay.com/virtualInstanceId");
 
-			if (Validator.isNotNull(virtualInstanceId) &&
-				companyWebIds.contains(virtualInstanceId)) {
+			if (Validator.isNull(virtualInstanceId) ||
+				!companyWebIds.contains(virtualInstanceId)) {
 
-				continue;
-			}
+				_kubernetesClient.configMaps(
+				).delete(
+					configMap
+				);
 
-			_kubernetesClient.configMaps(
-			).delete(
-				configMap
-			);
-
-			if (_log.isDebugEnabled()) {
-				_log.debug("Deleted custodian " + configMap);
+				if (_log.isDebugEnabled()) {
+					_log.debug("Deleted custodian " + configMap);
+				}
 			}
 		}
 	}

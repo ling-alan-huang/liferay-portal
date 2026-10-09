@@ -175,11 +175,9 @@ public class UADRegistry {
 			uadAnonymizers);
 
 		for (UADAnonymizer<?> uadAnonymizer : uadAnonymizers) {
-			if (!uadDisplayTypeKeys.contains(uadAnonymizer.getTypeKey())) {
-				continue;
+			if (uadDisplayTypeKeys.contains(uadAnonymizer.getTypeKey())) {
+				nonreviewableUADAnonymizers.remove(uadAnonymizer);
 			}
-
-			nonreviewableUADAnonymizers.remove(uadAnonymizer);
 		}
 
 		return nonreviewableUADAnonymizers;

@@ -129,11 +129,9 @@ public class NodeDefaultsPlugin extends BaseDefaultsPlugin<NodePlugin> {
 			for (Object object : npmInstallTask.getArgs()) {
 				String arg = GradleUtil.toString(object);
 
-				if (!arg.startsWith(_SASS_BINARY_SITE_ARG)) {
-					continue;
+				if (arg.startsWith(_SASS_BINARY_SITE_ARG)) {
+					sassBinarySiteArg = true;
 				}
-
-				sassBinarySiteArg = true;
 			}
 
 			if (!sassBinarySiteArg) {

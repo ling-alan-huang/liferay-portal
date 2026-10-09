@@ -157,11 +157,9 @@ public class ConfigurationUtil {
 		for (Method method : configurationBeanClass.getMethods()) {
 			Meta.AD ad = method.getAnnotation(Meta.AD.class);
 
-			if ((ad == null) || (ad.type() != Meta.Type.Password)) {
-				continue;
+			if ((ad != null) && (ad.type() == Meta.Type.Password)) {
+				properties.remove(method.getName());
 			}
-
-			properties.remove(method.getName());
 		}
 
 		return HashMapBuilder.<String, Object>putAll(

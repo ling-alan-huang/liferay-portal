@@ -180,13 +180,11 @@ public class ViewAuthorizationRequestMVCRenderCommand
 		while (enumeration.hasMoreElements()) {
 			String name = enumeration.nextElement();
 
-			if (!name.startsWith("oauth2_")) {
-				continue;
+			if (name.startsWith("oauth2_")) {
+				oAuth2Parameters.put(
+					name.substring("oauth2_".length()),
+					ParamUtil.getString(httpServletRequest, name));
 			}
-
-			oAuth2Parameters.put(
-				name.substring("oauth2_".length()),
-				ParamUtil.getString(httpServletRequest, name));
 		}
 
 		return oAuth2Parameters;
@@ -223,11 +221,9 @@ public class ViewAuthorizationRequestMVCRenderCommand
 					oAuth2ScopeGrant.getApplicationName(),
 					oAuth2ScopeGrant.getScope());
 
-			if (!liferayOAuth2Scopes.contains(liferayOAuth2Scope)) {
-				continue;
+			if (liferayOAuth2Scopes.contains(liferayOAuth2Scope)) {
+				assignableScopes.addLiferayOAuth2Scope(liferayOAuth2Scope);
 			}
-
-			assignableScopes.addLiferayOAuth2Scope(liferayOAuth2Scope);
 		}
 	}
 

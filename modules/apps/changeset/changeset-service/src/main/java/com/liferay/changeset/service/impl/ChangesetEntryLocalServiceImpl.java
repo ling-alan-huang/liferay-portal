@@ -79,11 +79,9 @@ public class ChangesetEntryLocalServiceImpl
 			ChangesetEntry changesetEntry =
 				changesetEntryPersistence.fetchByPrimaryKey(changesetEntryId);
 
-			if (changesetEntry == null) {
-				continue;
+			if (changesetEntry != null) {
+				changesetEntryPersistence.remove(changesetEntry);
 			}
-
-			changesetEntryPersistence.remove(changesetEntry);
 		}
 	}
 

@@ -157,11 +157,9 @@ public class UpgradeProcessUtil {
 			boolean tempRanUpgradeProcess = _upgradeProcess(
 				buildNumber, upgradeProcess);
 
-			if (!tempRanUpgradeProcess) {
-				continue;
+			if (tempRanUpgradeProcess) {
+				ranUpgradeProcess = true;
 			}
-
-			ranUpgradeProcess = true;
 		}
 
 		return ranUpgradeProcess;

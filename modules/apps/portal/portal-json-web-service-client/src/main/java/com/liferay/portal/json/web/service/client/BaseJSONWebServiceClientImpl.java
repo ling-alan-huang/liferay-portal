@@ -1201,11 +1201,9 @@ public abstract class BaseJSONWebServiceClientImpl
 
 			stringBuilder.append(nameValuePair.getValue());
 
-			if (!iterator.hasNext()) {
-				continue;
+			if (iterator.hasNext()) {
+				stringBuilder.append(",");
 			}
-
-			stringBuilder.append(",");
 		}
 
 		stringBuilder.append("}");

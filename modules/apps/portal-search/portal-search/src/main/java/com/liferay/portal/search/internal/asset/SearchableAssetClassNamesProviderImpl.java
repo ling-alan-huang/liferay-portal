@@ -35,20 +35,16 @@ public class SearchableAssetClassNamesProviderImpl
 		for (AssetRendererFactory<?> assetRendererFactory :
 				assetRendererFactories) {
 
-			if (!assetRendererFactory.isSearchable()) {
-				continue;
+			if (assetRendererFactory.isSearchable()) {
+				String className = assetRendererFactory.getClassName();
+
+				if (ArrayUtil.contains(
+						searchEngineHelper.getEntryClassNames(), className,
+						false)) {
+
+					classNames.add(className);
+				}
 			}
-
-			String className = assetRendererFactory.getClassName();
-
-			if (!ArrayUtil.contains(
-					searchEngineHelper.getEntryClassNames(), className,
-					false)) {
-
-				continue;
-			}
-
-			classNames.add(className);
 		}
 
 		return classNames.toArray(new String[0]);

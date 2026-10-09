@@ -194,14 +194,12 @@ public class CETManagerImplTest {
 				globalJSClientExtensionEntry.getExternalReferenceCode(),
 				cet.getExternalReferenceCode());
 
-			if (!Objects.equals(
+			if (Objects.equals(
 					globalCSSClientExtensionEntry.getExternalReferenceCode(),
 					cet.getExternalReferenceCode())) {
 
-				continue;
+				containsGlobalCSS = true;
 			}
-
-			containsGlobalCSS = true;
 		}
 
 		Assert.assertTrue(containsGlobalCSS);

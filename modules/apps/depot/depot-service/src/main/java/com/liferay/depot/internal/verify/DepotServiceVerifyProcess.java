@@ -63,11 +63,9 @@ public class DepotServiceVerifyProcess extends VerifyProcess {
 						modified = true;
 					}
 
-					if (!modified) {
-						continue;
+					if (modified) {
+						_roleLocalService.updateRole(role);
 					}
-
-					_roleLocalService.updateRole(role);
 				}
 			});
 	}

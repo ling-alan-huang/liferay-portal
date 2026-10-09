@@ -273,17 +273,16 @@ public class PrefsPropsImpl implements PrefsProps {
 		while (enumeration.hasMoreElements()) {
 			String key = enumeration.nextElement();
 
-			if (!key.startsWith(prefix)) {
-				continue;
+			if (key.startsWith(prefix)) {
+				String value = portletPreferences.getValue(
+					key, StringPool.BLANK);
+
+				if (removePrefix) {
+					key = key.substring(prefix.length());
+				}
+
+				newProperties.setProperty(key, value);
 			}
-
-			String value = portletPreferences.getValue(key, StringPool.BLANK);
-
-			if (removePrefix) {
-				key = key.substring(prefix.length());
-			}
-
-			newProperties.setProperty(key, value);
 		}
 
 		return newProperties;

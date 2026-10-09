@@ -57,14 +57,12 @@ public class XMLUtil {
 		Node node = parentElement.getFirstChild();
 
 		do {
-			if (node.getNodeType() != Node.ELEMENT_NODE) {
-				continue;
-			}
+			if (node.getNodeType() == Node.ELEMENT_NODE) {
+				Element element = (Element)node;
 
-			Element element = (Element)node;
-
-			if (name.equals(element.getTagName())) {
-				return element;
+				if (name.equals(element.getTagName())) {
+					return element;
+				}
 			}
 		}
 		while ((node = node.getNextSibling()) != null);

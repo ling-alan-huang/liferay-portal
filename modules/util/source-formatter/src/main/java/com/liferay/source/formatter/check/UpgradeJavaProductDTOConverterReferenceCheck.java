@@ -32,17 +32,15 @@ public class UpgradeJavaProductDTOConverterReferenceCheck
 		for (JavaTerm childJavaTerm : javaClass.getChildJavaTerms()) {
 			String childJavaTermContent = childJavaTerm.getContent();
 
-			if (!childJavaTerm.hasAnnotation("Reference") ||
-				!childJavaTermContent.contains("ProductDTOConverter")) {
+			if (childJavaTerm.hasAnnotation("Reference") &&
+				childJavaTermContent.contains("ProductDTOConverter")) {
 
-				continue;
-			}
+				Matcher matcher = _pattern.matcher(content);
 
-			Matcher matcher = _pattern.matcher(content);
-
-			if (matcher.find()) {
-				return matcher.replaceFirst(
-					_getAnnotationContent(matcher.group(2)));
+				if (matcher.find()) {
+					return matcher.replaceFirst(
+						_getAnnotationContent(matcher.group(2)));
+				}
 			}
 		}
 

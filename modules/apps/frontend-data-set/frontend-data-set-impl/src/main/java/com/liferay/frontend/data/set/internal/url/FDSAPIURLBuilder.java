@@ -132,11 +132,9 @@ public class FDSAPIURLBuilder {
 
 			count++;
 
-			if (count >= _queryStringItems.size()) {
-				continue;
+			if (count < _queryStringItems.size()) {
+				sb.append(CharPool.AMPERSAND);
 			}
-
-			sb.append(CharPool.AMPERSAND);
 		}
 	}
 

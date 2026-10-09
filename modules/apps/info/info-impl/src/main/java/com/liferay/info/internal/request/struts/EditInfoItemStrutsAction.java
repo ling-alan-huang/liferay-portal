@@ -418,21 +418,20 @@ public class EditInfoItemStrutsAction implements StrutsAction {
 				infoFormParameterMap.put(
 					infoField.getUniqueId(), _getValue(infoFieldValue));
 
-				if (infoField.getInfoFieldType() !=
+				if (infoField.getInfoFieldType() ==
 						RelationshipInfoFieldType.INSTANCE) {
 
-					continue;
+					UploadServletRequest uploadServletRequest =
+						_portal.getUploadServletRequest(httpServletRequest);
+
+					String labelParameterName =
+						infoField.getUniqueId() + "-label";
+
+					String label = ParamUtil.getString(
+						uploadServletRequest, labelParameterName);
+
+					infoFormParameterMap.put(labelParameterName, label);
 				}
-
-				UploadServletRequest uploadServletRequest =
-					_portal.getUploadServletRequest(httpServletRequest);
-
-				String labelParameterName = infoField.getUniqueId() + "-label";
-
-				String label = ParamUtil.getString(
-					uploadServletRequest, labelParameterName);
-
-				infoFormParameterMap.put(labelParameterName, label);
 			}
 
 			SessionMessages.add(

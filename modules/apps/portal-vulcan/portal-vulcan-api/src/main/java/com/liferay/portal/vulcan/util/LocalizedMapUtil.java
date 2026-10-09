@@ -59,11 +59,9 @@ public class LocalizedMapUtil {
 
 			String value = localizedMap.get(languageId);
 
-			if (value == null) {
-				continue;
+			if (value != null) {
+				i18nMap.put(languageId, value);
 			}
-
-			i18nMap.put(languageId, value);
 		}
 
 		return i18nMap;
@@ -153,11 +151,9 @@ public class LocalizedMapUtil {
 			Locale locale = _getLocale(entry.getKey(), useDefault);
 			String value = entry.getValue();
 
-			if ((locale == null) || (value == null)) {
-				continue;
+			if ((locale != null) && (value != null)) {
+				localizedMap.put(locale, value);
 			}
-
-			localizedMap.put(locale, value);
 		}
 
 		return localizedMap;
@@ -250,12 +246,10 @@ public class LocalizedMapUtil {
 		for (Map.Entry<String, String> entry : i18nMap.entrySet()) {
 			Locale locale = _getLocale(entry.getKey(), false);
 
-			if (locale == null) {
-				continue;
+			if (locale != null) {
+				resultLocalizedMap = patchLocalizedMap(
+					resultLocalizedMap, locale, entry.getValue());
 			}
-
-			resultLocalizedMap = patchLocalizedMap(
-				resultLocalizedMap, locale, entry.getValue());
 		}
 
 		return resultLocalizedMap;

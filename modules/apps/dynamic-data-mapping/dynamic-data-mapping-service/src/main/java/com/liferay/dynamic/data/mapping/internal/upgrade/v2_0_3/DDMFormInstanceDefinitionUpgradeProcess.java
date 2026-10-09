@@ -68,11 +68,9 @@ public class DDMFormInstanceDefinitionUpgradeProcess extends UpgradeProcess {
 			JSONArray nestedFieldsJSONArray = fieldJSONObject.getJSONArray(
 				"nestedFields");
 
-			if (nestedFieldsJSONArray == null) {
-				continue;
+			if (nestedFieldsJSONArray != null) {
+				_updateFieldsToLocalizable(nestedFieldsJSONArray);
 			}
-
-			_updateFieldsToLocalizable(nestedFieldsJSONArray);
 		}
 	}
 

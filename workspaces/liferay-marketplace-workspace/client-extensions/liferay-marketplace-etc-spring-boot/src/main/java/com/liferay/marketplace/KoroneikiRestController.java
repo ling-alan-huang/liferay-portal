@@ -181,16 +181,14 @@ public class KoroneikiRestController extends BaseRestController {
 
 				Date endDate = productConsumption.getEndDate();
 
-				if (!Objects.equals(
+				if (Objects.equals(
 						productConsumption.getProductPurchaseKey(),
-						productPurchase.getKey()) ||
-					(((endDate == null) || !endDate.after(new Date())) &&
-					 !productPurchase.getPerpetual())) {
+						productPurchase.getKey()) &&
+					(((endDate != null) && endDate.after(new Date())) ||
+					 productPurchase.getPerpetual())) {
 
-					continue;
+					provisionedCount++;
 				}
-
-				provisionedCount++;
 			}
 
 			Date startDate = productPurchase.getStartDate();

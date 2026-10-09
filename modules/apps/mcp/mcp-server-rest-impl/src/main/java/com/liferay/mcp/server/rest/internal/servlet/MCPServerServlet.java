@@ -92,14 +92,12 @@ public class MCPServerServlet extends HttpServlet {
 			String companyIdString = String.valueOf(companyId);
 
 			for (String servletKey : new ArrayList<>(_servlets.keySet())) {
-				if (!servletKey.equals(companyIdString) &&
-					!servletKey.startsWith(
+				if (servletKey.equals(companyIdString) ||
+					servletKey.startsWith(
 						companyIdString + StringPool.UNDERLINE)) {
 
-					continue;
+					_destroy(servletKey);
 				}
-
-				_destroy(servletKey);
 			}
 		}
 	}

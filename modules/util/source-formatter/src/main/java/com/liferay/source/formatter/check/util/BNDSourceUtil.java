@@ -91,15 +91,13 @@ public class BNDSourceUtil {
 				String bundleSymbolicName = getDefinitionValue(
 					content, "Bundle-SymbolicName");
 
-				if ((bundleSymbolicName == null) ||
-					!bundleSymbolicName.startsWith("com.liferay")) {
+				if ((bundleSymbolicName != null) &&
+					bundleSymbolicName.startsWith("com.liferay")) {
 
-					continue;
+					bundleSymbolicNamesMap.put(
+						bundleSymbolicName,
+						SourceUtil.getAbsolutePath(file.getParentFile()));
 				}
-
-				bundleSymbolicNamesMap.put(
-					bundleSymbolicName,
-					SourceUtil.getAbsolutePath(file.getParentFile()));
 			}
 		}
 		catch (IOException ioException) {
@@ -226,11 +224,9 @@ public class BNDSourceUtil {
 		String[] lines = StringUtil.splitLines(content);
 
 		for (String line : lines) {
-			if (!line.contains(header)) {
-				continue;
+			if (line.contains(header)) {
+				content = StringUtil.replaceFirst(content, line, instruction);
 			}
-
-			content = StringUtil.replaceFirst(content, line, instruction);
 		}
 
 		return content;

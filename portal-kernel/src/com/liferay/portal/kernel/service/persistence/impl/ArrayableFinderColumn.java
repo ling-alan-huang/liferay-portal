@@ -57,11 +57,9 @@ public class ArrayableFinderColumn<T extends BaseModel<T>>
 	public void bindValue(QueryPos queryPos, Object normalizedValue) {
 		if (type == Type.STRING) {
 			for (String stringValue : (String[])normalizedValue) {
-				if ((stringValue == null) || stringValue.isEmpty()) {
-					continue;
+				if ((stringValue != null) && !stringValue.isEmpty()) {
+					queryPos.add(stringValue);
 				}
-
-				queryPos.add(stringValue);
 			}
 
 			return;
@@ -187,11 +185,9 @@ public class ArrayableFinderColumn<T extends BaseModel<T>>
 
 		if (!caseSensitive) {
 			for (int i = 0; i < array.length; i++) {
-				if (array[i] == null) {
-					continue;
+				if (array[i] != null) {
+					array[i] = StringUtil.toLowerCase(array[i]);
 				}
-
-				array[i] = StringUtil.toLowerCase(array[i]);
 			}
 		}
 

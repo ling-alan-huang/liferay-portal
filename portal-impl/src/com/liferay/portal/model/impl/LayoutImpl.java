@@ -315,14 +315,12 @@ public class LayoutImpl extends LayoutBaseImpl {
 				LayoutFriendlyURLLocalServiceUtil.getLayoutFriendlyURLs(
 					getPlid())) {
 
-			if (!LanguageUtil.isAvailableLocale(
+			if (LanguageUtil.isAvailableLocale(
 					layoutFriendlyURL.getGroupId(),
 					layoutFriendlyURL.getLanguageId())) {
 
-				continue;
+				availableLanguageIds.add(layoutFriendlyURL.getLanguageId());
 			}
-
-			availableLanguageIds.add(layoutFriendlyURL.getLanguageId());
 		}
 
 		return availableLanguageIds.toArray(new String[0]);
@@ -387,14 +385,12 @@ public class LayoutImpl extends LayoutBaseImpl {
 		while (iterator.hasNext()) {
 			Layout layout = iterator.next();
 
-			if (!layout.isHidden() && layout.isPublished() &&
-				LayoutPermissionUtil.contains(
+			if (layout.isHidden() || !layout.isPublished() ||
+				!LayoutPermissionUtil.contains(
 					permissionChecker, layout, ActionKeys.VIEW)) {
 
-				continue;
+				iterator.remove();
 			}
-
-			iterator.remove();
 		}
 
 		return layouts;

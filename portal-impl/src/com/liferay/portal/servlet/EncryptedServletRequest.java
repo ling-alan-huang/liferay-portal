@@ -42,19 +42,17 @@ public class EncryptedServletRequest extends HttpServletRequestWrapper {
 			String[] values = entry.getValue();
 
 			for (int i = 0; i < values.length; i++) {
-				if (Validator.isNull(values[i])) {
-					continue;
-				}
-
-				try {
-					values[i] = EncryptorUtil.decrypt(_key, values[i]);
-				}
-				catch (EncryptorException encryptorException) {
-					if (_log.isDebugEnabled()) {
-						_log.debug(encryptorException);
+				if (Validator.isNotNull(values[i])) {
+					try {
+						values[i] = EncryptorUtil.decrypt(_key, values[i]);
 					}
+					catch (EncryptorException encryptorException) {
+						if (_log.isDebugEnabled()) {
+							_log.debug(encryptorException);
+						}
 
-					values[i] = StringPool.BLANK;
+						values[i] = StringPool.BLANK;
+					}
 				}
 			}
 

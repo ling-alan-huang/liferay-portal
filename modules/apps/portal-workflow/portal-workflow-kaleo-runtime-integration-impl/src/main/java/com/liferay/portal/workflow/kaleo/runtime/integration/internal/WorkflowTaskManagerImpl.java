@@ -900,15 +900,13 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 				_kaleoTaskAssignmentInstanceLocalService.
 					getKaleoTaskAssignmentInstances(kaleoTaskInstanceTokenId)) {
 
-			if (!Objects.equals(
+			if (Objects.equals(
 					User.class.getName(),
 					kaleoTaskAssignmentInstance.getAssigneeClassName())) {
 
-				continue;
+				assignedUserIds.add(
+					kaleoTaskAssignmentInstance.getAssigneeClassPK());
 			}
-
-			assignedUserIds.add(
-				kaleoTaskAssignmentInstance.getAssigneeClassPK());
 		}
 
 		if (assignedUserIds.size() == 1) {

@@ -316,15 +316,13 @@ public class CommercePriceEntryServiceImpl
 				CommercePriceEntryUOMCreateDateComparator.getInstance(true));
 
 		for (CommercePriceEntry commercePriceEntry : commercePriceEntries) {
-			if (!_commercePriceListModelResourcePermission.contains(
+			if (_commercePriceListModelResourcePermission.contains(
 					getPermissionChecker(),
 					commercePriceEntry.getCommercePriceListId(),
 					ActionKeys.VIEW)) {
 
-				continue;
+				count++;
 			}
-
-			count++;
 		}
 
 		return count;

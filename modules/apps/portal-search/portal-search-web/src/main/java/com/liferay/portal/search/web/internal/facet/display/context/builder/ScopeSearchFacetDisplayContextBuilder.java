@@ -261,12 +261,10 @@ public class ScopeSearchFacetDisplayContextBuilder {
 
 			int count = termCollector.getFrequency();
 
-			if (_countThreshold > count) {
-				continue;
+			if (_countThreshold <= count) {
+				bucketDisplayContexts.add(
+					buildBucketDisplayContext(termCollector, count));
 			}
-
-			bucketDisplayContexts.add(
-				buildBucketDisplayContext(termCollector, count));
 		}
 
 		if (_order != null) {

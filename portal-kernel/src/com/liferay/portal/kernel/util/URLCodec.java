@@ -223,11 +223,12 @@ public class URLCodec {
 		int count = 1;
 
 		for (int i = start + 3; i < encodedString.length(); i += 3) {
-			if (encodedString.charAt(i) != CharPool.PERCENT) {
+			if (encodedString.charAt(i) == CharPool.PERCENT) {
+				count++;
+			}
+			else {
 				break;
 			}
-
-			count++;
 		}
 
 		if (encodedString.length() < (start + (count * 3))) {
@@ -257,23 +258,22 @@ public class URLCodec {
 		for (int i = start; i < rawString.length(); i++) {
 			char rawChar = rawString.charAt(i);
 
-			if (((rawChar < 128) && _VALID_CHARS[rawChar]) ||
-				(!escapeSpaces && (rawChar == CharPool.SPACE))) {
+			if (((rawChar >= 128) || !_VALID_CHARS[rawChar]) &&
+				(escapeSpaces || (rawChar != CharPool.SPACE))) {
 
+				count++;
+
+				if (Character.isHighSurrogate(rawChar) &&
+					((i + 1) < rawString.length()) &&
+					Character.isLowSurrogate(rawString.charAt(i + 1))) {
+
+					i++;
+					count++;
+				}
+			}
+			else {
 				break;
 			}
-
-			count++;
-
-			if (!Character.isHighSurrogate(rawChar) ||
-				((i + 1) >= rawString.length()) ||
-				!Character.isLowSurrogate(rawString.charAt(i + 1))) {
-
-				continue;
-			}
-
-			i++;
-			count++;
 		}
 
 		return CharBuffer.wrap(rawString, start, start + count);

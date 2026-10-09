@@ -201,14 +201,13 @@ public class FragmentCollectionManager {
 				for (Map<String, Object> fragmentEntryMap :
 						fragmentEntryMapsList) {
 
-					if (!GetterUtil.getBoolean(
+					if (GetterUtil.getBoolean(
 							fragmentEntryMap.get("highlighted"))) {
 
-						continue;
+						highlightedFragmentMaps.put(
+							(String)fragmentEntryMap.get("name"),
+							fragmentEntryMap);
 					}
-
-					highlightedFragmentMaps.put(
-						(String)fragmentEntryMap.get("name"), fragmentEntryMap);
 				}
 			}
 

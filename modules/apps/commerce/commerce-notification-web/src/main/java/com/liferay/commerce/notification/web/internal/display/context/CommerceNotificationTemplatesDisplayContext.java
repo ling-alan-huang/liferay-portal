@@ -127,14 +127,13 @@ public class CommerceNotificationTemplatesDisplayContext {
 				commerceDefinitionTermContributor :
 					definitionTermContributorsByContributorKey) {
 
-			if (!definitionTermContributorsByNotificationTypeKey.contains(
+			if (definitionTermContributorsByNotificationTypeKey.contains(
 					commerceDefinitionTermContributor)) {
 
-				continue;
+				results.putAll(
+					commerceDefinitionTermContributor.getDefinitionTerms(
+						locale));
 			}
-
-			results.putAll(
-				commerceDefinitionTermContributor.getDefinitionTerms(locale));
 		}
 
 		return results;

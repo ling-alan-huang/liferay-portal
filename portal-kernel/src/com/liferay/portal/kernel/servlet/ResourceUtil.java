@@ -68,21 +68,21 @@ public class ResourceUtil {
 
 			String contextPath = curServletContext.getContextPath();
 
-			if (Validator.isNull(contextPath) ||
-				!requestPath.startsWith(contextPath)) {
+			if (Validator.isNotNull(contextPath) &&
+				requestPath.startsWith(contextPath)) {
 
-				continue;
-			}
-
-			if (servletContext == null) {
-				servletContext = curServletContext;
-			}
-			else {
-				String servletContextContextPath =
-					servletContext.getContextPath();
-
-				if (contextPath.length() > servletContextContextPath.length()) {
+				if (servletContext == null) {
 					servletContext = curServletContext;
+				}
+				else {
+					String servletContextContextPath =
+						servletContext.getContextPath();
+
+					if (contextPath.length() >
+							servletContextContextPath.length()) {
+
+						servletContext = curServletContext;
+					}
 				}
 			}
 		}

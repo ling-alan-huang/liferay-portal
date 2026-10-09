@@ -73,13 +73,12 @@ public class JSONServerServlet extends HttpServlet {
 		for (File file : repositoryDir.listFiles()) {
 			String fileName = file.getName();
 
-			if (!fileName.endsWith(".json")) {
-				continue;
+			if (fileName.endsWith(".json")) {
+				URI uri = file.toURI();
+
+				_load(
+					fileName.substring(0, fileName.length() - 5), uri.toURL());
 			}
-
-			URI uri = file.toURI();
-
-			_load(fileName.substring(0, fileName.length() - 5), uri.toURL());
 		}
 	}
 
@@ -261,11 +260,9 @@ public class JSONServerServlet extends HttpServlet {
 			for (Map<String, Object> curModel : models) {
 				Long id = _getId(curModel);
 
-				if ((id == null) || (id <= maxId)) {
-					continue;
+				if ((id != null) && (id > maxId)) {
+					maxId = id;
 				}
-
-				maxId = id;
 			}
 
 			model.put("id", maxId + 1);

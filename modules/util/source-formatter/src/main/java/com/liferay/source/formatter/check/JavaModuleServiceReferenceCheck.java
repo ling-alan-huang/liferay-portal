@@ -51,13 +51,11 @@ public class JavaModuleServiceReferenceCheck extends BaseFileCheck {
 			String className = _getFullClassName(
 				content, matcher.group(1), packageName);
 
-			if (!className.startsWith(servicePackageName)) {
-				continue;
+			if (className.startsWith(servicePackageName)) {
+				addMessage(
+					fileName, "Use @BeanReference instead of @ServiceReference",
+					getLineNumber(content, matcher.start()));
 			}
-
-			addMessage(
-				fileName, "Use @BeanReference instead of @ServiceReference",
-				getLineNumber(content, matcher.start()));
 		}
 	}
 

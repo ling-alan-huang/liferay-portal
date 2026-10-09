@@ -117,18 +117,16 @@ public class DDMFormValuesConverterUtil {
 				for (DDMFormFieldValue nestedDDMFormFieldValue :
 						nestedDDMFormFieldValues) {
 
-					if (currentNames.contains(
+					if (!currentNames.contains(
 							nestedDDMFormFieldValue.getName())) {
 
-						continue;
+						ddmFormFieldValue.addNestedDDMFormFieldValue(
+							nestedDDMFormFieldValue);
+
+						_populateNestedValues(
+							nestedDDMFormField, nestedDDMFormFieldValue,
+							ddmFormFieldValuesMap);
 					}
-
-					ddmFormFieldValue.addNestedDDMFormFieldValue(
-						nestedDDMFormFieldValue);
-
-					_populateNestedValues(
-						nestedDDMFormField, nestedDDMFormFieldValue,
-						ddmFormFieldValuesMap);
 				}
 			}
 		}
@@ -142,11 +140,9 @@ public class DDMFormValuesConverterUtil {
 		while (iterator.hasNext()) {
 			DDMFormFieldValue currentDDMFormFieldValue = iterator.next();
 
-			if (expectedNames.contains(currentDDMFormFieldValue.getName())) {
-				continue;
+			if (!expectedNames.contains(currentDDMFormFieldValue.getName())) {
+				iterator.remove();
 			}
-
-			iterator.remove();
 		}
 	}
 

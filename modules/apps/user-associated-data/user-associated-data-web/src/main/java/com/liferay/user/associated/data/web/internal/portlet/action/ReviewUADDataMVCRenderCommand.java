@@ -151,20 +151,16 @@ public class ReviewUADDataMVCRenderCommand implements MVCRenderCommand {
 			renderRequest, "scope", UADConstants.SCOPE_PERSONAL_SITE);
 
 		for (ScopeDisplay curScopeDisplay : scopeDisplays) {
-			if (!scope.equals(curScopeDisplay.getScopeName())) {
-				continue;
+			if (scope.equals(curScopeDisplay.getScopeName())) {
+				scopeDisplay = curScopeDisplay;
 			}
-
-			scopeDisplay = curScopeDisplay;
 		}
 
 		if (!scopeDisplay.hasItems()) {
 			for (ScopeDisplay curScopeDisplay : scopeDisplays) {
-				if (!curScopeDisplay.hasItems()) {
-					continue;
+				if (curScopeDisplay.hasItems()) {
+					scopeDisplay = curScopeDisplay;
 				}
-
-				scopeDisplay = curScopeDisplay;
 			}
 		}
 

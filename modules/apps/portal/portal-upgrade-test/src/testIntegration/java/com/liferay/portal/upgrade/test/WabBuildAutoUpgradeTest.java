@@ -76,11 +76,9 @@ public class WabBuildAutoUpgradeTest extends BaseBuildAutoUpgradeTestCase {
 		super.tearDown();
 
 		for (File file : _warFiles) {
-			if (file == null) {
-				continue;
+			if (file != null) {
+				file.delete();
 			}
-
-			file.delete();
 		}
 	}
 

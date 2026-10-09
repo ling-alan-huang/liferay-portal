@@ -327,11 +327,9 @@ public abstract class BaseCheck extends AbstractCheck {
 		for (DetailAST childDetailAST :
 				getAllChildTokens(detailAST, true, ALL_TYPES)) {
 
-			if (childDetailAST.getLineNo() <= endLineNumber) {
-				continue;
+			if (childDetailAST.getLineNo() > endLineNumber) {
+				endLineNumber = childDetailAST.getLineNo();
 			}
-
-			endLineNumber = childDetailAST.getLineNo();
 		}
 
 		return endLineNumber;
@@ -517,14 +515,12 @@ public abstract class BaseCheck extends AbstractCheck {
 			String methodCallClassName = names.get(0);
 			String methodCallMethodName = names.get(1);
 
-			if (((className != null) &&
-				 !methodCallClassName.equals(className)) ||
-				!ArrayUtil.contains(methodNames, methodCallMethodName)) {
+			if (((className == null) ||
+				 methodCallClassName.equals(className)) &&
+				ArrayUtil.contains(methodNames, methodCallMethodName)) {
 
-				continue;
+				list.add(methodCallDetailAST);
 			}
-
-			list.add(methodCallDetailAST);
 		}
 
 		return list;
@@ -688,11 +684,9 @@ public abstract class BaseCheck extends AbstractCheck {
 		for (DetailAST childDetailAST :
 				getAllChildTokens(detailAST, true, ALL_TYPES)) {
 
-			if (childDetailAST.getLineNo() >= startLineNumber) {
-				continue;
+			if (childDetailAST.getLineNo() < startLineNumber) {
+				startLineNumber = childDetailAST.getLineNo();
 			}
-
-			startLineNumber = childDetailAST.getLineNo();
 		}
 
 		return startLineNumber;
@@ -1503,45 +1497,47 @@ public abstract class BaseCheck extends AbstractCheck {
 				}
 			}
 
-			if ((detailAST.getLineNo() >= lineNumber) ||
-				(count == dependentIdentDetailASTs.size())) {
+			if ((detailAST.getLineNo() < lineNumber) &&
+				(count != dependentIdentDetailASTs.size())) {
 
-				continue;
-			}
-
-			if (getEndLineNumber(detailAST) < lineNumber) {
-				variables.addAll(_getVariables(detailAST, false));
-			}
-			else {
-				DetailAST elistDetailAST = getParentWithTokenType(
-					identDetailAST, TokenTypes.ELIST);
-
-				if (elistDetailAST == null) {
-					variables.addAll(_getVariables(detailAST, includeGetters));
+				if (getEndLineNumber(detailAST) < lineNumber) {
+					variables.addAll(_getVariables(detailAST, false));
 				}
 				else {
-					while (true) {
-						DetailAST parentDetailAST = elistDetailAST.getParent();
+					DetailAST elistDetailAST = getParentWithTokenType(
+						identDetailAST, TokenTypes.ELIST);
 
-						if (parentDetailAST.getLineNo() >= lineNumber) {
-							variables.addAll(
-								_getVariables(elistDetailAST, includeGetters));
+					if (elistDetailAST == null) {
+						variables.addAll(
+							_getVariables(detailAST, includeGetters));
+					}
+					else {
+						while (true) {
+							DetailAST parentDetailAST =
+								elistDetailAST.getParent();
+
+							if (parentDetailAST.getLineNo() >= lineNumber) {
+								variables.addAll(
+									_getVariables(
+										elistDetailAST, includeGetters));
+							}
+							else {
+								break;
+							}
+
+							DetailAST parentElistDetailAST =
+								getParentWithTokenType(
+									elistDetailAST, TokenTypes.ELIST);
+
+							if ((parentElistDetailAST == null) ||
+								(parentElistDetailAST.getLineNo() >
+									elistDetailAST.getLineNo())) {
+
+								break;
+							}
+
+							elistDetailAST = parentElistDetailAST;
 						}
-						else {
-							break;
-						}
-
-						DetailAST parentElistDetailAST = getParentWithTokenType(
-							elistDetailAST, TokenTypes.ELIST);
-
-						if ((parentElistDetailAST == null) ||
-							(parentElistDetailAST.getLineNo() >
-								elistDetailAST.getLineNo())) {
-
-							break;
-						}
-
-						elistDetailAST = parentElistDetailAST;
 					}
 				}
 			}
@@ -1653,15 +1649,13 @@ public abstract class BaseCheck extends AbstractCheck {
 
 			String name = identDetailAST.getText();
 
-			if (Character.isUpperCase(name.charAt(0))) {
-				continue;
+			if (!Character.isUpperCase(name.charAt(0))) {
+				variables.add(
+					new Variable(
+						name,
+						_hasPossibleValueChangeOperation(
+							identDetailAST, includeGetters)));
 			}
-
-			variables.add(
-				new Variable(
-					name,
-					_hasPossibleValueChangeOperation(
-						identDetailAST, includeGetters)));
 		}
 
 		return variables;

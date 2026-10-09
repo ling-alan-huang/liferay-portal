@@ -211,11 +211,9 @@ public class PortalInstancePool {
 			while (resultSet.next()) {
 				long companyId = resultSet.getLong("companyId");
 
-				if (companyId == defaultCompanyId) {
-					continue;
+				if (companyId != defaultCompanyId) {
+					companyIds.add(companyId);
 				}
-
-				companyIds.add(companyId);
 			}
 		}
 

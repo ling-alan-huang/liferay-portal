@@ -60,11 +60,9 @@ public class SupportedPublicRenderParameterTest
 		for (PublicRenderParameter publicRenderParameter :
 				publicRenderParameters) {
 
-			if (!prpName.equals(publicRenderParameter.getIdentifier())) {
-				continue;
+			if (prpName.equals(publicRenderParameter.getIdentifier())) {
+				found = true;
 			}
-
-			found = true;
 		}
 
 		Assert.assertTrue(found);
@@ -97,11 +95,9 @@ public class SupportedPublicRenderParameterTest
 		for (PublicRenderParameter publicRenderParameter :
 				publicRenderParameters) {
 
-			if (!prpName.equals(publicRenderParameter.getIdentifier())) {
-				continue;
+			if (prpName.equals(publicRenderParameter.getIdentifier())) {
+				found = true;
 			}
-
-			found = true;
 		}
 
 		Assert.assertTrue(found);

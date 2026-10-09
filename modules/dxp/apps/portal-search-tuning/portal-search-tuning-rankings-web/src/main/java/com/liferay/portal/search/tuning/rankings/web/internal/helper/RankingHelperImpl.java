@@ -67,11 +67,9 @@ public class RankingHelperImpl implements RankingHelper {
 		}
 
 		for (String alias : aliases) {
-			if (Validator.isBlank(alias)) {
-				continue;
+			if (!Validator.isBlank(alias)) {
+				queryStrings.add(alias);
 			}
-
-			queryStrings.add(alias);
 		}
 
 		return ListUtil.sort(new ArrayList<>(queryStrings));

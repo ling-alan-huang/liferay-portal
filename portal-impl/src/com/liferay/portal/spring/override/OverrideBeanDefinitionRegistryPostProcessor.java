@@ -32,11 +32,9 @@ public class OverrideBeanDefinitionRegistryPostProcessor
 			BeanDefinition beanDefinition =
 				beanDefinitionRegistry.getBeanDefinition(key);
 
-			if (beanDefinition == null) {
-				continue;
+			if (beanDefinition != null) {
+				beanDefinition.setBeanClassName(_properties.getProperty(key));
 			}
-
-			beanDefinition.setBeanClassName(_properties.getProperty(key));
 		}
 	}
 

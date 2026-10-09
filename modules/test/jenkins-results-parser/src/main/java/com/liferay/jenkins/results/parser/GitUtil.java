@@ -137,11 +137,9 @@ public class GitUtil {
 				getRemoteGitRefs(
 					remoteGitBranchName, workingDirectory, remoteURL)) {
 
-			if (!(remoteGitRef instanceof RemoteGitBranch)) {
-				continue;
+			if (remoteGitRef instanceof RemoteGitBranch) {
+				remoteGitBranches.add((RemoteGitBranch)remoteGitRef);
 			}
-
-			remoteGitBranches.add((RemoteGitBranch)remoteGitRef);
 		}
 
 		return remoteGitBranches;
@@ -516,14 +514,12 @@ public class GitUtil {
 					modifiedCommands[i] = modifiedCommands[i].replace(
 						_HOSTNAME_GITHUB_CACHE_PROXY, gitHubDevNodeHostname);
 
-					if ((retryDelay == 0) ||
-						!modifiedCommands[i].contains(
+					if ((retryDelay != 0) &&
+						modifiedCommands[i].contains(
 							_HOSTNAME_GITHUB_CACHE_PROXY)) {
 
-						continue;
+						retryDelay = 0;
 					}
-
-					retryDelay = 0;
 				}
 			}
 

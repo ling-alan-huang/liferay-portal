@@ -184,11 +184,10 @@ public class ServiceAnalyzerPlugin implements AnalyzerPlugin {
 					packagePath + ".service." + name + "LocalService");
 			}
 
-			if (!remoteService) {
-				continue;
+			if (remoteService) {
+				serviceClassNames.add(
+					packagePath + ".service." + name + "Service");
 			}
-
-			serviceClassNames.add(packagePath + ".service." + name + "Service");
 		}
 	}
 
@@ -215,29 +214,27 @@ public class ServiceAnalyzerPlugin implements AnalyzerPlugin {
 			Resource resource = entry.getValue();
 
 			for (Instruction instruction : instructions.keySet()) {
-				if (!instruction.matches(key)) {
-					continue;
-				}
+				if (instruction.matches(key)) {
+					if (resource instanceof FileResource) {
+						FileResource fileResource = (FileResource)resource;
 
-				if (resource instanceof FileResource) {
-					FileResource fileResource = (FileResource)resource;
+						File serviceXmlFile = fileResource.getFile();
 
-					File serviceXmlFile = fileResource.getFile();
+						serviceXmlFiles.add(serviceXmlFile);
+					}
+					else {
+						Path path = Files.createTempFile("service", "xml");
 
-					serviceXmlFiles.add(serviceXmlFile);
-				}
-				else {
-					Path path = Files.createTempFile("service", "xml");
+						Files.copy(
+							resource.openInputStream(), path,
+							StandardCopyOption.REPLACE_EXISTING);
 
-					Files.copy(
-						resource.openInputStream(), path,
-						StandardCopyOption.REPLACE_EXISTING);
+						File serviceXmlFile = path.toFile();
 
-					File serviceXmlFile = path.toFile();
+						serviceXmlFiles.add(serviceXmlFile);
 
-					serviceXmlFiles.add(serviceXmlFile);
-
-					serviceXmlFile.deleteOnExit();
+						serviceXmlFile.deleteOnExit();
+					}
 				}
 			}
 		}

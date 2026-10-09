@@ -140,15 +140,13 @@ public class MethodParametersResolverUtil {
 			Class<?>[] parameterTypes = _method.getParameterTypes();
 
 			for (Class<?> parameterType : parameterTypes) {
-				if (!StringUtil.equalsIgnoreCase(
-						parameterType.getName(), double.class.getName()) &&
-					!StringUtil.equalsIgnoreCase(
+				if (StringUtil.equalsIgnoreCase(
+						parameterType.getName(), double.class.getName()) ||
+					StringUtil.equalsIgnoreCase(
 						parameterType.getName(), long.class.getName())) {
 
-					continue;
+					parameterCount++;
 				}
-
-				parameterCount++;
 			}
 
 			_methodParametersResolverMethodVisitor =

@@ -232,16 +232,14 @@ public class StyleBookEntryFrontendTokensValuesUpgradeProcess
 
 			String name = frontendTokenValueJSONObject.getString("name");
 
-			if (Validator.isNull(name) || _isNamespaced(name)) {
-				continue;
+			if (Validator.isNotNull(name) && !_isNamespaced(name)) {
+				frontendTokenValueJSONObject.put(
+					"name",
+					StringBundler.concat(
+						_getFrontendTokenDefinitionId(
+							customFrontendTokenNames, name, themeId),
+						StringPool.COLON, name));
 			}
-
-			frontendTokenValueJSONObject.put(
-				"name",
-				StringBundler.concat(
-					_getFrontendTokenDefinitionId(
-						customFrontendTokenNames, name, themeId),
-					StringPool.COLON, name));
 		}
 
 		return frontendTokensValuesJSONObject.toString();

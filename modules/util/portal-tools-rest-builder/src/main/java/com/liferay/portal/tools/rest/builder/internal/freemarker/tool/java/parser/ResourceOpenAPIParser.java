@@ -227,16 +227,15 @@ public class ResourceOpenAPIParser {
 
 			String parameterName = pathJavaMethodParameter.getParameterName();
 
-			if (!parameterName.endsWith("Path") ||
-				!Objects.equals(
+			if (parameterName.endsWith("Path") &&
+				Objects.equals(
 					pathJavaMethodParameter.getParameterType(),
 					"java.lang.String")) {
 
-				continue;
+				path = StringUtil.replace(
+					path, "{" + parameterName + "}",
+					"{" + parameterName + ": .+}");
 			}
-
-			path = StringUtil.replace(
-				path, "{" + parameterName + "}", "{" + parameterName + ": .+}");
 		}
 
 		methodAnnotations.add(
@@ -634,14 +633,12 @@ public class ResourceOpenAPIParser {
 		for (JavaMethodParameter javaMethodParameter :
 				javaMethodSignature.getJavaMethodParameters()) {
 
-			if (!_isValidParameter(
+			if (_isValidParameter(
 					configYAML, javaMethodParameter.getParameterName(),
 					schemaName)) {
 
-				continue;
+				javaMethodParameters.add(javaMethodParameter);
 			}
-
-			javaMethodParameters.add(javaMethodParameter);
 		}
 
 		javaMethodParameters.add(
@@ -810,13 +807,11 @@ public class ResourceOpenAPIParser {
 		List<Parameter> parameters = new ArrayList<>();
 
 		for (Parameter parameter : operation.getParameters()) {
-			if (!_isValidParameter(
+			if (_isValidParameter(
 					configYAML, parameter.getName(), schemaName)) {
 
-				continue;
+				parameters.add(parameter);
 			}
-
-			parameters.add(parameter);
 		}
 
 		parameters.add(_getQueryParameter(null, "callbackURL"));
@@ -1469,22 +1464,18 @@ public class ResourceOpenAPIParser {
 
 			Get get = pathItem.getGet();
 
-			if ((get == null) ||
-				!StringUtil.equalsIgnoreCase(basePath, entry.getKey())) {
+			if ((get != null) &&
+				StringUtil.equalsIgnoreCase(basePath, entry.getKey())) {
 
-				continue;
-			}
+				List<String> tags = get.getTags();
 
-			List<String> tags = get.getTags();
+				if (!tags.isEmpty()) {
+					String tag = tags.get(0);
 
-			if (tags.isEmpty()) {
-				continue;
-			}
-
-			String tag = tags.get(0);
-
-			if (!tag.equals(schemaName)) {
-				return tag;
+					if (!tag.equals(schemaName)) {
+						return tag;
+					}
+				}
 			}
 		}
 
@@ -1601,11 +1592,9 @@ public class ResourceOpenAPIParser {
 				sb.append(".class))");
 			}
 
-			if (entry == entries.get(entries.size() - 1)) {
-				continue;
+			if (entry != entries.get(entries.size() - 1)) {
+				sb.append(",");
 			}
-
-			sb.append(",");
 		}
 
 		if (entries.size() > 1) {
@@ -1706,14 +1695,12 @@ public class ResourceOpenAPIParser {
 				continue;
 			}
 
-			if ((httpStatusCode != null) &&
-				(httpStatusCode <= curHttpStatusCode)) {
+			if ((httpStatusCode == null) ||
+				(httpStatusCode > curHttpStatusCode)) {
 
-				continue;
+				httpStatusCode = curHttpStatusCode;
+				response = entry.getValue();
 			}
-
-			httpStatusCode = curHttpStatusCode;
-			response = entry.getValue();
 		}
 
 		String returnType = String.class.getName();

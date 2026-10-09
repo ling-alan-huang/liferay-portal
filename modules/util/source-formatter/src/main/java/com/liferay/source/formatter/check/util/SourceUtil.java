@@ -418,11 +418,12 @@ public class SourceUtil {
 					int precedingBackSlashCount = 0;
 
 					for (int j = i - 1; j >= 0; j--) {
-						if (s.charAt(j) != CharPool.BACK_SLASH) {
+						if (s.charAt(j) == CharPool.BACK_SLASH) {
+							precedingBackSlashCount += 1;
+						}
+						else {
 							break;
 						}
-
-						precedingBackSlashCount += 1;
 					}
 
 					if ((precedingBackSlashCount == 0) ||

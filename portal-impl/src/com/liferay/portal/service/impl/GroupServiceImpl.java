@@ -519,14 +519,12 @@ public class GroupServiceImpl extends GroupServiceBaseImpl {
 		while (iterator.hasNext()) {
 			Group group = iterator.next();
 
-			if (!group.isSite() ||
-				!PortletPermissionUtil.hasControlPanelAccessPermission(
+			if (group.isSite() &&
+				PortletPermissionUtil.hasControlPanelAccessPermission(
 					permissionChecker, group.getGroupId(), portlets)) {
 
-				continue;
+				groups.add(group);
 			}
-
-			groups.add(group);
 		}
 
 		return new ArrayList<>(groups);

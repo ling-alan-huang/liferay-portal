@@ -1208,11 +1208,9 @@ public class LayoutUtil {
 		}
 
 		for (String key : ListUtil.fromCollection(unicodeProperties.keySet())) {
-			if (!key.startsWith("lfr-theme:")) {
-				continue;
+			if (key.startsWith("lfr-theme:")) {
+				unicodeProperties.remove(key);
 			}
-
-			unicodeProperties.remove(key);
 		}
 
 		if ((settings != null) &&

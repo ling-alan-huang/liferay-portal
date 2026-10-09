@@ -1170,13 +1170,11 @@ public class ClusterSchedulerEngineTest {
 
 			SchedulerResponse schedulerResponse = objectValuePair.getKey();
 
-			if (!groupName.equals(schedulerResponse.getGroupName())) {
-				continue;
+			if (groupName.equals(schedulerResponse.getGroupName())) {
+				schedulerResponses.add(
+					_getMemoryClusteredJob(
+						schedulerResponse.getJobName(), groupName));
 			}
-
-			schedulerResponses.add(
-				_getMemoryClusteredJob(
-					schedulerResponse.getJobName(), groupName));
 		}
 
 		return schedulerResponses;
@@ -1447,13 +1445,11 @@ public class ClusterSchedulerEngineTest {
 			while (iterator.hasNext()) {
 				String key = iterator.next();
 
-				if (!key.contains(groupName) ||
-					!key.contains(storageType.toString())) {
+				if (key.contains(groupName) &&
+					key.contains(storageType.toString())) {
 
-					continue;
+					iterator.remove();
 				}
-
-				iterator.remove();
 			}
 		}
 
@@ -1484,11 +1480,9 @@ public class ClusterSchedulerEngineTest {
 			List<SchedulerResponse> schedulerResponses = new ArrayList<>();
 
 			for (SchedulerResponse schedulerResponse : _defaultJobs.values()) {
-				if (storageType != schedulerResponse.getStorageType()) {
-					continue;
+				if (storageType == schedulerResponse.getStorageType()) {
+					schedulerResponses.add(schedulerResponse);
 				}
-
-				schedulerResponses.add(schedulerResponse);
 			}
 
 			return schedulerResponses;
@@ -1505,13 +1499,11 @@ public class ClusterSchedulerEngineTest {
 
 				String key = entry.getKey();
 
-				if (!key.contains(groupName) ||
-					!key.contains(storageType.toString())) {
+				if (key.contains(groupName) &&
+					key.contains(storageType.toString())) {
 
-					continue;
+					schedulerResponses.add(entry.getValue());
 				}
-
-				schedulerResponses.add(entry.getValue());
 			}
 
 			return schedulerResponses;

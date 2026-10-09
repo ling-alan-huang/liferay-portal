@@ -47,11 +47,9 @@ public class UpgradeVersionTreeMap
 		List<UpgradeProcess> upgradeProcesses = new ArrayList<>();
 
 		for (UpgradeStep upgradeStep : upgradeSteps) {
-			if (!(upgradeStep instanceof UpgradeProcess)) {
-				continue;
+			if (upgradeStep instanceof UpgradeProcess) {
+				upgradeProcesses.add((UpgradeProcess)upgradeStep);
 			}
-
-			upgradeProcesses.add((UpgradeProcess)upgradeStep);
 		}
 
 		super.put(version, upgradeProcesses);

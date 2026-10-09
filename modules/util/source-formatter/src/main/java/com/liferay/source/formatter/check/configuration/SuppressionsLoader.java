@@ -67,16 +67,13 @@ public class SuppressionsLoader {
 
 				String key = (String)propertiesEntry.getKey();
 
-				if (!key.startsWith("checkstyle.") ||
-					!key.endsWith(".enabled") ||
-					GetterUtil.getBoolean(propertiesEntry.getValue())) {
+				if (key.startsWith("checkstyle.") && key.endsWith(".enabled") &&
+					!GetterUtil.getBoolean(propertiesEntry.getValue())) {
 
-					continue;
+					sourceFormatterSuppressions.addSuppression(
+						CheckType.CHECKSTYLE, mapEntry.getKey() + "/",
+						key.substring(11, key.length() - 8), null);
 				}
-
-				sourceFormatterSuppressions.addSuppression(
-					CheckType.CHECKSTYLE, mapEntry.getKey() + "/",
-					key.substring(11, key.length() - 8), null);
 			}
 		}
 

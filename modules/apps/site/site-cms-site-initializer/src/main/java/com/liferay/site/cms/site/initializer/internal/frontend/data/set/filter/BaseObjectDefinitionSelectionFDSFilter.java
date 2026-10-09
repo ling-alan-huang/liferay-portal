@@ -58,17 +58,15 @@ public abstract class BaseObjectDefinitionSelectionFDSFilter
 			getExcludedObjectDefinitionExternalReferenceCodes();
 
 		for (ObjectDefinition objectDefinition : objectDefinitions) {
-			if (ArrayUtil.contains(
+			if (!ArrayUtil.contains(
 					excludedObjectDefinitionExternalReferenceCodes,
 					objectDefinition.getExternalReferenceCode())) {
 
-				continue;
+				selectionFDSFilterItems.add(
+					new SelectionFDSFilterItem(
+						objectDefinition.getLabel(locale),
+						objectDefinition.getExternalReferenceCode()));
 			}
-
-			selectionFDSFilterItems.add(
-				new SelectionFDSFilterItem(
-					objectDefinition.getLabel(locale),
-					objectDefinition.getExternalReferenceCode()));
 		}
 
 		if (!ArrayUtil.contains(

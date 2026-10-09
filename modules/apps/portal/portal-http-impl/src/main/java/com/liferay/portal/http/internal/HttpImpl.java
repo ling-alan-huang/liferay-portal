@@ -775,11 +775,9 @@ public class HttpImpl implements Http {
 				for (Map.Entry<String, String> entry : parts.entrySet()) {
 					String value = entry.getValue();
 
-					if (value == null) {
-						continue;
+					if (value != null) {
+						requestBuilder.addParameter(entry.getKey(), value);
 					}
-
-					requestBuilder.addParameter(entry.getKey(), value);
 				}
 			}
 		}
@@ -803,15 +801,14 @@ public class HttpImpl implements Http {
 				for (Map.Entry<String, String> entry : parts.entrySet()) {
 					String value = entry.getValue();
 
-					if (value == null) {
-						continue;
+					if (value != null) {
+						multipartEntityBuilder.addPart(
+							entry.getKey(),
+							new StringBody(
+								value,
+								ContentType.create(
+									"text/plain", StringPool.UTF8)));
 					}
-
-					multipartEntityBuilder.addPart(
-						entry.getKey(),
-						new StringBody(
-							value,
-							ContentType.create("text/plain", StringPool.UTF8)));
 				}
 			}
 

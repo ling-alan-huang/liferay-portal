@@ -106,13 +106,13 @@ public class GetAvailableTemplatesMVCResourceCommandTest {
 				_infoItemRendererRegistry.getInfoItemRenderers(
 					_CLASS_NAME_JOURNAL_ARTICLE)) {
 
-			if (!infoItemRenderer.isAvailable() ||
-				(infoItemRenderer instanceof InfoItemTemplatedRenderer)) {
-
+			if (!infoItemRenderer.isAvailable()) {
 				continue;
 			}
 
-			noninfoItemTemplatedRendererCount++;
+			if (!(infoItemRenderer instanceof InfoItemTemplatedRenderer)) {
+				noninfoItemTemplatedRendererCount++;
+			}
 		}
 
 		Assert.assertEquals(

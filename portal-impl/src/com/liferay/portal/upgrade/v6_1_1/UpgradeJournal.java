@@ -43,19 +43,17 @@ public class UpgradeJournal extends UpgradeProcess {
 
 				String upgradedContent = _upgradeContent(id, content);
 
-				if (Objects.equals(content, upgradedContent)) {
-					continue;
+				if (!Objects.equals(content, upgradedContent)) {
+					if (_log.isWarnEnabled()) {
+						_log.warn(
+							"Fixing invalid content in journal article " + id);
+					}
+
+					preparedStatement2.setString(1, upgradedContent);
+					preparedStatement2.setLong(2, id);
+
+					preparedStatement2.addBatch();
 				}
-
-				if (_log.isWarnEnabled()) {
-					_log.warn(
-						"Fixing invalid content in journal article " + id);
-				}
-
-				preparedStatement2.setString(1, upgradedContent);
-				preparedStatement2.setLong(2, id);
-
-				preparedStatement2.addBatch();
 			}
 
 			preparedStatement2.executeBatch();

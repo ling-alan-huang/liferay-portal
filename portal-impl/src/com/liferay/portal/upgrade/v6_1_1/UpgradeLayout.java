@@ -101,17 +101,15 @@ public class UpgradeLayout extends UpgradeProcess {
 					String sourcePrototypeLayoutUuid = resultSet.getString(
 						"sourcePrototypeLayoutUuid");
 
-					if (!isGroupPrivateLayout(
+					if (isGroupPrivateLayout(
 							groupId, sourcePrototypeLayoutUuid)) {
 
-						continue;
+						long plid = resultSet.getLong("plid");
+
+						runSQL(
+							"update Layout set sourcePrototypeLayoutUuid = " +
+								"null where plid = " + plid);
 					}
-
-					long plid = resultSet.getLong("plid");
-
-					runSQL(
-						"update Layout set sourcePrototypeLayoutUuid = null " +
-							"where plid = " + plid);
 				}
 			}
 		}

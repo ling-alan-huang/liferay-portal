@@ -675,36 +675,40 @@ public abstract class PoshiElement
 				continue;
 			}
 
-			if ((_isVarPoshiScriptSnippet(trimmedPoshiScriptSnippet) &&
-				 (c != ';')) ||
-				!PoshiScriptParserUtil.isBalancedPoshiScript(
+			if (_isVarPoshiScriptSnippet(trimmedPoshiScriptSnippet) &&
+				(c != ';')) {
+
+				continue;
+			}
+
+			if (PoshiScriptParserUtil.isBalancedPoshiScript(
 					poshiScriptSnippet)) {
 
-				continue;
-			}
+				if (splitElseBlocks &&
+					(isValidPoshiScriptBlock(
+						ElseIfPoshiElement.blockNamePattern,
+						poshiScriptSnippet) ||
+					 isValidPoshiScriptBlock(
+						 ElsePoshiElement.blockNamePattern,
+						 poshiScriptSnippet))) {
 
-			if (splitElseBlocks &&
-				(isValidPoshiScriptBlock(
-					ElseIfPoshiElement.blockNamePattern, poshiScriptSnippet) ||
-				 isValidPoshiScriptBlock(
-					 ElsePoshiElement.blockNamePattern, poshiScriptSnippet))) {
+					int lastIndex = poshiScriptSnippets.size() - 1;
 
-				int lastIndex = poshiScriptSnippets.size() - 1;
+					String lastPoshiScriptSnippet = poshiScriptSnippets.get(
+						lastIndex);
 
-				String lastPoshiScriptSnippet = poshiScriptSnippets.get(
-					lastIndex);
+					poshiScriptSnippets.set(
+						lastIndex, lastPoshiScriptSnippet + poshiScriptSnippet);
 
-				poshiScriptSnippets.set(
-					lastIndex, lastPoshiScriptSnippet + poshiScriptSnippet);
+					sb.setLength(0);
+
+					continue;
+				}
+
+				poshiScriptSnippets.add(poshiScriptSnippet);
 
 				sb.setLength(0);
-
-				continue;
 			}
-
-			poshiScriptSnippets.add(poshiScriptSnippet);
-
-			sb.setLength(0);
 		}
 
 		String poshiScriptSnippet = sb.toString();
@@ -976,11 +980,9 @@ public abstract class PoshiElement
 				}
 			}
 
-			if (!trimmedLine.endsWith("*/") || !stackPeek.equals("/*")) {
-				continue;
+			if (trimmedLine.endsWith("*/") && stackPeek.equals("/*")) {
+				stack.pop();
 			}
-
-			stack.pop();
 		}
 
 		return sb.toString();
@@ -1135,11 +1137,9 @@ public abstract class PoshiElement
 				add(PoshiNodeFactory.newPoshiNode(node));
 			}
 
-			if (!(node instanceof CDATA)) {
-				continue;
+			if (node instanceof CDATA) {
+				add(new PoshiCDATA((CDATA)node.clone()));
 			}
-
-			add(new PoshiCDATA((CDATA)node.clone()));
 		}
 	}
 

@@ -1288,17 +1288,17 @@ public class PageTemplatesImporterTest {
 
 			String dropZoneId = dropZoneIds[i];
 
-			if (Validator.isBlank(dropZoneId)) {
-				continue;
+			if (!Validator.isBlank(dropZoneId)) {
+				FragmentDropZoneLayoutStructureItem
+					fragmentDropZoneLayoutStructureItem =
+						(FragmentDropZoneLayoutStructureItem)
+							layoutStructureItem;
+
+				Assert.assertEquals(
+					dropZoneId,
+					fragmentDropZoneLayoutStructureItem.
+						getFragmentDropZoneId());
 			}
-
-			FragmentDropZoneLayoutStructureItem
-				fragmentDropZoneLayoutStructureItem =
-					(FragmentDropZoneLayoutStructureItem)layoutStructureItem;
-
-			Assert.assertEquals(
-				dropZoneId,
-				fragmentDropZoneLayoutStructureItem.getFragmentDropZoneId());
 		}
 
 		for (String itemId : childrenItemIds) {

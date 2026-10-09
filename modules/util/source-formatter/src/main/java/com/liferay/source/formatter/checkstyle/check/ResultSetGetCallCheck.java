@@ -91,11 +91,9 @@ public class ResultSetGetCallCheck extends BaseCheck {
 				continue;
 			}
 
-			if (!text.contains(".")) {
-				continue;
+			if (text.contains(".")) {
+				log(firstChildDetailAST, _MSG_INCORRECT_SET_CALL_PARAMETER_2);
 			}
-
-			log(firstChildDetailAST, _MSG_INCORRECT_SET_CALL_PARAMETER_2);
 		}
 	}
 

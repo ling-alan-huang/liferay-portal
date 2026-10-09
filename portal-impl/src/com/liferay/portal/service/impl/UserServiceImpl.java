@@ -3604,12 +3604,10 @@ public class UserServiceImpl extends UserServiceBaseImpl {
 			OrganizationPermissionUtil.check(
 				permissionChecker, organization, ActionKeys.ASSIGN_MEMBERS);
 
-			if (!strictAssignment) {
-				continue;
+			if (strictAssignment) {
+				OrganizationPermissionUtil.check(
+					permissionChecker, organization, ActionKeys.MANAGE_USERS);
 			}
-
-			OrganizationPermissionUtil.check(
-				permissionChecker, organization, ActionKeys.MANAGE_USERS);
 		}
 
 		return organizationIds;
@@ -3710,14 +3708,12 @@ public class UserServiceImpl extends UserServiceBaseImpl {
 		// group and that the user group membership is allowed
 
 		for (long userGroupId : userGroupIds) {
-			if ((oldUserGroupIds != null) &&
-				ArrayUtil.contains(oldUserGroupIds, userGroupId)) {
+			if ((oldUserGroupIds == null) ||
+				!ArrayUtil.contains(oldUserGroupIds, userGroupId)) {
 
-				continue;
+				UserGroupPermissionUtil.check(
+					permissionChecker, userGroupId, ActionKeys.ASSIGN_MEMBERS);
 			}
-
-			UserGroupPermissionUtil.check(
-				permissionChecker, userGroupId, ActionKeys.ASSIGN_MEMBERS);
 		}
 
 		return userGroupIds;
@@ -3784,15 +3780,13 @@ public class UserServiceImpl extends UserServiceBaseImpl {
 		// group role and that the user group role membership is allowed
 
 		for (UserGroupRole userGroupRole : userGroupRoles) {
-			if ((oldUserGroupRoles != null) &&
-				oldUserGroupRoles.contains(userGroupRole)) {
+			if ((oldUserGroupRoles == null) ||
+				!oldUserGroupRoles.contains(userGroupRole)) {
 
-				continue;
+				UserGroupRolePermissionUtil.check(
+					permissionChecker, userGroupRole.getGroupId(),
+					userGroupRole.getRoleId());
 			}
-
-			UserGroupRolePermissionUtil.check(
-				permissionChecker, userGroupRole.getGroupId(),
-				userGroupRole.getRoleId());
 		}
 
 		return userGroupRoles;
@@ -3951,13 +3945,11 @@ public class UserServiceImpl extends UserServiceBaseImpl {
 		UserFieldException userFieldException = new UserFieldException();
 
 		for (String field : fields) {
-			if (UsersAdminUtil.hasUpdateFieldPermission(
+			if (!UsersAdminUtil.hasUpdateFieldPermission(
 					getPermissionChecker(), getUser(), user, field)) {
 
-				continue;
+				userFieldException.addField(field);
 			}
-
-			userFieldException.addField(field);
 		}
 
 		if (userFieldException.hasFields()) {

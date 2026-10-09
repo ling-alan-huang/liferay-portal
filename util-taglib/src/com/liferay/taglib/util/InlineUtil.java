@@ -29,24 +29,22 @@ public class InlineUtil {
 		for (Map.Entry<String, Object> entry : dynamicAttributes.entrySet()) {
 			String attributeName = entry.getKey();
 
-			if (attributeName.equals("class")) {
-				continue;
-			}
+			if (!attributeName.equals("class")) {
+				String attributeValue = String.valueOf(entry.getValue());
 
-			String attributeValue = String.valueOf(entry.getValue());
+				if (_attributeNames.contains(attributeName)) {
+					if (!Boolean.valueOf(attributeValue)) {
+						continue;
+					}
 
-			if (_attributeNames.contains(attributeName)) {
-				if (!Boolean.valueOf(attributeValue)) {
-					continue;
+					attributeValue = attributeName;
 				}
 
-				attributeValue = attributeName;
+				sb.append(attributeName);
+				sb.append("=\"");
+				sb.append(attributeValue);
+				sb.append("\" ");
 			}
-
-			sb.append(attributeName);
-			sb.append("=\"");
-			sb.append(attributeValue);
-			sb.append("\" ");
 		}
 
 		return sb.toString();

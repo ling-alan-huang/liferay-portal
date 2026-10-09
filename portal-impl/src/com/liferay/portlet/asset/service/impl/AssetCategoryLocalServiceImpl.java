@@ -589,15 +589,13 @@ public class AssetCategoryLocalServiceImpl
 			assetCategoryLocalService.getCategories(className, classPK);
 
 		for (AssetCategory category : oldCategories) {
-			if (ArrayUtil.contains(categoryIds, category.getCategoryId()) ||
-				AssetCategoryPermission.contains(
+			if (!ArrayUtil.contains(categoryIds, category.getCategoryId()) &&
+				!AssetCategoryPermission.contains(
 					permissionChecker, category, ActionKeys.VIEW)) {
 
-				continue;
+				categoryIds = ArrayUtil.append(
+					categoryIds, category.getCategoryId());
 			}
-
-			categoryIds = ArrayUtil.append(
-				categoryIds, category.getCategoryId());
 		}
 
 		return categoryIds;

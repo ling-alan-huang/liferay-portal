@@ -61,11 +61,9 @@ public class TestSecretProvider implements SecretProvider {
 		String prefix = companyId + StringPool.SLASH;
 
 		for (String key : _secrets.keySet()) {
-			if (!key.startsWith(prefix)) {
-				continue;
+			if (key.startsWith(prefix)) {
+				secretIdentifiers.add(key.substring(prefix.length()));
 			}
-
-			secretIdentifiers.add(key.substring(prefix.length()));
 		}
 
 		return secretIdentifiers;

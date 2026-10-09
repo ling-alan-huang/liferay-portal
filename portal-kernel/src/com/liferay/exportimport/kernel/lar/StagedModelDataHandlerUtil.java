@@ -502,32 +502,30 @@ public class StagedModelDataHandlerUtil {
 			while (iterator.hasNext()) {
 				String entry = iterator.next();
 
-				if (!entry.endsWith(".xml") ||
-					!_containsStagedModel(
+				if (entry.endsWith(".xml") &&
+					_containsStagedModel(
 						portletDataContext, entry, stagedModel)) {
 
-					continue;
-				}
+					try {
+						Document document = SAXReaderUtil.read(
+							portletDataContext.getZipEntryAsString(entry));
 
-				try {
-					Document document = SAXReaderUtil.read(
-						portletDataContext.getZipEntryAsString(entry));
+						portletDataContext.setImportDataRootElement(
+							document.getRootElement());
 
-					portletDataContext.setImportDataRootElement(
-						document.getRootElement());
+						String path = ExportImportPathUtil.getModelPath(
+							stagedModel);
 
-					String path = ExportImportPathUtil.getModelPath(
-						stagedModel);
+						portletDataContext.removePrimaryKey(path);
 
-					portletDataContext.removePrimaryKey(path);
+						importStagedModel(portletDataContext, referenceElement);
 
-					importStagedModel(portletDataContext, referenceElement);
-
-					return;
-				}
-				catch (Exception exception) {
-					if (_log.isDebugEnabled()) {
-						_log.debug(exception);
+						return;
+					}
+					catch (Exception exception) {
+						if (_log.isDebugEnabled()) {
+							_log.debug(exception);
+						}
 					}
 				}
 			}
@@ -565,14 +563,12 @@ public class StagedModelDataHandlerUtil {
 			while (xmlStreamReader.hasNext()) {
 				int event = xmlStreamReader.next();
 
-				if (event != XMLStreamConstants.START_ELEMENT) {
-					continue;
-				}
+				if (event == XMLStreamConstants.START_ELEMENT) {
+					QName qName = xmlStreamReader.getName();
 
-				QName qName = xmlStreamReader.getName();
-
-				if (Objects.equals(qName.getLocalPart(), simpleName)) {
-					return true;
+					if (Objects.equals(qName.getLocalPart(), simpleName)) {
+						return true;
+					}
 				}
 			}
 		}

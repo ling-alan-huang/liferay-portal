@@ -123,18 +123,16 @@ public class PoshiDependenciesFileLocationCheck extends BaseFileCheck {
 				}
 			}
 
-			if (!sourceFormatterArgs.isFormatCurrentBranch() &&
-				!StringUtil.equals(absolutePath, referencesFileNames.get(0))) {
+			if (sourceFormatterArgs.isFormatCurrentBranch() ||
+				StringUtil.equals(absolutePath, referencesFileNames.get(0))) {
 
-				continue;
+				addMessage(
+					fileName,
+					StringBundler.concat(
+						"Test dependencies file \"", entry.getKey(),
+						"\" is only referenced by one module, move it to ",
+						"module dependencies directory"));
 			}
-
-			addMessage(
-				fileName,
-				StringBundler.concat(
-					"Test dependencies file \"", entry.getKey(),
-					"\" is only referenced by one module, move it to module ",
-					"dependencies directory"));
 		}
 	}
 
@@ -200,14 +198,12 @@ public class PoshiDependenciesFileLocationCheck extends BaseFileCheck {
 				file.getCanonicalPath(), new String[] {"**/*.testcase"});
 
 			for (String fileName : fileNames) {
-				if (!fileName.contains("portal-web") &&
-					!fileName.matches(
+				if (fileName.contains("portal-web") ||
+					fileName.matches(
 						".+/modules/.+-test/src/testFunctional(/.*)?")) {
 
-					continue;
+					_testCaseFileNames.add(fileName);
 				}
-
-				_testCaseFileNames.add(fileName);
 			}
 
 			fileNames = SourceFormatterUtil.scanForFileNames(
@@ -217,14 +213,13 @@ public class PoshiDependenciesFileLocationCheck extends BaseFileCheck {
 				});
 
 			for (String fileName : fileNames) {
-				if (fileName.contains("/playwright/") ||
-					fileName.contains("/poshi/") ||
-					fileName.contains("/source-formatter/")) {
+				if (!fileName.contains("/playwright/") &&
+					!fileName.contains("/poshi/") &&
+					!fileName.contains("/source-formatter/")) {
 
-					continue;
+					_dependenciesFileReferencesMap.put(
+						fileName, new TreeSet<>());
 				}
-
-				_dependenciesFileReferencesMap.put(fileName, new TreeSet<>());
 			}
 		}
 
@@ -236,13 +231,12 @@ public class PoshiDependenciesFileLocationCheck extends BaseFileCheck {
 			file.getCanonicalPath(), new String[0]);
 
 		for (String fileName : fileNames) {
-			if (fileName.contains(".lar/") || fileName.contains(".war/") ||
-				fileName.contains(".zip/")) {
+			if (!fileName.contains(".lar/") && !fileName.contains(".war/") &&
+				!fileName.contains(".zip/")) {
 
-				continue;
+				_dependenciesGlobalFileReferencesMap.put(
+					fileName, new TreeSet<>());
 			}
-
-			_dependenciesGlobalFileReferencesMap.put(fileName, new TreeSet<>());
 		}
 
 		for (String testCaseFileName : _testCaseFileNames) {
@@ -252,37 +246,33 @@ public class PoshiDependenciesFileLocationCheck extends BaseFileCheck {
 			for (Map.Entry<String, Set<String>> entry :
 					_dependenciesFileReferencesMap.entrySet()) {
 
-				if (!_containsFileName(
+				if (_containsFileName(
 						testCaseFileContent,
 						_getShortFileName(entry.getKey()))) {
 
-					continue;
+					Set<String> referencesFileNames = entry.getValue();
+
+					referencesFileNames.add(testCaseFileName);
+
+					_dependenciesFileReferencesMap.put(
+						entry.getKey(), referencesFileNames);
 				}
-
-				Set<String> referencesFileNames = entry.getValue();
-
-				referencesFileNames.add(testCaseFileName);
-
-				_dependenciesFileReferencesMap.put(
-					entry.getKey(), referencesFileNames);
 			}
 
 			for (Map.Entry<String, Set<String>> entry :
 					_dependenciesGlobalFileReferencesMap.entrySet()) {
 
-				if (!_containsFileName(
+				if (_containsFileName(
 						testCaseFileContent,
 						_getShortFileName(entry.getKey()))) {
 
-					continue;
+					Set<String> referencesFileNames = entry.getValue();
+
+					referencesFileNames.add(testCaseFileName);
+
+					_dependenciesGlobalFileReferencesMap.put(
+						entry.getKey(), referencesFileNames);
 				}
-
-				Set<String> referencesFileNames = entry.getValue();
-
-				referencesFileNames.add(testCaseFileName);
-
-				_dependenciesGlobalFileReferencesMap.put(
-					entry.getKey(), referencesFileNames);
 			}
 		}
 	}

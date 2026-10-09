@@ -180,11 +180,9 @@ public class DropZoneFragmentEntryLinkListener
 					break;
 				}
 
-				if (elementDropZoneIds.contains(dropZoneId)) {
-					continue;
+				if (!elementDropZoneIds.contains(dropZoneId)) {
+					elementDropZoneIds.add(dropZoneId);
 				}
-
-				elementDropZoneIds.add(dropZoneId);
 			}
 		}
 

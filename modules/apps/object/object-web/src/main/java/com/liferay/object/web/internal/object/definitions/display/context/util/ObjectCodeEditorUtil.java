@@ -275,25 +275,26 @@ public class ObjectCodeEditorUtil {
 			List<Map<String, String>> values = new ArrayList<>();
 
 			for (DDMExpressionFunction ddmExpressionFunction : values()) {
-				if (StringUtil.equals(ddmExpressionFunction._key, "power") ||
-					((ddmExpressionFunctionPredicate != null) &&
-					 !ddmExpressionFunctionPredicate.test(
-						 ddmExpressionFunction))) {
-
+				if (StringUtil.equals(ddmExpressionFunction._key, "power")) {
 					continue;
 				}
 
-				values.add(
-					HashMapBuilder.put(
-						"content", ddmExpressionFunction._content
-					).put(
-						"helpText",
-						LanguageUtil.get(
-							locale, ddmExpressionFunction._helpTextKey)
-					).put(
-						"label",
-						LanguageUtil.get(locale, ddmExpressionFunction._key)
-					).build());
+				if ((ddmExpressionFunctionPredicate == null) ||
+					ddmExpressionFunctionPredicate.test(
+						ddmExpressionFunction)) {
+
+					values.add(
+						HashMapBuilder.put(
+							"content", ddmExpressionFunction._content
+						).put(
+							"helpText",
+							LanguageUtil.get(
+								locale, ddmExpressionFunction._helpTextKey)
+						).put(
+							"label",
+							LanguageUtil.get(locale, ddmExpressionFunction._key)
+						).build());
+				}
 			}
 
 			return values;
@@ -347,24 +348,22 @@ public class ObjectCodeEditorUtil {
 			List<Map<String, String>> values = new ArrayList<>();
 
 			for (DDMExpressionOperator ddmExpressionOperator : values()) {
-				if ((ddmExpressionOperatorPredicate != null) &&
-					!ddmExpressionOperatorPredicate.test(
+				if ((ddmExpressionOperatorPredicate == null) ||
+					ddmExpressionOperatorPredicate.test(
 						ddmExpressionOperator)) {
 
-					continue;
+					values.add(
+						HashMapBuilder.put(
+							"content", ddmExpressionOperator._content
+						).put(
+							"helpText",
+							LanguageUtil.get(
+								locale, ddmExpressionOperator._helpTextKey)
+						).put(
+							"label",
+							LanguageUtil.get(locale, ddmExpressionOperator._key)
+						).build());
 				}
-
-				values.add(
-					HashMapBuilder.put(
-						"content", ddmExpressionOperator._content
-					).put(
-						"helpText",
-						LanguageUtil.get(
-							locale, ddmExpressionOperator._helpTextKey)
-					).put(
-						"label",
-						LanguageUtil.get(locale, ddmExpressionOperator._key)
-					).build());
 			}
 
 			return values;

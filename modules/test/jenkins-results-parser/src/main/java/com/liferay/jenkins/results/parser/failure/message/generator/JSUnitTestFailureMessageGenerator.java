@@ -35,11 +35,9 @@ public class JSUnitTestFailureMessageGenerator
 		while (packageFailureMatcher.find()) {
 			String packageFailure = packageFailureMatcher.group(0);
 
-			if (packageFailureList.contains(packageFailure)) {
-				continue;
+			if (!packageFailureList.contains(packageFailure)) {
+				packageFailureList.add(packageFailure);
 			}
-
-			packageFailureList.add(packageFailure);
 		}
 
 		StringBuilder sb = new StringBuilder();
@@ -78,14 +76,12 @@ public class JSUnitTestFailureMessageGenerator
 
 			element.addText(packageFailure);
 
-			if ((element == null) ||
-				packageFailureList.contains(packageFailure)) {
+			if ((element != null) &&
+				!packageFailureList.contains(packageFailure)) {
 
-				continue;
+				elementList.add(element);
+				packageFailureList.add(packageFailure);
 			}
-
-			elementList.add(element);
-			packageFailureList.add(packageFailure);
 		}
 
 		return Dom4JUtil.getNewElement(

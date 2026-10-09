@@ -91,14 +91,12 @@ public class TextEmbeddingContentHelper<T extends BaseModel<T>> {
 
 			StringBundler localizedContentSB = entry.getValue();
 
-			if ((localizedContentSB == null) ||
-				(localizedContentSB.length() == 0)) {
+			if ((localizedContentSB != null) &&
+				(localizedContentSB.length() != 0)) {
 
-				continue;
+				localizedContentMap.put(
+					entry.getKey(), localizedContentSB.toString());
 			}
-
-			localizedContentMap.put(
-				entry.getKey(), localizedContentSB.toString());
 		}
 
 		return localizedContentMap;

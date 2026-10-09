@@ -124,16 +124,14 @@ public class DDMFormFieldSettingsUpgradeProcess extends UpgradeProcess {
 			String ddmDataProviderInstanceId = GetterUtil.getString(
 				properties.get("ddmDataProviderInstanceId"), null);
 
-			if (ddmDataProviderInstanceId == null) {
-				continue;
+			if (ddmDataProviderInstanceId != null) {
+				ddmFormField.setProperty(
+					"ddmDataProviderInstanceId",
+					"[\"" + ddmDataProviderInstanceId + "\"]");
+
+				ddmFormField.setProperty(
+					"ddmDataProviderInstanceOutput", "[\"Default-Output\"]");
 			}
-
-			ddmFormField.setProperty(
-				"ddmDataProviderInstanceId",
-				"[\"" + ddmDataProviderInstanceId + "\"]");
-
-			ddmFormField.setProperty(
-				"ddmDataProviderInstanceOutput", "[\"Default-Output\"]");
 		}
 
 		return DDMFormSerializeUtil.serialize(ddmForm, _ddmFormSerializer);

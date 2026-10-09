@@ -768,11 +768,9 @@ public class CalendarPortlet extends MVCPortlet {
 		Set<Long> reinvitedCalendarIds = new HashSet<>();
 
 		for (long childCalendarId : childCalendarIds) {
-			if (!ArrayUtil.contains(reinvitableCalendarIds, childCalendarId)) {
-				continue;
+			if (ArrayUtil.contains(reinvitableCalendarIds, childCalendarId)) {
+				reinvitedCalendarIds.add(childCalendarId);
 			}
-
-			reinvitedCalendarIds.add(childCalendarId);
 		}
 
 		return reinvitedCalendarIds;

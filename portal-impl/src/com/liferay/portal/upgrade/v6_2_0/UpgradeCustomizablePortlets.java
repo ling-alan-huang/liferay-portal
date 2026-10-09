@@ -171,15 +171,12 @@ public class UpgradeCustomizablePortlets extends UpgradeProcess {
 			}
 
 			x = preferences.indexOf(_PREFIX, y);
+			y = -1;
 
-			if (x == -1) {
-				y = -1;
-
-				continue;
+			if (x != -1) {
+				x += _PREFIX.length();
+				y = preferences.indexOf(_SUFFIX, x);
 			}
-
-			x += _PREFIX.length();
-			y = preferences.indexOf(_SUFFIX, x);
 		}
 	}
 

@@ -71,15 +71,13 @@ public class SolrFacetQueryCollector implements FacetCollector {
 		for (Map.Entry<String, NamedList<?>> entry : map1.entrySet()) {
 			String bucket = entry.getKey();
 
-			if (!bucket.startsWith(name)) {
-				continue;
+			if (bucket.startsWith(name)) {
+				NamedList<?> namedList = entry.getValue();
+
+				map2.put(
+					bucket.substring(name.length() + 1),
+					GetterUtil.getInteger(namedList.get("count")));
 			}
-
-			NamedList<?> namedList = entry.getValue();
-
-			map2.put(
-				bucket.substring(name.length() + 1),
-				GetterUtil.getInteger(namedList.get("count")));
 		}
 
 		return map2;

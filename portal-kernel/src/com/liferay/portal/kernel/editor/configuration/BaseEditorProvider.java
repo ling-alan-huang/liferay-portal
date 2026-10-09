@@ -51,13 +51,11 @@ public abstract class BaseEditorProvider<T> {
 		for (EditorContributorProvider<T> editorContributorProvider :
 				editorContributorProviders) {
 
-			if (!editorContributorProvider.matches(
+			if (editorContributorProvider.matches(
 					portletName, editorConfigKey, editorName)) {
 
-				continue;
+				consumer.accept(editorContributorProvider.get());
 			}
-
-			consumer.accept(editorContributorProvider.get());
 		}
 	}
 

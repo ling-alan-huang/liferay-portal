@@ -55,11 +55,9 @@ public class VerifyLayout extends VerifyProcess {
 					"OR friendlyURL LIKE '/", likeClause, "' ");
 			}
 
-			if (!likeClause.contains("!_")) {
-				continue;
+			if (likeClause.contains("!_")) {
+				reservedLayoutFriendlyURLS += "ESCAPE \'!\'";
 			}
-
-			reservedLayoutFriendlyURLS += "ESCAPE \'!\'";
 		}
 
 		return reservedLayoutFriendlyURLS;

@@ -87,11 +87,9 @@ public class CommerceOptionTypeRegistryImpl
 			CommerceOptionType commerceOptionType =
 				commerceOptionTypeServiceWrapper.getService();
 
-			if (!commerceOptionType.isActive()) {
-				continue;
+			if (commerceOptionType.isActive()) {
+				commerceOptionTypes.add(commerceOptionType);
 			}
-
-			commerceOptionTypes.add(commerceOptionType);
 		}
 
 		return Collections.unmodifiableList(commerceOptionTypes);

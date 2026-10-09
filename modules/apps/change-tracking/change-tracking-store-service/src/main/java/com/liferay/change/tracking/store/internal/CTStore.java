@@ -105,14 +105,12 @@ public class CTStore implements Store {
 						_store.getFileVersions(
 							companyId, repositoryId, fileName)) {
 
-					if (_isCTSContentLoaded(
+					if (!_isCTSContentLoaded(
 							companyId, repositoryId, fileName, versionLabel)) {
 
-						continue;
+						_loadCTSContent(
+							companyId, repositoryId, fileName, versionLabel);
 					}
-
-					_loadCTSContent(
-						companyId, repositoryId, fileName, versionLabel);
 				}
 			}
 		}
@@ -222,23 +220,21 @@ public class CTStore implements Store {
 					_ctsContentLocalService.getCTSContentsByDirectory(
 						companyId, repositoryId, dirName, _storeType)) {
 
-				if (!deletedCTSContentIds.contains(
+				if (deletedCTSContentIds.contains(
 						ctsContent.getCtsContentId())) {
 
-					continue;
+					fileVersionsMap.compute(
+						ctsContent.getPath(),
+						(fileName, fileVersions) -> {
+							fileVersions.remove(ctsContent.getVersion());
+
+							if (fileVersions.isEmpty()) {
+								return null;
+							}
+
+							return fileVersions;
+						});
 				}
-
-				fileVersionsMap.compute(
-					ctsContent.getPath(),
-					(fileName, fileVersions) -> {
-						fileVersions.remove(ctsContent.getVersion());
-
-						if (fileVersions.isEmpty()) {
-							return null;
-						}
-
-						return fileVersions;
-					});
 			}
 		}
 
@@ -297,13 +293,11 @@ public class CTStore implements Store {
 						_ctsContentLocalService.getCTSContents(
 							companyId, repositoryId, fileName, _storeType)) {
 
-					if (!deletedCTSContentIds.contains(
+					if (deletedCTSContentIds.contains(
 							ctsContent.getCtsContentId())) {
 
-						continue;
+						mergedVersions.remove(ctsContent.getVersion());
 					}
-
-					mergedVersions.remove(ctsContent.getVersion());
 				}
 			}
 		}
@@ -367,17 +361,15 @@ public class CTStore implements Store {
 					ctCollectionId,
 					PortalUtil.getClassNameId(CTSContent.class.getName()))) {
 
-			if (ctEntry.getChangeType() !=
+			if (ctEntry.getChangeType() ==
 					CTConstants.CT_CHANGE_TYPE_DELETION) {
 
-				continue;
-			}
+				if (deletedCTSContentIds == null) {
+					deletedCTSContentIds = new HashSet<>();
+				}
 
-			if (deletedCTSContentIds == null) {
-				deletedCTSContentIds = new HashSet<>();
+				deletedCTSContentIds.add(ctEntry.getModelClassPK());
 			}
-
-			deletedCTSContentIds.add(ctEntry.getModelClassPK());
 		}
 
 		return deletedCTSContentIds;

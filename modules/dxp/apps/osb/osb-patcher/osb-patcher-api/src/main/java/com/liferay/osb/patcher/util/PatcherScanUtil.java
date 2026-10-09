@@ -214,13 +214,11 @@ public class PatcherScanUtil {
 				PatcherFix curPatcherFix2 =
 					PatcherFixLocalServiceUtil.getPatcherFix(curPatcherFixId2);
 
-				if (!curPatcherFix1Tickets.containsAll(
+				if (curPatcherFix1Tickets.containsAll(
 						PatcherUtil.getTickets(curPatcherFix2.getName()))) {
 
-					continue;
+					patcherFixIds.remove(curPatcherFixId2);
 				}
-
-				patcherFixIds.remove(curPatcherFixId2);
 			}
 		}
 	}
@@ -407,13 +405,11 @@ public class PatcherScanUtil {
 				long patcherProjectVersionId =
 					orderedPatcherProjectVersion.getPatcherProjectVersionId();
 
-				if (patcherProjectVersionIds.contains(
+				if (!patcherProjectVersionIds.contains(
 						patcherProjectVersionId)) {
 
-					continue;
+					patcherProjectVersionIds.add(patcherProjectVersionId);
 				}
-
-				patcherProjectVersionIds.add(patcherProjectVersionId);
 			}
 		}
 
@@ -480,14 +476,12 @@ public class PatcherScanUtil {
 					PatcherFixRelUtil.getPatcherFixAncestors(patcherFix);
 
 				for (PatcherFix patcherFixAncestor : patcherFixAncestors) {
-					if (patcherFixAncestor.getType() !=
+					if (patcherFixAncestor.getType() ==
 							PatcherFixConstants.TYPE_EXCLUDED) {
 
-						continue;
+						excludedAncestorIds.add(
+							patcherFixAncestor.getPatcherFixId());
 					}
-
-					excludedAncestorIds.add(
-						patcherFixAncestor.getPatcherFixId());
 				}
 
 				Object[] arguments = {
@@ -588,25 +582,25 @@ public class PatcherScanUtil {
 				patcherFixPackFixNamePatcherFixPackFixMap.get(
 					StringUtil.merge(foundPatcherFixTickets, StringPool.COMMA));
 
-			if (patcherFixPackFix == null) {
-				continue;
+			if (patcherFixPackFix != null) {
+				patcherFixPackFixIds.remove(
+					patcherFixPackFix.getPatcherFixId());
+
+				PatcherFix latestFoundPatcherFix =
+					PatcherBuildUtil.getLatestPatcherFix(foundPatcherFix);
+
+				if (latestFoundPatcherFix.getType() ==
+						PatcherFixConstants.TYPE_EXCLUDED) {
+
+					return null;
+				}
+
+				patcherFixPackFixIds.add(
+					latestFoundPatcherFix.getPatcherFixId());
+
+				missingTickets.removeAll(
+					PatcherUtil.sortTokens(latestFoundPatcherFix.getName()));
 			}
-
-			patcherFixPackFixIds.remove(patcherFixPackFix.getPatcherFixId());
-
-			PatcherFix latestFoundPatcherFix =
-				PatcherBuildUtil.getLatestPatcherFix(foundPatcherFix);
-
-			if (latestFoundPatcherFix.getType() ==
-					PatcherFixConstants.TYPE_EXCLUDED) {
-
-				return null;
-			}
-
-			patcherFixPackFixIds.add(latestFoundPatcherFix.getPatcherFixId());
-
-			missingTickets.removeAll(
-				PatcherUtil.sortTokens(latestFoundPatcherFix.getName()));
 		}
 
 		return patcherFixPackFixIds;

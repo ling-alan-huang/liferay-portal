@@ -41,18 +41,17 @@ public class RoleResourceUpgradeProcess extends UpgradeProcess {
 				_resourcePermissionLocalService.getResourcePermissions(
 					AccountEntry.class.getName())) {
 
-			if (!_resourcePermissionLocalService.hasActionId(
-					resourcePermission, resourceAction) ||
-				(resourcePermission.getScope() ==
+			if (_resourcePermissionLocalService.hasActionId(
+					resourcePermission, resourceAction) &&
+				(resourcePermission.getScope() !=
 					ResourceConstants.SCOPE_INDIVIDUAL)) {
 
-				continue;
+				_resourcePermissionLocalService.addResourcePermission(
+					resourcePermission.getCompanyId(),
+					AccountEntry.class.getName(), resourcePermission.getScope(),
+					resourcePermission.getPrimKey(),
+					resourcePermission.getRoleId(), ActionKeys.DEACTIVATE);
 			}
-
-			_resourcePermissionLocalService.addResourcePermission(
-				resourcePermission.getCompanyId(), AccountEntry.class.getName(),
-				resourcePermission.getScope(), resourcePermission.getPrimKey(),
-				resourcePermission.getRoleId(), ActionKeys.DEACTIVATE);
 		}
 	}
 

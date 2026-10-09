@@ -160,17 +160,13 @@ public class TableJoinHolderFactory {
 			while (iterator.hasNext()) {
 				BridgePredicate bridgePredicate = iterator.next();
 
-				if (!bridgePredicate.hasOnlyTable(
-						primaryKeyColumn.getTable())) {
+				if (bridgePredicate.hasOnlyTable(primaryKeyColumn.getTable())) {
+					missingRequirementWherePredicate =
+						missingRequirementWherePredicate.and(
+							bridgePredicate._predicate);
 
-					continue;
+					iterator.remove();
 				}
-
-				missingRequirementWherePredicate =
-					missingRequirementWherePredicate.and(
-						bridgePredicate._predicate);
-
-				iterator.remove();
 			}
 
 			missingRequirementWhereStep = _getMissingRequirementWhereStep(
@@ -348,17 +344,15 @@ public class TableJoinHolderFactory {
 				Table<?> table = null;
 
 				for (Table<?> predicateTable : bridgePredicate._tables) {
-					if (tables.contains(predicateTable)) {
-						continue;
+					if (!tables.contains(predicateTable)) {
+						if (table != null) {
+							table = null;
+
+							break;
+						}
+
+						table = predicateTable;
 					}
-
-					if (table != null) {
-						table = null;
-
-						break;
-					}
-
-					table = predicateTable;
 				}
 
 				if (table == null) {
@@ -373,20 +367,21 @@ public class TableJoinHolderFactory {
 						bridgePredicates) {
 
 					if (resolvedBridgePredicates.contains(
-							currentBridgePredicate) ||
-						!tables.containsAll(currentBridgePredicate._tables)) {
+							currentBridgePredicate)) {
 
 						continue;
 					}
 
-					resolvedBridgePredicates.add(currentBridgePredicate);
+					if (tables.containsAll(currentBridgePredicate._tables)) {
+						resolvedBridgePredicates.add(currentBridgePredicate);
 
-					if (predicate == null) {
-						predicate = currentBridgePredicate._predicate;
-					}
-					else {
-						predicate = predicate.and(
-							currentBridgePredicate._predicate);
+						if (predicate == null) {
+							predicate = currentBridgePredicate._predicate;
+						}
+						else {
+							predicate = predicate.and(
+								currentBridgePredicate._predicate);
+						}
 					}
 				}
 
@@ -400,12 +395,10 @@ public class TableJoinHolderFactory {
 			sb.append("Unable to apply predicates [");
 
 			for (BridgePredicate bridgePredicate : bridgePredicates) {
-				if (resolvedBridgePredicates.contains(bridgePredicate)) {
-					continue;
+				if (!resolvedBridgePredicates.contains(bridgePredicate)) {
+					sb.append(bridgePredicate._predicate);
+					sb.append(", ");
 				}
-
-				sb.append(bridgePredicate._predicate);
-				sb.append(", ");
 			}
 
 			sb.setStringAt("] to ", sb.index() - 1);

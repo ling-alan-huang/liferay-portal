@@ -19,11 +19,9 @@ public class FDSSortItemList extends ArrayList<FDSSortItem> {
 		FDSSortItemList fdsSortItemList = new FDSSortItemList();
 
 		for (FDSSortItem fdsSortItem : fdsSortItems) {
-			if (fdsSortItem == null) {
-				continue;
+			if (fdsSortItem != null) {
+				fdsSortItemList.add(fdsSortItem);
 			}
-
-			fdsSortItemList.add(fdsSortItem);
 		}
 
 		return fdsSortItemList;

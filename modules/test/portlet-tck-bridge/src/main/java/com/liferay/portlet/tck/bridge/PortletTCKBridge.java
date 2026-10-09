@@ -145,13 +145,11 @@ public class PortletTCKBridge {
 
 				Matcher matcher = _portletContextPattern.matcher(context);
 
-				if (!matcher.find()) {
-					continue;
+				if (matcher.find()) {
+					portletIds.add(
+						portletElement.attributeValue("name") + "_WAR_" +
+							matcher.group(1));
 				}
-
-				portletIds.add(
-					portletElement.attributeValue("name") + "_WAR_" +
-						matcher.group(1));
 			}
 
 			if (portletIds.isEmpty()) {

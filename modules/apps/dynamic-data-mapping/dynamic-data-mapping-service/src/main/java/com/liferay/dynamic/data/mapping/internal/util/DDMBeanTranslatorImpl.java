@@ -382,11 +382,9 @@ public class DDMBeanTranslatorImpl implements DDMBeanTranslator {
 		for (Map.Entry<String, Object> entry : properties.entrySet()) {
 			Object property = ddmFormField.getProperty(entry.getKey());
 
-			if (property != null) {
-				continue;
+			if (property == null) {
+				ddmFormField.setProperty(entry.getKey(), entry.getValue());
 			}
-
-			ddmFormField.setProperty(entry.getKey(), entry.getValue());
 		}
 	}
 
@@ -396,11 +394,9 @@ public class DDMBeanTranslatorImpl implements DDMBeanTranslator {
 		for (Map.Entry<String, Object> entry : properties.entrySet()) {
 			Object property = ddmFormField.getProperty(entry.getKey());
 
-			if (property != null) {
-				continue;
+			if (property == null) {
+				ddmFormField.setProperty(entry.getKey(), entry.getValue());
 			}
-
-			ddmFormField.setProperty(entry.getKey(), entry.getValue());
 		}
 	}
 

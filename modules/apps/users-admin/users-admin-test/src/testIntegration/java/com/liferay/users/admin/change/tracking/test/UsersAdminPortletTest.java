@@ -475,11 +475,9 @@ public class UsersAdminPortletTest {
 				user.getUserId());
 
 		for (AnnouncementsDelivery delivery : announcementsDeliveries) {
-			if (!Objects.equals(delivery.getType(), "general")) {
-				continue;
+			if (Objects.equals(delivery.getType(), "general")) {
+				Assert.assertTrue(delivery.isEmail());
 			}
-
-			Assert.assertTrue(delivery.isEmail());
 		}
 	}
 

@@ -64,13 +64,11 @@ public class BeanUtil {
 			for (PropertyDescriptor propertyDescriptor : propertyDescriptors) {
 				String propertyDescriptorName = propertyDescriptor.getName();
 
-				if (!propertyDescriptorName.equals("targetInstance")) {
-					continue;
+				if (propertyDescriptorName.equals("targetInstance")) {
+					Method method = propertyDescriptor.getReadMethod();
+
+					targetInstance = method.invoke(bindingResult);
 				}
-
-				Method method = propertyDescriptor.getReadMethod();
-
-				targetInstance = method.invoke(bindingResult);
 			}
 
 			if (targetInstance instanceof MutableBindingResult) {

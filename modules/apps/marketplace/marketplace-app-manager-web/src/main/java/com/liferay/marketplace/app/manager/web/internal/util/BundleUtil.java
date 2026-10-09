@@ -39,11 +39,9 @@ public class BundleUtil {
 			String bundleType = GetterUtil.getString(
 				headers.get("Liferay-Releng-Bundle-Type"));
 
-			if (!bundleType.equals("lpkg")) {
-				continue;
+			if (bundleType.equals("lpkg")) {
+				iterator.remove();
 			}
-
-			iterator.remove();
 		}
 	}
 

@@ -1782,20 +1782,18 @@ public class ExportImportLayoutPageTemplateEntriesTest {
 		while (inputEnumeration.hasMoreElements()) {
 			ZipEntry zipEntry = inputEnumeration.nextElement();
 
-			if (zipEntry.isDirectory()) {
-				continue;
+			if (!zipEntry.isDirectory()) {
+				numberOfInputFiles++;
+
+				String content = StringUtil.read(
+					inputZipFile.getInputStream(zipEntry));
+
+				String name = zipEntry.getName();
+
+				String[] parts = name.split("/");
+
+				fileNameFileContentMap.put(parts[parts.length - 1], content);
 			}
-
-			numberOfInputFiles++;
-
-			String content = StringUtil.read(
-				inputZipFile.getInputStream(zipEntry));
-
-			String name = zipEntry.getName();
-
-			String[] parts = name.split("/");
-
-			fileNameFileContentMap.put(parts[parts.length - 1], content);
 		}
 
 		ZipFile outputZipFile = new ZipFile(outputFile);
@@ -1808,21 +1806,20 @@ public class ExportImportLayoutPageTemplateEntriesTest {
 		while (outputEnumeration.hasMoreElements()) {
 			ZipEntry zipEntry = outputEnumeration.nextElement();
 
-			if (zipEntry.isDirectory()) {
-				continue;
+			if (!zipEntry.isDirectory()) {
+				numberOfOutputFiles++;
+
+				String name = zipEntry.getName();
+
+				String[] parts = name.split("/");
+
+				Assert.assertEquals(
+					_objectMapper.readTree(
+						fileNameFileContentMap.get(parts[parts.length - 1])),
+					_objectMapper.readTree(
+						StringUtil.read(
+							outputZipFile.getInputStream(zipEntry))));
 			}
-
-			numberOfOutputFiles++;
-
-			String name = zipEntry.getName();
-
-			String[] parts = name.split("/");
-
-			Assert.assertEquals(
-				_objectMapper.readTree(
-					fileNameFileContentMap.get(parts[parts.length - 1])),
-				_objectMapper.readTree(
-					StringUtil.read(outputZipFile.getInputStream(zipEntry))));
 		}
 
 		Assert.assertEquals(numberOfInputFiles, numberOfOutputFiles);

@@ -49,12 +49,10 @@ public class HttpMethodScopeLogic implements ScopeLogic {
 				HttpMethod[] annotationsByType =
 					annotationType.getAnnotationsByType(HttpMethod.class);
 
-				if (annotationsByType == null) {
-					continue;
-				}
-
-				for (HttpMethod httpMethod : annotationsByType) {
-					return httpMethod.value();
+				if (annotationsByType != null) {
+					for (HttpMethod httpMethod : annotationsByType) {
+						return httpMethod.value();
+					}
 				}
 			}
 

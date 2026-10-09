@@ -328,11 +328,9 @@ public class CIForwardProcessor {
 
 			forwardAttempts++;
 
-			if (firstForwardAttemptDate != null) {
-				continue;
+			if (firstForwardAttemptDate == null) {
+				firstForwardAttemptDate = comment.getCreatedDate();
 			}
-
-			firstForwardAttemptDate = comment.getCreatedDate();
 		}
 
 		String duration = null;
@@ -495,11 +493,9 @@ public class CIForwardProcessor {
 				comments.size());
 
 			for (PullRequest.Comment comment : comments) {
-				if (!gitHubCIUsername.equals(comment.getUserLogin())) {
-					continue;
+				if (gitHubCIUsername.equals(comment.getUserLogin())) {
+					gitHubCIComments.add(comment);
 				}
-
-				gitHubCIComments.add(comment);
 			}
 
 			return gitHubCIComments;
@@ -563,14 +559,12 @@ public class CIForwardProcessor {
 		for (String requiredCompletedTestSuiteName :
 				requiredCompletedTestSuiteNames) {
 
-			if (completedTestSuiteNames.contains(
+			if (!completedTestSuiteNames.contains(
 					requiredCompletedTestSuiteName)) {
 
-				continue;
+				incompleteRequiredCompletedTestSuiteNames.add(
+					requiredCompletedTestSuiteName);
 			}
-
-			incompleteRequiredCompletedTestSuiteNames.add(
-				requiredCompletedTestSuiteName);
 		}
 
 		return incompleteRequiredCompletedTestSuiteNames;
@@ -783,11 +777,9 @@ public class CIForwardProcessor {
 			PullRequest.Comment comment = _findMostRecentTestResultComment(
 				testSuiteName, requiredPassing, comments);
 
-			if ((comment == null) || filteredComments.contains(comment)) {
-				continue;
+			if ((comment != null) && !filteredComments.contains(comment)) {
+				filteredComments.add(comment);
 			}
-
-			filteredComments.add(comment);
 		}
 
 		Collections.sort(filteredComments);

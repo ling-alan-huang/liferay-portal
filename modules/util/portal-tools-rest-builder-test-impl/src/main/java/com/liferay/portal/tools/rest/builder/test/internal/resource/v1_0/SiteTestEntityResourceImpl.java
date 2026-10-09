@@ -103,11 +103,9 @@ public class SiteTestEntityResourceImpl extends BaseSiteTestEntityResourceImpl {
 		List<SiteTestEntity> siteTestEntities = new ArrayList<>();
 
 		for (SiteTestEntity siteTestEntity : _siteTestEntities) {
-			if (!Objects.equals(siteId, siteTestEntity.getSiteId())) {
-				continue;
+			if (Objects.equals(siteId, siteTestEntity.getSiteId())) {
+				siteTestEntities.add(siteTestEntity);
 			}
-
-			siteTestEntities.add(siteTestEntity);
 		}
 
 		return Page.of(

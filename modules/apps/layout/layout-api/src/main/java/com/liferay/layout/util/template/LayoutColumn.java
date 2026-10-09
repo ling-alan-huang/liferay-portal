@@ -50,11 +50,9 @@ public class LayoutColumn {
 			(LayoutTypePortlet)_layout.getLayoutType();
 
 		for (String portletId : layoutTypePortlet.getPortletIds()) {
-			if (portletId.startsWith(PortletKeys.NESTED_PORTLETS)) {
-				continue;
+			if (!portletId.startsWith(PortletKeys.NESTED_PORTLETS)) {
+				_addPortlet(portletId);
 			}
-
-			_addPortlet(portletId);
 		}
 	}
 
@@ -124,13 +122,11 @@ public class LayoutColumn {
 		String[] nestedColumnIds = property.split(StringPool.COMMA);
 
 		for (String nestedColumnId : nestedColumnIds) {
-			if (Validator.isNull(nestedColumnId) ||
-				!nestedColumnId.startsWith(StringPool.UNDERLINE + portletId)) {
+			if (Validator.isNotNull(nestedColumnId) &&
+				nestedColumnId.startsWith(StringPool.UNDERLINE + portletId)) {
 
-				continue;
+				portletNestedColumnIds.add(nestedColumnId);
 			}
-
-			portletNestedColumnIds.add(nestedColumnId);
 		}
 
 		return portletNestedColumnIds;

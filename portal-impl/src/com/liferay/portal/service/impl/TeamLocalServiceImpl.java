@@ -117,17 +117,15 @@ public class TeamLocalServiceImpl extends TeamLocalServiceBaseImpl {
 						"defaultTeamIds"),
 					0L));
 
-			if (!defaultTeamIds.remove(team.getTeamId())) {
-				continue;
+			if (defaultTeamIds.remove(team.getTeamId())) {
+				typeSettingsUnicodeUnicodeProperties.setProperty(
+					"defaultTeamIds",
+					ListUtil.toString(defaultTeamIds, StringPool.BLANK));
+
+				_groupLocalService.updateGroup(
+					group.getGroupId(),
+					typeSettingsUnicodeUnicodeProperties.toString());
 			}
-
-			typeSettingsUnicodeUnicodeProperties.setProperty(
-				"defaultTeamIds",
-				ListUtil.toString(defaultTeamIds, StringPool.BLANK));
-
-			_groupLocalService.updateGroup(
-				group.getGroupId(),
-				typeSettingsUnicodeUnicodeProperties.toString());
 		}
 
 		// Role

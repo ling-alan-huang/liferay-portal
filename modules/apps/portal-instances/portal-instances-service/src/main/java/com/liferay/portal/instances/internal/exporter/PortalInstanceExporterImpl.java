@@ -94,11 +94,9 @@ public class PortalInstanceExporterImpl implements PortalInstanceExporter {
 				continue;
 			}
 
-			if (!_isApplicable(companyId, scopedConfiguration)) {
-				continue;
+			if (_isApplicable(companyId, scopedConfiguration)) {
+				scopedConfigurations.add(scopedConfiguration);
 			}
-
-			scopedConfigurations.add(scopedConfiguration);
 		}
 
 		for (ScopedConfiguration scopedConfiguration : scopedConfigurations) {

@@ -301,16 +301,17 @@ public class ProductOptionResourceImpl extends BaseProductOptionResourceImpl {
 			ProductOptionValue[] productOptionValues =
 				productOption.getProductOptionValues();
 
-			if (productOptionValues == null) {
-				continue;
-			}
+			if (productOptionValues != null) {
+				for (ProductOptionValue productOptionValue :
+						productOptionValues) {
 
-			for (ProductOptionValue productOptionValue : productOptionValues) {
-				ProductOptionValueUtil.addOrUpdateCPDefinitionOptionValueRel(
-					_cpDefinitionOptionValueRelService, _cpInstanceService,
-					productOptionValue,
-					cpDefinitionOptionRel.getCPDefinitionOptionRelId(),
-					serviceContext);
+					ProductOptionValueUtil.
+						addOrUpdateCPDefinitionOptionValueRel(
+							_cpDefinitionOptionValueRelService,
+							_cpInstanceService, productOptionValue,
+							cpDefinitionOptionRel.getCPDefinitionOptionRelId(),
+							serviceContext);
+				}
 			}
 		}
 

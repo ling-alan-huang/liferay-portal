@@ -137,26 +137,22 @@ public class AutoDeployDir {
 			boolean blacklistedFileExists = false;
 
 			for (File file : files) {
-				if (!StringUtil.equalsIgnoreCase(
+				if (StringUtil.equalsIgnoreCase(
 						blacklistedFileName, file.getName())) {
 
-					continue;
+					blacklistedFileExists = true;
+				}
+			}
+
+			if (!blacklistedFileExists) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(
+						"Remove blacklisted file " + blacklistedFileName +
+							" because it was deleted");
 				}
 
-				blacklistedFileExists = true;
+				iterator.remove();
 			}
-
-			if (blacklistedFileExists) {
-				continue;
-			}
-
-			if (_log.isDebugEnabled()) {
-				_log.debug(
-					"Remove blacklisted file " + blacklistedFileName +
-						" because it was deleted");
-			}
-
-			iterator.remove();
 		}
 
 		for (File file : files) {
@@ -164,15 +160,13 @@ public class AutoDeployDir {
 
 			fileName = StringUtil.toLowerCase(fileName);
 
-			if (!file.isFile() ||
-				(!fileName.endsWith(".jar") && !fileName.endsWith(".lpkg") &&
-				 !fileName.endsWith(".war") && !fileName.endsWith(".xml") &&
-				 !fileName.endsWith(".zip"))) {
+			if (file.isFile() &&
+				(fileName.endsWith(".jar") || fileName.endsWith(".lpkg") ||
+				 fileName.endsWith(".war") || fileName.endsWith(".xml") ||
+				 fileName.endsWith(".zip"))) {
 
-				continue;
+				_processFile(file);
 			}
-
-			_processFile(file);
 		}
 	}
 

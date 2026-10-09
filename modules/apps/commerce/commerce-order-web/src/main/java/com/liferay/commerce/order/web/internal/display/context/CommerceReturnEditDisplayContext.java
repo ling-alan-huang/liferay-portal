@@ -749,18 +749,16 @@ public class CommerceReturnEditDisplayContext {
 				key = "processedCount";
 			}
 
-			if (Validator.isNull(key)) {
-				continue;
+			if (Validator.isNotNull(key)) {
+				Integer count = commerceReturnItemMap.get(key);
+
+				if (count == null) {
+					count = 0;
+				}
+
+				count += 1;
+				commerceReturnItemMap.put(key, count);
 			}
-
-			Integer count = commerceReturnItemMap.get(key);
-
-			if (count == null) {
-				count = 0;
-			}
-
-			count += 1;
-			commerceReturnItemMap.put(key, count);
 		}
 
 		return commerceReturnItemMap;

@@ -165,12 +165,10 @@ public class GradleDependencyVersionCheck extends BaseFileCheck {
 
 			String key = array[0];
 
-			if (!key.startsWith("bundle.version[")) {
-				continue;
+			if (key.startsWith("bundle.version[")) {
+				bundleVersionsMap.put(
+					key.substring(15, key.length() - 1), array[1]);
 			}
-
-			bundleVersionsMap.put(
-				key.substring(15, key.length() - 1), array[1]);
 		}
 
 		_publishedMajorVersionsMap = new HashMap<>();
