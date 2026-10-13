@@ -285,9 +285,11 @@ public class StaticSiteExportURL {
 				StringUtil.split(
 					_path.substring(0, slashIndex), CharPool.SLASH)) {
 
-			if (Validator.isNotNull(name)) {
-				names.add(name);
+			if (Validator.isNull(name)) {
+				continue;
 			}
+
+			names.add(name);
 		}
 
 		for (String name :
@@ -406,13 +408,17 @@ public class StaticSiteExportURL {
 		for (String parameter :
 				StringUtil.split(_queryString, CharPool.AMPERSAND)) {
 
-			if (parameter.startsWith(StringPool.SLASH)) {
-				String parameterExtension = _getExtension(parameter);
-
-				if (parameterExtension != null) {
-					extension = parameterExtension;
-				}
+			if (!parameter.startsWith(StringPool.SLASH)) {
+				continue;
 			}
+
+			String parameterExtension = _getExtension(parameter);
+
+			if (parameterExtension == null) {
+				continue;
+			}
+
+			extension = parameterExtension;
 		}
 
 		if (!_isExtension(extension)) {

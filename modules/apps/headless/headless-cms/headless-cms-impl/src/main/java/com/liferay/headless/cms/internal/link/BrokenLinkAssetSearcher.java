@@ -454,11 +454,13 @@ public class BrokenLinkAssetSearcher {
 					String.class));
 
 		for (String outboundLink : outboundLinks) {
-			if (!existingExternalReferenceCodes.contains(
+			if (existingExternalReferenceCodes.contains(
 					_getExternalReferenceCode(outboundLink))) {
 
-				brokenLinkTargetsMap.put(outboundLink, new BrokenLinkTarget());
+				continue;
 			}
+
+			brokenLinkTargetsMap.put(outboundLink, new BrokenLinkTarget());
 		}
 	}
 

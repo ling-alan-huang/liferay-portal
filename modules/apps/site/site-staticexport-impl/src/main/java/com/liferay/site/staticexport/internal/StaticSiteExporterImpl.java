@@ -871,9 +871,11 @@ public class StaticSiteExporterImpl implements StaticSiteExporter {
 		_addPortalHostName(PropsValues.WEB_SERVER_HOST, portalHostNames);
 
 		for (String validHost : PropsValues.VIRTUAL_HOSTS_VALID_HOSTS) {
-			if (!Objects.equals(validHost, StringPool.STAR)) {
-				_addPortalHostName(validHost, portalHostNames);
+			if (Objects.equals(validHost, StringPool.STAR)) {
+				continue;
 			}
+
+			_addPortalHostName(validHost, portalHostNames);
 		}
 
 		return portalHostNames;
@@ -893,9 +895,11 @@ public class StaticSiteExporterImpl implements StaticSiteExporter {
 			StaticSiteExportURL staticSiteExportURL = new StaticSiteExportURL(
 				portalHostNames, url);
 
-			if (staticSiteExportURL.isResource()) {
-				resourceURLs.add(staticSiteExportURL.getURL());
+			if (!staticSiteExportURL.isResource()) {
+				continue;
 			}
+
+			resourceURLs.add(staticSiteExportURL.getURL());
 		}
 
 		for (String url : staticSiteExportDocument.getEmbeddedURLs()) {
@@ -906,9 +910,11 @@ public class StaticSiteExporterImpl implements StaticSiteExporter {
 			StaticSiteExportURL staticSiteExportURL = new StaticSiteExportURL(
 				portalHostNames, url);
 
-			if (staticSiteExportURL.isExternal()) {
-				resourceURLs.add(staticSiteExportURL.getURL());
+			if (!staticSiteExportURL.isExternal()) {
+				continue;
 			}
+
+			resourceURLs.add(staticSiteExportURL.getURL());
 		}
 
 		return resourceURLs;
@@ -1001,10 +1007,11 @@ public class StaticSiteExporterImpl implements StaticSiteExporter {
 			StaticSiteExportURL resolvedStaticSiteExportURL =
 				staticSiteExportURL.resolve(stylesheetResourceURL);
 
-			if (resolvedStaticSiteExportURL != null) {
-				stylesheetResourceURLs.add(
-					resolvedStaticSiteExportURL.getURL());
+			if (resolvedStaticSiteExportURL == null) {
+				continue;
 			}
+
+			stylesheetResourceURLs.add(resolvedStaticSiteExportURL.getURL());
 		}
 
 		return stylesheetResourceURLs;
