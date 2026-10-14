@@ -23,6 +23,23 @@ public class JavaReferenceAnnotationsCheck extends JavaAnnotationsCheck {
 	}
 
 	@Override
+	protected String doProcess(
+			String fileName, String absolutePath, JavaTerm javaTerm,
+			String fileContent)
+		throws Exception {
+
+		JavaClass javaClass = (JavaClass)javaTerm;
+
+		if ((javaClass.getParentJavaClass() == null) &&
+			_hasReferenceImport(javaClass)) {
+
+			_checkReferenceMethods(fileName, absolutePath, javaClass);
+		}
+
+		return super.doProcess(fileName, absolutePath, javaTerm, fileContent);
+	}
+
+	@Override
 	protected String formatAnnotation(
 			String fileName, String absolutePath, JavaClass javaClass,
 			String fileContent, String annotation, String indent)
@@ -31,20 +48,12 @@ public class JavaReferenceAnnotationsCheck extends JavaAnnotationsCheck {
 		String trimmedAnnotation = StringUtil.trim(annotation);
 
 		if (!(trimmedAnnotation.equals("@Reference") ||
-			  trimmedAnnotation.startsWith("@Reference("))) {
+			  trimmedAnnotation.startsWith("@Reference(")) ||
+			!_hasReferenceImport(javaClass)) {
 
 			return annotation;
 		}
 
-		List<String> importNames = javaClass.getImportNames();
-
-		if (!importNames.contains(
-				"org.osgi.service.component.annotations.Reference")) {
-
-			return annotation;
-		}
-
-		_checkReferenceMethods(fileName, absolutePath, javaClass);
 		_checkTargetAttribute(
 			fileName, absolutePath, javaClass, annotation, "target");
 
@@ -100,6 +109,13 @@ public class JavaReferenceAnnotationsCheck extends JavaAnnotationsCheck {
 
 		checkComponentName(
 			fileName, absolutePath, javaClass, targetAttributeValue, true);
+	}
+
+	private boolean _hasReferenceImport(JavaClass javaClass) {
+		List<String> importNames = javaClass.getImportNames();
+
+		return importNames.contains(
+			"org.osgi.service.component.annotations.Reference");
 	}
 
 	private static final String _ALLOWED_REFERENCE_METHOD_FILE_NAMES_KEY =
