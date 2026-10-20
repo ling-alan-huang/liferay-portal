@@ -176,7 +176,7 @@ SlantedQuotesCheck | | Finds `slanted quote` (`\u201a`, `\u201b`, `\u201c`, `\u2
 SoyEmptyLinesCheck | .soy | Finds missing and unnecessary empty lines. |
 StringIndexOfCallCheck | .java | Finds calls to `indexOf` (use `contains` instead). |
 [StringLiteralEqualityCheck](https://checkstyle.sourceforge.io/checks/coding/stringliteralequality.html) | .java, .jsp, .jspf, .jspx, .tag, .tpl, or .vm | Checks that string literals are not used with == or !=. |
-TFBlockOrderCheck | .tf | Checks the order of blocks in `.tf` file. |
+TFBlockOrderCheck | .tf | Checks the order of blocks, attributes, and IAM policy actions in `.tf` file. |
 TLDElementOrderCheck | .tld | Checks the order of attributes in `.tld` file. |
 TLDStylingCheck | .tld | Applies rules to enforce consistency in code style. |
 TSSpecFileStylingCheck | .ts or .tsx | Applies rules to enforce consistency in code style. |

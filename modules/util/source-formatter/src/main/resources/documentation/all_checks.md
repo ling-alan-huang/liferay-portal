@@ -535,7 +535,7 @@ StringIndexOfCallCheck | [Styling](styling_checks.md#styling-checks) | .java | F
 [StringMethodsCheck](check/string_methods_check.md#stringmethodscheck) | [Performance](performance_checks.md#performance-checks) | .java, .jsp, .jspf, .jspx, .tag, .tpl, or .vm | Checks if performance can be improved by using different String operation methods. |
 SubstringCheck | [Performance](performance_checks.md#performance-checks) | .java, .jsp, .jspf, .jspx, .tag, .tpl, or .vm | Finds cases like `s.substring(1, s.length())` (use `s.substring(1)` instead). |
 SystemEventCheck | [Bug Prevention](bug_prevention_checks.md#bug-prevention-checks) | .java | Finds missing or redundant usage of @SystemEvent for delete events. |
-TFBlockOrderCheck | [Styling](styling_checks.md#styling-checks) | .tf | Checks the order of blocks in `.tf` file. |
+TFBlockOrderCheck | [Styling](styling_checks.md#styling-checks) | .tf | Checks the order of blocks, attributes, and IAM policy actions in `.tf` file. |
 TLDElementOrderCheck | [Styling](styling_checks.md#styling-checks) | .tld | Checks the order of attributes in `.tld` file. |
 TLDStylingCheck | [Styling](styling_checks.md#styling-checks) | .tld | Applies rules to enforce consistency in code style. |
 TLDTypeCheck | [Bug Prevention](bug_prevention_checks.md#bug-prevention-checks) | .tld | Ensures the fully qualified name is used for types in `.tld` file. |

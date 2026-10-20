@@ -17,4 +17,9 @@ public class TFSourceProcessorTest extends BaseSourceProcessorTestCase {
 		test("SortBlocks.testtf");
 	}
 
+	@Test
+	public void testSortEntries() throws Exception {
+		test("SortEntries.testtf");
+	}
+
 }

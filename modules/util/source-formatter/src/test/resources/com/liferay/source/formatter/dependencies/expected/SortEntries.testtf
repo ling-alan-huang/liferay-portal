@@ -1,0 +1,68 @@
+resource "aws_iam_policy" "s3" {
+	description="Policy for accessing the Liferay S3 bucket"
+	name="${var.deployment_name}-s3-policy"
+	policy=jsonencode(
+		{
+			Statement=[
+				{
+					Action=[
+						"s3:DeleteObject",
+						"s3:GetObject",
+						"s3:ListBucket",
+						"s3:PutObject"
+					]
+					Effect="Allow"
+					Resource=[
+						"arn:aws:s3:::bucket/*",
+						"arn:aws:s3:::bucket"
+					]
+				}
+			]
+			Version="2012-10-17"
+		})
+}
+resource "aws_opensearch_domain" "os" {
+	access_policies=<<POLICY
+{
+	"Statement": [
+		{
+			"Action": "es:*",
+			"Effect": "Allow",
+			"Principal": {
+				"AWS": "*"
+			},
+			"Resource": "arn:aws:es:domain/*"
+		}
+	],
+	"Version": "2012-10-17"
+}
+POLICY
+	advanced_options={
+		"rest.action.multi.allow_explicit_index"="true"
+	}
+	domain_name="${var.deployment_name}-os-d"
+}
+resource "aws_subnet" "private" {
+	cidr_block=var.private_subnets[count.index]
+	count=length(var.private_subnets)
+	tags={
+		DeploymentName=var.deployment_name
+		"kubernetes.io/role/internal-elb"="1"
+		Name="${var.deployment_name}-private-sn-${count.index}"
+	}
+	vpc_id=aws_vpc.main.id
+}
+resource "null_resource" "script" {
+	depends_on=[
+		aws_subnet.private,
+		aws_iam_policy.s3,
+	]
+	provisioner "local-exec" {
+		command=<<-EOT
+			if [ -z "$FOO" ]; then
+				echo "z"
+				echo "a"
+			fi
+		EOT
+	}
+}
