@@ -177,6 +177,7 @@ SoyEmptyLinesCheck | .soy | Finds missing and unnecessary empty lines. |
 StringIndexOfCallCheck | .java | Finds calls to `indexOf` (use `contains` instead). |
 [StringLiteralEqualityCheck](https://checkstyle.sourceforge.io/checks/coding/stringliteralequality.html) | .java, .jsp, .jspf, .jspx, .tag, .tpl, or .vm | Checks that string literals are not used with == or !=. |
 TFBlockOrderCheck | .tf | Checks the order of blocks, attributes, and IAM policy actions in `.tf` file. |
+TFIndentationCheck | .tf | Checks the indentation in `.tf` files. |
 TLDElementOrderCheck | .tld | Checks the order of attributes in `.tld` file. |
 TLDStylingCheck | .tld | Applies rules to enforce consistency in code style. |
 TSSpecFileStylingCheck | .ts or .tsx | Applies rules to enforce consistency in code style. |

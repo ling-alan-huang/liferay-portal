@@ -1,0 +1,35 @@
+locals {
+	bucket_name="${var.deployment_name}-${var.region}"
+	is_active=var.data_active=="blue"
+}
+resource "aws_iam_policy" "s3" {
+	description="Policy for accessing the Liferay S3 bucket"
+	name="${var.deployment_name}-s3-policy"
+	policy=jsonencode(
+		{
+			Statement=[
+				{
+					Action=["s3:GetObject"]
+					Effect="Allow"
+					Resource="arn:aws:s3:::${local.bucket_name}/*" # ${'{'}
+				}
+			]
+		})
+}
+resource "aws_opensearch_domain" "os" {
+	access_policies=<<POLICY
+{
+    "Version": "2012-10-17"
+}
+POLICY
+	domain_name="${var.deployment_name}-os-d"
+}
+resource "terraform_data" "script" {
+	provisioner "local-exec" {
+		command=<<-EOT
+			if [ -n "${var.name}" ]; then
+			    echo "{"
+			fi
+		EOT
+	}
+}
