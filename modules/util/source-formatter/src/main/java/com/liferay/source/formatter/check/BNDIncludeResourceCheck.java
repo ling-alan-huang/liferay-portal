@@ -6,13 +6,18 @@
 package com.liferay.source.formatter.check;
 
 import com.liferay.petra.string.CharPool;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
+import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.tools.ImportPackage;
 import com.liferay.source.formatter.check.util.BNDSourceUtil;
 import com.liferay.source.formatter.util.FileUtil;
 
 import java.io.File;
+
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import java.util.Comparator;
 import java.util.regex.Matcher;
@@ -47,22 +52,33 @@ public class BNDIncludeResourceCheck extends BaseFileCheck {
 	}
 
 	private void _checkIncludeResource(
-		String fileName, String buildGradleContent, String name,
+		String fileName, File moduleDir, String buildGradleContent, String name,
 		int lineNumber) {
 
 		String source = name;
+		String target = null;
 
 		int index = name.indexOf(CharPool.EQUAL);
 
 		if (index != -1) {
 			source = StringUtil.trim(name.substring(index + 1));
+			target = StringUtil.trim(name.substring(0, index));
 		}
 
-		if (source.startsWith(StringPool.DASH)) {
+		boolean optional = source.startsWith(StringPool.DASH);
+
+		if (optional) {
 			source = source.substring(1);
 		}
 
 		_checkPackageJSON(fileName, source, lineNumber);
+
+		if (!optional) {
+			_checkPath(
+				fileName, moduleDir, buildGradleContent, source, target,
+				lineNumber);
+		}
+
 		_checkTestClassesIntegration(
 			fileName, buildGradleContent, source, lineNumber);
 	}
@@ -72,8 +88,10 @@ public class BNDIncludeResourceCheck extends BaseFileCheck {
 
 		File file = new File(absolutePath);
 
+		File moduleDir = file.getParentFile();
+
 		String buildGradleContent = FileUtil.read(
-			new File(file.getParentFile(), "build.gradle"));
+			new File(moduleDir, "build.gradle"));
 
 		Matcher matcher = _includeResourceDefinitionPattern.matcher(content);
 
@@ -93,7 +111,7 @@ public class BNDIncludeResourceCheck extends BaseFileCheck {
 				}
 
 				_checkIncludeResource(
-					fileName, buildGradleContent, name,
+					fileName, moduleDir, buildGradleContent, name,
 					getLineNumber(content, y));
 			}
 		}
@@ -109,6 +127,110 @@ public class BNDIncludeResourceCheck extends BaseFileCheck {
 			addMessage(
 				fileName,
 				"Do not include \"package.json\", Gradle already includes it",
+				lineNumber);
+		}
+	}
+
+	private void _checkPath(
+		String fileName, File moduleDir, String buildGradleContent,
+		String source, String target, int lineNumber) {
+
+		String path = source;
+
+		if (path.startsWith(StringPool.AT)) {
+			path = path.substring(1);
+
+			int x = path.indexOf("!/");
+
+			if (x != -1) {
+				path = path.substring(0, x);
+			}
+
+			if (!path.contains(StringPool.SLASH)) {
+				return;
+			}
+		}
+		else if (_isClasspathPattern(path)) {
+			return;
+		}
+
+		if (path.contains("${") || path.contains("test-classes/integration")) {
+			return;
+		}
+
+		Path filePath = Paths.get(moduleDir.getPath(), path);
+
+		filePath = filePath.normalize();
+
+		File file = filePath.toFile();
+
+		if (_isAntJar(file)) {
+			return;
+		}
+
+		File buildOutputDir = _getBuildOutputDir(moduleDir, file);
+
+		if (buildOutputDir == null) {
+			if (file.exists()) {
+				_checkResourcesPath(
+					fileName, moduleDir, file, path, target, lineNumber);
+
+				return;
+			}
+		}
+		else if (_isModuleBuildOutput(
+					moduleDir, buildGradleContent, buildOutputDir, file)) {
+
+			return;
+		}
+
+		addMessage(
+			fileName,
+			"Included path \"" + path + "\" does not exist in the repository",
+			lineNumber);
+	}
+
+	private void _checkResourcesPath(
+		String fileName, File moduleDir, File file, String path, String target,
+		int lineNumber) {
+
+		String resourcesDirName = "src/main/resources";
+
+		if (fileName.endsWith("-test/bnd.bnd")) {
+			resourcesDirName = "src/testIntegration/resources";
+		}
+
+		File resourcesDir = new File(moduleDir, resourcesDirName);
+
+		Path resourcesDirPath = resourcesDir.toPath();
+
+		Path filePath = file.toPath();
+
+		if (!filePath.startsWith(resourcesDirPath)) {
+			return;
+		}
+
+		if (target == null) {
+			target = StringPool.BLANK;
+
+			if (!file.isDirectory()) {
+				target = file.getName();
+			}
+		}
+
+		Path relativePath = resourcesDirPath.relativize(filePath);
+
+		if (StringUtil.equals(
+				StringUtil.trim(target, CharPool.SLASH),
+				StringUtil.replace(
+					relativePath.toString(), CharPool.BACK_SLASH,
+					CharPool.SLASH))) {
+
+			addMessage(
+				fileName,
+				StringBundler.concat(
+					"Do not include \"", path, "\", Gradle already includes ",
+					"it from \"", resourcesDirName, "\""),
 				lineNumber);
 		}
 	}
@@ -215,6 +337,22 @@ public class BNDIncludeResourceCheck extends BaseFileCheck {
 			content, includeResources, new IncludeResourceComparator());
 	}
 
+	private File _getBuildOutputDir(File moduleDir, File file) {
+		Path moduleDirPath = moduleDir.toPath();
+
+		while ((file != null) && !moduleDirPath.startsWith(file.toPath())) {
+			if (ArrayUtil.contains(_BUILD_OUTPUT_DIR_NAMES, file.getName()) &&
+				_isModuleDir(file.getParentFile())) {
+
+				return file;
+			}
+
+			file = file.getParentFile();
+		}
+
+		return null;
+	}
+
 	private String _getName(String clause) {
 		String name = clause;
 
@@ -231,6 +369,97 @@ public class BNDIncludeResourceCheck extends BaseFileCheck {
 		}
 
 		return StringUtil.trim(name);
+	}
+
+	private boolean _isAntJar(File file) {
+		File dir = file.getParentFile();
+
+		if (dir == null) {
+			return false;
+		}
+
+		String fileName = file.getName();
+
+		if (!fileName.equals(dir.getName() + ".jar")) {
+			return false;
+		}
+
+		File buildXMLFile = new File(dir, "build.xml");
+
+		return buildXMLFile.exists();
+	}
+
+	private boolean _isClasspathPattern(String source) {
+		if (source.contains(StringPool.SLASH)) {
+			return false;
+		}
+
+		Matcher matcher = _classpathPatternPattern.matcher(source);
+
+		return matcher.find();
+	}
+
+	private boolean _isModuleBuildOutput(
+		File moduleDir, String buildGradleContent, File buildOutputDir,
+		File file) {
+
+		if (!moduleDir.equals(buildOutputDir.getParentFile())) {
+			return false;
+		}
+
+		String buildOutputDirName = buildOutputDir.getName();
+
+		if (!buildOutputDirName.equals("lib")) {
+			return ArrayUtil.contains(
+				new String[] {"build", "classes", "tmp"}, buildOutputDirName);
+		}
+
+		String fileName = file.getName();
+
+		if (fileName.endsWith("-ws.jar")) {
+			File wsdlFile = new File(
+				moduleDir,
+				"wsdl/" + StringUtil.removeSubstring(fileName, "-ws.jar") +
+					".wsdl");
+
+			if (wsdlFile.exists()) {
+				return true;
+			}
+		}
+
+		if (fileName.endsWith("-xbean.jar")) {
+			File xsdDir = new File(moduleDir, "xsd");
+
+			if (xsdDir.isDirectory()) {
+				return true;
+			}
+		}
+
+		if (buildGradleContent == null) {
+			return false;
+		}
+
+		Matcher matcher = _copyIntoLibPattern.matcher(buildGradleContent);
+
+		return matcher.find();
+	}
+
+	private boolean _isModuleDir(File dir) {
+		if (dir == null) {
+			return false;
+		}
+
+		for (String buildFileName :
+				new String[] {"bnd.bnd", "build.gradle", "build.xml"}) {
+
+			File buildFile = new File(dir, buildFileName);
+
+			if (buildFile.exists()) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 	private String _sortDefinitionProperties(
@@ -271,12 +500,20 @@ public class BNDIncludeResourceCheck extends BaseFileCheck {
 		return content;
 	}
 
+	private static final String[] _BUILD_OUTPUT_DIR_NAMES = {
+		"bin", "build", "classes", "lib", "node_modules", "test-classes", "tmp"
+	};
+
 	private static final String[] _INCLUDE_RESOURCE_DIRS_BLACKLIST = {
 		"classes", "META-INF/resources=src/main/resources/META-INF/resources",
 		"META-INF/resources/content=src/main/resources/content",
 		"WEB-INF=src/main/resources/WEB-INF"
 	};
 
+	private static final Pattern _classpathPatternPattern = Pattern.compile(
+		"[*\\[]|\\.(bin|jar|mmdb|zip)$");
+	private static final Pattern _copyIntoLibPattern = Pattern.compile(
+		"^\\s*into \"lib\"$", Pattern.MULTILINE);
 	private static final Pattern _includeDashResourcePattern = Pattern.compile(
 		"^Include-Resource:.+", Pattern.MULTILINE);
 	private static final Pattern _includeResourceDefinitionPattern =

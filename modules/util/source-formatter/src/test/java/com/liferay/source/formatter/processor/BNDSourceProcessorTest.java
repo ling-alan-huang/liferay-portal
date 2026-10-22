@@ -73,6 +73,46 @@ public class BNDSourceProcessorTest extends BaseSourceProcessorTestCase {
 	}
 
 	@Test
+	public void testIncludeResourcePath() throws Exception {
+		test(
+			SourceProcessorTestParameters.create(
+				"IncludeResourcePath/foo-impl/bnd.testbnd"
+			).addDependentFileName(
+				"IncludeResourcePath/bar-impl/build.testgradle"
+			).addDependentFileName(
+				"IncludeResourcePath/baz/build.testxml"
+			).addDependentFileName(
+				"IncludeResourcePath/foo-impl/build.testgradle"
+			).addDependentFileName(
+				"IncludeResourcePath/foo-impl/configurator/foo.testjson"
+			).addDependentFileName(
+				"IncludeResourcePath/foo-impl/src/main/resources/META-INF" +
+					"/foo.testproperties"
+			).addDependentFileName(
+				"IncludeResourcePath/foo-impl/wsdl/foo.testwsdl"
+			).addExpectedMessage(
+				_getMessageMissingPath("../bar-impl/build/libs/bar.properties"),
+				8
+			).addExpectedMessage(
+				_getMessageMissingPath("lib/frutilla.jar"), 10
+			).addExpectedMessage(
+				StringBundler.concat(
+					"Do not include \"src/main/resources/META-INF",
+					"/foo.properties\", Gradle already includes it from ",
+					"\"src/main/resources\""),
+				12
+			).addExpectedMessage(
+				_getMessageMissingPath("missing.properties"), 14
+			));
+		test(
+			SourceProcessorTestParameters.create(
+				"IncludeResourcePath/qux-impl/bnd.testbnd"
+			).addDependentFileName(
+				"IncludeResourcePath/qux-impl/build.testgradle"
+			));
+	}
+
+	@Test
 	public void testIncludeResourceTestClasses() throws Exception {
 		test("IncludeResourceTestClasses/src/baz-test/bnd.testbnd");
 		test(
@@ -127,6 +167,11 @@ public class BNDSourceProcessorTest extends BaseSourceProcessorTestCase {
 	public void testRemoveNoValueDefinitionKey() throws Exception {
 		test("RemoveNoValueDefinitionKey1.testbnd");
 		test("RemoveNoValueDefinitionKey2.testbnd");
+	}
+
+	private String _getMessageMissingPath(String path) {
+		return "Included path \"" + path +
+			"\" does not exist in the repository";
 	}
 
 }
