@@ -58,6 +58,11 @@ public class BNDIncludeResourceCheck extends BaseFileCheck {
 			source = StringUtil.trim(name.substring(index + 1));
 		}
 
+		if (source.startsWith(StringPool.DASH)) {
+			source = source.substring(1);
+		}
+
+		_checkPackageJSON(fileName, source, lineNumber);
 		_checkTestClassesIntegration(
 			fileName, buildGradleContent, source, lineNumber);
 	}
@@ -91,6 +96,20 @@ public class BNDIncludeResourceCheck extends BaseFileCheck {
 					fileName, buildGradleContent, name,
 					getLineNumber(content, y));
 			}
+		}
+	}
+
+	private void _checkPackageJSON(
+		String fileName, String source, int lineNumber) {
+
+		if (!source.startsWith(StringPool.AT) &&
+			(source.equals("package.json") ||
+			 source.endsWith("/package.json"))) {
+
+			addMessage(
+				fileName,
+				"Do not include \"package.json\", Gradle already includes it",
+				lineNumber);
 		}
 	}
 

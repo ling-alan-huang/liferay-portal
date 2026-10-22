@@ -49,6 +49,21 @@ public class BNDSourceProcessorTest extends BaseSourceProcessorTestCase {
 	}
 
 	@Test
+	public void testIncludeResourcePackageJSON() throws Exception {
+		test("IncludeResourcePackageJSON/src/bar-web/bnd.testbnd");
+		test(
+			SourceProcessorTestParameters.create(
+				"IncludeResourcePackageJSON/foo-web/bnd.testbnd"
+			).addDependentFileName(
+				"IncludeResourcePackageJSON/foo-web/package.testjson"
+			).addExpectedMessage(
+				"Do not include \"package.json\", Gradle already includes it", 6
+			).addExpectedMessage(
+				"Do not include \"package.json\", Gradle already includes it", 7
+			));
+	}
+
+	@Test
 	public void testIncludeResourceTestClasses() throws Exception {
 		test("IncludeResourceTestClasses/src/baz-test/bnd.testbnd");
 		test(
