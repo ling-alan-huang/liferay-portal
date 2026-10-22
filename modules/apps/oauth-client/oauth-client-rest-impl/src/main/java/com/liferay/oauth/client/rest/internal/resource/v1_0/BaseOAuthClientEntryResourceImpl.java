@@ -1093,4 +1093,4 @@ public abstract class BaseOAuthClientEntryResourceImpl
 		LogFactoryUtil.getLog(BaseOAuthClientEntryResourceImpl.class);
 
 }
-// LIFERAY-REST-BUILDER-HASH:-345632082
+// LIFERAY-REST-BUILDER-HASH:-1127176794

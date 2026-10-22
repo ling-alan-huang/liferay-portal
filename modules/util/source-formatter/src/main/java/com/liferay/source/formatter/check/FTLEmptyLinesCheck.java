@@ -27,6 +27,27 @@ public class FTLEmptyLinesCheck extends BaseEmptyLinesCheck {
 
 		content = _fixMissingEmptyLinesAroundComments(content);
 
+		content = _fixEmptyLinesAroundEndTag(content);
+
+		return content;
+	}
+
+	private String _fixEmptyLinesAroundEndTag(String content) {
+		Matcher matcher = _emptyLineBeforeEndTagPattern1.matcher(content);
+
+		if (matcher.find()) {
+			return StringUtil.replaceFirst(
+				content, "\n\n" + matcher.group(1) + "\n",
+				"\n" + matcher.group(1) + "\n\n", matcher.start());
+		}
+
+		matcher = _emptyLineBeforeEndTagPattern2.matcher(content);
+
+		if (matcher.find()) {
+			return StringUtil.replaceFirst(
+				content, "\n\n", "\n", matcher.start());
+		}
+
 		return content;
 	}
 
@@ -48,6 +69,10 @@ public class FTLEmptyLinesCheck extends BaseEmptyLinesCheck {
 		return content;
 	}
 
+	private static final Pattern _emptyLineBeforeEndTagPattern1 =
+		Pattern.compile("\n\t*\\}\n\n(\t*</#\\w+>)\n(?=\t*[^\t<\n])");
+	private static final Pattern _emptyLineBeforeEndTagPattern2 =
+		Pattern.compile("\n\t*\\}\n\n\t*</#\\w+>\n\t*</#");
 	private static final Pattern _missingEmptyLineAfterCommentPattern =
 		Pattern.compile("-->\n[^\n]");
 	private static final Pattern _missingEmptyLineBeforeCommentPattern =
