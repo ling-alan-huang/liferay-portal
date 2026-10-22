@@ -2086,7 +2086,6 @@ public abstract class Base${schemaName}ResourceImpl
 		if (!FeatureFlagManagerUtil.isEnabled(CompanyThreadLocal.getCompanyId(), "${featureFlag}")) {
 			throw new NotFoundException();
 		}
-
 	</#if>
 </#macro>
 
