@@ -15,6 +15,15 @@ import org.junit.Test;
 public class BNDSourceProcessorTest extends BaseSourceProcessorTestCase {
 
 	@Test
+	public void testDoNotCopy() throws Exception {
+		test("DefinitionKeysDoNotCopy/common.testbnd");
+		test(
+			"DefinitionKeysDoNotCopy/foo-impl/bnd.testbnd",
+			"Do not use \"-donotcopy\" in bnd.bnd", 4);
+		test("DefinitionKeysDoNotCopy/src/bar-impl/bnd.testbnd");
+	}
+
+	@Test
 	public void testFormatBndInstructions() throws Exception {
 		test("FormatBndInstructions1/app.testbnd");
 		test(
