@@ -20,13 +20,19 @@ import java.util.regex.Pattern;
 public class BNDIncludeResourceCheck extends BaseFileCheck {
 
 	@Override
-	public boolean isModuleSourceCheck() {
+	public boolean isLiferaySourceCheck() {
 		return true;
 	}
 
 	@Override
 	protected String doProcess(
 		String fileName, String absolutePath, String content) {
+
+		if (!isModulesFile(
+				absolutePath, getPluginsInsideModulesDirectoryNames())) {
+
+			return content;
+		}
 
 		if (!fileName.endsWith("test-bnd.bnd")) {
 			content = _formatIncludeResource(fileName, content);
