@@ -49,6 +49,31 @@ public class BNDSourceProcessorTest extends BaseSourceProcessorTestCase {
 	}
 
 	@Test
+	public void testIncludeResourceTestClasses() throws Exception {
+		test("IncludeResourceTestClasses/src/baz-test/bnd.testbnd");
+		test(
+			SourceProcessorTestParameters.create(
+				"IncludeResourceTestClasses/bar-test/bnd.testbnd"
+			).addDependentFileName(
+				"IncludeResourceTestClasses/bar-test/build.testgradle"
+			));
+		test(
+			SourceProcessorTestParameters.create(
+				"IncludeResourceTestClasses/foo-test/bnd.testbnd"
+			).addDependentFileName(
+				"IncludeResourceTestClasses/foo-test/build.testgradle"
+			).addExpectedMessage(
+				"Do not use \"test-classes/integration\" in bnd.bnd in test " +
+					"modules",
+				4
+			).addExpectedMessage(
+				"Do not use \"test-classes/integration\" in bnd.bnd in test " +
+					"modules",
+				5
+			));
+	}
+
+	@Test
 	public void testIncorrectBundleActivator() throws Exception {
 		test(
 			"IncorrectBundleActivator1/bnd.testbnd",

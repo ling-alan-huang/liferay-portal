@@ -5,10 +5,14 @@
 
 package com.liferay.source.formatter.check;
 
+import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.tools.ImportPackage;
 import com.liferay.source.formatter.check.util.BNDSourceUtil;
+import com.liferay.source.formatter.util.FileUtil;
+
+import java.io.File;
 
 import java.util.Comparator;
 import java.util.regex.Matcher;
@@ -28,37 +32,91 @@ public class BNDIncludeResourceCheck extends BaseFileCheck {
 	protected String doProcess(
 		String fileName, String absolutePath, String content) {
 
-		if (!isModulesFile(
+		if (fileName.endsWith("/bnd.bnd") && !absolutePath.contains("/src/")) {
+			_checkIncludeResources(fileName, absolutePath, content);
+		}
+
+		if (fileName.endsWith("test-bnd.bnd") ||
+			!isModulesFile(
 				absolutePath, getPluginsInsideModulesDirectoryNames())) {
 
 			return content;
 		}
 
-		if (!fileName.endsWith("test-bnd.bnd")) {
-			content = _formatIncludeResource(fileName, content);
-		}
-
-		if (fileName.endsWith("-test/bnd.bnd") &&
-			isAttributeValue(_CHECK_TEST_INCLUDE_RESOURCE_KEY, absolutePath)) {
-
-			_checkIncludeResource(fileName, content);
-		}
-
-		return content;
+		return _formatIncludeResource(fileName, content);
 	}
 
-	private void _checkIncludeResource(String fileName, String content) {
-		String includeResource = BNDSourceUtil.getDefinitionValue(
-			content, "-includeresource");
+	private void _checkIncludeResource(
+		String fileName, String buildGradleContent, String name,
+		int lineNumber) {
 
-		if ((includeResource != null) &&
-			includeResource.contains("test-classes/integration")) {
+		String source = name;
 
-			addMessage(
-				fileName,
-				"Do not use \"test-classes/integration\" in bnd.bnd in test " +
-					"modules");
+		int index = name.indexOf(CharPool.EQUAL);
+
+		if (index != -1) {
+			source = StringUtil.trim(name.substring(index + 1));
 		}
+
+		_checkTestClassesIntegration(
+			fileName, buildGradleContent, source, lineNumber);
+	}
+
+	private void _checkIncludeResources(
+		String fileName, String absolutePath, String content) {
+
+		File file = new File(absolutePath);
+
+		String buildGradleContent = FileUtil.read(
+			new File(file.getParentFile(), "build.gradle"));
+
+		Matcher matcher = _includeResourceDefinitionPattern.matcher(content);
+
+		while (matcher.find()) {
+			int x = matcher.start();
+
+			for (String clause : BNDSourceUtil.getClauses(matcher.group(2))) {
+				String name = _getName(clause);
+
+				int y = content.indexOf(name, x);
+
+				if ((y == -1) || (y > matcher.end())) {
+					y = matcher.start();
+				}
+				else {
+					x = y + name.length();
+				}
+
+				_checkIncludeResource(
+					fileName, buildGradleContent, name,
+					getLineNumber(content, y));
+			}
+		}
+	}
+
+	private void _checkTestClassesIntegration(
+		String fileName, String buildGradleContent, String source,
+		int lineNumber) {
+
+		if (!source.contains("test-classes/integration") ||
+			!fileName.endsWith("-test/bnd.bnd")) {
+
+			return;
+		}
+
+		if (buildGradleContent != null) {
+			Matcher matcher = _jarEnabledPattern.matcher(buildGradleContent);
+
+			if (matcher.find()) {
+				return;
+			}
+		}
+
+		addMessage(
+			fileName,
+			"Do not use \"test-classes/integration\" in bnd.bnd in test " +
+				"modules",
+			lineNumber);
 	}
 
 	private String _formatIncludeResource(String fileName, String content) {
@@ -138,6 +196,24 @@ public class BNDIncludeResourceCheck extends BaseFileCheck {
 			content, includeResources, new IncludeResourceComparator());
 	}
 
+	private String _getName(String clause) {
+		String name = clause;
+
+		int index = name.lastIndexOf(StringPool.CLOSE_CURLY_BRACE);
+
+		if (name.startsWith(StringPool.OPEN_CURLY_BRACE) && (index != -1)) {
+			name = name.substring(1, index) + name.substring(index + 1);
+		}
+
+		index = name.indexOf(StringPool.SEMICOLON);
+
+		if (index != -1) {
+			name = name.substring(0, index);
+		}
+
+		return StringUtil.trim(name);
+	}
+
 	private String _sortDefinitionProperties(
 		String content, String properties, Comparator<String> comparator) {
 
@@ -176,9 +252,6 @@ public class BNDIncludeResourceCheck extends BaseFileCheck {
 		return content;
 	}
 
-	private static final String _CHECK_TEST_INCLUDE_RESOURCE_KEY =
-		"checkTestIncludeResource";
-
 	private static final String[] _INCLUDE_RESOURCE_DIRS_BLACKLIST = {
 		"classes", "META-INF/resources=src/main/resources/META-INF/resources",
 		"META-INF/resources/content=src/main/resources/content",
@@ -187,11 +260,18 @@ public class BNDIncludeResourceCheck extends BaseFileCheck {
 
 	private static final Pattern _includeDashResourcePattern = Pattern.compile(
 		"^Include-Resource:.+", Pattern.MULTILINE);
+	private static final Pattern _includeResourceDefinitionPattern =
+		Pattern.compile(
+			"^(-includeresource(?:\\.[^\\s:=]+)?|Include-Resource)[:=]" +
+				"((?:.*\\\\\n)*.*)",
+			Pattern.MULTILINE);
 	private static final Pattern _includeResourceJarPattern = Pattern.compile(
 		"-[0-9\\.]+\\.jar");
 	private static final Pattern _includeResourcePattern = Pattern.compile(
 		"^(-includeresource|Include-Resource):[\\s\\S]*?([^\\\\]\n|\\Z)",
 		Pattern.MULTILINE);
+	private static final Pattern _jarEnabledPattern = Pattern.compile(
+		"^jar \\{[^{}]*?\\benabled = true", Pattern.MULTILINE);
 
 	private static class IncludeResourceComparator
 		implements Comparator<String> {

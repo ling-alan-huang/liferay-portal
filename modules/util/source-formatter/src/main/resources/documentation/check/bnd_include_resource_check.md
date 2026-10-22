@@ -1,5 +1,3 @@
 ## BNDIncludeResourceCheck
 
-If a test module is using `com.liferay.arquillian.extension.junit.bridge`
-version `1.0.12` or higher, it does not need to include
-`test-classes/integration` in its BND file.
+A `*-test` module must not include `test-classes/integration` in its `bnd.bnd`, because the test bundle is built from the integration test classes anyway. The only exception is a test module whose `build.gradle` enables its `jar` task again.
