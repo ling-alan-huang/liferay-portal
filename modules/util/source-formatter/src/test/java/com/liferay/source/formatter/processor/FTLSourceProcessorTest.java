@@ -13,6 +13,11 @@ import org.junit.Test;
 public class FTLSourceProcessorTest extends BaseSourceProcessorTestCase {
 
 	@Test
+	public void testEmptyLines() throws Exception {
+		test("EmptyLines.testftl");
+	}
+
+	@Test
 	public void testFormatImports() throws Exception {
 		test("FormatImports.testftl");
 	}
