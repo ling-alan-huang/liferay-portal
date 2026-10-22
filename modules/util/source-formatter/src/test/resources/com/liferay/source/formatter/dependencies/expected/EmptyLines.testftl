@@ -17,7 +17,6 @@ public class TestResourceFactoryImpl {
 			if (!_featureFlagChecker.isEnabled()) {
 				throw new NotFoundException();
 			}
-
 		</#if>
 	</#list>
 
