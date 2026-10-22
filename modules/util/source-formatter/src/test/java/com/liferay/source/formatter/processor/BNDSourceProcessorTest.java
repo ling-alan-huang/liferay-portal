@@ -24,6 +24,37 @@ public class BNDSourceProcessorTest extends BaseSourceProcessorTestCase {
 	}
 
 	@Test
+	public void testExportClassName() throws Exception {
+		test(
+			"ExportClassName/qux-web/bnd.testbnd",
+			_getMessageClassNameExport(
+				"com.liferay.qux.web.QuxUtil", "-exportcontents"),
+			4);
+		test("ExportClassName/src/baz-api/bnd.testbnd");
+		test(
+			SourceProcessorTestParameters.create(
+				"ExportClassName/bar-api/bnd.testbnd"
+			).addDependentFileName(
+				"ExportClassName/bar-api/wsdl/search.testwsdl"
+			));
+		test(
+			SourceProcessorTestParameters.create(
+				"ExportClassName/foo-api/bnd.testbnd"
+			).addDependentFileName(
+				"ExportClassName/foo-api/src/main/java/com/liferay/foo/Model" +
+					"/FooModel.testjava"
+			).addExpectedMessage(
+				_getMessageClassNameExport(
+					"com.liferay.foo.FooUtil", "Export-Package"),
+				6
+			).addExpectedMessage(
+				_getMessageClassNameExport(
+					"org.apache.xml.security.Init", "Export-Package"),
+				9
+			));
+	}
+
+	@Test
 	public void testFormatBndInstructions() throws Exception {
 		test("FormatBndInstructions1/app.testbnd");
 		test(
@@ -204,6 +235,14 @@ public class BNDSourceProcessorTest extends BaseSourceProcessorTestCase {
 	public void testRemoveNoValueDefinitionKey() throws Exception {
 		test("RemoveNoValueDefinitionKey1.testbnd");
 		test("RemoveNoValueDefinitionKey2.testbnd");
+	}
+
+	private String _getMessageClassNameExport(
+		String exportName, String instruction) {
+
+		return StringBundler.concat(
+			"\"", exportName, "\" in ", instruction,
+			" is a class name, use its package name");
 	}
 
 	private String _getMessageMissingPath(String path) {
