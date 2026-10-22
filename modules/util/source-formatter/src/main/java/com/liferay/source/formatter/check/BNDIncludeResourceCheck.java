@@ -5,21 +5,33 @@
 
 package com.liferay.source.formatter.check;
 
+import aQute.libg.glob.Glob;
+
 import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.tools.ImportPackage;
+import com.liferay.source.formatter.SourceFormatterExcludes;
 import com.liferay.source.formatter.check.util.BNDSourceUtil;
 import com.liferay.source.formatter.util.FileUtil;
+import com.liferay.source.formatter.util.GradleBuildFile;
+import com.liferay.source.formatter.util.GradleDependency;
+import com.liferay.source.formatter.util.SourceFormatterUtil;
 
 import java.io.File;
+import java.io.IOException;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -35,7 +47,8 @@ public class BNDIncludeResourceCheck extends BaseFileCheck {
 
 	@Override
 	protected String doProcess(
-		String fileName, String absolutePath, String content) {
+			String fileName, String absolutePath, String content)
+		throws IOException {
 
 		if (fileName.endsWith("/bnd.bnd") && !absolutePath.contains("/src/")) {
 			_checkIncludeResources(fileName, absolutePath, content);
@@ -52,8 +65,9 @@ public class BNDIncludeResourceCheck extends BaseFileCheck {
 	}
 
 	private void _checkIncludeResource(
-		String fileName, File moduleDir, String buildGradleContent, String name,
-		int lineNumber) {
+			String fileName, File moduleDir, String buildGradleContent,
+			Map<String, File> dependencySourceDirs, String name, int lineNumber)
+		throws IOException {
 
 		String source = name;
 		String target = null;
@@ -81,10 +95,19 @@ public class BNDIncludeResourceCheck extends BaseFileCheck {
 
 		_checkTestClassesIntegration(
 			fileName, buildGradleContent, source, lineNumber);
+		_checkUnpackedClass(
+			fileName, moduleDir, dependencySourceDirs, source, lineNumber);
 	}
 
 	private void _checkIncludeResources(
-		String fileName, String absolutePath, String content) {
+			String fileName, String absolutePath, String content)
+		throws IOException {
+
+		Matcher matcher = _includeResourceDefinitionPattern.matcher(content);
+
+		if (!matcher.find()) {
+			return;
+		}
 
 		File file = new File(absolutePath);
 
@@ -93,7 +116,10 @@ public class BNDIncludeResourceCheck extends BaseFileCheck {
 		String buildGradleContent = FileUtil.read(
 			new File(moduleDir, "build.gradle"));
 
-		Matcher matcher = _includeResourceDefinitionPattern.matcher(content);
+		Map<String, File> dependencySourceDirs = _getDependencySourceDirs(
+			moduleDir, buildGradleContent);
+
+		matcher.reset();
 
 		while (matcher.find()) {
 			int x = matcher.start();
@@ -111,8 +137,8 @@ public class BNDIncludeResourceCheck extends BaseFileCheck {
 				}
 
 				_checkIncludeResource(
-					fileName, moduleDir, buildGradleContent, name,
-					getLineNumber(content, y));
+					fileName, moduleDir, buildGradleContent,
+					dependencySourceDirs, name, getLineNumber(content, y));
 			}
 		}
 	}
@@ -138,13 +164,7 @@ public class BNDIncludeResourceCheck extends BaseFileCheck {
 		String path = source;
 
 		if (path.startsWith(StringPool.AT)) {
-			path = path.substring(1);
-
-			int x = path.indexOf("!/");
-
-			if (x != -1) {
-				path = path.substring(0, x);
-			}
+			path = _getJarName(path);
 
 			if (!path.contains(StringPool.SLASH)) {
 				return;
@@ -260,6 +280,64 @@ public class BNDIncludeResourceCheck extends BaseFileCheck {
 			lineNumber);
 	}
 
+	private void _checkUnpackedClass(
+			String fileName, File moduleDir,
+			Map<String, File> dependencySourceDirs, String source,
+			int lineNumber)
+		throws IOException {
+
+		if (!source.startsWith(StringPool.AT) ||
+			fileName.contains("/modules/sdk/") ||
+			fileName.contains("/modules/util/")) {
+
+			return;
+		}
+
+		int index = source.indexOf("!/");
+
+		if (index == -1) {
+			return;
+		}
+
+		String entryName = source.substring(index + 2);
+
+		Matcher matcher = _singleClassPattern.matcher(entryName);
+
+		if (!matcher.matches()) {
+			return;
+		}
+
+		String className = StringUtil.replace(
+			matcher.group(1), CharPool.SLASH, CharPool.PERIOD);
+
+		File sourceDir = _getSourceDir(
+			moduleDir, dependencySourceDirs, _getJarName(source));
+
+		if (sourceDir != null) {
+			File sourceFile = new File(sourceDir, matcher.group(1) + ".java");
+
+			if (!sourceFile.exists()) {
+				addMessage(
+					fileName,
+					StringBundler.concat(
+						"Unpacked class \"", className,
+						"\" does not exist in its jar"),
+					lineNumber);
+
+				return;
+			}
+		}
+
+		if (!_isReferenced(moduleDir, fileName, className)) {
+			addMessage(
+				fileName,
+				StringBundler.concat(
+					"Unpacked class \"", className,
+					"\" is not referenced by the module"),
+				lineNumber);
+		}
+	}
+
 	private String _formatIncludeResource(String fileName, String content) {
 		if (fileName.endsWith("/bnd.bnd") &&
 			!fileName.endsWith("-test/bnd.bnd")) {
@@ -353,6 +431,181 @@ public class BNDIncludeResourceCheck extends BaseFileCheck {
 		return null;
 	}
 
+	private File _getCoreSourceDir(File dir) {
+		File buildXMLFile = new File(dir, "build.xml");
+
+		if (buildXMLFile.exists()) {
+			return new File(dir, "src");
+		}
+
+		return null;
+	}
+
+	private File _getCoreSourceDir(GradleDependency gradleDependency) {
+		String name = gradleDependency.getName();
+
+		if (!Objects.equals(
+				gradleDependency.getGroup(), "com.liferay.portal") ||
+			!name.startsWith("com.liferay.")) {
+
+			return null;
+		}
+
+		File portalDir = getPortalDir();
+
+		if (portalDir == null) {
+			return null;
+		}
+
+		File coreDir = new File(
+			portalDir,
+			StringUtil.replace(
+				name.substring(12), CharPool.PERIOD, CharPool.DASH));
+
+		return _getCoreSourceDir(coreDir);
+	}
+
+	private Map<String, File> _getDependencySourceDirs(
+		File moduleDir, String buildGradleContent) {
+
+		Map<String, File> dependencySourceDirs = new HashMap<>();
+
+		if (buildGradleContent == null) {
+			return dependencySourceDirs;
+		}
+
+		GradleBuildFile gradleBuildFile = new GradleBuildFile(
+			buildGradleContent);
+
+		for (GradleDependency gradleDependency :
+				gradleBuildFile.getGradleDependencies()) {
+
+			String version = gradleDependency.getVersion();
+
+			if ((version == null) || version.equals("default") ||
+				!_isVersion(version)) {
+
+				version = "1.0.0";
+			}
+
+			String dependency = _getLines(
+				buildGradleContent, gradleDependency.getLineNumber(),
+				gradleDependency.getLastLineNumber());
+
+			String classifier = StringPool.BLANK;
+
+			Matcher matcher = _classifierPattern.matcher(dependency);
+
+			if (matcher.find()) {
+				classifier = StringPool.DASH + matcher.group(1);
+			}
+
+			String extension = "jar";
+
+			matcher = _extensionPattern.matcher(dependency);
+
+			if (matcher.find()) {
+				extension = matcher.group(1);
+			}
+
+			dependencySourceDirs.put(
+				StringBundler.concat(
+					gradleDependency.getName(), StringPool.DASH, version,
+					classifier, StringPool.PERIOD, extension),
+				_getCoreSourceDir(gradleDependency));
+		}
+
+		File rootDir = _getRootDir(moduleDir);
+
+		if (rootDir == null) {
+			return dependencySourceDirs;
+		}
+
+		Matcher matcher = _projectDependencyPattern.matcher(buildGradleContent);
+
+		while (matcher.find()) {
+			File projectDir = new File(
+				rootDir,
+				StringUtil.replace(
+					matcher.group(1), CharPool.COLON, CharPool.SLASH));
+
+			String bndContent = FileUtil.read(new File(projectDir, "bnd.bnd"));
+
+			if (bndContent == null) {
+				continue;
+			}
+
+			String bundleSymbolicName = BNDSourceUtil.getDefinitionValue(
+				bndContent, "Bundle-SymbolicName");
+
+			if (bundleSymbolicName == null) {
+				continue;
+			}
+
+			int index = bundleSymbolicName.indexOf(CharPool.SEMICOLON);
+
+			if (index != -1) {
+				bundleSymbolicName = bundleSymbolicName.substring(0, index);
+			}
+
+			String bundleVersion = BNDSourceUtil.getDefinitionValue(
+				bndContent, "Bundle-Version");
+
+			if (bundleVersion == null) {
+				bundleVersion = "1.0.0";
+			}
+
+			bundleSymbolicName = StringUtil.trim(bundleSymbolicName);
+
+			String projectBuildGradleContent = FileUtil.read(
+				new File(projectDir, "build.gradle"));
+
+			if ((projectBuildGradleContent != null) &&
+				projectBuildGradleContent.contains(
+					"archiveFileName = archiveBaseName.get() + \".jar\"")) {
+
+				dependencySourceDirs.put(
+					bundleSymbolicName + ".jar",
+					new File(projectDir, "src/main/java"));
+
+				continue;
+			}
+
+			dependencySourceDirs.put(
+				StringBundler.concat(
+					bundleSymbolicName, StringPool.DASH,
+					StringUtil.trim(bundleVersion), ".jar"),
+				new File(projectDir, "src/main/java"));
+		}
+
+		return dependencySourceDirs;
+	}
+
+	private String _getJarName(String source) {
+		String jarName = source.substring(1);
+
+		int index = jarName.indexOf("!/");
+
+		if (index != -1) {
+			return jarName.substring(0, index);
+		}
+
+		return jarName;
+	}
+
+	private String _getLines(
+		String content, int lineNumber, int lastLineNumber) {
+
+		StringBundler sb = new StringBundler();
+
+		for (int i = lineNumber; i <= lastLineNumber; i++) {
+			sb.append(getLine(content, i));
+			sb.append(StringPool.NEW_LINE);
+		}
+
+		return sb.toString();
+	}
+
 	private String _getName(String clause) {
 		String name = clause;
 
@@ -369,6 +622,47 @@ public class BNDIncludeResourceCheck extends BaseFileCheck {
 		}
 
 		return StringUtil.trim(name);
+	}
+
+	private File _getRootDir(File moduleDir) {
+		for (File dir = moduleDir; dir != null; dir = dir.getParentFile()) {
+			File settingsGradleFile = new File(dir, "settings.gradle");
+
+			if (settingsGradleFile.exists()) {
+				return dir;
+			}
+		}
+
+		return null;
+	}
+
+	private File _getSourceDir(
+		File moduleDir, Map<String, File> dependencySourceDirs,
+		String jarName) {
+
+		if (jarName.contains(StringPool.SLASH)) {
+			Path filePath = Paths.get(moduleDir.getPath(), jarName);
+
+			filePath = filePath.normalize();
+
+			File file = filePath.toFile();
+
+			if (_isAntJar(file)) {
+				return _getCoreSourceDir(file.getParentFile());
+			}
+
+			return null;
+		}
+
+		Glob glob = new Glob(jarName);
+
+		for (Map.Entry<String, File> entry : dependencySourceDirs.entrySet()) {
+			if (glob.matches(entry.getKey())) {
+				return entry.getValue();
+			}
+		}
+
+		return null;
 	}
 
 	private boolean _isAntJar(File file) {
@@ -462,6 +756,84 @@ public class BNDIncludeResourceCheck extends BaseFileCheck {
 		return false;
 	}
 
+	private boolean _isReferenced(
+			File moduleDir, String fileName, String className)
+		throws IOException {
+
+		List<String> sourceDirNames = new ArrayList<>();
+
+		File buildXMLFile = new File(moduleDir, "build.xml");
+
+		if (buildXMLFile.exists()) {
+			sourceDirNames.add("src");
+		}
+		else {
+			sourceDirNames.add("src/main");
+
+			if (fileName.endsWith("-test/bnd.bnd")) {
+				sourceDirNames.add("src/testIntegration");
+			}
+		}
+
+		String packageName = className.substring(
+			0, className.lastIndexOf(CharPool.PERIOD));
+
+		Pattern simpleClassNamePattern = Pattern.compile(
+			"\\b" +
+				Pattern.quote(className.substring(packageName.length() + 1)) +
+					"\\b");
+
+		for (String sourceDirName : sourceDirNames) {
+			File sourceDir = new File(moduleDir, sourceDirName);
+
+			if (!sourceDir.isDirectory()) {
+				continue;
+			}
+
+			for (String sourceFileName :
+					SourceFormatterUtil.scanForFileNames(
+						sourceDir.getPath(), new String[0],
+						_SOURCE_FILE_NAME_INCLUDES,
+						new SourceFormatterExcludes(), false)) {
+
+				String content = FileUtil.read(new File(sourceFileName));
+
+				if (content == null) {
+					continue;
+				}
+
+				if (content.contains(className) ||
+					content.contains(
+						StringUtil.replace(
+							className, CharPool.PERIOD, CharPool.SLASH))) {
+
+					return true;
+				}
+
+				if (!sourceFileName.endsWith(".java") ||
+					!(content.contains("package " + packageName + ";") ||
+					  content.contains("import " + packageName + ".*;"))) {
+
+					continue;
+				}
+
+				Matcher matcher = simpleClassNamePattern.matcher(content);
+
+				if (matcher.find()) {
+					return true;
+				}
+			}
+		}
+
+		return false;
+	}
+
+	private boolean _isVersion(String version) {
+		Matcher matcher = _versionPattern.matcher(version);
+
+		return matcher.matches();
+	}
+
 	private String _sortDefinitionProperties(
 		String content, String properties, Comparator<String> comparator) {
 
@@ -510,10 +882,19 @@ public class BNDIncludeResourceCheck extends BaseFileCheck {
 		"WEB-INF=src/main/resources/WEB-INF"
 	};
 
+	private static final String[] _SOURCE_FILE_NAME_INCLUDES = {
+		"**/*.ftl", "**/*.java", "**/*.js", "**/*.jsp", "**/*.jspf",
+		"**/*.properties", "**/*.tag", "**/*.tld", "**/*.xml"
+	};
+
+	private static final Pattern _classifierPattern = Pattern.compile(
+		"\\bclassifier: \"([^\"]+)\"");
 	private static final Pattern _classpathPatternPattern = Pattern.compile(
 		"[*\\[]|\\.(bin|jar|mmdb|zip)$");
 	private static final Pattern _copyIntoLibPattern = Pattern.compile(
 		"^\\s*into \"lib\"$", Pattern.MULTILINE);
+	private static final Pattern _extensionPattern = Pattern.compile(
+		"\\bext: \"([^\"]+)\"");
 	private static final Pattern _includeDashResourcePattern = Pattern.compile(
 		"^Include-Resource:.+", Pattern.MULTILINE);
 	private static final Pattern _includeResourceDefinitionPattern =
@@ -528,6 +909,12 @@ public class BNDIncludeResourceCheck extends BaseFileCheck {
 		Pattern.MULTILINE);
 	private static final Pattern _jarEnabledPattern = Pattern.compile(
 		"^jar \\{[^{}]*?\\benabled = true", Pattern.MULTILINE);
+	private static final Pattern _projectDependencyPattern = Pattern.compile(
+		"project\\((?:path: )?\"(:[^\"]+)\"");
+	private static final Pattern _singleClassPattern = Pattern.compile(
+		"([\\w/]+)(\\$[\\w$]+)?\\.class");
+	private static final Pattern _versionPattern = Pattern.compile(
+		"\\d[\\w.-]*");
 
 	private static class IncludeResourceComparator
 		implements Comparator<String> {

@@ -138,6 +138,43 @@ public class BNDSourceProcessorTest extends BaseSourceProcessorTestCase {
 	}
 
 	@Test
+	public void testIncludeResourceUnpackedClass() throws Exception {
+		test(
+			SourceProcessorTestParameters.create(
+				"UnpackedClass/apps/foo/foo-impl/bnd.testbnd"
+			).addDependentFileName(
+				"UnpackedClass/apps/baz/baz-api/bnd.testbnd"
+			).addDependentFileName(
+				"UnpackedClass/apps/baz/baz-api/src/main/java/com/liferay/baz" +
+					"/Baz.testjava"
+			).addDependentFileName(
+				"UnpackedClass/apps/baz/baz-api/src/main/java/com/liferay/baz" +
+					"/BazUtil.testjava"
+			).addDependentFileName(
+				"UnpackedClass/apps/foo/foo-impl/build.testgradle"
+			).addDependentFileName(
+				"UnpackedClass/apps/foo/foo-impl/src/main/java/com/liferay" +
+					"/foo/internal/FooImpl.testjava"
+			).addDependentFileName(
+				"UnpackedClass/settings.testgradle"
+			).addExpectedMessage(
+				"Unpacked class \"com.liferay.baz.BazUtil\" is not " +
+					"referenced by the module",
+				7
+			).addExpectedMessage(
+				"Unpacked class \"com.liferay.baz.Missing\" does not exist " +
+					"in its jar",
+				8
+			));
+		test(
+			SourceProcessorTestParameters.create(
+				"UnpackedClass/modules/util/bar-tool/bnd.testbnd"
+			).addDependentFileName(
+				"UnpackedClass/modules/util/bar-tool/build.testgradle"
+			));
+	}
+
+	@Test
 	public void testIncorrectBundleActivator() throws Exception {
 		test(
 			"IncorrectBundleActivator1/bnd.testbnd",
