@@ -15,6 +15,86 @@ import org.junit.Test;
 public class BNDSourceProcessorTest extends BaseSourceProcessorTestCase {
 
 	@Test
+	public void testDSAnnotationsOptionsInherit() throws Exception {
+		String message =
+			"Do not use \"inherit\" in \"-dsannotations-options\", no " +
+				"component inherits an @Activate, @Deactivate, @Modified or " +
+					"@Reference member";
+
+		test("DSAnnotationsOptions/src/garply-web/bnd.testbnd");
+		test(
+			SourceProcessorTestParameters.create(
+				"DSAnnotationsOptions/bar-web/bnd.testbnd"
+			).addDependentFileName(
+				"DSAnnotationsOptions/bar-web/src/main/java/com/liferay/bar" +
+					"/web/internal/BarWebUtil.testjava"
+			).addExpectedMessage(
+				message, 4
+			));
+		test(
+			SourceProcessorTestParameters.create(
+				"DSAnnotationsOptions/baz-web/bnd.testbnd"
+			).addDependentFileName(
+				"DSAnnotationsOptions/baz-web/src/main/java/com/liferay/baz" +
+					"/web/internal/BaseBazPortlet.testjava"
+			).addDependentFileName(
+				"DSAnnotationsOptions/baz-web/src/main/java/com/liferay/baz" +
+					"/web/internal/BazPortlet.testjava"
+			).addExpectedMessage(
+				message, 4
+			));
+		test(
+			SourceProcessorTestParameters.create(
+				"DSAnnotationsOptions/corge-web/bnd.testbnd"
+			).addDependentFileName(
+				"DSAnnotationsOptions/corge-web/src/main/java/com/liferay" +
+					"/corge/web/internal/CorgeJwksService.testjava"
+			));
+		test(
+			SourceProcessorTestParameters.create(
+				"DSAnnotationsOptions/foo-web/bnd.testbnd"
+			).addDependentFileName(
+				"DSAnnotationsOptions/foo-web/src/main/java/com/liferay/foo" +
+					"/web/internal/BaseFooPortlet.testjava"
+			).addDependentFileName(
+				"DSAnnotationsOptions/foo-web/src/main/java/com/liferay/foo" +
+					"/web/internal/FooPortlet.testjava"
+			));
+		test(
+			SourceProcessorTestParameters.create(
+				"DSAnnotationsOptions/grault-test/bnd.testbnd"
+			).addDependentFileName(
+				"DSAnnotationsOptions/grault-test/src/testIntegration/java" +
+					"/com/liferay/grault/test/BaseGraultTestComponent.testjava"
+			).addDependentFileName(
+				"DSAnnotationsOptions/grault-test/src/testIntegration/java" +
+					"/com/liferay/grault/test/GraultTestComponent.testjava"
+			));
+		test(
+			SourceProcessorTestParameters.create(
+				"DSAnnotationsOptions/quux-web/bnd.testbnd"
+			).addDependentFileName(
+				"DSAnnotationsOptions/quux-web/src/main/java/com/liferay/quux" +
+					"/web/internal/QuuxPortlet.testjava"
+			).addExpectedMessage(
+				message, 4
+			));
+		test(
+			SourceProcessorTestParameters.create(
+				"DSAnnotationsOptions/qux-web/bnd.testbnd"
+			).addDependentFileName(
+				"DSAnnotationsOptions/qux-web/src/main/java/com/liferay/qux" +
+					"/web/internal/BaseQuxDynamicInclude.testjava"
+			).addDependentFileName(
+				"DSAnnotationsOptions/qux-web/src/main/java/com/liferay/qux" +
+					"/web/internal/BaseQuxLifecycle.testjava"
+			).addDependentFileName(
+				"DSAnnotationsOptions/qux-web/src/main/java/com/liferay/qux" +
+					"/web/internal/QuxDynamicInclude.testjava"
+			));
+	}
+
+	@Test
 	public void testDoNotCopy() throws Exception {
 		test("DefinitionKeysDoNotCopy/common.testbnd");
 		test(

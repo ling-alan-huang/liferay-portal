@@ -7,6 +7,7 @@ BNDBreakingChangeCommitMessageCheck | [Bug Prevention](bug_prevention_checks.md#
 [BNDBundleCheck](check/bnd_bundle_check.md#bndbundlecheck) | [Bug Prevention](bug_prevention_checks.md#bug-prevention-checks) | Validates `Liferay-Releng-*` properties. |
 [BNDBundleInformationCheck](check/bnd_bundle_information_check.md#bndbundleinformationcheck) | [Bug Prevention](bug_prevention_checks.md#bug-prevention-checks) | Validates property values for `Bundle-Version`, `Bundle-Name` and `Bundle-SymbolicName`. |
 BNDCapabilityCheck | [Styling](styling_checks.md#styling-checks) | Sorts and applies logic to fix line breaks to property values for `Provide-Capability` and `Require-Capability`. |
+[BNDDSAnnotationsOptionsCheck](check/bndds_annotations_options_check.md#bnddsannotationsoptionscheck) | [Miscellaneous](miscellaneous_checks.md#miscellaneous-checks) | Checks for unnecessary `inherit` in `-dsannotations-options`. |
 [BNDDefinitionKeysCheck](check/bnd_definition_keys_check.md#bnddefinitionkeyscheck) | [Bug Prevention](bug_prevention_checks.md#bug-prevention-checks) | Validates definition keys in `.bnd` files. |
 [BNDDeprecatedAppBNDsCheck](check/bnd_deprecated_app_bnds_check.md#bnddeprecatedappbndscheck) | [Miscellaneous](miscellaneous_checks.md#miscellaneous-checks) | Checks for redundant `app.bnd` in deprecated or archived modules. |
 [BNDDirectoryNameCheck](check/bnd_directory_name_check.md#bnddirectorynamecheck) | [Bug Prevention](bug_prevention_checks.md#bug-prevention-checks) | Checks if the directory names of the submodules match the parent module name. |

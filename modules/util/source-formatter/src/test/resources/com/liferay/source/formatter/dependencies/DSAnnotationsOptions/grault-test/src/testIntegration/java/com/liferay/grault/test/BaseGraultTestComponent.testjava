@@ -1,0 +1,8 @@
+package com.liferay.grault.test;
+
+public abstract class BaseGraultTestComponent {
+
+	@org.osgi.service.component.annotations.Reference
+	protected Object object;
+
+}
