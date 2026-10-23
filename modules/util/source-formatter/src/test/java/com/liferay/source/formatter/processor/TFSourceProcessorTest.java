@@ -13,8 +13,18 @@ import org.junit.Test;
 public class TFSourceProcessorTest extends BaseSourceProcessorTestCase {
 
 	@Test
+	public void testIndentation() throws Exception {
+		test("Indentation.testtf");
+	}
+
+	@Test
 	public void testSortBlocks() throws Exception {
 		test("SortBlocks.testtf");
+	}
+
+	@Test
+	public void testSortEntries() throws Exception {
+		test("SortEntries.testtf");
 	}
 
 }

@@ -1914,7 +1914,11 @@
 	<source-processor name="TFSourceProcessor">
 		<check name="TFBlockOrderCheck">
 			<category name="Styling" />
-			<description name="Checks the order of blocks in `.tf` file." />
+			<description name="Checks the order of blocks, attributes, and IAM policy actions in `.tf` file." />
+		</check>
+		<check name="TFIndentationCheck">
+			<category name="Styling" />
+			<description name="Checks the indentation in `.tf` files." />
 		</check>
 	</source-processor>
 	<source-processor name="TLDSourceProcessor">
