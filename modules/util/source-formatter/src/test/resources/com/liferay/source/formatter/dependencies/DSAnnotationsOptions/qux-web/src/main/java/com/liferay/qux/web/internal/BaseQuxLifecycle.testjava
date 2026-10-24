@@ -1,0 +1,16 @@
+package com.liferay.qux.web.internal;
+
+import org.osgi.service.component.annotations.Activate;
+import org.osgi.service.component.annotations.Deactivate;
+
+public abstract class BaseQuxLifecycle {
+
+	@Activate
+	protected void activate() {
+	}
+
+	@Deactivate
+	protected void deactivate() {
+	}
+
+}

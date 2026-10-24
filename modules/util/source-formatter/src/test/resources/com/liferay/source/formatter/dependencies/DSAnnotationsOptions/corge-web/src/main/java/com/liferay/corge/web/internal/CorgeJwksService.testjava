@@ -1,0 +1,9 @@
+package com.liferay.corge.web.internal;
+
+import org.apache.cxf.rs.security.oauth2.services.JwksService;
+
+import org.osgi.service.component.annotations.Component;
+
+@Component(service = Object.class)
+public class CorgeJwksService extends JwksService {
+}

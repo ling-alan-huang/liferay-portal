@@ -1,0 +1,10 @@
+package com.liferay.baz.web.internal;
+
+import com.liferay.baz.web.internal.annotation.Reference;
+
+public abstract class BaseBazPortlet {
+
+	@Reference
+	protected Object object;
+
+}

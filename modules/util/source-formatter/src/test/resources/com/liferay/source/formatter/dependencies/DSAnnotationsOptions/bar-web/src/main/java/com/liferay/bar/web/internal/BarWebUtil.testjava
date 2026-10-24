@@ -1,0 +1,7 @@
+package com.liferay.bar.web.internal;
+
+import org.osgi.service.component.annotations.Component;
+
+@Component(service = BarWebUtil.class)
+public class BarWebUtil {
+}
