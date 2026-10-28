@@ -1,0 +1,3 @@
+Bundle-Name: Liferay Sample API
+Bundle-SymbolicName: com.liferay.sample.api
+Bundle-Version: 1.0.0
