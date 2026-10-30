@@ -378,6 +378,10 @@
 			<category name="Bug Prevention" />
 			<description name="Checks for incorrect use of `deployDir`." />
 		</check>
+		<check name="GradleUnusedProjectDependenciesCheck">
+			<category name="Bug Prevention" />
+			<description name="Finds project dependencies in `build.gradle` files that no source, JSP, taglib, or `bnd.bnd` file of the module references." />
+		</check>
 		<check name="GradleUpgradeReleaseDXPCheck">
 			<category name="Upgrade" />
 			<description name="Remove and replaced dependencies in `build.gradle` that are already in `release.dxp.api` with `released.dxp.api` dependency." />

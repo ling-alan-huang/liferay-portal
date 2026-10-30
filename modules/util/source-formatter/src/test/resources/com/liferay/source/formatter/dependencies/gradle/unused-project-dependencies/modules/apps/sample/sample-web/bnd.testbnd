@@ -1,0 +1,6 @@
+Bundle-Name: Liferay Sample Web
+Bundle-SymbolicName: com.liferay.sample.web
+Bundle-Version: 1.0.0
+Import-Package:\
+	com.liferay.sample.bnd,\
+	*
