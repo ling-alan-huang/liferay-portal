@@ -1,0 +1,7 @@
+package com.liferay.qux.web.internal;
+
+public abstract class BaseQuxDynamicInclude extends BaseQuxLifecycle {
+
+	protected abstract String getKey();
+
+}

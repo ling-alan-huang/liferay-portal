@@ -1,0 +1,7 @@
+package com.liferay.baz.web.internal;
+
+import org.osgi.service.component.annotations.Component;
+
+@Component(service = Object.class)
+public class BazPortlet extends BaseBazPortlet {
+}

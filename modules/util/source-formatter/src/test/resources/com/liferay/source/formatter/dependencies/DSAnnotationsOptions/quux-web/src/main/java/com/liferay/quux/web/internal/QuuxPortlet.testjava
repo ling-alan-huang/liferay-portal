@@ -1,0 +1,9 @@
+package com.liferay.quux.web.internal;
+
+import jakarta.portlet.GenericPortlet;
+
+import org.osgi.service.component.annotations.Component;
+
+@Component(service = Object.class)
+public class QuuxPortlet extends GenericPortlet {
+}
