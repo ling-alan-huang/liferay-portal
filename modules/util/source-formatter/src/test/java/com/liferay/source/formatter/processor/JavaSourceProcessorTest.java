@@ -1262,6 +1262,34 @@ public class JavaSourceProcessorTest extends BaseSourceProcessorTestCase {
 	}
 
 	@Test
+	public void testServiceTrackerMapPropertyKeyOverload() throws Exception {
+		test(
+			SourceProcessorTestParameters.create(
+				"ServiceTrackerMapPropertyKeyOverload.testjava"
+			).addExpectedMessage(
+				"Use the property key overload \"ServiceTrackerMapFactory." +
+					"openSingleValueMap(BundleContext, Class, String)\"",
+				23
+			).addExpectedMessage(
+				"Use the property key overload \"ServiceTrackerMapFactory." +
+					"openMultiValueMap(BundleContext, Class, String)\"",
+				26
+			).addExpectedMessage(
+				"Use the property key overload \"ServiceTrackerMapFactory." +
+					"openSingleValueMap(BundleContext, Class, String)\"",
+				30
+			).addExpectedMessage(
+				"Use the property key overload \"ServiceTrackerMapFactory." +
+					"openSingleValueMap(BundleContext, Class, String)\"",
+				33
+			).addExpectedMessage(
+				"Use the property key overload \"ServiceTrackerMapFactory." +
+					"openMultiValueMap(BundleContext, Class, String)\"",
+				38
+			));
+	}
+
+	@Test
 	public void testSimplifyListUtilCalls() throws Exception {
 		test("SimplifyListUtilCalls.testjava");
 	}

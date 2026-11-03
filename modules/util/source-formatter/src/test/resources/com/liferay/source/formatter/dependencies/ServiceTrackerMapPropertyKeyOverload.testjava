@@ -1,0 +1,88 @@
+/**
+ * SPDX-FileCopyrightText: (c) 2026 Liferay, Inc. https://liferay.com
+ * SPDX-License-Identifier: LGPL-2.1-or-later OR LicenseRef-Liferay-DXP-EULA-2.0.0-2023-06
+ */
+
+package com.liferay.source.formatter.dependencies;
+
+import com.liferay.osgi.service.tracker.collections.map.PropertyServiceReferenceMapper;
+import com.liferay.osgi.service.tracker.collections.map.ServiceTrackerMap;
+import com.liferay.osgi.service.tracker.collections.map.ServiceTrackerMapFactory;
+
+import java.util.List;
+
+import org.osgi.framework.BundleContext;
+import org.osgi.util.tracker.ServiceTrackerCustomizer;
+
+/**
+ * @author Shuyang Zhou
+ */
+public class ServiceTrackerMapPropertyKeyOverload {
+
+	public void activate(BundleContext bundleContext) {
+		_diamondServiceTrackerMap = ServiceTrackerMapFactory.openSingleValueMap(
+			bundleContext, Object.class, "(model.class.name=*)",
+			new PropertyServiceReferenceMapper<>("model.class.name"));
+		_typedServiceTrackerMap = ServiceTrackerMapFactory.openMultiValueMap(
+			bundleContext, Object.class, null,
+			new PropertyServiceReferenceMapper<String, Object>(_KEY));
+		_constantServiceTrackerMap =
+			ServiceTrackerMapFactory.openSingleValueMap(
+				bundleContext, Object.class, "(" + _KEY + "=*)",
+				new PropertyServiceReferenceMapper<>(_KEY));
+		_lambdaServiceTrackerMap = ServiceTrackerMapFactory.openSingleValueMap(
+			bundleContext, Object.class, "(model.class.name=*)",
+			(serviceReference, emitter) -> emitter.emit(
+				(String)serviceReference.getProperty("model.class.name")));
+		_constantLambdaServiceTrackerMap =
+			ServiceTrackerMapFactory.openMultiValueMap(
+				bundleContext, Object.class, null,
+				(reference, keyEmitter) -> keyEmitter.emit(
+					(String)reference.getProperty(_KEY)));
+		_longServiceTrackerMap = ServiceTrackerMapFactory.openSingleValueMap(
+			bundleContext, Object.class, "(company.id=*)",
+			new PropertyServiceReferenceMapper<>("company.id"));
+		_otherKeyServiceTrackerMap =
+			ServiceTrackerMapFactory.openSingleValueMap(
+				bundleContext, Object.class, "(other.key=*)",
+				new PropertyServiceReferenceMapper<>("model.class.name"));
+		_customizerServiceTrackerMap =
+			ServiceTrackerMapFactory.openSingleValueMap(
+				bundleContext, Object.class, null,
+				new PropertyServiceReferenceMapper<>("model.class.name"),
+				_serviceTrackerCustomizer);
+		_statementsServiceTrackerMap =
+			ServiceTrackerMapFactory.openMultiValueMap(
+				bundleContext, Object.class, null,
+				(serviceReference, emitter) -> {
+					emitter.emit(
+						(String)serviceReference.getProperty(
+							"model.class.name"));
+					emitter.emit("default");
+				});
+	}
+
+	public ServiceTrackerMap<String, Object> openServiceTrackerMap(
+		BundleContext bundleContext) {
+
+		return ServiceTrackerMapFactory.openSingleValueMap(
+			bundleContext, Object.class, null,
+			new PropertyServiceReferenceMapper<>("model.class.name"));
+	}
+
+	private static final String _KEY = "model.class.name";
+
+	private ServiceTrackerMap<String, List<Object>>
+		_constantLambdaServiceTrackerMap;
+	private ServiceTrackerMap<String, Object> _constantServiceTrackerMap;
+	private ServiceTrackerMap<String, Object> _customizerServiceTrackerMap;
+	private ServiceTrackerMap<String, Object> _diamondServiceTrackerMap;
+	private ServiceTrackerMap<String, Object> _lambdaServiceTrackerMap;
+	private ServiceTrackerMap<Long, Object> _longServiceTrackerMap;
+	private ServiceTrackerMap<String, Object> _otherKeyServiceTrackerMap;
+	private ServiceTrackerCustomizer<Object, Object> _serviceTrackerCustomizer;
+	private ServiceTrackerMap<String, List<Object>>
+		_statementsServiceTrackerMap;
+	private ServiceTrackerMap<String, List<Object>> _typedServiceTrackerMap;
+
+}
