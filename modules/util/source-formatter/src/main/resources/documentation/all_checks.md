@@ -138,6 +138,7 @@ GradleStylingCheck | [Styling](styling_checks.md#styling-checks) | .gradle | App
 [GradleTaskCreationCheck](check/gradle_task_creation_check.md#gradletaskcreationcheck) | [Styling](styling_checks.md#styling-checks) | .gradle | Checks that a task is declared on a separate line before the closure. |
 GradleTestDependencyVersionCheck | [Bug Prevention](bug_prevention_checks.md#bug-prevention-checks) | .gradle | Checks the version for dependencies in gradle build files. |
 GradleTestUtilDeployDirCheck | [Bug Prevention](bug_prevention_checks.md#bug-prevention-checks) | .gradle | Checks for incorrect use of `deployDir`. |
+[GradleUnusedProjectDependenciesCheck](check/gradle_unused_project_dependencies_check.md#gradleunusedprojectdependenciescheck) | [Bug Prevention](bug_prevention_checks.md#bug-prevention-checks) | .gradle | Finds project dependencies in `build.gradle` files that no source, JSP, taglib, or `bnd.bnd` file of the module references. |
 [GradleUpgradeReleaseDXPCheck](check/gradle_upgrade_release_dxp_check.md#gradleupgradereleasedxpcheck) | [Upgrade](upgrade_checks.md#upgrade-checks) | .gradle | Remove and replaced dependencies in `build.gradle` that are already in `release.dxp.api` with `released.dxp.api` dependency. |
 GradleWhitespaceCheck | [Styling](styling_checks.md#styling-checks) | .gradle | Finds missing and unnecessary whitespace. |
 GroovyImportsCheck | [Styling](styling_checks.md#styling-checks) | .groovy | Sorts and groups imports in `.groovy` files. |

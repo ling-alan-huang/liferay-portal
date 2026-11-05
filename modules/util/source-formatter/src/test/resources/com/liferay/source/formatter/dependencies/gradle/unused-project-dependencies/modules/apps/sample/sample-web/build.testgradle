@@ -1,0 +1,12 @@
+dependencies {
+	compileOnly project(":apps:sample:sample-api")
+	compileOnly project(":apps:sample:sample-base")
+	compileOnly project(":apps:sample:sample-bnd")
+	compileOnly project(":apps:sample:sample-function")
+	compileOnly project(":apps:sample:sample-spi")
+	compileOnly project(":apps:sample:sample-taglib")
+	compileOnly project(":apps:sample:sample-unused")
+	testImplementation project(":apps:sample:sample-api")
+	testIntegrationImplementation project(":apps:sample:sample-test-util")
+	testIntegrationImplementation project(":apps:sample:sample-unused")
+}

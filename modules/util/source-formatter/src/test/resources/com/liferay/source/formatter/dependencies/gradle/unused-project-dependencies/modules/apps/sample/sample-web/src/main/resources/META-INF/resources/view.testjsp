@@ -1,0 +1,3 @@
+<%@ taglib uri="http://liferay.com/tld/sample" prefix="liferay-sample" %>
+
+<liferay-sample:sample />

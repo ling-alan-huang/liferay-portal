@@ -53,4 +53,68 @@ public class GradleSourceProcessorTest extends BaseSourceProcessorTestCase {
 		test("Styling.testgradle");
 	}
 
+	@Test
+	public void testUnusedProjectDependencies() throws Exception {
+		String dirName =
+			"gradle/unused-project-dependencies/modules/apps/sample/";
+
+		SourceProcessorTestParameters sourceProcessorTestParameters =
+			SourceProcessorTestParameters.create(
+				dirName + "sample-web/build.testgradle");
+
+		for (String dependentFileName :
+				new String[] {
+					"sample-api/bnd.testbnd",
+					"sample-api/src/main/java/com/liferay/sample/api" +
+						"/SampleAPI.testjava",
+					"sample-base/bnd.testbnd",
+					"sample-base/src/main/java/com/liferay/sample/base" +
+						"/BaseSample.testjava",
+					"sample-bnd/bnd.testbnd",
+					"sample-bnd/src/main/java/com/liferay/sample/bnd" +
+						"/SampleBND.testjava",
+					"sample-function/bnd.testbnd",
+					"sample-function/src/main/java/com/liferay/sample" +
+						"/function/SampleFunction.testjava",
+					"sample-spi/bnd.testbnd",
+					"sample-spi/src/main/java/com/liferay/sample/spi" +
+						"/SampleSPI.testjava",
+					"sample-taglib/bnd.testbnd",
+					"sample-taglib/src/main/java/com/liferay/sample/taglib" +
+						"/SampleTag.testjava",
+					"sample-taglib/src/main/resources/META-INF" +
+						"/liferay-sample.testtld",
+					"sample-test-util/bnd.testbnd",
+					"sample-test-util/src/main/java/com/liferay/sample/test" +
+						"/util/SampleTestUtil.testjava",
+					"sample-unused/bnd.testbnd",
+					"sample-unused/src/main/java/com/liferay/sample/unused" +
+						"/SampleUnused.testjava",
+					"sample-web/bnd.testbnd",
+					"sample-web/src/main/java/com/liferay/sample/web/internal" +
+						"/SampleWeb.testjava",
+					"sample-web/src/main/resources/META-INF/resources" +
+						"/view.testjsp",
+					"sample-web/src/testIntegration/java/com/liferay/sample" +
+						"/web/internal/test/SampleWebTest.testjava"
+				}) {
+
+			sourceProcessorTestParameters.addDependentFileName(
+				dirName + dependentFileName);
+		}
+
+		test(
+			sourceProcessorTestParameters.addExpectedMessage(
+				"The project dependency \":apps:sample:sample-unused\" is " +
+					"unused because no source, JSP, taglib, or \"bnd.bnd\" " +
+						"reference to it was found",
+				8
+			).addExpectedMessage(
+				"The project dependency \":apps:sample:sample-unused\" is " +
+					"unused because no source, JSP, taglib, or \"bnd.bnd\" " +
+						"reference to it was found",
+				11
+			));
+	}
+
 }

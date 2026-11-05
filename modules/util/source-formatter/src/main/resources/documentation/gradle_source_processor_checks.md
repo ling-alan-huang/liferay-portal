@@ -27,5 +27,6 @@ GradleStylingCheck | [Styling](styling_checks.md#styling-checks) | Applies rules
 [GradleTaskCreationCheck](check/gradle_task_creation_check.md#gradletaskcreationcheck) | [Styling](styling_checks.md#styling-checks) | Checks that a task is declared on a separate line before the closure. |
 GradleTestDependencyVersionCheck | [Bug Prevention](bug_prevention_checks.md#bug-prevention-checks) | Checks the version for dependencies in gradle build files. |
 GradleTestUtilDeployDirCheck | [Bug Prevention](bug_prevention_checks.md#bug-prevention-checks) | Checks for incorrect use of `deployDir`. |
+[GradleUnusedProjectDependenciesCheck](check/gradle_unused_project_dependencies_check.md#gradleunusedprojectdependenciescheck) | [Bug Prevention](bug_prevention_checks.md#bug-prevention-checks) | Finds project dependencies in `build.gradle` files that no source, JSP, taglib, or `bnd.bnd` file of the module references. |
 [GradleUpgradeReleaseDXPCheck](check/gradle_upgrade_release_dxp_check.md#gradleupgradereleasedxpcheck) | [Upgrade](upgrade_checks.md#upgrade-checks) | Remove and replaced dependencies in `build.gradle` that are already in `release.dxp.api` with `released.dxp.api` dependency. |
 GradleWhitespaceCheck | [Styling](styling_checks.md#styling-checks) | Finds missing and unnecessary whitespace. |

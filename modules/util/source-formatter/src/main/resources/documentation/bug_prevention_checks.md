@@ -68,6 +68,7 @@ GradleRestClientModuleDependenciesCheck | .gradle | Validates that only Jakarta 
 GradleRestTestModuleDependenciesCheck | .gradle | Validates the project dependencies `*-rest-client` can only be used for `testIntegrationImplementation` in `*-rest-test` modules. |
 GradleTestDependencyVersionCheck | .gradle | Checks the version for dependencies in gradle build files. |
 GradleTestUtilDeployDirCheck | .gradle | Checks for incorrect use of `deployDir`. |
+[GradleUnusedProjectDependenciesCheck](check/gradle_unused_project_dependencies_check.md#gradleunusedprojectdependenciescheck) | .gradle | Finds project dependencies in `build.gradle` files that no source, JSP, taglib, or `bnd.bnd` file of the module references. |
 IllegalImportsCheck | .java, .jsp, .jspf, .jspx, .tag, .tpl, or .vm | Finds cases of incorrect use of certain classes. |
 IllegalTaglibsCheck | .ftl, .jsp, .jspf, .jspx, .tag, .tpl, or .vm | Finds cases of incorrect use of certain deprecated taglibs in modules. |
 [IncorrectFileLocationCheck](check/incorrect_file_location_check.md#incorrectfilelocationcheck) | | Checks that `/src/*/java/` only contains `.java` files. |
