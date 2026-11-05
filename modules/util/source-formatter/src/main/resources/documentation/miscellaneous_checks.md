@@ -2,6 +2,7 @@
 
 Check | File Extensions | Description
 ----- | --------------- | -----------
+[BNDDSAnnotationsOptionsCheck](check/bndds_annotations_options_check.md#bnddsannotationsoptionscheck) | .bnd | Checks for unnecessary `inherit` in `-dsannotations-options`. |
 [BNDDeprecatedAppBNDsCheck](check/bnd_deprecated_app_bnds_check.md#bnddeprecatedappbndscheck) | .bnd | Checks for redundant `app.bnd` in deprecated or archived modules. |
 [BNDSuiteCheck](check/bnd_suite_check.md#bndsuitecheck) | .bnd | Checks that deprecated apps are moved to the `archived` folder. |
 [CreationMenuBuilderCheck](check/builder_check.md#buildercheck) | .java | Checks that `CreationMenuBuilder` is used when possible. |

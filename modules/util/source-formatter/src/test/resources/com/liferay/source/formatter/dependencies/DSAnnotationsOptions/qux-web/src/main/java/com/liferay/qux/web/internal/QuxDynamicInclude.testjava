@@ -1,0 +1,13 @@
+package com.liferay.qux.web.internal;
+
+import org.osgi.service.component.annotations.Component;
+
+@Component(service = Object.class)
+public class QuxDynamicInclude extends BaseQuxDynamicInclude {
+
+	@Override
+	protected String getKey() {
+		return "qux";
+	}
+
+}

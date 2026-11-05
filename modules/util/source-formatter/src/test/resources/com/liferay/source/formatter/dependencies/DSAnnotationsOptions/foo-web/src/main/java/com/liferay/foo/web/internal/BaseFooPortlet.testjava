@@ -1,0 +1,12 @@
+package com.liferay.foo.web.internal;
+
+import com.liferay.portal.kernel.util.Portal;
+
+import org.osgi.service.component.annotations.Reference;
+
+public abstract class BaseFooPortlet<T> {
+
+	@Reference
+	protected Portal portal;
+
+}
