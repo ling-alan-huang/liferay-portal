@@ -46,6 +46,7 @@ DeprecatedClassesCheck | [Bug Prevention](bug_prevention_checks.md#bug-preventio
 [EarlyLoopExitCheck](check/early_loop_exit_check.md#earlyloopexitcheck) | [Styling](styling_checks.md#styling-checks) | Finds if-statements at the end of a loop body that can be inverted to use `break`, `continue`, `return`, or `throw` as early as possible. |
 EmptyCollectionCheck | [Styling](styling_checks.md#styling-checks) | Checks that there are no calls to `Collections.EMPTY_LIST`, `Collections.EMPTY_MAP` or `Collections.EMPTY_SET`. |
 EmptyConstructorCheck | [Bug Prevention](bug_prevention_checks.md#bug-prevention-checks) | Finds unnecessary empty constructors. |
+[EmptyServicePropertiesCheck](check/empty_service_properties_check.md#emptyservicepropertiescheck) | [Performance](performance_checks.md#performance-checks) | Finds `registerService` calls that pass an empty `Hashtable` or `HashMapDictionary` as the service properties, which should pass `null` instead. |
 EnumConstantDividerCheck | [Styling](styling_checks.md#styling-checks) | Find unnecessary empty lines between enum constants. |
 EnumConstantOrderCheck | [Styling](styling_checks.md#styling-checks) | Checks the order of enum constants. |
 EqualClauseIfStatementsCheck | [Styling](styling_checks.md#styling-checks) | Finds consecutive if-statements with identical clauses. |
@@ -168,6 +169,7 @@ JavaReturnStatementCheck | [Styling](styling_checks.md#styling-checks) | Finds u
 JavaRunSQLCheck | [Styling](styling_checks.md#styling-checks) | Applies rules to enforce consistency in code style. |
 JavaSQLStatementCheck | [Bug Prevention](bug_prevention_checks.md#bug-prevention-checks) | Perform several checks in SQL statements. |
 [JavaSeeAnnotationCheck](check/java_see_annotation_check.md#javaseeannotationcheck) | [Bug Prevention](bug_prevention_checks.md#bug-prevention-checks) | Checks for nested annotations inside `@see`. |
+JavaServiceHopCheck | [Performance](performance_checks.md#performance-checks) | Flags a service method that delegates to a passthrough service method in the same bundle, so it can call persistence directly and skip the AOP proxy hop. |
 JavaServiceImplCheck | [Bug Prevention](bug_prevention_checks.md#bug-prevention-checks) | Ensures that `afterPropertiesSet` and `destroy` methods in `*ServiceImpl` always call the method with the same name in the superclass. |
 JavaServiceImplErcUsageCheck | [Productivity](productivity_checks.md#productivity-checks) | Automatically generates and ensures that `externalReferenceCode` is properly used in remote `*ServiceImpl` add method. |
 JavaServiceImplGetFetchCheck | [Bug Prevention](bug_prevention_checks.md#bug-prevention-checks) | Flags a get-prefixed service method that returns a nullable fetch result, violating the non-null promise its name implies. |

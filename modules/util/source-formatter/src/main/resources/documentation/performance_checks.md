@@ -7,6 +7,7 @@ AssignAsUsedCheck | .java | Finds cases where an assign statement can be inlined
 [BatchableUpdateCheck](check/batchable_update_check.md#batchableupdatecheck) | .java | Checks for cases where batch updates should be used inside a loop instead of individual executeUpdate calls. |
 ConcatCheck | .java, .jsp, .jspf, .jspx, .tag, .tpl, or .vm | Checks for correct use of `StringBundler.concat`. |
 ConstructorGlobalVariableDeclarationCheck | .java | Checks that initial values of global variables are not set in the constructor. |
+[EmptyServicePropertiesCheck](check/empty_service_properties_check.md#emptyservicepropertiescheck) | .java | Finds `registerService` calls that pass an empty `Hashtable` or `HashMapDictionary` as the service properties, which should pass `null` instead. |
 [ExceptionCheck](check/exception_check.md#exceptioncheck) | .java | Finds private methods that throw unnecessary exception. |
 [FrameworkBundleCheck](check/framework_bundle_check.md#frameworkbundlecheck) | .java | Checks that `org.osgi.framework.Bundle.getHeaders()` is not used. |
 [GradleDependenciesCheck](check/gradle_dependencies_check.md#gradledependenciescheck) | .gradle | Checks that modules are not depending on other modules. |
@@ -17,6 +18,7 @@ JavaCollapseImportsCheck | .java | Collapses imports that use wildcard. |
 JavaHibernateSQLCheck | .java | Finds calls to `com.liferay.portal.kernel.dao.orm.Session.createSQLQuery` (use `Session.createSynchronizedSQLQuery` instead). |
 [JavaMultiPlusConcatCheck](check/java_multi_plus_concat_check.md#javamultiplusconcatcheck) | .java | Checks that we do not concatenate more than 3 String objects. |
 [JavaRedundantContainsCheck](check/java_redundant_contains_check.md#javaredundantcontainscheck) | .java | Finds a `contains` or `containsKey` check that is immediately followed by a `get`, `remove`, `put`, or `add` on the same key or element, which should be combined into the single operation that already reports presence through its return value. |
+JavaServiceHopCheck | .java | Flags a service method that delegates to a passthrough service method in the same bundle, so it can call persistence directly and skip the AOP proxy hop. |
 [JavaServiceTrackerFactoryCheck](check/java_service_tracker_factory_check.md#javaservicetrackerfactorycheck) | .java | Checks that there are no calls to deprecated method `ServiceTrackerFactory.open(java.lang.Class)`. |
 JavaSessionCheck | .java | Finds unnecessary calls to `Session.flush()` (calls that are followed by `Session.clear()`). |
 [JavaStringBundlerConcatCheck](check/java_string_bundler_concat_check.md#javastringbundlerconcatcheck) | .java | Finds calls to `StringBundler.concat` with less than 3 parameters. |
