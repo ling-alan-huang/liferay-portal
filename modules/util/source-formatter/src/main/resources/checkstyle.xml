@@ -821,6 +821,12 @@
 			<property name="description" value="Finds unnecessary branching (`break`, `continue` or `return`) statements." />
 			<message key="branching.statement.redundant" value="Redundant &quot;{0}&quot; statement" />
 		</module>
+		<module name="com.liferay.source.formatter.checkstyle.check.RedundantEmptyCheckBeforeLoopCheck">
+			<property name="category" value="Performance" />
+			<property name="description" value="Finds empty checks that only guard a for-each loop over the same non-null array or collection, which iterates zero times when empty anyway." />
+			<property name="enabled" value="false" />
+			<message key="empty.check.redundant" value="Redundant empty check on &quot;{0}&quot; before for-each loop" />
+		</module>
 		<module name="com.liferay.source.formatter.checkstyle.check.RedundantLogCheck">
 			<property name="category" value="Performance" />
 			<property name="description" value="Finds unnecessary logs." />
