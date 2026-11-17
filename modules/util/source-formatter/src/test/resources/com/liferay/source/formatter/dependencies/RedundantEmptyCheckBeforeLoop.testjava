@@ -1,0 +1,153 @@
+/**
+ * SPDX-FileCopyrightText: (c) 2026 Liferay, Inc. https://liferay.com
+ * SPDX-License-Identifier: LGPL-2.1-or-later OR LicenseRef-Liferay-DXP-EULA-2.0.0-2023-06
+ */
+
+package com.liferay.source.formatter.dependencies;
+
+import com.liferay.portal.kernel.util.ArrayUtil;
+import com.liferay.portal.kernel.util.ListUtil;
+import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.StringUtil;
+
+import jakarta.servlet.http.HttpServletRequest;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * @author Alan Huang
+ */
+public class RedundantEmptyCheckBeforeLoop {
+
+	public void method1(String s) {
+		long[] ids = StringUtil.split(s, 0L);
+
+		if (ArrayUtil.isNotEmpty(ids)) {
+			for (long id : ids) {
+				_process(id);
+			}
+		}
+	}
+
+	public void method2(HttpServletRequest httpServletRequest) {
+		long[] ids = ParamUtil.getLongValues(httpServletRequest, "ids");
+
+		if (ArrayUtil.isNotEmpty(ids)) {
+			for (long id : ids) {
+				_process(id);
+			}
+		}
+	}
+
+	public void method3() {
+		List<Long> ids = new ArrayList<>();
+
+		ids.add(1L);
+
+		if (ListUtil.isNotEmpty(ids)) {
+			for (long id : ids) {
+				_process(id);
+			}
+		}
+	}
+
+	public void method4(List<Long> ids) {
+		if (!ids.isEmpty()) {
+			for (long id : ids) {
+				_process(id);
+			}
+		}
+	}
+
+	public void method5(long[] ids) {
+		if (ids.length > 0) {
+			for (long id : ids) {
+				_process(id);
+			}
+		}
+	}
+
+	public void method6(long[] ids) {
+		if (ArrayUtil.isNotEmpty(ids)) {
+			for (long id : ids) {
+				_process(id);
+			}
+		}
+	}
+
+	public void method7(String s, long[] defaultIds) {
+		long[] ids = StringUtil.split(s, 0L);
+
+		if (ids.length == 1) {
+			ids = defaultIds;
+		}
+
+		if (ArrayUtil.isNotEmpty(ids)) {
+			for (long id : ids) {
+				_process(id);
+			}
+		}
+	}
+
+	public void method8(
+		HttpServletRequest httpServletRequest, long[] defaultIds) {
+
+		long[] ids = ParamUtil.getLongValues(
+			httpServletRequest, "ids", defaultIds);
+
+		if (ArrayUtil.isNotEmpty(ids)) {
+			for (long id : ids) {
+				_process(id);
+			}
+		}
+	}
+
+	public void method9(String s) {
+		long[] ids = StringUtil.split(s, 0L);
+
+		if (ArrayUtil.isNotEmpty(ids)) {
+			for (long id : ids) {
+				_process(id);
+			}
+		}
+		else {
+			_process(0);
+		}
+	}
+
+	public void method10(String s) {
+		long[] ids = StringUtil.split(s, 0L);
+
+		if (ArrayUtil.isNotEmpty(ids)) {
+			_process(ids.length);
+
+			for (long id : ids) {
+				_process(id);
+			}
+		}
+	}
+
+	public void method11(List<Long> ids, List<Long> otherIds) {
+		if (!ids.isEmpty()) {
+			for (long id : otherIds) {
+				_process(id);
+			}
+		}
+	}
+
+	public void method12() {
+		if (ListUtil.isNotEmpty(_ids)) {
+			for (long id : _ids) {
+				_process(id);
+			}
+		}
+	}
+
+	private void _process(long id) {
+		_ids.add(id);
+	}
+
+	private List<Long> _ids;
+
+}

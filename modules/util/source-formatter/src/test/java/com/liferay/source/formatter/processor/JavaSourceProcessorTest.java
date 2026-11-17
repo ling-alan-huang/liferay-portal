@@ -1178,6 +1178,24 @@ public class JavaSourceProcessorTest extends BaseSourceProcessorTestCase {
 	}
 
 	@Test
+	public void testRedundantEmptyCheckBeforeLoop() throws Exception {
+		test(
+			SourceProcessorTestParameters.create(
+				"RedundantEmptyCheckBeforeLoop.testjava"
+			).addExpectedMessage(
+				"Redundant empty check on \"ids\" before for-each loop", 26
+			).addExpectedMessage(
+				"Redundant empty check on \"ids\" before for-each loop", 36
+			).addExpectedMessage(
+				"Redundant empty check on \"ids\" before for-each loop", 48
+			).addExpectedMessage(
+				"Redundant empty check on \"ids\" before for-each loop", 56
+			).addExpectedMessage(
+				"Redundant empty check on \"ids\" before for-each loop", 64
+			));
+	}
+
+	@Test
 	public void testRedundantLog() throws Exception {
 		test(
 			"RedundantLog.testjava",
