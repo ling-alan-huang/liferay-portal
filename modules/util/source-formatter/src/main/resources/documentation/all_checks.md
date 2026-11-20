@@ -502,6 +502,7 @@ RESTDTOSetCallCheck | [Performance](performance_checks.md#performance-checks) | 
 RecordClassCheck | [Performance](performance_checks.md#performance-checks) | .java | Finds usage of `record`. |
 RecordPatternCheck | [Performance](performance_checks.md#performance-checks) | .java | Finds usage of record patterns. |
 RedundantBranchingStatementCheck | [Performance](performance_checks.md#performance-checks) | .java | Finds unnecessary branching (`break`, `continue` or `return`) statements. |
+[RedundantEmptyCheckBeforeLoopCheck](check/redundant_empty_check_before_loop_check.md#redundantemptycheckbeforeloopcheck) | [Performance](performance_checks.md#performance-checks) | .java | Finds empty checks that only guard a for-each loop over the same non-null array or collection, which iterates zero times when empty anyway. |
 [RedundantLogCheck](check/redundant_log_check.md#redundantlogcheck) | [Performance](performance_checks.md#performance-checks) | .java | Finds unnecessary logs. |
 ReferenceAnnotationCheck | [Bug Prevention](bug_prevention_checks.md#bug-prevention-checks) | .java | Performs several checks on classes with @Reference annotation. |
 [RegisterServicePropertiesCheck](check/register_service_properties_check.md#registerservicepropertiescheck) | [Performance](performance_checks.md#performance-checks) | .java | Finds `registerService` calls that pass an empty `HashMapDictionary` or `Hashtable` as the service properties, which should pass `null` instead. |
