@@ -308,6 +308,7 @@ ServiceUpdateCheck | [Bug Prevention](bug_prevention_checks.md#bug-prevention-ch
 ServletResponseUtilSendFileCallCheck | [Bug Prevention](bug_prevention_checks.md#bug-prevention-checks) | Checks illegal call to `ServletResponseUtil.sendFile`. |
 SessionKeysCheck | [Naming Conventions](naming_conventions_checks.md#naming-conventions-checks) | Checks that messages send to `SessionsErrors` or `SessionMessages` follow naming conventions. |
 SetUtilMethodsCheck | [Performance](performance_checks.md#performance-checks) | Finds cases of inefficient SetUtil operations. |
+SizeAssertionOrderCheck | [Styling](styling_checks.md#styling-checks) | Checks that a size assertion in a test comes after the last statement that uses the elements it guards. |
 SizeIsZeroCheck | [Styling](styling_checks.md#styling-checks) | Finds cases of calls like `list.size() == 0` (use `list.isEmpty()` instead). |
 [StaticBlockCheck](check/static_block_check.md#staticblockcheck) | [Bug Prevention](bug_prevention_checks.md#bug-prevention-checks) | Performs several checks on static blocks. |
 [StaticVariableNameCheck](https://checkstyle.sourceforge.io/checks/naming/staticvariablename.html) | [Naming Conventions](naming_conventions_checks.md#naming-conventions-checks) | Checks that static, non-final variable names conform to a specified pattern. |
