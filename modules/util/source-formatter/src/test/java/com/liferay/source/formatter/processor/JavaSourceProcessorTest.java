@@ -1389,6 +1389,11 @@ public class JavaSourceProcessorTest extends BaseSourceProcessorTestCase {
 	}
 
 	@Test
+	public void testSizeAssertionOrder() throws Exception {
+		test("SizeAssertionOrderTest.testjava");
+	}
+
+	@Test
 	public void testSizeIsZero() throws Exception {
 		test(
 			SourceProcessorTestParameters.create(
