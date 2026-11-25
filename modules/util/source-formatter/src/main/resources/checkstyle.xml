@@ -951,6 +951,11 @@
 			<property name="description" value="Checks illegal call to `ServletResponseUtil.sendFile`." />
 			<message key="method.call.avoid" value="Use &quot;PortletResponseUtil.sendFile&quot; instead of &quot;ServletResponseUtil.sendFile&quot;, see LPS-65229" />
 		</module>
+		<module name="com.liferay.source.formatter.checkstyle.check.SizeAssertionOrderCheck">
+			<property name="category" value="Styling" />
+			<property name="description" value="Checks that a size assertion in a test comes after the last statement that uses the elements it guards." />
+			<message key="size.assertion.move" value="Move the size assertion of &quot;{0}&quot; after the last statement that uses its elements" />
+		</module>
 		<module name="com.liferay.source.formatter.checkstyle.check.SizeIsZeroCheck">
 			<property name="category" value="Styling" />
 			<property name="description" value="Finds cases of calls like `list.size() == 0` (use `list.isEmpty()` instead)." />

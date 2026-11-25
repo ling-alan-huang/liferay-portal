@@ -1389,6 +1389,50 @@ public class JavaSourceProcessorTest extends BaseSourceProcessorTestCase {
 	}
 
 	@Test
+	public void testSizeAssertionOrder() throws Exception {
+		test(
+			SourceProcessorTestParameters.create(
+				"SizeAssertionOrderTest.testjava"
+			).addExpectedMessage(
+				"Move the size assertion of \"cpdVirtualSettingFileEntries\" " +
+					"after the last statement that uses its elements",
+				36
+			).addExpectedMessage(
+				"Move the size assertion of \"items\" after the last " +
+					"statement that uses its elements",
+				65
+			).addExpectedMessage(
+				"Move the size assertion of \"logEntries\" after the last " +
+					"statement that uses its elements",
+				80
+			).addExpectedMessage(
+				"Move the size assertion of \"mappingTypesJSONArray\" after " +
+					"the last statement that uses its elements",
+				92
+			).addExpectedMessage(
+				"Move the size assertion of \"subtypesJSONArray\" after the " +
+					"last statement that uses its elements",
+				104
+			).addExpectedMessage(
+				"Move the size assertion of \"names\" after the last " +
+					"statement that uses its elements",
+				131
+			).addExpectedMessage(
+				"Move the size assertion of \"primaryDropdownItems\" after " +
+					"the last statement that uses its elements",
+				146
+			).addExpectedMessage(
+				"Move the size assertion of \"tags\" after the last " +
+					"statement that uses its elements",
+				177
+			).addExpectedMessage(
+				"Move the size assertion of \"values\" after the last " +
+					"statement that uses its elements",
+				205
+			));
+	}
+
+	@Test
 	public void testSizeIsZero() throws Exception {
 		test(
 			SourceProcessorTestParameters.create(
