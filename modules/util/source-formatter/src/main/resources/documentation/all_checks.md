@@ -530,6 +530,7 @@ ServiceUpdateCheck | [Bug Prevention](bug_prevention_checks.md#bug-prevention-ch
 ServletResponseUtilSendFileCallCheck | [Bug Prevention](bug_prevention_checks.md#bug-prevention-checks) | .java | Checks illegal call to `ServletResponseUtil.sendFile`. |
 SessionKeysCheck | [Naming Conventions](naming_conventions_checks.md#naming-conventions-checks) | .java | Checks that messages send to `SessionsErrors` or `SessionMessages` follow naming conventions. |
 SetUtilMethodsCheck | [Performance](performance_checks.md#performance-checks) | .java, .jsp, .jspf, .jspx, .tag, .tpl, or .vm | Finds cases of inefficient SetUtil operations. |
+SizeAssertionOrderCheck | [Styling](styling_checks.md#styling-checks) | .java | Checks that a size assertion in a test comes after the last statement that uses the elements it guards. |
 SizeIsZeroCheck | [Styling](styling_checks.md#styling-checks) | .java, .jsp, .jspf, .jspx, .tag, .tpl, or .vm | Finds cases of calls like `list.size() == 0` (use `list.isEmpty()` instead). |
 SlantedQuotesCheck | [Styling](styling_checks.md#styling-checks) | | Finds `slanted quote` (`\u201a`, `\u201b`, `\u201c`, `\u201d`, `\u201e`, `\u201f`, `\u2018` or `\u2019`) characters. |
 SoyEmptyLinesCheck | [Styling](styling_checks.md#styling-checks) | .soy | Finds missing and unnecessary empty lines. |
