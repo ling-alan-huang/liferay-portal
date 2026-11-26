@@ -121,11 +121,11 @@ public class GetCollaboratorsMVCResourceCommandTest {
 		JSONArray jsonArray = _getCollaboratorsJSONArray(
 			mockLiferayResourceResponse);
 
-		Assert.assertTrue(jsonArray.toString(), jsonArray.length() >= 1);
-
 		JSONObject jsonObject = jsonArray.getJSONObject(0);
 
 		Assert.assertTrue(jsonObject.getBoolean("isOwner"));
+
+		Assert.assertTrue(jsonArray.toString(), jsonArray.length() >= 1);
 	}
 
 	private JSONArray _getCollaboratorsJSONArray(

@@ -39,8 +39,6 @@ public class BufferedIncrementConfigurationTest {
 		try (LogCapture logCapture = _testInvalidSetting(LoggerTestUtil.WARN)) {
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 2, logEntries.size());
-
 			LogEntry logEntry1 = logEntries.get(0);
 
 			Assert.assertEquals(
@@ -54,6 +52,8 @@ public class BufferedIncrementConfigurationTest {
 				PropsKeys.BUFFERED_INCREMENT_THREADPOOL_MAX_SIZE +
 					"[]=-4. Auto reset to 1.",
 				logEntry2.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 2, logEntries.size());
 		}
 	}
 

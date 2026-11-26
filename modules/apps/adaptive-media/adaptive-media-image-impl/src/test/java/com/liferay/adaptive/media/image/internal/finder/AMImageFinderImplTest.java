@@ -230,9 +230,6 @@ public class AMImageFinderImplTest {
 					_fileVersion
 				).done());
 
-		Assert.assertEquals(
-			adaptiveMedias.toString(), 1, adaptiveMedias.size());
-
 		AdaptiveMedia<AMProcessor<FileVersion>> adaptiveMedia =
 			adaptiveMedias.get(0);
 
@@ -242,6 +239,9 @@ public class AMImageFinderImplTest {
 		Assert.assertEquals(
 			Integer.valueOf(199),
 			adaptiveMedia.getValue(AMImageAttribute.AM_IMAGE_ATTRIBUTE_WIDTH));
+
+		Assert.assertEquals(
+			adaptiveMedias.toString(), 1, adaptiveMedias.size());
 	}
 
 	@Test
@@ -332,9 +332,6 @@ public class AMImageFinderImplTest {
 					AMImageQueryBuilder.SortOrder.ASC
 				).done());
 
-		Assert.assertEquals(
-			adaptiveMedias.toString(), 3, adaptiveMedias.size());
-
 		AdaptiveMedia<AMProcessor<FileVersion>> adaptiveMedia1 =
 			adaptiveMedias.get(0);
 
@@ -355,6 +352,9 @@ public class AMImageFinderImplTest {
 		Assert.assertEquals(
 			Integer.valueOf(799),
 			adaptiveMedia3.getValue(AMImageAttribute.AM_IMAGE_ATTRIBUTE_WIDTH));
+
+		Assert.assertEquals(
+			adaptiveMedias.toString(), 3, adaptiveMedias.size());
 	}
 
 	@Test
@@ -445,9 +445,6 @@ public class AMImageFinderImplTest {
 					AMImageQueryBuilder.SortOrder.DESC
 				).done());
 
-		Assert.assertEquals(
-			adaptiveMedias.toString(), 3, adaptiveMedias.size());
-
 		AdaptiveMedia<AMProcessor<FileVersion>> adaptiveMedia1 =
 			adaptiveMedias.get(0);
 
@@ -468,6 +465,9 @@ public class AMImageFinderImplTest {
 		Assert.assertEquals(
 			Integer.valueOf(199),
 			adaptiveMedia3.getValue(AMImageAttribute.AM_IMAGE_ATTRIBUTE_WIDTH));
+
+		Assert.assertEquals(
+			adaptiveMedias.toString(), 3, adaptiveMedias.size());
 	}
 
 	@Test(expected = IllegalArgumentException.class)
@@ -571,13 +571,13 @@ public class AMImageFinderImplTest {
 					_fileVersion
 				).done());
 
-		Assert.assertEquals(
-			adaptiveMedias.toString(), 1, adaptiveMedias.size());
-
 		AdaptiveMedia<AMProcessor<FileVersion>> adaptiveMedia =
 			adaptiveMedias.get(0);
 
 		Assert.assertSame(inputStream, adaptiveMedia.getInputStream());
+
+		Assert.assertEquals(
+			adaptiveMedias.toString(), 1, adaptiveMedias.size());
 	}
 
 	@Test
@@ -632,9 +632,6 @@ public class AMImageFinderImplTest {
 					_fileVersion
 				).done());
 
-		Assert.assertEquals(
-			adaptiveMedias.toString(), 1, adaptiveMedias.size());
-
 		AdaptiveMedia<AMProcessor<FileVersion>> adaptiveMedia =
 			adaptiveMedias.get(0);
 
@@ -644,6 +641,9 @@ public class AMImageFinderImplTest {
 		Assert.assertEquals(
 			Integer.valueOf(1000),
 			adaptiveMedia.getValue(AMImageAttribute.AM_IMAGE_ATTRIBUTE_WIDTH));
+
+		Assert.assertEquals(
+			adaptiveMedias.toString(), 1, adaptiveMedias.size());
 	}
 
 	@Test
@@ -977,9 +977,6 @@ public class AMImageFinderImplTest {
 					"small"
 				).done());
 
-		Assert.assertEquals(
-			adaptiveMedias.toString(), 1, adaptiveMedias.size());
-
 		AdaptiveMedia<AMProcessor<FileVersion>> adaptiveMedia0 =
 			adaptiveMedias.get(0);
 
@@ -987,6 +984,9 @@ public class AMImageFinderImplTest {
 			"small",
 			(String)adaptiveMedia0.getValue(
 				AMAttribute.getConfigurationUuidAMAttribute()));
+
+		Assert.assertEquals(
+			adaptiveMedias.toString(), 1, adaptiveMedias.size());
 	}
 
 	@Test
@@ -1482,9 +1482,6 @@ public class AMImageFinderImplTest {
 					_fileVersion
 				).done());
 
-		Assert.assertEquals(
-			adaptiveMedias.toString(), 1, adaptiveMedias.size());
-
 		AdaptiveMedia<AMProcessor<FileVersion>> adaptiveMedia =
 			adaptiveMedias.get(0);
 
@@ -1494,6 +1491,9 @@ public class AMImageFinderImplTest {
 			_fileVersion.getSize(),
 			(long)adaptiveMedia.getValue(
 				AMAttribute.getContentLengthAMAttribute()));
+
+		Assert.assertEquals(
+			adaptiveMedias.toString(), 1, adaptiveMedias.size());
 	}
 
 	@Test

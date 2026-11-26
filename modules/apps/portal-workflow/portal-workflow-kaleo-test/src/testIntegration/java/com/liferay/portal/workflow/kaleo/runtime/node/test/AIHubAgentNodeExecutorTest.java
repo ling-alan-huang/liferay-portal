@@ -167,11 +167,11 @@ public class AIHubAgentNodeExecutorTest {
 
 			Assert.assertFalse(workflowInstance.isComplete());
 
-			Assert.assertEquals(callables.toString(), 1, callables.size());
-
 			Callable<?> callable = callables.get(0);
 
 			callable.call();
+
+			Assert.assertEquals(callables.toString(), 1, callables.size());
 
 			workflowInstance = _workflowInstanceManager.getWorkflowInstance(
 				TestPropsValues.getCompanyId(),

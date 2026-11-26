@@ -463,8 +463,6 @@ public class SitemapManagerTest {
 
 			List<Element> urlElements = rootElement.elements("url");
 
-			Assert.assertEquals(xml, 1, urlElements.size());
-
 			Element urlElement = urlElements.get(0);
 
 			Element locElement = urlElement.element("loc");
@@ -481,6 +479,8 @@ public class SitemapManagerTest {
 				locElementText.contains(
 					_getObjectEntryFriendlyURL(
 						excludedObjectEntry, _excludedObjectDefinition)));
+
+			Assert.assertEquals(xml, 1, urlElements.size());
 		}
 	}
 

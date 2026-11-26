@@ -159,8 +159,6 @@ public class SearchResultUtilMBMessageTest
 		List<SearchResult> searchResults = SearchTestUtil.getSearchResults(
 			searchResultTranslator, document1, document2);
 
-		Assert.assertEquals(searchResults.toString(), 1, searchResults.size());
-
 		SearchResult searchResult = searchResults.get(0);
 
 		Assert.assertEquals(
@@ -169,6 +167,8 @@ public class SearchResultUtilMBMessageTest
 		Assert.assertEquals(
 			searchResult.getClassPK(),
 			SearchTestUtil.ATTACHMENT_OWNER_CLASS_PK);
+
+		Assert.assertEquals(searchResults.toString(), 1, searchResults.size());
 	}
 
 	@Override

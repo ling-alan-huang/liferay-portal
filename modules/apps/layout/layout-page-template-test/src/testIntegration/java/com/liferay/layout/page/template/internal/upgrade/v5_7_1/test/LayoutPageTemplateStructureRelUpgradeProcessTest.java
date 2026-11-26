@@ -219,10 +219,6 @@ public class LayoutPageTemplateStructureRelUpgradeProcessTest
 			collectionStyledLayoutStructureItems =
 				layoutStructure.getCollectionStyledLayoutStructureItems();
 
-		Assert.assertEquals(
-			collectionStyledLayoutStructureItems.toString(), 1,
-			collectionStyledLayoutStructureItems.size());
-
 		CollectionStyledLayoutStructureItem
 			collectionStyledLayoutStructureItem =
 				collectionStyledLayoutStructureItems.get(0);
@@ -231,6 +227,10 @@ public class LayoutPageTemplateStructureRelUpgradeProcessTest
 			collectionStyledLayoutStructureItem.getCollectionJSONObject();
 
 		return collectionJSONObject.getString("key");
+
+		Assert.assertEquals(
+			collectionStyledLayoutStructureItems.toString(), 1,
+			collectionStyledLayoutStructureItems.size());
 	}
 
 	private static final String _CLASS_NAME =

@@ -188,14 +188,14 @@ public class LiferayCommercePIMClientTest {
 
 		JSONArray jsonArray = liferayCommercePIMClient.getLogJSONArray();
 
-		Assert.assertEquals(jsonArray.toString(), 1, jsonArray.length());
-
 		JSONObject jsonObject = jsonArray.getJSONObject(0);
 
 		JSONObject responseJSONObject = jsonObject.getJSONObject("response");
 
 		Assert.assertEquals(
 			"Connection refused", responseJSONObject.getString("error"));
+
+		Assert.assertEquals(jsonArray.toString(), 1, jsonArray.length());
 
 		_mockHttp(403, JSONUtil.put("status", RandomTestUtil.randomString()));
 

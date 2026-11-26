@@ -72,10 +72,6 @@ public class SharingUserNotificationTest extends BaseUserNotificationTestCase {
 			List<JSONObject> userNotificationEventsJSONObjects =
 				getUserNotificationEventsJSONObjects(toUser.getUserId());
 
-			Assert.assertEquals(
-				userNotificationEventsJSONObjects.toString(), 2,
-				userNotificationEventsJSONObjects.size());
-
 			JSONObject userNotificationEventsJSONObject =
 				userNotificationEventsJSONObjects.get(0);
 
@@ -89,6 +85,10 @@ public class SharingUserNotificationTest extends BaseUserNotificationTestCase {
 			Assert.assertEquals(
 				_getExpectedNotificationMessage(_fromUser),
 				userNotificationEventsJSONObject.getString("message"));
+
+			Assert.assertEquals(
+				userNotificationEventsJSONObjects.toString(), 2,
+				userNotificationEventsJSONObjects.size());
 		}
 		finally {
 			_userLocalService.deleteUser(toUser);

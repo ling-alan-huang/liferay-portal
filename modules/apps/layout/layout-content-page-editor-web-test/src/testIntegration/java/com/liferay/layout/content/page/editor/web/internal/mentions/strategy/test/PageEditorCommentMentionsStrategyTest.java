@@ -75,11 +75,11 @@ public class PageEditorCommentMentionsStrategyTest {
 			_group.getCompanyId(), TestPropsValues.getUserId(), "exa",
 			JSONUtil.put("plid", layout.getPlid()));
 
-		Assert.assertEquals(users.toString(), 1, users.size());
-
 		User user = users.get(0);
 
 		Assert.assertEquals("example", user.getScreenName());
+
+		Assert.assertEquals(users.toString(), 1, users.size());
 	}
 
 	@Test
@@ -115,11 +115,11 @@ public class PageEditorCommentMentionsStrategyTest {
 			_group.getCompanyId(), TestPropsValues.getUserId(), "exa",
 			JSONUtil.put("plid", layout.getPlid()));
 
-		Assert.assertEquals(users.toString(), 1, users.size());
-
 		User user = users.get(0);
 
 		Assert.assertEquals("example", user.getScreenName());
+
+		Assert.assertEquals(users.toString(), 1, users.size());
 	}
 
 	@Test

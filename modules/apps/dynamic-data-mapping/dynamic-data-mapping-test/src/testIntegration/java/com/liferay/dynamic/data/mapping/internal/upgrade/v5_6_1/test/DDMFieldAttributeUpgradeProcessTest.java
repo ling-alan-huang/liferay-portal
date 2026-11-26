@@ -100,8 +100,6 @@ public class DDMFieldAttributeUpgradeProcessTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals(LoggerTestUtil.WARN, logEntry.getPriority());
@@ -110,6 +108,8 @@ public class DDMFieldAttributeUpgradeProcessTest {
 
 			Assert.assertEquals(
 				NoSuchUserException.class, throwable.getClass());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 
 		_assertDDMFieldAttribute(

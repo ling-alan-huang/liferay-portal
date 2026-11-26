@@ -787,14 +787,14 @@ public class SignatureRequestResourceTest
 			Assert.assertEquals(
 				DSRequestConstants.STATUS_VOIDED, signatureRequest.getStatus());
 
-			Assert.assertEquals(
-				argumentsList.toString(), 1, argumentsList.size());
-
 			Object[] arguments = argumentsList.get(0);
 
 			Assert.assertEquals(
 				dsRequestObjectEntry.getExternalReferenceCode(), arguments[1]);
 			Assert.assertEquals(voidedReason, arguments[3]);
+
+			Assert.assertEquals(
+				argumentsList.toString(), 1, argumentsList.size());
 		}
 		finally {
 			ReflectionTestUtil.setFieldValue(

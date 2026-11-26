@@ -377,8 +377,6 @@ public class OpenSearchIndexWriterExceptionsTest extends BaseIndexingTestCase {
 
 		List<LogEntry> logEntries = logCapture.getLogEntries();
 
-		Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 		LogEntry logEntry = logEntries.get(0);
 
 		Assert.assertEquals(logLevel, logEntry.getPriority());
@@ -393,6 +391,8 @@ public class OpenSearchIndexWriterExceptionsTest extends BaseIndexingTestCase {
 		}
 
 		consumer.accept(logEntry.getMessage());
+
+		Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 	}
 
 	private void _assertOpenSearchException(

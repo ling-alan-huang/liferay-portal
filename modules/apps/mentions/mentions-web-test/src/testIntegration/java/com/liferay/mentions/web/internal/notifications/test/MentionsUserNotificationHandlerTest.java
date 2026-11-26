@@ -132,10 +132,6 @@ public class MentionsUserNotificationHandlerTest {
 			UserNotificationEventTestUtil.getUserNotificationEvents(
 				user.getUserId());
 
-		Assert.assertEquals(
-			userNotificationEvents.toString(), 1,
-			userNotificationEvents.size());
-
 		UserNotificationEvent userNotificationEvent =
 			userNotificationEvents.get(0);
 
@@ -148,6 +144,10 @@ public class MentionsUserNotificationHandlerTest {
 		UserTestUtil.setUser(user);
 
 		Assert.assertTrue(_isApplicable(userNotificationEvent));
+
+		Assert.assertEquals(
+			userNotificationEvents.toString(), 1,
+			userNotificationEvents.size());
 
 		UserTestUtil.setUser(TestPropsValues.getUser());
 

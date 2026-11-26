@@ -472,15 +472,15 @@ public class DepotExportImportTest {
 					assetListEntry.getAssetListEntryId(), QueryUtil.ALL_POS,
 					QueryUtil.ALL_POS);
 
-		Assert.assertEquals(
-			assetListEntryAssetEntryRels.toString(), 1,
-			assetListEntryAssetEntryRels.size());
-
 		AssetListEntryAssetEntryRel assetListEntryAssetEntryRel =
 			assetListEntryAssetEntryRels.get(0);
 
 		return _assetEntryLocalService.getEntry(
 			assetListEntryAssetEntryRel.getAssetEntryId());
+
+		Assert.assertEquals(
+			assetListEntryAssetEntryRels.toString(), 1,
+			assetListEntryAssetEntryRels.size());
 	}
 
 	private Map<String, String[]> _getParameterMap() {

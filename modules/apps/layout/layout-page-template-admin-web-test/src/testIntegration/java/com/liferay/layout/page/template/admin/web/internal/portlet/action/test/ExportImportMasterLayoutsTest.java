@@ -143,10 +143,6 @@ public class ExportImportMasterLayoutsTest {
 
 		Assert.assertNotNull(layoutsImporterResultEntries);
 
-		Assert.assertEquals(
-			layoutsImporterResultEntries.toString(), 1,
-			layoutsImporterResultEntries.size());
-
 		LayoutsImporterResultEntry layoutPageTemplateImportEntry =
 			layoutsImporterResultEntries.get(0);
 
@@ -204,6 +200,10 @@ public class ExportImportMasterLayoutsTest {
 
 		_validateDropZoneLayoutStructureItem(
 			dropZoneLayoutStructureItem1, dropZoneLayoutStructureItem2);
+
+		Assert.assertEquals(
+			layoutsImporterResultEntries.toString(), 1,
+			layoutsImporterResultEntries.size());
 	}
 
 	private DropZoneLayoutStructureItem _getDropZoneLayoutStructureItem(
@@ -227,12 +227,12 @@ public class ExportImportMasterLayoutsTest {
 		List<String> childrenItemIds =
 			mainLayoutStructureItem.getChildrenItemIds();
 
-		Assert.assertEquals(
-			childrenItemIds.toString(), 1, childrenItemIds.size());
-
 		String childItemId = childrenItemIds.get(0);
 
 		return layoutStructure.getLayoutStructureItem(childItemId);
+
+		Assert.assertEquals(
+			childrenItemIds.toString(), 1, childrenItemIds.size());
 	}
 
 	private String _read(String fileName) throws Exception {

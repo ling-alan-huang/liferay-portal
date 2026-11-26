@@ -284,9 +284,6 @@ public class ReleaseModelListenerTest {
 
 				List<LogEntry> logEntries = logCapture.getLogEntries();
 
-				Assert.assertEquals(
-					logEntries.toString(), 1, logEntries.size());
-
 				LogEntry logEntry = logEntries.get(0);
 
 				Throwable throwable = logEntry.getThrowable();
@@ -297,6 +294,9 @@ public class ReleaseModelListenerTest {
 
 				Assert.assertTrue(
 					message, message.startsWith("Unable to publish"));
+
+				Assert.assertEquals(
+					logEntries.toString(), 1, logEntries.size());
 			}
 
 			_ctCollection = _ctCollectionLocalService.getCTCollection(

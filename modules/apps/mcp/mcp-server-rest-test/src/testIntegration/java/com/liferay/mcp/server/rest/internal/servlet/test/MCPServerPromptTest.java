@@ -291,9 +291,6 @@ public class MCPServerPromptTest {
 			List<McpSchema.PromptMessage> promptMessages =
 				getPromptResult.messages();
 
-			Assert.assertEquals(
-				promptMessages.toString(), 1, promptMessages.size());
-
 			McpSchema.PromptMessage promptMessage = promptMessages.get(0);
 
 			Assert.assertEquals(McpSchema.Role.USER, promptMessage.role());
@@ -302,6 +299,9 @@ public class MCPServerPromptTest {
 				(McpSchema.TextContent)promptMessage.content();
 
 			Assert.assertEquals(prompt, textContent.text());
+
+			Assert.assertEquals(
+				promptMessages.toString(), 1, promptMessages.size());
 
 			try (LogCapture logCapture = LoggerTestUtil.configureLog4JLogger(
 					"io.modelcontextprotocol.spec.McpClientSession",

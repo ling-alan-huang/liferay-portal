@@ -169,9 +169,6 @@ public class OrphanReferencesDataCleanupUtilTest {
 			logCapture -> {
 				List<LogEntry> logEntries = logCapture.getLogEntries();
 
-				Assert.assertEquals(
-					logEntries.toString(), 2, logEntries.size());
-
 				LogEntry logEntry = logEntries.get(0);
 
 				Assert.assertEquals(
@@ -189,6 +186,9 @@ public class OrphanReferencesDataCleanupUtilTest {
 						1, false, "companyId", "Portlet", "companyId",
 						"Company", companyId),
 					logEntry.getMessage());
+
+				Assert.assertEquals(
+					logEntries.toString(), 2, logEntries.size());
 
 				try (PreparedStatement preparedStatement =
 						_connection.prepareStatement(
@@ -234,9 +234,6 @@ public class OrphanReferencesDataCleanupUtilTest {
 			logCapture -> {
 				List<LogEntry> logEntries = logCapture.getLogEntries();
 
-				Assert.assertEquals(
-					logEntries.toString(), 1, logEntries.size());
-
 				LogEntry logEntry = logEntries.get(0);
 
 				Assert.assertEquals(
@@ -244,6 +241,9 @@ public class OrphanReferencesDataCleanupUtilTest {
 						1, false, "portletId", "PortletPreferences",
 						"portletId", "Portlet", userPortletId),
 					logEntry.getMessage());
+
+				Assert.assertEquals(
+					logEntries.toString(), 1, logEntries.size());
 			},
 			() -> {
 				_db.runSQL(
@@ -302,9 +302,6 @@ public class OrphanReferencesDataCleanupUtilTest {
 			logCapture -> {
 				List<LogEntry> logEntries = logCapture.getLogEntries();
 
-				Assert.assertEquals(
-					logEntries.toString(), 1, logEntries.size());
-
 				LogEntry logEntry = logEntries.get(0);
 
 				Assert.assertEquals(
@@ -312,6 +309,9 @@ public class OrphanReferencesDataCleanupUtilTest {
 						2, false, "ownerId", "PortletPreferences", "companyId",
 						"Company", companyId),
 					logEntry.getMessage());
+
+				Assert.assertEquals(
+					logEntries.toString(), 1, logEntries.size());
 			},
 			() -> _db.runSQL(
 				_connection,
@@ -359,9 +359,6 @@ public class OrphanReferencesDataCleanupUtilTest {
 			logCapture -> {
 				List<LogEntry> logEntries = logCapture.getLogEntries();
 
-				Assert.assertEquals(
-					logEntries.toString(), 1, logEntries.size());
-
 				LogEntry logEntry = logEntries.get(0);
 
 				Assert.assertEquals(
@@ -369,6 +366,9 @@ public class OrphanReferencesDataCleanupUtilTest {
 						2, false, "companyId", "Portlet", "companyId",
 						"Company", companyId),
 					logEntry.getMessage());
+
+				Assert.assertEquals(
+					logEntries.toString(), 1, logEntries.size());
 			},
 			() -> _db.runSQL(
 				_connection,
@@ -403,9 +403,6 @@ public class OrphanReferencesDataCleanupUtilTest {
 			logCapture -> {
 				List<LogEntry> logEntries = logCapture.getLogEntries();
 
-				Assert.assertEquals(
-					logEntries.toString(), 1, logEntries.size());
-
 				LogEntry logEntry = logEntries.get(0);
 
 				Assert.assertEquals(
@@ -413,6 +410,9 @@ public class OrphanReferencesDataCleanupUtilTest {
 						2, true, "companyId", "Portlet", "companyId", "Company",
 						companyId),
 					logEntry.getMessage());
+
+				Assert.assertEquals(
+					logEntries.toString(), 1, logEntries.size());
 			},
 			() -> _db.runSQL(
 				_connection,
@@ -449,9 +449,6 @@ public class OrphanReferencesDataCleanupUtilTest {
 			logCapture -> {
 				List<LogEntry> logEntries = logCapture.getLogEntries();
 
-				Assert.assertEquals(
-					logEntries.toString(), 1, logEntries.size());
-
 				LogEntry logEntry = logEntries.get(0);
 
 				Assert.assertEquals(
@@ -459,6 +456,9 @@ public class OrphanReferencesDataCleanupUtilTest {
 						1, false, "companyId", "DLFileEntry", "companyId",
 						"Company", companyId),
 					logEntry.getMessage());
+
+				Assert.assertEquals(
+					logEntries.toString(), 1, logEntries.size());
 			},
 			() -> {
 				_db.runSQL(

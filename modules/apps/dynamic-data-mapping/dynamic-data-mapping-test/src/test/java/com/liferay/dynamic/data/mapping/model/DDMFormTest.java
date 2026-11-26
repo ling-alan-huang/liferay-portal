@@ -33,14 +33,14 @@ public class DDMFormTest {
 		Map<String, DDMFormField> ddmFormFieldsMap =
 			ddmForm.getNontransientDDMFormFieldsMap(false);
 
-		Assert.assertEquals(
-			ddmFormFieldsMap.toString(), 1, ddmFormFieldsMap.size());
-
 		DDMFormField ddmFormField = ddmFormFieldsMap.get("Paragraph");
 
 		Assert.assertNull(ddmFormField);
 
 		Assert.assertNotNull(ddmFormFieldsMap.get("Text1"));
+
+		Assert.assertEquals(
+			ddmFormFieldsMap.toString(), 1, ddmFormFieldsMap.size());
 	}
 
 	@Test
@@ -50,14 +50,14 @@ public class DDMFormTest {
 		Map<String, DDMFormField> ddmFormFieldsMap =
 			ddmForm.getNontransientDDMFormFieldsMap(true);
 
-		Assert.assertEquals(
-			ddmFormFieldsMap.toString(), 2, ddmFormFieldsMap.size());
-
 		DDMFormField ddmFormField = ddmFormFieldsMap.get("Paragraph");
 
 		Assert.assertNull(ddmFormField);
 
 		Assert.assertNotNull(ddmFormFieldsMap.get("Text2"));
+
+		Assert.assertEquals(
+			ddmFormFieldsMap.toString(), 2, ddmFormFieldsMap.size());
 	}
 
 	@Test
@@ -67,15 +67,15 @@ public class DDMFormTest {
 		Map<String, DDMFormField> ddmFormFieldsReferencesMap =
 			ddmForm.getNontransientDDMFormFieldsReferencesMap(false);
 
-		Assert.assertEquals(
-			ddmFormFieldsReferencesMap.toString(), 1,
-			ddmFormFieldsReferencesMap.size());
-
 		DDMFormField ddmFormField = ddmFormFieldsReferencesMap.get("Paragraph");
 
 		Assert.assertNull(ddmFormField);
 
 		Assert.assertNotNull(ddmFormFieldsReferencesMap.get("Text1"));
+
+		Assert.assertEquals(
+			ddmFormFieldsReferencesMap.toString(), 1,
+			ddmFormFieldsReferencesMap.size());
 	}
 
 	@Test
@@ -85,15 +85,15 @@ public class DDMFormTest {
 		Map<String, DDMFormField> ddmFormFieldsReferencesMap =
 			ddmForm.getNontransientDDMFormFieldsReferencesMap(true);
 
-		Assert.assertEquals(
-			ddmFormFieldsReferencesMap.toString(), 2,
-			ddmFormFieldsReferencesMap.size());
-
 		DDMFormField ddmFormField = ddmFormFieldsReferencesMap.get("Paragraph");
 
 		Assert.assertNull(ddmFormField);
 
 		Assert.assertNotNull(ddmFormFieldsReferencesMap.get("Text2"));
+
+		Assert.assertEquals(
+			ddmFormFieldsReferencesMap.toString(), 2,
+			ddmFormFieldsReferencesMap.size());
 	}
 
 	protected DDMForm createDDMForm() {

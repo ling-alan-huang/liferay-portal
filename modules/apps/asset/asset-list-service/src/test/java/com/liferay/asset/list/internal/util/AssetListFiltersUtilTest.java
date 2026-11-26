@@ -1063,9 +1063,6 @@ public class AssetListFiltersUtilTest {
 				).isEmpty());
 		}
 
-		Assert.assertEquals(
-			filterBooleanClauses.toString(), 1, filterBooleanClauses.size());
-
 		BooleanClause<Filter> filterBooleanClause = filterBooleanClauses.get(0);
 
 		Filter filter = filterBooleanClause.getClause();
@@ -1075,6 +1072,9 @@ public class AssetListFiltersUtilTest {
 		QueryFilter queryFilter = (QueryFilter)filter;
 
 		return queryFilter.getQuery();
+
+		Assert.assertEquals(
+			filterBooleanClauses.toString(), 1, filterBooleanClauses.size());
 	}
 
 	private void _assertKeywords(
@@ -1157,10 +1157,6 @@ public class AssetListFiltersUtilTest {
 		List<BooleanClause<Query>> nestedFieldBooleanClauses =
 			nestedFieldBooleanQuery.clauses();
 
-		Assert.assertEquals(
-			nestedFieldBooleanClauses.toString(), 3,
-			nestedFieldBooleanClauses.size());
-
 		QueryTerm nestedFieldQueryTerm = _assertNestedFieldQueryTerm(
 			nestedFieldBooleanClauses.get(0), "nestedFieldArray.fieldName");
 
@@ -1178,6 +1174,10 @@ public class AssetListFiltersUtilTest {
 			nestedFieldBooleanClause.getBooleanClauseOccur());
 
 		return nestedFieldBooleanClause.getClause();
+
+		Assert.assertEquals(
+			nestedFieldBooleanClauses.toString(), 3,
+			nestedFieldBooleanClauses.size());
 	}
 
 	private void _assertPicklistBooleanQuery(

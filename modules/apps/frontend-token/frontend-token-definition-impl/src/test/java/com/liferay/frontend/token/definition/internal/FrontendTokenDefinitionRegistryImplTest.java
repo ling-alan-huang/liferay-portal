@@ -112,16 +112,16 @@ public class FrontendTokenDefinitionRegistryImplTest {
 					frontendTokenDefinitionRegistryImpl.
 						getFrontendTokenDefinitions(123L);
 
-				Assert.assertEquals(
-					frontendTokenDefinitions.toString(), 1,
-					frontendTokenDefinitions.size());
-
 				FrontendTokenDefinition frontendTokenDefinition =
 					frontendTokenDefinitions.get(0);
 
 				Assert.assertEquals(
 					FrontendTokenDefinitionConstants.THEME_TYPE_GLOBAL,
 					frontendTokenDefinition.getThemeType());
+
+				Assert.assertEquals(
+					frontendTokenDefinitions.toString(), 1,
+					frontendTokenDefinitions.size());
 			});
 	}
 
@@ -244,8 +244,6 @@ public class FrontendTokenDefinitionRegistryImplTest {
 		List<Map<String, String>> themeMaps =
 			frontendTokenDefinitionRegistryImpl.getThemeMaps(bundle);
 
-		Assert.assertEquals(themeMaps.toString(), 2, themeMaps.size());
-
 		Map<String, String> themesData1 = themeMaps.get(0);
 
 		Assert.assertEquals("classic_WAR_twothemes", themesData1.get("id"));
@@ -255,6 +253,8 @@ public class FrontendTokenDefinitionRegistryImplTest {
 
 		Assert.assertEquals("modern_WAR_twothemes", themesData2.get("id"));
 		Assert.assertEquals("Modern", themesData2.get("name"));
+
+		Assert.assertEquals(themeMaps.toString(), 2, themeMaps.size());
 	}
 
 	@Test
@@ -282,8 +282,6 @@ public class FrontendTokenDefinitionRegistryImplTest {
 		List<Map<String, String>> themeMaps =
 			frontendTokenDefinitionRegistryImpl.getThemeMaps(bundle);
 
-		Assert.assertEquals(themeMaps.toString(), 2, themeMaps.size());
-
 		Map<String, String> themesData1 = themeMaps.get(0);
 
 		Assert.assertEquals("classic", themesData1.get("id"));
@@ -293,6 +291,8 @@ public class FrontendTokenDefinitionRegistryImplTest {
 
 		Assert.assertEquals("modern", themesData2.get("id"));
 		Assert.assertEquals("Modern", themesData2.get("name"));
+
+		Assert.assertEquals(themeMaps.toString(), 2, themeMaps.size());
 	}
 
 	private void _withGlobalFrontendTokenDefinition(

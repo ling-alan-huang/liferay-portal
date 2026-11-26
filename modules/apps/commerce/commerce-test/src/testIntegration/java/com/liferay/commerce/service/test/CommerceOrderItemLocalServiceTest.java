@@ -230,14 +230,14 @@ public class CommerceOrderItemLocalServiceTest {
 		List<CommerceOrderItem> commerceOrderItems =
 			commerceOrder.getCommerceOrderItems();
 
-		Assert.assertEquals(
-			commerceOrderItems.toString(), 1, commerceOrderItems.size());
-
 		CommerceOrderItem actualCommerceOrderItem = commerceOrderItems.get(0);
 
 		Assert.assertEquals(
 			commerceOrderItem.getCommerceOrderItemId(),
 			actualCommerceOrderItem.getCommerceOrderItemId());
+
+		Assert.assertEquals(
+			commerceOrderItems.toString(), 1, commerceOrderItems.size());
 	}
 
 	@Test

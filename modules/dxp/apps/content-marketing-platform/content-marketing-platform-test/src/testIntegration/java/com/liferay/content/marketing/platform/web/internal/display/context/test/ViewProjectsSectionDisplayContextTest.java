@@ -69,8 +69,6 @@ public class ViewProjectsSectionDisplayContextTest
 		List<DropdownItem> dropdownItems = (List<DropdownItem>)creationMenu.get(
 			"primaryItems");
 
-		Assert.assertEquals(dropdownItems.toString(), 1, dropdownItems.size());
-
 		DropdownItem dropdownItem = dropdownItems.get(0);
 
 		Assert.assertEquals("createProject", getValue(dropdownItem, "action"));
@@ -88,6 +86,8 @@ public class ViewProjectsSectionDisplayContextTest
 				themeDisplay.getURLCurrent()),
 			getValue(dropdownItem, "redirect"));
 		Assert.assertEquals("Project", getValue(dropdownItem, "title"));
+
+		Assert.assertEquals(dropdownItems.toString(), 1, dropdownItems.size());
 	}
 
 	@Test

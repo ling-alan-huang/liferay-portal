@@ -544,8 +544,6 @@ public class JenkinsMasterTest extends com.liferay.jenkins.results.parser.Test {
 
 		verifyURLReaderRead(false, 2, 1, 7000);
 
-		Assert.assertEquals(queueItems.toString(), 1, queueItems.size());
-
 		JenkinsMaster.QueueItem queueItem = queueItems.get(0);
 
 		Assert.assertEquals(
@@ -567,6 +565,8 @@ public class JenkinsMasterTest extends com.liferay.jenkins.results.parser.Test {
 			queueItem.getURL());
 		Assert.assertEquals(
 			queueItemJSONObject.getString("why"), queueItem.getWhy());
+
+		Assert.assertEquals(queueItems.toString(), 1, queueItems.size());
 
 		Assert.assertNull(
 			ReflectionTestUtil.getFieldValue(

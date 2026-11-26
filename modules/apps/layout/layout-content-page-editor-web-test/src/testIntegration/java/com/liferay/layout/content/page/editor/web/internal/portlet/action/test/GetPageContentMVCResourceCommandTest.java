@@ -140,8 +140,6 @@ public class GetPageContentMVCResourceCommandTest {
 			new Class<?>[] {ResourceRequest.class, ResourceResponse.class},
 			mockLiferayResourceRequest, new MockLiferayResourceResponse());
 
-		Assert.assertEquals(1, jsonArray.length());
-
 		JSONObject jsonObject = jsonArray.getJSONObject(0);
 
 		Assert.assertEquals(
@@ -149,6 +147,8 @@ public class GetPageContentMVCResourceCommandTest {
 			jsonObject.getLong("classPK"));
 		Assert.assertEquals(
 			assetListEntry.getTitle(), jsonObject.getString("title"));
+
+		Assert.assertEquals(1, jsonArray.length());
 	}
 
 	@Test
@@ -196,14 +196,14 @@ public class GetPageContentMVCResourceCommandTest {
 			new Class<?>[] {ResourceRequest.class, ResourceResponse.class},
 			mockLiferayResourceRequest, new MockLiferayResourceResponse());
 
-		Assert.assertEquals(1, jsonArray.length());
-
 		JSONObject jsonObject = jsonArray.getJSONObject(0);
 
 		Assert.assertEquals(
 			fileEntry.getFileEntryId(), jsonObject.getLong("classPK"));
 		Assert.assertEquals(
 			fileEntry.getTitle(), jsonObject.getString("title"));
+
+		Assert.assertEquals(1, jsonArray.length());
 	}
 
 	@Test
@@ -244,8 +244,6 @@ public class GetPageContentMVCResourceCommandTest {
 			new Class<?>[] {ResourceRequest.class, ResourceResponse.class},
 			mockLiferayResourceRequest, new MockLiferayResourceResponse());
 
-		Assert.assertEquals(1, jsonArray.length());
-
 		JSONObject jsonObject = jsonArray.getJSONObject(0);
 
 		Assert.assertEquals(
@@ -253,6 +251,8 @@ public class GetPageContentMVCResourceCommandTest {
 		Assert.assertEquals(
 			journalArticle.getTitle(LocaleUtil.US),
 			jsonObject.getString("title"));
+
+		Assert.assertEquals(1, jsonArray.length());
 	}
 
 	@Test
@@ -285,8 +285,6 @@ public class GetPageContentMVCResourceCommandTest {
 			new Class<?>[] {ResourceRequest.class, ResourceResponse.class},
 			mockLiferayResourceRequest, new MockLiferayResourceResponse());
 
-		Assert.assertEquals(1, jsonArray.length());
-
 		JSONObject jsonObject = jsonArray.getJSONObject(0);
 
 		Assert.assertEquals(
@@ -294,6 +292,8 @@ public class GetPageContentMVCResourceCommandTest {
 		Assert.assertEquals(
 			journalArticle.getTitle(LocaleUtil.US),
 			jsonObject.getString("title"));
+
+		Assert.assertEquals(1, jsonArray.length());
 	}
 
 	@Test

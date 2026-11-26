@@ -256,8 +256,6 @@ public class CommerceOrderSplitTest {
 
 		List<CPInstance> cpInstances = cpDefinition.getCPInstances();
 
-		Assert.assertEquals(cpInstances.toString(), 1, cpInstances.size());
-
 		CPInstance cpInstance3 = cpInstances.get(0);
 
 		CommercePriceList commercePriceList =
@@ -291,6 +289,8 @@ public class CommerceOrderSplitTest {
 		_assertCommerceOrder(
 			commerceOrders, 3, BigDecimal.valueOf(11), _cpInstance1,
 			_cpInstance2, cpInstance3);
+
+		Assert.assertEquals(cpInstances.toString(), 1, cpInstances.size());
 
 		CommerceOrderItem commerceOrderItem = _getCommerceOrderItem(
 			commerceOrders, _cpInstance1, 1);

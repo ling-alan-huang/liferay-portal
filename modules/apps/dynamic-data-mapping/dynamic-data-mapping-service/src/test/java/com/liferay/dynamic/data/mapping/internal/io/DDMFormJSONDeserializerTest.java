@@ -217,8 +217,6 @@ public class DDMFormJSONDeserializerTest
 
 	@Override
 	protected void testDDMFormRules(List<DDMFormRule> ddmFormRules) {
-		Assert.assertEquals(ddmFormRules.toString(), 2, ddmFormRules.size());
-
 		DDMFormRule ddmFormRule1 = ddmFormRules.get(0);
 
 		Assert.assertEquals("Condition 1", ddmFormRule1.getCondition());
@@ -232,6 +230,8 @@ public class DDMFormJSONDeserializerTest
 		Assert.assertEquals(
 			Arrays.asList("Action 3"), ddmFormRule2.getActions());
 		Assert.assertFalse(ddmFormRule2.isEnabled());
+
+		Assert.assertEquals(ddmFormRules.toString(), 2, ddmFormRules.size());
 	}
 
 	@Override

@@ -204,8 +204,6 @@ public class LayoutTypePortletTest {
 
 		List<String> columns = layoutTemplate.getColumns();
 
-		Assert.assertEquals(columns.toString(), 2, columns.size());
-
 		String column1 = columns.get(0);
 
 		String column2 = columns.get(1);
@@ -222,6 +220,8 @@ public class LayoutTypePortletTest {
 		portlets = _layoutTypePortlet.getAllPortlets(column2);
 
 		Assert.assertEquals(portlets.toString(), 1, portlets.size());
+
+		Assert.assertEquals(columns.toString(), 2, columns.size());
 	}
 
 	@Test

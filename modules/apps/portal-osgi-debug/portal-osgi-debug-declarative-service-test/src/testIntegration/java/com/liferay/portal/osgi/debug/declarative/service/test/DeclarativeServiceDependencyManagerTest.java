@@ -102,8 +102,6 @@ public class DeclarativeServiceDependencyManagerTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 2, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals(
@@ -118,6 +116,8 @@ public class DeclarativeServiceDependencyManagerTest {
 					"components",
 				logEntry.getMessage());
 			Assert.assertEquals(LoggerTestUtil.INFO, logEntry.getPriority());
+
+			Assert.assertEquals(logEntries.toString(), 2, logEntries.size());
 		}
 	}
 
@@ -134,8 +134,6 @@ public class DeclarativeServiceDependencyManagerTest {
 			_captureLog(logCapture);
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
-
-			Assert.assertEquals(logEntries.toString(), 2, logEntries.size());
 
 			LogEntry logEntry = logEntries.get(0);
 
@@ -162,6 +160,8 @@ public class DeclarativeServiceDependencyManagerTest {
 					"components",
 				logEntry.getMessage());
 			Assert.assertEquals(LoggerTestUtil.INFO, logEntry.getPriority());
+
+			Assert.assertEquals(logEntries.toString(), 2, logEntries.size());
 		}
 		finally {
 			bundle.uninstall();

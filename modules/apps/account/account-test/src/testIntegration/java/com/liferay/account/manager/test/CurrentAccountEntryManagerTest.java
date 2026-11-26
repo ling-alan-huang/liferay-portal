@@ -249,8 +249,6 @@ public class CurrentAccountEntryManagerTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals(LoggerTestUtil.WARN, logEntry.getPriority());
@@ -264,6 +262,8 @@ public class CurrentAccountEntryManagerTest {
 				"Cannot set a current account entry of a disallowed type: " +
 					"person",
 				throwable.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 	}
 

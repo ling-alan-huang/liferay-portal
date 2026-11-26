@@ -1058,10 +1058,6 @@ public class AssetVocabularySiteNavigationMenuItemTypeTest {
 			siteNavigationMenuItemType.getChildrenSiteNavigationMenuItems(
 				mockHttpServletRequest, assetVocabularySiteNavigationMenuItem);
 
-		Assert.assertEquals(
-			childrenSiteNavigationMenuItems.toString(), 1,
-			childrenSiteNavigationMenuItems.size());
-
 		SiteNavigationMenuItem assetCategorySiteNavigationMenuItem =
 			childrenSiteNavigationMenuItems.get(0);
 
@@ -1092,6 +1088,10 @@ public class AssetVocabularySiteNavigationMenuItemTypeTest {
 			typeSettingsUnicodeProperties.get("title"));
 
 		return assetCategorySiteNavigationMenuItem;
+
+		Assert.assertEquals(
+			childrenSiteNavigationMenuItems.toString(), 1,
+			childrenSiteNavigationMenuItems.size());
 	}
 
 	private SiteNavigationMenuItem _getAssetCategorySiteNavigationMenuItem(

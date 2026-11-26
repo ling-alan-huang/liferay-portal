@@ -107,10 +107,6 @@ public class MentionsMessageServiceWrapperTest {
 			UserNotificationEventTestUtil.getUserNotificationEvents(
 				user1.getUserId());
 
-		Assert.assertEquals(
-			userNotificationEvents.toString(), 1,
-			userNotificationEvents.size());
-
 		UserNotificationFeedEntry userNotificationFeedEntry =
 			UserNotificationManagerUtil.interpret(
 				StringPool.BLANK, userNotificationEvents.get(0),
@@ -119,6 +115,10 @@ public class MentionsMessageServiceWrapperTest {
 		String body = userNotificationFeedEntry.getBody();
 
 		Assert.assertTrue(body.contains(" mentioned you in a comment in a "));
+
+		Assert.assertEquals(
+			userNotificationEvents.toString(), 1,
+			userNotificationEvents.size());
 
 		Assert.assertEquals(
 			0,

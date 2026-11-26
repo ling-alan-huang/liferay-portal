@@ -356,10 +356,6 @@ public class LiferayVersioningCapabilityTest {
 				List<FileVersion> fileVersions = fileEntry.getFileVersions(
 					WorkflowConstants.STATUS_ANY);
 
-				Assert.assertEquals(
-					"The number of versions stored are: ", numberOfVersions,
-					fileVersions.size());
-
 				FileVersion fileVersion = fileVersions.get(0);
 
 				Assert.assertEquals("13.0", fileVersion.getVersion());
@@ -367,6 +363,10 @@ public class LiferayVersioningCapabilityTest {
 				fileVersion = fileVersions.get(1);
 
 				Assert.assertEquals("12.0", fileVersion.getVersion());
+
+				Assert.assertEquals(
+					"The number of versions stored are: ", numberOfVersions,
+					fileVersions.size());
 			});
 	}
 

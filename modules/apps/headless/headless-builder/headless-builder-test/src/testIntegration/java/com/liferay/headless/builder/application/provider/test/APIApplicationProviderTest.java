@@ -120,8 +120,6 @@ public class APIApplicationProviderTest extends BaseTestCase {
 
 		List<APIApplication.Schema> schemas = apiApplication.getSchemas();
 
-		Assert.assertEquals(schemas.toString(), 1, schemas.size());
-
 		APIApplication.Schema schema = schemas.get(0);
 
 		Assert.assertEquals("description", schema.getDescription());
@@ -147,14 +145,16 @@ public class APIApplicationProviderTest extends BaseTestCase {
 
 		List<APIApplication.Property> properties = schema.getProperties();
 
-		Assert.assertEquals(properties.toString(), 1, properties.size());
-
 		APIApplication.Property property = properties.get(0);
 
 		Assert.assertEquals("description", property.getDescription());
 		Assert.assertEquals("name", property.getName());
 		Assert.assertEquals(
 			APIApplication.Property.Type.PICKLIST, property.getType());
+
+		Assert.assertEquals(properties.toString(), 1, properties.size());
+
+		Assert.assertEquals(schemas.toString(), 1, schemas.size());
 
 		HTTPTestUtil.invokeToJSONObject(
 			JSONUtil.put(

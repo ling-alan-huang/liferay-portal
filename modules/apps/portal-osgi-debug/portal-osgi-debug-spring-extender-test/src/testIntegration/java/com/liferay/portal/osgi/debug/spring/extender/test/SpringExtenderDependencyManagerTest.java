@@ -106,8 +106,6 @@ public class SpringExtenderDependencyManagerTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 2, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			String message = logEntry.getMessage();
@@ -129,6 +127,8 @@ public class SpringExtenderDependencyManagerTest {
 				message);
 
 			Assert.assertEquals(LoggerTestUtil.INFO, logEntry.getPriority());
+
+			Assert.assertEquals(logEntries.toString(), 2, logEntries.size());
 		}
 	}
 
@@ -145,8 +145,6 @@ public class SpringExtenderDependencyManagerTest {
 			_captureLog(logCapture);
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
-
-			Assert.assertEquals(logEntries.toString(), 2, logEntries.size());
 
 			LogEntry logEntry = logEntries.get(0);
 
@@ -180,6 +178,8 @@ public class SpringExtenderDependencyManagerTest {
 				message);
 
 			Assert.assertEquals(LoggerTestUtil.INFO, logEntry.getPriority());
+
+			Assert.assertEquals(logEntries.toString(), 2, logEntries.size());
 		}
 		finally {
 			bundle.uninstall();

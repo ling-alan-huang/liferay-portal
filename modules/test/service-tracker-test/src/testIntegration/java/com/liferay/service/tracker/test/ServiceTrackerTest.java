@@ -86,9 +86,6 @@ public class ServiceTrackerTest {
 
 		serviceTracker.close();
 
-		Assert.assertEquals(
-			objectValuePairs.toString(), 2, objectValuePairs.size());
-
 		ObjectValuePair<ServiceReference<TestService>, Bundle> objectValuePair =
 			objectValuePairs.get(0);
 
@@ -109,6 +106,9 @@ public class ServiceTrackerTest {
 			Assert.assertSame(serviceReference1, objectValuePair.getKey());
 			Assert.assertNull(objectValuePair.getValue());
 		}
+
+		Assert.assertEquals(
+			objectValuePairs.toString(), 2, objectValuePairs.size());
 	}
 
 	private class TestService {

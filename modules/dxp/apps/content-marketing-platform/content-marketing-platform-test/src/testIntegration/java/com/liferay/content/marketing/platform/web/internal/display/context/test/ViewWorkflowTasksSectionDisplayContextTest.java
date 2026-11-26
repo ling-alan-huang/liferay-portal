@@ -64,10 +64,6 @@ public class ViewWorkflowTasksSectionDisplayContextTest
 		List<DropdownItem> bulkActionDropdownItems = getBulkActionDropdownItems(
 			null);
 
-		Assert.assertEquals(
-			bulkActionDropdownItems.toString(), 3,
-			bulkActionDropdownItems.size());
-
 		FDSActionDropdownItem updateDueDateFDSActionDropdownItem =
 			(FDSActionDropdownItem)bulkActionDropdownItems.get(0);
 
@@ -100,6 +96,10 @@ public class ViewWorkflowTasksSectionDisplayContextTest
 		Assert.assertEquals(
 			"changeTransition",
 			getValue(updateStateFDSActionDropdownItem, "permissionKey"));
+
+		Assert.assertEquals(
+			bulkActionDropdownItems.toString(), 3,
+			bulkActionDropdownItems.size());
 	}
 
 	@Override
@@ -124,10 +124,6 @@ public class ViewWorkflowTasksSectionDisplayContextTest
 	public void testGetFDSActionDropdownItems() throws Exception {
 		List<FDSActionDropdownItem> groupFDSActionDropdownItems =
 			getFDSActionDropdownItems(null);
-
-		Assert.assertEquals(
-			groupFDSActionDropdownItems.toString(), 2,
-			groupFDSActionDropdownItems.size());
 
 		FDSActionDropdownItem groupFDSActionDropdownItem =
 			groupFDSActionDropdownItems.get(0);
@@ -185,6 +181,10 @@ public class ViewWorkflowTasksSectionDisplayContextTest
 				"entryClassName", CLASS_NAME_KALEO_TASK_INSTANCE_TOKEN
 			).build(),
 			fdsActionDropdownItems.get(3));
+
+		Assert.assertEquals(
+			groupFDSActionDropdownItems.toString(), 2,
+			groupFDSActionDropdownItems.size());
 	}
 
 	@Override

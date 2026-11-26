@@ -137,10 +137,6 @@ public class UpdateOAuthClientPRLocalMetadataMVCActionCommandTest {
 			_oAuthClientPRLocalMetadataLocalService.
 				getCompanyOAuthClientPRLocalMetadata(_user.getCompanyId());
 
-		Assert.assertEquals(
-			oAuthClientPRLocalMetadatas.toString(), count + 1,
-			oAuthClientPRLocalMetadatas.size());
-
 		OAuthClientPRLocalMetadata oAuthClientPRLocalMetadata =
 			oAuthClientPRLocalMetadatas.get(0);
 
@@ -213,6 +209,10 @@ public class UpdateOAuthClientPRLocalMetadataMVCActionCommandTest {
 			"scopes_supported");
 
 		Assert.assertEquals(scope, scopesSupportedJSONArray.getString(0));
+
+		Assert.assertEquals(
+			oAuthClientPRLocalMetadatas.toString(), count + 1,
+			oAuthClientPRLocalMetadatas.size());
 	}
 
 	private void _testProcessAction(

@@ -93,8 +93,6 @@ public class BatchEngineUnitProcessorTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 2, logEntries.size());
-
 			LogEntry logEntry1 = logEntries.get(0);
 
 			Assert.assertEquals(LoggerTestUtil.ERROR, logEntry1.getPriority());
@@ -114,6 +112,8 @@ public class BatchEngineUnitProcessorTest {
 				logEntryMessage2,
 				logEntryMessage2.startsWith(
 					"Unable to update batch engine import task"));
+
+			Assert.assertEquals(logEntries.toString(), 2, logEntries.size());
 		}
 
 		try (SafeCloseable safeCloseable =

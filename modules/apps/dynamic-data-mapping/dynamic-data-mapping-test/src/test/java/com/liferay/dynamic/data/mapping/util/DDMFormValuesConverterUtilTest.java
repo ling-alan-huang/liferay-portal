@@ -134,9 +134,6 @@ public class DDMFormValuesConverterUtilTest extends BaseDDMTestCase {
 					"Text", ListUtil.fromArray(textDDMFormFieldValue)
 				).build());
 
-		Assert.assertEquals(
-			ddmFormFieldValues.toString(), 1, ddmFormFieldValues.size());
-
 		DDMFormFieldValue ddmFormFieldValue = ddmFormFieldValues.get(0);
 
 		Assert.assertEquals("Fieldset", ddmFormFieldValue.getName());
@@ -149,6 +146,9 @@ public class DDMFormValuesConverterUtilTest extends BaseDDMTestCase {
 			nestedDDMFormFieldValues.size());
 		Assert.assertEquals(
 			nestedDDMFormFieldValues.get(0), textDDMFormFieldValue);
+
+		Assert.assertEquals(
+			ddmFormFieldValues.toString(), 1, ddmFormFieldValues.size());
 	}
 
 	private void _assertDDMFormFieldValueName(

@@ -206,11 +206,11 @@ public class GroupSearchProviderTest {
 
 		List<Group> results = groupSearch.getResults();
 
-		Assert.assertEquals(results.toString(), 1, results.size());
-
 		Group group = results.get(0);
 
 		Assert.assertEquals(expectedGroup.getGroupId(), group.getGroupId());
+
+		Assert.assertEquals(results.toString(), 1, results.size());
 	}
 
 	private ThemeDisplay _getThemeDisplay(Group group, User user)

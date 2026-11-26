@@ -122,10 +122,6 @@ public class FragmentEntryLinkUpgradeProcessTest
 			_fragmentEntryLinkLocalService.getFragmentEntryLinksByPlid(
 				_layout.getGroupId(), _layout.getPlid());
 
-		Assert.assertEquals(
-			publishedLayoutFragmentEntryLinks.toString(), 1,
-			publishedLayoutFragmentEntryLinks.size());
-
 		FragmentEntryLink publishedLayoutFragmentEntryLink =
 			publishedLayoutFragmentEntryLinks.get(0);
 
@@ -140,6 +136,10 @@ public class FragmentEntryLinkUpgradeProcessTest
 			_classNameLocalService.getClassNameId(FileEntry.class.getName()),
 			draftLayoutFragmentEntryLink.getFragmentEntryLinkId(),
 			publishedLayoutFragmentEntryLink.getFragmentEntryLinkId());
+
+		Assert.assertEquals(
+			publishedLayoutFragmentEntryLinks.toString(), 1,
+			publishedLayoutFragmentEntryLinks.size());
 	}
 
 	@Override

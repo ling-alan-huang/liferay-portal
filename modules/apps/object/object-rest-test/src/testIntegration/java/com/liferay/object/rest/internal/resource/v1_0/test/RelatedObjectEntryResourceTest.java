@@ -422,12 +422,12 @@ public class RelatedObjectEntryResourceTest {
 
 		JSONArray itemsJSONArray = jsonObject.getJSONArray("items");
 
-		Assert.assertEquals(1, itemsJSONArray.length());
-
 		JSONObject itemJSONObject = itemsJSONArray.getJSONObject(0);
 
 		Assert.assertEquals(
 			_OBJECT_FIELD_VALUE, itemJSONObject.getString(_OBJECT_FIELD_NAME));
+
+		Assert.assertEquals(1, itemsJSONArray.length());
 	}
 
 	@Test

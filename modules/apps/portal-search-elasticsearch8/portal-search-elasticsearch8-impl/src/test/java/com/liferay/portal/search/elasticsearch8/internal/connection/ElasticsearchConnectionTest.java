@@ -85,14 +85,14 @@ public class ElasticsearchConnectionTest {
 
 		List<Node> nodes = restClient.getNodes();
 
-		Assert.assertEquals(nodes.toString(), 1, nodes.size());
-
 		Node node = nodes.get(0);
 
 		HttpHost httpHost = node.getHost();
 
 		Assert.assertEquals(hostString, httpHost.getHostName());
 		Assert.assertEquals(port, httpHost.getPort());
+
+		Assert.assertEquals(nodes.toString(), 1, nodes.size());
 	}
 
 	private ElasticsearchConnection _elasticsearchConnection;

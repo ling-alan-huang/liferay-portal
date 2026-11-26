@@ -124,10 +124,6 @@ public class CommercePaymentSubscriptionsTest {
 					_user.getUserId(), QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 					null);
 
-		Assert.assertEquals(
-			commerceSubscriptionEntries.toString(), 1,
-			commerceSubscriptionEntries.size());
-
 		CommerceSubscriptionEntry commerceSubscriptionEntry =
 			commerceSubscriptionEntries.get(0);
 
@@ -167,6 +163,10 @@ public class CommercePaymentSubscriptionsTest {
 		Assert.assertEquals(
 			CommerceSubscriptionEntryConstants.SUBSCRIPTION_STATUS_CANCELLED,
 			commerceSubscriptionEntry.getSubscriptionStatus());
+
+		Assert.assertEquals(
+			commerceSubscriptionEntries.toString(), 1,
+			commerceSubscriptionEntries.size());
 	}
 
 	private AccountEntry _accountEntry;

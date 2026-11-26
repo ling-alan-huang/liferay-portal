@@ -232,8 +232,6 @@ public class LayoutListRetrieverTest {
 
 		List<Object> list = (List<Object>)infoPage.getPageItems();
 
-		Assert.assertEquals(list.toString(), 2, list.size());
-
 		AssetTag assetTag1 = (AssetTag)list.get(0);
 
 		Assert.assertEquals("tag1", assetTag1.getName());
@@ -241,6 +239,8 @@ public class LayoutListRetrieverTest {
 		AssetTag assetTag2 = (AssetTag)list.get(1);
 
 		Assert.assertEquals("tag2", assetTag2.getName());
+
+		Assert.assertEquals(list.toString(), 2, list.size());
 
 		serviceRegistration.unregister();
 	}

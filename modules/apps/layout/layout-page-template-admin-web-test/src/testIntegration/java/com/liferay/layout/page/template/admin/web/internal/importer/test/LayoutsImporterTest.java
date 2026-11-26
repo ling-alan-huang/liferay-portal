@@ -739,9 +739,6 @@ public class LayoutsImporterTest {
 				importedLayoutPageTemplateEntry.getGroupId(),
 				importedLayoutPageTemplateEntry.getPlid());
 
-		Assert.assertEquals(
-			fragmentEntryLinks.toString(), 1, fragmentEntryLinks.size());
-
 		FragmentEntryLink importedFragmentEntryLink = fragmentEntryLinks.get(0);
 
 		JSONObject importedEditableValuesJSONObject =
@@ -760,6 +757,9 @@ public class LayoutsImporterTest {
 					importedLayoutPageTemplateEntry.getPlid(),
 					importedPortletId),
 				role.getRoleId(), ActionKeys.VIEW));
+
+		Assert.assertEquals(
+			fragmentEntryLinks.toString(), 1, fragmentEntryLinks.size());
 	}
 
 	@Test
@@ -993,9 +993,6 @@ public class LayoutsImporterTest {
 					segmentsExperience.getSegmentsExperienceId(),
 					draftLayout.getPlid());
 
-		Assert.assertEquals(
-			fragmentEntryLinks.toString(), 1, fragmentEntryLinks.size());
-
 		FragmentEntryLink fragmentEntryLink = fragmentEntryLinks.get(0);
 
 		Assert.assertEquals(
@@ -1007,6 +1004,9 @@ public class LayoutsImporterTest {
 			LayoutPageTemplateAdminWebPortletKeys.
 				LAYOUT_PAGE_TEMPLATE_ADMIN_WEB_NONINSTANCEABLE_TEST_PORTLET,
 			jsonObject.getString("portletId"));
+
+		Assert.assertEquals(
+			fragmentEntryLinks.toString(), 1, fragmentEntryLinks.size());
 
 		ServiceContextThreadLocal.pushServiceContext(_serviceContext1);
 
@@ -1565,8 +1565,6 @@ public class LayoutsImporterTest {
 				!StringUtil.equals(
 					infoField.getName(), "externalReferenceCode"));
 
-		Assert.assertEquals(infoFields.toString(), 1, infoFields.size());
-
 		InfoField<?> infoField = infoFields.get(0);
 
 		ContentLayoutTestUtil.addFormToPublishedLayout(
@@ -1596,6 +1594,8 @@ public class LayoutsImporterTest {
 					JSONUtil.put("inputFieldId", infoField.getUniqueId())),
 				_jsonFactory.createJSONObject(
 					fragmentEntryLink.getEditableValues())));
+
+		Assert.assertEquals(infoFields.toString(), 1, infoFields.size());
 
 		LayoutPageTemplateStructure layoutPageTemplateStructure =
 			_layoutPageTemplateStructureLocalService.
@@ -1858,9 +1858,6 @@ public class LayoutsImporterTest {
 				layoutPageTemplateEntry.getGroupId(),
 				layoutPageTemplateEntry.getPlid());
 
-		Assert.assertEquals(
-			fragmentEntryLinks.toString(), 1, fragmentEntryLinks.size());
-
 		FragmentEntryLink curFragmentEntryLink = fragmentEntryLinks.get(0);
 
 		Assert.assertTrue(
@@ -1897,6 +1894,9 @@ public class LayoutsImporterTest {
 			JSONUtil.equals(
 				expectedSuccessMessageJSONObject,
 				actualSuccessMessageJSONObject));
+
+		Assert.assertEquals(
+			fragmentEntryLinks.toString(), 1, fragmentEntryLinks.size());
 	}
 
 	private void _assertLayoutPageTemplateEntry(
@@ -1913,9 +1913,6 @@ public class LayoutsImporterTest {
 			_fragmentEntryLinkLocalService.getFragmentEntryLinksByPlid(
 				layoutPageTemplateEntry.getGroupId(),
 				layoutPageTemplateEntry.getPlid());
-
-		Assert.assertEquals(
-			fragmentEntryLinks.toString(), 1, fragmentEntryLinks.size());
 
 		FragmentEntryLink fragmentEntryLink = fragmentEntryLinks.get(0);
 
@@ -1941,6 +1938,9 @@ public class LayoutsImporterTest {
 				editableValuesJSONObject,
 				_jsonFactory.createJSONObject(
 					fragmentEntryLink.getEditableValues())));
+
+		Assert.assertEquals(
+			fragmentEntryLinks.toString(), 1, fragmentEntryLinks.size());
 	}
 
 	private void _assertLayoutPageTemplateEntry(
@@ -2176,10 +2176,6 @@ public class LayoutsImporterTest {
 	private String _getLayoutPageTemplateEntryKey(
 		List<LayoutsImporterResultEntry> layoutsImporterResultEntries) {
 
-		Assert.assertEquals(
-			layoutsImporterResultEntries.toString(), 1,
-			layoutsImporterResultEntries.size());
-
 		LayoutsImporterResultEntry layoutsImporterResultEntry =
 			layoutsImporterResultEntries.get(0);
 
@@ -2190,6 +2186,10 @@ public class LayoutsImporterTest {
 		return StringUtil.replace(
 			StringUtil.toLowerCase(layoutsImporterResultEntry.getName()),
 			CharPool.SPACE, CharPool.DASH);
+
+		Assert.assertEquals(
+			layoutsImporterResultEntries.toString(), 1,
+			layoutsImporterResultEntries.size());
 	}
 
 	private LayoutStructureItem _getMainChildLayoutStructureItem(
@@ -2201,12 +2201,12 @@ public class LayoutsImporterTest {
 		List<String> childrenItemIds =
 			mainLayoutStructureItem.getChildrenItemIds();
 
-		Assert.assertEquals(
-			childrenItemIds.toString(), 1, childrenItemIds.size());
-
 		String childItemId = childrenItemIds.get(0);
 
 		return layoutStructure.getLayoutStructureItem(childItemId);
+
+		Assert.assertEquals(
+			childrenItemIds.toString(), 1, childrenItemIds.size());
 	}
 
 	private long _getNamespacePlaceholderPortletPreferencesCount() {

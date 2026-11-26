@@ -296,11 +296,6 @@ public class DLFolderServiceTest {
 			actualFoldersAndFileEntriesAndFileShortcuts.toString(), 1,
 			actualFoldersAndFileEntriesAndFileShortcuts.size());
 
-		Assert.assertEquals(
-			actualFoldersAndFileEntriesAndFileShortcuts.toString(),
-			expectedFileEntries.size(),
-			actualFoldersAndFileEntriesAndFileShortcuts.size());
-
 		FileEntry expectedFileEntry = expectedFileEntries.get(0);
 		DLFileEntry actualDLFileEntry =
 			(DLFileEntry)actualFoldersAndFileEntriesAndFileShortcuts.get(0);
@@ -308,6 +303,11 @@ public class DLFolderServiceTest {
 		Assert.assertEquals(
 			expectedFileEntry.getFileEntryId(),
 			actualDLFileEntry.getFileEntryId());
+
+		Assert.assertEquals(
+			actualFoldersAndFileEntriesAndFileShortcuts.toString(),
+			expectedFileEntries.size(),
+			actualFoldersAndFileEntriesAndFileShortcuts.size());
 	}
 
 	@Test
@@ -385,16 +385,16 @@ public class DLFolderServiceTest {
 		Assert.assertEquals(
 			actualDLFileEntries.size(), 1, actualDLFileEntries.size());
 
-		Assert.assertEquals(
-			expectedFileEntries.toString(), expectedFileEntries.size(),
-			actualDLFileEntries.size());
-
 		FileEntry expectedFileEntry = expectedFileEntries.get(0);
 		DLFileEntry actualDLFileEntry = actualDLFileEntries.get(0);
 
 		Assert.assertEquals(
 			expectedFileEntry.getFileEntryId(),
 			actualDLFileEntry.getFileEntryId());
+
+		Assert.assertEquals(
+			expectedFileEntries.toString(), expectedFileEntries.size(),
+			actualDLFileEntries.size());
 	}
 
 	@Test

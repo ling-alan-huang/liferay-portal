@@ -508,13 +508,13 @@ public class CommerceAddressServiceTest {
 					TestPropsValues.getCompanyId(), Contact.class.getName(),
 					user.getContactId());
 
-			Assert.assertEquals(
-				commerceAddresses.toString(), 1, commerceAddresses.size());
-
 			CommerceAddress commerceAddress = commerceAddresses.get(0);
 
 			Assert.assertEquals(
 				address.getAddressId(), commerceAddress.getCommerceAddressId());
+
+			Assert.assertEquals(
+				commerceAddresses.toString(), 1, commerceAddresses.size());
 		}
 	}
 

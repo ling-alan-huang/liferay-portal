@@ -98,9 +98,6 @@ public class ServiceLocatorTest {
 
 				List<LogEntry> logEntries = logCapture.getLogEntries();
 
-				Assert.assertEquals(
-					logEntries.toString(), 2, logEntries.size());
-
 				LogEntry logEntry = logEntries.get(0);
 
 				Assert.assertEquals(
@@ -120,6 +117,9 @@ public class ServiceLocatorTest {
 						"\" because it is not a Service Builder generated ",
 						"service"),
 					logEntry.getMessage());
+
+				Assert.assertEquals(
+					logEntries.toString(), 2, logEntries.size());
 			}
 		}
 	}

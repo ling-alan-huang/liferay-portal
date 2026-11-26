@@ -249,10 +249,6 @@ public class CMSObjectEntryReviewUserNotificationTest {
 		List<UserNotificationEvent> userNotificationEvents =
 			_getUserNotificationEvents(objectEntry, _user);
 
-		Assert.assertEquals(
-			userNotificationEvents.toString(), 1,
-			userNotificationEvents.size());
-
 		UserNotificationEvent userNotificationEvent =
 			userNotificationEvents.get(0);
 
@@ -263,6 +259,10 @@ public class CMSObjectEntryReviewUserNotificationTest {
 
 		return UserNotificationManagerUtil.interpret(
 			StringPool.BLANK, userNotificationEvent, serviceContext);
+
+		Assert.assertEquals(
+			userNotificationEvents.toString(), 1,
+			userNotificationEvents.size());
 	}
 
 	private DepotEntry _depotEntry;

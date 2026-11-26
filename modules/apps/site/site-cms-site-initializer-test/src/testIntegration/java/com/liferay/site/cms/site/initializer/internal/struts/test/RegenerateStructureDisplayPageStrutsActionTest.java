@@ -292,9 +292,6 @@ public class RegenerateStructureDisplayPageStrutsActionTest {
 		List<FragmentEntryLink> fragmentEntryLinks = _getFragmentEntryLinks(
 			group, draftLayout, _RENDERER_KEY_PARAGRAPH);
 
-		Assert.assertEquals(
-			fragmentEntryLinks.toString(), 1, fragmentEntryLinks.size());
-
 		FragmentEntryLink fragmentEntryLink = fragmentEntryLinks.get(0);
 
 		JSONObject editableValuesJSONObject = JSONFactoryUtil.createJSONObject(
@@ -316,6 +313,9 @@ public class RegenerateStructureDisplayPageStrutsActionTest {
 					"default-language"),
 			elementTextJSONObject.getString(
 				LocaleUtil.toLanguageId(LocaleUtil.getDefault())));
+
+		Assert.assertEquals(
+			fragmentEntryLinks.toString(), 1, fragmentEntryLinks.size());
 	}
 
 	private void _testExecuteWithObjectLayout() throws Exception {
@@ -420,9 +420,6 @@ public class RegenerateStructureDisplayPageStrutsActionTest {
 		fragmentEntryLinks = _getFragmentEntryLinks(
 			group, layout, _RENDERER_KEY_TABS);
 
-		Assert.assertEquals(
-			fragmentEntryLinks.toString(), 1, fragmentEntryLinks.size());
-
 		FragmentEntryLink fragmentEntryLink = fragmentEntryLinks.get(0);
 
 		JSONObject jsonObject1 = JSONFactoryUtil.createJSONObject(
@@ -439,6 +436,9 @@ public class RegenerateStructureDisplayPageStrutsActionTest {
 				KEY_FREEMARKER_FRAGMENT_ENTRY_PROCESSOR);
 
 		Assert.assertEquals("3", jsonObject2.getString("numberOfTabs"));
+
+		Assert.assertEquals(
+			fragmentEntryLinks.toString(), 1, fragmentEntryLinks.size());
 	}
 
 	private void _testExecuteWithoutUpdatePermission() throws Exception {

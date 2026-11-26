@@ -271,8 +271,6 @@ public class ProductMenuSidebarDisplayContextTest {
 
 		List<Map<String, Object>> propsItems = _getPropsItems();
 
-		Assert.assertEquals(propsItems.toString(), 1, propsItems.size());
-
 		Map<String, Object> propsItem = propsItems.get(0);
 
 		Assert.assertEquals(
@@ -283,6 +281,8 @@ public class ProductMenuSidebarDisplayContextTest {
 
 		Assert.assertEquals(
 			childPropsItems.toString(), 1, childPropsItems.size());
+
+		Assert.assertEquals(propsItems.toString(), 1, propsItems.size());
 	}
 
 	@Test
@@ -325,8 +325,6 @@ public class ProductMenuSidebarDisplayContextTest {
 
 		List<Map<String, Object>> propsItems = _getPropsItems();
 
-		Assert.assertEquals(propsItems.toString(), 3, propsItems.size());
-
 		Map<String, Object> homePropsItem = propsItems.get(0);
 
 		Assert.assertEquals("home", homePropsItem.get("id"));
@@ -342,6 +340,8 @@ public class ProductMenuSidebarDisplayContextTest {
 		Assert.assertEquals(
 			PanelCategoryKeys.SITE_ADMINISTRATION_CONTENT,
 			categoryPropsItem.get("id"));
+
+		Assert.assertEquals(propsItems.toString(), 3, propsItems.size());
 	}
 
 	@Test

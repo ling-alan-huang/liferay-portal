@@ -5308,9 +5308,6 @@ public class DefaultObjectEntryManagerImplTest
 		List<ObjectEntry> approvedObjectEntries =
 			(List<ObjectEntry>)page.getItems();
 
-		Assert.assertEquals(
-			approvedObjectEntries.toString(), 1, approvedObjectEntries.size());
-
 		ObjectEntry approvedObjectEntry = approvedObjectEntries.get(0);
 
 		ObjectEntry[] nestedApprovedObjectEntries =
@@ -5332,6 +5329,9 @@ public class DefaultObjectEntryManagerImplTest
 			_getLatestApprovedObjectEntry(
 				objectEntry3.getId(), objectDefinition3),
 			nestedObjectEntries[0]);
+
+		Assert.assertEquals(
+			approvedObjectEntries.toString(), 1, approvedObjectEntries.size());
 
 		NestedFieldsContextThreadLocal.setNestedFieldsContext(
 			originalNestedFieldsContext);
@@ -7841,10 +7841,6 @@ public class DefaultObjectEntryManagerImplTest
 		List<com.liferay.object.model.ObjectEntry> serviceBuilderObjectEntries =
 			new ArrayList<>(page.getItems());
 
-		Assert.assertEquals(
-			serviceBuilderObjectEntries.toString(), 2,
-			serviceBuilderObjectEntries.size());
-
 		com.liferay.object.model.ObjectEntry serviceBuilderObjectEntry1 =
 			serviceBuilderObjectEntries.get(0);
 
@@ -7866,6 +7862,10 @@ public class DefaultObjectEntryManagerImplTest
 			_objectEntryLocalService.getValues(
 				serviceBuilderObjectEntry2.getObjectEntryId()),
 			serviceBuilderObjectEntry2.getValues());
+
+		Assert.assertEquals(
+			serviceBuilderObjectEntries.toString(), 2,
+			serviceBuilderObjectEntries.size());
 	}
 
 	@Test

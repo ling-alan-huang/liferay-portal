@@ -2202,8 +2202,6 @@ public class ObjectEntryRelatedObjectsResourceTest {
 		JSONArray relatedCustomObjectEntriesJSONArray = jsonObject.getJSONArray(
 			objectRelationship.getName());
 
-		Assert.assertEquals(1, relatedCustomObjectEntriesJSONArray.length());
-
 		JSONObject relatedCustomObjectEntryJSONObject =
 			relatedCustomObjectEntriesJSONArray.getJSONObject(0);
 
@@ -2222,6 +2220,8 @@ public class ObjectEntryRelatedObjectsResourceTest {
 
 		Assert.assertEquals(
 			SetUtil.fromArray(listTypeEntryKey1, listTypeEntryKey2), keys);
+
+		Assert.assertEquals(1, relatedCustomObjectEntriesJSONArray.length());
 
 		_objectDefinitionLocalService.deleteObjectDefinition(
 			childObjectDefinition);

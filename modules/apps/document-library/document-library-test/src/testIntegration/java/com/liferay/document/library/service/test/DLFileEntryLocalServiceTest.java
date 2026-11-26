@@ -2118,13 +2118,13 @@ public class DLFileEntryLocalServiceTest {
 					PortalUtil.getClassNameId(FileEntry.class),
 					dlFileEntry.getFileEntryId());
 
-			Assert.assertTrue(friendlyURLEntries.size() == 1);
-
 			FriendlyURLEntry friendlyURLEntry1 = friendlyURLEntries.get(0);
 
 			Assert.assertEquals(
 				"initial-url-txt", friendlyURLEntry1.getUrlTitle());
 			Assert.assertTrue(friendlyURLEntry1.isMain());
+
+			Assert.assertTrue(friendlyURLEntries.size() == 1);
 		}
 	}
 
@@ -2168,13 +2168,13 @@ public class DLFileEntryLocalServiceTest {
 					PortalUtil.getClassNameId(FileEntry.class),
 					dlFileEntry.getFileEntryId());
 
-			Assert.assertTrue(friendlyURLEntries.size() == 1);
-
 			FriendlyURLEntry friendlyURLEntry1 = friendlyURLEntries.get(0);
 
 			Assert.assertEquals(
 				"initial-url.txt", friendlyURLEntry1.getUrlTitle());
 			Assert.assertTrue(friendlyURLEntry1.isMain());
+
+			Assert.assertTrue(friendlyURLEntries.size() == 1);
 		}
 	}
 
@@ -2269,8 +2269,6 @@ public class DLFileEntryLocalServiceTest {
 					PortalUtil.getClassNameId(FileEntry.class),
 					dlFileEntry.getFileEntryId());
 
-			Assert.assertTrue(friendlyURLEntries.size() == 2);
-
 			FriendlyURLEntry friendlyURLEntry1 = friendlyURLEntries.get(0);
 			FriendlyURLEntry friendlyURLEntry2 = friendlyURLEntries.get(1);
 
@@ -2279,6 +2277,8 @@ public class DLFileEntryLocalServiceTest {
 			Assert.assertFalse(friendlyURLEntry1.isMain());
 			Assert.assertEquals("url.txt", friendlyURLEntry2.getUrlTitle());
 			Assert.assertTrue(friendlyURLEntry2.isMain());
+
+			Assert.assertTrue(friendlyURLEntries.size() == 2);
 		}
 	}
 
@@ -2322,8 +2322,6 @@ public class DLFileEntryLocalServiceTest {
 					PortalUtil.getClassNameId(FileEntry.class),
 					dlFileEntry.getFileEntryId());
 
-			Assert.assertTrue(friendlyURLEntries.size() == 2);
-
 			FriendlyURLEntry friendlyURLEntry1 = friendlyURLEntries.get(0);
 			FriendlyURLEntry friendlyURLEntry2 = friendlyURLEntries.get(1);
 
@@ -2332,6 +2330,8 @@ public class DLFileEntryLocalServiceTest {
 			Assert.assertFalse(friendlyURLEntry1.isMain());
 			Assert.assertEquals("url.txt", friendlyURLEntry2.getUrlTitle());
 			Assert.assertTrue(friendlyURLEntry2.isMain());
+
+			Assert.assertTrue(friendlyURLEntries.size() == 2);
 		}
 	}
 
@@ -2375,8 +2375,6 @@ public class DLFileEntryLocalServiceTest {
 					PortalUtil.getClassNameId(FileEntry.class),
 					dlFileEntry.getFileEntryId());
 
-			Assert.assertTrue(friendlyURLEntries.size() == 2);
-
 			FriendlyURLEntry friendlyURLEntry1 = friendlyURLEntries.get(0);
 			FriendlyURLEntry friendlyURLEntry2 = friendlyURLEntries.get(1);
 
@@ -2385,6 +2383,8 @@ public class DLFileEntryLocalServiceTest {
 			Assert.assertFalse(friendlyURLEntry1.isMain());
 			Assert.assertEquals("url", friendlyURLEntry2.getUrlTitle());
 			Assert.assertTrue(friendlyURLEntry2.isMain());
+
+			Assert.assertTrue(friendlyURLEntries.size() == 2);
 		}
 	}
 

@@ -155,11 +155,11 @@ public class WorkflowTaskDisplayContextTest {
 			AssetTagLocalServiceUtil.getAssetEntryAssetTags(
 				assetEntry.getEntryId());
 
-		Assert.assertEquals(assetTags.toString(), 1, assetTags.size());
-
 		AssetTag assetTag = assetTags.get(0);
 
 		Assert.assertEquals(assetTags.toString(), newTag, assetTag.getName());
+
+		Assert.assertEquals(assetTags.toString(), 1, assetTags.size());
 	}
 
 	@Test

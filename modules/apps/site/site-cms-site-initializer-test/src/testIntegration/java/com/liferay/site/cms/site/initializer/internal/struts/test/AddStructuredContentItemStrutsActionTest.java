@@ -172,8 +172,6 @@ public class AddStructuredContentItemStrutsActionTest {
 			_depotEntry.getGroupId(), _objectDefinition.getObjectDefinitionId(),
 			QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 
-		Assert.assertEquals(objectEntries.toString(), 2, objectEntries.size());
-
 		ObjectEntry objectEntry = objectEntries.get(0);
 
 		Map<String, Serializable> values = objectEntry.getValues();
@@ -184,6 +182,8 @@ public class AddStructuredContentItemStrutsActionTest {
 			objectEntry.getUserId(), objectEntry.getObjectEntryId(),
 			objectEntry.getObjectEntryFolderId(), values,
 			ServiceContextTestUtil.getServiceContext());
+
+		Assert.assertEquals(objectEntries.toString(), 2, objectEntries.size());
 
 		_testExecute(
 			classNameId, 3, layoutPageTemplateEntry, httpServletRequest);
@@ -281,16 +281,16 @@ public class AddStructuredContentItemStrutsActionTest {
 			List<FormStyledLayoutStructureItem> formStyledLayoutStructureItems =
 				layoutStructure.getFormStyledLayoutStructureItems();
 
-			Assert.assertEquals(
-				formStyledLayoutStructureItems.toString(), 1,
-				formStyledLayoutStructureItems.size());
-
 			FormStyledLayoutStructureItem formStyledLayoutStructureItem =
 				formStyledLayoutStructureItems.get(0);
 
 			Assert.assertEquals(
 				_objectDefinition.getClassName(),
 				formStyledLayoutStructureItem.getClassName());
+
+			Assert.assertEquals(
+				formStyledLayoutStructureItems.toString(), 1,
+				formStyledLayoutStructureItems.size());
 		}
 
 		Layout layout = _layoutLocalService.getLayout(
@@ -301,9 +301,6 @@ public class AddStructuredContentItemStrutsActionTest {
 				_depotEntry.getGroupId(),
 				_objectDefinition.getObjectDefinitionId(), QueryUtil.ALL_POS,
 				QueryUtil.ALL_POS);
-
-		Assert.assertEquals(
-			objectEntries.toString(), count, objectEntries.size());
 
 		ObjectEntry objectEntry = objectEntries.get(objectEntries.size() - 1);
 
@@ -321,6 +318,9 @@ public class AddStructuredContentItemStrutsActionTest {
 					objectEntry.getObjectEntryId()),
 				Constants.CMD, Constants.ADD),
 			mockHttpServletResponse.getRedirectedUrl());
+
+		Assert.assertEquals(
+			objectEntries.toString(), count, objectEntries.size());
 	}
 
 	private static Company _company;

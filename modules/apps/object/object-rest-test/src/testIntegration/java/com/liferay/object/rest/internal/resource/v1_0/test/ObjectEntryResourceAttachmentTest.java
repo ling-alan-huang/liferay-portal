@@ -3127,8 +3127,6 @@ public class ObjectEntryResourceAttachmentTest
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals(LoggerTestUtil.WARN, logEntry.getPriority());
@@ -3137,6 +3135,8 @@ public class ObjectEntryResourceAttachmentTest
 
 			Assert.assertTrue(message.contains("code=\"404\""));
 			Assert.assertTrue(message.contains("uri=" + notFoundPath));
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 	}
 

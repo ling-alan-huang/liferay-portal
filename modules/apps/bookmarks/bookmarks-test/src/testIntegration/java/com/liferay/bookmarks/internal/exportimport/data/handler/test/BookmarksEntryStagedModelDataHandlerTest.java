@@ -111,13 +111,13 @@ public class BookmarksEntryStagedModelDataHandlerTest
 		List<StagedModel> dependentStagedModels = dependentStagedModelsMap.get(
 			BookmarksFolder.class.getSimpleName());
 
-		Assert.assertEquals(
-			dependentStagedModels.toString(), 1, dependentStagedModels.size());
-
 		BookmarksFolder folder = (BookmarksFolder)dependentStagedModels.get(0);
 
 		BookmarksFolderLocalServiceUtil.getBookmarksFolderByUuidAndGroupId(
 			folder.getUuid(), group.getGroupId());
+
+		Assert.assertEquals(
+			dependentStagedModels.toString(), 1, dependentStagedModels.size());
 	}
 
 	@Override

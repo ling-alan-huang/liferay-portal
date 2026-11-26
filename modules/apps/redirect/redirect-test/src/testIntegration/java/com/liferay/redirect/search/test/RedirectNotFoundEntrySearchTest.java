@@ -103,13 +103,13 @@ public class RedirectNotFoundEntrySearchTest extends BaseSearchTestCase {
 
 		List<SearchResult> searchResults = _getSearchResults(searchContext);
 
-		Assert.assertEquals(searchResults.toString(), 1, searchResults.size());
-
 		SearchResult searchResult = searchResults.get(0);
 
 		Assert.assertEquals(
 			redirectNotFoundEntry.getRedirectNotFoundEntryId(),
 			searchResult.getClassPK());
+
+		Assert.assertEquals(searchResults.toString(), 1, searchResults.size());
 	}
 
 	@Override
@@ -133,13 +133,13 @@ public class RedirectNotFoundEntrySearchTest extends BaseSearchTestCase {
 
 		List<SearchResult> searchResults = _getSearchResults("/path/page");
 
-		Assert.assertEquals(searchResults.toString(), 1, searchResults.size());
-
 		SearchResult searchResult = searchResults.get(0);
 
 		Assert.assertEquals(
 			redirectNotFoundEntry.getRedirectNotFoundEntryId(),
 			searchResult.getClassPK());
+
+		Assert.assertEquals(searchResults.toString(), 1, searchResults.size());
 	}
 
 	@Test
@@ -153,13 +153,13 @@ public class RedirectNotFoundEntrySearchTest extends BaseSearchTestCase {
 
 		List<SearchResult> searchResults = _getSearchResults("/path");
 
-		Assert.assertEquals(searchResults.toString(), 1, searchResults.size());
-
 		SearchResult searchResult = searchResults.get(0);
 
 		Assert.assertEquals(
 			redirectNotFoundEntry.getRedirectNotFoundEntryId(),
 			searchResult.getClassPK());
+
+		Assert.assertEquals(searchResults.toString(), 1, searchResults.size());
 	}
 
 	@Test
@@ -173,13 +173,13 @@ public class RedirectNotFoundEntrySearchTest extends BaseSearchTestCase {
 
 		List<SearchResult> searchResults = _getSearchResults("/page");
 
-		Assert.assertEquals(searchResults.toString(), 1, searchResults.size());
-
 		SearchResult searchResult = searchResults.get(0);
 
 		Assert.assertEquals(
 			redirectNotFoundEntry.getRedirectNotFoundEntryId(),
 			searchResult.getClassPK());
+
+		Assert.assertEquals(searchResults.toString(), 1, searchResults.size());
 	}
 
 	@Override

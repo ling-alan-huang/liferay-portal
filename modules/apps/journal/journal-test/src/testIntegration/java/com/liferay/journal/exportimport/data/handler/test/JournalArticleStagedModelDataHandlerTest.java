@@ -1117,10 +1117,6 @@ public class JournalArticleStagedModelDataHandlerTest
 		List<StagedModel> ddmStructureDependentStagedModels =
 			dependentStagedModelsMap.get(DDMStructure.class.getSimpleName());
 
-		Assert.assertEquals(
-			ddmStructureDependentStagedModels.toString(), 1,
-			ddmStructureDependentStagedModels.size());
-
 		DDMStructure ddmStructure =
 			(DDMStructure)ddmStructureDependentStagedModels.get(0);
 
@@ -1129,12 +1125,12 @@ public class JournalArticleStagedModelDataHandlerTest
 			_ddmStructureLocalService.fetchDDMStructureByUuidAndGroupId(
 				ddmStructure.getUuid(), group.getGroupId()));
 
+		Assert.assertEquals(
+			ddmStructureDependentStagedModels.toString(), 1,
+			ddmStructureDependentStagedModels.size());
+
 		List<StagedModel> ddmTemplateDependentStagedModels =
 			dependentStagedModelsMap.get(DDMTemplate.class.getSimpleName());
-
-		Assert.assertEquals(
-			ddmTemplateDependentStagedModels.toString(), 1,
-			ddmTemplateDependentStagedModels.size());
 
 		DDMTemplate ddmTemplate =
 			(DDMTemplate)ddmTemplateDependentStagedModels.get(0);
@@ -1144,18 +1140,22 @@ public class JournalArticleStagedModelDataHandlerTest
 			DDMTemplateLocalServiceUtil.fetchDDMTemplateByUuidAndGroupId(
 				ddmTemplate.getUuid(), group.getGroupId()));
 
+		Assert.assertEquals(
+			ddmTemplateDependentStagedModels.toString(), 1,
+			ddmTemplateDependentStagedModels.size());
+
 		List<StagedModel> folderDependentStagedModels =
 			dependentStagedModelsMap.get(JournalFolder.class.getSimpleName());
-
-		Assert.assertEquals(
-			folderDependentStagedModels.toString(), 1,
-			folderDependentStagedModels.size());
 
 		JournalFolder folder = (JournalFolder)folderDependentStagedModels.get(
 			0);
 
 		JournalFolderLocalServiceUtil.getJournalFolderByUuidAndGroupId(
 			folder.getUuid(), group.getGroupId());
+
+		Assert.assertEquals(
+			folderDependentStagedModels.toString(), 1,
+			folderDependentStagedModels.size());
 	}
 
 	@Override
@@ -1167,22 +1167,18 @@ public class JournalArticleStagedModelDataHandlerTest
 		List<StagedModel> ddmStructureDependentStagedModels =
 			dependentStagedModelsMap.get(DDMStructure.class.getSimpleName());
 
-		Assert.assertEquals(
-			ddmStructureDependentStagedModels.toString(), 1,
-			ddmStructureDependentStagedModels.size());
-
 		DDMStructure ddmStructure =
 			(DDMStructure)ddmStructureDependentStagedModels.get(0);
 
 		_ddmStructureLocalService.getDDMStructureByUuidAndGroupId(
 			ddmStructure.getUuid(), group.getGroupId());
 
+		Assert.assertEquals(
+			ddmStructureDependentStagedModels.toString(), 1,
+			ddmStructureDependentStagedModels.size());
+
 		List<StagedModel> ddmTemplateDependentStagedModels =
 			dependentStagedModelsMap.get(DDMTemplate.class.getSimpleName());
-
-		Assert.assertEquals(
-			ddmTemplateDependentStagedModels.toString(), 1,
-			ddmTemplateDependentStagedModels.size());
 
 		DDMTemplate ddmTemplate =
 			(DDMTemplate)ddmTemplateDependentStagedModels.get(0);
@@ -1190,18 +1186,22 @@ public class JournalArticleStagedModelDataHandlerTest
 		DDMTemplateLocalServiceUtil.getDDMTemplateByUuidAndGroupId(
 			ddmTemplate.getUuid(), group.getGroupId());
 
+		Assert.assertEquals(
+			ddmTemplateDependentStagedModels.toString(), 1,
+			ddmTemplateDependentStagedModels.size());
+
 		List<StagedModel> folderDependentStagedModels =
 			dependentStagedModelsMap.get(JournalFolder.class.getSimpleName());
-
-		Assert.assertEquals(
-			folderDependentStagedModels.toString(), 1,
-			folderDependentStagedModels.size());
 
 		JournalFolder folder = (JournalFolder)folderDependentStagedModels.get(
 			0);
 
 		JournalFolderLocalServiceUtil.getJournalFolderByUuidAndGroupId(
 			folder.getUuid(), group.getGroupId());
+
+		Assert.assertEquals(
+			folderDependentStagedModels.toString(), 1,
+			folderDependentStagedModels.size());
 	}
 
 	@Override

@@ -254,14 +254,14 @@ public class ClusterMasterExecutorImplTest extends BaseClusterTestCase {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals(
 				"Executing on the local node because the cluster master " +
 					"executor is disabled",
 				logEntry.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 
 		// Test 2, execute without exception when log is disabled
@@ -299,15 +299,15 @@ public class ClusterMasterExecutorImplTest extends BaseClusterTestCase {
 
 				List<LogEntry> logEntries = logCapture.getLogEntries();
 
-				Assert.assertEquals(
-					logEntries.toString(), 1, logEntries.size());
-
 				LogEntry logEntry = logEntries.get(0);
 
 				Assert.assertEquals(
 					"Executing on the local node because the cluster master " +
 						"executor is disabled",
 					logEntry.getMessage());
+
+				Assert.assertEquals(
+					logEntries.toString(), 1, logEntries.size());
 			}
 		}
 	}
@@ -444,9 +444,6 @@ public class ClusterMasterExecutorImplTest extends BaseClusterTestCase {
 
 						List<LogEntry> logEntries = logCapture.getLogEntries();
 
-						Assert.assertEquals(
-							logEntries.toString(), 1, logEntries.size());
-
 						LogEntry logEntry = logEntries.get(0);
 
 						Assert.assertEquals(
@@ -455,6 +452,9 @@ public class ClusterMasterExecutorImplTest extends BaseClusterTestCase {
 								"coordinator address ", _TEST_ADDRESS,
 								". Trying again."),
 							logEntry.getMessage());
+
+						Assert.assertEquals(
+							logEntries.toString(), 1, logEntries.size());
 					}
 				}
 

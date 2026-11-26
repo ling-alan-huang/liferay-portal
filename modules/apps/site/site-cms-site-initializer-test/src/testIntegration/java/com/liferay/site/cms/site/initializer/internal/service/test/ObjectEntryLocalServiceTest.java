@@ -337,10 +337,6 @@ public class ObjectEntryLocalServiceTest {
 			UserNotificationEventTestUtil.getUserNotificationEvents(
 				_user.getUserId());
 
-		Assert.assertEquals(
-			userNotificationEvents.toString(), 1,
-			userNotificationEvents.size());
-
 		UserNotificationEvent userNotificationEvent =
 			userNotificationEvents.get(0);
 
@@ -350,6 +346,10 @@ public class ObjectEntryLocalServiceTest {
 		String payload = userNotificationEvent.getPayload();
 
 		Assert.assertTrue(payload.contains("classPK\":" + objectEntryId));
+
+		Assert.assertEquals(
+			userNotificationEvents.toString(), 1,
+			userNotificationEvents.size());
 	}
 
 	private String _getObjectFolderExternalReferenceCode() {

@@ -184,15 +184,15 @@ public class LayoutFriendlyURLTest {
 			List<Exception> layoutFriendlyURLExceptions =
 				ListUtil.fromCollection(localizedExceptionsMap.values());
 
-			Assert.assertEquals(
-				layoutFriendlyURLExceptions.toString(), 1,
-				layoutFriendlyURLExceptions.size());
-
 			LayoutFriendlyURLException layoutFriendlyURLException =
 				(LayoutFriendlyURLException)layoutFriendlyURLExceptions.get(0);
 
 			Assert.assertEquals(
 				"tags", layoutFriendlyURLException.getKeywordConflict());
+
+			Assert.assertEquals(
+				layoutFriendlyURLExceptions.toString(), 1,
+				layoutFriendlyURLExceptions.size());
 		}
 
 		friendlyURLMap = HashMapBuilder.put(
@@ -211,15 +211,15 @@ public class LayoutFriendlyURLTest {
 			List<Exception> layoutFriendlyURLExceptions =
 				ListUtil.fromCollection(localizedExceptionsMap.values());
 
-			Assert.assertEquals(
-				layoutFriendlyURLExceptions.toString(), 1,
-				layoutFriendlyURLExceptions.size());
-
 			LayoutFriendlyURLException layoutFriendlyURLException =
 				(LayoutFriendlyURLException)layoutFriendlyURLExceptions.get(0);
 
 			Assert.assertEquals(
 				"tags", layoutFriendlyURLException.getKeywordConflict());
+
+			Assert.assertEquals(
+				layoutFriendlyURLExceptions.toString(), 1,
+				layoutFriendlyURLExceptions.size());
 		}
 
 		friendlyURLMap = HashMapBuilder.put(
@@ -238,15 +238,15 @@ public class LayoutFriendlyURLTest {
 			List<Exception> layoutFriendlyURLExceptions =
 				ListUtil.fromCollection(localizedExceptionsMap.values());
 
-			Assert.assertEquals(
-				layoutFriendlyURLExceptions.toString(), 1,
-				layoutFriendlyURLExceptions.size());
-
 			LayoutFriendlyURLException layoutFriendlyURLException =
 				(LayoutFriendlyURLException)layoutFriendlyURLExceptions.get(0);
 
 			Assert.assertEquals(
 				"tags", layoutFriendlyURLException.getKeywordConflict());
+
+			Assert.assertEquals(
+				layoutFriendlyURLExceptions.toString(), 1,
+				layoutFriendlyURLExceptions.size());
 		}
 
 		friendlyURLMap = HashMapBuilder.put(
@@ -265,15 +265,15 @@ public class LayoutFriendlyURLTest {
 			List<Exception> layoutFriendlyURLExceptions =
 				ListUtil.fromCollection(localizedExceptionsMap.values());
 
-			Assert.assertEquals(
-				layoutFriendlyURLExceptions.toString(), 1,
-				layoutFriendlyURLExceptions.size());
-
 			LayoutFriendlyURLException layoutFriendlyURLException =
 				(LayoutFriendlyURLException)layoutFriendlyURLExceptions.get(0);
 
 			Assert.assertEquals(
 				"/-/", layoutFriendlyURLException.getKeywordConflict());
+
+			Assert.assertEquals(
+				layoutFriendlyURLExceptions.toString(), 1,
+				layoutFriendlyURLExceptions.size());
 		}
 	}
 
@@ -632,14 +632,14 @@ public class LayoutFriendlyURLTest {
 					layoutSet.isPrivateLayout()),
 				groupLayout.getPlid());
 
-		Assert.assertEquals(
-			friendlyURLEntries.toString(), 1, friendlyURLEntries.size());
-
 		FriendlyURLEntry friendlyURLEntry = friendlyURLEntries.get(0);
 
 		Assert.assertEquals(
 			layoutSetPrototypeLayout.getFriendlyURL(),
 			friendlyURLEntry.getUrlTitle());
+
+		Assert.assertEquals(
+			friendlyURLEntries.toString(), 1, friendlyURLEntries.size());
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(

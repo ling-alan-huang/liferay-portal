@@ -65,14 +65,14 @@ public class TransactionCallbackUtilTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals(
 				"Unable to execute transaction callback",
 				logEntry.getMessage());
 			Assert.assertSame(exception, logEntry.getThrowable());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 
 		Assert.assertEquals(Collections.singletonList("commit"), _records);
@@ -175,8 +175,6 @@ public class TransactionCallbackUtilTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 2, logEntries.size());
-
 			LogEntry logEntry1 = logEntries.get(0);
 
 			Assert.assertEquals(
@@ -190,6 +188,8 @@ public class TransactionCallbackUtilTest {
 				"Unable to execute transaction callback",
 				logEntry2.getMessage());
 			Assert.assertSame(exception2, logEntry2.getThrowable());
+
+			Assert.assertEquals(logEntries.toString(), 2, logEntries.size());
 		}
 
 		Assert.assertEquals(Arrays.asList("rollback", "completion"), _records);

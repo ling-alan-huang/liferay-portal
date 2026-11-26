@@ -600,9 +600,6 @@ public class CopyItemsMVCActionCommandTest {
 
 		List<String> childrenItemIds = layoutStructureItem.getChildrenItemIds();
 
-		Assert.assertEquals(
-			childrenItemIds.toString(), 1, childrenItemIds.size());
-
 		String childrenItemId = childrenItemIds.get(0);
 
 		LayoutStructureItem childLayoutStructureItem =
@@ -611,6 +608,9 @@ public class CopyItemsMVCActionCommandTest {
 		Assert.assertNotNull(childLayoutStructureItem);
 
 		return childLayoutStructureItem;
+
+		Assert.assertEquals(
+			childrenItemIds.toString(), 1, childrenItemIds.size());
 	}
 
 	private void _assertCopiedEditableValues(

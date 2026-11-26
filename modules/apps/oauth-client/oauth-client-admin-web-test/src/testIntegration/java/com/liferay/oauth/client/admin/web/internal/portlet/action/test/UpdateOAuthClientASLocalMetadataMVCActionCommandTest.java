@@ -188,8 +188,6 @@ public class UpdateOAuthClientASLocalMetadataMVCActionCommandTest {
 			_oAuthClientASLocalMetadataLocalService.
 				getCompanyOAuthClientASLocalMetadata(user.getCompanyId());
 
-		Assert.assertEquals(oAuthClientASLocalMetadatas.size(), count + 1);
-
 		OAuthClientASLocalMetadata oAuthClientASLocalMetadata =
 			oAuthClientASLocalMetadatas.get(0);
 
@@ -305,6 +303,8 @@ public class UpdateOAuthClientASLocalMetadataMVCActionCommandTest {
 			authorizationServerMetadata.getScopes());
 		Assert.assertEquals(
 			url, authorizationServerMetadata.getTokenEndpointURI());
+
+		Assert.assertEquals(oAuthClientASLocalMetadatas.size(), count + 1);
 	}
 
 	private void _assertOAuthClientASLocalMetadata(

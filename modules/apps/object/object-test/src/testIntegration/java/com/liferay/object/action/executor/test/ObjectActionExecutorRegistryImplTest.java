@@ -88,8 +88,6 @@ public class ObjectActionExecutorRegistryImplTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals(
@@ -100,6 +98,8 @@ public class ObjectActionExecutorRegistryImplTest {
 			Throwable throwable = logEntry.getThrowable();
 
 			Assert.assertSame(RuntimeException.class, throwable.getClass());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 
 		TestObjectActionExecutor testObjectActionExecutor2 =

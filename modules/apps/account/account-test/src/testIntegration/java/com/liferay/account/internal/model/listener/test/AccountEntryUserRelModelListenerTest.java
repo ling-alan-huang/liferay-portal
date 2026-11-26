@@ -120,13 +120,13 @@ public class AccountEntryUserRelModelListenerTest {
 			_accountEntryUserRelLocalService.
 				getAccountEntryUserRelsByAccountUserId(accountUserId);
 
-		Assert.assertEquals(
-			accountEntryUserRels.toString(), 1, accountEntryUserRels.size());
-
 		AccountEntryUserRel accountEntryUserRel = accountEntryUserRels.get(0);
 
 		Assert.assertEquals(
 			expectedAccountEntryId, accountEntryUserRel.getAccountEntryId());
+
+		Assert.assertEquals(
+			accountEntryUserRels.toString(), 1, accountEntryUserRels.size());
 	}
 
 	@Inject

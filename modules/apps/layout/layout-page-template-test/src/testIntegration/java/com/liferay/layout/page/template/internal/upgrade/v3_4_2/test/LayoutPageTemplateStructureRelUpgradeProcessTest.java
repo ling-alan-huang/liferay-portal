@@ -767,10 +767,6 @@ public class LayoutPageTemplateStructureRelUpgradeProcessTest
 		Map<Long, LayoutStructureItem> fragmentLayoutStructureItems =
 			layoutStructure.getFragmentLayoutStructureItems();
 
-		Assert.assertEquals(
-			MapUtil.toString(fragmentLayoutStructureItems), 1,
-			fragmentLayoutStructureItems.size());
-
 		FragmentStyledLayoutStructureItem fragmentStyledLayoutStructureItem =
 			(FragmentStyledLayoutStructureItem)fragmentLayoutStructureItems.get(
 				fragmentEntryLink.getFragmentEntryLinkId());
@@ -780,6 +776,10 @@ public class LayoutPageTemplateStructureRelUpgradeProcessTest
 			segmentsExperienceId);
 
 		return fragmentStyledLayoutStructureItem.getItemId();
+
+		Assert.assertEquals(
+			MapUtil.toString(fragmentLayoutStructureItems), 1,
+			fragmentLayoutStructureItems.size());
 	}
 
 	private void _assertItemConfigJSONObject(

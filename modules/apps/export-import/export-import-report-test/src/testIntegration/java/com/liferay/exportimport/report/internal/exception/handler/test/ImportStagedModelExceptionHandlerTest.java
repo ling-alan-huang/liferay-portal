@@ -199,10 +199,6 @@ public class ImportStagedModelExceptionHandlerTest {
 				TestPropsValues.getCompanyId(),
 				exportImportConfiguration.getExportImportConfigurationId());
 
-		Assert.assertEquals(
-			exportImportReportEntries.toString(), 1,
-			exportImportReportEntries.size());
-
 		ExportImportReportEntry exportImportReportEntry =
 			exportImportReportEntries.get(0);
 
@@ -230,6 +226,10 @@ public class ImportStagedModelExceptionHandlerTest {
 		Assert.assertEquals(
 			ExportImportReportEntryConstants.ORIGIN_STAGING,
 			exportImportReportEntry.getOrigin());
+
+		Assert.assertEquals(
+			exportImportReportEntries.toString(), 1,
+			exportImportReportEntries.size());
 
 		_assertExportImportReportEntryIndexed(
 			classPK, group.getCompanyId(),

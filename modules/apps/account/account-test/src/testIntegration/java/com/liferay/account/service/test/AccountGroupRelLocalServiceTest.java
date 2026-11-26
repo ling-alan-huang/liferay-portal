@@ -234,14 +234,14 @@ public class AccountGroupRelLocalServiceTest {
 				AccountEntry.class.getName(), _accountEntry.getAccountEntryId(),
 				accountGroup1.getName(), 0, 10);
 
-		Assert.assertEquals(
-			accountGroupRels.toString(), 1, accountGroupRels.size());
-
 		AccountGroupRel accountGroupRel = accountGroupRels.get(0);
 
 		Assert.assertEquals(
 			accountGroup1.getAccountGroupId(),
 			accountGroupRel.getAccountGroupId());
+
+		Assert.assertEquals(
+			accountGroupRels.toString(), 1, accountGroupRels.size());
 	}
 
 	private AccountEntry _accountEntry;

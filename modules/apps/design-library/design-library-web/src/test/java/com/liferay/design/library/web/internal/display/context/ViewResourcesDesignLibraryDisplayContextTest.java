@@ -173,10 +173,6 @@ public class ViewResourcesDesignLibraryDisplayContextTest {
 			_viewResourcesDesignLibraryDisplayContext.
 				getBulkActionDropdownItems();
 
-		Assert.assertEquals(
-			bulkActionDropdownItems.toString(), 1,
-			bulkActionDropdownItems.size());
-
 		DropdownItem dropdownItem = bulkActionDropdownItems.get(0);
 
 		Assert.assertEquals("trash", dropdownItem.get("icon"));
@@ -187,6 +183,10 @@ public class ViewResourcesDesignLibraryDisplayContextTest {
 
 		Assert.assertEquals("delete", data.get("id"));
 		Assert.assertNull(data.get("method"));
+
+		Assert.assertEquals(
+			bulkActionDropdownItems.toString(), 1,
+			bulkActionDropdownItems.size());
 	}
 
 	@Test
@@ -201,10 +201,6 @@ public class ViewResourcesDesignLibraryDisplayContextTest {
 			_viewResourcesDesignLibraryDisplayContext.
 				getFDSActionDropdownItems();
 
-		Assert.assertEquals(
-			fdsActionDropdownItems.toString(), 1,
-			fdsActionDropdownItems.size());
-
 		Map<String, Object> visibilityFilters = _getVisibilityFilters(
 			fdsActionDropdownItems.get(0));
 
@@ -213,6 +209,10 @@ public class ViewResourcesDesignLibraryDisplayContextTest {
 		Assert.assertFalse(
 			visibilityFilters.toString(),
 			visibilityFilters.containsKey("type"));
+
+		Assert.assertEquals(
+			fdsActionDropdownItems.toString(), 1,
+			fdsActionDropdownItems.size());
 
 		_testGetFDSActionDropdownItemsWithModule();
 	}
@@ -247,8 +247,6 @@ public class ViewResourcesDesignLibraryDisplayContextTest {
 
 		List<Map<String, Object>> resourceTypes = _getResourceTypes();
 
-		Assert.assertEquals(resourceTypes.toString(), 1, resourceTypes.size());
-
 		Map<String, Object> resourceType = resourceTypes.get(0);
 
 		Assert.assertEquals("style-book-color", resourceType.get("color"));
@@ -260,6 +258,8 @@ public class ViewResourcesDesignLibraryDisplayContextTest {
 		Assert.assertEquals("style-book-label", resourceType.get("label"));
 		Assert.assertEquals("style-book-icon", resourceType.get("symbol"));
 		Assert.assertNull(resourceType.get("type"));
+
+		Assert.assertEquals(resourceTypes.toString(), 1, resourceTypes.size());
 	}
 
 	@Test
@@ -279,12 +279,12 @@ public class ViewResourcesDesignLibraryDisplayContextTest {
 		List<Map<String, Object>> creationItems =
 			(List<Map<String, Object>>)resourceType.get("creationItems");
 
-		Assert.assertEquals(creationItems.toString(), 1, creationItems.size());
-
 		Map<String, Object> creationItem = creationItems.get(0);
 
 		Assert.assertEquals("style-book-add", creationItem.get("id"));
 		Assert.assertEquals("style-book-add-label", creationItem.get("label"));
+
+		Assert.assertEquals(creationItems.toString(), 1, creationItems.size());
 
 		Assert.assertEquals(
 			"style-book-creation-items-group-label",

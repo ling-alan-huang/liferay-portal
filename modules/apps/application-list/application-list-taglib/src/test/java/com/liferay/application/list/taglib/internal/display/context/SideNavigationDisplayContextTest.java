@@ -92,8 +92,6 @@ public class SideNavigationDisplayContextTest {
 
 		List<Map<String, Object>> propsItems = _getPropsItems();
 
-		Assert.assertEquals(propsItems.toString(), 2, propsItems.size());
-
 		Map<String, Object> scopePropsItem = propsItems.get(0);
 
 		Assert.assertNull(scopePropsItem.get("items"));
@@ -104,6 +102,8 @@ public class SideNavigationDisplayContextTest {
 
 		Assert.assertEquals("serverAdmin", propsItem.get("id"));
 		Assert.assertEquals("system", propsItem.get("scope"));
+
+		Assert.assertEquals(propsItems.toString(), 2, propsItems.size());
 	}
 
 	@Test
@@ -115,14 +115,14 @@ public class SideNavigationDisplayContextTest {
 
 		List<Map<String, Object>> propsItems = _getPropsItems();
 
-		Assert.assertEquals(propsItems.toString(), 1, propsItems.size());
-
 		Map<String, Object> propsItem = propsItems.get(0);
 
 		Assert.assertEquals(
 			PanelCategoryKeys.CONTROL_PANEL_USERS, propsItem.get("id"));
 		Assert.assertNotNull(propsItem.get("items"));
 		Assert.assertNull(propsItem.get("scopeMarker"));
+
+		Assert.assertEquals(propsItems.toString(), 1, propsItems.size());
 	}
 
 	@Test
@@ -172,8 +172,6 @@ public class SideNavigationDisplayContextTest {
 
 		List<Map<String, Object>> propsItems = _getPropsItems();
 
-		Assert.assertEquals(propsItems.toString(), 3, propsItems.size());
-
 		Map<String, Object> scopePropsItem = propsItems.get(0);
 
 		Assert.assertEquals(Boolean.TRUE, scopePropsItem.get("scopeMarker"));
@@ -186,6 +184,8 @@ public class SideNavigationDisplayContextTest {
 
 		Assert.assertEquals(
 			PanelCategoryKeys.CONTROL_PANEL_USERS, categoryPropsItem.get("id"));
+
+		Assert.assertEquals(propsItems.toString(), 3, propsItems.size());
 	}
 
 	private PanelApp _createPanelApp(String portletId) throws Exception {

@@ -249,14 +249,14 @@ public class CETConfigurationFactoryTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals(
 				"Only one theme CSS client extension can be applied at a " +
 					"time. To avoid conflicts, none of them will be applied.",
 				logEntry.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 		finally {
 			ConfigurationTestUtil.deleteConfiguration(pid1);

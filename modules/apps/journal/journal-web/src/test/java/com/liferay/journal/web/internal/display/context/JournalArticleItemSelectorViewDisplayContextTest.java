@@ -389,9 +389,6 @@ public class JournalArticleItemSelectorViewDisplayContextTest {
 			journalArticleItemSelectorViewDisplayContext.
 				getPortletBreadcrumbEntries();
 
-		Assert.assertEquals(
-			breadcrumbEntries.toString(), 4, breadcrumbEntries.size());
-
 		BreadcrumbEntry breadcrumbEntry = breadcrumbEntries.get(0);
 
 		Assert.assertEquals("sites-and-libraries", breadcrumbEntry.getTitle());
@@ -439,6 +436,9 @@ public class JournalArticleItemSelectorViewDisplayContextTest {
 			_journalFolder.getName(), breadcrumbEntry.getTitle());
 
 		Assert.assertNull(breadcrumbEntry.getURL());
+
+		Assert.assertEquals(
+			breadcrumbEntries.toString(), 4, breadcrumbEntries.size());
 	}
 
 	private void _testSearchContainerWithScope(String scope) throws Exception {

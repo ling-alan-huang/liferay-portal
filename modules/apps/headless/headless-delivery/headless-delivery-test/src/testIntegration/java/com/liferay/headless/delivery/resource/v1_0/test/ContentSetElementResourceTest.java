@@ -383,13 +383,13 @@ public class ContentSetElementResourceTest
 		List<ContentSetElement> contentSetElements =
 			(List<ContentSetElement>)contentSetElementsPage.getItems();
 
-		Assert.assertEquals(
-			contentSetElements.toString(), 1, contentSetElements.size());
-
 		ContentSetElement contentSetElement = contentSetElements.get(0);
 
 		Assert.assertEquals(
 			Long.valueOf(blogsEntry.getEntryId()), contentSetElement.getId());
+
+		Assert.assertEquals(
+			contentSetElements.toString(), 1, contentSetElements.size());
 	}
 
 	private void _assertDefaultVariation() throws Exception {

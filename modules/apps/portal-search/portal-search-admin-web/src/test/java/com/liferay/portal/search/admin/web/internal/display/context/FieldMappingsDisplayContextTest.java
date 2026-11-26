@@ -54,10 +54,6 @@ public class FieldMappingsDisplayContextTest {
 		List<FieldMappingIndexDisplayContext> fieldMappingIndexDisplayContexts =
 			fieldMappingsDisplayContext.getFieldMappingIndexDisplayContexts();
 
-		Assert.assertEquals(
-			fieldMappingIndexDisplayContexts.toString(), 2,
-			fieldMappingIndexDisplayContexts.size());
-
 		FieldMappingIndexDisplayContext fieldMappingIndexDisplayContext =
 			fieldMappingIndexDisplayContexts.get(0);
 
@@ -82,6 +78,10 @@ public class FieldMappingsDisplayContextTest {
 
 		Assert.assertTrue(
 			url, url.contains("_namespace_selectedIndexName=index2"));
+
+		Assert.assertEquals(
+			fieldMappingIndexDisplayContexts.toString(), 2,
+			fieldMappingIndexDisplayContexts.size());
 	}
 
 	@Test
@@ -104,10 +104,6 @@ public class FieldMappingsDisplayContextTest {
 		List<FieldMappingIndexDisplayContext> fieldMappingIndexDisplayContexts =
 			fieldMappingsDisplayContext.getFieldMappingIndexDisplayContexts();
 
-		Assert.assertEquals(
-			fieldMappingIndexDisplayContexts.toString(), 2,
-			fieldMappingIndexDisplayContexts.size());
-
 		FieldMappingIndexDisplayContext fieldMappingIndexDisplayContext =
 			fieldMappingIndexDisplayContexts.get(0);
 
@@ -122,6 +118,10 @@ public class FieldMappingsDisplayContextTest {
 			"index2", fieldMappingIndexDisplayContext.getName());
 		Assert.assertEquals(
 			"active", fieldMappingIndexDisplayContext.getCssClass());
+
+		Assert.assertEquals(
+			fieldMappingIndexDisplayContexts.toString(), 2,
+			fieldMappingIndexDisplayContexts.size());
 	}
 
 	@Test
@@ -144,10 +144,6 @@ public class FieldMappingsDisplayContextTest {
 		List<FieldMappingIndexDisplayContext> fieldMappingIndexDisplayContexts =
 			fieldMappingsDisplayContext.getFieldMappingIndexDisplayContexts();
 
-		Assert.assertEquals(
-			fieldMappingIndexDisplayContexts.toString(), 2,
-			fieldMappingIndexDisplayContexts.size());
-
 		FieldMappingIndexDisplayContext fieldMappingIndexDisplayContext =
 			fieldMappingIndexDisplayContexts.get(0);
 
@@ -162,6 +158,10 @@ public class FieldMappingsDisplayContextTest {
 			"index2", fieldMappingIndexDisplayContext.getName());
 		Assert.assertEquals(
 			"active", fieldMappingIndexDisplayContext.getCssClass());
+
+		Assert.assertEquals(
+			fieldMappingIndexDisplayContexts.toString(), 2,
+			fieldMappingIndexDisplayContexts.size());
 	}
 
 	@Test
@@ -183,10 +183,6 @@ public class FieldMappingsDisplayContextTest {
 		List<FieldMappingIndexDisplayContext> fieldMappingIndexDisplayContexts =
 			fieldMappingsDisplayContext.getFieldMappingIndexDisplayContexts();
 
-		Assert.assertEquals(
-			fieldMappingIndexDisplayContexts.toString(), 2,
-			fieldMappingIndexDisplayContexts.size());
-
 		FieldMappingIndexDisplayContext fieldMappingIndexDisplayContext =
 			fieldMappingIndexDisplayContexts.get(0);
 
@@ -201,6 +197,10 @@ public class FieldMappingsDisplayContextTest {
 		Assert.assertEquals(
 			"index2", fieldMappingIndexDisplayContext.getName());
 		Assert.assertEquals("", fieldMappingIndexDisplayContext.getCssClass());
+
+		Assert.assertEquals(
+			fieldMappingIndexDisplayContexts.toString(), 2,
+			fieldMappingIndexDisplayContexts.size());
 	}
 
 	protected void setUpIndexInformation() {

@@ -154,9 +154,6 @@ public class ExportImportLayoutUtilityPageTest {
 		}
 
 		Assert.assertNotNull(layoutsImporterResultEntries);
-		Assert.assertEquals(
-			layoutsImporterResultEntries.toString(), 1,
-			layoutsImporterResultEntries.size());
 
 		LayoutsImporterResultEntry layoutUtilityPageImportEntry =
 			layoutsImporterResultEntries.get(0);
@@ -164,6 +161,10 @@ public class ExportImportLayoutUtilityPageTest {
 		Assert.assertEquals(
 			LayoutsImporterResultEntry.Status.IMPORTED,
 			layoutUtilityPageImportEntry.getStatus());
+
+		Assert.assertEquals(
+			layoutsImporterResultEntries.toString(), 1,
+			layoutsImporterResultEntries.size());
 
 		LayoutUtilityPageEntry layoutUtilityPageEntry2 =
 			_layoutUtilityPageEntryLocalService.
@@ -326,13 +327,13 @@ public class ExportImportLayoutUtilityPageTest {
 			List<String> childrenItemIds =
 				layoutStructureItem.getChildrenItemIds();
 
-			Assert.assertEquals(
-				childrenItemIds.toString(), 1, childrenItemIds.size());
-
 			layoutStructureItem = layoutStructure.getLayoutStructureItem(
 				childrenItemIds.get(0));
 
 			Assert.assertEquals(itemType, layoutStructureItem.getItemType());
+
+			Assert.assertEquals(
+				childrenItemIds.toString(), 1, childrenItemIds.size());
 		}
 	}
 

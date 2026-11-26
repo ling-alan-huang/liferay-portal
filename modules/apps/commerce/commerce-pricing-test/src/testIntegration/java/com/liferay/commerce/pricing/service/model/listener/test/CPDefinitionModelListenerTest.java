@@ -99,10 +99,6 @@ public class CPDefinitionModelListenerTest {
 					getCommercePricingClassCPDefinitionRels(
 						commercePricingClass.getCommercePricingClassId());
 
-		Assert.assertEquals(
-			commercePricingClassCPDefinitionRels.toString(), 1,
-			commercePricingClassCPDefinitionRels.size());
-
 		CommercePricingClassCPDefinitionRel
 			actualCommercePricingClassCPDefinitionRel =
 				commercePricingClassCPDefinitionRels.get(0);
@@ -110,6 +106,10 @@ public class CPDefinitionModelListenerTest {
 		Assert.assertEquals(
 			cpDefinition1.getCPDefinitionId(),
 			actualCommercePricingClassCPDefinitionRel.getCPDefinitionId());
+
+		Assert.assertEquals(
+			commercePricingClassCPDefinitionRels.toString(), 1,
+			commercePricingClassCPDefinitionRels.size());
 	}
 
 	@Inject

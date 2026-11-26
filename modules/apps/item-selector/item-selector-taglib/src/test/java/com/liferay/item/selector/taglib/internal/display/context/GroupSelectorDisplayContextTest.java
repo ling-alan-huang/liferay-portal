@@ -216,12 +216,12 @@ public class GroupSelectorDisplayContextTest {
 		List<BreadcrumbEntry> breadcrumbEntries =
 			groupSelectorDisplayContext.getBreadcrumbEntries();
 
-		Assert.assertEquals(
-			breadcrumbEntries.toString(), 1, breadcrumbEntries.size());
-
 		BreadcrumbEntry breadcrumbEntry = breadcrumbEntries.get(0);
 
 		Assert.assertEquals("Sites and Libraries", breadcrumbEntry.getTitle());
+
+		Assert.assertEquals(
+			breadcrumbEntries.toString(), 1, breadcrumbEntries.size());
 	}
 
 	private void _testGetBreadcrumbEntriesWithGroupType() {
@@ -232,9 +232,6 @@ public class GroupSelectorDisplayContextTest {
 		List<BreadcrumbEntry> breadcrumbEntries =
 			groupSelectorDisplayContext.getBreadcrumbEntries();
 
-		Assert.assertEquals(
-			breadcrumbEntries.toString(), 2, breadcrumbEntries.size());
-
 		BreadcrumbEntry breadcrumbEntry = breadcrumbEntries.get(0);
 
 		Assert.assertEquals("Sites and Libraries", breadcrumbEntry.getTitle());
@@ -242,6 +239,9 @@ public class GroupSelectorDisplayContextTest {
 		breadcrumbEntry = breadcrumbEntries.get(1);
 
 		Assert.assertEquals("label", breadcrumbEntry.getTitle());
+
+		Assert.assertEquals(
+			breadcrumbEntries.toString(), 2, breadcrumbEntries.size());
 	}
 
 	private void _testGetGroupTypesWithDefaultSelectedTabRequestAttribute() {

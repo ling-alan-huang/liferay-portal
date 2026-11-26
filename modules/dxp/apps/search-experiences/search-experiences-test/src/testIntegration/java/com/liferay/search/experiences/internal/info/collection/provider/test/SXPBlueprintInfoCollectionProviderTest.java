@@ -113,13 +113,13 @@ public class SXPBlueprintInfoCollectionProviderTest {
 		List<? extends JournalArticle> journalArticles =
 			infoPage.getPageItems();
 
-		Assert.assertEquals(
-			journalArticles.toString(), 1, journalArticles.size());
-
 		JournalArticle journalArticle = journalArticles.get(0);
 
 		Assert.assertEquals(
 			_journalArticle.getPrimaryKey(), journalArticle.getPrimaryKey());
+
+		Assert.assertEquals(
+			journalArticles.toString(), 1, journalArticles.size());
 	}
 
 	@Test

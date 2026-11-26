@@ -1070,13 +1070,13 @@ public class EditInfoItemStrutsActionTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals(
 				"Redirect URL https://example.com/error is not allowed",
 				logEntry.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 	}
 
@@ -1788,8 +1788,6 @@ public class EditInfoItemStrutsActionTest {
 
 		Assert.assertNull(SessionErrors.get(uploadPortletRequest, _formItemId));
 
-		Assert.assertEquals(objectEntries.toString(), 1, objectEntries.size());
-
 		ObjectEntry objectEntry = objectEntries.get(0);
 
 		Assert.assertEquals(status, objectEntry.getStatus());
@@ -1865,6 +1863,8 @@ public class EditInfoItemStrutsActionTest {
 		}
 
 		return objectEntry;
+
+		Assert.assertEquals(objectEntries.toString(), 1, objectEntries.size());
 	}
 
 	private void _testAddInfoItemWithInvalidData(

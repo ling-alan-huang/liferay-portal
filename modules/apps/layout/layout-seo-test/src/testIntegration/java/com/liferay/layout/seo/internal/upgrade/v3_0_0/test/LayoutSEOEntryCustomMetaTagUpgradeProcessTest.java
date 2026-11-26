@@ -157,9 +157,6 @@ public class LayoutSEOEntryCustomMetaTagUpgradeProcessTest
 				layoutSEOEntry.getLayoutSEOEntryId());
 
 		Assert.assertFalse(layoutSEOEntryCustomMetaTags.isEmpty());
-		Assert.assertEquals(
-			layoutSEOEntryCustomMetaTags.toString(), 2,
-			layoutSEOEntryCustomMetaTags.size());
 
 		LayoutSEOEntryCustomMetaTag firstLayoutSEOEntryCustomMetaTag =
 			layoutSEOEntryCustomMetaTags.get(0);
@@ -186,6 +183,10 @@ public class LayoutSEOEntryCustomMetaTagUpgradeProcessTest
 		Assert.assertEquals(
 			"contenido2",
 			secondLayoutSEOEntryCustomMetaTag.getContent(LocaleUtil.SPAIN));
+
+		Assert.assertEquals(
+			layoutSEOEntryCustomMetaTags.toString(), 2,
+			layoutSEOEntryCustomMetaTags.size());
 	}
 
 	@Override

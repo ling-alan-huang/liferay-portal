@@ -88,8 +88,6 @@ public class GetLayoutPageTemplateEntryListMVCResourceCommandTest {
 
 		jsonArray = _serveResource(connectedLayoutPageTemplateEntry);
 
-		Assert.assertEquals(1, jsonArray.length());
-
 		JSONObject jsonObject = jsonArray.getJSONObject(0);
 
 		Assert.assertEquals(
@@ -97,6 +95,8 @@ public class GetLayoutPageTemplateEntryListMVCResourceCommandTest {
 				connectedLayoutPageTemplateEntry.
 					getLayoutPageTemplateEntryId()),
 			jsonObject.getString("layoutPageTemplateEntryId"));
+
+		Assert.assertEquals(1, jsonArray.length());
 	}
 
 	private Group _addDesignLibraryGroup(boolean connected) throws Exception {

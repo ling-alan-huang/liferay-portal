@@ -38,10 +38,6 @@ public class WorkflowDefinitionResultRowSplitterTest {
 		List<ResultRowSplitterEntry> resultRowSplitterEntryList =
 			_resultRowSplitter.split(_resultRows);
 
-		Assert.assertEquals(
-			resultRowSplitterEntryList.toString(), 2,
-			resultRowSplitterEntryList.size());
-
 		ResultRowSplitterEntry resultRowSplitterEntry =
 			resultRowSplitterEntryList.get(0);
 
@@ -58,6 +54,10 @@ public class WorkflowDefinitionResultRowSplitterTest {
 		resultRows = resultRowSplitterEntry.getResultRows();
 
 		Assert.assertEquals(resultRows.toString(), 1, resultRows.size());
+
+		Assert.assertEquals(
+			resultRowSplitterEntryList.toString(), 2,
+			resultRowSplitterEntryList.size());
 	}
 
 	@Test
@@ -77,10 +77,6 @@ public class WorkflowDefinitionResultRowSplitterTest {
 		List<ResultRowSplitterEntry> resultRowSplitterEntryList =
 			_resultRowSplitter.split(_resultRows);
 
-		Assert.assertEquals(
-			resultRowSplitterEntryList.toString(), 1,
-			resultRowSplitterEntryList.size());
-
 		ResultRowSplitterEntry resultRowSplitterEntry =
 			resultRowSplitterEntryList.get(0);
 
@@ -89,6 +85,10 @@ public class WorkflowDefinitionResultRowSplitterTest {
 		List<ResultRow> resultRows = resultRowSplitterEntry.getResultRows();
 
 		Assert.assertEquals(resultRows.toString(), 1, resultRows.size());
+
+		Assert.assertEquals(
+			resultRowSplitterEntryList.toString(), 1,
+			resultRowSplitterEntryList.size());
 	}
 
 	@Test
@@ -98,10 +98,6 @@ public class WorkflowDefinitionResultRowSplitterTest {
 		List<ResultRowSplitterEntry> resultRowSplitterEntryList =
 			_resultRowSplitter.split(_resultRows);
 
-		Assert.assertEquals(
-			resultRowSplitterEntryList.toString(), 1,
-			resultRowSplitterEntryList.size());
-
 		ResultRowSplitterEntry resultRowSplitterEntry =
 			resultRowSplitterEntryList.get(0);
 
@@ -110,6 +106,10 @@ public class WorkflowDefinitionResultRowSplitterTest {
 		List<ResultRow> resultRows = resultRowSplitterEntry.getResultRows();
 
 		Assert.assertEquals(resultRows.toString(), 1, resultRows.size());
+
+		Assert.assertEquals(
+			resultRowSplitterEntryList.toString(), 1,
+			resultRowSplitterEntryList.size());
 	}
 
 	private void _addWorkflowDefinition(boolean active) {

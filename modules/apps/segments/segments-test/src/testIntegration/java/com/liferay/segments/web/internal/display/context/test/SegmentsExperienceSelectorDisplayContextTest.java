@@ -129,8 +129,6 @@ public class SegmentsExperienceSelectorDisplayContextTest {
 		JSONArray actualSegmentsExperiencesJSONArray =
 			(JSONArray)actualData.get("segmentsExperiences");
 
-		Assert.assertEquals(1, actualSegmentsExperiencesJSONArray.length());
-
 		JSONObject actualSegmentsExperienceJSONObject =
 			actualSegmentsExperiencesJSONArray.getJSONObject(0);
 
@@ -168,6 +166,8 @@ public class SegmentsExperienceSelectorDisplayContextTest {
 			actualSegmentsExperienceJSONObject.getString("statusLabel"));
 		Assert.assertNotNull(
 			actualSegmentsExperienceJSONObject.getString("url"));
+
+		Assert.assertEquals(1, actualSegmentsExperiencesJSONArray.length());
 	}
 
 	@Test
@@ -246,8 +246,6 @@ public class SegmentsExperienceSelectorDisplayContextTest {
 		JSONArray actualSegmentsExperiencesJSONArray =
 			(JSONArray)actualData.get("segmentsExperiences");
 
-		Assert.assertEquals(2, actualSegmentsExperiencesJSONArray.length());
-
 		JSONObject actualSegmentsExperienceJSONObject =
 			actualSegmentsExperiencesJSONArray.getJSONObject(1);
 
@@ -284,6 +282,8 @@ public class SegmentsExperienceSelectorDisplayContextTest {
 			actualSegmentsExperienceJSONObject.getString("statusLabel"));
 		Assert.assertNotNull(
 			actualSegmentsExperienceJSONObject.getString("url"));
+
+		Assert.assertEquals(2, actualSegmentsExperiencesJSONArray.length());
 	}
 
 	private Map<String, Object> _getDataFromRenderingSegmentsExperienceSelector(

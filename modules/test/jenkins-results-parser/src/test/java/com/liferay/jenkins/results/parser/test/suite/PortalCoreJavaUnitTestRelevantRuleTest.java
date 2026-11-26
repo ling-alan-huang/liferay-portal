@@ -66,9 +66,6 @@ public class PortalCoreJavaUnitTestRelevantRuleTest {
 		List<RelevantRule.TestScriptCommand> testScriptCommands =
 			portalCoreJavaUnitTestRelevantRule.getTestScriptCommands();
 
-		Assert.assertEquals(
-			testScriptCommands.toString(), 3, testScriptCommands.size());
-
 		RelevantRule.TestScriptCommand testScriptCommand =
 			testScriptCommands.get(0);
 
@@ -89,6 +86,9 @@ public class PortalCoreJavaUnitTestRelevantRuleTest {
 			"portal-kernel", testScriptCommand.getCommandDirPath());
 
 		Assert.assertEquals("ant test-unit", testScriptCommand.getCommand());
+
+		Assert.assertEquals(
+			testScriptCommands.toString(), 3, testScriptCommands.size());
 	}
 
 	@Test

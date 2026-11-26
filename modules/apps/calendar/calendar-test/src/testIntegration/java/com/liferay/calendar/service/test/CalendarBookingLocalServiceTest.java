@@ -969,13 +969,13 @@ public class CalendarBookingLocalServiceTest {
 			firstCalendarBookingInstance.getStartTime() + 2, new ArrayList<>(),
 			instances);
 
-		Assert.assertEquals(instances.toString(), 1, instances.size());
-
 		CalendarBooking instance = instances.get(0);
 
 		Assert.assertEquals(
 			secondCalendarBookingInstance.getStartTime(),
 			instance.getStartTime());
+
+		Assert.assertEquals(instances.toString(), 1, instances.size());
 	}
 
 	@Test
@@ -1391,13 +1391,13 @@ public class CalendarBookingLocalServiceTest {
 				invitedCalendar.getCalendarId(),
 				new int[] {WorkflowConstants.STATUS_PENDING});
 
-		Assert.assertEquals(
-			childCalendarBookings.toString(), 1, childCalendarBookings.size());
-
 		CalendarBooking childCalendarBooking = childCalendarBookings.get(0);
 
 		Assert.assertEquals(
 			calendarBooking.getTitle(), childCalendarBooking.getTitle());
+
+		Assert.assertEquals(
+			childCalendarBookings.toString(), 1, childCalendarBookings.size());
 	}
 
 	@Test
@@ -2112,9 +2112,6 @@ public class CalendarBookingLocalServiceTest {
 		liveCalendarBookings = _calendarBookingLocalService.getCalendarBookings(
 			liveCalendar.getCalendarId(), -1, -1, QueryUtil.ALL_POS);
 
-		Assert.assertEquals(
-			liveCalendarBookings.toString(), 1, liveCalendarBookings.size());
-
 		CalendarBooking liveCalendarBooking = liveCalendarBookings.get(0);
 
 		List<CalendarBooking> liveChildCalendarBookings =
@@ -2123,6 +2120,9 @@ public class CalendarBookingLocalServiceTest {
 		Assert.assertEquals(
 			liveChildCalendarBookings.toString(), 1,
 			liveChildCalendarBookings.size());
+
+		Assert.assertEquals(
+			liveCalendarBookings.toString(), 1, liveCalendarBookings.size());
 
 		childCalendarBookings =
 			stagingCalendarBooking.getChildCalendarBookings();
@@ -3298,10 +3298,6 @@ public class CalendarBookingLocalServiceTest {
 			_calendarBookingLocalService.getCalendarBookings(
 				liveCalendar.getCalendarId(), -1, -1, QueryUtil.ALL_POS);
 
-		Assert.assertEquals(
-			invitedCalendarBookings.toString(), 1,
-			invitedCalendarBookings.size());
-
 		CalendarBooking invitedCalendarBooking = invitedCalendarBookings.get(0);
 
 		ServiceContext serviceContext = createServiceContext();
@@ -3331,6 +3327,10 @@ public class CalendarBookingLocalServiceTest {
 		Assert.assertEquals(
 			titleMap.get(LocaleUtil.US),
 			invitedCalendarBooking.getTitle(LocaleUtil.US));
+
+		Assert.assertEquals(
+			invitedCalendarBookings.toString(), 1,
+			invitedCalendarBookings.size());
 	}
 
 	@Test

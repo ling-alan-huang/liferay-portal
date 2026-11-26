@@ -478,11 +478,11 @@ public class AuditConfigurationModelListenerTest {
 			factoryPid, null, null, null, null, EventTypes.ADD, null, 0, null,
 			true, 0, 1);
 
-		Assert.assertEquals(auditEvents.toString(), 1, auditEvents.size());
-
 		AuditEvent auditEvent = auditEvents.get(0);
 
 		Assert.assertEquals(StringPool.BLANK, auditEvent.getClassPK());
+
+		Assert.assertEquals(auditEvents.toString(), 1, auditEvents.size());
 	}
 
 	private void _testOnAfterSaveWithPortletInstanceScope() throws Exception {

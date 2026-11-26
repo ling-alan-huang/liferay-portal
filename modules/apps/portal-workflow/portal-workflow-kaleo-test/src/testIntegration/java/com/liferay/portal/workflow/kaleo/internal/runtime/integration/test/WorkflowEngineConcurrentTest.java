@@ -97,10 +97,6 @@ public class WorkflowEngineConcurrentTest extends BaseWorkflowManagerTestCase {
 
 			_startWorkflowInstance();
 
-			Assert.assertEquals(
-				_kaleoTimerInstanceTokenIds.toString(), 2,
-				_kaleoTimerInstanceTokenIds.size());
-
 			long kaleoTimerInstanceTokenId = _kaleoTimerInstanceTokenIds.get(0);
 
 			Map<String, Serializable> workflowContext = _getWorkflowContext(
@@ -118,6 +114,10 @@ public class WorkflowEngineConcurrentTest extends BaseWorkflowManagerTestCase {
 					kaleoTimerInstanceTokenId, serviceContext, workflowContext);
 
 			Assert.assertNull(executionContext.getKaleoTaskInstanceToken());
+
+			Assert.assertEquals(
+				_kaleoTimerInstanceTokenIds.toString(), 2,
+				_kaleoTimerInstanceTokenIds.size());
 		}
 	}
 

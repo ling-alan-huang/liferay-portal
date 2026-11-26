@@ -189,8 +189,6 @@ public class PortalInstancesTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			String message = logEntry.getMessage();
@@ -200,6 +198,8 @@ public class PortalInstancesTest {
 				message.startsWith(
 					"Removing company " + companyId +
 						" from the deletion process after "));
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 
 		Map<Long, ?> companyIdsInDeletionProcess =
@@ -242,8 +242,6 @@ public class PortalInstancesTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals(
@@ -252,6 +250,8 @@ public class PortalInstancesTest {
 					" from the deletion process because cluster node ",
 					"\"goneClusterNode\" left the cluster"),
 				logEntry.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 
 		Map<Long, ?> companyIdsInDeletionProcess =

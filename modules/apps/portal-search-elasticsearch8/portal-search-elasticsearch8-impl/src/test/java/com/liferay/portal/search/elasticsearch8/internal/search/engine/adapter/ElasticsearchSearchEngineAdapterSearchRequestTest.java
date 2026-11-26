@@ -408,10 +408,6 @@ public class ElasticsearchSearchEngineAdapterSearchRequestTest {
 			List<SuggestSearchResult.Entry> suggestSearchResultEntries =
 				suggestSearchResult.getEntries();
 
-			Assert.assertEquals(
-				"Expected 1 SuggestSearchResult.Entry", 1,
-				suggestSearchResultEntries.size());
-
 			SuggestSearchResult.Entry suggestSearchResultEntry =
 				suggestSearchResultEntries.get(0);
 
@@ -427,6 +423,10 @@ public class ElasticsearchSearchEngineAdapterSearchRequestTest {
 				_toList(suggestSearchResultEntryOptions));
 
 			Assert.assertEquals(expectedSuggestions, actualSuggestions);
+
+			Assert.assertEquals(
+				"Expected 1 SuggestSearchResult.Entry", 1,
+				suggestSearchResultEntries.size());
 		}
 	}
 

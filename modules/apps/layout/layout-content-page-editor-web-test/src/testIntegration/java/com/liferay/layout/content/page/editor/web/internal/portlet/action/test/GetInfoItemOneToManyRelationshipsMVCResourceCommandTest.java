@@ -97,8 +97,6 @@ public class GetInfoItemOneToManyRelationshipsMVCResourceCommandTest {
 
 		JSONArray jsonArray = _getJSONArray(mockLiferayResourceResponse);
 
-		Assert.assertEquals(1, jsonArray.length());
-
 		JSONObject jsonObject = jsonArray.getJSONObject(0);
 
 		Assert.assertEquals(
@@ -109,6 +107,8 @@ public class GetInfoItemOneToManyRelationshipsMVCResourceCommandTest {
 			jsonObject.getString("label"));
 		Assert.assertEquals(
 			objectRelationship.getName(), jsonObject.getString("name"));
+
+		Assert.assertEquals(1, jsonArray.length());
 	}
 
 	@Test

@@ -64,9 +64,6 @@ public class CompileModulesRelevantRuleTest {
 		List<RelevantRule.TestScriptCommand> testScriptCommands =
 			compileModulesRelevantRule.getTestScriptCommands();
 
-		Assert.assertEquals(
-			testScriptCommands.toString(), 2, testScriptCommands.size());
-
 		RelevantRule.TestScriptCommand testScriptCommand =
 			testScriptCommands.get(0);
 
@@ -84,6 +81,9 @@ public class CompileModulesRelevantRuleTest {
 			"../gradlew modules/apps/test-app:compileIntegrationTest " +
 				"--parallel",
 			testScriptCommand.getCommand());
+
+		Assert.assertEquals(
+			testScriptCommands.toString(), 2, testScriptCommands.size());
 	}
 
 }

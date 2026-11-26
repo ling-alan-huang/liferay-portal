@@ -578,8 +578,6 @@ public class LocalProcessExecutorTest {
 				ClassNotFoundException.class, throwable.getClass());
 		}
 
-		Assert.assertEquals(processLogs.toString(), 1, processLogs.size());
-
 		ProcessLog processLog = processLogs.get(0);
 
 		Assert.assertEquals("Abort subprocess piping", processLog.getMessage());
@@ -587,6 +585,8 @@ public class LocalProcessExecutorTest {
 		Throwable throwable = processLog.getThrowable();
 
 		Assert.assertSame(ClassNotFoundException.class, throwable.getClass());
+
+		Assert.assertEquals(processLogs.toString(), 1, processLogs.size());
 	}
 
 	@Test
@@ -629,8 +629,6 @@ public class LocalProcessExecutorTest {
 		Assert.assertFalse(future.isCancelled());
 		Assert.assertTrue(future.isDone());
 
-		Assert.assertEquals(processLogs.toString(), 1, processLogs.size());
-
 		ProcessLog processLog = processLogs.get(0);
 
 		String message = processLog.getMessage();
@@ -651,6 +649,8 @@ public class LocalProcessExecutorTest {
 		Throwable throwable = processLog.getThrowable();
 
 		Assert.assertSame(StreamCorruptedException.class, throwable.getClass());
+
+		Assert.assertEquals(processLogs.toString(), 1, processLogs.size());
 	}
 
 	@Test
@@ -786,8 +786,6 @@ public class LocalProcessExecutorTest {
 
 		reactorThread.join();
 
-		Assert.assertEquals(processLogs.toString(), 1, processLogs.size());
-
 		ProcessLog processLog = processLogs.get(0);
 
 		Assert.assertEquals("Abort subprocess piping", processLog.getMessage());
@@ -795,6 +793,8 @@ public class LocalProcessExecutorTest {
 		Throwable throwable = processLog.getThrowable();
 
 		Assert.assertSame(IOException.class, throwable.getClass());
+
+		Assert.assertEquals(processLogs.toString(), 1, processLogs.size());
 	}
 
 	@Test
@@ -1054,8 +1054,6 @@ public class LocalProcessExecutorTest {
 
 		Assert.assertNull(noticeableFuture.get());
 
-		Assert.assertEquals(processLogs.toString(), 1, processLogs.size());
-
 		ProcessLog processLog = processLogs.get(0);
 
 		Assert.assertEquals(
@@ -1067,6 +1065,8 @@ public class LocalProcessExecutorTest {
 		Assert.assertSame(ProcessException.class, throwable.getClass());
 		Assert.assertEquals(
 			"Exception ProcessCallable", throwable.getMessage());
+
+		Assert.assertEquals(processLogs.toString(), 1, processLogs.size());
 	}
 
 	@Test
@@ -1091,14 +1091,14 @@ public class LocalProcessExecutorTest {
 
 		noticeableFuture.get();
 
-		Assert.assertEquals(processLogs.toString(), 1, processLogs.size());
-
 		ProcessLog processLog = processLogs.get(0);
 
 		Assert.assertEquals(
 			"Received a nonprocess callable piping back string piping back " +
 				"object",
 			processLog.getMessage());
+
+		Assert.assertEquals(processLogs.toString(), 1, processLogs.size());
 	}
 
 	@Test
@@ -1134,8 +1134,6 @@ public class LocalProcessExecutorTest {
 			Assert.assertSame(
 				NotSerializableException.class, throwable.getClass());
 
-			Assert.assertEquals(processLogs.toString(), 1, processLogs.size());
-
 			ProcessLog processLog = processLogs.get(0);
 
 			Assert.assertEquals(
@@ -1150,6 +1148,8 @@ public class LocalProcessExecutorTest {
 
 			Assert.assertSame(
 				NotSerializableException.class, throwable.getClass());
+
+			Assert.assertEquals(processLogs.toString(), 1, processLogs.size());
 		}
 	}
 

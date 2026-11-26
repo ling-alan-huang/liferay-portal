@@ -572,8 +572,6 @@ public class BatchEngineExportTaskExecutorTest
 	private void _assertEmptyFieldNames(LogCapture logCapture) {
 		List<LogEntry> logEntries = logCapture.getLogEntries();
 
-		Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 		LogEntry logEntry = logEntries.get(0);
 
 		Assert.assertEquals(LoggerTestUtil.ERROR, logEntry.getPriority());
@@ -582,6 +580,8 @@ public class BatchEngineExportTaskExecutorTest
 
 		Assert.assertTrue(
 			message.startsWith("Unable to update batch engine export task"));
+
+		Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 	}
 
 	private void _assertExportedValues(

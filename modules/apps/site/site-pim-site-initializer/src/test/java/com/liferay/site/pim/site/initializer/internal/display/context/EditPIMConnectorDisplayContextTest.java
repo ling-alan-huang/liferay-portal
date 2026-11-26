@@ -209,10 +209,6 @@ public class EditPIMConnectorDisplayContextTest {
 		JSONArray pimConnectorsJSONArray = (JSONArray)reactData.get(
 			"pimConnectors");
 
-		Assert.assertEquals(
-			pimConnectorsJSONArray.toString(), 1,
-			pimConnectorsJSONArray.length());
-
 		JSONObject pimConnectorJSONObject =
 			pimConnectorsJSONArray.getJSONObject(0);
 
@@ -270,6 +266,10 @@ public class EditPIMConnectorDisplayContextTest {
 		Assert.assertEquals(
 			"Liferay Commerce Connector",
 			pimConnectorJSONObject.getString("name"));
+
+		Assert.assertEquals(
+			pimConnectorsJSONArray.toString(), 1,
+			pimConnectorsJSONArray.length());
 	}
 
 	private void _testGetReactDataWithConfiguration() throws Exception {
@@ -494,9 +494,6 @@ public class EditPIMConnectorDisplayContextTest {
 			JSONArray fieldsJSONArray = configurationJSONObject.getJSONArray(
 				"fields");
 
-			Assert.assertEquals(
-				fieldsJSONArray.toString(), 4, fieldsJSONArray.length());
-
 			JSONObject fieldJSONObject = fieldsJSONArray.getJSONObject(2);
 
 			Assert.assertEquals(
@@ -511,6 +508,9 @@ public class EditPIMConnectorDisplayContextTest {
 			fieldJSONObject = fieldsJSONArray.getJSONObject(3);
 
 			Assert.assertEquals("url", fieldJSONObject.getString("name"));
+
+			Assert.assertEquals(
+				fieldsJSONArray.toString(), 4, fieldsJSONArray.length());
 
 			JSONObject configurationValuesJSONObject =
 				(JSONObject)reactData.get("configuration");

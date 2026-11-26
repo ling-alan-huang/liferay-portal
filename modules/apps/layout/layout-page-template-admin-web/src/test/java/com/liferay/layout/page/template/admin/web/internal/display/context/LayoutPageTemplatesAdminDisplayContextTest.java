@@ -82,9 +82,6 @@ public class LayoutPageTemplatesAdminDisplayContextTest {
 		List<NavigationItem> navigationItems =
 			layoutPageTemplatesAdminDisplayContext.getNavigationItems();
 
-		Assert.assertEquals(
-			navigationItems.toString(), 3, navigationItems.size());
-
 		NavigationItem navigationItem = navigationItems.get(0);
 
 		Assert.assertEquals("Masters", navigationItem.get("label"));
@@ -97,6 +94,9 @@ public class LayoutPageTemplatesAdminDisplayContextTest {
 
 		Assert.assertEquals(
 			"Display Page Templates", navigationItem.get("label"));
+
+		Assert.assertEquals(
+			navigationItems.toString(), 3, navigationItems.size());
 	}
 
 	@Test

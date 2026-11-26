@@ -384,8 +384,6 @@ public class IndexFactoryTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals(LoggerTestUtil.ERROR, logEntry.getPriority());
@@ -405,6 +403,8 @@ public class IndexFactoryTest {
 			String message = throwable.getMessage();
 
 			Assert.assertTrue(message.contains("index_not_found_exception"));
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 
 		IndexFactoryCompanyIdRegistryUtil.unregisterCompanyId(companyId);

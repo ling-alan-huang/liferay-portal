@@ -187,8 +187,6 @@ public class AccountFaroControllerTest {
 
 		List<?> items = faroFDSResultsDisplay.getItems();
 
-		Assert.assertEquals(items.toString(), 1, items.size());
-
 		CampaignDisplay campaignDisplay = (CampaignDisplay)items.get(0);
 
 		Assert.assertEquals(
@@ -201,6 +199,8 @@ public class AccountFaroControllerTest {
 		Assert.assertEquals(
 			campaign.getLastTouchDate(),
 			ReflectionTestUtils.getField(campaignDisplay, "_lastTouchDate"));
+
+		Assert.assertEquals(items.toString(), 1, items.size());
 
 		Mockito.verify(
 			_faroProjectLocalService
@@ -336,14 +336,14 @@ public class AccountFaroControllerTest {
 
 		List<?> items = faroFDSResultsDisplay.getItems();
 
-		Assert.assertEquals(items.toString(), 1, items.size());
-
 		Map<String, String> stageMap = (Map<String, String>)items.get(0);
 
 		Assert.assertEquals(
 			externalReferenceCode, stageMap.get("externalReferenceCode"));
 		Assert.assertEquals(id, stageMap.get("id"));
 		Assert.assertEquals(name, stageMap.get("name"));
+
+		Assert.assertEquals(items.toString(), 1, items.size());
 	}
 
 	@Test

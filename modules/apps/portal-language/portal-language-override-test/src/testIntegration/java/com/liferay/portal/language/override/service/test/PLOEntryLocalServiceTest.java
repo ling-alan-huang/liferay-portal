@@ -201,13 +201,13 @@ public class PLOEntryLocalServiceTest {
 				0, _portal.getClassNameId(PLOEntry.class),
 				ploEntry.getPloEntryId(), SystemEventConstants.TYPE_DELETE);
 
-		Assert.assertEquals(systemEvents.toString(), 1, systemEvents.size());
-
 		SystemEvent systemEvent = systemEvents.get(0);
 
 		Assert.assertEquals(
 			ploEntry.getExternalReferenceCode(),
 			systemEvent.getClassExternalReferenceCode());
+
+		Assert.assertEquals(systemEvents.toString(), 1, systemEvents.size());
 	}
 
 	private void _assertException(

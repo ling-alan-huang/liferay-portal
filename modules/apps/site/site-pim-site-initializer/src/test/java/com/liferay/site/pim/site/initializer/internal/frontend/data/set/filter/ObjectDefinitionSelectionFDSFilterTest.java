@@ -79,10 +79,6 @@ public class ObjectDefinitionSelectionFDSFilterTest {
 			_objectDefinitionSelectionFDSFilter.getSelectionFDSFilterItems(
 				_locale);
 
-		Assert.assertEquals(
-			selectionFDSFilterItems.toString(), 1,
-			selectionFDSFilterItems.size());
-
 		SelectionFDSFilterItem selectionFDSFilterItem =
 			selectionFDSFilterItems.get(0);
 
@@ -90,6 +86,10 @@ public class ObjectDefinitionSelectionFDSFilterTest {
 			"PIM Basic Product", selectionFDSFilterItem.getLabel());
 		Assert.assertEquals(
 			externalReferenceCode, selectionFDSFilterItem.getValue());
+
+		Assert.assertEquals(
+			selectionFDSFilterItems.toString(), 1,
+			selectionFDSFilterItems.size());
 	}
 
 	private ObjectDefinition _mockObjectDefinition(

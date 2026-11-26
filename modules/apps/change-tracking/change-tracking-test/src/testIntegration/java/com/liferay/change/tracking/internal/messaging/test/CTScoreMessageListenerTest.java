@@ -123,16 +123,16 @@ public class CTScoreMessageListenerTest {
 		List<JSONObject> jsonObjects =
 			_getSizeClassificationNotificationJSONObjects(ctCollectionId);
 
-		Assert.assertEquals(
-			jsonObjects.toString(), originalNotificationsCount + 1,
-			jsonObjects.size());
-
 		JSONObject jsonObject = jsonObjects.get(jsonObjects.size() - 1);
 
 		Assert.assertEquals(
 			"medium", jsonObject.getString("originalSizeClassification"));
 		Assert.assertEquals(
 			"large", jsonObject.getString("sizeClassification"));
+
+		Assert.assertEquals(
+			jsonObjects.toString(), originalNotificationsCount + 1,
+			jsonObjects.size());
 	}
 
 	@Test
@@ -170,16 +170,16 @@ public class CTScoreMessageListenerTest {
 		List<JSONObject> jsonObjects =
 			_getSizeClassificationNotificationJSONObjects(ctCollectionId);
 
-		Assert.assertEquals(
-			jsonObjects.toString(), originalNotificationsCount + 1,
-			jsonObjects.size());
-
 		JSONObject jsonObject = jsonObjects.get(jsonObjects.size() - 1);
 
 		Assert.assertEquals(
 			"small", jsonObject.getString("originalSizeClassification"));
 		Assert.assertEquals(
 			"medium", jsonObject.getString("sizeClassification"));
+
+		Assert.assertEquals(
+			jsonObjects.toString(), originalNotificationsCount + 1,
+			jsonObjects.size());
 	}
 
 	@Test

@@ -91,9 +91,6 @@ public class DefaultDDMFormValuesFactoryTest {
 		List<DDMFormFieldValue> ddmFormFieldValues =
 			ddmFormValues.getDDMFormFieldValues();
 
-		Assert.assertEquals(
-			ddmFormFieldValues.toString(), 1, ddmFormFieldValues.size());
-
 		DDMFormFieldValue ddmFormFieldValue = ddmFormFieldValues.get(0);
 
 		Value value = ddmFormFieldValue.getValue();
@@ -103,6 +100,9 @@ public class DefaultDDMFormValuesFactoryTest {
 		Assert.assertEquals(
 			"Robert", value.getString(ddmForm.getDefaultLocale()));
 		Assert.assertEquals("Roberto", value.getString(LocaleUtil.BRAZIL));
+
+		Assert.assertEquals(
+			ddmFormFieldValues.toString(), 1, ddmFormFieldValues.size());
 	}
 
 	@Test
@@ -148,9 +148,6 @@ public class DefaultDDMFormValuesFactoryTest {
 		List<DDMFormFieldValue> ddmFormFieldValues =
 			ddmFormValues.getDDMFormFieldValues();
 
-		Assert.assertEquals(
-			ddmFormFieldValues.toString(), 1, ddmFormFieldValues.size());
-
 		DDMFormFieldValue ddmFormFieldValue = ddmFormFieldValues.get(0);
 
 		Value value = ddmFormFieldValue.getValue();
@@ -159,6 +156,9 @@ public class DefaultDDMFormValuesFactoryTest {
 
 		Assert.assertEquals(
 			StringPool.BLANK, value.getString(ddmForm.getDefaultLocale()));
+
+		Assert.assertEquals(
+			ddmFormFieldValues.toString(), 1, ddmFormFieldValues.size());
 	}
 
 	@Test

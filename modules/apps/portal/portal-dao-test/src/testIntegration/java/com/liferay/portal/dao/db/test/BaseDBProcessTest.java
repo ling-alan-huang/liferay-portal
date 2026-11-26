@@ -656,9 +656,6 @@ public class BaseDBProcessTest extends BaseDBProcess {
 			},
 			_connection, _TABLE_NAME, columnNames[0], false);
 
-		Assert.assertEquals(
-			indexMetadatas.toString(), 1, indexMetadatas.size());
-
 		IndexMetadata indexMetadata = indexMetadatas.get(0);
 
 		Assert.assertEquals(
@@ -668,6 +665,9 @@ public class BaseDBProcessTest extends BaseDBProcess {
 		Assert.assertArrayEquals(
 			ArrayUtil.sortedUnique(columnNames),
 			ArrayUtil.sortedUnique(indexMetadata.getColumnNames()));
+
+		Assert.assertEquals(
+			indexMetadatas.toString(), 1, indexMetadatas.size());
 	}
 
 	private void _validateProcessConcurrently(

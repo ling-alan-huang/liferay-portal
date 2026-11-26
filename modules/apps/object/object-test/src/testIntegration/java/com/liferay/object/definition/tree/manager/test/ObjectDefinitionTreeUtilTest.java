@@ -2821,16 +2821,16 @@ public class ObjectDefinitionTreeUtilTest {
 				objectDefinition.getCompanyId(),
 				objectDefinition.getClassName());
 
-		Assert.assertEquals(
-			workflowDefinitionLinks.toString(), 1,
-			workflowDefinitionLinks.size());
-
 		WorkflowDefinitionLink workflowDefinitionLink =
 			workflowDefinitionLinks.get(0);
 
 		Assert.assertEquals(
 			"Single Approver",
 			workflowDefinitionLink.getWorkflowDefinitionName());
+
+		Assert.assertEquals(
+			workflowDefinitionLinks.toString(), 1,
+			workflowDefinitionLinks.size());
 	}
 
 	@Inject

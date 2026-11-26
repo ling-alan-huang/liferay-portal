@@ -98,10 +98,6 @@ public class ViewDesignLibraryAdminDisplayContextTest {
 		List<DropdownItem> bulkActionDropdownItems =
 			_viewDesignLibraryAdminDisplayContext.getBulkActionDropdownItems();
 
-		Assert.assertEquals(
-			bulkActionDropdownItems.toString(), 1,
-			bulkActionDropdownItems.size());
-
 		DropdownItem dropdownItem = bulkActionDropdownItems.get(0);
 
 		Assert.assertEquals("delete", dropdownItem.get("label"));
@@ -112,6 +108,10 @@ public class ViewDesignLibraryAdminDisplayContextTest {
 
 		Assert.assertEquals("delete", data.get("id"));
 		Assert.assertNull(data.get("method"));
+
+		Assert.assertEquals(
+			bulkActionDropdownItems.toString(), 1,
+			bulkActionDropdownItems.size());
 	}
 
 	@Test

@@ -62,11 +62,11 @@ public class PermissionConverterTest {
 			List<Permission> permissions =
 				_permissionConverter.convertPermissions(role);
 
-			Assert.assertEquals(permissions.toString(), 1, permissions.size());
-
 			Permission permission = permissions.get(0);
 
 			Assert.assertEquals(ActionKeys.VIEW, permission.getActionId());
+
+			Assert.assertEquals(permissions.toString(), 1, permissions.size());
 		}
 		finally {
 			_roleLocalService.deleteRole(role);

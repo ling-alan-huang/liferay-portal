@@ -161,10 +161,6 @@ public class EditAssetListDisplayContextTest {
 		JSONArray assetEntryTypesJSONArray =
 			editAssetListDisplayContext.getAssetEntryTypesJSONArray();
 
-		Assert.assertEquals(
-			assetEntryTypesJSONArray.toString(), 1,
-			assetEntryTypesJSONArray.length());
-
 		JSONObject assetEntryTypeJSONObject =
 			assetEntryTypesJSONArray.getJSONObject(0);
 
@@ -176,6 +172,10 @@ public class EditAssetListDisplayContextTest {
 				assetEntryTypeJSONObject.getJSONArray("groupIds")));
 		Assert.assertEquals(
 			expectedLabel, assetEntryTypeJSONObject.getString("label"));
+
+		Assert.assertEquals(
+			assetEntryTypesJSONArray.toString(), 1,
+			assetEntryTypesJSONArray.length());
 	}
 
 	@Test
@@ -436,8 +436,6 @@ public class EditAssetListDisplayContextTest {
 			List<Map<String, Object>> filterMaps =
 				editAssetListDisplayContext.getFilterMaps();
 
-			Assert.assertEquals(filterMaps.toString(), 3, filterMaps.size());
-
 			Map<String, Object> filterMap = filterMaps.get(0);
 
 			Assert.assertEquals(
@@ -472,6 +470,8 @@ public class EditAssetListDisplayContextTest {
 			Assert.assertEquals(
 				objectFieldValueJSONArray.toString(),
 				String.valueOf(filterMap.get("value")));
+
+			Assert.assertEquals(filterMaps.toString(), 3, filterMaps.size());
 		}
 	}
 
@@ -536,12 +536,12 @@ public class EditAssetListDisplayContextTest {
 			List<Map<String, Object>> filterMaps =
 				editAssetListDisplayContext.getFilterMaps();
 
-			Assert.assertEquals(filterMaps.toString(), 1, filterMaps.size());
-
 			Map<String, Object> filterMap = filterMaps.get(0);
 
 			Assert.assertEquals("keywords", filterMap.get("propertyName"));
 			Assert.assertEquals(keywords, filterMap.get("value"));
+
+			Assert.assertEquals(filterMaps.toString(), 1, filterMaps.size());
 		}
 	}
 
@@ -593,8 +593,6 @@ public class EditAssetListDisplayContextTest {
 			List<Map<String, Object>> filterMaps =
 				editAssetListDisplayContext.getFilterMaps();
 
-			Assert.assertEquals(filterMaps.toString(), 2, filterMaps.size());
-
 			Map<String, Object> filterMap = filterMaps.get(0);
 
 			Assert.assertEquals(
@@ -605,15 +603,17 @@ public class EditAssetListDisplayContextTest {
 
 			Assert.assertEquals(keywords, filterMap.get("value"));
 
-			List<LogEntry> logEntries = logCapture.getLogEntries();
+			Assert.assertEquals(filterMaps.toString(), 2, filterMaps.size());
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
+			List<LogEntry> logEntries = logCapture.getLogEntries();
 
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertTrue(
 				StringUtil.startsWith(
 					logEntry.getMessage(), "Unable to resolve filter "));
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 	}
 

@@ -317,8 +317,6 @@ public class StaticSiteExportBackgroundTaskExecutorTest {
 		List<FileEntry> fileEntries =
 			backgroundTask.getAttachmentsFileEntries();
 
-		Assert.assertEquals(fileEntries.toString(), 1, fileEntries.size());
-
 		FileEntry fileEntry = fileEntries.get(0);
 
 		Assert.assertTrue(
@@ -338,6 +336,8 @@ public class StaticSiteExportBackgroundTaskExecutorTest {
 					StringUtil.read(zipFile.getInputStream(zipEntry)));
 			}
 		}
+
+		Assert.assertEquals(fileEntries.toString(), 1, fileEntries.size());
 
 		return zipEntries;
 	}

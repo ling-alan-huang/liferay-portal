@@ -65,10 +65,6 @@ public class ViewAllTasksSectionDisplayContextTest
 		List<FDSActionDropdownItem> groupFDSActionDropdownItems =
 			getFDSActionDropdownItems(assetEntry);
 
-		Assert.assertEquals(
-			groupFDSActionDropdownItems.toString(), 2,
-			groupFDSActionDropdownItems.size());
-
 		FDSActionDropdownItem fdsActionDropdownItem =
 			groupFDSActionDropdownItems.get(0);
 
@@ -153,6 +149,10 @@ public class ViewAllTasksSectionDisplayContextTest
 		Assert.assertEquals(
 			fdsActionDropdownItems.toString(), 11,
 			fdsActionDropdownItems.size());
+
+		Assert.assertEquals(
+			groupFDSActionDropdownItems.toString(), 2,
+			groupFDSActionDropdownItems.size());
 	}
 
 	@Override

@@ -218,9 +218,6 @@ public class MasterLayoutsImporterTest {
 		List<String> childrenItemIds =
 			mainLayoutStructureItem.getChildrenItemIds();
 
-		Assert.assertEquals(
-			childrenItemIds.toString(), 2, childrenItemIds.size());
-
 		FragmentStyledLayoutStructureItem fragmentStyledLayoutStructureItem =
 			(FragmentStyledLayoutStructureItem)
 				layoutStructure.getLayoutStructureItem(childrenItemIds.get(0));
@@ -239,6 +236,9 @@ public class MasterLayoutsImporterTest {
 
 		Assert.assertEquals(
 			"h1", freeMarkerJSONObject.getString("headingLevel"));
+
+		Assert.assertEquals(
+			childrenItemIds.toString(), 2, childrenItemIds.size());
 	}
 
 	@Test
@@ -497,9 +497,6 @@ public class MasterLayoutsImporterTest {
 		List<String> childrenItemIds =
 			mainLayoutStructureItem.getChildrenItemIds();
 
-		Assert.assertEquals(
-			childrenItemIds.toString(), 3, childrenItemIds.size());
-
 		LayoutStructureItem dropZoneLayoutStructureItem =
 			layoutStructure.getLayoutStructureItem(childrenItemIds.get(0));
 
@@ -550,6 +547,9 @@ public class MasterLayoutsImporterTest {
 
 		Assert.assertEquals(
 			"BASIC_COMPONENT-heading", fragmentEntryLink.getRendererKey());
+
+		Assert.assertEquals(
+			childrenItemIds.toString(), 3, childrenItemIds.size());
 	}
 
 	@Test
@@ -627,10 +627,6 @@ public class MasterLayoutsImporterTest {
 		List<LayoutsImporterResultEntry> layoutsImporterResultEntries =
 			_getLayoutsImporterResultEntries("master-page-invalid-value");
 
-		Assert.assertEquals(
-			layoutsImporterResultEntries.toString(), 1,
-			layoutsImporterResultEntries.size());
-
 		LayoutsImporterResultEntry layoutsImporterResultEntry =
 			layoutsImporterResultEntries.get(0);
 
@@ -639,6 +635,10 @@ public class MasterLayoutsImporterTest {
 				"page definition is invalid.",
 			layoutsImporterResultEntry.getErrorMessage(
 				LocaleUtil.getSiteDefault()));
+
+		Assert.assertEquals(
+			layoutsImporterResultEntries.toString(), 1,
+			layoutsImporterResultEntries.size());
 	}
 
 	private DepotEntry _addConnectedDesignLibraryDepotEntry() throws Exception {
@@ -860,9 +860,6 @@ public class MasterLayoutsImporterTest {
 		List<String> childrenItemIds =
 			mainLayoutStructureItem.getChildrenItemIds();
 
-		Assert.assertEquals(
-			childrenItemIds.toString(), 1, childrenItemIds.size());
-
 		String childItemId = childrenItemIds.get(0);
 
 		LayoutStructureItem layoutStructureItem =
@@ -885,6 +882,9 @@ public class MasterLayoutsImporterTest {
 		Assert.assertEquals(
 			expectedIsAllowNewFragments,
 			dropZoneLayoutStructureItem.isAllowNewFragmentEntries());
+
+		Assert.assertEquals(
+			childrenItemIds.toString(), 1, childrenItemIds.size());
 	}
 
 	private static final String _BASE_PATH =

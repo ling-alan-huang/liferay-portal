@@ -1156,9 +1156,6 @@ public class AssetListAssetEntryProviderFiltersTest {
 		JSONArray actualJSONArray = (JSONArray)assetEntryQuery.getAttribute(
 			"filters");
 
-		Assert.assertEquals(
-			actualJSONArray.toString(), 2, actualJSONArray.length());
-
 		JSONObject jsonObject = actualJSONArray.getJSONObject(0);
 
 		Assert.assertEquals(
@@ -1166,6 +1163,9 @@ public class AssetListAssetEntryProviderFiltersTest {
 			jsonObject.getString("objectDefinitionExternalReferenceCode"));
 		Assert.assertEquals(propertyName, jsonObject.getString("propertyName"));
 		Assert.assertEquals(value, jsonObject.getString("value"));
+
+		Assert.assertEquals(
+			actualJSONArray.toString(), 2, actualJSONArray.length());
 	}
 
 	@Test

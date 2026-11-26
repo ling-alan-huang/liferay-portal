@@ -90,10 +90,6 @@ public class DDMFormRuleToDDMFormRuleModelConverterTest
 		JSONArray actualDDMFormRulesJSONArray = jsonFactory.createJSONArray(
 			serialize(actualDDMFormRules));
 
-		Assert.assertEquals(
-			expectedDDMFormRulesJSONArray.length(),
-			actualDDMFormRulesJSONArray.length());
-
 		JSONObject expectedAutoFillDDMRuleJSONObject =
 			expectedDDMFormRulesJSONArray.getJSONObject(0);
 
@@ -109,10 +105,6 @@ public class DDMFormRuleToDDMFormRuleModelConverterTest
 
 		JSONArray actualActionDDMRuleJSONArray =
 			actualAutoFillDDMRuleJSONObject.getJSONArray("actions");
-
-		Assert.assertEquals(
-			expectedActionDDMRuleJSONArray.length(),
-			actualActionDDMRuleJSONArray.length());
 
 		String expectedCallFunction = expectedActionDDMRuleJSONArray.getString(
 			0);
@@ -148,6 +140,14 @@ public class DDMFormRuleToDDMFormRuleModelConverterTest
 			SetUtil.fromArray(
 				StringUtil.split(
 					actualCallFunctionParameters.get(2), CharPool.SEMICOLON)));
+
+		Assert.assertEquals(
+			expectedActionDDMRuleJSONArray.length(),
+			actualActionDDMRuleJSONArray.length());
+
+		Assert.assertEquals(
+			expectedDDMFormRulesJSONArray.length(),
+			actualDDMFormRulesJSONArray.length());
 	}
 
 	@Test

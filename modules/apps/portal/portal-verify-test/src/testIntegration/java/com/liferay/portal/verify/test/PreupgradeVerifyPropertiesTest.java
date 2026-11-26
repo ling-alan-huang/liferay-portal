@@ -62,8 +62,6 @@ public class PreupgradeVerifyPropertiesTest extends BaseVerifyProcessTestCase {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals(
@@ -72,6 +70,8 @@ public class PreupgradeVerifyPropertiesTest extends BaseVerifyProcessTestCase {
 					"\" was migrated to the system property \"",
 					migratedPortalKey, "\""),
 				logEntry.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 		finally {
 			_setPropertyKeys(
@@ -95,8 +95,6 @@ public class PreupgradeVerifyPropertiesTest extends BaseVerifyProcessTestCase {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals(
@@ -105,6 +103,8 @@ public class PreupgradeVerifyPropertiesTest extends BaseVerifyProcessTestCase {
 					"\" was migrated to the portal property \"",
 					migratedSystemKey, "\""),
 				logEntry.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 		finally {
 			_setPropertyKeys(
@@ -133,8 +133,6 @@ public class PreupgradeVerifyPropertiesTest extends BaseVerifyProcessTestCase {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals(
@@ -143,6 +141,8 @@ public class PreupgradeVerifyPropertiesTest extends BaseVerifyProcessTestCase {
 					"\" was modularized to ", modularizedPortalKey, " as \"",
 					modularizedPortalKey, "\""),
 				logEntry.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 		finally {
 			_setPropertyKeys(
@@ -165,13 +165,13 @@ public class PreupgradeVerifyPropertiesTest extends BaseVerifyProcessTestCase {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals(
 				"Portal property \"" + obsoletePortalKey + "\" is obsolete",
 				logEntry.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 		finally {
 			_setPropertyKeys(
@@ -194,13 +194,13 @@ public class PreupgradeVerifyPropertiesTest extends BaseVerifyProcessTestCase {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals(
 				"System property \"" + obsoleteSystemKey + "\" is obsolete",
 				logEntry.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 		finally {
 			_setPropertyKeys(
@@ -224,8 +224,6 @@ public class PreupgradeVerifyPropertiesTest extends BaseVerifyProcessTestCase {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals(
@@ -233,6 +231,8 @@ public class PreupgradeVerifyPropertiesTest extends BaseVerifyProcessTestCase {
 					"Portal property \"", renamedPortalKey,
 					"\" was renamed to \"", renamedPortalKey, "\""),
 				logEntry.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 		finally {
 			_setPropertyKeys("_RENAMED_PORTAL_KEYS", originalRenamedPortalKeys);
@@ -255,8 +255,6 @@ public class PreupgradeVerifyPropertiesTest extends BaseVerifyProcessTestCase {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals(
@@ -264,6 +262,8 @@ public class PreupgradeVerifyPropertiesTest extends BaseVerifyProcessTestCase {
 					"System property \"", renamedSystemKey,
 					"\" was renamed to \"", renamedSystemKey, "\""),
 				logEntry.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 		finally {
 			_setPropertyKeys("_RENAMED_SYSTEM_KEYS", originalRenamedSystemKeys);

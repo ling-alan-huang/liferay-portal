@@ -308,9 +308,6 @@ public class AddSegmentsExperienceMVCActionCommandTest {
 					_group.getGroupId(), segmentsExperienceId,
 					_draftLayout.getPlid());
 
-		Assert.assertEquals(
-			fragmentEntryLinks.toString(), 1, fragmentEntryLinks.size());
-
 		FragmentEntryLink fragmentEntryLink = fragmentEntryLinks.get(0);
 
 		Assert.assertEquals(
@@ -322,6 +319,9 @@ public class AddSegmentsExperienceMVCActionCommandTest {
 		return PortletIdCodec.encode(
 			editableValuesJSONObject.getString("portletId"),
 			editableValuesJSONObject.getString("instanceId"));
+
+		Assert.assertEquals(
+			fragmentEntryLinks.toString(), 1, fragmentEntryLinks.size());
 	}
 
 	private ThemeDisplay _getThemeDisplay() throws Exception {

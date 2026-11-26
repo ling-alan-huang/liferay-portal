@@ -64,9 +64,6 @@ public class WorkspaceBuildRelevantRuleTest {
 		List<RelevantRule.TestScriptCommand> testScriptCommands =
 			workspaceBuildRelevantRule.getTestScriptCommands();
 
-		Assert.assertEquals(
-			testScriptCommands.toString(), 2, testScriptCommands.size());
-
 		RelevantRule.TestScriptCommand testScriptCommand =
 			testScriptCommands.get(0);
 
@@ -83,6 +80,9 @@ public class WorkspaceBuildRelevantRuleTest {
 			testScriptCommand.getCommandDirPath());
 
 		Assert.assertEquals("./gradlew build", testScriptCommand.getCommand());
+
+		Assert.assertEquals(
+			testScriptCommands.toString(), 2, testScriptCommands.size());
 	}
 
 }

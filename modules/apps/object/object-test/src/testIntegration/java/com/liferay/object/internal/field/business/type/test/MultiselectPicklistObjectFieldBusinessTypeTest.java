@@ -114,8 +114,6 @@ public class MultiselectPicklistObjectFieldBusinessTypeTest {
 				_objectDefinition.getRESTContextPath(), Http.Method.POST),
 			"JSONArray/" + _OBJECT_FIELD_NAME);
 
-		Assert.assertEquals(2, jsonArray.length());
-
 		JSONObject jsonObject = jsonArray.getJSONObject(0);
 
 		Assert.assertEquals(
@@ -125,6 +123,8 @@ public class MultiselectPicklistObjectFieldBusinessTypeTest {
 
 		Assert.assertEquals(
 			jsonObject.getString("key"), _LIST_TYPE_ENTRY_KEY_2);
+
+		Assert.assertEquals(2, jsonArray.length());
 	}
 
 	private static final String _LIST_TYPE_ENTRY_KEY_1 =

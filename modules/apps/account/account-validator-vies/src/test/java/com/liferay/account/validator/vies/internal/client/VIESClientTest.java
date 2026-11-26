@@ -131,11 +131,11 @@ public class VIESClientTest {
 
 		JSONArray jsonArray = responseJSONObject.getJSONArray("errorWrappers");
 
-		Assert.assertEquals(jsonArray.toString(), 1, jsonArray.length());
-
 		JSONObject jsonObject = jsonArray.getJSONObject(0);
 
 		Assert.assertEquals(expectedError, jsonObject.getString("error"));
+
+		Assert.assertEquals(jsonArray.toString(), 1, jsonArray.length());
 	}
 
 	private JSONObject _getRequestJSONObject() {

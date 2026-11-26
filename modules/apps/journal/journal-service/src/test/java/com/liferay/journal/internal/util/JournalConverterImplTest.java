@@ -239,16 +239,16 @@ public class JournalConverterImplTest {
 		List<Element> dynamicContentElements = rootElement.elements(
 			"dynamic-content");
 
-		Assert.assertEquals(
-			dynamicContentElements.toString(), 1,
-			dynamicContentElements.size());
-
 		Element dynamicContentElement = dynamicContentElements.get(0);
 
 		Assert.assertEquals(
 			StringPool.BLANK, dynamicContentElement.getStringValue());
 
 		_assertDynamicContentElement(dynamicContentElement, null);
+
+		Assert.assertEquals(
+			dynamicContentElements.toString(), 1,
+			dynamicContentElements.size());
 	}
 
 	private void _assertDynamicContentElement(

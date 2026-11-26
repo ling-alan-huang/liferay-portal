@@ -229,12 +229,12 @@ public class MercanetServletTest {
 	private void _assertPrincipalException(LogCapture logCapture) {
 		List<LogEntry> logEntries = logCapture.getLogEntries();
 
-		Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 		LogEntry logEntry = logEntries.get(0);
 
 		Assert.assertTrue(
 			logEntry.getThrowable() instanceof PrincipalException);
+
+		Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 	}
 
 	private String _getData(

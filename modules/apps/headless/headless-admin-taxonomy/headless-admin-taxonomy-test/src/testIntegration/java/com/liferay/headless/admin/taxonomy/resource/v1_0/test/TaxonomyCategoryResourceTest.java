@@ -1254,13 +1254,13 @@ public class TaxonomyCategoryResourceTest
 					item.getTaxonomyVocabularyId(),
 					assetVocabulary2.getVocabularyId()));
 
-		Assert.assertEquals(items.toString(), 1, items.size());
-
 		TaxonomyCategory taxonomyCategory = items.get(0);
 
 		Assert.assertEquals(
 			String.valueOf(assetCategory.getCategoryId()),
 			taxonomyCategory.getId());
+
+		Assert.assertEquals(items.toString(), 1, items.size());
 
 		_assetVocabularyLocalService.deleteVocabulary(assetVocabulary1);
 		_assetVocabularyLocalService.deleteVocabulary(assetVocabulary2);

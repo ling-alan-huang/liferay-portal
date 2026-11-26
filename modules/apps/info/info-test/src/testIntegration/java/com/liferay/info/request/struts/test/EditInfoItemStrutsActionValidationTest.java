@@ -194,9 +194,6 @@ public class EditInfoItemStrutsActionValidationTest {
 
 				List<LogEntry> logEntries = logCapture.getLogEntries();
 
-				Assert.assertEquals(
-					logEntries.toString(), 1, logEntries.size());
-
 				LogEntry logEntry = logEntries.get(0);
 
 				Assert.assertEquals(
@@ -206,6 +203,9 @@ public class EditInfoItemStrutsActionValidationTest {
 					"CAPTCHA text is null. User null may be trying to " +
 						"circumvent the CAPTCHA.",
 					logEntry.getMessage());
+
+				Assert.assertEquals(
+					logEntries.toString(), 1, logEntries.size());
 			}
 
 			Assert.assertTrue(

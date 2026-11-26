@@ -227,10 +227,6 @@ public class ExtensionSelectionFDSFilterTest {
 		List<SelectionFDSFilterItem> selectionFDSFilterItems =
 			_extensionSelectionFDSFilter.getSelectionFDSFilterItems(_locale);
 
-		Assert.assertEquals(
-			selectionFDSFilterItems.toString(), 2,
-			selectionFDSFilterItems.size());
-
 		SelectionFDSFilterItem pdfSelectionFDSFilterItem =
 			selectionFDSFilterItems.get(0);
 
@@ -242,6 +238,10 @@ public class ExtensionSelectionFDSFilterTest {
 
 		Assert.assertEquals("png", pngSelectionFDSFilterItem.getLabel());
 		Assert.assertEquals("png", pngSelectionFDSFilterItem.getValue());
+
+		Assert.assertEquals(
+			selectionFDSFilterItems.toString(), 2,
+			selectionFDSFilterItems.size());
 	}
 
 	private static final String _OBJECT_DEFINITION_CLASS_NAME =

@@ -33,9 +33,6 @@ public class MonitorConfigLoaderTest
 		List<MonitorConfig> monitorConfigs =
 			MonitorConfigLoader.getMonitorConfigs(buildProperties);
 
-		Assert.assertEquals(
-			monitorConfigs.toString(), 1, monitorConfigs.size());
-
 		MonitorConfig monitorConfig = monitorConfigs.get(0);
 
 		testEquals("masters", monitorConfig.getId());
@@ -54,6 +51,9 @@ public class MonitorConfigLoaderTest
 
 		testEquals(30L, monitorConfig.getTimeoutSeconds());
 		testEquals("http-endpoint", monitorConfig.getType());
+
+		Assert.assertEquals(
+			monitorConfigs.toString(), 1, monitorConfigs.size());
 	}
 
 	@Test

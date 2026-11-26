@@ -168,10 +168,6 @@ public class ObjectDefinitionsActionsDisplayContextTest {
 					"items"));
 		}
 
-		Assert.assertEquals(
-			objectActionCodeEditorElementsItems.toString(), 4,
-			objectActionCodeEditorElementsItems.size());
-
 		List<Map<String, String>> fields =
 			objectActionCodeEditorElementsItems.get("fields");
 
@@ -205,6 +201,10 @@ public class ObjectDefinitionsActionsDisplayContextTest {
 		Assert.assertEquals(
 			operators.toString(), ddmExpressionOperators.length,
 			operators.size());
+
+		Assert.assertEquals(
+			objectActionCodeEditorElementsItems.toString(), 4,
+			objectActionCodeEditorElementsItems.size());
 	}
 
 	@Test

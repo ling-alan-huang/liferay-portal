@@ -205,11 +205,11 @@ public class FeatureFlagsBagProviderTest {
 			List<FeatureFlag> featureFlags = featureFlagsBag.getFeatureFlags(
 				featureFlag -> keys.contains(featureFlag.getKey()));
 
-			Assert.assertTrue(featureFlags.size() == 1);
-
 			FeatureFlag featureFlag = featureFlags.get(0);
 
 			Assert.assertEquals(key1, featureFlag.getKey());
+
+			Assert.assertTrue(featureFlags.size() == 1);
 		}
 		finally {
 			PropsUtil.set(FeatureFlagConstants.getKey(key1), null);

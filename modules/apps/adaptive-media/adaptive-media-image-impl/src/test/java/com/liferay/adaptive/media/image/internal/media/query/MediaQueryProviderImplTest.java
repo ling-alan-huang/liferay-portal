@@ -114,8 +114,6 @@ public class MediaQueryProviderImplTest {
 		List<MediaQuery> mediaQueries = _mediaQueryProviderImpl.getMediaQueries(
 			_fileEntry);
 
-		Assert.assertEquals(mediaQueries.toString(), 1, mediaQueries.size());
-
 		MediaQuery mediaQuery = mediaQueries.get(0);
 
 		Assert.assertEquals("adaptiveURL", mediaQuery.getSrc());
@@ -125,6 +123,8 @@ public class MediaQueryProviderImplTest {
 		Assert.assertEquals(conditions.toString(), 1, conditions.size());
 
 		_assertCondition(conditions.get(0), "max-width", "1989px");
+
+		Assert.assertEquals(mediaQueries.toString(), 1, mediaQueries.size());
 	}
 
 	@Test
@@ -140,8 +140,6 @@ public class MediaQueryProviderImplTest {
 		List<MediaQuery> mediaQueries = _mediaQueryProviderImpl.getMediaQueries(
 			_fileEntry);
 
-		Assert.assertEquals(mediaQueries.toString(), 2, mediaQueries.size());
-
 		MediaQuery mediaQuery1 = mediaQueries.get(0);
 
 		Assert.assertEquals("adaptiveURL1", mediaQuery1.getSrc());
@@ -162,6 +160,8 @@ public class MediaQueryProviderImplTest {
 
 		_assertCondition(conditions2.get(0), "max-width", "1989px");
 		_assertCondition(conditions2.get(1), "min-width", "1986px");
+
+		Assert.assertEquals(mediaQueries.toString(), 2, mediaQueries.size());
 	}
 
 	@Test
@@ -177,8 +177,6 @@ public class MediaQueryProviderImplTest {
 		List<MediaQuery> mediaQueries = _mediaQueryProviderImpl.getMediaQueries(
 			_fileEntry);
 
-		Assert.assertEquals(mediaQueries.toString(), 2, mediaQueries.size());
-
 		MediaQuery mediaQuery1 = mediaQueries.get(0);
 
 		Assert.assertEquals("adaptiveURL1", mediaQuery1.getSrc());
@@ -199,6 +197,8 @@ public class MediaQueryProviderImplTest {
 
 		_assertCondition(conditions2.get(0), "max-width", "1989px");
 		_assertCondition(conditions2.get(1), "min-width", "1986px");
+
+		Assert.assertEquals(mediaQueries.toString(), 2, mediaQueries.size());
 	}
 
 	@Test
@@ -239,8 +239,6 @@ public class MediaQueryProviderImplTest {
 		List<MediaQuery> mediaQueries = _mediaQueryProviderImpl.getMediaQueries(
 			_fileEntry);
 
-		Assert.assertEquals(mediaQueries.toString(), 3, mediaQueries.size());
-
 		MediaQuery mediaQuery1 = mediaQueries.get(0);
 
 		Assert.assertEquals(
@@ -275,6 +273,8 @@ public class MediaQueryProviderImplTest {
 
 		_assertCondition(conditions3.get(0), "max-width", "2500px");
 		_assertCondition(conditions3.get(1), "min-width", "1600px");
+
+		Assert.assertEquals(mediaQueries.toString(), 3, mediaQueries.size());
 	}
 
 	@Test
@@ -292,8 +292,6 @@ public class MediaQueryProviderImplTest {
 		List<MediaQuery> mediaQueries = _mediaQueryProviderImpl.getMediaQueries(
 			_fileEntry);
 
-		Assert.assertEquals(mediaQueries.toString(), 2, mediaQueries.size());
-
 		MediaQuery mediaQuery1 = mediaQueries.get(0);
 
 		Assert.assertEquals(
@@ -317,6 +315,8 @@ public class MediaQueryProviderImplTest {
 
 		_assertCondition(conditions2.get(0), "max-width", "1600px");
 		_assertCondition(conditions2.get(1), "min-width", "800px");
+
+		Assert.assertEquals(mediaQueries.toString(), 2, mediaQueries.size());
 	}
 
 	@Test
@@ -334,8 +334,6 @@ public class MediaQueryProviderImplTest {
 		List<MediaQuery> mediaQueries = _mediaQueryProviderImpl.getMediaQueries(
 			_fileEntry);
 
-		Assert.assertEquals(mediaQueries.toString(), 2, mediaQueries.size());
-
 		MediaQuery mediaQuery1 = mediaQueries.get(0);
 
 		Assert.assertEquals(
@@ -359,6 +357,8 @@ public class MediaQueryProviderImplTest {
 
 		_assertCondition(conditions2.get(0), "max-width", "1600px");
 		_assertCondition(conditions2.get(1), "min-width", "800px");
+
+		Assert.assertEquals(mediaQueries.toString(), 2, mediaQueries.size());
 	}
 
 	@Test
@@ -375,8 +375,6 @@ public class MediaQueryProviderImplTest {
 
 		List<MediaQuery> mediaQueries = _mediaQueryProviderImpl.getMediaQueries(
 			_fileEntry);
-
-		Assert.assertEquals(mediaQueries.toString(), 2, mediaQueries.size());
 
 		MediaQuery mediaQuery1 = mediaQueries.get(0);
 
@@ -406,6 +404,8 @@ public class MediaQueryProviderImplTest {
 
 		_assertCondition(conditions2.get(0), "max-width", "1599px");
 		_assertCondition(conditions2.get(1), "min-width", "800px");
+
+		Assert.assertEquals(mediaQueries.toString(), 2, mediaQueries.size());
 	}
 
 	@Test
@@ -422,8 +422,6 @@ public class MediaQueryProviderImplTest {
 
 		List<MediaQuery> mediaQueries = _mediaQueryProviderImpl.getMediaQueries(
 			_fileEntry);
-
-		Assert.assertEquals(mediaQueries.toString(), 2, mediaQueries.size());
 
 		MediaQuery mediaQuery1 = mediaQueries.get(0);
 
@@ -448,6 +446,8 @@ public class MediaQueryProviderImplTest {
 
 		_assertCondition(conditions2.get(0), "max-width", "1601px");
 		_assertCondition(conditions2.get(1), "min-width", "800px");
+
+		Assert.assertEquals(mediaQueries.toString(), 2, mediaQueries.size());
 	}
 
 	@Test
@@ -465,8 +465,6 @@ public class MediaQueryProviderImplTest {
 		List<MediaQuery> mediaQueries = _mediaQueryProviderImpl.getMediaQueries(
 			_fileEntry);
 
-		Assert.assertEquals(mediaQueries.toString(), 2, mediaQueries.size());
-
 		MediaQuery mediaQuery1 = mediaQueries.get(0);
 
 		Assert.assertEquals("http://small.adaptive.com", mediaQuery1.getSrc());
@@ -488,6 +486,8 @@ public class MediaQueryProviderImplTest {
 
 		_assertCondition(conditions2.get(0), "max-width", "1600px");
 		_assertCondition(conditions2.get(1), "min-width", "800px");
+
+		Assert.assertEquals(mediaQueries.toString(), 2, mediaQueries.size());
 	}
 
 	@Test
@@ -505,8 +505,6 @@ public class MediaQueryProviderImplTest {
 		List<MediaQuery> mediaQueries = _mediaQueryProviderImpl.getMediaQueries(
 			_fileEntry);
 
-		Assert.assertEquals(mediaQueries.toString(), 2, mediaQueries.size());
-
 		MediaQuery mediaQuery1 = mediaQueries.get(0);
 
 		Assert.assertEquals("http://small.adaptive.com", mediaQuery1.getSrc());
@@ -528,6 +526,8 @@ public class MediaQueryProviderImplTest {
 
 		_assertCondition(conditions2.get(0), "max-width", "1600px");
 		_assertCondition(conditions2.get(1), "min-width", "800px");
+
+		Assert.assertEquals(mediaQueries.toString(), 2, mediaQueries.size());
 	}
 
 	@Test
@@ -544,8 +544,6 @@ public class MediaQueryProviderImplTest {
 
 		List<MediaQuery> mediaQueries = _mediaQueryProviderImpl.getMediaQueries(
 			_fileEntry);
-
-		Assert.assertEquals(mediaQueries.toString(), 2, mediaQueries.size());
 
 		MediaQuery mediaQuery1 = mediaQueries.get(0);
 
@@ -568,6 +566,8 @@ public class MediaQueryProviderImplTest {
 
 		_assertCondition(conditions2.get(0), "max-width", "1598px");
 		_assertCondition(conditions2.get(1), "min-width", "800px");
+
+		Assert.assertEquals(mediaQueries.toString(), 2, mediaQueries.size());
 	}
 
 	@Test
@@ -584,8 +584,6 @@ public class MediaQueryProviderImplTest {
 
 		List<MediaQuery> mediaQueries = _mediaQueryProviderImpl.getMediaQueries(
 			_fileEntry);
-
-		Assert.assertEquals(mediaQueries.toString(), 2, mediaQueries.size());
 
 		MediaQuery mediaQuery1 = mediaQueries.get(0);
 
@@ -608,6 +606,8 @@ public class MediaQueryProviderImplTest {
 
 		_assertCondition(conditions2.get(0), "max-width", "1602px");
 		_assertCondition(conditions2.get(1), "min-width", "800px");
+
+		Assert.assertEquals(mediaQueries.toString(), 2, mediaQueries.size());
 	}
 
 	@Test

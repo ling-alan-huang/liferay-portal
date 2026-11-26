@@ -207,14 +207,14 @@ public class AssetTagGroupRelUpgradeProcessTest {
 				getAssetTagGroupRelsByTagIdAndDepotEntryType(
 					assetTag.getTagId(), depotEntryType);
 
-		Assert.assertEquals(
-			assetTagGroupRels.toString(), 1, assetTagGroupRels.size());
-
 		AssetTagGroupRel assetTagGroupRel = assetTagGroupRels.get(0);
 
 		Assert.assertEquals(
 			assetTagGroupRel.toString(), expectedGroupId,
 			assetTagGroupRel.getGroupId());
+
+		Assert.assertEquals(
+			assetTagGroupRels.toString(), 1, assetTagGroupRels.size());
 	}
 
 	private void _runUpgrade() throws Exception {

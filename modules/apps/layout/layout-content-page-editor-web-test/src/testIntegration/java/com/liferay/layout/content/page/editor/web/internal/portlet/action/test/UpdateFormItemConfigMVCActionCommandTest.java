@@ -660,14 +660,14 @@ public class UpdateFormItemConfigMVCActionCommandTest {
 		List<String> childrenItemIds =
 			formStyledLayoutStructureItem.getChildrenItemIds();
 
-		Assert.assertEquals(
-			childrenItemIds.toString(), 1, childrenItemIds.size());
-
 		LayoutStructureItem layoutStructureItem =
 			layoutStructure.getLayoutStructureItem(childrenItemIds.get(0));
 
 		Assert.assertTrue(
 			layoutStructureItem instanceof ContainerStyledLayoutStructureItem);
+
+		Assert.assertEquals(
+			childrenItemIds.toString(), 1, childrenItemIds.size());
 	}
 
 	@Test

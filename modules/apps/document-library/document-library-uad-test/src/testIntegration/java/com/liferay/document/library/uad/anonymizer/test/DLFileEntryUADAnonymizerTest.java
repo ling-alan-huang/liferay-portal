@@ -128,11 +128,6 @@ public class DLFileEntryUADAnonymizerTest
 			List<AssetLink> assetLinks = _assetLinkLocalService.getDirectLinks(
 				mbMessageAssetEntry.getEntryId());
 
-			Assert.assertEquals(
-				"There should be an asset link for the newly created " +
-					"MBMessage.",
-				1, assetLinks.size());
-
 			AssetLink assetLink = assetLinks.get(0);
 
 			Assert.assertEquals(
@@ -153,6 +148,11 @@ public class DLFileEntryUADAnonymizerTest
 
 			Assert.assertNull(
 				"The anonymizer should also remove the AssetLink.", assetLink);
+
+			Assert.assertEquals(
+				"There should be an asset link for the newly created " +
+					"MBMessage.",
+				1, assetLinks.size());
 		}
 		finally {
 			_mbThreadLocalService.deleteThread(mbMessage.getThread());

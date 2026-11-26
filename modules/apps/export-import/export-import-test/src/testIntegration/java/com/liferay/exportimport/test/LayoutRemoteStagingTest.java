@@ -221,9 +221,6 @@ public class LayoutRemoteStagingTest {
 			_fragmentEntryLinkLocalService.getFragmentEntryLinksByPlid(
 				remoteLiveGroup.getGroupId(), remoteLiveLayout.getPlid());
 
-		Assert.assertEquals(
-			fragmentEntryLinks.toString(), 1, fragmentEntryLinks.size());
-
 		FragmentEntryLink fragmentEntryLink = fragmentEntryLinks.get(0);
 
 		JSONObject itemSelectorJSONObject = JSONUtil.getValueAsJSONObject(
@@ -237,6 +234,9 @@ public class LayoutRemoteStagingTest {
 		Assert.assertEquals(
 			remoteLiveScopeGroup.getExternalReferenceCode(),
 			itemSelectorJSONObject.getString("scopeExternalReferenceCode"));
+
+		Assert.assertEquals(
+			fragmentEntryLinks.toString(), 1, fragmentEntryLinks.size());
 	}
 
 	private void _testPublishLayoutsWithRemoteStagingMappedContentInDepotGroup()

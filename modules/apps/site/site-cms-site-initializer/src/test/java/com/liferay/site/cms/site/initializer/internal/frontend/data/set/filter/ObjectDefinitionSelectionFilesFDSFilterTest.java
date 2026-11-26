@@ -77,10 +77,6 @@ public class ObjectDefinitionSelectionFilesFDSFilterTest {
 			_objectDefinitionSelectionFilesFDSFilter.getSelectionFDSFilterItems(
 				_locale);
 
-		Assert.assertEquals(
-			selectionFDSFilterItems.toString(), 2,
-			selectionFDSFilterItems.size());
-
 		SelectionFDSFilterItem objectDefinitionSelectionFDSFilterItem =
 			selectionFDSFilterItems.get(0);
 
@@ -95,6 +91,10 @@ public class ObjectDefinitionSelectionFilesFDSFilterTest {
 			ObjectEntryFolderConstants.
 				EXTERNAL_REFERENCE_CODE_OBJECT_ENTRY_FOLDER,
 			folderSelectionFDSFilterItem.getValue());
+
+		Assert.assertEquals(
+			selectionFDSFilterItems.toString(), 2,
+			selectionFDSFilterItems.size());
 	}
 
 	@Mock

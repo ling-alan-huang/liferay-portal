@@ -104,8 +104,6 @@ public class RadioDDMFormFieldTemplateContextContributorTest {
 
 		List<Object> options = (List<Object>)parameters.get("options");
 
-		Assert.assertEquals(options.toString(), 2, options.size());
-
 		Map<String, String> option0 = (Map<String, String>)options.get(0);
 
 		Assert.assertEquals("Label 0", option0.get("label"));
@@ -115,6 +113,8 @@ public class RadioDDMFormFieldTemplateContextContributorTest {
 
 		Assert.assertEquals("Label 1", option1.get("label"));
 		Assert.assertEquals("Value 1", option1.get("value"));
+
+		Assert.assertEquals(options.toString(), 2, options.size());
 	}
 
 	@Test

@@ -88,8 +88,6 @@ public class GridDDMFormFieldTypeSettingsTest
 
 		List<DDMFormRule> ddmFormRules = ddmForm.getDDMFormRules();
 
-		Assert.assertEquals(ddmFormRules.toString(), 1, ddmFormRules.size());
-
 		DDMFormRule ddmFormRule = ddmFormRules.get(0);
 
 		List<String> actions = ddmFormRule.getActions();
@@ -105,6 +103,8 @@ public class GridDDMFormFieldTypeSettingsTest
 		Assert.assertEquals(
 			"setVisible('requiredErrorMessage', getValue('required'))",
 			actions.get(3));
+
+		Assert.assertEquals(ddmFormRules.toString(), 1, ddmFormRules.size());
 	}
 
 	@Test

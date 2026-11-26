@@ -134,8 +134,6 @@ public class BackgroundTaskMessageListenerTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals(
@@ -147,6 +145,8 @@ public class BackgroundTaskMessageListenerTest {
 			Assert.assertSame(
 				IllegalStateException.class, throwable.getClass());
 			Assert.assertEquals(message, throwable.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 		finally {
 			serviceRegistration.unregister();

@@ -114,9 +114,6 @@ public class TemplateInfoItemCapabilitiesProviderTrackerTest {
 
 		templateInfoItemCapabilitiesProviderTracker.activate(bundleContext);
 
-		Assert.assertEquals(
-			serviceListeners.toString(), 1, serviceListeners.size());
-
 		ServiceListener serviceListener = serviceListeners.get(0);
 
 		ServiceReference<?> serviceReference =
@@ -148,13 +145,16 @@ public class TemplateInfoItemCapabilitiesProviderTrackerTest {
 		serviceListener.serviceChanged(
 			new ServiceEvent(ServiceEvent.REGISTERED, serviceReference));
 
-		Assert.assertEquals(dictionaries.toString(), 1, dictionaries.size());
+		Assert.assertEquals(
+			serviceListeners.toString(), 1, serviceListeners.size());
 
 		Dictionary<String, Object> dictionary = dictionaries.get(0);
 
 		Assert.assertEquals(
 			dictionary.toString(), 200,
 			dictionary.get(Constants.SERVICE_RANKING));
+
+		Assert.assertEquals(dictionaries.toString(), 1, dictionaries.size());
 	}
 
 }

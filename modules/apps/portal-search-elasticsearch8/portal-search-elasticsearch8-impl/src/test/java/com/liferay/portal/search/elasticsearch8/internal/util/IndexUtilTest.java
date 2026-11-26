@@ -42,8 +42,6 @@ public class IndexUtilTest {
 		JSONArray dynamicTemplatesJSONArray = mappingsJSONObject.getJSONArray(
 			"dynamic_templates");
 
-		Assert.assertEquals(3, dynamicTemplatesJSONArray.length());
-
 		JSONObject firstTemplateJSONObject =
 			dynamicTemplatesJSONArray.getJSONObject(0);
 
@@ -65,6 +63,8 @@ public class IndexUtilTest {
 			dynamicTemplatesJSONArray.getJSONObject(2);
 
 		Assert.assertTrue(thirdTemplateJSONObject.has("template_c"));
+
+		Assert.assertEquals(3, dynamicTemplatesJSONArray.length());
 	}
 
 	@Test

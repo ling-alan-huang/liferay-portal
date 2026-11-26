@@ -497,10 +497,6 @@ public class AssetEntryInfoItemFieldSetProviderTest {
 			List<KeyLocalizedLabelPair> keyLocalizedLabelPairs =
 				(List<KeyLocalizedLabelPair>)value;
 
-			Assert.assertEquals(
-				keyLocalizedLabelPairs.toString(), 1,
-				keyLocalizedLabelPairs.size());
-
 			KeyLocalizedLabelPair actualKeyLocalizedLabelPair =
 				keyLocalizedLabelPairs.get(0);
 
@@ -510,6 +506,10 @@ public class AssetEntryInfoItemFieldSetProviderTest {
 			Assert.assertEquals(
 				expectedKeyLocalizedLabelPair.getLabel(LocaleUtil.US),
 				actualKeyLocalizedLabelPair.getLabel(LocaleUtil.US));
+
+			Assert.assertEquals(
+				keyLocalizedLabelPairs.toString(), 1,
+				keyLocalizedLabelPairs.size());
 		}
 	}
 

@@ -117,11 +117,11 @@ public class JenkinsStopBuildUtilTest
 		JenkinsStopBuildUtil.abortBuild(
 			"https://test-1-41.liferay.com/job/test-job/1/");
 
-		Assert.assertEquals(_readURLs.toString(), 1, _readURLs.size());
-
 		String readURL = _readURLs.get(0);
 
 		Assert.assertTrue(readURL, readURL.startsWith("http://test-1-41/"));
+
+		Assert.assertEquals(_readURLs.toString(), 1, _readURLs.size());
 	}
 
 	@Test
@@ -185,13 +185,13 @@ public class JenkinsStopBuildUtilTest
 		Assert.assertEquals(
 			JenkinsStopBuildUtil.AbortResult.STOPPED, _abortBuild());
 
-		Assert.assertEquals(_postedPaths.toString(), 1, _postedPaths.size());
-
 		String postedPath = _postedPaths.get(0);
 
 		Assert.assertTrue(
 			postedPath, postedPath.startsWith("/job/test-job/1/"));
 		Assert.assertTrue(postedPath, postedPath.endsWith("/stop"));
+
+		Assert.assertEquals(_postedPaths.toString(), 1, _postedPaths.size());
 
 		Assert.assertEquals("POST", _requestMethods.get(0));
 

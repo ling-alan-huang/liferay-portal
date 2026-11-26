@@ -181,28 +181,28 @@ public class AssetCategoryStagedModelDataHandlerTest
 		List<StagedModel> categoryDependentStagedModels =
 			dependentStagedModelsMap.get(AssetCategory.class.getSimpleName());
 
-		Assert.assertEquals(
-			categoryDependentStagedModels.toString(), 1,
-			categoryDependentStagedModels.size());
-
 		AssetCategory category =
 			(AssetCategory)categoryDependentStagedModels.get(0);
 
 		AssetCategoryLocalServiceUtil.getAssetCategoryByUuidAndGroupId(
 			category.getUuid(), group.getGroupId());
 
+		Assert.assertEquals(
+			categoryDependentStagedModels.toString(), 1,
+			categoryDependentStagedModels.size());
+
 		List<StagedModel> vocabularyDependentStagedModels =
 			dependentStagedModelsMap.get(AssetVocabulary.class.getSimpleName());
-
-		Assert.assertEquals(
-			vocabularyDependentStagedModels.toString(), 1,
-			vocabularyDependentStagedModels.size());
 
 		AssetVocabulary vocabulary =
 			(AssetVocabulary)vocabularyDependentStagedModels.get(0);
 
 		AssetVocabularyLocalServiceUtil.getAssetVocabularyByUuidAndGroupId(
 			vocabulary.getUuid(), group.getGroupId());
+
+		Assert.assertEquals(
+			vocabularyDependentStagedModels.toString(), 1,
+			vocabularyDependentStagedModels.size());
 	}
 
 	@Override

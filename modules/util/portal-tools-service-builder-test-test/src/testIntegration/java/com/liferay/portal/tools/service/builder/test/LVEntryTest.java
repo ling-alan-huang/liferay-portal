@@ -158,9 +158,6 @@ public class LVEntryTest {
 
 		lvEntryVersions = _versionService.getVersions(_lvEntry);
 
-		Assert.assertEquals(
-			lvEntryVersions.toString(), 2, lvEntryVersions.size());
-
 		LVEntryVersion lvEntryVersion2 = lvEntryVersions.get(0);
 		LVEntryVersion lvEntryVersion1 = lvEntryVersions.get(1);
 
@@ -169,6 +166,9 @@ public class LVEntryTest {
 
 		Assert.assertEquals(1, lvEntryVersion1.getVersion());
 		Assert.assertEquals(_GROUP_ID_1, lvEntryVersion1.getGroupId());
+
+		Assert.assertEquals(
+			lvEntryVersions.toString(), 2, lvEntryVersions.size());
 
 		lvEntryLocalizations = _lvEntryLocalService.getLVEntryLocalizations(
 			draftLVEntry.getPrimaryKey());
@@ -493,12 +493,12 @@ public class LVEntryTest {
 		List<LVEntryVersion> lvEntryVersions = _versionService.getVersions(
 			_lvEntry);
 
-		Assert.assertEquals(
-			lvEntryVersions.toString(), 1, lvEntryVersions.size());
-
 		LVEntryVersion lvEntryVersion2 = lvEntryVersions.get(0);
 
 		Assert.assertEquals(2, lvEntryVersion2.getVersion());
+
+		Assert.assertEquals(
+			lvEntryVersions.toString(), 1, lvEntryVersions.size());
 
 		LVEntryLocalization lvEntryLocalization =
 			_lvEntryLocalService.fetchLVEntryLocalization(
@@ -679,9 +679,6 @@ public class LVEntryTest {
 		List<LVEntryVersion> lvEntryVersions = _versionService.getVersions(
 			draftLVEntry);
 
-		Assert.assertEquals(
-			lvEntryVersions.toString(), 2, lvEntryVersions.size());
-
 		LVEntryVersion lvEntryVersion2 = lvEntryVersions.get(0);
 
 		Assert.assertEquals(2, lvEntryVersion2.getVersion());
@@ -692,13 +689,12 @@ public class LVEntryTest {
 		Assert.assertEquals(1, lvEntryVersion1.getVersion());
 		Assert.assertEquals(_GROUP_ID_1, lvEntryVersion1.getGroupId());
 
+		Assert.assertEquals(
+			lvEntryVersions.toString(), 2, lvEntryVersions.size());
+
 		List<LVEntryLocalizationVersion> lvEntryLocalizationVersions =
 			_lvEntryLocalService.getLVEntryLocalizationVersions(
 				_lvEntry.getPrimaryKey(), _LANGUAGE_ID_1);
-
-		Assert.assertEquals(
-			lvEntryLocalizationVersions.toString(), 2,
-			lvEntryLocalizationVersions.size());
 
 		LVEntryLocalizationVersion lvEntryLocalizationVersion2 =
 			lvEntryLocalizationVersions.get(0);
@@ -715,6 +711,10 @@ public class LVEntryTest {
 		Assert.assertEquals(_TITLE_1, lvEntryLocalizationVersion1.getTitle());
 		Assert.assertEquals(
 			_CONTENT_1, lvEntryLocalizationVersion1.getContent());
+
+		Assert.assertEquals(
+			lvEntryLocalizationVersions.toString(), 2,
+			lvEntryLocalizationVersions.size());
 	}
 
 	@Test

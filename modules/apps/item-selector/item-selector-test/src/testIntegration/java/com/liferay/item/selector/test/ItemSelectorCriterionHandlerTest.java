@@ -83,24 +83,24 @@ public class ItemSelectorCriterionHandlerTest {
 					_itemSelectorCriterionHandler.getItemSelectorViews(
 						itemSelectorCriterion);
 
-			Assert.assertEquals(
-				itemSelectorViews.toString(), 1, itemSelectorViews.size());
-
 			ItemSelectorView<TestItemSelectorCriterion> itemSelectorView =
 				itemSelectorViews.get(0);
 
 			List<ItemSelectorReturnType> supportedItemSelectorReturnTypes =
 				itemSelectorView.getSupportedItemSelectorReturnTypes();
 
-			Assert.assertEquals(
-				supportedItemSelectorReturnTypes.toString(), 1,
-				supportedItemSelectorReturnTypes.size());
-
 			ItemSelectorReturnType itemSelectorReturnType =
 				supportedItemSelectorReturnTypes.get(0);
 
 			Assert.assertFalse(
 				itemSelectorReturnType instanceof TestItemSelectorReturnType);
+
+			Assert.assertEquals(
+				supportedItemSelectorReturnTypes.toString(), 1,
+				supportedItemSelectorReturnTypes.size());
+
+			Assert.assertEquals(
+				itemSelectorViews.toString(), 1, itemSelectorViews.size());
 		}
 		finally {
 			_unregister(serviceRegistrations);

@@ -283,16 +283,10 @@ public class AsahFaroBackendClientTest {
 
 		List<Individual> individuals = individualResults.getItems();
 
-		Assert.assertEquals(individuals.toString(), 1, individuals.size());
-
 		Individual individual = individuals.get(0);
 
 		List<Individual.DataSourceIndividualPK> dataSourceIndividualPKs =
 			individual.getDataSourceIndividualPKs();
-
-		Assert.assertEquals(
-			dataSourceIndividualPKs.toString(), 1,
-			dataSourceIndividualPKs.size());
 
 		Individual.DataSourceIndividualPK dataSourceIndividualPK =
 			dataSourceIndividualPKs.get(0);
@@ -302,6 +296,12 @@ public class AsahFaroBackendClientTest {
 		Assert.assertEquals(
 			Collections.singletonList("userUuid"),
 			dataSourceIndividualPK.getIndividualPKs());
+
+		Assert.assertEquals(
+			dataSourceIndividualPKs.toString(), 1,
+			dataSourceIndividualPKs.size());
+
+		Assert.assertEquals(individuals.toString(), 1, individuals.size());
 	}
 
 	@Test
@@ -345,13 +345,13 @@ public class AsahFaroBackendClientTest {
 		List<IndividualSegment> individualSegments =
 			individualSegmentResults.getItems();
 
-		Assert.assertEquals(
-			individualSegments.toString(), 1, individualSegments.size());
-
 		IndividualSegment individualSegment = individualSegments.get(0);
 
 		Assert.assertEquals("1234567", individualSegment.getId());
 		Assert.assertEquals("Test segment", individualSegment.getName());
+
+		Assert.assertEquals(
+			individualSegments.toString(), 1, individualSegments.size());
 	}
 
 	@Test

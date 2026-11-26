@@ -847,9 +847,6 @@ public class ObjectEntryResourceNestedFieldsTest
 
 		JSONArray itemsJSONArray = jsonObject.getJSONArray("items");
 
-		Assert.assertEquals(
-			itemsJSONArray.toString(), 1, itemsJSONArray.length());
-
 		JSONObject objectEntryJSONObject = itemsJSONArray.getJSONObject(0);
 
 		Assert.assertNull(
@@ -874,6 +871,9 @@ public class ObjectEntryResourceNestedFieldsTest
 			objectDefinition.getObjectFolderExternalReferenceCode(),
 			objectDefinitionBriefJSONObject.getString(
 				"objectFolderExternalReferenceCode"));
+
+		Assert.assertEquals(
+			itemsJSONArray.toString(), 1, itemsJSONArray.length());
 	}
 
 	@Test

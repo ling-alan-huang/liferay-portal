@@ -1346,9 +1346,6 @@ public class DBTest {
 		List<IndexMetadata> indexMetadatas = _getIndexMetadatas(
 			TABLE_NAME_1, columnNames);
 
-		Assert.assertEquals(
-			indexMetadatas.toString(), 1, indexMetadatas.size());
-
 		IndexMetadata indexMetadata = indexMetadatas.get(0);
 
 		Assert.assertEquals(
@@ -1358,6 +1355,9 @@ public class DBTest {
 		Assert.assertArrayEquals(
 			ArrayUtil.sortedUnique(columnNames),
 			ArrayUtil.sortedUnique(indexMetadata.getColumnNames()));
+
+		Assert.assertEquals(
+			indexMetadatas.toString(), 1, indexMetadatas.size());
 	}
 
 	private void _wait(FutureTask<Void> futureTask, String message)

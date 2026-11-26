@@ -134,12 +134,12 @@ public class DDMFieldAttributeCTEventListenerTest {
 		List<DDMFieldAttribute> ddmFieldAttributes =
 			_ddmFieldLocalService.getDDMFieldAttributes(journalArticleId, null);
 
-		Assert.assertEquals(
-			ddmFieldAttributes.toString(), 1, ddmFieldAttributes.size());
-
 		DDMFieldAttribute ddmFieldAttribute = ddmFieldAttributes.get(0);
 
 		return ddmFieldAttribute.getAttributeValue();
+
+		Assert.assertEquals(
+			ddmFieldAttributes.toString(), 1, ddmFieldAttributes.size());
 	}
 
 	private CTCollection _ctCollection;
