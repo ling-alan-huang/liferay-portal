@@ -8,8 +8,10 @@ package com.liferay.source.formatter.checkstyle.check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * @author Alan Huang
@@ -39,27 +41,96 @@ public class SizeAssertionOrderCheck extends BaseCheck {
 
 		String variableName = _getSizeVariableName(detailAST);
 
-		if (variableName == null) {
-			return;
-		}
-
-		DetailAST nextSiblingDetailAST = parentDetailAST.getNextSibling();
-
-		if ((nextSiblingDetailAST == null) ||
-			(nextSiblingDetailAST.getType() != TokenTypes.SEMI)) {
+		if ((variableName == null) ||
+			_isModified(parentDetailAST, variableName)) {
 
 			return;
 		}
 
-		nextSiblingDetailAST = nextSiblingDetailAST.getNextSibling();
+		int lastLineNumber = _getLastLineNumber(parentDetailAST, variableName);
 
-		if ((nextSiblingDetailAST != null) &&
-			(nextSiblingDetailAST.getType() == TokenTypes.VARIABLE_DEF) &&
-			_hasGetterCall(nextSiblingDetailAST, variableName) &&
-			!_isModified(nextSiblingDetailAST, variableName)) {
-
-			log(detailAST, _MSG_MOVE_SIZE_ASSERTION, variableName);
+		if (lastLineNumber != -1) {
+			log(
+				detailAST, _MSG_MOVE_SIZE_ASSERTION, variableName,
+				String.valueOf(getStartLineNumber(parentDetailAST)),
+				String.valueOf(lastLineNumber));
 		}
+	}
+
+	private String _getAssignedVariableName(DetailAST detailAST) {
+		if (detailAST.getType() == TokenTypes.VARIABLE_DEF) {
+			return getName(detailAST);
+		}
+
+		if (detailAST.getType() != TokenTypes.EXPR) {
+			return null;
+		}
+
+		DetailAST firstChildDetailAST = detailAST.getFirstChild();
+
+		if (firstChildDetailAST.getType() != TokenTypes.ASSIGN) {
+			return null;
+		}
+
+		firstChildDetailAST = firstChildDetailAST.getFirstChild();
+
+		if (firstChildDetailAST.getType() != TokenTypes.IDENT) {
+			return null;
+		}
+
+		return firstChildDetailAST.getText();
+	}
+
+	private int _getLastLineNumber(DetailAST detailAST, String variableName) {
+		Set<String> elementVariableNames = new HashSet<>();
+
+		boolean afterAssertion = false;
+		int lastLineNumber = -1;
+
+		DetailAST parentDetailAST = detailAST.getParent();
+
+		DetailAST childDetailAST = parentDetailAST.getFirstChild();
+
+		while (childDetailAST != null) {
+			if (equals(childDetailAST, detailAST)) {
+				afterAssertion = true;
+
+				childDetailAST = childDetailAST.getNextSibling();
+
+				continue;
+			}
+
+			boolean usesElements = _usesElements(
+				childDetailAST, variableName, elementVariableNames);
+
+			if (afterAssertion && (lastLineNumber == -1) &&
+				(childDetailAST.getType() != TokenTypes.SEMI) &&
+				!usesElements) {
+
+				return -1;
+			}
+
+			if (usesElements) {
+				if (afterAssertion) {
+					if (childDetailAST.getType() == TokenTypes.LITERAL_RETURN) {
+						return -1;
+					}
+
+					lastLineNumber = getEndLineNumber(childDetailAST);
+				}
+
+				String elementVariableName = _getAssignedVariableName(
+					childDetailAST);
+
+				if (elementVariableName != null) {
+					elementVariableNames.add(elementVariableName);
+				}
+			}
+
+			childDetailAST = childDetailAST.getNextSibling();
+		}
+
+		return lastLineNumber;
 	}
 
 	private String _getSizeVariableName(DetailAST detailAST) {
@@ -75,24 +146,6 @@ public class SizeAssertionOrderCheck extends BaseCheck {
 		}
 
 		return null;
-	}
-
-	private boolean _hasGetterCall(DetailAST detailAST, String variableName) {
-		List<DetailAST> methodCallDetailASTs = getAllChildTokens(
-			detailAST, true, TokenTypes.METHOD_CALL);
-
-		for (DetailAST methodCallDetailAST : methodCallDetailASTs) {
-			String methodName = getMethodName(methodCallDetailAST);
-
-			if (methodName.startsWith("get") &&
-				variableName.equals(
-					getClassOrVariableName(methodCallDetailAST))) {
-
-				return true;
-			}
-		}
-
-		return false;
 	}
 
 	private boolean _isAssertion(DetailAST detailAST) {
@@ -157,6 +210,36 @@ public class SizeAssertionOrderCheck extends BaseCheck {
 			methodName.startsWith("get") || methodName.startsWith("is")) {
 
 			return true;
+		}
+
+		return false;
+	}
+
+	private boolean _usesElements(
+		DetailAST detailAST, String variableName,
+		Set<String> elementVariableNames) {
+
+		List<DetailAST> identDetailASTs = getAllChildTokens(
+			detailAST, true, TokenTypes.IDENT);
+
+		for (DetailAST identDetailAST : identDetailASTs) {
+			if (elementVariableNames.contains(identDetailAST.getText())) {
+				return true;
+			}
+		}
+
+		List<DetailAST> methodCallDetailASTs = getAllChildTokens(
+			detailAST, true, TokenTypes.METHOD_CALL);
+
+		for (DetailAST methodCallDetailAST : methodCallDetailASTs) {
+			String methodName = getMethodName(methodCallDetailAST);
+
+			if (methodName.startsWith("get") &&
+				variableName.equals(
+					getClassOrVariableName(methodCallDetailAST))) {
+
+				return true;
+			}
 		}
 
 		return false;

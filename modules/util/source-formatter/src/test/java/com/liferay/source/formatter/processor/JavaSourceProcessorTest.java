@@ -1395,40 +1395,52 @@ public class JavaSourceProcessorTest extends BaseSourceProcessorTestCase {
 				"SizeAssertionOrderTest.testjava"
 			).addExpectedMessage(
 				"Move the size assertion of \"cpdVirtualSettingFileEntries\" " +
-					"after the last statement that uses its elements",
-				36
+					"at line \"46\" after line \"55\", where its elements " +
+						"are last used",
+				46
 			).addExpectedMessage(
-				"Move the size assertion of \"items\" after the last " +
-					"statement that uses its elements",
-				65
+				"Move the size assertion of \"items\" at line \"75\" after " +
+					"line \"81\", where its elements are last used",
+				75
 			).addExpectedMessage(
-				"Move the size assertion of \"logEntries\" after the last " +
-					"statement that uses its elements",
-				80
+				"Move the size assertion of \"logEntries\" at line \"90\" " +
+					"after line \"95\", where its elements are last used",
+				90
 			).addExpectedMessage(
-				"Move the size assertion of \"mappingTypesJSONArray\" after " +
-					"the last statement that uses its elements",
-				92
+				"Move the size assertion of \"mappingTypesJSONArray\" at " +
+					"line \"102\" after line \"119\", where its elements are " +
+						"last used",
+				102
 			).addExpectedMessage(
-				"Move the size assertion of \"subtypesJSONArray\" after the " +
-					"last statement that uses its elements",
-				104
+				"Move the size assertion of \"subtypesJSONArray\" at line " +
+					"\"114\" after line \"119\", where its elements are last " +
+						"used",
+				114
 			).addExpectedMessage(
-				"Move the size assertion of \"names\" after the last " +
-					"statement that uses its elements",
-				131
+				"Move the size assertion of \"names\" at line \"141\" after " +
+					"line \"146\", where its elements are last used",
+				141
 			).addExpectedMessage(
-				"Move the size assertion of \"primaryDropdownItems\" after " +
-					"the last statement that uses its elements",
-				146
+				"Move the size assertion of \"primaryDropdownItems\" at line " +
+					"\"156\" after line \"163\", where its elements are last " +
+						"used",
+				156
 			).addExpectedMessage(
-				"Move the size assertion of \"tags\" after the last " +
-					"statement that uses its elements",
-				177
+				"Move the size assertion of \"tags\" at line \"187\" after " +
+					"line \"195\", where its elements are last used",
+				187
 			).addExpectedMessage(
-				"Move the size assertion of \"values\" after the last " +
-					"statement that uses its elements",
-				205
+				"Move the size assertion of \"logEntries\" at line \"212\" " +
+					"after line \"214\", where its elements are last used",
+				212
+			).addExpectedMessage(
+				"Move the size assertion of \"values\" at line \"234\" after " +
+					"line \"238\", where its elements are last used",
+				234
+			).addExpectedMessage(
+				"Move the size assertion of \"roles\" at line \"253\" after " +
+					"line \"255\", where its elements are last used",
+				253
 			));
 	}
 

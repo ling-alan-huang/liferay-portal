@@ -6,6 +6,7 @@
 package com.liferay.source.formatter.dependencies;
 
 import java.util.List;
+import java.util.Map;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -26,6 +27,15 @@ public class SizeAssertionOrderTest {
 		names.add(name + "2");
 
 		Assert.assertEquals("alpha", name);
+	}
+
+	@Test
+	public void testGetActions() throws Exception {
+		Map<String, Object> actions = _getActions();
+
+		Assert.assertEquals(actions.toString(), 2, actions.size());
+		Assert.assertTrue(actions.containsKey("delete"));
+		Assert.assertTrue(actions.containsKey("get"));
 	}
 
 	@Test
@@ -186,6 +196,25 @@ public class SizeAssertionOrderTest {
 	}
 
 	@Test
+	public void testGetThrowable() throws Exception {
+		List<LogEntry> logEntries = _getLogEntries();
+
+		LogEntry logEntry = logEntries.get(0);
+
+		Throwable throwable = logEntry.getThrowable();
+
+		Assert.assertEquals(
+			StringBundler.concat(
+				"No FileEntry exists with the key {fileEntryId=", _fileEntryId,
+				"}"),
+			throwable.getMessage());
+
+		Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
+
+		Assert.assertSame(NoSuchFileEntryException.class, throwable.getClass());
+	}
+
+	@Test
 	public void testGetUsersByName() throws Exception {
 		List<User> users = _getUsers();
 
@@ -209,6 +238,42 @@ public class SizeAssertionOrderTest {
 		Assert.assertEquals("alpha", value);
 
 		Assert.assertEquals(_expectedValues, values);
+	}
+
+	@Test
+	public void testReassignRole() throws Exception {
+		Role role = _addRole();
+
+		Assert.assertEquals("Guest", role.getName());
+
+		List<Role> roles = _getRoles();
+
+		role = roles.get(0);
+
+		Assert.assertEquals(roles.toString(), 1, roles.size());
+
+		Assert.assertEquals("Administrator", role.getName());
+	}
+
+	@Test
+	public void testRegisterItem() throws Exception {
+		List<Item> items = _getItems();
+
+		Assert.assertEquals(items.toString(), 0, items.size());
+
+		_registerItem();
+
+		Item item = items.get(0);
+
+		Assert.assertEquals("alpha", item.getName());
+	}
+
+	protected Item getItem() throws Exception {
+		List<Item> items = _getItems();
+
+		Assert.assertEquals(items.toString(), 1, items.size());
+
+		return items.get(0);
 	}
 
 }
