@@ -138,8 +138,6 @@ public class CPDefinitionOptionValueRelLocalServiceTest {
 				WorkflowConstants.STATUS_APPROVED, QueryUtil.ALL_POS,
 				QueryUtil.ALL_POS, null);
 
-		Assert.assertEquals(cpInstances.toString(), 3, cpInstances.size());
-
 		CPInstance cpInstance = cpInstances.get(0);
 
 		cpInstance.setExpirationDate(
@@ -149,6 +147,8 @@ public class CPDefinitionOptionValueRelLocalServiceTest {
 
 		Assert.assertEquals(
 			WorkflowConstants.STATUS_APPROVED, cpInstance.getStatus());
+
+		Assert.assertEquals(cpInstances.toString(), 3, cpInstances.size());
 
 		List<CPDefinitionOptionValueRel> cpDefinitionOptionValueRels =
 			_cpDefinitionOptionValueRelLocalService.

@@ -132,8 +132,6 @@ public class SolrSearchEngineAdapterLoggingTest extends BaseIndexingTestCase {
 	private void _assertLogCapture(String expectedLog, LogCapture logCapture) {
 		List<LogEntry> logEntries = logCapture.getLogEntries();
 
-		Assert.assertEquals(logEntries.toString(), 2, logEntries.size());
-
 		LogEntry firstLogEntry = logEntries.get(0);
 
 		Assert.assertEquals(LoggerTestUtil.DEBUG, firstLogEntry.getPriority());
@@ -147,6 +145,8 @@ public class SolrSearchEngineAdapterLoggingTest extends BaseIndexingTestCase {
 		_assertMessage(
 			expectedLog, "The search engine processed",
 			secondLogEntry.getMessage());
+
+		Assert.assertEquals(logEntries.toString(), 2, logEntries.size());
 	}
 
 	private void _assertMessage(

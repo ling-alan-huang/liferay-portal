@@ -838,10 +838,6 @@ public class LayoutLocalServiceCopyLayoutContentTest {
 					layoutPageTemplateStructure.
 						getLayoutPageTemplateStructureId());
 
-		Assert.assertEquals(
-			layoutPageTemplateStructureRels.toString(), 1,
-			layoutPageTemplateStructureRels.size());
-
 		LayoutPageTemplateStructureRel layoutPageTemplateStructureRel =
 			layoutPageTemplateStructureRels.get(0);
 
@@ -849,6 +845,10 @@ public class LayoutLocalServiceCopyLayoutContentTest {
 			_segmentsExperienceLocalService.fetchDefaultSegmentsExperienceId(
 				targetLayout.getPlid()),
 			layoutPageTemplateStructureRel.getSegmentsExperienceId());
+
+		Assert.assertEquals(
+			layoutPageTemplateStructureRels.toString(), 1,
+			layoutPageTemplateStructureRels.size());
 	}
 
 	@Test
@@ -1180,10 +1180,6 @@ public class LayoutLocalServiceCopyLayoutContentTest {
 					getLayoutPageTemplateStructureRelElementVariations(
 						targetLayout.getPlid());
 
-		Assert.assertEquals(
-			targetLayoutPageTemplateStructureRelElementVariations.toString(), 1,
-			targetLayoutPageTemplateStructureRelElementVariations.size());
-
 		LayoutPageTemplateStructureRelElementVariation
 			targetLayoutPageTemplateStructureRelElementVariation =
 				targetLayoutPageTemplateStructureRelElementVariations.get(0);
@@ -1223,6 +1219,10 @@ public class LayoutLocalServiceCopyLayoutContentTest {
 				getTargetElement(),
 			targetLayoutPageTemplateStructureRelElementVariation.
 				getTargetElement());
+
+		Assert.assertEquals(
+			targetLayoutPageTemplateStructureRelElementVariations.toString(), 1,
+			targetLayoutPageTemplateStructureRelElementVariations.size());
 	}
 
 	@Test
@@ -1359,9 +1359,6 @@ public class LayoutLocalServiceCopyLayoutContentTest {
 				targetLayoutSEOEntry.getLayoutSEOEntryId());
 
 		Assert.assertFalse(layoutSEOEntryCustomMetaTags.isEmpty());
-		Assert.assertEquals(
-			layoutSEOEntryCustomMetaTags.toString(), 2,
-			layoutSEOEntryCustomMetaTags.size());
 
 		LayoutSEOEntryCustomMetaTag firstLayoutSEOEntryCustomMetaTag =
 			layoutSEOEntryCustomMetaTags.get(0);
@@ -1382,6 +1379,10 @@ public class LayoutLocalServiceCopyLayoutContentTest {
 			"content2",
 			secondLayoutSEOEntryCustomMetaTag.getContent(
 				LocaleUtil.getSiteDefault()));
+
+		Assert.assertEquals(
+			layoutSEOEntryCustomMetaTags.toString(), 2,
+			layoutSEOEntryCustomMetaTags.size());
 	}
 
 	@Test
@@ -1584,9 +1585,6 @@ public class LayoutLocalServiceCopyLayoutContentTest {
 			_fragmentEntryLinkLocalService.getFragmentEntryLinksByPlid(
 				_group.getGroupId(), draftLayout.getPlid());
 
-		Assert.assertEquals(
-			fragmentEntryLinks.toString(), 1, fragmentEntryLinks.size());
-
 		FragmentEntryLink actualFragmentEntryLink = fragmentEntryLinks.get(0);
 
 		Assert.assertEquals(
@@ -1599,6 +1597,9 @@ public class LayoutLocalServiceCopyLayoutContentTest {
 			actualFragmentEntryLink.getFragmentEntryLinkId());
 
 		_assertFragmentEntryLink(fragmentEntryLink, actualFragmentEntryLink);
+
+		Assert.assertEquals(
+			fragmentEntryLinks.toString(), 1, fragmentEntryLinks.size());
 	}
 
 	private Map<Long, String> _addContentLayouts() throws Exception {

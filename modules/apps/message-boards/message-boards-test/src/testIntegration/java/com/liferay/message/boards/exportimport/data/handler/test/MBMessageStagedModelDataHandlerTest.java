@@ -345,13 +345,13 @@ public class MBMessageStagedModelDataHandlerTest
 		List<StagedModel> dependentStagedModels = dependentStagedModelsMap.get(
 			MBCategory.class.getSimpleName());
 
-		Assert.assertEquals(
-			dependentStagedModels.toString(), 1, dependentStagedModels.size());
-
 		MBCategory category = (MBCategory)dependentStagedModels.get(0);
 
 		_mbCategoryLocalService.getMBCategoryByUuidAndGroupId(
 			category.getUuid(), group.getGroupId());
+
+		Assert.assertEquals(
+			dependentStagedModels.toString(), 1, dependentStagedModels.size());
 	}
 
 	@Override

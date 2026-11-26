@@ -111,8 +111,6 @@ public class JSONServerServletTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Throwable throwable = logEntry.getThrowable();
@@ -120,6 +118,8 @@ public class JSONServerServletTest {
 			Assert.assertSame(ServletException.class, throwable.getClass());
 
 			Assert.assertEquals("Item does not exist.", throwable.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 
 			message = _objectMapper.readValue(
 				mockHttpServletResponse.getContentAsString(), HashMap.class);
@@ -141,8 +141,6 @@ public class JSONServerServletTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Throwable throwable = logEntry.getThrowable();
@@ -151,6 +149,8 @@ public class JSONServerServletTest {
 
 			Assert.assertEquals(
 				"The input is invalid.", throwable.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 
 			message = _objectMapper.readValue(
 				mockHttpServletResponse.getContentAsString(), HashMap.class);
@@ -174,8 +174,6 @@ public class JSONServerServletTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Throwable throwable = logEntry.getThrowable();
@@ -185,6 +183,8 @@ public class JSONServerServletTest {
 
 			Assert.assertEquals(
 				"Missing ID in path /meat/pork", throwable.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 
 			message = _objectMapper.readValue(
 				mockHttpServletResponse.getContentAsString(), HashMap.class);
@@ -235,8 +235,6 @@ public class JSONServerServletTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Throwable throwable = logEntry.getThrowable();
@@ -245,6 +243,8 @@ public class JSONServerServletTest {
 
 			Assert.assertEquals(
 				"Unknown ID in path /meat/pork/2", throwable.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 
 			message = _objectMapper.readValue(
 				mockHttpServletResponse.getContentAsString(), HashMap.class);
@@ -275,8 +275,6 @@ public class JSONServerServletTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Throwable throwable = logEntry.getThrowable();
@@ -287,6 +285,8 @@ public class JSONServerServletTest {
 			Assert.assertEquals(
 				"Missing application name in path null",
 				throwable.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 
 			Map<String, Object> message = _objectMapper.readValue(
 				mockHttpServletResponse.getContentAsString(), HashMap.class);
@@ -310,8 +310,6 @@ public class JSONServerServletTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Throwable throwable = logEntry.getThrowable();
@@ -321,6 +319,8 @@ public class JSONServerServletTest {
 
 			Assert.assertEquals(
 				"Missing model name in path /fruit", throwable.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 
 			Map<String, Object> message = _objectMapper.readValue(
 				mockHttpServletResponse.getContentAsString(), HashMap.class);
@@ -370,8 +370,6 @@ public class JSONServerServletTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Throwable throwable = logEntry.getThrowable();
@@ -380,6 +378,8 @@ public class JSONServerServletTest {
 
 			Assert.assertEquals(
 				"The item is out of stock.", throwable.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 
 			message = _objectMapper.readValue(
 				mockHttpServletResponse.getContentAsString(), HashMap.class);
@@ -402,8 +402,6 @@ public class JSONServerServletTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Throwable throwable = logEntry.getThrowable();
@@ -412,6 +410,8 @@ public class JSONServerServletTest {
 
 			Assert.assertEquals(
 				"The input is invalid.", throwable.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 
 			message = _objectMapper.readValue(
 				mockHttpServletResponse.getContentAsString(), HashMap.class);
@@ -433,8 +433,6 @@ public class JSONServerServletTest {
 		List<Map<String, Object>> oranges = _objectMapper.readValue(
 			mockHttpServletResponse.getContentAsString(), List.class);
 
-		Assert.assertEquals(oranges.toString(), 2, oranges.size());
-
 		Map<String, Object> orange1 = oranges.get(0);
 
 		Assert.assertEquals(1, orange1.get("id"));
@@ -444,6 +442,8 @@ public class JSONServerServletTest {
 
 		Assert.assertEquals(2, orange2.get("id"));
 		Assert.assertEquals("Blood Orange", orange2.get("name"));
+
+		Assert.assertEquals(oranges.toString(), 2, oranges.size());
 
 		// /fruit/orange/2
 
@@ -474,8 +474,6 @@ public class JSONServerServletTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Throwable throwable = logEntry.getThrowable();
@@ -484,6 +482,8 @@ public class JSONServerServletTest {
 
 			Assert.assertEquals(
 				"Unknown ID in path /fruit/orange/3", throwable.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 
 			message = _objectMapper.readValue(
 				mockHttpServletResponse.getContentAsString(), HashMap.class);
@@ -509,12 +509,12 @@ public class JSONServerServletTest {
 		List<Map<String, Object>> maps = _objectMapper.readValue(
 			mockHttpServletResponse.getContentAsString(), List.class);
 
-		Assert.assertEquals(maps.toString(), 1, maps.size());
-
 		Map<String, Object> map = maps.get(0);
 
 		Assert.assertEquals(1, map.get("id"));
 		Assert.assertEquals("Merlot", map.get("name"));
+
+		Assert.assertEquals(maps.toString(), 1, maps.size());
 	}
 
 	@Test
@@ -539,8 +539,6 @@ public class JSONServerServletTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Throwable throwable = logEntry.getThrowable();
@@ -548,6 +546,8 @@ public class JSONServerServletTest {
 			Assert.assertSame(ServletException.class, throwable.getClass());
 
 			Assert.assertEquals("Unripen banana :(", throwable.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 
 			Map<String, Object> message = _objectMapper.readValue(
 				mockHttpServletResponse.getContentAsString(), HashMap.class);
@@ -582,8 +582,6 @@ public class JSONServerServletTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Throwable throwable = logEntry.getThrowable();
@@ -592,6 +590,8 @@ public class JSONServerServletTest {
 
 			Assert.assertEquals(
 				"The input is invalid.", throwable.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 
 			message = _objectMapper.readValue(
 				mockHttpServletResponse.getContentAsString(), HashMap.class);
@@ -692,8 +692,6 @@ public class JSONServerServletTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Throwable throwable = logEntry.getThrowable();
@@ -701,6 +699,8 @@ public class JSONServerServletTest {
 			Assert.assertSame(ServletException.class, throwable.getClass());
 
 			Assert.assertEquals("Item does not exist.", throwable.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 
 			message = _objectMapper.readValue(
 				mockHttpServletResponse.getContentAsString(), HashMap.class);
@@ -722,8 +722,6 @@ public class JSONServerServletTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Throwable throwable = logEntry.getThrowable();
@@ -732,6 +730,8 @@ public class JSONServerServletTest {
 
 			Assert.assertEquals(
 				"The input is invalid.", throwable.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 
 			message = _objectMapper.readValue(
 				mockHttpServletResponse.getContentAsString(), HashMap.class);
@@ -756,14 +756,14 @@ public class JSONServerServletTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Throwable throwable = logEntry.getThrowable();
 
 			Assert.assertSame(ServletException.class, throwable.getClass());
 			Assert.assertEquals("Unknown ID 2", throwable.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 
 			message = _objectMapper.readValue(
 				mockHttpServletResponse.getContentAsString(), HashMap.class);
@@ -786,8 +786,6 @@ public class JSONServerServletTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Throwable throwable = logEntry.getThrowable();
@@ -795,6 +793,8 @@ public class JSONServerServletTest {
 			Assert.assertSame(ServletException.class, throwable.getClass());
 			Assert.assertEquals(
 				"Missing ID {name=Rainbow Trout}", throwable.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 
 			message = _objectMapper.readValue(
 				mockHttpServletResponse.getContentAsString(), HashMap.class);

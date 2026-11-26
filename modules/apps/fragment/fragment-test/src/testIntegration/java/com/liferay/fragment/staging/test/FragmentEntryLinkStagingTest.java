@@ -306,8 +306,6 @@ public class FragmentEntryLinkStagingTest {
 			liveFragmentEntryLink.getFragmentEntryLinkId(),
 			WorkflowConstants.STATUS_ANY, QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 
-		Assert.assertEquals(rootComments.toString(), 1, rootComments.size());
-
 		Comment rootComment = rootComments.get(0);
 
 		Assert.assertEquals(body, rootComment.getBody());
@@ -321,11 +319,13 @@ public class FragmentEntryLinkStagingTest {
 			rootComment.getCommentId(), WorkflowConstants.STATUS_ANY,
 			QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 
-		Assert.assertEquals(childComments.toString(), 1, childComments.size());
-
 		Comment childComment = childComments.get(0);
 
 		Assert.assertEquals(childBody, childComment.getBody());
+
+		Assert.assertEquals(childComments.toString(), 1, childComments.size());
+
+		Assert.assertEquals(rootComments.toString(), 1, rootComments.size());
 	}
 
 	@Test

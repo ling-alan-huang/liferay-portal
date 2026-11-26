@@ -83,9 +83,6 @@ public class DDMFormValuesJSONDeserializerTest extends BaseDDMTestCase {
 		Map<String, List<DDMFormFieldValue>> ddmFormFieldValuesMap =
 			ddmFormValues.getDDMFormFieldValuesMap();
 
-		Assert.assertEquals(
-			ddmFormFieldValuesMap.toString(), 2, ddmFormFieldValuesMap.size());
-
 		List<DDMFormFieldValue> ddmFormFieldValues = ddmFormFieldValuesMap.get(
 			"Text1");
 
@@ -105,6 +102,9 @@ public class DDMFormValuesJSONDeserializerTest extends BaseDDMTestCase {
 
 		Assert.assertTrue(value instanceof LocalizedValue);
 		Assert.assertEquals("[]", value.getString(value.getDefaultLocale()));
+
+		Assert.assertEquals(
+			ddmFormFieldValuesMap.toString(), 2, ddmFormFieldValuesMap.size());
 	}
 
 	@Test
@@ -117,9 +117,6 @@ public class DDMFormValuesJSONDeserializerTest extends BaseDDMTestCase {
 
 		Map<String, List<DDMFormFieldValue>> ddmFormFieldValuesMap =
 			ddmFormValues.getDDMFormFieldValuesMap();
-
-		Assert.assertEquals(
-			ddmFormFieldValuesMap.toString(), 4, ddmFormFieldValuesMap.size());
 
 		List<DDMFormFieldValue> ddmFormFieldValues = ddmFormFieldValuesMap.get(
 			"Text1");
@@ -154,6 +151,9 @@ public class DDMFormValuesJSONDeserializerTest extends BaseDDMTestCase {
 		Assert.assertEquals(
 			ddmFormFieldValues.toString(), "yhKiArYe",
 			ddmFormFieldValue.getInstanceId());
+
+		Assert.assertEquals(
+			ddmFormFieldValuesMap.toString(), 4, ddmFormFieldValuesMap.size());
 	}
 
 	@Test
@@ -309,9 +309,6 @@ public class DDMFormValuesJSONDeserializerTest extends BaseDDMTestCase {
 		List<DDMFormFieldValue> ddmFormFieldValues =
 			ddmFormValues.getDDMFormFieldValues();
 
-		Assert.assertEquals(
-			ddmFormFieldValues.toString(), 2, ddmFormFieldValues.size());
-
 		DDMFormFieldValue booleanDDMFormFieldValue = ddmFormFieldValues.get(0);
 
 		Assert.assertEquals("usht", booleanDDMFormFieldValue.getInstanceId());
@@ -347,6 +344,9 @@ public class DDMFormValuesJSONDeserializerTest extends BaseDDMTestCase {
 		JSONAssert.assertEquals(
 			expectedJSONObject.toString(),
 			documentLibraryValue.getString(LocaleUtil.BRAZIL), false);
+
+		Assert.assertEquals(
+			ddmFormFieldValues.toString(), 2, ddmFormFieldValues.size());
 	}
 
 	protected DDMFormValues deserialize(String content, DDMForm ddmForm) {

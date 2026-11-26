@@ -2713,10 +2713,6 @@ public class CustomFieldsUtilTest {
 			_exportImportReportEntryLocalService.getExportImportReportEntries(
 				TestPropsValues.getCompanyId(), exportImportConfigurationId);
 
-		Assert.assertEquals(
-			exportImportReportEntries.toString(), 21,
-			exportImportReportEntries.size());
-
 		ExportImportReportEntry exportImportReportEntry =
 			exportImportReportEntries.get(0);
 
@@ -2752,6 +2748,10 @@ public class CustomFieldsUtilTest {
 		Assert.assertEquals(
 			ExportImportReportEntryConstants.STATUS_UNRESOLVED,
 			exportImportReportEntry.getStatus());
+
+		Assert.assertEquals(
+			exportImportReportEntries.toString(), 21,
+			exportImportReportEntries.size());
 	}
 
 	private ExpandoColumn _addExpandoColumn(

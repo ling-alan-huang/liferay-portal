@@ -94,9 +94,6 @@ public class CTEntryConflictHelperTest {
 		List<ConflictInfo> dlFileEntryConflictInfos = conflictInfosMap.get(
 			_classNameLocalService.getClassNameId(DLFileEntry.class));
 
-		Assert.assertEquals(
-			conflictInfosMap.toString(), 1, dlFileEntryConflictInfos.size());
-
 		ConflictInfo conflictInfo = dlFileEntryConflictInfos.get(0);
 
 		Assert.assertEquals(
@@ -108,6 +105,9 @@ public class CTEntryConflictHelperTest {
 				conflictInfo.getResourceBundle(LocaleUtil.ENGLISH)));
 		Assert.assertEquals(
 			conflictInfo.getSourcePrimaryKey(), dlFileEntry.getFileEntryId());
+
+		Assert.assertEquals(
+			conflictInfosMap.toString(), 1, dlFileEntryConflictInfos.size());
 	}
 
 	@Test

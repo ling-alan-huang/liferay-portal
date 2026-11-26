@@ -59,9 +59,6 @@ public class ClusterExecutorImplTest extends BaseClusterTestCase {
 		List<TestClusterChannel> clusterChannels =
 			TestClusterChannel.getClusterChannels();
 
-		Assert.assertEquals(
-			clusterChannels.toString(), 1, clusterChannels.size());
-
 		TestClusterChannel clusterChannel = clusterChannels.get(0);
 
 		ExecutorService executorService =
@@ -74,6 +71,10 @@ public class ClusterExecutorImplTest extends BaseClusterTestCase {
 		clusterExecutorImpl.deactivate();
 
 		Assert.assertTrue(clusterChannel.isClosed());
+
+		Assert.assertEquals(
+			clusterChannels.toString(), 1, clusterChannels.size());
+
 		Assert.assertTrue(executorService.isShutdown());
 	}
 
@@ -200,13 +201,14 @@ public class ClusterExecutorImplTest extends BaseClusterTestCase {
 
 		Assert.assertTrue(
 			multicastMessages.toString(), multicastMessages.isEmpty());
-		Assert.assertEquals(
-			unicastMessages.toString(), 1, unicastMessages.size());
 
 		ObjectValuePair<Serializable, Address> receivedMessage =
 			unicastMessages.get(0);
 
 		Assert.assertEquals(clusterRequest, receivedMessage.getKey());
+
+		Assert.assertEquals(
+			unicastMessages.toString(), 1, unicastMessages.size());
 	}
 
 	@Test

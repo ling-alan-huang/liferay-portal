@@ -134,8 +134,6 @@ public class JournalArticleAssetEntryClassTypeIdUpgradeProcessTest
 		List<LogEntry> logEntries = _getRunUpgradeLogEntries(
 			LoggerTestUtil.DEBUG);
 
-		Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 		LogEntry logEntry = logEntries.get(0);
 
 		Assert.assertEquals(LoggerTestUtil.DEBUG, logEntry.getPriority());
@@ -143,6 +141,8 @@ public class JournalArticleAssetEntryClassTypeIdUpgradeProcessTest
 		Assert.assertEquals(
 			"No asset entries with the wrong class type ID were found",
 			logEntry.getMessage());
+
+		Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 
 		_assertClassTypeId(approvedJournalArticle, draftJournalArticle);
 	}
@@ -288,8 +288,6 @@ public class JournalArticleAssetEntryClassTypeIdUpgradeProcessTest
 		List<LogEntry> logEntries, long expectedClassTypeId,
 		long wrongClassTypeId, long... classPKs) {
 
-		Assert.assertEquals(logEntries.toString(), 2, logEntries.size());
-
 		LogEntry logEntry1 = logEntries.get(0);
 
 		Assert.assertEquals(LoggerTestUtil.WARN, logEntry1.getPriority());
@@ -334,6 +332,8 @@ public class JournalArticleAssetEntryClassTypeIdUpgradeProcessTest
 				expectedEntryIds.toString(),
 				expectedEntryIds.contains(GetterUtil.getLong(entryId)));
 		}
+
+		Assert.assertEquals(logEntries.toString(), 2, logEntries.size());
 	}
 
 	private List<LogEntry> _getRunUpgradeLogEntries(String logPriority)

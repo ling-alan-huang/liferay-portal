@@ -158,8 +158,6 @@ public class GetLayoutReportsDataStrutsActionTest {
 
 		Assert.assertNotNull(segmentsExperiencesJSONArray);
 
-		Assert.assertEquals(2, segmentsExperiencesJSONArray.length());
-
 		JSONObject segmentsExperienceJSONObject =
 			segmentsExperiencesJSONArray.getJSONObject(1);
 
@@ -183,6 +181,8 @@ public class GetLayoutReportsDataStrutsActionTest {
 			segmentsExperienceJSONObject.getString("segmentsExperienceName"));
 		Assert.assertEquals(
 			"Inactive", segmentsExperienceJSONObject.getString("statusLabel"));
+
+		Assert.assertEquals(2, segmentsExperiencesJSONArray.length());
 	}
 
 	@Test

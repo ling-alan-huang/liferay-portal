@@ -127,9 +127,6 @@ public class DepotEntryGroupRelServiceTest {
 					group.getGroupId(), DepotConstants.TYPE_ASSET_LIBRARY, 0,
 					20);
 
-			Assert.assertEquals(
-				depotEntryGroupRels.toString(), 1, depotEntryGroupRels.size());
-
 			DepotEntryGroupRel depotEntryGroupRel = depotEntryGroupRels.get(0);
 
 			Assert.assertEquals(
@@ -137,6 +134,9 @@ public class DepotEntryGroupRelServiceTest {
 				depotEntryGroupRel.getDepotEntryId());
 			Assert.assertEquals(
 				group.getGroupId(), depotEntryGroupRel.getToGroupId());
+
+			Assert.assertEquals(
+				depotEntryGroupRels.toString(), 1, depotEntryGroupRels.size());
 		}
 		finally {
 			_groupLocalService.deleteGroup(group);

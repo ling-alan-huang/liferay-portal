@@ -134,9 +134,6 @@ public class SegmentsEntryReindexMessageListenerTest {
 				_segmentsEntryRelLocalService.getSegmentsEntryRels(
 					_segmentsEntry.getSegmentsEntryId());
 
-			Assert.assertEquals(
-				segmentsEntryRels.toString(), 1, segmentsEntryRels.size());
-
 			SegmentsEntryRel segmentsEntryRel = segmentsEntryRels.get(0);
 
 			Assert.assertEquals(
@@ -144,6 +141,9 @@ public class SegmentsEntryReindexMessageListenerTest {
 			Assert.assertEquals(
 				_segmentsEntry.getSegmentsEntryId(),
 				segmentsEntryRel.getSegmentsEntryId());
+
+			Assert.assertEquals(
+				segmentsEntryRels.toString(), 1, segmentsEntryRels.size());
 
 			_serviceContext.setRequest(new MockHttpServletRequest());
 
@@ -188,14 +188,14 @@ public class SegmentsEntryReindexMessageListenerTest {
 			OrderByComparatorFactoryUtil.create(
 				"SegmentsEntryRel", "classPK", true));
 
-		Assert.assertEquals(
-			segmentsEntryRels.toString(), 2, segmentsEntryRels.size());
-
 		SegmentsEntryRel segmentsEntryRel2 = segmentsEntryRels.get(0);
 		SegmentsEntryRel segmentsEntryRel3 = segmentsEntryRels.get(1);
 
 		Assert.assertEquals(_user1.getUserId(), segmentsEntryRel2.getClassPK());
 		Assert.assertEquals(_user2.getUserId(), segmentsEntryRel3.getClassPK());
+
+		Assert.assertEquals(
+			segmentsEntryRels.toString(), 2, segmentsEntryRels.size());
 	}
 
 	@Test
@@ -228,12 +228,12 @@ public class SegmentsEntryReindexMessageListenerTest {
 		segmentsEntryRels = _segmentsEntryRelLocalService.getSegmentsEntryRels(
 			_segmentsEntry.getSegmentsEntryId());
 
-		Assert.assertEquals(
-			segmentsEntryRels.toString(), 1, segmentsEntryRels.size());
-
 		SegmentsEntryRel segmentsEntryRel3 = segmentsEntryRels.get(0);
 
 		Assert.assertEquals(_user1.getUserId(), segmentsEntryRel3.getClassPK());
+
+		Assert.assertEquals(
+			segmentsEntryRels.toString(), 1, segmentsEntryRels.size());
 	}
 
 	private void _invokeMessageListener() throws Exception {

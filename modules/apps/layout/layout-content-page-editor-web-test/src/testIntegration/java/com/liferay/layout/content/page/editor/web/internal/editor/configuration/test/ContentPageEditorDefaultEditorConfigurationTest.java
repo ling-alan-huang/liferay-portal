@@ -165,10 +165,6 @@ public class ContentPageEditorDefaultEditorConfigurationTest {
 		JSONArray selectionsStylesJSONArray = stylesJSONObject.getJSONArray(
 			"selections");
 
-		Assert.assertEquals(
-			selectionsStylesJSONArray.toString(), 4,
-			selectionsStylesJSONArray.length());
-
 		JSONObject selectionsStylesJSONObject =
 			selectionsStylesJSONArray.getJSONObject(0);
 
@@ -217,6 +213,10 @@ public class ContentPageEditorDefaultEditorConfigurationTest {
 				"test", "AlloyEditor.SelectionTest.table"
 			).toString(),
 			selectionsStylesJSONObject.toString());
+
+		Assert.assertEquals(
+			selectionsStylesJSONArray.toString(), 4,
+			selectionsStylesJSONArray.length());
 	}
 
 	private JSONObject _getEditorConfigurationConfigJSONObject(

@@ -103,8 +103,6 @@ public class ViewPIMConnectorsDisplayContextTest {
 			viewPIMConnectorsDisplayContext.getCreationMenu(),
 			"_primaryDropdownItems");
 
-		Assert.assertEquals(dropdownItems.toString(), 1, dropdownItems.size());
-
 		DropdownItem dropdownItem = dropdownItems.get(0);
 
 		Assert.assertEquals(
@@ -112,6 +110,8 @@ public class ViewPIMConnectorsDisplayContextTest {
 				URLCodec.encodeURL(_URL_CURRENT),
 			dropdownItem.get("href"));
 		Assert.assertEquals("New", dropdownItem.get("label"));
+
+		Assert.assertEquals(dropdownItems.toString(), 1, dropdownItems.size());
 	}
 
 	@Test
@@ -217,10 +217,6 @@ public class ViewPIMConnectorsDisplayContextTest {
 		List<FDSActionDropdownItem> fdsActionDropdownItems =
 			viewPIMConnectorsDisplayContext.getFDSActionDropdownItems();
 
-		Assert.assertEquals(
-			fdsActionDropdownItems.toString(), 5,
-			fdsActionDropdownItems.size());
-
 		FDSActionDropdownItem fdsActionDropdownItem =
 			fdsActionDropdownItems.get(0);
 
@@ -307,6 +303,10 @@ public class ViewPIMConnectorsDisplayContextTest {
 		Assert.assertEquals("delete", data.get("id"));
 		Assert.assertNull(data.get("method"));
 		Assert.assertEquals("delete", data.get("permissionKey"));
+
+		Assert.assertEquals(
+			fdsActionDropdownItems.toString(), 5,
+			fdsActionDropdownItems.size());
 	}
 
 	private ThemeDisplay _mockThemeDisplay() {

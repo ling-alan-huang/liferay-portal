@@ -479,10 +479,6 @@ public class JournalContentExportImportTest
 				layoutClassedModelUsage ->
 					layoutClassedModelUsage.getPlid() == plid);
 
-		Assert.assertEquals(
-			layoutClassedModelUsages.toString(), 1,
-			layoutClassedModelUsages.size());
-
 		LayoutClassedModelUsage layoutClassedModelUsage =
 			layoutClassedModelUsages.get(0);
 
@@ -491,6 +487,10 @@ public class JournalContentExportImportTest
 		Assert.assertEquals(
 			_portal.getClassNameId(Portlet.class),
 			layoutClassedModelUsage.getContainerType());
+
+		Assert.assertEquals(
+			layoutClassedModelUsages.toString(), 1,
+			layoutClassedModelUsages.size());
 	}
 
 	private void _exportImportSelectedArticle(

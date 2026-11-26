@@ -63,10 +63,6 @@ public class AssetVocabularyModelListenerTest {
 					assetVocabulary.getVocabularyId(),
 					DepotConstants.TYPE_PROJECT);
 
-		Assert.assertEquals(
-			projectAssetVocabularyGroupRels.toString(), 1,
-			projectAssetVocabularyGroupRels.size());
-
 		AssetVocabularyGroupRel projectAssetVocabularyGroupRel =
 			projectAssetVocabularyGroupRels.get(0);
 
@@ -74,15 +70,15 @@ public class AssetVocabularyModelListenerTest {
 			GroupConstants.GROUP_ID_ALL,
 			projectAssetVocabularyGroupRel.getGroupId());
 
+		Assert.assertEquals(
+			projectAssetVocabularyGroupRels.toString(), 1,
+			projectAssetVocabularyGroupRels.size());
+
 		List<AssetVocabularyGroupRel> spaceAssetVocabularyGroupRels =
 			_assetVocabularyGroupRelLocalService.
 				getAssetVocabularyGroupRelsByVocabularyIdAndDepotEntryType(
 					assetVocabulary.getVocabularyId(),
 					DepotConstants.TYPE_SPACE);
-
-		Assert.assertEquals(
-			spaceAssetVocabularyGroupRels.toString(), 1,
-			spaceAssetVocabularyGroupRels.size());
 
 		AssetVocabularyGroupRel spaceAssetVocabularyGroupRel =
 			spaceAssetVocabularyGroupRels.get(0);
@@ -90,6 +86,10 @@ public class AssetVocabularyModelListenerTest {
 		Assert.assertEquals(
 			GroupConstants.GROUP_ID_ALL,
 			spaceAssetVocabularyGroupRel.getGroupId());
+
+		Assert.assertEquals(
+			spaceAssetVocabularyGroupRels.toString(), 1,
+			spaceAssetVocabularyGroupRels.size());
 	}
 
 	@Inject

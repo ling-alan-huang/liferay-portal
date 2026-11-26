@@ -66,14 +66,14 @@ public class OSBAccountEntryUtilTest {
 		List<OSBOfferingEntry> osbOfferingEntries =
 			osbAccountEntry.getOfferingEntries();
 
-		Assert.assertEquals(
-			osbOfferingEntries.toString(), 1, osbOfferingEntries.size());
-
 		OSBOfferingEntry rebuiltOSBOfferingEntry = osbOfferingEntries.get(0);
 
 		Assert.assertEquals(
 			ProductConstants.PRODUCT_ENTRY_ID_ENTERPRISE,
 			rebuiltOSBOfferingEntry.getProductEntryId());
+
+		Assert.assertEquals(
+			osbOfferingEntries.toString(), 1, osbOfferingEntries.size());
 	}
 
 	@Test
@@ -108,9 +108,6 @@ public class OSBAccountEntryUtilTest {
 		List<OSBOfferingEntry> osbOfferingEntries =
 			osbAccountEntry.getOfferingEntries();
 
-		Assert.assertEquals(
-			osbOfferingEntries.toString(), 1, osbOfferingEntries.size());
-
 		OSBOfferingEntry rebuiltOSBOfferingEntry = osbOfferingEntries.get(0);
 
 		Assert.assertEquals(
@@ -121,6 +118,9 @@ public class OSBAccountEntryUtilTest {
 			ProductConstants.OSB_OFFERING_ENTRY_STATUS_ACTIVE,
 			rebuiltOSBOfferingEntry.getStatus());
 		Assert.assertNotNull(rebuiltOSBOfferingEntry.getStartDate());
+
+		Assert.assertEquals(
+			osbOfferingEntries.toString(), 1, osbOfferingEntries.size());
 	}
 
 	@Test
@@ -167,14 +167,14 @@ public class OSBAccountEntryUtilTest {
 		List<OSBOfferingEntry> osbOfferingEntries =
 			osbAccountEntry.getOfferingEntries();
 
-		Assert.assertEquals(
-			osbOfferingEntries.toString(), 1, osbOfferingEntries.size());
-
 		OSBOfferingEntry rebuiltOSBOfferingEntry = osbOfferingEntries.get(0);
 
 		Assert.assertEquals(
 			ProductConstants.SALESFORCE_PRODUCT_ID_ENTERPRISE,
 			rebuiltOSBOfferingEntry.getProductEntryId());
+
+		Assert.assertEquals(
+			osbOfferingEntries.toString(), 1, osbOfferingEntries.size());
 	}
 
 }

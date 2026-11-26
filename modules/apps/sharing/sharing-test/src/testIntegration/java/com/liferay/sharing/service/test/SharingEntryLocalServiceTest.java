@@ -1327,12 +1327,12 @@ public class SharingEntryLocalServiceTest {
 				_fromUser.getUserId(), _classNameId, 0, 2,
 				SharingEntryModifiedDateComparator.getInstance(false));
 
-		Assert.assertEquals(
-			sharingEntries.toString(), 1, sharingEntries.size());
-
 		SharingEntry sharingEntry = sharingEntries.get(0);
 
 		Assert.assertEquals(latestSharingEntry, sharingEntry);
+
+		Assert.assertEquals(
+			sharingEntries.toString(), 1, sharingEntries.size());
 	}
 
 	@Test(expected = NoSuchEntryException.class)

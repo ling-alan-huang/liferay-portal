@@ -63,8 +63,6 @@ public class CommonStylesUtilTest {
 					"cssVariableMapping", RandomTestUtil.randomString())
 			));
 
-		Assert.assertEquals(1, customFrontendTokensJSONObject.length());
-
 		JSONObject customFrontendTokenJSONObject =
 			customFrontendTokensJSONObject.getJSONObject(name);
 
@@ -72,6 +70,8 @@ public class CommonStylesUtilTest {
 			cssVariable,
 			customFrontendTokenJSONObject.getString(
 				FrontendTokenMapping.TYPE_CSS_VARIABLE));
+
+		Assert.assertEquals(1, customFrontendTokensJSONObject.length());
 	}
 
 	private String _getCustomFrontendTokenKey(String name) {

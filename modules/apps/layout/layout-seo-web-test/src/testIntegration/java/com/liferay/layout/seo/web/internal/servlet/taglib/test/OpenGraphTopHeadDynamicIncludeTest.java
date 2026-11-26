@@ -1906,8 +1906,6 @@ public class OpenGraphTopHeadDynamicIncludeTest {
 			Elements localeAlternateLinkElements = alternateLinkElements.select(
 				"[hrefLang='" + LocaleUtil.toW3cLanguageId(locale) + "']");
 
-			Assert.assertEquals(1, localeAlternateLinkElements.size());
-
 			Element localeAlternateLinkElement =
 				localeAlternateLinkElements.get(0);
 
@@ -1916,6 +1914,8 @@ public class OpenGraphTopHeadDynamicIncludeTest {
 					PortalUtil.getCanonicalURL("", _getThemeDisplay(), _layout),
 					_getThemeDisplay(), locale, _layout),
 				localeAlternateLinkElement.attr("href"));
+
+			Assert.assertEquals(1, localeAlternateLinkElements.size());
 		}
 	}
 
@@ -1938,8 +1938,6 @@ public class OpenGraphTopHeadDynamicIncludeTest {
 			Elements localeAlternateLinkElements = alternateLinkElements.select(
 				"[hrefLang='" + LocaleUtil.toW3cLanguageId(locale) + "']");
 
-			Assert.assertEquals(1, localeAlternateLinkElements.size());
-
 			Element localeAlternateLinkElement =
 				localeAlternateLinkElements.get(0);
 
@@ -1953,6 +1951,8 @@ public class OpenGraphTopHeadDynamicIncludeTest {
 						locale, themeDisplay),
 					themeDisplay, locale, _layout),
 				localeAlternateLinkElement.attr("href"));
+
+			Assert.assertEquals(1, localeAlternateLinkElements.size());
 		}
 	}
 
@@ -1998,11 +1998,12 @@ public class OpenGraphTopHeadDynamicIncludeTest {
 		Elements elements = document.select("link[rel='canonical']");
 
 		Assert.assertNotNull(elements);
-		Assert.assertEquals(1, elements.size());
 
 		Element element = elements.get(0);
 
 		Assert.assertEquals(href, element.attr("href"));
+
+		Assert.assertEquals(1, elements.size());
 	}
 
 	private void _assertIncludeTitleAndDescription(
@@ -2071,11 +2072,12 @@ public class OpenGraphTopHeadDynamicIncludeTest {
 				"meta[", attributeName, "='", attributeValue, "']"));
 
 		Assert.assertNotNull(elements);
-		Assert.assertEquals(1, elements.size());
 
 		Element element = elements.get(0);
 
 		Assert.assertEquals(content, element.attr("content"));
+
+		Assert.assertEquals(1, elements.size());
 	}
 
 	private void _assertNoLinkElements(Document document, String rel) {

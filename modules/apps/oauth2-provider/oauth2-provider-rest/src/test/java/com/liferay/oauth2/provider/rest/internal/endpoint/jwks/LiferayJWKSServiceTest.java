@@ -121,12 +121,12 @@ public class LiferayJWKSServiceTest {
 
 		List<JsonWebKey> jsonWebKeysList = jsonWebKeys.getKeys();
 
-		Assert.assertEquals(
-			jsonWebKeysList.toString(), 1, jsonWebKeysList.size());
-
 		JsonWebKey jsonWebKey = jsonWebKeysList.get(0);
 
 		Assert.assertEquals(publicJsonWebKey.asMap(), jsonWebKey.asMap());
+
+		Assert.assertEquals(
+			jsonWebKeysList.toString(), 1, jsonWebKeysList.size());
 	}
 
 }

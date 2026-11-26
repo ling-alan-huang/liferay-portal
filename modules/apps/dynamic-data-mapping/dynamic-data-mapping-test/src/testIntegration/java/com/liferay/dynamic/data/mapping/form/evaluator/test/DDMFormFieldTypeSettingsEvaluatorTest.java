@@ -114,12 +114,12 @@ public class DDMFormFieldTypeSettingsEvaluatorTest {
 			(List<KeyValuePair>)
 				ddmDataProviderInstanceOutputFielPropertyChanges.get("options");
 
-		Assert.assertEquals(
-			optionKeyValuePairs.toString(), 1, optionKeyValuePairs.size());
-
 		KeyValuePair keyValuePair = optionKeyValuePairs.get(0);
 
 		Assert.assertEquals("Countries", keyValuePair.getValue());
+
+		Assert.assertEquals(
+			optionKeyValuePairs.toString(), 1, optionKeyValuePairs.size());
 	}
 
 	@Test

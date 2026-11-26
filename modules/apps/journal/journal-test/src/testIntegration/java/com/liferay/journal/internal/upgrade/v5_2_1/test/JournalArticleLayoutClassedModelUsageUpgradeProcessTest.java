@@ -216,10 +216,6 @@ public class JournalArticleLayoutClassedModelUsageUpgradeProcessTest {
 			_layoutClassedModelUsageLocalService.
 				getLayoutClassedModelUsagesByPlid(layout.getPlid());
 
-		Assert.assertEquals(
-			layoutClassedModelUsages.toString(), 1,
-			layoutClassedModelUsages.size());
-
 		LayoutClassedModelUsage layoutClassedModelUsage =
 			layoutClassedModelUsages.get(0);
 
@@ -232,6 +228,10 @@ public class JournalArticleLayoutClassedModelUsageUpgradeProcessTest {
 			layoutClassedModelUsage.getContainerType(),
 			layoutRevision.getLayoutRevisionId(),
 			ServiceContextThreadLocal.getServiceContext());
+
+		Assert.assertEquals(
+			layoutClassedModelUsages.toString(), 1,
+			layoutClassedModelUsages.size());
 
 		_assertLayoutClassedModelUsagesByPlidCount(1, layout.getPlid());
 
@@ -403,10 +403,6 @@ public class JournalArticleLayoutClassedModelUsageUpgradeProcessTest {
 			_layoutClassedModelUsageLocalService.
 				getLayoutClassedModelUsagesByPlid(layout.getPlid());
 
-		Assert.assertEquals(
-			layoutClassedModelUsages.toString(), 1,
-			layoutClassedModelUsages.size());
-
 		LayoutClassedModelUsage layoutClassedModelUsage =
 			layoutClassedModelUsages.get(0);
 
@@ -414,6 +410,10 @@ public class JournalArticleLayoutClassedModelUsageUpgradeProcessTest {
 
 		_layoutClassedModelUsageLocalService.updateLayoutClassedModelUsage(
 			layoutClassedModelUsage);
+
+		Assert.assertEquals(
+			layoutClassedModelUsages.toString(), 1,
+			layoutClassedModelUsages.size());
 
 		_assertLayoutClassedModelUsagesByPlidCount(0, layout.getPlid());
 

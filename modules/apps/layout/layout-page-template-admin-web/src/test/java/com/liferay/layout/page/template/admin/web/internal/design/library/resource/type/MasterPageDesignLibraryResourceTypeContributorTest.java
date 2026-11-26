@@ -98,10 +98,6 @@ public class MasterPageDesignLibraryResourceTypeContributorTest {
 					getCreationItems(
 						_httpServletRequest, _depotEntry, _BACK_URL);
 
-		Assert.assertEquals(
-			designLibraryResourceCreationItems.toString(), 1,
-			designLibraryResourceCreationItems.size());
-
 		DesignLibraryResourceCreationItem designLibraryResourceCreationItem =
 			designLibraryResourceCreationItems.get(0);
 
@@ -121,6 +117,10 @@ public class MasterPageDesignLibraryResourceTypeContributorTest {
 			String.valueOf(_addLiferayPortletURL),
 			moduleProps.get("addMasterLayoutURL"));
 		Assert.assertEquals(_NAMESPACE, moduleProps.get("namespace"));
+
+		Assert.assertEquals(
+			designLibraryResourceCreationItems.toString(), 1,
+			designLibraryResourceCreationItems.size());
 
 		Assert.assertEquals(
 			"/layout_page_template_admin/add_master_layout",
@@ -163,9 +163,6 @@ public class MasterPageDesignLibraryResourceTypeContributorTest {
 		_assertFDSActionDropdownItem(
 			fdsActionDropdownItems.get(6), "{actions.delete.href}", "trash",
 			"delete", "delete", "delete", "delete", "async");
-		Assert.assertEquals(
-			fdsActionDropdownItems.toString(), 7,
-			fdsActionDropdownItems.size());
 
 		FDSActionDropdownItem renameFDSActionDropdownItem =
 			fdsActionDropdownItems.get(1);
@@ -182,6 +179,10 @@ public class MasterPageDesignLibraryResourceTypeContributorTest {
 			"moduleProps");
 
 		Assert.assertEquals("rename-master-page", moduleProps.get("title"));
+
+		Assert.assertEquals(
+			fdsActionDropdownItems.toString(), 7,
+			fdsActionDropdownItems.size());
 
 		_assertLiferayPortletURL(
 			_editLiferayPortletURL,

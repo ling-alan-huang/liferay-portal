@@ -55,8 +55,6 @@ public class EnvPropertiesUtilTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 3, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals(
@@ -77,6 +75,8 @@ public class EnvPropertiesUtilTest {
 				"Unable to decode part \"DEF\" from \"" + s +
 					"\", preserve it literally",
 				logEntry.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 3, logEntries.size());
 		}
 	}
 

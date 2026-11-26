@@ -133,9 +133,6 @@ public class UpdateTranslationMVCActionCommandTest {
 		List<DDMFormFieldValue> ddmFormFieldValues =
 			ddmFormValues.getDDMFormFieldValues();
 
-		Assert.assertEquals(
-			ddmFormFieldValues.toString(), 1, ddmFormFieldValues.size());
-
 		DDMFormFieldValue ddmFormFieldValue = ddmFormFieldValues.get(0);
 
 		Assert.assertNotNull(ddmFormFieldValue);
@@ -144,6 +141,9 @@ public class UpdateTranslationMVCActionCommandTest {
 
 		Assert.assertNotNull(value);
 		Assert.assertEquals("name spanish", value.getString(LocaleUtil.SPAIN));
+
+		Assert.assertEquals(
+			ddmFormFieldValues.toString(), 1, ddmFormFieldValues.size());
 
 		translationEntry = _translationEntryLocalService.fetchTranslationEntry(
 			JournalArticle.class.getName(), journalArticle.getResourcePrimKey(),

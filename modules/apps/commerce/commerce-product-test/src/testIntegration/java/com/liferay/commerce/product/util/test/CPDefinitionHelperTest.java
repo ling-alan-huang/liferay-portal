@@ -258,9 +258,6 @@ public class CPDefinitionHelperTest {
 		List<CPCatalogEntry> cpCatalogEntries =
 			cpDataSourceResult.getCPCatalogEntries();
 
-		Assert.assertEquals(
-			cpCatalogEntries.toString(), 1, cpCatalogEntries.size());
-
 		CPCatalogEntry cpCatalogEntry = cpCatalogEntries.get(0);
 
 		Assert.assertEquals(
@@ -269,6 +266,9 @@ public class CPDefinitionHelperTest {
 		Assert.assertEquals(name, cpCatalogEntry.getName());
 		Assert.assertEquals(
 			shortDescription, cpCatalogEntry.getShortDescription());
+
+		Assert.assertEquals(
+			cpCatalogEntries.toString(), 1, cpCatalogEntries.size());
 	}
 
 	@Test
@@ -303,14 +303,14 @@ public class CPDefinitionHelperTest {
 		List<CPCatalogEntry> cpCatalogEntries =
 			cpDataSourceResult.getCPCatalogEntries();
 
-		Assert.assertEquals(
-			cpCatalogEntries.toString(), 1, cpCatalogEntries.size());
-
 		CPCatalogEntry cpCatalogEntry = cpCatalogEntries.get(0);
 
 		Assert.assertEquals(
 			cpDefinition.getCPDefinitionId(),
 			cpCatalogEntry.getCPDefinitionId());
+
+		Assert.assertEquals(
+			cpCatalogEntries.toString(), 1, cpCatalogEntries.size());
 	}
 
 	@FeatureFlag("LPD-109588")

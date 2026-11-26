@@ -230,9 +230,6 @@ public class PreupgradeVerifyDatabaseStateTest
 			catch (Exception exception) {
 				List<LogEntry> logEntries = logCapture.getLogEntries();
 
-				Assert.assertEquals(
-					logEntries.toString(), 1, logEntries.size());
-
 				LogEntry logEntry = logEntries.get(0);
 
 				String prefix = "A missing table was detected";
@@ -250,6 +247,9 @@ public class PreupgradeVerifyDatabaseStateTest
 						getNormalizedName(objectDefinition.getDBTableName()),
 						StringPool.CLOSE_BRACKET),
 					logEntry.getMessage());
+
+				Assert.assertEquals(
+					logEntries.toString(), 1, logEntries.size());
 			}
 			finally {
 				_objectDefinitionLocalService.deleteObjectDefinition(
@@ -292,9 +292,6 @@ public class PreupgradeVerifyDatabaseStateTest
 			catch (Exception exception) {
 				List<LogEntry> logEntries = logCapture.getLogEntries();
 
-				Assert.assertEquals(
-					logEntries.toString(), 1, logEntries.size());
-
 				LogEntry logEntry = logEntries.get(0);
 
 				String prefix = "A missing table was detected";
@@ -311,6 +308,9 @@ public class PreupgradeVerifyDatabaseStateTest
 						StringPool.OPEN_BRACKET, tableName,
 						StringPool.CLOSE_BRACKET),
 					logEntry.getMessage());
+
+				Assert.assertEquals(
+					logEntries.toString(), 1, logEntries.size());
 			}
 			finally {
 				db.runSQL("DROP_TABLE_IF_EXISTS(" + tableName + ")");
@@ -510,8 +510,6 @@ public class PreupgradeVerifyDatabaseStateTest
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals(
@@ -520,6 +518,8 @@ public class PreupgradeVerifyDatabaseStateTest
 					"Column ", getNormalizedName("city"),
 					" is not defined as VARCHAR(75) null for ",
 					getNormalizedName("Address"), _getPartitionSuffix()));
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 		finally {
 			alterColumnType("Address", "city", "VARCHAR(75)");

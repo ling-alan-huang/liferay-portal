@@ -162,14 +162,14 @@ public class MarketplaceUtilTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals(
 				"Unable to delete the stored Marketplace token " +
 					"\"marketplaceAccessToken\" for company " + companyId,
 				logEntry.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 
 		Mockito.verify(

@@ -243,13 +243,13 @@ public class StagingImplTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals(
 				"Unexpected error: " + exception.getMessage(),
 				logEntry.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 	}
 

@@ -64,9 +64,6 @@ public class ModulesRelevantRuleTest {
 		List<RelevantRule.TestScriptCommand> testScriptCommands =
 			modulesRelevantRule.getTestScriptCommands();
 
-		Assert.assertEquals(
-			testScriptCommands.toString(), 1, testScriptCommands.size());
-
 		RelevantRule.TestScriptCommand testScriptCommand =
 			testScriptCommands.get(0);
 
@@ -80,6 +77,9 @@ public class ModulesRelevantRuleTest {
 			command.contains(" --continue -Dtest.ignore.failures=false"));
 
 		Assert.assertTrue(command.contains(" --parallel"));
+
+		Assert.assertEquals(
+			testScriptCommands.toString(), 1, testScriptCommands.size());
 	}
 
 	@Test
@@ -116,9 +116,6 @@ public class ModulesRelevantRuleTest {
 		List<RelevantRule.TestScriptCommand> testScriptCommands =
 			modulesRelevantRule.getTestScriptCommands();
 
-		Assert.assertEquals(
-			testScriptCommands.toString(), 1, testScriptCommands.size());
-
 		RelevantRule.TestScriptCommand testScriptCommand =
 			testScriptCommands.get(0);
 
@@ -131,6 +128,9 @@ public class ModulesRelevantRuleTest {
 			command.contains(" --continue -Dtest.ignore.failures=false"));
 
 		Assert.assertTrue(command.contains(" --parallel"));
+
+		Assert.assertEquals(
+			testScriptCommands.toString(), 1, testScriptCommands.size());
 	}
 
 }

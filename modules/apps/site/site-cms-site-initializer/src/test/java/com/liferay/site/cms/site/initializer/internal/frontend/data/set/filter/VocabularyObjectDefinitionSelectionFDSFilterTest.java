@@ -115,10 +115,6 @@ public class VocabularyObjectDefinitionSelectionFDSFilterTest {
 				_vocabularyObjectDefinitionSelectionFDSFilter.
 					getSelectionFDSFilterItems(_locale);
 
-			Assert.assertEquals(
-				selectionFDSFilterItems.toString(), 1,
-				selectionFDSFilterItems.size());
-
 			SelectionFDSFilterItem selectionFDSFilterItem =
 				selectionFDSFilterItems.get(0);
 
@@ -127,6 +123,10 @@ public class VocabularyObjectDefinitionSelectionFDSFilterTest {
 			Assert.assertEquals(
 				String.valueOf(objectDefinitionClassNameId),
 				selectionFDSFilterItem.getValue());
+
+			Assert.assertEquals(
+				selectionFDSFilterItems.toString(), 1,
+				selectionFDSFilterItems.size());
 
 			Mockito.verify(
 				_objectDefinitionService

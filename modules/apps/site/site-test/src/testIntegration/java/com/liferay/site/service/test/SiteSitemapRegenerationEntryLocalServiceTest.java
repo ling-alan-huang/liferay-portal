@@ -68,16 +68,16 @@ public class SiteSitemapRegenerationEntryLocalServiceTest {
 			_siteSitemapRegenerationEntryLocalService.
 				getSiteSitemapRegenerationEntries(companyId);
 
-		Assert.assertEquals(
-			siteSitemapRegenerationEntries.toString(), 1,
-			siteSitemapRegenerationEntries.size());
-
 		SiteSitemapRegenerationEntry siteSitemapRegenerationEntry =
 			siteSitemapRegenerationEntries.get(0);
 
 		Assert.assertEquals(
 			assetTypeKey, siteSitemapRegenerationEntry.getAssetTypeKey());
 		Assert.assertEquals(groupId, siteSitemapRegenerationEntry.getGroupId());
+
+		Assert.assertEquals(
+			siteSitemapRegenerationEntries.toString(), 1,
+			siteSitemapRegenerationEntries.size());
 
 		_siteSitemapRegenerationEntryLocalService.
 			addSiteSitemapRegenerationEntry(

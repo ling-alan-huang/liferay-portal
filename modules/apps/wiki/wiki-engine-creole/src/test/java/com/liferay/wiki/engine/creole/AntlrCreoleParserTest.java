@@ -332,7 +332,6 @@ public class AntlrCreoleParserTest {
 		CollectionNode collectionNode = imageNode.getAltNode();
 
 		Assert.assertNotNull(collectionNode);
-		Assert.assertEquals(1, collectionNode.size());
 
 		List<ASTNode> astNodes = collectionNode.getASTNodes();
 
@@ -344,6 +343,8 @@ public class AntlrCreoleParserTest {
 
 		Assert.assertEquals(
 			"alternative text", unformattedTextNode.getContent());
+
+		Assert.assertEquals(1, collectionNode.size());
 	}
 
 	@Test
@@ -388,7 +389,6 @@ public class AntlrCreoleParserTest {
 		CollectionNode collectionNode = linkNode.getAltCollectionNode();
 
 		Assert.assertNotNull(collectionNode);
-		Assert.assertEquals(1, collectionNode.size());
 
 		List<ASTNode> astNodes = collectionNode.getASTNodes();
 
@@ -402,6 +402,8 @@ public class AntlrCreoleParserTest {
 
 		Assert.assertEquals(
 			"alternative text", unformattedTextNode.getContent());
+
+		Assert.assertEquals(1, collectionNode.size());
 	}
 
 	@Test
@@ -800,14 +802,14 @@ public class AntlrCreoleParserTest {
 
 		collectionNode = (CollectionNode)astNodes.get(1);
 
-		Assert.assertEquals(1, collectionNode.size());
-
 		TableDataNode tableDataNode = (TableDataNode)collectionNode.get(0);
 
 		Assert.assertNotNull(tableDataNode);
 
 		unformattedTextNode =
 			(UnformattedTextNode)tableDataNode.getChildASTNode(0);
+
+		Assert.assertEquals(1, collectionNode.size());
 
 		Assert.assertNotNull(unformattedTextNode);
 		Assert.assertEquals(1, unformattedTextNode.getChildASTNodesCount());

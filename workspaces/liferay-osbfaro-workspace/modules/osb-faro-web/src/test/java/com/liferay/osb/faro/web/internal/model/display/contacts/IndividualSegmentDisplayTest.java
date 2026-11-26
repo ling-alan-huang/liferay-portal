@@ -41,9 +41,6 @@ public class IndividualSegmentDisplayTest {
 				"field-mappings", Collections.emptyList()
 			).build());
 
-		Assert.assertEquals(
-			campaignDisplays.toString(), 2, campaignDisplays.size());
-
 		CampaignDisplay campaignDisplay = campaignDisplays.get("C1");
 
 		Assert.assertEquals(
@@ -59,6 +56,9 @@ public class IndividualSegmentDisplayTest {
 			ReflectionTestUtil.getFieldValue(campaignDisplay, "_campaignName"));
 		Assert.assertEquals(
 			"C2", ReflectionTestUtil.getFieldValue(campaignDisplay, "_id"));
+
+		Assert.assertEquals(
+			campaignDisplays.toString(), 2, campaignDisplays.size());
 	}
 
 	private Map<String, CampaignDisplay> _getCampaignDisplays(

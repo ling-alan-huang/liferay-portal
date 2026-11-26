@@ -152,14 +152,14 @@ public class FragmentDropZoneMVCActionCommandTest {
 		List<String> childrenItemIds =
 			fragmentFayoutStructureItem.getChildrenItemIds();
 
-		Assert.assertEquals(
-			childrenItemIds.toString(), 1, childrenItemIds.size());
-
 		LayoutStructureItem layoutStructureItem =
 			layoutStructure.getLayoutStructureItem(childrenItemIds.get(0));
 
 		Assert.assertTrue(
 			layoutStructureItem instanceof FragmentDropZoneLayoutStructureItem);
+
+		Assert.assertEquals(
+			childrenItemIds.toString(), 1, childrenItemIds.size());
 	}
 
 	@Test

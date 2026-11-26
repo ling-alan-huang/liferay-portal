@@ -359,12 +359,12 @@ public class DLPortletDataHandlerTest extends BasePortletDataHandlerTestCase {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals(
 				"Unable to find file entry", logEntry.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 
 		ManifestSummary manifestSummary =
@@ -502,16 +502,16 @@ public class DLPortletDataHandlerTest extends BasePortletDataHandlerTestCase {
 						DLFolder.class.getName(),
 						importedDLFolder.getFolderId());
 
-			Assert.assertEquals(
-				workflowDefinitionLinks.toString(), 1,
-				workflowDefinitionLinks.size());
-
 			WorkflowDefinitionLink workflowDefinitionLink =
 				workflowDefinitionLinks.get(0);
 
 			Assert.assertEquals(
 				"Single Approver",
 				workflowDefinitionLink.getWorkflowDefinitionName());
+
+			Assert.assertEquals(
+				workflowDefinitionLinks.toString(), 1,
+				workflowDefinitionLinks.size());
 		}
 	}
 

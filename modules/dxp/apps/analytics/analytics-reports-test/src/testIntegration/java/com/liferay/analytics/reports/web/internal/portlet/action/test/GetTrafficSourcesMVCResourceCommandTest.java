@@ -138,8 +138,6 @@ public class GetTrafficSourcesMVCResourceCommandTest {
 					JSONArray jsonArray = jsonObject1.getJSONArray(
 						"trafficSources");
 
-					Assert.assertEquals(6, jsonArray.length());
-
 					JSONObject jsonObject2 = jsonArray.getJSONObject(0);
 
 					Assert.assertEquals("organic", jsonObject2.get("name"));
@@ -180,6 +178,8 @@ public class GetTrafficSourcesMVCResourceCommandTest {
 					Assert.assertNull(jsonObject7.get("endpointURL"));
 					Assert.assertEquals("direct", jsonObject7.get("name"));
 					Assert.assertEquals(0, jsonObject7.getInt("value"));
+
+					Assert.assertEquals(6, jsonArray.length());
 				});
 		}
 		finally {

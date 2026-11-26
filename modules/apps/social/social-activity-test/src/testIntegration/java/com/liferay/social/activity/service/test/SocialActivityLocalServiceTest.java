@@ -53,8 +53,6 @@ public class SocialActivityLocalServiceTest extends BaseSocialActivityTestCase {
 			SocialActivityLocalServiceUtil.getGroupActivities(
 				group.getGroupId(), QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 
-		Assert.assertEquals(activities.toString(), 1, activities.size());
-
 		SocialActivity activity = activities.get(0);
 
 		Assert.assertEquals(
@@ -62,6 +60,8 @@ public class SocialActivityLocalServiceTest extends BaseSocialActivityTestCase {
 			activity.getParentClassNameId());
 		Assert.assertEquals(
 			_parentAssetEntry.getClassPK(), activity.getParentClassPK());
+
+		Assert.assertEquals(activities.toString(), 1, activities.size());
 
 		SocialActivityTestUtil.addActivity(
 			creatorUser, group, assetEntry,
@@ -86,11 +86,11 @@ public class SocialActivityLocalServiceTest extends BaseSocialActivityTestCase {
 			SocialActivityLocalServiceUtil.getGroupActivities(
 				group.getGroupId(), QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 
-		Assert.assertEquals(activities.toString(), 1, activities.size());
-
 		SocialActivity activity = activities.get(0);
 
 		Assert.assertEquals(time, activity.getCreateDate());
+
+		Assert.assertEquals(activities.toString(), 1, activities.size());
 	}
 
 	@DeleteAfterTestRun

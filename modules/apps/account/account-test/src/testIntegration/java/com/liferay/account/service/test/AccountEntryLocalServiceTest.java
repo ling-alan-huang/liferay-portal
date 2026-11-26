@@ -416,16 +416,16 @@ public class AccountEntryLocalServiceTest {
 				objectValidationRuleEngineException.
 					getObjectValidationRuleResults();
 
-			Assert.assertEquals(
-				objectValidationRuleResults.toString(), 1,
-				objectValidationRuleResults.size());
-
 			ObjectValidationRuleResult objectValidationRuleResult =
 				objectValidationRuleResults.get(0);
 
 			Assert.assertEquals(
 				"This name is invalid.",
 				objectValidationRuleResult.getErrorMessage());
+
+			Assert.assertEquals(
+				objectValidationRuleResults.toString(), 1,
+				objectValidationRuleResults.size());
 		}
 
 		try {
@@ -448,16 +448,16 @@ public class AccountEntryLocalServiceTest {
 				objectValidationRuleEngineException.
 					getObjectValidationRuleResults();
 
-			Assert.assertEquals(
-				objectValidationRuleResults.toString(), 1,
-				objectValidationRuleResults.size());
-
 			ObjectValidationRuleResult objectValidationRuleResult =
 				objectValidationRuleResults.get(0);
 
 			Assert.assertEquals(
 				"This name is invalid.",
 				objectValidationRuleResult.getErrorMessage());
+
+			Assert.assertEquals(
+				objectValidationRuleResults.toString(), 1,
+				objectValidationRuleResults.size());
 		}
 	}
 

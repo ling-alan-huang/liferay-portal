@@ -231,14 +231,14 @@ public class LayoutPageTemplateManagementToolbarDisplayContextTest {
 			layoutPageTemplateManagementToolbarDisplayContext);
 
 		if (featureFlagEnabled) {
-			Assert.assertEquals(
-				primaryDropdownItems.toString(), 2,
-				primaryDropdownItems.size());
-
 			DropdownItem primaryDropdownItem = primaryDropdownItems.get(1);
 
 			Assert.assertEquals(
 				Boolean.TRUE, primaryDropdownItem.get("deprecated"));
+
+			Assert.assertEquals(
+				primaryDropdownItems.toString(), 2,
+				primaryDropdownItems.size());
 		}
 		else {
 			Assert.assertEquals(
@@ -260,9 +260,6 @@ public class LayoutPageTemplateManagementToolbarDisplayContextTest {
 		List<DropdownItem> primaryDropdownItems = _getPrimaryDropdownItems(
 			layoutPageTemplateManagementToolbarDisplayContext);
 
-		Assert.assertEquals(
-			primaryDropdownItems.toString(), 1, primaryDropdownItems.size());
-
 		DropdownItem primaryDropdownItem = primaryDropdownItems.get(0);
 
 		Map<String, Object> data = (Map<String, Object>)primaryDropdownItem.get(
@@ -272,6 +269,9 @@ public class LayoutPageTemplateManagementToolbarDisplayContextTest {
 		Assert.assertTrue(data.containsKey("addPageTemplateURL"));
 
 		Assert.assertNull(primaryDropdownItem.get("href"));
+
+		Assert.assertEquals(
+			primaryDropdownItems.toString(), 1, primaryDropdownItems.size());
 	}
 
 	private void

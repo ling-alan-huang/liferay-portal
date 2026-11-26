@@ -140,9 +140,6 @@ public class CalendarServiceTest {
 				nameMap.get(locale), true, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 				CalendarNameComparator.getInstance(false));
 
-			Assert.assertEquals(
-				actualCalendars.toString(), 1, actualCalendars.size());
-
 			Calendar actualCalendar = actualCalendars.get(0);
 
 			Assert.assertEquals(
@@ -150,6 +147,9 @@ public class CalendarServiceTest {
 				actualCalendar.getCalendarId());
 			Assert.assertEquals(
 				expectedCalendar.getNameMap(), actualCalendar.getNameMap());
+
+			Assert.assertEquals(
+				actualCalendars.toString(), 1, actualCalendars.size());
 		}
 	}
 

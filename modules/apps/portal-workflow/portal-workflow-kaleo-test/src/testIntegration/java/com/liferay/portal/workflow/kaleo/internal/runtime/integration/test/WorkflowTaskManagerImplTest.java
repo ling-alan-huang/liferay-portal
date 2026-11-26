@@ -1544,8 +1544,6 @@ public class WorkflowTaskManagerImplTest extends BaseWorkflowManagerTestCase {
 			new String[] {BlogsEntry.class.getName()},
 			new Long[] {blogsEntry.getEntryId()});
 
-		Assert.assertEquals(workflowTasks.toString(), 1, workflowTasks.size());
-
 		WorkflowTask workflowTask = workflowTasks.get(0);
 
 		Assert.assertEquals(
@@ -1553,6 +1551,8 @@ public class WorkflowTaskManagerImplTest extends BaseWorkflowManagerTestCase {
 			MapUtil.getLong(
 				workflowTask.getOptionalAttributes(),
 				WorkflowConstants.CONTEXT_ENTRY_CLASS_PK));
+
+		Assert.assertEquals(workflowTasks.toString(), 1, workflowTasks.size());
 
 		_deactivateWorkflow(BlogsEntry.class.getName(), 0, 0);
 		_deactivateWorkflow(DLFolder.class.getName(), 0, -1);

@@ -545,9 +545,6 @@ public class JournalArticleInfoItemFieldValuesUpdaterTest {
 		List<DDMFormFieldValue> ddmFormFieldValues = ddmFormFieldValuesMap.get(
 			ddmFormFieldName);
 
-		Assert.assertEquals(
-			ddmFormFieldValues.toString(), 3, ddmFormFieldValues.size());
-
 		DDMFormFieldValue ddmFormFieldValue0 = ddmFormFieldValues.get(0);
 
 		Value value0 = ddmFormFieldValue0.getValue();
@@ -566,6 +563,9 @@ public class JournalArticleInfoItemFieldValuesUpdaterTest {
 		Value value2 = ddmFormFieldValue2.getValue();
 
 		Assert.assertEquals("Valor C", value2.getString(LocaleUtil.SPAIN));
+
+		Assert.assertEquals(
+			ddmFormFieldValues.toString(), 3, ddmFormFieldValues.size());
 	}
 
 	private static String _originalName;

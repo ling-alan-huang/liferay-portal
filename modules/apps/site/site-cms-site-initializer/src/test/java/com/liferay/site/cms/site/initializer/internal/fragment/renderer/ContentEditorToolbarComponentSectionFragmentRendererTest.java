@@ -231,13 +231,13 @@ public class ContentEditorToolbarComponentSectionFragmentRendererTest {
 
 		JSONArray jsonArray = (JSONArray)props.get("objectFields");
 
-		Assert.assertEquals(1, jsonArray.length());
-
 		JSONObject jsonObject = jsonArray.getJSONObject(0);
 
 		Assert.assertEquals(businessType, jsonObject.getString("businessType"));
 		Assert.assertEquals(label, jsonObject.getString("label"));
 		Assert.assertEquals(name, jsonObject.getString("name"));
+
+		Assert.assertEquals(1, jsonArray.length());
 	}
 
 	private static final long _OBJECT_DEFINITION_ID =

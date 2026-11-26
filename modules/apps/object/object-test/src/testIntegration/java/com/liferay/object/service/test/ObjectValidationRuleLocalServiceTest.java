@@ -1130,10 +1130,6 @@ public class ObjectValidationRuleLocalServiceTest {
 				objectValidationRuleEngineException.
 					getObjectValidationRuleResults();
 
-			Assert.assertEquals(
-				objectValidationRuleResults.toString(), 1,
-				objectValidationRuleResults.size());
-
 			ObjectValidationRuleResult objectValidationRuleResult =
 				objectValidationRuleResults.get(0);
 
@@ -1144,6 +1140,10 @@ public class ObjectValidationRuleLocalServiceTest {
 				externalReferenceCode,
 				objectValidationRuleResult.
 					getObjectEntryExternalReferenceCode());
+
+			Assert.assertEquals(
+				objectValidationRuleResults.toString(), 1,
+				objectValidationRuleResults.size());
 		}
 	}
 
@@ -1374,16 +1374,16 @@ public class ObjectValidationRuleLocalServiceTest {
 				objectValidationRuleEngineException.
 					getObjectValidationRuleResults();
 
-			Assert.assertEquals(
-				objectValidationRuleResults.toString(), 1,
-				objectValidationRuleResults.size());
-
 			ObjectValidationRuleResult objectValidationRuleResult =
 				objectValidationRuleResults.get(0);
 
 			Assert.assertEquals(
 				objectValidationRule.getErrorLabel(locale),
 				objectValidationRuleResult.getErrorMessage());
+
+			Assert.assertEquals(
+				objectValidationRuleResults.toString(), 1,
+				objectValidationRuleResults.size());
 		}
 	}
 

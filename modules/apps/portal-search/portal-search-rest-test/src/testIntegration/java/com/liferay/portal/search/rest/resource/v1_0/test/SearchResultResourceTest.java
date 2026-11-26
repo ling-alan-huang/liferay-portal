@@ -806,14 +806,14 @@ public class SearchResultResourceTest extends BaseSearchResultResourceTestCase {
 		List<com.liferay.portal.search.rest.client.dto.v1_0.SearchResult>
 			searchResults = ListUtil.fromCollection(page.getItems());
 
-		Assert.assertEquals(searchResults.toString(), 1, searchResults.size());
-
 		com.liferay.portal.search.rest.client.dto.v1_0.SearchResult
 			searchResult = searchResults.get(0);
 
 		Assert.assertEquals(
 			String.valueOf(LayoutPageTemplateEntryTypeConstants.DISPLAY_PAGE),
 			searchResult.getType());
+
+		Assert.assertEquals(searchResults.toString(), 1, searchResults.size());
 	}
 
 	private void _testGetSearchPageTypeNotIndexed() throws Exception {

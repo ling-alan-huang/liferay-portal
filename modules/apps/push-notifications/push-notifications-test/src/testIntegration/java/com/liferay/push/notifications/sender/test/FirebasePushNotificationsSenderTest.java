@@ -183,8 +183,6 @@ public class FirebasePushNotificationsSenderTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals(
@@ -192,6 +190,8 @@ public class FirebasePushNotificationsSenderTest {
 					"Unable to send notification with token ", destinationToken,
 					" and reason REASON"),
 				logEntry.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 
 		_verifyAccessTokenRequest();
@@ -298,8 +298,6 @@ public class FirebasePushNotificationsSenderTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals(
@@ -307,6 +305,8 @@ public class FirebasePushNotificationsSenderTest {
 					"Unable to remove notification group with ID ", groupId,
 					" and name ", groupName),
 				logEntry.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 	}
 
@@ -353,8 +353,6 @@ public class FirebasePushNotificationsSenderTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 2, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals(
@@ -370,6 +368,8 @@ public class FirebasePushNotificationsSenderTest {
 					"Unable to remove notification group with ID ", groupId,
 					" and name ", groupName),
 				logEntry.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 2, logEntries.size());
 		}
 	}
 

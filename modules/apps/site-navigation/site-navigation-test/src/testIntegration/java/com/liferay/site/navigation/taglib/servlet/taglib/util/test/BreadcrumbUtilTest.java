@@ -83,15 +83,15 @@ public class BreadcrumbUtilTest {
 			BreadcrumbUtil.getLayoutBreadcrumbEntries(
 				_mockHttpServletRequest, _themeDisplay);
 
-		Assert.assertEquals(
-			breadcrumbEntries.toString(), 1, breadcrumbEntries.size());
-
 		BreadcrumbEntry breadcrumbEntry = breadcrumbEntries.get(0);
 
 		Assert.assertFalse(breadcrumbEntry.isBrowsable());
 
 		Assert.assertEquals(
 			layout.getName(_locale), breadcrumbEntry.getTitle());
+
+		Assert.assertEquals(
+			breadcrumbEntries.toString(), 1, breadcrumbEntries.size());
 	}
 
 	@Test

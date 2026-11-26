@@ -251,15 +251,15 @@ public class OneToManyObjectFieldFilterStrategyTest {
 			List<SelectionFDSFilterItem> selectionFDSFilterItems =
 				oneToManyObjectFieldFilterStrategy.getSelectionFDSFilterItems();
 
-			Assert.assertEquals(
-				selectionFDSFilterItems.toString(), 1,
-				selectionFDSFilterItems.size());
-
 			SelectionFDSFilterItem selectionFDSFilterItem =
 				selectionFDSFilterItems.get(0);
 
 			Assert.assertEquals(titleValue, selectionFDSFilterItem.getLabel());
 			Assert.assertEquals(primaryKey2, selectionFDSFilterItem.getValue());
+
+			Assert.assertEquals(
+				selectionFDSFilterItems.toString(), 1,
+				selectionFDSFilterItems.size());
 
 			Mockito.verify(
 				_objectEntryLocalService

@@ -204,9 +204,6 @@ public class CommerceOrderEngineTest {
 		List<CommerceOrderItem> commerceOrderItems =
 			_commerceOrder.getCommerceOrderItems();
 
-		Assert.assertEquals(
-			commerceOrderItems.toString(), 1, commerceOrderItems.size());
-
 		CommerceOrderItem commerceOrderItem = commerceOrderItems.get(0);
 
 		List<CommerceInventoryWarehouse> commerceInventoryWarehouses =
@@ -225,6 +222,9 @@ public class CommerceOrderEngineTest {
 			commerceOrderItem.getCommerceOrderItemId(),
 			commerceInventoryWarehouse.getCommerceInventoryWarehouseId(),
 			commerceOrderItem.getQuantity(), null, true, _serviceContext);
+
+		Assert.assertEquals(
+			commerceOrderItems.toString(), 1, commerceOrderItems.size());
 
 		_commerceShipment1 = _commerceShipmentLocalService.updateStatus(
 			_commerceShipment1.getCommerceShipmentId(),
@@ -284,9 +284,6 @@ public class CommerceOrderEngineTest {
 		List<CommerceOrderItem> commerceOrderItems =
 			_commerceOrder.getCommerceOrderItems();
 
-		Assert.assertEquals(
-			commerceOrderItems.toString(), 1, commerceOrderItems.size());
-
 		CommerceOrderItem commerceOrderItem = commerceOrderItems.get(0);
 
 		List<CommerceInventoryWarehouse> commerceInventoryWarehouses =
@@ -308,6 +305,9 @@ public class CommerceOrderEngineTest {
 			commerceInventoryWarehouse.getCommerceInventoryWarehouseId(),
 			quantity.divide(BigDecimal.valueOf(2)), null, true,
 			_serviceContext);
+
+		Assert.assertEquals(
+			commerceOrderItems.toString(), 1, commerceOrderItems.size());
 
 		_commerceShipment1 = _commerceShipmentLocalService.updateStatus(
 			_commerceShipment1.getCommerceShipmentId(),
@@ -353,9 +353,6 @@ public class CommerceOrderEngineTest {
 		List<CommerceOrderItem> commerceOrderItems =
 			_commerceOrder.getCommerceOrderItems();
 
-		Assert.assertEquals(
-			commerceOrderItems.toString(), 1, commerceOrderItems.size());
-
 		CommerceOrderItem commerceOrderItem = commerceOrderItems.get(0);
 
 		List<CommerceInventoryWarehouse> commerceInventoryWarehouses =
@@ -374,6 +371,9 @@ public class CommerceOrderEngineTest {
 			commerceOrderItem.getCommerceOrderItemId(),
 			commerceInventoryWarehouse.getCommerceInventoryWarehouseId(),
 			commerceOrderItem.getQuantity(), null, true, _serviceContext);
+
+		Assert.assertEquals(
+			commerceOrderItems.toString(), 1, commerceOrderItems.size());
 
 		_commerceShipment1 = _commerceShipmentLocalService.updateStatus(
 			_commerceShipment1.getCommerceShipmentId(),
@@ -535,16 +535,16 @@ public class CommerceOrderEngineTest {
 				entry ->
 					entry.getKey() == InProgressCommerceOrderStatusImpl.KEY);
 
-		Assert.assertEquals(
-			inProgressCommerceOrderStatuses.toString(), 1,
-			inProgressCommerceOrderStatuses.size());
-
 		CommerceOrderStatus inProgresscommerceOrderStatus =
 			inProgressCommerceOrderStatuses.get(0);
 
 		Assert.assertTrue(
 			inProgresscommerceOrderStatus.isTransitionCriteriaMet(
 				_commerceOrder));
+
+		Assert.assertEquals(
+			inProgressCommerceOrderStatuses.toString(), 1,
+			inProgressCommerceOrderStatuses.size());
 
 		_commerceOrder =
 			_commerceOrderLocalService.updateCommercePaymentMethodKey(
@@ -804,10 +804,6 @@ public class CommerceOrderEngineTest {
 		nextCommerceOrderStatuses.removeIf(
 			commerceOrderStatus -> commerceOrderStatus.getPriority() == -1);
 
-		Assert.assertEquals(
-			nextCommerceOrderStatuses.toString(), 1,
-			nextCommerceOrderStatuses.size());
-
 		CommerceOrderStatus test3CommerceOrderStatus =
 			nextCommerceOrderStatuses.get(0);
 
@@ -820,13 +816,14 @@ public class CommerceOrderEngineTest {
 			_user.getUserId(), true);
 
 		Assert.assertEquals(
+			nextCommerceOrderStatuses.toString(), 1,
+			nextCommerceOrderStatuses.size());
+
+		Assert.assertEquals(
 			Test3CommerceOrderStatusImpl.KEY, _commerceOrder.getOrderStatus());
 
 		List<CommerceOrderItem> commerceOrderItems =
 			_commerceOrder.getCommerceOrderItems();
-
-		Assert.assertEquals(
-			commerceOrderItems.toString(), 1, commerceOrderItems.size());
 
 		CommerceOrderItem commerceOrderItem = commerceOrderItems.get(0);
 
@@ -867,6 +864,9 @@ public class CommerceOrderEngineTest {
 			commerceInventoryWarehouse.getCommerceInventoryWarehouseId(),
 			quantity.subtract(commerceOrderItem.getShippedQuantity()), null,
 			true, _serviceContext);
+
+		Assert.assertEquals(
+			commerceOrderItems.toString(), 1, commerceOrderItems.size());
 
 		_commerceShipment2 = _commerceShipmentLocalService.updateStatus(
 			_commerceShipment2.getCommerceShipmentId(),
@@ -936,9 +936,6 @@ public class CommerceOrderEngineTest {
 		List<CommerceOrderItem> commerceOrderItems =
 			_commerceOrder.getCommerceOrderItems();
 
-		Assert.assertEquals(
-			commerceOrderItems.toString(), 1, commerceOrderItems.size());
-
 		CommerceOrderItem commerceOrderItem = commerceOrderItems.get(0);
 
 		List<CommerceInventoryWarehouse> commerceInventoryWarehouses =
@@ -978,6 +975,9 @@ public class CommerceOrderEngineTest {
 			commerceInventoryWarehouse.getCommerceInventoryWarehouseId(),
 			quantity.subtract(commerceOrderItem.getShippedQuantity()), null,
 			true, _serviceContext);
+
+		Assert.assertEquals(
+			commerceOrderItems.toString(), 1, commerceOrderItems.size());
 
 		_commerceShipment2 = _commerceShipmentLocalService.updateStatus(
 			_commerceShipment2.getCommerceShipmentId(),
@@ -1114,9 +1114,6 @@ public class CommerceOrderEngineTest {
 		List<CommerceOrderItem> commerceOrderItems =
 			_commerceOrder.getCommerceOrderItems();
 
-		Assert.assertEquals(
-			commerceOrderItems.toString(), 1, commerceOrderItems.size());
-
 		CommerceOrderItem commerceOrderItem = commerceOrderItems.get(0);
 
 		List<CommerceInventoryWarehouse> commerceInventoryWarehouses =
@@ -1135,6 +1132,9 @@ public class CommerceOrderEngineTest {
 			commerceOrderItem.getCommerceOrderItemId(),
 			commerceInventoryWarehouse.getCommerceInventoryWarehouseId(),
 			commerceOrderItem.getQuantity(), null, true, _serviceContext);
+
+		Assert.assertEquals(
+			commerceOrderItems.toString(), 1, commerceOrderItems.size());
 
 		_commerceShipment1 = _commerceShipmentLocalService.updateStatus(
 			_commerceShipment1.getCommerceShipmentId(),
@@ -1300,15 +1300,15 @@ public class CommerceOrderEngineTest {
 		List<CommerceOrderItem> commerceOrderItems =
 			_commerceOrder.getCommerceOrderItems();
 
-		Assert.assertEquals(
-			commerceOrderItems.toString(), 1, commerceOrderItems.size());
-
 		CommerceOrderItem commerceOrderItem = commerceOrderItems.get(0);
 
 		commerceOrderItem.setShippable(false);
 
 		_commerceOrderItemLocalService.updateCommerceOrderItem(
 			commerceOrderItem);
+
+		Assert.assertEquals(
+			commerceOrderItems.toString(), 1, commerceOrderItems.size());
 
 		_commerceOrder = _commerceOrderEngine.checkoutCommerceOrder(
 			_commerceOrder, _user.getUserId());
@@ -1328,16 +1328,16 @@ public class CommerceOrderEngineTest {
 				entry ->
 					entry.getKey() == CompletedCommerceOrderStatusImpl.KEY);
 
-		Assert.assertEquals(
-			completedCommerceOrderStatuses.toString(), 1,
-			completedCommerceOrderStatuses.size());
-
 		CommerceOrderStatus completedCommerceOrderStatus =
 			completedCommerceOrderStatuses.get(0);
 
 		Assert.assertTrue(
 			completedCommerceOrderStatus.isTransitionCriteriaMet(
 				_commerceOrder));
+
+		Assert.assertEquals(
+			completedCommerceOrderStatuses.toString(), 1,
+			completedCommerceOrderStatuses.size());
 	}
 
 	@Rule

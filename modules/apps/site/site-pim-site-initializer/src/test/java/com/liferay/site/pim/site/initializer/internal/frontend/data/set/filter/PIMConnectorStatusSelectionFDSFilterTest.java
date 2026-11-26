@@ -72,10 +72,6 @@ public class PIMConnectorStatusSelectionFDSFilterTest {
 			_pimConnectorStatusSelectionFDSFilter.getSelectionFDSFilterItems(
 				LocaleUtil.US);
 
-		Assert.assertEquals(
-			selectionFDSFilterItems.toString(), 2,
-			selectionFDSFilterItems.size());
-
 		SelectionFDSFilterItem selectionFDSFilterItem =
 			selectionFDSFilterItems.get(0);
 
@@ -86,6 +82,10 @@ public class PIMConnectorStatusSelectionFDSFilterTest {
 
 		Assert.assertEquals("inactive", selectionFDSFilterItem.getLabel());
 		Assert.assertFalse((boolean)selectionFDSFilterItem.getValue());
+
+		Assert.assertEquals(
+			selectionFDSFilterItems.toString(), 2,
+			selectionFDSFilterItems.size());
 	}
 
 	private final PIMConnectorStatusSelectionFDSFilter

@@ -113,8 +113,6 @@ public class AssetTagsPortletDataHandlerTest
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals(LoggerTestUtil.ERROR, logEntry.getPriority());
@@ -126,6 +124,8 @@ public class AssetTagsPortletDataHandlerTest
 			Assert.assertEquals(
 				"A tag with the name " + name + " already exists",
 				throwable.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 
 		List<ExportImportReportEntry> exportImportReportEntries =
@@ -222,8 +222,6 @@ public class AssetTagsPortletDataHandlerTest
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals(LoggerTestUtil.ERROR, logEntry.getPriority());
@@ -235,6 +233,8 @@ public class AssetTagsPortletDataHandlerTest
 			Assert.assertEquals(
 				"A tag with the name " + name + " already exists",
 				throwable.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 	}
 

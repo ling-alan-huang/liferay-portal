@@ -705,8 +705,6 @@ public class ExportProcessResourceTest
 		List<FileEntry> fileEntries =
 			backgroundTask.getAttachmentsFileEntries();
 
-		Assert.assertEquals(fileEntries.toString(), 1, fileEntries.size());
-
 		FileEntry larFileEntry = fileEntries.get(0);
 
 		JSONAssert.assertEquals(
@@ -719,6 +717,8 @@ public class ExportProcessResourceTest
 				ExportImportTestUtil.getExportedJSONArray(
 					fileNamePrefix, groupId, larFileEntry.getContentStream())),
 			JSONCompareMode.LENIENT);
+
+		Assert.assertEquals(fileEntries.toString(), 1, fileEntries.size());
 	}
 
 	private void _assertExportedLayouts(

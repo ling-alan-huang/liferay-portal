@@ -190,8 +190,6 @@ public class NumericDDMFormFieldTypeSettingsTest
 
 		List<DDMFormRule> ddmFormRules = ddmForm.getDDMFormRules();
 
-		Assert.assertEquals(ddmFormRules.toString(), 4, ddmFormRules.size());
-
 		DDMFormRule ddmFormRule0 = ddmFormRules.get(0);
 
 		Assert.assertEquals(
@@ -315,6 +313,8 @@ public class NumericDDMFormFieldTypeSettingsTest
 			"setVisible('requiredErrorMessage', getValue('required'))",
 			actions.get(16));
 		Assert.assertEquals("setVisible('tooltip', false)", actions.get(17));
+
+		Assert.assertEquals(ddmFormRules.toString(), 4, ddmFormRules.size());
 	}
 
 	@Test

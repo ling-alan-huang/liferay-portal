@@ -128,8 +128,6 @@ public class ObjectDefinitionsDetailsDisplayContextTest {
 		JSONArray jsonArray =
 			objectDefinitionsDetailsDisplayContext.getScopeJSONArray(_SCOPE);
 
-		Assert.assertEquals(jsonArray.toString(), 1, jsonArray.length());
-
 		JSONObject jsonObject = jsonArray.getJSONObject(0);
 
 		Assert.assertEquals(
@@ -145,6 +143,8 @@ public class ObjectDefinitionsDetailsDisplayContextTest {
 				itemJSONObject.getString("value"),
 				itemJSONObject.getString("label"));
 		}
+
+		Assert.assertEquals(jsonArray.toString(), 1, jsonArray.length());
 
 		Assert.assertEquals(
 			panelCategoryLabels.toString(), 2, panelCategoryLabels.size());

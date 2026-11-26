@@ -209,10 +209,6 @@ public class AssetVocabularyServiceTest {
 				getAssetVocabularyGroupRelsByVocabularyIdAndDepotEntryType(
 					vocabulary.getVocabularyId(), DepotConstants.TYPE_PROJECT);
 
-		Assert.assertEquals(
-			projectAssetVocabularyGroupRels.toString(), 1,
-			projectAssetVocabularyGroupRels.size());
-
 		AssetVocabularyGroupRel projectAssetVocabularyGroupRel =
 			projectAssetVocabularyGroupRels.get(0);
 
@@ -221,14 +217,14 @@ public class AssetVocabularyServiceTest {
 			GroupConstants.GROUP_ID_ALL,
 			projectAssetVocabularyGroupRel.getGroupId());
 
+		Assert.assertEquals(
+			projectAssetVocabularyGroupRels.toString(), 1,
+			projectAssetVocabularyGroupRels.size());
+
 		List<AssetVocabularyGroupRel> spaceAssetVocabularyGroupRels =
 			_assetVocabularyGroupRelLocalService.
 				getAssetVocabularyGroupRelsByVocabularyIdAndDepotEntryType(
 					vocabulary.getVocabularyId(), DepotConstants.TYPE_SPACE);
-
-		Assert.assertEquals(
-			spaceAssetVocabularyGroupRels.toString(), 1,
-			spaceAssetVocabularyGroupRels.size());
 
 		AssetVocabularyGroupRel spaceAssetVocabularyGroupRel =
 			spaceAssetVocabularyGroupRels.get(0);
@@ -237,6 +233,10 @@ public class AssetVocabularyServiceTest {
 			spaceAssetVocabularyGroupRels.toString(),
 			GroupConstants.GROUP_ID_ALL,
 			spaceAssetVocabularyGroupRel.getGroupId());
+
+		Assert.assertEquals(
+			spaceAssetVocabularyGroupRels.toString(), 1,
+			spaceAssetVocabularyGroupRels.size());
 	}
 
 	@Test

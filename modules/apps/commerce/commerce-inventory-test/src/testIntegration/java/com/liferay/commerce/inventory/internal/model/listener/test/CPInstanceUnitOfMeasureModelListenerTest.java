@@ -299,16 +299,16 @@ public class CPInstanceUnitOfMeasureModelListenerTest {
 						getCommerceInventoryWarehouseId(),
 					QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 
-		Assert.assertEquals(
-			commerceInventoryWarehouseItems.toString(), 1,
-			commerceInventoryWarehouseItems.size());
-
 		CommerceInventoryWarehouseItem commerceInventoryWarehouseItem =
 			commerceInventoryWarehouseItems.get(0);
 
 		Assert.assertEquals(
 			commerceInventoryWarehouseItem.toString(), key,
 			commerceInventoryWarehouseItem.getUnitOfMeasureKey());
+
+		Assert.assertEquals(
+			commerceInventoryWarehouseItems.toString(), 1,
+			commerceInventoryWarehouseItems.size());
 	}
 
 	@Test

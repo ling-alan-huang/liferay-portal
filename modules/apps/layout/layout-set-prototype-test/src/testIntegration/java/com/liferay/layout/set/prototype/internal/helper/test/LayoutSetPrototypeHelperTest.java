@@ -181,12 +181,12 @@ public class LayoutSetPrototypeHelperTest {
 			_layoutSetPrototypeHelper.getDuplicatedFriendlyURLLayouts(
 				layoutSetPrototypeLayout);
 
-		Assert.assertEquals(
-			conflictLayouts.toString(), 1, conflictLayouts.size());
-
 		Layout conflictLayout = conflictLayouts.get(0);
 
 		Assert.assertEquals(conflictLayout.getPlid(), siteLayout.getPlid());
+
+		Assert.assertEquals(
+			conflictLayouts.toString(), 1, conflictLayouts.size());
 	}
 
 	@Test
@@ -249,12 +249,12 @@ public class LayoutSetPrototypeHelperTest {
 			_layoutSetPrototypeHelper.getDuplicatedFriendlyURLLayouts(
 				siteLayout);
 
-		Assert.assertEquals(conflicts.toString(), 1, conflicts.size());
-
 		Layout conflictLayout = conflicts.get(0);
 
 		Assert.assertEquals(
 			conflictLayout.getPlid(), layoutSetPrototypeLayout.getPlid());
+
+		Assert.assertEquals(conflicts.toString(), 1, conflicts.size());
 	}
 
 	@Test

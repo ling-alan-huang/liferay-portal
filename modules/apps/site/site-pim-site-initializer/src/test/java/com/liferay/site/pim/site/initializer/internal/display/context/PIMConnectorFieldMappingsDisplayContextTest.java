@@ -441,8 +441,6 @@ public class PIMConnectorFieldMappingsDisplayContextTest {
 
 			JSONArray jsonArray = (JSONArray)breadcrumbProps.get("actionItems");
 
-			Assert.assertEquals(jsonArray.toString(), 3, jsonArray.length());
-
 			JSONObject jsonObject = jsonArray.getJSONObject(0);
 
 			Assert.assertEquals("edit", jsonObject.getString("label"));
@@ -454,6 +452,8 @@ public class PIMConnectorFieldMappingsDisplayContextTest {
 			jsonObject = jsonArray.getJSONObject(2);
 
 			Assert.assertEquals("delete", jsonObject.getString("label"));
+
+			Assert.assertEquals(jsonArray.toString(), 3, jsonArray.length());
 
 			Assert.assertEquals(
 				"incomplete", breadcrumbProps.get("mappingStatus"));

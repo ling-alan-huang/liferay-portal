@@ -401,9 +401,6 @@ public class BrokenLinkAssetResourceTest
 		List<BrokenLinkAsset> brokenLinkAssets =
 			(List<BrokenLinkAsset>)brokenLinkAssetsPage.getItems();
 
-		Assert.assertEquals(
-			brokenLinkAssets.toString(), 2, brokenLinkAssets.size());
-
 		BrokenLinkAsset firstBrokenLinkAsset = brokenLinkAssets.get(0);
 
 		Assert.assertEquals(
@@ -413,6 +410,9 @@ public class BrokenLinkAssetResourceTest
 
 		Assert.assertEquals(
 			expectedSecondTitle, secondBrokenLinkAsset.getTitle());
+
+		Assert.assertEquals(
+			brokenLinkAssets.toString(), 2, brokenLinkAssets.size());
 	}
 
 	private void _assertTotalCount(

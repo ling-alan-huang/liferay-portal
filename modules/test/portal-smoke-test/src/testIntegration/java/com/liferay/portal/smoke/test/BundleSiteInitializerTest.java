@@ -425,9 +425,6 @@ public class BundleSiteInitializerTest {
 				_group.getGroupId(), true,
 				LayoutConstants.DEFAULT_PARENT_LAYOUT_ID);
 
-			Assert.assertEquals(
-				privateLayouts.toString(), 1, privateLayouts.size());
-
 			Layout privateLayout = privateLayouts.get(0);
 
 			Assert.assertEquals(
@@ -437,6 +434,9 @@ public class BundleSiteInitializerTest {
 
 			Assert.assertEquals(
 				privateChildLayouts.toString(), 0, privateChildLayouts.size());
+
+			Assert.assertEquals(
+				privateLayouts.toString(), 1, privateLayouts.size());
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
@@ -616,9 +616,6 @@ public class BundleSiteInitializerTest {
 
 				List<LogEntry> logEntries = logCapture.getLogEntries();
 
-				Assert.assertEquals(
-					logEntries.toString(), 1, logEntries.size());
-
 				LogEntry logEntry = logEntries.get(0);
 
 				Assert.assertEquals(
@@ -626,6 +623,9 @@ public class BundleSiteInitializerTest {
 				Assert.assertEquals(
 					LoggerTestUtil.ERROR, logEntry.getPriority());
 				Assert.assertSame(throwable, logEntry.getThrowable());
+
+				Assert.assertEquals(
+					logEntries.toString(), 1, logEntries.size());
 			}
 
 			Assert.assertSame(
@@ -903,9 +903,6 @@ public class BundleSiteInitializerTest {
 			_assetListEntryLocalService.getAssetListEntries(
 				_group.getGroupId());
 
-		Assert.assertEquals(
-			assetListEntries.toString(), 5, assetListEntries.size());
-
 		AssetListEntry assetListEntry = assetListEntries.get(0);
 
 		Assert.assertEquals(
@@ -1012,6 +1009,9 @@ public class BundleSiteInitializerTest {
 		Assert.assertFalse(
 			typeSettings.contains(
 				"classTypeIdsObjectEntryAssetRendererFactory"));
+
+		Assert.assertEquals(
+			assetListEntries.toString(), 5, assetListEntries.size());
 	}
 
 	private void _assertAssetVocabularies() throws Exception {
@@ -1883,8 +1883,6 @@ public class BundleSiteInitializerTest {
 				_group.getGroupId(), DepotConstants.TYPE_ANY, QueryUtil.ALL_POS,
 				QueryUtil.ALL_POS);
 
-		Assert.assertEquals(depotEntries.toString(), 2, depotEntries.size());
-
 		List<DepotAppCustomization> depotAppCustomizations =
 			_depotAppCustomizationLocalService.getDepotAppCustomizations(
 				depotEntries.get(
@@ -1906,14 +1904,14 @@ public class BundleSiteInitializerTest {
 			depotAppCustomizations.get(
 				0
 			).getEnabled());
+
+		Assert.assertEquals(depotEntries.toString(), 2, depotEntries.size());
 	}
 
 	private void _assertDepotEntries2() throws Exception {
 		List<DepotEntry> depotEntries =
 			_depotEntryLocalService.getGroupConnectedDepotEntries(
 				_group.getGroupId(), DepotConstants.TYPE_ANY, -1, -1);
-
-		Assert.assertEquals(depotEntries.toString(), 5, depotEntries.size());
 
 		List<DepotAppCustomization> depotAppCustomizations =
 			_depotAppCustomizationLocalService.getDepotAppCustomizations(
@@ -1947,6 +1945,8 @@ public class BundleSiteInitializerTest {
 			depotAppCustomizations.get(
 				0
 			).getEnabled());
+
+		Assert.assertEquals(depotEntries.toString(), 5, depotEntries.size());
 	}
 
 	private void _assertDesignLibraryDepotEntries2() throws Exception {
@@ -2268,9 +2268,6 @@ public class BundleSiteInitializerTest {
 		List<JournalFolder> journalFolders = _journalFolderService.getFolders(
 			_group.getGroupId());
 
-		Assert.assertEquals(
-			journalFolders.toString(), 2, journalFolders.size());
-
 		JournalFolder journalFolder1 = journalFolders.get(0);
 
 		Assert.assertEquals(
@@ -2282,6 +2279,9 @@ public class BundleSiteInitializerTest {
 		Assert.assertEquals(
 			"TESTJOURNALFOLDER2", journalFolder2.getExternalReferenceCode());
 		Assert.assertEquals("Test Journal Folder 2", journalFolder2.getName());
+
+		Assert.assertEquals(
+			journalFolders.toString(), 2, journalFolders.size());
 	}
 
 	private void _assertJournalArticles2() throws Exception {
@@ -2322,9 +2322,6 @@ public class BundleSiteInitializerTest {
 		List<JournalFolder> journalFolders = _journalFolderService.getFolders(
 			_group.getGroupId());
 
-		Assert.assertEquals(
-			journalFolders.toString(), 3, journalFolders.size());
-
 		JournalFolder journalFolder1 = journalFolders.get(0);
 
 		Assert.assertEquals(
@@ -2343,6 +2340,9 @@ public class BundleSiteInitializerTest {
 		Assert.assertEquals(
 			"TESTJOURNALFOLDER3", journalFolder3.getExternalReferenceCode());
 		Assert.assertEquals("Test Journal Folder 3", journalFolder3.getName());
+
+		Assert.assertEquals(
+			journalFolders.toString(), 3, journalFolders.size());
 	}
 
 	private void _assertKBArticles() throws Exception {
@@ -2361,9 +2361,6 @@ public class BundleSiteInitializerTest {
 				QueryUtil.ALL_POS,
 				KBArticlePriorityComparator.getInstance(true));
 
-		Assert.assertEquals(
-			kbFolderKBArticles.toString(), 1, kbFolderKBArticles.size());
-
 		KBArticle kbArticle1 = kbFolderKBArticles.get(0);
 
 		Assert.assertEquals(
@@ -2378,9 +2375,6 @@ public class BundleSiteInitializerTest {
 				WorkflowConstants.STATUS_ANY, QueryUtil.ALL_POS,
 				QueryUtil.ALL_POS,
 				KBArticlePriorityComparator.getInstance(true));
-
-		Assert.assertEquals(
-			kbArticleKBArticles.toString(), 2, kbArticleKBArticles.size());
 
 		KBArticle kbArticle2 = kbArticleKBArticles.get(0);
 
@@ -2397,6 +2391,12 @@ public class BundleSiteInitializerTest {
 		Assert.assertEquals("Test KB Article 3 Title", kbArticle3.getTitle());
 		Assert.assertEquals(
 			"This is the body for Test KB Article 3.", kbArticle3.getContent());
+
+		Assert.assertEquals(
+			kbArticleKBArticles.toString(), 2, kbArticleKBArticles.size());
+
+		Assert.assertEquals(
+			kbFolderKBArticles.toString(), 1, kbFolderKBArticles.size());
 	}
 
 	private void _assertKeywords1() throws Exception {
@@ -2485,9 +2485,6 @@ public class BundleSiteInitializerTest {
 			_fragmentEntryLinkLocalService.getFragmentEntryLinksByPlid(
 				_group.getGroupId(), layoutPageTemplateEntry.getPlid());
 
-		Assert.assertEquals(
-			fragmentEntryLinks.toString(), 1, fragmentEntryLinks.size());
-
 		FragmentEntryLink fragmentEntryLink = fragmentEntryLinks.get(0);
 
 		JSONObject editableValuesJSONObject =
@@ -2518,6 +2515,9 @@ public class BundleSiteInitializerTest {
 			_group.getGroupId(), layoutJSONObject.getLong("groupId"));
 		Assert.assertFalse(layoutJSONObject.getBoolean("privateLayout"));
 		Assert.assertEquals("/home", layoutJSONObject.getString("value"));
+
+		Assert.assertEquals(
+			fragmentEntryLinks.toString(), 1, fragmentEntryLinks.size());
 
 		// Test Master Page
 
@@ -3515,9 +3515,6 @@ public class BundleSiteInitializerTest {
 			_group.getGroupId(), true,
 			LayoutConstants.DEFAULT_PARENT_LAYOUT_ID);
 
-		Assert.assertEquals(
-			privateLayouts.toString(), 1, privateLayouts.size());
-
 		Layout privateLayout = privateLayouts.get(0);
 
 		Assert.assertEquals(
@@ -3527,9 +3524,6 @@ public class BundleSiteInitializerTest {
 		Assert.assertTrue(privateLayout.isHidden());
 
 		List<Layout> privateChildLayouts = privateLayout.getAllChildren();
-
-		Assert.assertEquals(
-			privateChildLayouts.toString(), 2, privateChildLayouts.size());
 
 		Layout privateChildLayout = privateChildLayouts.get(0);
 
@@ -3545,15 +3539,18 @@ public class BundleSiteInitializerTest {
 			privateChildLayout.getName(LocaleUtil.getSiteDefault()));
 		Assert.assertEquals(
 			LayoutConstants.TYPE_CONTENT, privateChildLayout.getType());
+
+		Assert.assertEquals(
+			privateChildLayouts.toString(), 2, privateChildLayouts.size());
+
+		Assert.assertEquals(
+			privateLayouts.toString(), 1, privateLayouts.size());
 	}
 
 	private void _assertPrivateLayouts2() {
 		List<Layout> privateLayouts = _layoutLocalService.getLayouts(
 			_group.getGroupId(), true,
 			LayoutConstants.DEFAULT_PARENT_LAYOUT_ID);
-
-		Assert.assertEquals(
-			privateLayouts.toString(), 1, privateLayouts.size());
 
 		Layout privateLayout = privateLayouts.get(0);
 
@@ -3564,9 +3561,6 @@ public class BundleSiteInitializerTest {
 		Assert.assertTrue(privateLayout.isHidden());
 
 		List<Layout> privateChildLayouts = privateLayout.getAllChildren();
-
-		Assert.assertEquals(
-			privateChildLayouts.toString(), 2, privateChildLayouts.size());
 
 		Layout privateChildLayout = privateChildLayouts.get(0);
 
@@ -3581,6 +3575,12 @@ public class BundleSiteInitializerTest {
 			"Test Private Child Layout 2",
 			privateChildLayout.getName(LocaleUtil.getSiteDefault()));
 		Assert.assertEquals("content", privateChildLayout.getType());
+
+		Assert.assertEquals(
+			privateChildLayouts.toString(), 2, privateChildLayouts.size());
+
+		Assert.assertEquals(
+			privateLayouts.toString(), 1, privateLayouts.size());
 	}
 
 	private void _assertPublicLayouts1() throws Exception {
@@ -4218,10 +4218,6 @@ public class BundleSiteInitializerTest {
 				},
 				null, layout.getPlid(), true);
 
-		Assert.assertEquals(
-			publishLayoutSegmentsExperiences.toString(), 2,
-			publishLayoutSegmentsExperiences.size());
-
 		SegmentsExperience publishLayoutSegmentsExperience1 =
 			publishLayoutSegmentsExperiences.get(0);
 
@@ -4235,6 +4231,10 @@ public class BundleSiteInitializerTest {
 		_assertLayoutStructureItems(
 			publishLayoutPageTemplateStructure, 3,
 			publishLayoutSegmentsExperience2.getSegmentsExperienceId());
+
+		Assert.assertEquals(
+			publishLayoutSegmentsExperiences.toString(), 2,
+			publishLayoutSegmentsExperiences.size());
 
 		Layout draftLayout = layout.fetchDraftLayout();
 
@@ -4252,10 +4252,6 @@ public class BundleSiteInitializerTest {
 				},
 				null, draftLayout.getPlid(), true);
 
-		Assert.assertEquals(
-			draftLayoutSegmentsExperiences.toString(), 2,
-			draftLayoutSegmentsExperiences.size());
-
 		SegmentsExperience draftLayoutSegmentsExperience1 =
 			draftLayoutSegmentsExperiences.get(0);
 
@@ -4269,6 +4265,10 @@ public class BundleSiteInitializerTest {
 		_assertLayoutStructureItems(
 			draftLayoutPageTemplateStructure, 3,
 			draftLayoutSegmentsExperience2.getSegmentsExperienceId());
+
+		Assert.assertEquals(
+			draftLayoutSegmentsExperiences.toString(), 2,
+			draftLayoutSegmentsExperiences.size());
 	}
 
 	private void _assertSiteConfiguration1() throws Exception {
@@ -4327,10 +4327,6 @@ public class BundleSiteInitializerTest {
 		List<SiteNavigationMenuItem> siteNavigationMenuItems =
 			_siteNavigationMenuItemLocalService.getSiteNavigationMenuItems(
 				siteNavigationMenu.getSiteNavigationMenuId(), 0);
-
-		Assert.assertEquals(
-			siteNavigationMenuItems.toString(), 7,
-			siteNavigationMenuItems.size());
 
 		SiteNavigationMenuItem siteNavigationMenuItem1 =
 			siteNavigationMenuItems.get(0);
@@ -4409,6 +4405,10 @@ public class BundleSiteInitializerTest {
 		typeSettings = siteNavigationMenuItem7.getTypeSettings();
 
 		Assert.assertTrue(typeSettings.contains("externalReferenceCode"));
+
+		Assert.assertEquals(
+			siteNavigationMenuItems.toString(), 7,
+			siteNavigationMenuItems.size());
 	}
 
 	private void _assertSiteNavigationMenu2() {
@@ -4425,10 +4425,6 @@ public class BundleSiteInitializerTest {
 		List<SiteNavigationMenuItem> siteNavigationMenuItems =
 			_siteNavigationMenuItemLocalService.getSiteNavigationMenuItems(
 				siteNavigationMenu.getSiteNavigationMenuId(), 0);
-
-		Assert.assertEquals(
-			siteNavigationMenuItems.toString(), 8,
-			siteNavigationMenuItems.size());
 
 		SiteNavigationMenuItem siteNavigationMenuItem1 =
 			siteNavigationMenuItems.get(0);
@@ -4524,6 +4520,10 @@ public class BundleSiteInitializerTest {
 		Assert.assertEquals(
 			SiteNavigationMenuItemTypeConstants.LAYOUT,
 			siteNavigationMenuItem8.getType());
+
+		Assert.assertEquals(
+			siteNavigationMenuItems.toString(), 8,
+			siteNavigationMenuItems.size());
 	}
 
 	private void _assertSiteSettings() throws Exception {
@@ -4796,11 +4796,11 @@ public class BundleSiteInitializerTest {
 
 		List<Group> groups = user.getSiteGroups();
 
-		Assert.assertEquals(groups.toString(), 1, groups.size());
-
 		Group group = groups.get(0);
 
 		Assert.assertEquals(_group.getGroupId(), group.getGroupId());
+
+		Assert.assertEquals(groups.toString(), 1, groups.size());
 	}
 
 	private void _assertWorkflowDefinitions() throws Exception {

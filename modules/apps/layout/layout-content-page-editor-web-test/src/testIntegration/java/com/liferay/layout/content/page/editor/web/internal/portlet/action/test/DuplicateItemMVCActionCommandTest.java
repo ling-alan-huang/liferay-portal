@@ -298,8 +298,6 @@ public class DuplicateItemMVCActionCommandTest {
 		JSONArray jsonArray = jsonObject.getJSONArray(
 			"duplicatedFragmentEntryLinks");
 
-		Assert.assertEquals(jsonArray.toString(), 1, jsonArray.length());
-
 		JSONObject duplicatedFragmentEntryLinkJSONObject =
 			jsonArray.getJSONObject(0);
 
@@ -322,6 +320,8 @@ public class DuplicateItemMVCActionCommandTest {
 		Assert.assertTrue(
 			editableFragmentEntryProcessorJSONObject.has(
 				duplicatedFragmentEntryLink.getNamespace() + "-element-text"));
+
+		Assert.assertEquals(jsonArray.toString(), 1, jsonArray.length());
 	}
 
 	@Test(expected = PrincipalException.MustHavePermission.class)

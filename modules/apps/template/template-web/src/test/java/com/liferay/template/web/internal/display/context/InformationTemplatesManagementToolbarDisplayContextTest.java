@@ -260,8 +260,6 @@ public class InformationTemplatesManagementToolbarDisplayContextTest {
 			_informationTemplatesManagementToolbarDisplayContext,
 			"_getItemTypesJSONArray", new Class<?>[0]);
 
-		Assert.assertEquals(jsonArray.toString(), 1, jsonArray.length());
-
 		JSONObject jsonObject = jsonArray.getJSONObject(0);
 
 		Assert.assertEquals(_CLASS_NAME, jsonObject.getString("value"));
@@ -271,14 +269,16 @@ public class InformationTemplatesManagementToolbarDisplayContextTest {
 
 		JSONArray subtypesJSONArray = jsonObject.getJSONArray("subtypes");
 
-		Assert.assertEquals(
-			subtypesJSONArray.toString(), 1, subtypesJSONArray.length());
-
 		JSONObject subtypesJSONObject = subtypesJSONArray.getJSONObject(0);
 
 		Assert.assertEquals(key, subtypesJSONObject.getString("value"));
 		Assert.assertEquals(
 			expectedLabel, subtypesJSONObject.getString("label"));
+
+		Assert.assertEquals(
+			subtypesJSONArray.toString(), 1, subtypesJSONArray.length());
+
+		Assert.assertEquals(jsonArray.toString(), 1, jsonArray.length());
 	}
 
 	private static final String _CLASS_NAME = RandomTestUtil.randomString();

@@ -82,14 +82,14 @@ public class JUnitBatchTestClassGroupTest
 		List<AxisTestClassGroup> axisTestClassGroups =
 			jUnitBatchTestClassGroup.getAxisTestClassGroups();
 
-		Assert.assertEquals(
-			axisTestClassGroups.toString(), 1, axisTestClassGroups.size());
-
 		AxisTestClassGroup axisTestClassGroup = axisTestClassGroups.get(0);
 
 		List<TestClass> testClasses = axisTestClassGroup.getTestClasses();
 
 		testEquals(1, testClasses.size());
+
+		Assert.assertEquals(
+			axisTestClassGroups.toString(), 1, axisTestClassGroups.size());
 	}
 
 	@Test

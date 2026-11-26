@@ -185,14 +185,14 @@ public class AddDBPartitionCompanyMVCActionCommandTest {
 		List<Map<String, String>> maps =
 			(List<Map<String, String>>)argumentCaptor.getValue();
 
-		Assert.assertEquals(maps.toString(), 1, maps.size());
-
 		Map<String, String> map = maps.get(0);
 
 		Assert.assertEquals(_NAME, map.get("name"));
 		Assert.assertEquals(_SCHEMA_NAME, map.get("schemaName"));
 		Assert.assertEquals(_VIRTUAL_HOST, map.get("virtualHost"));
 		Assert.assertEquals(_WEB_ID, map.get("webId"));
+
+		Assert.assertEquals(maps.toString(), 1, maps.size());
 	}
 
 	@Test

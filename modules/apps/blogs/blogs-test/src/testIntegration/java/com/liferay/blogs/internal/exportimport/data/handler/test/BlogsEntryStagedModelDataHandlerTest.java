@@ -210,13 +210,13 @@ public class BlogsEntryStagedModelDataHandlerTest
 
 			Assert.assertTrue(ListUtil.isNotEmpty(assetCategories));
 
-			Assert.assertEquals(
-				assetCategories.toString(), 1, assetCategories.size());
-
 			AssetCategory importedAssetCategory = assetCategories.get(0);
 
 			Assert.assertEquals(
 				assetCategory.getName(), importedAssetCategory.getName());
+
+			Assert.assertEquals(
+				assetCategories.toString(), 1, assetCategories.size());
 		}
 	}
 
@@ -283,14 +283,14 @@ public class BlogsEntryStagedModelDataHandlerTest
 					_portal.getClassNameId(BlogsEntry.class.getName()),
 					importedEntry.getEntryId());
 
-			Assert.assertEquals(
-				friendlyURLEntries.toString(), 1, friendlyURLEntries.size());
-
 			FriendlyURLEntry importedFriendlyURLEntry = friendlyURLEntries.get(
 				0);
 
 			Assert.assertEquals(
 				friendlyURLEntry.getUuid(), importedFriendlyURLEntry.getUuid());
+
+			Assert.assertEquals(
+				friendlyURLEntries.toString(), 1, friendlyURLEntries.size());
 
 			Assert.assertNull(
 				BlogsEntryLocalServiceUtil.fetchEntry(

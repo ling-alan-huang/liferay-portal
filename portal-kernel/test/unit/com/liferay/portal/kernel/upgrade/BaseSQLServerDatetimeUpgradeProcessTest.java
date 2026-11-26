@@ -42,14 +42,14 @@ public class BaseSQLServerDatetimeUpgradeProcessTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals(
 				"Column publishDate in table Layout already is datetime2(6)",
 				logEntry.getMessage());
 			Assert.assertEquals("INFO", logEntry.getPriority());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 	}
 
@@ -68,14 +68,14 @@ public class BaseSQLServerDatetimeUpgradeProcessTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals(
 				"Column publishDate does not exist in table Layout",
 				logEntry.getMessage());
 			Assert.assertEquals("ERROR", logEntry.getPriority());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 	}
 

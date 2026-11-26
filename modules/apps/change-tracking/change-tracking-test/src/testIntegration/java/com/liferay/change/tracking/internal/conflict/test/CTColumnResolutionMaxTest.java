@@ -94,12 +94,8 @@ public class CTColumnResolutionMaxTest {
 		Map<Long, List<ConflictInfo>> conflictsMap =
 			_ctCollectionLocalService.checkConflicts(_ctCollection);
 
-		Assert.assertEquals(conflictsMap.toString(), 1, conflictsMap.size());
-
 		List<ConflictInfo> conflictInfos = conflictsMap.get(
 			_classNameLocalService.getClassNameId(DLFolder.class));
-
-		Assert.assertEquals(conflictsMap.toString(), 1, conflictInfos.size());
 
 		ConflictInfo conflictInfo = conflictInfos.get(0);
 
@@ -108,6 +104,10 @@ public class CTColumnResolutionMaxTest {
 		Assert.assertEquals(
 			parentDLFolder.getPrimaryKey(), conflictInfo.getTargetPrimaryKey());
 		Assert.assertTrue(conflictInfo.isResolved());
+
+		Assert.assertEquals(conflictsMap.toString(), 1, conflictInfos.size());
+
+		Assert.assertEquals(conflictsMap.toString(), 1, conflictsMap.size());
 
 		try (SafeCloseable safeCloseable =
 				CTCollectionThreadLocal.setCTCollectionIdWithSafeCloseable(

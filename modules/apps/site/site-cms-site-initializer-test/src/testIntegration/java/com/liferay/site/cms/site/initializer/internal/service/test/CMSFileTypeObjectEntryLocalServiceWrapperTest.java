@@ -424,10 +424,6 @@ public class CMSFileTypeObjectEntryLocalServiceWrapperTest {
 			objectValidationRuleEngineException.
 				getObjectValidationRuleResults();
 
-		Assert.assertEquals(
-			objectValidationRuleResults.toString(), 1,
-			objectValidationRuleResults.size());
-
 		ObjectValidationRuleResult objectValidationRuleResult =
 			objectValidationRuleResults.get(0);
 
@@ -440,6 +436,10 @@ public class CMSFileTypeObjectEntryLocalServiceWrapperTest {
 		Assert.assertEquals(
 			"objectEntryFriendlyURL",
 			objectValidationRuleResult.getObjectFieldName());
+
+		Assert.assertEquals(
+			objectValidationRuleResults.toString(), 1,
+			objectValidationRuleResults.size());
 	}
 
 	private void _assertObjectEntryUrlTitle(

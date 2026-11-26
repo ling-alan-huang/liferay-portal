@@ -88,8 +88,6 @@ public class FieldSetDDMFormFieldTemplateContextContributorTest
 			_fieldSetDDMFormFieldTemplateContextContributor.getRowsJSONArray(
 				ddmFormLayoutDefinition);
 
-		Assert.assertEquals(2, rowsJSONArray.length());
-
 		JSONObject row0JSONObject = rowsJSONArray.getJSONObject(0);
 
 		Assert.assertTrue(row0JSONObject.has("columns"));
@@ -146,6 +144,8 @@ public class FieldSetDDMFormFieldTemplateContextContributorTest
 
 		Assert.assertTrue(firstColumnJSONObject.has("size"));
 		Assert.assertEquals(12, firstColumnJSONObject.getInt("size"));
+
+		Assert.assertEquals(2, rowsJSONArray.length());
 	}
 
 	private String _read(String fileName) throws Exception {

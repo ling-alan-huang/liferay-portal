@@ -83,8 +83,6 @@ public class RadioDDMFormFieldTypeSettingsTest
 
 		List<DDMFormRule> ddmFormRules = ddmForm.getDDMFormRules();
 
-		Assert.assertEquals(ddmFormRules.toString(), 2, ddmFormRules.size());
-
 		DDMFormRule ddmFormRule = ddmFormRules.get(0);
 
 		Assert.assertEquals("TRUE", ddmFormRule.getCondition());
@@ -123,6 +121,8 @@ public class RadioDDMFormFieldTypeSettingsTest
 			"setValue('options', getListTypeEntries(getValue(" +
 				"'objectFieldName')))",
 			actions.get(0));
+
+		Assert.assertEquals(ddmFormRules.toString(), 2, ddmFormRules.size());
 	}
 
 	@Test

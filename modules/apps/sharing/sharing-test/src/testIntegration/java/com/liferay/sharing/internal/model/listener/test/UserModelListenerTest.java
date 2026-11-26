@@ -226,12 +226,12 @@ public class UserModelListenerTest {
 		List<SharingEntry> toUserSharingEntries =
 			SharingEntryTestUtil.getToUserSharingEntries(user.getUserId());
 
-		Assert.assertEquals(
-			toUserSharingEntries.toString(), 1, toUserSharingEntries.size());
-
 		SharingEntry toUserSharingEntry = toUserSharingEntries.get(0);
 
 		Assert.assertEquals(0, toUserSharingEntry.getToTicketId());
+
+		Assert.assertEquals(
+			toUserSharingEntries.toString(), 1, toUserSharingEntries.size());
 
 		_assertToTicketSharingEntriesCount(0, ticket1);
 		_assertToTicketSharingEntriesCount(0, ticket2);
@@ -420,14 +420,14 @@ public class UserModelListenerTest {
 		List<SharingEntry> toUserSharingEntries =
 			SharingEntryTestUtil.getToUserSharingEntries(user.getUserId());
 
-		Assert.assertEquals(
-			toUserSharingEntries.toString(), 1, toUserSharingEntries.size());
-
 		SharingEntry toUserSharingEntry = toUserSharingEntries.get(0);
 
 		Assert.assertEquals(
 			existingSharingEntry.getSharingEntryId(),
 			toUserSharingEntry.getSharingEntryId());
+
+		Assert.assertEquals(
+			toUserSharingEntries.toString(), 1, toUserSharingEntries.size());
 	}
 
 	private void _testOnAfterUpdateWithInviteCollaboratorTicket()

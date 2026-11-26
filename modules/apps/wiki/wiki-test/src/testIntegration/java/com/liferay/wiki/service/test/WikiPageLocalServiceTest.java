@@ -225,12 +225,12 @@ public class WikiPageLocalServiceTest {
 			AssetCategoryLocalServiceUtil.getCategories(
 				WikiPage.class.getName(), page.getResourcePrimKey());
 
-		Assert.assertEquals(
-			assetCategories.toString(), 1, assetCategories.size());
-
 		AssetCategory persistedAssetCategory = assetCategories.get(0);
 
 		Assert.assertEquals(categoryId, persistedAssetCategory.getCategoryId());
+
+		Assert.assertEquals(
+			assetCategories.toString(), 1, assetCategories.size());
 	}
 
 	@Test

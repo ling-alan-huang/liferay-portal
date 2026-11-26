@@ -95,8 +95,6 @@ public class MBCategoryIndexerTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals(
@@ -105,6 +103,8 @@ public class MBCategoryIndexerTest {
 					mbCategory.getCategoryId(), " and group ID ",
 					_group.getGroupId()),
 				logEntry.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 	}
 

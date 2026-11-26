@@ -100,9 +100,6 @@ public class WorkflowInstanceManagerImplTest
 				BlogsEntry.class.getName(), blogsEntry.getEntryId(), true,
 				QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 
-		Assert.assertEquals(
-			workflowInstances.toString(), 1, workflowInstances.size());
-
 		WorkflowInstance workflowInstance = workflowInstances.get(0);
 
 		Assert.assertEquals(
@@ -123,6 +120,9 @@ public class WorkflowInstanceManagerImplTest
 		workflowInstanceManager.deleteWorkflowInstance(
 			TestPropsValues.getCompanyId(),
 			workflowInstance.getWorkflowInstanceId());
+
+		Assert.assertEquals(
+			workflowInstances.toString(), 1, workflowInstances.size());
 	}
 
 	@Test

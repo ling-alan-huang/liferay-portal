@@ -641,17 +641,10 @@ public class ObjectEntryDisplayContextTest {
 		List<DDMFormFieldValue> ddmFormFieldValues =
 			ddmFormValues.getDDMFormFieldValues();
 
-		Assert.assertEquals(
-			ddmFormValues.toString(), 1, ddmFormFieldValues.size());
-
 		DDMFormFieldValue ddmFormFieldValue = ddmFormFieldValues.get(0);
 
 		List<DDMFormFieldValue> nestedDDMFormFieldValues =
 			ddmFormFieldValue.getNestedDDMFormFieldValues();
-
-		Assert.assertEquals(
-			nestedDDMFormFieldValues.toString(), 2,
-			nestedDDMFormFieldValues.size());
 
 		DDMFormFieldValue nestedDDMFormFieldValue1 =
 			nestedDDMFormFieldValues.get(0);
@@ -671,6 +664,13 @@ public class ObjectEntryDisplayContextTest {
 		Value value2 = nestedDDMFormFieldValue2.getValue();
 
 		Assert.assertEquals(textObjectFieldValue, value2.getString(locale));
+
+		Assert.assertEquals(
+			nestedDDMFormFieldValues.toString(), 2,
+			nestedDDMFormFieldValues.size());
+
+		Assert.assertEquals(
+			ddmFormValues.toString(), 1, ddmFormFieldValues.size());
 	}
 
 	private static ObjectDefinition _companyObjectDefinitionA;

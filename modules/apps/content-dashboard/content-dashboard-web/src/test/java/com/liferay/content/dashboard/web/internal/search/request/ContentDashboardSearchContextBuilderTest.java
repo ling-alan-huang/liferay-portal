@@ -110,15 +110,15 @@ public class ContentDashboardSearchContextBuilderTest {
 		List<BooleanClause<Filter>> mustBooleanClauses = _getBooleanClauses(
 			searchContext);
 
-		Assert.assertEquals(
-			mustBooleanClauses.toString(), 1, mustBooleanClauses.size());
-
 		BooleanClause<Filter> filterBooleanClause = mustBooleanClauses.get(0);
 
 		TermsFilter termsFilter = (TermsFilter)filterBooleanClause.getClause();
 
 		Assert.assertEquals(parameterName, termsFilter.getField());
 		Assert.assertEquals(parameterValues, termsFilter.getValues());
+
+		Assert.assertEquals(
+			mustBooleanClauses.toString(), 1, mustBooleanClauses.size());
 	}
 
 	@Test
@@ -176,9 +176,6 @@ public class ContentDashboardSearchContextBuilderTest {
 		List<BooleanClause<Filter>> mustBooleanClauses = _getBooleanClauses(
 			searchContext);
 
-		Assert.assertEquals(
-			mustBooleanClauses.toString(), 1, mustBooleanClauses.size());
-
 		BooleanClause<Filter> filterBooleanClause = mustBooleanClauses.get(0);
 
 		RangeTermFilter rangeTermFilter =
@@ -199,6 +196,9 @@ public class ContentDashboardSearchContextBuilderTest {
 
 		Assert.assertTrue(rangeTermFilter.isIncludesLower());
 		Assert.assertFalse(rangeTermFilter.isIncludesUpper());
+
+		Assert.assertEquals(
+			mustBooleanClauses.toString(), 1, mustBooleanClauses.size());
 	}
 
 	@Test

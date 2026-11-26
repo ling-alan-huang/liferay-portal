@@ -148,8 +148,6 @@ public class LaunchSetPublisherTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Throwable throwable = logEntry.getThrowable();
@@ -171,6 +169,8 @@ public class LaunchSetPublisherTest {
 			BackgroundTask backgroundTask = backgroundTasks.get(0);
 
 			Assert.assertEquals(message, backgroundTask.getStatusMessage());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 
 		// Launch set that is already being published
@@ -227,14 +227,14 @@ public class LaunchSetPublisherTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			String message =
 				"Launch set " + publishedLaunchSetId + " was already published";
 
 			Assert.assertEquals(message, logEntry.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 
 			_assertBackgroundTaskStatuses(
 				publishedLaunchSetId, BackgroundTaskConstants.STATUS_SUCCESSFUL,
@@ -285,8 +285,6 @@ public class LaunchSetPublisherTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			String message =
@@ -294,6 +292,8 @@ public class LaunchSetPublisherTest {
 					" is no longer scheduled";
 
 			Assert.assertEquals(message, logEntry.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 
 			_assertBackgroundTaskStatuses(
 				unscheduledLaunchSetId, BackgroundTaskConstants.STATUS_FAILED);
@@ -362,8 +362,6 @@ public class LaunchSetPublisherTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Throwable throwable = logEntry.getThrowable();
@@ -371,6 +369,8 @@ public class LaunchSetPublisherTest {
 			Assert.assertEquals(
 				"No launch entry manager exists for " + unknownClassName,
 				throwable.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 
 		_assertBackgroundTaskStatuses(

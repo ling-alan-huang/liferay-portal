@@ -53,8 +53,6 @@ public class SolrIndexSearcherLoggingTest extends BaseIndexingTestCase {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 2, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			_assertLogEntry("Search query", logEntry, LoggerTestUtil.DEBUG);
@@ -68,6 +66,8 @@ public class SolrIndexSearcherLoggingTest extends BaseIndexingTestCase {
 			_assertLogEntry(
 				_SEARCH_ENGINE_PROCESSED, logEntries.get(1),
 				LoggerTestUtil.DEBUG);
+
+			Assert.assertEquals(logEntries.toString(), 2, logEntries.size());
 		}
 	}
 
@@ -119,8 +119,6 @@ public class SolrIndexSearcherLoggingTest extends BaseIndexingTestCase {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 2, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			_assertLogEntry("Search query", logEntry, LoggerTestUtil.DEBUG);
@@ -134,6 +132,8 @@ public class SolrIndexSearcherLoggingTest extends BaseIndexingTestCase {
 			_assertLogEntry(
 				_SEARCH_ENGINE_PROCESSED, logEntries.get(1),
 				LoggerTestUtil.DEBUG);
+
+			Assert.assertEquals(logEntries.toString(), 2, logEntries.size());
 		}
 	}
 

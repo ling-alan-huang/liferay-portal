@@ -280,10 +280,6 @@ public class ObjectFolderLocalServiceTest {
 						TestPropsValues.getCompanyId(),
 						exportImportConfigurationId);
 
-			Assert.assertEquals(
-				exportImportReportEntries.toString(), 1,
-				exportImportReportEntries.size());
-
 			ExportImportReportEntry exportImportReportEntry =
 				exportImportReportEntries.get(0);
 
@@ -293,6 +289,10 @@ public class ObjectFolderLocalServiceTest {
 			Assert.assertEquals(
 				ExportImportReportEntryConstants.TYPE_EMPTY,
 				exportImportReportEntry.getType());
+
+			Assert.assertEquals(
+				exportImportReportEntries.toString(), 1,
+				exportImportReportEntries.size());
 
 			objectFolder = _objectFolderLocalService.updateObjectFolder(
 				objectFolder.getExternalReferenceCode(),

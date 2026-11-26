@@ -138,10 +138,6 @@ public class FileEntryContentDashboardItemTest {
 			versionableContentDashboardItem.getAllContentDashboardItemVersions(
 				_getMockHttpServletRequest());
 
-		Assert.assertEquals(
-			contentDashboardItemVersions.toString(), 1,
-			contentDashboardItemVersions.size());
-
 		ContentDashboardItemVersion contentDashboardItemVersion =
 			contentDashboardItemVersions.get(0);
 
@@ -150,6 +146,10 @@ public class FileEntryContentDashboardItemTest {
 			contentDashboardItemVersion.getLabel());
 		Assert.assertEquals("1.0", contentDashboardItemVersion.getVersion());
 		Assert.assertEquals("success", contentDashboardItemVersion.getStyle());
+
+		Assert.assertEquals(
+			contentDashboardItemVersions.toString(), 1,
+			contentDashboardItemVersions.size());
 	}
 
 	@Test
@@ -164,10 +164,6 @@ public class FileEntryContentDashboardItemTest {
 			versionableContentDashboardItem.getAllContentDashboardItemVersions(
 				_getMockHttpServletRequest());
 
-		Assert.assertEquals(
-			contentDashboardItemVersions.toString(), 2,
-			contentDashboardItemVersions.size());
-
 		ContentDashboardItemVersion contentDashboardItemVersion =
 			contentDashboardItemVersions.get(0);
 
@@ -176,6 +172,10 @@ public class FileEntryContentDashboardItemTest {
 			contentDashboardItemVersion.getLabel());
 		Assert.assertEquals("1.1", contentDashboardItemVersion.getVersion());
 		Assert.assertEquals("success", contentDashboardItemVersion.getStyle());
+
+		Assert.assertEquals(
+			contentDashboardItemVersions.toString(), 2,
+			contentDashboardItemVersions.size());
 	}
 
 	@Test
@@ -200,13 +200,13 @@ public class FileEntryContentDashboardItemTest {
 		List<AssetCategory> assetCategories =
 			versionableContentDashboardItem.getAssetCategories();
 
-		Assert.assertEquals(
-			assetCategories.toString(), 1, assetCategories.size());
-
 		AssetCategory assetCategory2 = assetCategories.get(0);
 
 		Assert.assertEquals(
 			assetCategory1.getTitle(), assetCategory2.getTitle());
+
+		Assert.assertEquals(
+			assetCategories.toString(), 1, assetCategories.size());
 	}
 
 	@Test
@@ -242,13 +242,13 @@ public class FileEntryContentDashboardItemTest {
 			versionableContentDashboardItem.getAssetCategories(
 				assetVocabulary2.getVocabularyId());
 
-		Assert.assertEquals(
-			assetCategories.toString(), 1, assetCategories.size());
-
 		AssetCategory assetCategory3 = assetCategories.get(0);
 
 		Assert.assertEquals(
 			"assetCategory2", assetCategory3.getTitle(LocaleUtil.getDefault()));
+
+		Assert.assertEquals(
+			assetCategories.toString(), 1, assetCategories.size());
 	}
 
 	@Test
@@ -271,11 +271,11 @@ public class FileEntryContentDashboardItemTest {
 		List<AssetTag> assetTags =
 			versionableContentDashboardItem.getAssetTags();
 
-		Assert.assertEquals(assetTags.toString(), 3, assetTags.size());
-
 		AssetTag assetTag = assetTags.get(0);
 
 		Assert.assertEquals("tag1", assetTag.getName());
+
+		Assert.assertEquals(assetTags.toString(), 3, assetTags.size());
 	}
 
 	@Test
@@ -414,10 +414,6 @@ public class FileEntryContentDashboardItemTest {
 			versionableContentDashboardItem.
 				getLatestContentDashboardItemVersions(LocaleUtil.getDefault());
 
-		Assert.assertEquals(
-			contentDashboardItemVersions.toString(), 1,
-			contentDashboardItemVersions.size());
-
 		ContentDashboardItemVersion contentDashboardItemVersion =
 			contentDashboardItemVersions.get(0);
 
@@ -426,6 +422,10 @@ public class FileEntryContentDashboardItemTest {
 			contentDashboardItemVersion.getLabel());
 		Assert.assertEquals("1.1", contentDashboardItemVersion.getVersion());
 		Assert.assertEquals("success", contentDashboardItemVersion.getStyle());
+
+		Assert.assertEquals(
+			contentDashboardItemVersions.toString(), 1,
+			contentDashboardItemVersions.size());
 	}
 
 	@Test
@@ -453,10 +453,6 @@ public class FileEntryContentDashboardItemTest {
 			versionableContentDashboardItem.
 				getLatestContentDashboardItemVersions(LocaleUtil.getDefault());
 
-		Assert.assertEquals(
-			contentDashboardItemVersions.toString(), 2,
-			contentDashboardItemVersions.size());
-
 		ContentDashboardItemVersion contentDashboardItemVersion =
 			contentDashboardItemVersions.get(0);
 
@@ -473,6 +469,10 @@ public class FileEntryContentDashboardItemTest {
 			contentDashboardItemVersion.getLabel());
 		Assert.assertEquals("1.2", contentDashboardItemVersion.getVersion());
 		Assert.assertEquals("danger", contentDashboardItemVersion.getStyle());
+
+		Assert.assertEquals(
+			contentDashboardItemVersions.toString(), 2,
+			contentDashboardItemVersions.size());
 	}
 
 	@Test

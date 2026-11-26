@@ -91,12 +91,12 @@ public class FragmentFileInstallerTest {
 			_fragmentEntryLocalService.getFragmentEntries(
 				fragmentCollection.getFragmentCollectionId());
 
-		Assert.assertEquals(
-			fragmentEntries.toString(), 1, fragmentEntries.size());
-
 		FragmentEntry fragmentEntry = fragmentEntries.get(0);
 
 		Assert.assertEquals("Card", fragmentEntry.getName());
+
+		Assert.assertEquals(
+			fragmentEntries.toString(), 1, fragmentEntries.size());
 	}
 
 	private void _assertLogEntries(

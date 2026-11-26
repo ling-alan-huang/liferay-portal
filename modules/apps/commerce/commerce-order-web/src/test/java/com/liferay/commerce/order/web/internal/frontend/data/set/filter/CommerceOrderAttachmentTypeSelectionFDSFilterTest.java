@@ -116,10 +116,6 @@ public class CommerceOrderAttachmentTypeSelectionFDSFilterTest {
 			_commerceOrderAttachmentTypeSelectionFDSFilter.
 				getSelectionFDSFilterItems(_locale);
 
-		Assert.assertEquals(
-			selectionFDSFilterItems.toString(), 2,
-			selectionFDSFilterItems.size());
-
 		SelectionFDSFilterItem selectionFDSFilterItem =
 			selectionFDSFilterItems.get(0);
 
@@ -132,6 +128,10 @@ public class CommerceOrderAttachmentTypeSelectionFDSFilterTest {
 			"Purchase Order Document", selectionFDSFilterItem.getLabel());
 		Assert.assertEquals(
 			"purchaseorderdocument", selectionFDSFilterItem.getValue());
+
+		Assert.assertEquals(
+			selectionFDSFilterItems.toString(), 2,
+			selectionFDSFilterItems.size());
 	}
 
 	private ListTypeEntry _mockListTypeEntry(String key, String name) {

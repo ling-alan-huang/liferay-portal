@@ -70,8 +70,6 @@ public class WorkflowDefinitionContentUtilTest {
 
 		JSONArray jsonArray = jsonObject.getJSONArray("#cdata-value");
 
-		Assert.assertEquals(jsonArray.toString(), 8, jsonArray.length());
-
 		String value = jsonArray.getString(2);
 
 		Assert.assertTrue(value.contains("xy"));
@@ -89,6 +87,8 @@ public class WorkflowDefinitionContentUtilTest {
 		Assert.assertEquals(
 			jsonArray.getString(1), 12,
 			StringUtils.countMatches(jsonArray.getString(1), StringPool.SPACE));
+
+		Assert.assertEquals(jsonArray.toString(), 8, jsonArray.length());
 	}
 
 	@Test
@@ -139,8 +139,6 @@ public class WorkflowDefinitionContentUtilTest {
 
 		JSONArray childJSONArray = jsonObject.getJSONArray("#child-nodes");
 
-		Assert.assertEquals(2, childJSONArray.length());
-
 		JSONObject childJSONObject = childJSONArray.getJSONObject(0);
 
 		Assert.assertEquals(
@@ -152,6 +150,8 @@ public class WorkflowDefinitionContentUtilTest {
 		Assert.assertEquals(
 			"repeatable-tag", childJSONObject.getString("#tag-name"));
 		Assert.assertEquals("Second", childJSONObject.getString("#value"));
+
+		Assert.assertEquals(2, childJSONArray.length());
 	}
 
 	@Test
@@ -205,12 +205,12 @@ public class WorkflowDefinitionContentUtilTest {
 
 		JSONArray childJSONArray = jsonObject.getJSONArray("#child-nodes");
 
-		Assert.assertEquals(1, childJSONArray.length());
-
 		JSONObject labelJSONObject = childJSONArray.getJSONObject(0);
 
 		Assert.assertEquals("Label", labelJSONObject.getString("#value"));
 		Assert.assertEquals("en_US", labelJSONObject.getString("language-id"));
+
+		Assert.assertEquals(1, childJSONArray.length());
 	}
 
 	@Test
