@@ -404,10 +404,6 @@ public class MCPToolIndexWriterTest {
 	private void _assertDeleteByQueryDocumentRequest(
 		Set<String> toolKeys, Set<String> toolSetNames) {
 
-		Assert.assertEquals(
-			_deleteByQueryDocumentRequests.toString(), 1,
-			_deleteByQueryDocumentRequests.size());
-
 		DeleteByQueryDocumentRequest deleteByQueryDocumentRequest =
 			_deleteByQueryDocumentRequests.get(0);
 
@@ -435,16 +431,20 @@ public class MCPToolIndexWriterTest {
 
 		Assert.assertEquals(
 			toolKeys, SetUtil.fromArray(toolKeysTermsQuery.getValues()));
+
+		Assert.assertEquals(
+			_deleteByQueryDocumentRequests.toString(), 1,
+			_deleteByQueryDocumentRequests.size());
 	}
 
 	private void _assertLogEntry(LogCapture logCapture, String message) {
 		List<LogEntry> logEntries = logCapture.getLogEntries();
 
-		Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 		LogEntry logEntry = logEntries.get(0);
 
 		Assert.assertEquals(message, logEntry.getMessage());
+
+		Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 	}
 
 	private Map<String, Document> _getIndexedDocuments() {

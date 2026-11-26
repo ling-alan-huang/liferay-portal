@@ -167,14 +167,14 @@ public class BulkDocumentRequestExecutorTest extends BaseOpenSearchTestCase {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals(
 				"Unable to get a bulk response for 2 operations",
 				logEntry.getMessage());
 			Assert.assertSame(ioException, logEntry.getThrowable());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 	}
 

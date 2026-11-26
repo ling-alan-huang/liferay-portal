@@ -579,14 +579,14 @@ public class JournalArticleLayoutClassedModelUsageUpgradeProcessTest {
 		List<Layout> stagingLayouts = _layoutLocalService.getLayouts(
 			stagingGroupId, false);
 
-		Assert.assertEquals(
-			stagingLayouts.toString(), 1, stagingLayouts.size());
-
 		Layout stagingLayout = stagingLayouts.get(0);
 
 		Assert.assertEquals(_publicLayout.getUuid(), stagingLayout.getUuid());
 
 		return stagingLayout;
+
+		Assert.assertEquals(
+			stagingLayouts.toString(), 1, stagingLayouts.size());
 	}
 
 	private void _publishToLive(Layout layout) throws Exception {

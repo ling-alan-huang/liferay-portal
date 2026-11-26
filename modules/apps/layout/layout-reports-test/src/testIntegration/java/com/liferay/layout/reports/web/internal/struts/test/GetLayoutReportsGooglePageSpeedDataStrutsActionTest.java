@@ -103,10 +103,6 @@ public class GetLayoutReportsGooglePageSpeedDataStrutsActionTest {
 					JSONArray pageURLsJSONArray = jsonObject.getJSONArray(
 						"pageURLs");
 
-					Assert.assertEquals(
-						String.valueOf(pageURLsJSONArray), 2,
-						pageURLsJSONArray.length());
-
 					JSONObject pageURLJSONObject1 =
 						pageURLsJSONArray.getJSONObject(0);
 
@@ -131,6 +127,10 @@ public class GetLayoutReportsGooglePageSpeedDataStrutsActionTest {
 					Assert.assertEquals(
 						layout.getName(LocaleUtil.BRAZIL),
 						pageURLJSONObject1.getString("title"));
+
+					Assert.assertEquals(
+						String.valueOf(pageURLsJSONArray), 2,
+						pageURLsJSONArray.length());
 
 					String configureGooglePageSpeedURL = jsonObject.getString(
 						"configureGooglePageSpeedURL");
@@ -215,10 +215,6 @@ public class GetLayoutReportsGooglePageSpeedDataStrutsActionTest {
 						JSONArray pageURLsJSONArray = jsonObject.getJSONArray(
 							"pageURLs");
 
-						Assert.assertEquals(
-							String.valueOf(pageURLsJSONArray), 2,
-							pageURLsJSONArray.length());
-
 						JSONObject pageURLJSONObject1 =
 							pageURLsJSONArray.getJSONObject(0);
 
@@ -242,6 +238,10 @@ public class GetLayoutReportsGooglePageSpeedDataStrutsActionTest {
 						Assert.assertEquals(
 							"defaultMappedTitle",
 							pageURLJSONObject2.getString("title"));
+
+						Assert.assertEquals(
+							String.valueOf(pageURLsJSONArray), 2,
+							pageURLsJSONArray.length());
 
 						String configureGooglePageSpeedURL =
 							jsonObject.getString("configureGooglePageSpeedURL");
@@ -343,10 +343,6 @@ public class GetLayoutReportsGooglePageSpeedDataStrutsActionTest {
 					JSONArray pageURLsJSONArray = jsonObject.getJSONArray(
 						"pageURLs");
 
-					Assert.assertEquals(
-						String.valueOf(pageURLsJSONArray), 3,
-						pageURLsJSONArray.length());
-
 					JSONObject englishJSONObject =
 						pageURLsJSONArray.getJSONObject(0);
 
@@ -367,6 +363,10 @@ public class GetLayoutReportsGooglePageSpeedDataStrutsActionTest {
 					Assert.assertEquals(
 						"Spanish (Spain)",
 						spanishJSONObject.get("languageLabel"));
+
+					Assert.assertEquals(
+						String.valueOf(pageURLsJSONArray), 3,
+						pageURLsJSONArray.length());
 				});
 	}
 

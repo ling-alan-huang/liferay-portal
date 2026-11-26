@@ -219,8 +219,6 @@ public class TemplateInfoItemFieldSetProviderTest {
 
 		List<InfoField<?>> infoFields = infoFieldSet.getAllInfoFields();
 
-		Assert.assertEquals(infoFields.toString(), 1, infoFields.size());
-
 		InfoField<?> infoField = infoFields.get(0);
 
 		Assert.assertTrue(
@@ -246,6 +244,8 @@ public class TemplateInfoItemFieldSetProviderTest {
 				PortletDisplayTemplate.DISPLAY_STYLE_PREFIX,
 				journalArticleTemplateEntry.getTemplateEntryId()),
 			infoField.getUniqueId());
+
+		Assert.assertEquals(infoFields.toString(), 1, infoFields.size());
 	}
 
 	@Test
@@ -326,8 +326,6 @@ public class TemplateInfoItemFieldSetProviderTest {
 
 		List<InfoField<?>> infoFields = infoFieldSet.getAllInfoFields();
 
-		Assert.assertEquals(infoFields.toString(), 1, infoFields.size());
-
 		InfoField<?> infoField = infoFields.get(0);
 
 		Assert.assertTrue(
@@ -354,6 +352,8 @@ public class TemplateInfoItemFieldSetProviderTest {
 				PortletDisplayTemplate.DISPLAY_STYLE_PREFIX,
 				_companyGroupTemplateEntry.getTemplateEntryId()),
 			infoField.getUniqueId());
+
+		Assert.assertEquals(infoFields.toString(), 1, infoFields.size());
 	}
 
 	@Test
@@ -385,8 +385,6 @@ public class TemplateInfoItemFieldSetProviderTest {
 
 		List<InfoField<?>> infoFields = infoFieldSet.getAllInfoFields();
 
-		Assert.assertEquals(infoFields.toString(), 1, infoFields.size());
-
 		InfoField<?> infoField = infoFields.get(0);
 
 		Assert.assertTrue(
@@ -396,6 +394,8 @@ public class TemplateInfoItemFieldSetProviderTest {
 			PortletDisplayTemplate.DISPLAY_STYLE_PREFIX +
 				categoryTemplateEntry.getTemplateEntryId(),
 			infoField.getName());
+
+		Assert.assertEquals(infoFields.toString(), 1, infoFields.size());
 	}
 
 	@Test
@@ -441,9 +441,6 @@ public class TemplateInfoItemFieldSetProviderTest {
 				String.valueOf(_journalArticle.getDDMStructureId()),
 				_journalArticle);
 
-		Assert.assertEquals(
-			infoFieldValues.toString(), 1, infoFieldValues.size());
-
 		InfoFieldValue<Object> infoFieldValue = infoFieldValues.get(0);
 
 		InfoField<?> infoField = infoFieldValue.getInfoField();
@@ -470,6 +467,9 @@ public class TemplateInfoItemFieldSetProviderTest {
 			nameValue.getString(
 				_portal.getSiteDefaultLocale(_group.getGroupId())),
 			functionInfoLocalizedValue.getValue());
+
+		Assert.assertEquals(
+			infoFieldValues.toString(), 1, infoFieldValues.size());
 	}
 
 	@Test
@@ -513,9 +513,6 @@ public class TemplateInfoItemFieldSetProviderTest {
 			_templateInfoItemFieldSetProvider.getInfoFieldValues(
 				AssetCategory.class.getName(), assetCategory);
 
-		Assert.assertEquals(
-			infoFieldValues.toString(), 1, infoFieldValues.size());
-
 		InfoFieldValue<Object> infoFieldValue = infoFieldValues.get(0);
 
 		InfoField<?> infoField = infoFieldValue.getInfoField();
@@ -530,6 +527,9 @@ public class TemplateInfoItemFieldSetProviderTest {
 			infoFieldValue.toString(), assetCategory.getName(),
 			infoFieldValue.getValue(
 				_portal.getSiteDefaultLocale(_group.getGroupId())));
+
+		Assert.assertEquals(
+			infoFieldValues.toString(), 1, infoFieldValues.size());
 	}
 
 	@Test
@@ -638,9 +638,6 @@ public class TemplateInfoItemFieldSetProviderTest {
 				String.valueOf(journalArticle.getDDMStructureId()),
 				journalArticle);
 
-		Assert.assertEquals(
-			infoFieldValues.toString(), 1, infoFieldValues.size());
-
 		InfoFieldValue<Object> infoFieldValue = infoFieldValues.get(0);
 
 		InfoField<?> infoField = infoFieldValue.getInfoField();
@@ -656,6 +653,9 @@ public class TemplateInfoItemFieldSetProviderTest {
 		_assertExpectedNames(
 			(String)infoFieldValue.getValue(locale),
 			assetCategory1.getTitle(locale), assetCategory2.getTitle(locale));
+
+		Assert.assertEquals(
+			infoFieldValues.toString(), 1, infoFieldValues.size());
 	}
 
 	@Test
@@ -682,9 +682,6 @@ public class TemplateInfoItemFieldSetProviderTest {
 				String.valueOf(_journalArticle.getDDMStructureId()),
 				_journalArticle);
 
-		Assert.assertEquals(
-			infoFieldValues.toString(), 1, infoFieldValues.size());
-
 		InfoFieldValue<Object> infoFieldValue = infoFieldValues.get(0);
 
 		InfoField<?> infoField = infoFieldValue.getInfoField();
@@ -706,6 +703,9 @@ public class TemplateInfoItemFieldSetProviderTest {
 					IsoChronology.INSTANCE, LocaleUtil.US),
 				LocaleUtil.US),
 			value);
+
+		Assert.assertEquals(
+			infoFieldValues.toString(), 1, infoFieldValues.size());
 	}
 
 	@Test
@@ -773,9 +773,6 @@ public class TemplateInfoItemFieldSetProviderTest {
 				String.valueOf(_journalArticle.getDDMStructureId()),
 				_journalArticle);
 
-		Assert.assertEquals(
-			infoFieldValues.toString(), 1, infoFieldValues.size());
-
 		InfoFieldValue<Object> infoFieldValue = infoFieldValues.get(0);
 
 		InfoField<?> infoField = infoFieldValue.getInfoField();
@@ -797,6 +794,9 @@ public class TemplateInfoItemFieldSetProviderTest {
 					IsoChronology.INSTANCE, LocaleUtil.SPAIN),
 				LocaleUtil.SPAIN),
 			value);
+
+		Assert.assertEquals(
+			infoFieldValues.toString(), 1, infoFieldValues.size());
 	}
 
 	@Test
@@ -830,9 +830,6 @@ public class TemplateInfoItemFieldSetProviderTest {
 				String.valueOf(journalArticle.getDDMStructureId()),
 				journalArticle);
 
-		Assert.assertEquals(
-			infoFieldValues.toString(), 1, infoFieldValues.size());
-
 		InfoFieldValue<Object> infoFieldValue = infoFieldValues.get(0);
 
 		InfoField<?> infoField = infoFieldValue.getInfoField();
@@ -845,6 +842,9 @@ public class TemplateInfoItemFieldSetProviderTest {
 
 		_assertExpectedNames(
 			(String)infoFieldValue.getValue(LocaleUtil.US), tagName1, tagName2);
+
+		Assert.assertEquals(
+			infoFieldValues.toString(), 1, infoFieldValues.size());
 	}
 
 	@Test
@@ -904,9 +904,6 @@ public class TemplateInfoItemFieldSetProviderTest {
 				String.valueOf(journalArticle.getDDMStructureId()),
 				journalArticle);
 
-		Assert.assertEquals(
-			infoFieldValues.toString(), 1, infoFieldValues.size());
-
 		InfoFieldValue<Object> infoFieldValue = infoFieldValues.get(0);
 
 		InfoField<?> infoField = infoFieldValue.getInfoField();
@@ -923,6 +920,9 @@ public class TemplateInfoItemFieldSetProviderTest {
 			ddmFormFieldValues, infoFieldValue, LocaleUtil.SPAIN);
 		_assertInfoFieldValue(
 			ddmFormFieldValues, infoFieldValue, LocaleUtil.US);
+
+		Assert.assertEquals(
+			infoFieldValues.toString(), 1, infoFieldValues.size());
 	}
 
 	@Test
@@ -971,9 +971,6 @@ public class TemplateInfoItemFieldSetProviderTest {
 				String.valueOf(journalArticle.getDDMStructureId()),
 				journalArticle);
 
-		Assert.assertEquals(
-			infoFieldValues.toString(), 1, infoFieldValues.size());
-
 		InfoFieldValue<Object> infoFieldValue = infoFieldValues.get(0);
 
 		InfoField<?> infoField = infoFieldValue.getInfoField();
@@ -998,6 +995,9 @@ public class TemplateInfoItemFieldSetProviderTest {
 			Assert.assertTrue(
 				ArrayUtil.contains(expectedKeys, jsonArray.getString(i)));
 		}
+
+		Assert.assertEquals(
+			infoFieldValues.toString(), 1, infoFieldValues.size());
 	}
 
 	@Test
@@ -1040,9 +1040,6 @@ public class TemplateInfoItemFieldSetProviderTest {
 				String.valueOf(journalArticle.getDDMStructureId()),
 				journalArticle);
 
-		Assert.assertEquals(
-			infoFieldValues.toString(), 1, infoFieldValues.size());
-
 		InfoFieldValue<Object> infoFieldValue = infoFieldValues.get(0);
 
 		InfoField<?> infoField = infoFieldValue.getInfoField();
@@ -1055,6 +1052,9 @@ public class TemplateInfoItemFieldSetProviderTest {
 
 		Assert.assertEquals(
 			StringPool.BLANK, infoFieldValue.getValue(LocaleUtil.US));
+
+		Assert.assertEquals(
+			infoFieldValues.toString(), 1, infoFieldValues.size());
 	}
 
 	@Test
@@ -1102,9 +1102,6 @@ public class TemplateInfoItemFieldSetProviderTest {
 				String.valueOf(journalArticle.getDDMStructureId()),
 				journalArticle);
 
-		Assert.assertEquals(
-			infoFieldValues.toString(), 1, infoFieldValues.size());
-
 		InfoFieldValue<Object> infoFieldValue = infoFieldValues.get(0);
 
 		InfoField<?> infoField = infoFieldValue.getInfoField();
@@ -1117,6 +1114,9 @@ public class TemplateInfoItemFieldSetProviderTest {
 
 		Assert.assertEquals(
 			expectedKey, infoFieldValue.getValue(LocaleUtil.US));
+
+		Assert.assertEquals(
+			infoFieldValues.toString(), 1, infoFieldValues.size());
 	}
 
 	private void _assertExpectedNames(
@@ -1182,9 +1182,6 @@ public class TemplateInfoItemFieldSetProviderTest {
 			currentThemeDisplayLocale,
 			LocaleThreadLocal.getThemeDisplayLocale());
 
-		Assert.assertEquals(
-			infoFieldValues.toString(), 1, infoFieldValues.size());
-
 		InfoFieldValue<Object> infoFieldValue = infoFieldValues.get(0);
 
 		InfoField<?> infoField = infoFieldValue.getInfoField();
@@ -1216,6 +1213,9 @@ public class TemplateInfoItemFieldSetProviderTest {
 				entry.getValue(),
 				functionInfoLocalizedValue.getValue(entry.getKey()));
 		}
+
+		Assert.assertEquals(
+			infoFieldValues.toString(), 1, infoFieldValues.size());
 	}
 
 	private DDMFormField _createDDMFormField(

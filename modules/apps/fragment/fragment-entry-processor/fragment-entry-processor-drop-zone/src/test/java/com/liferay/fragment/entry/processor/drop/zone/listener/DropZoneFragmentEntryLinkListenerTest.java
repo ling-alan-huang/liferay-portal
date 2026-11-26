@@ -494,18 +494,11 @@ public class DropZoneFragmentEntryLinkListenerTest {
 		List<String> childrenItemIds =
 			mainLayoutStructureItem.getChildrenItemIds();
 
-		Assert.assertEquals(
-			childrenItemIds.toString(), 1, childrenItemIds.size());
-
 		LayoutStructureItem containerStyledLayoutStructureItem =
 			layoutStructure.getLayoutStructureItem(childrenItemIds.get(0));
 
 		List<String> containerChildrenItemIds =
 			containerStyledLayoutStructureItem.getChildrenItemIds();
-
-		Assert.assertEquals(
-			containerChildrenItemIds.toString(), 1,
-			containerChildrenItemIds.size());
 
 		LayoutStructureItem fragmentStyledLayoutStructureItem =
 			layoutStructure.getLayoutStructureItem(
@@ -517,6 +510,13 @@ public class DropZoneFragmentEntryLinkListenerTest {
 
 		return (FragmentStyledLayoutStructureItem)
 			fragmentStyledLayoutStructureItem;
+
+		Assert.assertEquals(
+			containerChildrenItemIds.toString(), 1,
+			containerChildrenItemIds.size());
+
+		Assert.assertEquals(
+			childrenItemIds.toString(), 1, childrenItemIds.size());
 	}
 
 	private void _setUpDropZoneFragmentEntryLinkListener() {

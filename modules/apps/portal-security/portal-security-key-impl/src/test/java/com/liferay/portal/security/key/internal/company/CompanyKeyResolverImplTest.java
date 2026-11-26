@@ -312,9 +312,6 @@ public class CompanyKeyResolverImplTest {
 
 				List<LogEntry> logEntries = logCapture.getLogEntries();
 
-				Assert.assertEquals(
-					logEntries.toString(), 1, logEntries.size());
-
 				LogEntry logEntry = logEntries.get(0);
 
 				Assert.assertEquals(
@@ -323,6 +320,9 @@ public class CompanyKeyResolverImplTest {
 						"identifier is set to an unusable value for company ",
 						_COMPANY_ID_1),
 					logEntry.getMessage());
+
+				Assert.assertEquals(
+					logEntries.toString(), 1, logEntries.size());
 			}
 
 			ReflectionTestUtil.setFieldValue(
@@ -353,9 +353,6 @@ public class CompanyKeyResolverImplTest {
 
 				List<LogEntry> logEntries = logCapture.getLogEntries();
 
-				Assert.assertEquals(
-					logEntries.toString(), 1, logEntries.size());
-
 				LogEntry logEntry = logEntries.get(0);
 
 				Assert.assertEquals(
@@ -364,6 +361,9 @@ public class CompanyKeyResolverImplTest {
 						"because the KEK identifier is not configured for ",
 						"company ", _COMPANY_ID_1),
 					logEntry.getMessage());
+
+				Assert.assertEquals(
+					logEntries.toString(), 1, logEntries.size());
 			}
 		}
 	}

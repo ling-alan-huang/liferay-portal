@@ -141,16 +141,16 @@ public class CPDefinitionGroupedEntryLocalServiceTest {
 			_cpDefinitionGroupedEntryLocalService.getCPDefinitionGroupedEntries(
 				cpDefinition1.getCPDefinitionId());
 
-		Assert.assertEquals(
-			cpDefinitionGroupedEntries.toString(), 1,
-			cpDefinitionGroupedEntries.size());
-
 		CPDefinitionGroupedEntry cpDefinitionGroupedEntry =
 			cpDefinitionGroupedEntries.get(0);
 
 		Assert.assertEquals(
 			cpDefinition3.getCPDefinitionId(),
 			cpDefinitionGroupedEntry.getEntryCPDefinitionId());
+
+		Assert.assertEquals(
+			cpDefinitionGroupedEntries.toString(), 1,
+			cpDefinitionGroupedEntries.size());
 
 		_assertSearchCPDefinitionGroupedEntriesCount(cpDefinition1, 1);
 

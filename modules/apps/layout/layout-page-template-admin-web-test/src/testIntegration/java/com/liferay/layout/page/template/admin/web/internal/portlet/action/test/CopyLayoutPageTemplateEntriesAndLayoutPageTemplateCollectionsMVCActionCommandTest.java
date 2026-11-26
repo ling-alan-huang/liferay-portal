@@ -213,10 +213,6 @@ public class
 			_fragmentEntryLinkLocalService.getFragmentEntryLinksByPlid(
 				layoutPageTemplateEntry.getGroupId(), draftLayout.getPlid());
 
-		Assert.assertEquals(
-			targetFragmentEntryLinks.toString(),
-			sourceFragmentEntryLinks.size(), targetFragmentEntryLinks.size());
-
 		FragmentEntryLink sourceFragmentEntryLink =
 			sourceFragmentEntryLinks.get(0);
 
@@ -236,6 +232,10 @@ public class
 		Assert.assertEquals(
 			sourceEditableValuesJSONObject.get("portletId"),
 			targetEditableValuesJSONObject.get("portletId"));
+
+		Assert.assertEquals(
+			targetFragmentEntryLinks.toString(),
+			sourceFragmentEntryLinks.size(), targetFragmentEntryLinks.size());
 	}
 
 	@Test

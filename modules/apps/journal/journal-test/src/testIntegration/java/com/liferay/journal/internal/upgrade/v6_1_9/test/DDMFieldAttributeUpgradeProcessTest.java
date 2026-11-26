@@ -109,13 +109,13 @@ public class DDMFieldAttributeUpgradeProcessTest {
 			_ddmFieldLocalService.getDDMFieldAttributes(
 				_STORAGE_ID, attributeName);
 
-		Assert.assertEquals(
-			ddmFieldAttributes.toString(), 1, ddmFieldAttributes.size());
-
 		DDMFieldAttribute ddmFieldAttribute = ddmFieldAttributes.get(0);
 
 		Assert.assertEquals(
 			attributeValue, ddmFieldAttribute.getAttributeValue());
+
+		Assert.assertEquals(
+			ddmFieldAttributes.toString(), 1, ddmFieldAttributes.size());
 	}
 
 	private static final String _CLASS_NAME =

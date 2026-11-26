@@ -136,13 +136,13 @@ public class IndividualSegmentsCheckerTest {
 				_segmentsEntryRelLocalService.getSegmentsEntryRels(
 					segmentsEntry.getSegmentsEntryId());
 
-			Assert.assertEquals(
-				segmentsEntryRels.toString(), 1, segmentsEntryRels.size());
-
 			SegmentsEntryRel segmentsEntryRel = segmentsEntryRels.get(0);
 
 			Assert.assertEquals(
 				_user.getUserId(), segmentsEntryRel.getClassPK());
+
+			Assert.assertEquals(
+				segmentsEntryRels.toString(), 1, segmentsEntryRels.size());
 		}
 	}
 
@@ -191,9 +191,6 @@ public class IndividualSegmentsCheckerTest {
 
 				List<LogEntry> logEntries = logCapture.getLogEntries();
 
-				Assert.assertEquals(
-					logEntries.toString(), 1, logEntries.size());
-
 				LogEntry logEntry = logEntries.get(0);
 
 				SegmentsEntry segmentsEntry = _getSegmentsEntry();
@@ -202,6 +199,9 @@ public class IndividualSegmentsCheckerTest {
 					"Unable to retrieve individuals for individual segment " +
 						segmentsEntry.getSegmentsEntryKey(),
 					logEntry.getMessage());
+
+				Assert.assertEquals(
+					logEntries.toString(), 1, logEntries.size());
 			}
 
 			Assert.assertEquals(

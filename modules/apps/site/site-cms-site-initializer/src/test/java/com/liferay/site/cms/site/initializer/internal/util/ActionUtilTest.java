@@ -181,12 +181,12 @@ public class ActionUtilTest {
 					List.of(cmsStructureObjectFolderContributor),
 					_mockHttpServletRequest);
 
-			Assert.assertEquals(
-				dropdownItems.toString(), 1, dropdownItems.size());
-
 			DropdownItem dropdownItem = dropdownItems.get(0);
 
 			Assert.assertEquals(creationMenuIcon, dropdownItem.get("icon"));
+
+			Assert.assertEquals(
+				dropdownItems.toString(), 1, dropdownItems.size());
 		}
 	}
 

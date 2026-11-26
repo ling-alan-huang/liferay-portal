@@ -208,9 +208,6 @@ public class ElasticsearchSearchEngineAdapterIndexRequestTest {
 		List<AnalyzeIndexResponse.DetailsTokenFilter> detailsTokenFilters =
 			analyzeIndexResponse.getDetailsTokenFilters();
 
-		Assert.assertEquals(
-			detailsTokenFilters.toString(), 1, detailsTokenFilters.size());
-
 		AnalyzeIndexResponse.DetailsTokenFilter detailsTokenFilter =
 			detailsTokenFilters.get(0);
 
@@ -220,6 +217,9 @@ public class ElasticsearchSearchEngineAdapterIndexRequestTest {
 		_assertAnalysisIndexResponseTokens(
 			detailsTokenFilter.getAnalysisIndexResponseTokens(),
 			"THE 2 QUICK BROWN-FOXES JUMPED OVER THE LAZY DOG'S BONE.");
+
+		Assert.assertEquals(
+			detailsTokenFilters.toString(), 1, detailsTokenFilters.size());
 	}
 
 	@Test

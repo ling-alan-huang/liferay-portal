@@ -285,10 +285,6 @@ public class DepotEntryUserNotificationTest {
 			UserNotificationEventTestUtil.getUserNotificationEvents(
 				user.getUserId());
 
-		Assert.assertEquals(
-			userNotificationEvents.toString(), 1,
-			userNotificationEvents.size());
-
 		UserNotificationEvent userNotificationEvent =
 			userNotificationEvents.get(0);
 
@@ -299,6 +295,10 @@ public class DepotEntryUserNotificationTest {
 
 		Assert.assertTrue(
 			payload.contains("classPK\":" + _depotEntry1.getDepotEntryId()));
+
+		Assert.assertEquals(
+			userNotificationEvents.toString(), 1,
+			userNotificationEvents.size());
 	}
 
 	private ServiceContext _getServiceContext(User user) throws Exception {

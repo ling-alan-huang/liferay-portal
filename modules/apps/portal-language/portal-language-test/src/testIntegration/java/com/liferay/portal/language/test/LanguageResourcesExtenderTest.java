@@ -289,9 +289,6 @@ public class LanguageResourcesExtenderTest {
 							")(servlet.context.name=", servletContextName,
 							"))")));
 
-			Assert.assertEquals(
-				serviceReferences.toString(), 1, serviceReferences.size());
-
 			ServiceReference<ResourceBundleLoader> serviceReference =
 				serviceReferences.get(0);
 
@@ -300,6 +297,9 @@ public class LanguageResourcesExtenderTest {
 				serviceReference.getProperty("exclude.portal.resources"));
 			Assert.assertEquals(
 				1, serviceReference.getProperty("service.ranking"));
+
+			Assert.assertEquals(
+				serviceReferences.toString(), 1, serviceReferences.size());
 		}
 		finally {
 			bundle.uninstall();

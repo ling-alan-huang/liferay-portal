@@ -210,10 +210,6 @@ public class DynamicDataMappingUpgradeProcessTest extends BaseDDMTestCase {
 		List<DDMFormFieldValue> updatedDDMFormFieldValues =
 			updatedDDMFormValues.getDDMFormFieldValues();
 
-		Assert.assertEquals(
-			updatedDDMFormFieldValues.toString(), 1,
-			updatedDDMFormFieldValues.size());
-
 		DDMFormFieldValue updatedDDMFormFieldValue =
 			updatedDDMFormFieldValues.get(0);
 
@@ -222,6 +218,10 @@ public class DynamicDataMappingUpgradeProcessTest extends BaseDDMTestCase {
 		Assert.assertEquals("name", updatedDDMFormFieldValue.getName());
 
 		Assert.assertEquals("Joe Bloggs", value.getString(LocaleUtil.US));
+
+		Assert.assertEquals(
+			updatedDDMFormFieldValues.toString(), 1,
+			updatedDDMFormFieldValues.size());
 	}
 
 	@Test

@@ -197,13 +197,13 @@ public class ContentManagerTest {
 			_segmentsExperienceLocalService.fetchDefaultSegmentsExperienceId(
 				_layout.getPlid()));
 
-		Assert.assertEquals(1, jsonArray.length());
-
 		JSONObject jsonObject = jsonArray.getJSONObject(0);
 
 		JSONObject actionsJSONObject = jsonObject.getJSONObject("actions");
 
 		Assert.assertFalse(actionsJSONObject.has("editURL"));
+
+		Assert.assertEquals(1, jsonArray.length());
 	}
 
 	@Inject

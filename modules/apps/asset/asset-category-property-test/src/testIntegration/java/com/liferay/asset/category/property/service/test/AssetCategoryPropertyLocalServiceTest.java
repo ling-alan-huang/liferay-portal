@@ -117,15 +117,15 @@ public class AssetCategoryPropertyLocalServiceTest {
 			_assetCategoryPropertyLocalService.getCategoryPropertyValues(
 				_group.getGroupId(), "keyToBeFound");
 
-		Assert.assertEquals(
-			assetCategoryProperties.toString(), 1,
-			assetCategoryProperties.size());
-
 		AssetCategoryProperty assetCategoryProperty =
 			assetCategoryProperties.get(0);
 
 		Assert.assertEquals("keyToBeFound", assetCategoryProperty.getKey());
 		Assert.assertEquals("someValue", assetCategoryProperty.getValue());
+
+		Assert.assertEquals(
+			assetCategoryProperties.toString(), 1,
+			assetCategoryProperties.size());
 	}
 
 	private AssetCategory _assetCategory;

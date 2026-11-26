@@ -98,12 +98,12 @@ public class DDMFormFieldTemplateContextContributorUtilTest
 				_mockListTypeEntryLocalService(
 					listTypeDefinitionId, nameMap, optionValue));
 
-		Assert.assertEquals(options.toString(), 1, options.size());
-
 		Map<String, Object> option = options.get(0);
 
 		Assert.assertEquals(optionLabel, option.get("label"));
 		Assert.assertEquals(nameMap, option.get("labelMap"));
+
+		Assert.assertEquals(options.toString(), 1, options.size());
 	}
 
 	private ListTypeEntryLocalService _mockListTypeEntryLocalService(

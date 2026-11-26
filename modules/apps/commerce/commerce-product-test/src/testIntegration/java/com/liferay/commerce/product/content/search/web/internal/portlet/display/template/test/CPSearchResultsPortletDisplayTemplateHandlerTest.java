@@ -77,10 +77,6 @@ public class CPSearchResultsPortletDisplayTemplateHandlerTest {
 			new ArrayList<>(
 				templateVariableGroup.getTemplateVariableDefinitions());
 
-		Assert.assertEquals(
-			templateVariableDefinitions.toString(), 2,
-			templateVariableDefinitions.size());
-
 		TemplateVariableDefinition templateVariableDefinition =
 			templateVariableDefinitions.get(0);
 
@@ -109,6 +105,10 @@ public class CPSearchResultsPortletDisplayTemplateHandlerTest {
 			"cp-catalog-entry", itemTemplateVariableDefinition.getLabel());
 		Assert.assertEquals(
 			"curCPCatalogEntry", itemTemplateVariableDefinition.getName());
+
+		Assert.assertEquals(
+			templateVariableDefinitions.toString(), 2,
+			templateVariableDefinitions.size());
 	}
 
 	private TemplateHandler _getTemplateHandler(String resourceName) {

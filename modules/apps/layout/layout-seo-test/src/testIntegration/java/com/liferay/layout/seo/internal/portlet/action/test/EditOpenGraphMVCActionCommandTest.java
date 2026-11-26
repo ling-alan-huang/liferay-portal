@@ -166,9 +166,6 @@ public class EditOpenGraphMVCActionCommandTest {
 				layoutSEOEntry.getLayoutSEOEntryId());
 
 		Assert.assertFalse(layoutSEOEntryCustomMetaTags.isEmpty());
-		Assert.assertEquals(
-			layoutSEOEntryCustomMetaTags.toString(), 1,
-			layoutSEOEntryCustomMetaTags.size());
 
 		LayoutSEOEntryCustomMetaTag layoutSEOEntryCustomMetaTag =
 			layoutSEOEntryCustomMetaTags.get(0);
@@ -179,6 +176,10 @@ public class EditOpenGraphMVCActionCommandTest {
 			contentMap.get(LocaleUtil.getSiteDefault()),
 			layoutSEOEntryCustomMetaTag.getContent(
 				LocaleUtil.getSiteDefault()));
+
+		Assert.assertEquals(
+			layoutSEOEntryCustomMetaTags.toString(), 1,
+			layoutSEOEntryCustomMetaTags.size());
 	}
 
 	private MockLiferayPortletActionRequest _getMockLiferayPortletActionRequest(

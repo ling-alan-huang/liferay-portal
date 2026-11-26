@@ -93,14 +93,14 @@ public class RestrictedLiferayObjectWrapperTest
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals(
 				"Registering com.liferay.package.name as a package because " +
 					"the class cannot be found",
 				logEntry.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 
 		try (LogCapture logCapture = LoggerTestUtil.configureLog4JLogger(
@@ -345,8 +345,6 @@ public class RestrictedLiferayObjectWrapperTest
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals(
@@ -354,6 +352,8 @@ public class RestrictedLiferayObjectWrapperTest
 					"\"", methodName, "\" does not match format ",
 					"\"className#methodName\""),
 				logEntry.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 	}
 

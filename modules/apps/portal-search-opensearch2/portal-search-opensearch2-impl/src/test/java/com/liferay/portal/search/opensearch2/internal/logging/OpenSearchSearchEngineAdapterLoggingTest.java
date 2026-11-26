@@ -102,8 +102,6 @@ public class OpenSearchSearchEngineAdapterLoggingTest
 	private void _assertLogCapture(LogCapture logCapture) {
 		List<LogEntry> logEntries = logCapture.getLogEntries();
 
-		Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 		LogEntry logEntry = logEntries.get(0);
 
 		Assert.assertEquals(LoggerTestUtil.DEBUG, logEntry.getPriority());
@@ -115,6 +113,8 @@ public class OpenSearchSearchEngineAdapterLoggingTest
 		Assert.assertTrue(
 			message + " does not start with " + expectedMessage,
 			message.startsWith(expectedMessage));
+
+		Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 	}
 
 	private static final String _INDEX_NAME = "_all";

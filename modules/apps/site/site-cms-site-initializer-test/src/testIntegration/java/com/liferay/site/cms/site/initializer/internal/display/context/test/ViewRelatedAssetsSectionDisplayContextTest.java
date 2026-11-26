@@ -137,8 +137,6 @@ public class ViewRelatedAssetsSectionDisplayContextTest
 		List<DropdownItem> dropdownItems = (List<DropdownItem>)creationMenu.get(
 			"primaryItems");
 
-		Assert.assertEquals(dropdownItems.toString(), 2, dropdownItems.size());
-
 		DropdownItem uploadDropdownItem = dropdownItems.get(0);
 
 		Map<String, Object> uploadData =
@@ -195,6 +193,8 @@ public class ViewRelatedAssetsSectionDisplayContextTest
 					")) and objectDefinitionId gt 0")));
 
 		Assert.assertEquals("CMS Assets", selectDropdownItem.get("label"));
+
+		Assert.assertEquals(dropdownItems.toString(), 2, dropdownItems.size());
 	}
 
 	@Test

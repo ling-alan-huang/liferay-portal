@@ -79,8 +79,6 @@ public class ParagraphDDMFormFieldTypeSettingsTest
 
 		List<DDMFormRule> ddmFormRules = ddmForm.getDDMFormRules();
 
-		Assert.assertEquals(ddmFormRules.toString(), 1, ddmFormRules.size());
-
 		DDMFormRule ddmFormRule = ddmFormRules.get(0);
 
 		Assert.assertEquals("TRUE", ddmFormRule.getCondition());
@@ -114,6 +112,8 @@ public class ParagraphDDMFormFieldTypeSettingsTest
 		Assert.assertTrue(
 			actions.toString(),
 			actions.contains("setVisible('indexType', false)"));
+
+		Assert.assertEquals(ddmFormRules.toString(), 1, ddmFormRules.size());
 	}
 
 	@Test

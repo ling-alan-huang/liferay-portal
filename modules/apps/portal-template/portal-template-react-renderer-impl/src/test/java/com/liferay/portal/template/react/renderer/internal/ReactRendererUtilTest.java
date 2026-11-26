@@ -149,9 +149,6 @@ public class ReactRendererUtilTest {
 				ReflectionTestUtils.invokeGetterMethod(
 					scriptData, "portletDataMap");
 
-		Assert.assertEquals(
-			portletDataMap.toString(), 1, portletDataMap.size());
-
 		PortletData portletData = portletDataMap.get(StringPool.BLANK);
 
 		Collection<JSFragment> jsFragments = portletData.getJSFragments();
@@ -194,6 +191,9 @@ public class ReactRendererUtilTest {
 		_assertESImportEquals(
 			"propsTransformer", "props-transformer-context#index.js",
 			"myTransformer", esImports.get(4));
+
+		Assert.assertEquals(
+			portletDataMap.toString(), 1, portletDataMap.size());
 	}
 
 	private void _assertESImportEquals(

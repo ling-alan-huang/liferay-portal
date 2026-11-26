@@ -218,11 +218,11 @@ public class WorkflowEngineTest {
 				KaleoNode.class.getName(),
 				kaleoDefinitionVersion.getKaleoDefinitionVersionId());
 
-		Assert.assertEquals(kaleoTimers.toString(), 1, kaleoTimers.size());
-
 		KaleoTimer kaleoTimer = kaleoTimers.get(0);
 
 		return kaleoTimer.getKaleoTimerId();
+
+		Assert.assertEquals(kaleoTimers.toString(), 1, kaleoTimers.size());
 	}
 
 	private InputStream _getResourceInputStream(String name) {

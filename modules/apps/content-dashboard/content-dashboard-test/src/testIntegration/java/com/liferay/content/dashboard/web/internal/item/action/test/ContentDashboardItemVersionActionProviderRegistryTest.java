@@ -79,15 +79,16 @@ public class ContentDashboardItemVersionActionProviderRegistryTest {
 
 				Assert.assertNotNull(
 					contentDashboardItemVersionActionProviders);
-				Assert.assertEquals(
-					contentDashboardItemVersionActionProviders.toString(), 1,
-					contentDashboardItemVersionActionProviders.size());
 
 				ContentDashboardItemVersionActionProvider
 					contentDashboardItemVersionActionProvider =
 						contentDashboardItemVersionActionProviders.get(0);
 
 				Assert.assertNotNull(contentDashboardItemVersionActionProvider);
+
+				Assert.assertEquals(
+					contentDashboardItemVersionActionProviders.toString(), 1,
+					contentDashboardItemVersionActionProviders.size());
 			});
 	}
 

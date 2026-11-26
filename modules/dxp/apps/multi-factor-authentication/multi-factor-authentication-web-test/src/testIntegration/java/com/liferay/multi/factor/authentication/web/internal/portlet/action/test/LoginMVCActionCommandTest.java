@@ -292,8 +292,6 @@ public class LoginMVCActionCommandTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			String logEntryMessage = logEntry.getMessage();
@@ -302,6 +300,8 @@ public class LoginMVCActionCommandTest {
 				logEntryMessage.contains(
 					"Ignoring login attempt because the password parameter " +
 						"was found for the request with the referer header:"));
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 	}
 

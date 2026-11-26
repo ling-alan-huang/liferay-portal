@@ -119,8 +119,6 @@ public class DDMFormEmailNotificationSenderTest {
 				_mockDDMFormInstanceRecord(ddmFormValues)),
 			LocaleUtil.US);
 
-		Assert.assertEquals(fields.toString(), 2, fields.size());
-
 		Map<String, Object> fieldProperties = (Map<String, Object>)fields.get(
 			0);
 
@@ -130,6 +128,8 @@ public class DDMFormEmailNotificationSenderTest {
 		fieldProperties = (Map<String, Object>)fields.get(1);
 
 		Assert.assertEquals("1", String.valueOf(fieldProperties.get("value")));
+
+		Assert.assertEquals(fields.toString(), 2, fields.size());
 	}
 
 	private static void _setUpDDMFormEmailNotificationSender()

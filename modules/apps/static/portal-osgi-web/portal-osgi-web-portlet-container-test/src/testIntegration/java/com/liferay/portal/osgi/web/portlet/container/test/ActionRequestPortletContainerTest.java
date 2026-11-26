@@ -165,8 +165,6 @@ public class ActionRequestPortletContainerTest
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Throwable throwable = logEntry.getThrowable();
@@ -175,6 +173,8 @@ public class ActionRequestPortletContainerTest
 				"User 0 session does not have a CSRF token for " +
 					"com.liferay.portlet.SecurityPortletContainerWrapper",
 				throwable.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 
 			Assert.assertEquals(403, response.getCode());
 			Assert.assertFalse(testPortlet.isCalledAction());

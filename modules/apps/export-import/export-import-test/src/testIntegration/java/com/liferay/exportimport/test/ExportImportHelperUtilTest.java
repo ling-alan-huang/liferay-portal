@@ -1135,12 +1135,12 @@ public class ExportImportHelperUtilTest {
 						layout.getLayoutId(), childLayout.getLayoutId()
 					})));
 
-		Assert.assertEquals(1, selectedLayoutsJSONArray.length());
-
 		JSONObject layoutJSONObject = selectedLayoutsJSONArray.getJSONObject(0);
 
 		Assert.assertTrue(layoutJSONObject.getBoolean("includeChildren"));
 		Assert.assertEquals(layout.getPlid(), layoutJSONObject.getLong("plid"));
+
+		Assert.assertEquals(1, selectedLayoutsJSONArray.length());
 	}
 
 	@Test
@@ -1155,13 +1155,13 @@ public class ExportImportHelperUtilTest {
 				_stagingGroup.getGroupId(), false,
 				StringUtil.merge(new long[] {childLayout.getLayoutId()})));
 
-		Assert.assertEquals(1, selectedLayoutsJSONArray.length());
-
 		JSONObject layoutJSONObject = selectedLayoutsJSONArray.getJSONObject(0);
 
 		Assert.assertTrue(layoutJSONObject.getBoolean("includeChildren"));
 		Assert.assertEquals(
 			childLayout.getPlid(), layoutJSONObject.getLong("plid"));
+
+		Assert.assertEquals(1, selectedLayoutsJSONArray.length());
 	}
 
 	@Test
@@ -1192,12 +1192,12 @@ public class ExportImportHelperUtilTest {
 				_stagingGroup.getGroupId(), false,
 				StringUtil.merge(new long[] {layout.getLayoutId()})));
 
-		Assert.assertEquals(1, selectedLayoutsJSONArray.length());
-
 		JSONObject layoutJSONObject = selectedLayoutsJSONArray.getJSONObject(0);
 
 		Assert.assertFalse(layoutJSONObject.getBoolean("includeChildren"));
 		Assert.assertEquals(layout.getPlid(), layoutJSONObject.getLong("plid"));
+
+		Assert.assertEquals(1, selectedLayoutsJSONArray.length());
 	}
 
 	@Test

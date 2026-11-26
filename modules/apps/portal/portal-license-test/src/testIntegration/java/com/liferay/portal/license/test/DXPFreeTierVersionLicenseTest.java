@@ -144,8 +144,6 @@ public class DXPFreeTierVersionLicenseTest extends BaseLicenseTestCase {
 		catch (LogEntriesException logEntriesException) {
 			List<LogEntry> logEntries = logEntriesException.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Throwable throwable = logEntry.getThrowable();
@@ -153,6 +151,8 @@ public class DXPFreeTierVersionLicenseTest extends BaseLicenseTestCase {
 			Assert.assertEquals(
 				throwable.getMessage(),
 				"License is not suppported in " + version);
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 	}
 

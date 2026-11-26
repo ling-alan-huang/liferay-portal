@@ -62,9 +62,6 @@ public class PostgreSQLDBTest extends DBTest {
 	private void _assertIndexMetadatas(List<IndexMetadata> indexMetadatas)
 		throws Exception {
 
-		Assert.assertEquals(
-			indexMetadatas.toString(), 1, indexMetadatas.size());
-
 		IndexMetadata indexMetadata = indexMetadatas.get(0);
 
 		Assert.assertEquals(
@@ -78,6 +75,9 @@ public class PostgreSQLDBTest extends DBTest {
 		Assert.assertEquals(
 			dbInspector.normalizeName(_INDEX_COLUMN_NAME_LEFT_CLAUSE),
 			columnNames[0]);
+
+		Assert.assertEquals(
+			indexMetadatas.toString(), 1, indexMetadatas.size());
 	}
 
 	private static final String _INDEX_COLUMN_NAME_LEFT_CLAUSE =

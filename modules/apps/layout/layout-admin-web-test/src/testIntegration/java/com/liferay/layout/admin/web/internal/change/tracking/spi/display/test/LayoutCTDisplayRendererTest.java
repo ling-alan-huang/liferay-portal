@@ -95,8 +95,6 @@ public class LayoutCTDisplayRendererTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals(
@@ -104,6 +102,8 @@ public class LayoutCTDisplayRendererTest {
 				logEntry.getMessage());
 			Assert.assertEquals(LoggerTestUtil.WARN, logEntry.getPriority());
 			Assert.assertSame(illegalStateException, logEntry.getThrowable());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 		finally {
 			ServiceContextThreadLocal.popServiceContext();

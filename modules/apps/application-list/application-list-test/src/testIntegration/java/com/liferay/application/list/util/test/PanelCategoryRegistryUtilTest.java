@@ -70,14 +70,14 @@ public class PanelCategoryRegistryUtilTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals(
 				"The panel categories \"testKey2\" and \"testKey1\" have the " +
 					"same order 100 and category key \"panelCategoryKey\"",
 				logEntry.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 		finally {
 			if (serviceRegistration1 != null) {

@@ -86,12 +86,12 @@ public class TransactionTestUtilTest {
 			TransactionInvokerUtil.invoke(
 				_transactionConfig, () -> _openSession(sessionFactory));
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals(
 				"Failed session factory verification", logEntry.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 		finally {
 			bundleContext.ungetService(serviceReference);

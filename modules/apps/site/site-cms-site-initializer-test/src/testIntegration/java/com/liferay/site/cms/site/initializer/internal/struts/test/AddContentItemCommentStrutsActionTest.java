@@ -335,10 +335,6 @@ public class AddContentItemCommentStrutsActionTest {
 			UserNotificationEventTestUtil.getUserNotificationEvents(
 				user1.getUserId());
 
-		Assert.assertEquals(
-			userNotificationEvents.toString(), 1,
-			userNotificationEvents.size());
-
 		UserNotificationEvent userNotificationEvent =
 			userNotificationEvents.get(0);
 
@@ -400,6 +396,10 @@ public class AddContentItemCommentStrutsActionTest {
 				StringBundler.concat(
 					author.getFullName(), " mentioned you in a comment on ",
 					title, ".")));
+
+		Assert.assertEquals(
+			userNotificationEvents.toString(), 1,
+			userNotificationEvents.size());
 
 		Assert.assertEquals(
 			0,
@@ -473,10 +473,6 @@ public class AddContentItemCommentStrutsActionTest {
 			_userNotificationEventLocalService.getUserNotificationEvents(
 				user1.getUserId(), MentionsPortletKeys.MENTIONS, 0, true);
 
-		Assert.assertEquals(
-			userNotificationEvents.toString(), 1,
-			userNotificationEvents.size());
-
 		UserNotificationFeedEntry userNotificationFeedEntry =
 			UserNotificationManagerUtil.interpret(
 				StringPool.BLANK, userNotificationEvents.get(0),
@@ -490,6 +486,10 @@ public class AddContentItemCommentStrutsActionTest {
 				StringBundler.concat(
 					author.getFullName(), " mentioned ", userGroup.getName(),
 					" in a comment on ", title, ".")));
+
+		Assert.assertEquals(
+			userNotificationEvents.toString(), 1,
+			userNotificationEvents.size());
 
 		MailMessage mailMessage = MailServiceTestUtil.getLastMailMessage();
 
@@ -672,10 +672,6 @@ public class AddContentItemCommentStrutsActionTest {
 			_userNotificationEventLocalService.getUserNotificationEvents(
 				user2.getUserId(), MentionsPortletKeys.MENTIONS, 0, true);
 
-		Assert.assertEquals(
-			userNotificationEvents.toString(), 1,
-			userNotificationEvents.size());
-
 		UserNotificationEvent userNotificationEvent =
 			userNotificationEvents.get(0);
 
@@ -683,6 +679,10 @@ public class AddContentItemCommentStrutsActionTest {
 			userNotificationEvent.getPayload());
 
 		Assert.assertFalse(payloadJSONObject.has("userGroupName"));
+
+		Assert.assertEquals(
+			userNotificationEvents.toString(), 1,
+			userNotificationEvents.size());
 
 		_depotEntryLocalService.deleteDepotEntry(depotEntry);
 		_layoutLocalService.deleteLayout(layout);
@@ -728,10 +728,6 @@ public class AddContentItemCommentStrutsActionTest {
 			UserNotificationEventTestUtil.getUserNotificationEvents(
 				user.getUserId());
 
-		Assert.assertEquals(
-			userNotificationEvents.toString(), 1,
-			userNotificationEvents.size());
-
 		UserNotificationEvent userNotificationEvent =
 			userNotificationEvents.get(0);
 
@@ -747,6 +743,10 @@ public class AddContentItemCommentStrutsActionTest {
 		Assert.assertEquals(
 			jsonObject.getString("commentId"),
 			HttpComponentsUtil.getParameter(entryURL, "messageId", false));
+
+		Assert.assertEquals(
+			userNotificationEvents.toString(), 1,
+			userNotificationEvents.size());
 
 		_groupLocalService.deleteGroup(group);
 		_layoutLocalService.deleteLayout(layout);
@@ -780,10 +780,6 @@ public class AddContentItemCommentStrutsActionTest {
 			UserNotificationEventTestUtil.getUserNotificationEvents(
 				user.getUserId());
 
-		Assert.assertEquals(
-			userNotificationEvents.toString(), 1,
-			userNotificationEvents.size());
-
 		UserNotificationEvent userNotificationEvent =
 			userNotificationEvents.get(0);
 
@@ -801,6 +797,10 @@ public class AddContentItemCommentStrutsActionTest {
 		Assert.assertEquals(
 			StringPool.BLANK,
 			HttpComponentsUtil.getParameter(entryURL, "p_l_mode", false));
+
+		Assert.assertEquals(
+			userNotificationEvents.toString(), 1,
+			userNotificationEvents.size());
 
 		_layoutLocalService.deleteLayout(layout);
 		_objectDefinitionLocalService.deleteObjectDefinition(objectDefinition);

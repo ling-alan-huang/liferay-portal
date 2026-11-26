@@ -231,10 +231,6 @@ public class SortParserImplTest {
 	public void testParseOneField() {
 		List<SortField> sortFields = _sortParserImpl.parse("fieldExternal1");
 
-		Assert.assertEquals(
-			"One sort field should be obtained: " + sortFields, 1,
-			sortFields.size());
-
 		SortField sortField = sortFields.get(0);
 
 		Assert.assertEquals(
@@ -243,6 +239,10 @@ public class SortParserImplTest {
 		Assert.assertEquals(
 			"fieldInternal1",
 			sortField.getSortableFieldPath(LocaleUtil.getDefault()));
+
+		Assert.assertEquals(
+			"One sort field should be obtained: " + sortFields, 1,
+			sortFields.size());
 	}
 
 	@Test
@@ -258,10 +258,6 @@ public class SortParserImplTest {
 	public void testParseTwoFields() {
 		List<SortField> sortFields = _sortParserImpl.parse(
 			"fieldExternal1,fieldExternal2");
-
-		Assert.assertEquals(
-			"Two sort fields should be obtained: " + sortFields, 2,
-			sortFields.size());
 
 		SortField sortField1 = sortFields.get(0);
 
@@ -282,6 +278,10 @@ public class SortParserImplTest {
 			"fieldInternal2",
 			sortField2.getSortableFieldPath(LocaleUtil.getDefault()));
 		Assert.assertTrue(sortField2.isAscending());
+
+		Assert.assertEquals(
+			"Two sort fields should be obtained: " + sortFields, 2,
+			sortFields.size());
 	}
 
 	@Test
@@ -289,10 +289,6 @@ public class SortParserImplTest {
 		List<SortField> sortFields = _sortParserImpl.parse(
 			"fieldExternal1:asc,fieldExternal2:desc");
 
-		Assert.assertEquals(
-			"Two sort fields should be obtained: " + sortFields, 2,
-			sortFields.size());
-
 		SortField sortField1 = sortFields.get(0);
 
 		Assert.assertEquals(
@@ -313,6 +309,10 @@ public class SortParserImplTest {
 			"fieldInternal2",
 			sortField2.getSortableFieldPath(LocaleUtil.getDefault()));
 		Assert.assertTrue(!sortField2.isAscending());
+
+		Assert.assertEquals(
+			"Two sort fields should be obtained: " + sortFields, 2,
+			sortFields.size());
 	}
 
 	@Test
@@ -320,10 +320,6 @@ public class SortParserImplTest {
 		List<SortField> sortFields = _sortParserImpl.parse(
 			"fieldExternal1,fieldExternal2:desc");
 
-		Assert.assertEquals(
-			"Two sort fields should be obtained: " + sortFields, 2,
-			sortFields.size());
-
 		SortField sortField1 = sortFields.get(0);
 
 		Assert.assertEquals(
@@ -343,6 +339,10 @@ public class SortParserImplTest {
 			"fieldInternal2",
 			sortField2.getSortableFieldPath(LocaleUtil.getDefault()));
 		Assert.assertTrue(!sortField2.isAscending());
+
+		Assert.assertEquals(
+			"Two sort fields should be obtained: " + sortFields, 2,
+			sortFields.size());
 	}
 
 	private final EntityModel _entityModel = new EntityModel() {

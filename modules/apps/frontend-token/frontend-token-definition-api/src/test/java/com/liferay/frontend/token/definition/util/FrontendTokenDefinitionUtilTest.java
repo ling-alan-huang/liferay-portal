@@ -148,14 +148,14 @@ public class FrontendTokenDefinitionUtilTest {
 		JSONArray mappingsJSONArray = frontendTokenJSONObject.getJSONArray(
 			"mappings");
 
-		Assert.assertEquals(
-			mappingsJSONArray.toString(), 1, mappingsJSONArray.length());
-
 		JSONObject mappingJSONObject = mappingsJSONArray.getJSONObject(0);
 
 		Assert.assertEquals("cssVariable", mappingJSONObject.getString("type"));
 		Assert.assertEquals(
 			cssVariableMappingValue, mappingJSONObject.getString("value"));
+
+		Assert.assertEquals(
+			mappingsJSONArray.toString(), 1, mappingsJSONArray.length());
 
 		Assert.assertEquals(name, frontendTokenJSONObject.getString("name"));
 		Assert.assertEquals(
@@ -296,10 +296,6 @@ public class FrontendTokenDefinitionUtilTest {
 			frontendTokenDefinitionJSONObject.getJSONArray(
 				"frontendTokenCategories");
 
-		Assert.assertEquals(
-			frontendTokenCategoriesJSONArray.toString(), 1,
-			frontendTokenCategoriesJSONArray.length());
-
 		JSONObject frontendTokenCategoryJSONObject =
 			frontendTokenCategoriesJSONArray.getJSONObject(0);
 
@@ -314,6 +310,10 @@ public class FrontendTokenDefinitionUtilTest {
 			label, frontendTokenCategoryJSONObject.getString("label"));
 		Assert.assertEquals(
 			name, frontendTokenCategoryJSONObject.getString("name"));
+
+		Assert.assertEquals(
+			frontendTokenCategoriesJSONArray.toString(), 1,
+			frontendTokenCategoriesJSONArray.length());
 
 		AssertUtils.assertFailure(
 			IllegalArgumentException.class,
@@ -505,13 +505,13 @@ public class FrontendTokenDefinitionUtilTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals(
 				"Unable to parse frontend token definition",
 				logEntry.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 	}
 

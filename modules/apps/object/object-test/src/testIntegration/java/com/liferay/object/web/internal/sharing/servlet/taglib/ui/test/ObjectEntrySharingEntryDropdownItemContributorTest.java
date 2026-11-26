@@ -266,13 +266,13 @@ public class ObjectEntrySharingEntryDropdownItemContributorTest {
 					).build()
 				).build()));
 
-		Assert.assertEquals(dropdownItems.toString(), 1, dropdownItems.size());
-
 		DropdownItem dropdownItem = dropdownItems.get(0);
 
 		Assert.assertEquals("download", dropdownItem.get("icon"));
 		Assert.assertNotNull(dropdownItem.get("href"));
 		Assert.assertNotNull(dropdownItem.get("label"));
+
+		Assert.assertEquals(dropdownItems.toString(), 1, dropdownItems.size());
 	}
 
 	private void _testGetSharingEntryDropdownItemsWithCMSBasicWebContent()

@@ -138,13 +138,13 @@ public class SerializableObjectWrapperTest {
 				SerializableObjectWrapper.unwrap(
 					_cloneBySerialization(_testSerializableObjectWrapper)));
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals(
 				"Unable to deserialize object", logEntry.getMessage());
 			Assert.assertSame(classNotFoundException, logEntry.getThrowable());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 	}
 

@@ -171,13 +171,13 @@ public class PortalCatapultTest {
 			List<String> authorizations = clientExtensionHttpServer._getHeaders(
 				HttpHeaders.AUTHORIZATION);
 
-			Assert.assertEquals(
-				authorizations.toString(), 1, authorizations.size());
-
 			String authorization = authorizations.get(0);
 
 			Assert.assertTrue(
 				authorization, authorization.startsWith("Bearer "));
+
+			Assert.assertEquals(
+				authorizations.toString(), 1, authorizations.size());
 
 			List<String> contentTypes = clientExtensionHttpServer._getHeaders(
 				HttpHeaders.CONTENT_TYPE);
@@ -226,8 +226,6 @@ public class PortalCatapultTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals(
@@ -237,6 +235,8 @@ public class PortalCatapultTest {
 					"/resource because it leaves the origin of ",
 					clientExtensionHttpServer._getURL(), "/resource"),
 				logEntry.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 	}
 
@@ -304,13 +304,13 @@ public class PortalCatapultTest {
 			List<String> authorizations = clientExtensionHttpServer._getHeaders(
 				HttpHeaders.AUTHORIZATION);
 
-			Assert.assertEquals(
-				authorizations.toString(), 1, authorizations.size());
-
 			String authorization = authorizations.get(0);
 
 			Assert.assertTrue(
 				authorization, authorization.startsWith("Bearer "));
+
+			Assert.assertEquals(
+				authorizations.toString(), 1, authorizations.size());
 
 			Assert.assertNull(
 				clientExtensionHttpServer._getHeaders(_HEADER_NAME));

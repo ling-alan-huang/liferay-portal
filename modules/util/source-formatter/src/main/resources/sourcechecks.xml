@@ -704,6 +704,10 @@
 			<category name="Performance" />
 			<description name="Finds unnecessary calls to `Session.flush()` (calls that are followed by `Session.clear()`)." />
 		</check>
+		<check name="JavaSizeAssertionOrderCheck">
+			<category name="Styling" />
+			<description name="Moves a size assertion in a test after the last statement that uses the elements it guards." />
+		</check>
 		<check name="JavaSQLStatementCheck">
 			<category name="Bug Prevention" />
 			<description name="Perform several checks in SQL statements." />

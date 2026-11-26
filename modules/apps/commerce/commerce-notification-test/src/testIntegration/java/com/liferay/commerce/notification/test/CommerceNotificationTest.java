@@ -131,16 +131,16 @@ public class CommerceNotificationTest {
 					_group.getGroupId(), QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 					null);
 
-		Assert.assertEquals(
-			commerceNotificationQueueEntries.toString(), 1,
-			commerceNotificationQueueEntries.size());
-
 		CommerceNotificationQueueEntry commerceNotificationQueueEntry =
 			commerceNotificationQueueEntries.get(0);
 
 		Assert.assertEquals(
 			commerceNotificationQueueEntry.getTo(),
 			_accountAdmin.getEmailAddress());
+
+		Assert.assertEquals(
+			commerceNotificationQueueEntries.toString(), 1,
+			commerceNotificationQueueEntries.size());
 	}
 
 	@Test
@@ -191,10 +191,6 @@ public class CommerceNotificationTest {
 					_group.getGroupId(), QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 					null);
 
-		Assert.assertEquals(
-			commerceNotificationQueueEntries.toString(), 1,
-			commerceNotificationQueueEntries.size());
-
 		CommerceNotificationQueueEntry commerceNotificationQueueEntry =
 			commerceNotificationQueueEntries.get(0);
 
@@ -204,6 +200,10 @@ public class CommerceNotificationTest {
 			commerceNotificationQueueEntry.getCc(), StringPool.BLANK);
 		Assert.assertEquals(
 			commerceNotificationQueueEntry.getBcc(), user.getEmailAddress());
+
+		Assert.assertEquals(
+			commerceNotificationQueueEntries.toString(), 1,
+			commerceNotificationQueueEntries.size());
 	}
 
 	@Test
@@ -228,10 +228,6 @@ public class CommerceNotificationTest {
 					_group.getGroupId(), QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 					null);
 
-		Assert.assertEquals(
-			commerceNotificationQueueEntries.toString(), 1,
-			commerceNotificationQueueEntries.size());
-
 		CommerceNotificationQueueEntry commerceNotificationQueueEntry =
 			commerceNotificationQueueEntries.get(0);
 
@@ -242,6 +238,10 @@ public class CommerceNotificationTest {
 
 		Assert.assertEquals(
 			commerceNotificationQueueEntry.getBcc(), StringPool.BLANK);
+
+		Assert.assertEquals(
+			commerceNotificationQueueEntries.toString(), 1,
+			commerceNotificationQueueEntries.size());
 	}
 
 	@Test
@@ -266,10 +266,6 @@ public class CommerceNotificationTest {
 					_group.getGroupId(), QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 					null);
 
-		Assert.assertEquals(
-			commerceNotificationQueueEntries.toString(), 1,
-			commerceNotificationQueueEntries.size());
-
 		CommerceNotificationQueueEntry commerceNotificationQueueEntry =
 			commerceNotificationQueueEntries.get(0);
 
@@ -279,6 +275,10 @@ public class CommerceNotificationTest {
 			commerceNotificationQueueEntry.getCc(), user.getEmailAddress());
 		Assert.assertEquals(
 			commerceNotificationQueueEntry.getBcc(), user.getEmailAddress());
+
+		Assert.assertEquals(
+			commerceNotificationQueueEntries.toString(), 1,
+			commerceNotificationQueueEntries.size());
 	}
 
 	@Test
@@ -307,16 +307,16 @@ public class CommerceNotificationTest {
 					_group.getGroupId(), QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 					null);
 
-		Assert.assertEquals(
-			commerceNotificationQueueEntries.toString(), 1,
-			commerceNotificationQueueEntries.size());
-
 		CommerceNotificationQueueEntry commerceNotificationQueueEntry =
 			commerceNotificationQueueEntries.get(0);
 
 		Assert.assertEquals(commerceNotificationQueueEntry.getCc(), fixedValue);
 		Assert.assertEquals(
 			commerceNotificationQueueEntry.getBcc(), fixedValue);
+
+		Assert.assertEquals(
+			commerceNotificationQueueEntries.toString(), 1,
+			commerceNotificationQueueEntries.size());
 	}
 
 	@Test
@@ -343,10 +343,6 @@ public class CommerceNotificationTest {
 					_group.getGroupId(), QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 					null);
 
-		Assert.assertEquals(
-			commerceNotificationQueueEntries.toString(), 1,
-			commerceNotificationQueueEntries.size());
-
 		CommerceNotificationQueueEntry commerceNotificationQueueEntry =
 			commerceNotificationQueueEntries.get(0);
 
@@ -354,6 +350,10 @@ public class CommerceNotificationTest {
 			commerceNotificationQueueEntry.getCc(), StringPool.BLANK);
 		Assert.assertEquals(
 			commerceNotificationQueueEntry.getBcc(), StringPool.BLANK);
+
+		Assert.assertEquals(
+			commerceNotificationQueueEntries.toString(), 1,
+			commerceNotificationQueueEntries.size());
 	}
 
 	@Test
@@ -378,10 +378,6 @@ public class CommerceNotificationTest {
 					_group.getGroupId(), QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 					null);
 
-		Assert.assertEquals(
-			commerceNotificationQueueEntries.toString(), 1,
-			commerceNotificationQueueEntries.size());
-
 		CommerceNotificationQueueEntry commerceNotificationQueueEntry =
 			commerceNotificationQueueEntries.get(0);
 
@@ -389,6 +385,10 @@ public class CommerceNotificationTest {
 
 		Assert.assertEquals(
 			commerceNotificationQueueEntry.getTo(), user.getEmailAddress());
+
+		Assert.assertEquals(
+			commerceNotificationQueueEntries.toString(), 1,
+			commerceNotificationQueueEntries.size());
 	}
 
 	@Test
@@ -479,16 +479,16 @@ public class CommerceNotificationTest {
 					_group.getGroupId(), QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 					null);
 
-		Assert.assertEquals(
-			commerceNotificationQueueEntries.toString(), 1,
-			commerceNotificationQueueEntries.size());
-
 		CommerceNotificationQueueEntry commerceNotificationQueueEntry =
 			commerceNotificationQueueEntries.get(0);
 
 		Assert.assertEquals(
 			commerceNotificationQueueEntry.getTo(),
 			_orderManager.getEmailAddress());
+
+		Assert.assertEquals(
+			commerceNotificationQueueEntries.toString(), 1,
+			commerceNotificationQueueEntries.size());
 	}
 
 	@Test

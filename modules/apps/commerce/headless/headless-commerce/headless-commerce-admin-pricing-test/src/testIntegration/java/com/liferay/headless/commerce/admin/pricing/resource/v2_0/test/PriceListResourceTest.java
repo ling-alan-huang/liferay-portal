@@ -474,13 +474,13 @@ public class PriceListResourceTest extends BasePriceListResourceTestCase {
 				_classNameLocalService.getClassNameId(CommercePriceList.class),
 				priceList.getId(), SystemEventConstants.TYPE_DELETE);
 
-		Assert.assertEquals(systemEvents.toString(), 1, systemEvents.size());
-
 		SystemEvent systemEvent = systemEvents.get(0);
 
 		Assert.assertEquals(
 			priceList.getExternalReferenceCode(),
 			systemEvent.getClassExternalReferenceCode());
+
+		Assert.assertEquals(systemEvents.toString(), 1, systemEvents.size());
 	}
 
 	private void _testGetPriceListsPageWithChannelFilter() throws Exception {
@@ -1115,10 +1115,6 @@ public class PriceListResourceTest extends BasePriceListResourceTestCase {
 			_commercePriceListChannelRelLocalService.
 				getCommercePriceListChannelRels(putPriceList.getId());
 
-		Assert.assertEquals(
-			commercePriceListChannelRels.toString(), 1,
-			commercePriceListChannelRels.size());
-
 		CommercePriceListChannelRel commercePriceListChannelRel =
 			commercePriceListChannelRels.get(0);
 
@@ -1126,6 +1122,10 @@ public class PriceListResourceTest extends BasePriceListResourceTestCase {
 			commerceChannel.getCommerceChannelId(),
 			commercePriceListChannelRel.getCommerceChannelId());
 		Assert.assertEquals(2, commercePriceListChannelRel.getOrder());
+
+		Assert.assertEquals(
+			commercePriceListChannelRels.toString(), 1,
+			commercePriceListChannelRels.size());
 	}
 
 	private void _testPutPriceListByExternalReferenceCodeWithLazyReferencedPriceListDiscount()
@@ -1165,16 +1165,16 @@ public class PriceListResourceTest extends BasePriceListResourceTestCase {
 			_commercePriceListDiscountRelLocalService.
 				getCommercePriceListDiscountRels(putPriceList.getId());
 
-		Assert.assertEquals(
-			commercePriceListDiscountRels.toString(), 1,
-			commercePriceListDiscountRels.size());
-
 		CommercePriceListDiscountRel commercePriceListDiscountRel =
 			commercePriceListDiscountRels.get(0);
 
 		Assert.assertEquals(
 			GetterUtil.getInteger(priceListDiscount.getOrder()),
 			commercePriceListDiscountRel.getOrder());
+
+		Assert.assertEquals(
+			commercePriceListDiscountRels.toString(), 1,
+			commercePriceListDiscountRels.size());
 	}
 
 	private AccountEntry _accountEntry;

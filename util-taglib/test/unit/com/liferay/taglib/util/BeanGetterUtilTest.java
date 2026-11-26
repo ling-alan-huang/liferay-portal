@@ -404,8 +404,6 @@ public class BeanGetterUtilTest {
 	}
 
 	private void _assertLogEntries(Bean bean, List<LogEntry> logEntries) {
-		Assert.assertEquals(logEntries.toString(), 2, logEntries.size());
-
 		LogEntry logEntry = logEntries.get(0);
 
 		Assert.assertEquals(
@@ -426,6 +424,8 @@ public class BeanGetterUtilTest {
 			logEntry.getMessage());
 		Assert.assertEquals("ERROR", logEntry.getPriority());
 		Assert.assertNull(logEntry.getThrowable());
+
+		Assert.assertEquals(logEntries.toString(), 2, logEntries.size());
 	}
 
 	private static class HiddenBean implements Named {

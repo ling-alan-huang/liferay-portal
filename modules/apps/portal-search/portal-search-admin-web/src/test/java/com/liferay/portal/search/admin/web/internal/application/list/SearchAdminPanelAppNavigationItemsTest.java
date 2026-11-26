@@ -76,10 +76,6 @@ public class SearchAdminPanelAppNavigationItemsTest
 		List<PanelAppNavigationItem> panelAppNavigationItems =
 			_searchAdminPanelApp.getPanelAppNavigationItems(httpServletRequest);
 
-		Assert.assertEquals(
-			panelAppNavigationItems.toString(), 2,
-			panelAppNavigationItems.size());
-
 		PanelAppNavigationItem panelAppNavigationItem =
 			panelAppNavigationItems.get(0);
 
@@ -90,6 +86,10 @@ public class SearchAdminPanelAppNavigationItemsTest
 
 		assertCanonicalName("index-actions", panelAppNavigationItem);
 		assertParameterValue("index-actions", panelAppNavigationItem, "tabs1");
+
+		Assert.assertEquals(
+			panelAppNavigationItems.toString(), 2,
+			panelAppNavigationItems.size());
 	}
 
 	@Test
@@ -118,15 +118,15 @@ public class SearchAdminPanelAppNavigationItemsTest
 		List<PanelAppNavigationItem> panelAppNavigationItems =
 			_searchAdminPanelApp.getPanelAppNavigationItems(httpServletRequest);
 
-		Assert.assertEquals(
-			panelAppNavigationItems.toString(), 3,
-			panelAppNavigationItems.size());
-
 		PanelAppNavigationItem panelAppNavigationItem =
 			panelAppNavigationItems.get(2);
 
 		assertCanonicalName("field-mappings", panelAppNavigationItem);
 		assertParameterValue("field-mappings", panelAppNavigationItem, "tabs1");
+
+		Assert.assertEquals(
+			panelAppNavigationItems.toString(), 3,
+			panelAppNavigationItems.size());
 	}
 
 	@Test

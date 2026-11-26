@@ -151,9 +151,6 @@ public class EmbeddedPortletWhenEmbeddingEmbeddablePortletInLayoutTest {
 			_portletPreferencesLocalService.getPortletPreferences(
 				_layout.getPlid(), portlet.getPortletId());
 
-		Assert.assertEquals(
-			portletPreferences.toString(), 1, portletPreferences.size());
-
 		PortletPreferences embeddedPortletPreferences = portletPreferences.get(
 			0);
 
@@ -164,6 +161,9 @@ public class EmbeddedPortletWhenEmbeddingEmbeddablePortletInLayoutTest {
 		Assert.assertArrayEquals(
 			new String[] {"testValue"},
 			jxPortletPreferences.getValues("testName", null));
+
+		Assert.assertEquals(
+			portletPreferences.toString(), 1, portletPreferences.size());
 	}
 
 	@DeleteAfterTestRun

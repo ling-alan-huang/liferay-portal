@@ -346,10 +346,6 @@ public class PerformanceTopAssetResourceTest
 			List<PerformanceTopAsset> performanceTopAssets =
 				ListUtil.fromCollection(page.getItems());
 
-			Assert.assertEquals(
-				performanceTopAssets.toString(), 1,
-				performanceTopAssets.size());
-
 			PerformanceTopAsset performanceTopAsset = performanceTopAssets.get(
 				0);
 
@@ -372,6 +368,10 @@ public class PerformanceTopAssetResourceTest
 
 			Assert.assertEquals(assetType, performanceTopAsset.getType());
 			Assert.assertEquals(views, performanceTopAsset.getViews(), 0);
+
+			Assert.assertEquals(
+				performanceTopAssets.toString(), 1,
+				performanceTopAssets.size());
 		}
 	}
 
@@ -578,10 +578,6 @@ public class PerformanceTopAssetResourceTest
 			List<PerformanceTopAsset> performanceTopAssets =
 				ListUtil.fromCollection(page.getItems());
 
-			Assert.assertEquals(
-				performanceTopAssets.toString(), 1,
-				performanceTopAssets.size());
-
 			PerformanceTopAsset performanceTopAsset = performanceTopAssets.get(
 				0);
 
@@ -589,6 +585,10 @@ public class PerformanceTopAssetResourceTest
 				assetId, performanceTopAsset.getExternalReferenceCode());
 			Assert.assertEquals(assetTitle, performanceTopAsset.getTitle());
 			Assert.assertEquals(views, performanceTopAsset.getViews(), 0);
+
+			Assert.assertEquals(
+				performanceTopAssets.toString(), 1,
+				performanceTopAssets.size());
 
 			_assertParameter(
 				StringBundler.concat(

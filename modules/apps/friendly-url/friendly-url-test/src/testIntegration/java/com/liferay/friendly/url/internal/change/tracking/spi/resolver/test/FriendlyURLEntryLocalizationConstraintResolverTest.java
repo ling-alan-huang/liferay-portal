@@ -194,9 +194,6 @@ public class FriendlyURLEntryLocalizationConstraintResolverTest {
 		Map<Long, List<ConflictInfo>> conflictInfoMap =
 			_ctCollectionLocalService.checkConflicts(ctCollection);
 
-		Assert.assertEquals(
-			conflictInfoMap.toString(), 1, conflictInfoMap.size());
-
 		List<ConflictInfo> conflictInfos = conflictInfoMap.get(
 			_classNameLocalService.getClassNameId(
 				FriendlyURLEntryLocalization.class));
@@ -204,6 +201,9 @@ public class FriendlyURLEntryLocalizationConstraintResolverTest {
 		Assert.assertEquals(conflictInfos.toString(), 1, conflictInfos.size());
 
 		return conflictInfos.get(0);
+
+		Assert.assertEquals(
+			conflictInfoMap.toString(), 1, conflictInfoMap.size());
 	}
 
 	private String _getURLTitle(

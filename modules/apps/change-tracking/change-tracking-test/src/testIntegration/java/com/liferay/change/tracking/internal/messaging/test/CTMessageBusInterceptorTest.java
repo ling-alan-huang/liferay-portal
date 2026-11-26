@@ -105,13 +105,13 @@ public class CTMessageBusInterceptorTest {
 		List<Message> messages = _ctMessageLocalService.getMessages(
 			_ctCollection.getCtCollectionId());
 
-		Assert.assertSame(messages.toString(), 1, messages.size());
-
 		Message deserializedMessage = messages.get(0);
 
 		Assert.assertEquals(
 			DestinationNames.SUBSCRIPTION_SENDER,
 			deserializedMessage.getDestinationName());
+
+		Assert.assertSame(messages.toString(), 1, messages.size());
 	}
 
 	@Test

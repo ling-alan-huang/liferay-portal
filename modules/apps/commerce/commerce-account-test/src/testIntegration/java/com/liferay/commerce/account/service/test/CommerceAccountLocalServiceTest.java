@@ -160,9 +160,6 @@ public class CommerceAccountLocalServiceTest {
 
 		Assert.assertEquals(_user.toString(), 1, accountEntriesCount);
 
-		Assert.assertEquals(
-			accountEntries.toString(), 1, accountEntries.size());
-
 		AccountEntry accountEntry = accountEntries.get(0);
 
 		Assert.assertEquals(
@@ -174,6 +171,9 @@ public class CommerceAccountLocalServiceTest {
 			businessAccountEntry.getType(), accountEntry.getType());
 		Assert.assertEquals(
 			WorkflowConstants.STATUS_APPROVED, accountEntry.getStatus());
+
+		Assert.assertEquals(
+			accountEntries.toString(), 1, accountEntries.size());
 	}
 
 	@Test
@@ -282,16 +282,16 @@ public class CommerceAccountLocalServiceTest {
 			organizationUser2.toString(), 1,
 			organizationUserAccountEntriesCount2);
 
-		Assert.assertEquals(
-			organizationUserAccountEntries2.toString(), 1,
-			organizationUserAccountEntries2.size());
-
 		AccountEntry organizationUserAccountEntry2 =
 			organizationUserAccountEntries2.get(0);
 
 		Assert.assertEquals(
 			"businessOrganizationAccount2",
 			organizationUserAccountEntry2.getName());
+
+		Assert.assertEquals(
+			organizationUserAccountEntries2.toString(), 1,
+			organizationUserAccountEntries2.size());
 	}
 
 	@Test

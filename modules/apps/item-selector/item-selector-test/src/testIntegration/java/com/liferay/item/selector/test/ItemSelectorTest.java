@@ -72,9 +72,6 @@ public class ItemSelectorTest {
 							URLItemSelectorReturnType.class.getName()
 						).toString())));
 
-		Assert.assertEquals(
-			itemSelectorCriteria.toString(), 1, itemSelectorCriteria.size());
-
 		ItemSelectorCriterion itemSelectorCriterion = itemSelectorCriteria.get(
 			0);
 
@@ -90,6 +87,9 @@ public class ItemSelectorTest {
 		Assert.assertTrue(
 			desiredItemSelectorReturnTypes.get(0) instanceof
 				URLItemSelectorReturnType);
+
+		Assert.assertEquals(
+			itemSelectorCriteria.toString(), 1, itemSelectorCriteria.size());
 	}
 
 	@Test
@@ -113,9 +113,6 @@ public class ItemSelectorTest {
 							"desiredItemSelectorReturnTypes",
 							DownloadURLItemSelectorReturnType.class.getName()
 						).toString())));
-
-		Assert.assertEquals(
-			itemSelectorCriteria.toString(), 2, itemSelectorCriteria.size());
 
 		ItemSelectorCriterion fileItemSelectorCriterion =
 			itemSelectorCriteria.get(0);
@@ -148,6 +145,9 @@ public class ItemSelectorTest {
 		Assert.assertTrue(
 			desiredItemSelectorReturnTypes.get(0) instanceof
 				DownloadURLItemSelectorReturnType);
+
+		Assert.assertEquals(
+			itemSelectorCriteria.toString(), 2, itemSelectorCriteria.size());
 	}
 
 	@Test

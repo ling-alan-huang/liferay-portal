@@ -245,8 +245,6 @@ public class TrashEntryLocalServiceCheckEntriesTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals(
@@ -258,6 +256,8 @@ public class TrashEntryLocalServiceCheckEntriesTest {
 
 			Assert.assertSame(
 				NoSuchFileEntryException.class, throwable.getClass());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 
 		Assert.assertEquals(

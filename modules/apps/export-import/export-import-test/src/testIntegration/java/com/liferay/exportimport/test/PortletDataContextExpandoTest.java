@@ -125,10 +125,6 @@ public class PortletDataContextExpandoTest {
 						exportImportConfiguration.
 							getExportImportConfigurationId());
 
-			Assert.assertEquals(
-				exportImportReportEntries.toString(), 1,
-				exportImportReportEntries.size());
-
 			ExportImportReportEntry exportImportReportEntry =
 				exportImportReportEntries.get(0);
 
@@ -139,6 +135,10 @@ public class PortletDataContextExpandoTest {
 			String errorMessage = exportImportReportEntry.getErrorMessage();
 
 			Assert.assertTrue(errorMessage, errorMessage.contains("greeting"));
+
+			Assert.assertEquals(
+				exportImportReportEntries.toString(), 1,
+				exportImportReportEntries.size());
 		}
 		finally {
 			_exportImportConfigurationLocalService.

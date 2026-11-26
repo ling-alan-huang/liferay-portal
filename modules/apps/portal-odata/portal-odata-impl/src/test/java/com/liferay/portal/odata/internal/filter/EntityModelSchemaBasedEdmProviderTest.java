@@ -64,16 +64,11 @@ public class EntityModelSchemaBasedEdmProviderTest {
 		List<CsdlSchema> csdlSchemas =
 			entityModelSchemaBasedEdmProvider.getSchemas();
 
-		Assert.assertEquals(csdlSchemas.toString(), 1, csdlSchemas.size());
-
 		CsdlSchema csdlSchema = csdlSchemas.get(0);
 
 		Assert.assertEquals("HypermediaRestApis", csdlSchema.getNamespace());
 
 		List<CsdlEntityType> csdlEntityTypes = csdlSchema.getEntityTypes();
-
-		Assert.assertEquals(
-			csdlEntityTypes.toString(), 1, csdlEntityTypes.size());
 
 		CsdlEntityType csdlEntityType = csdlEntityTypes.get(0);
 
@@ -85,6 +80,11 @@ public class EntityModelSchemaBasedEdmProviderTest {
 		Assert.assertEquals(
 			EdmPrimitiveTypeKind.String.getFullQualifiedName(),
 			csdlProperty.getTypeAsFQNObject());
+
+		Assert.assertEquals(
+			csdlEntityTypes.toString(), 1, csdlEntityTypes.size());
+
+		Assert.assertEquals(csdlSchemas.toString(), 1, csdlSchemas.size());
 	}
 
 }

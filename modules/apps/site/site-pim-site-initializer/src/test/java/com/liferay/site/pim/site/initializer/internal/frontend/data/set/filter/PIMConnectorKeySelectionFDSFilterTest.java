@@ -92,10 +92,6 @@ public class PIMConnectorKeySelectionFDSFilterTest {
 			_pimConnectorKeySelectionFDSFilter.getSelectionFDSFilterItems(
 				LocaleUtil.US);
 
-		Assert.assertEquals(
-			selectionFDSFilterItems.toString(), 1,
-			selectionFDSFilterItems.size());
-
 		SelectionFDSFilterItem selectionFDSFilterItem =
 			selectionFDSFilterItems.get(0);
 
@@ -103,6 +99,10 @@ public class PIMConnectorKeySelectionFDSFilterTest {
 			"Liferay Commerce", selectionFDSFilterItem.getLabel());
 		Assert.assertEquals(
 			"liferay-commerce", selectionFDSFilterItem.getValue());
+
+		Assert.assertEquals(
+			selectionFDSFilterItems.toString(), 1,
+			selectionFDSFilterItems.size());
 	}
 
 	private PIMConnector _mockPIMConnector(String key, String name) {

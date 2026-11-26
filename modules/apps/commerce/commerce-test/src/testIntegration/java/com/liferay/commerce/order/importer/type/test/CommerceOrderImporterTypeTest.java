@@ -289,14 +289,14 @@ public class CommerceOrderImporterTypeTest {
 					StringPool.BLANK, StringPool.BLANK, StringPool.BLANK, file,
 					null, null, null, _serviceContext));
 
-		Assert.assertEquals(
-			commerceOrderImporterItems.toString(), 1,
-			commerceOrderImporterItems.size());
-
 		CommerceOrderImporterItem commerceOrderImporterItem =
 			commerceOrderImporterItems.get(0);
 
 		Assert.assertNull(commerceOrderImporterItem.getErrorMessages());
+
+		Assert.assertEquals(
+			commerceOrderImporterItems.toString(), 1,
+			commerceOrderImporterItems.size());
 	}
 
 	private FileEntry _addTempFileEntry(long groupId, long userId)

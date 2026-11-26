@@ -887,10 +887,6 @@ public class AddFragmentCompositionMVCActionCommandTest {
 		JSONArray pageElementsJSONArray =
 			fragmentCompositionDataJSONObject.getJSONArray("pageElements");
 
-		Assert.assertEquals(
-			pageElementsJSONArray.toString(), 1,
-			pageElementsJSONArray.length());
-
 		JSONObject pageElementJSONObject = pageElementsJSONArray.getJSONObject(
 			0);
 
@@ -917,6 +913,10 @@ public class AddFragmentCompositionMVCActionCommandTest {
 
 		Assert.assertEquals(
 			jsonObject.toString(), itemSelectorJSONObject.toString());
+
+		Assert.assertEquals(
+			pageElementsJSONArray.toString(), 1,
+			pageElementsJSONArray.length());
 	}
 
 	private Company _company;

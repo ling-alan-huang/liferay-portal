@@ -111,14 +111,14 @@ public class ObjectEntryItemSelectorViewDescriptorTest {
 
 		List<Object> objectEntries = searchContainer.getResults();
 
-		Assert.assertEquals(objectEntries.toString(), 1, objectEntries.size());
-
 		ObjectEntry objectEntry = (ObjectEntry)objectEntries.get(0);
 
 		Assert.assertEquals(
 			TestPropsValues.getGroupId(), objectEntry.getGroupId());
 		Assert.assertEquals(
 			WorkflowConstants.STATUS_APPROVED, objectEntry.getStatus());
+
+		Assert.assertEquals(objectEntries.toString(), 1, objectEntries.size());
 	}
 
 	@Test

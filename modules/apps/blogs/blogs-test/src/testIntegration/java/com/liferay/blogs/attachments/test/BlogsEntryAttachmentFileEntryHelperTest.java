@@ -80,10 +80,6 @@ public class BlogsEntryAttachmentFileEntryHelperTest {
 			blogsEntryAttachmentFileEntryReferences =
 				getBlogsEntryAttachmentFileEntryReferences(tempFileEntry);
 
-		Assert.assertEquals(
-			blogsEntryAttachmentFileEntryReferences.toString(), 1,
-			blogsEntryAttachmentFileEntryReferences.size());
-
 		BlogsEntryAttachmentFileEntryReference
 			blogsEntryAttachmentFileEntryReference =
 				blogsEntryAttachmentFileEntryReferences.get(0);
@@ -103,6 +99,10 @@ public class BlogsEntryAttachmentFileEntryHelperTest {
 		Assert.assertEquals(
 			DigesterUtil.digestBase64(tempFileEntry.getContentStream()),
 			DigesterUtil.digestBase64(fileEntry.getContentStream()));
+
+		Assert.assertEquals(
+			blogsEntryAttachmentFileEntryReferences.toString(), 1,
+			blogsEntryAttachmentFileEntryReferences.size());
 	}
 
 	@Test

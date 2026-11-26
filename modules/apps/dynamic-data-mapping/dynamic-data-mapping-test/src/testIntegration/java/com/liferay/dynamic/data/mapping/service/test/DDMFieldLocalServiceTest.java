@@ -471,8 +471,6 @@ public class DDMFieldLocalServiceTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			String message = logEntry.getMessage();
@@ -482,6 +480,8 @@ public class DDMFieldLocalServiceTest {
 				message.startsWith(
 					"Replaced duplicate instance ID \"ABCD\" of field " +
 						"\"field2\" in storage " + _STORAGE_ID));
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 
 		DDMFormValues deserializedDDMFormValues =

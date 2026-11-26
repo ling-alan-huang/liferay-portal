@@ -214,16 +214,16 @@ public class EditStructureDisplayPageStrutsActionTest {
 			List<FormStyledLayoutStructureItem> formStyledLayoutStructureItems =
 				layoutStructure.getFormStyledLayoutStructureItems();
 
-			Assert.assertEquals(
-				formStyledLayoutStructureItems.toString(), 1,
-				formStyledLayoutStructureItems.size());
-
 			FormStyledLayoutStructureItem formStyledLayoutStructureItem =
 				formStyledLayoutStructureItems.get(0);
 
 			Assert.assertEquals(
 				_objectDefinition.getClassName(),
 				formStyledLayoutStructureItem.getClassName());
+
+			Assert.assertEquals(
+				formStyledLayoutStructureItems.toString(), 1,
+				formStyledLayoutStructureItems.size());
 		}
 
 		Layout layout = _layoutLocalService.getLayout(

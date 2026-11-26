@@ -103,13 +103,13 @@ public class MBThreadFlagStagedModelDataHandlerTest
 		List<StagedModel> dependentStagedModels = dependentStagedModelsMap.get(
 			MBMessage.class.getSimpleName());
 
-		Assert.assertEquals(
-			dependentStagedModels.toString(), 1, dependentStagedModels.size());
-
 		MBMessage message = (MBMessage)dependentStagedModels.get(0);
 
 		MBMessageLocalServiceUtil.getMBMessageByUuidAndGroupId(
 			message.getUuid(), group.getGroupId());
+
+		Assert.assertEquals(
+			dependentStagedModels.toString(), 1, dependentStagedModels.size());
 	}
 
 	@Override

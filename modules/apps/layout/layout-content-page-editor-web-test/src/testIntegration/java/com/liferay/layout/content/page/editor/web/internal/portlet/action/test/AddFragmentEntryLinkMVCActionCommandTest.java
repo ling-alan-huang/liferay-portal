@@ -377,15 +377,15 @@ public class AddFragmentEntryLinkMVCActionCommandTest {
 				_layout.getPlid()),
 			originalPortletPreferencesList);
 
-		Assert.assertEquals(
-			portletPreferencesList.toString(), 1,
-			portletPreferencesList.size());
-
 		PortletPreferences portletPreferences = portletPreferencesList.get(0);
 
 		Assert.assertEquals(
 			_getPortletId(fragmentEntryLink, instanceId, portletId, namespaced),
 			portletPreferences.getPortletId());
+
+		Assert.assertEquals(
+			portletPreferencesList.toString(), 1,
+			portletPreferencesList.size());
 	}
 
 	private FragmentEntry _getFragmentEntry(long groupId) throws Exception {

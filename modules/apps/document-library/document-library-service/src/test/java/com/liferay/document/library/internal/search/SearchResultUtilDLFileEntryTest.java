@@ -199,9 +199,6 @@ public class SearchResultUtilDLFileEntryTest
 		List<RelatedSearchResult<FileEntry>> relatedSearchResults =
 			searchResult.getFileEntryRelatedSearchResults();
 
-		Assert.assertEquals(
-			relatedSearchResults.toString(), 1, relatedSearchResults.size());
-
 		RelatedSearchResult<FileEntry> relatedSearchResult =
 			relatedSearchResults.get(0);
 
@@ -214,6 +211,9 @@ public class SearchResultUtilDLFileEntryTest
 		Assert.assertSame(summary, relatedSearchResultSummary);
 		Assert.assertEquals(content, relatedSearchResultSummary.getContent());
 		Assert.assertEquals(title, relatedSearchResultSummary.getTitle());
+
+		Assert.assertEquals(
+			relatedSearchResults.toString(), 1, relatedSearchResults.size());
 
 		assertEmptyCommentRelatedSearchResults(searchResult);
 		assertEmptyVersions(searchResult);
@@ -304,8 +304,6 @@ public class SearchResultUtilDLFileEntryTest
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			long entryClassPK = GetterUtil.getLong(
@@ -315,6 +313,8 @@ public class SearchResultUtilDLFileEntryTest
 				"Search index is stale and contains entry {" + entryClassPK +
 					"}",
 				logEntry.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 
 			Assert.assertEquals(
 				SearchTestUtil.ATTACHMENT_OWNER_CLASS_NAME,

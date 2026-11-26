@@ -134,9 +134,6 @@ public class ImportFragmentEntriesStrutsActionTest {
 			_fragmentCollectionLocalService.getFragmentCollections(
 				_group.getGroupId(), QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 
-		Assert.assertEquals(
-			fragmentCollections.toString(), 1, fragmentCollections.size());
-
 		FragmentCollection fragmentCollection = fragmentCollections.get(0);
 
 		List<FragmentEntry> fragmentEntries =
@@ -150,6 +147,9 @@ public class ImportFragmentEntriesStrutsActionTest {
 			1,
 			_fragmentCompositionService.getFragmentCompositionsCount(
 				fragmentCollection.getFragmentCollectionId()));
+
+		Assert.assertEquals(
+			fragmentCollections.toString(), 1, fragmentCollections.size());
 
 		Assert.assertNotNull(
 			_layoutPageTemplateEntryLocalService.fetchLayoutPageTemplateEntry(

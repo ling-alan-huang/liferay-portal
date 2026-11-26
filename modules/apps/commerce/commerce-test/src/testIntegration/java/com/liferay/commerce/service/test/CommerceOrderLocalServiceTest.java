@@ -342,9 +342,6 @@ public class CommerceOrderLocalServiceTest {
 			commerceOrder.getAttachmentFileEntries(
 				QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 
-		Assert.assertEquals(
-			attachmentFileEntries.toString(), 1, attachmentFileEntries.size());
-
 		FileEntry fileEntry2 = attachmentFileEntries.get(0);
 
 		Assert.assertEquals(
@@ -353,6 +350,9 @@ public class CommerceOrderLocalServiceTest {
 		Assert.assertEquals(
 			fileEntry1.getFileEntryId(), fileEntry2.getFileEntryId());
 		Assert.assertEquals(folder.getFolderId(), fileEntry2.getFolderId());
+
+		Assert.assertEquals(
+			attachmentFileEntries.toString(), 1, attachmentFileEntries.size());
 	}
 
 	@Test
@@ -456,14 +456,14 @@ public class CommerceOrderLocalServiceTest {
 				_commerceOrder.getCommerceOrderId(), QueryUtil.ALL_POS,
 				QueryUtil.ALL_POS);
 
-		Assert.assertEquals(
-			commerceOrderItems.toString(), 1, commerceOrderItems.size());
-
 		CommerceOrderItem commerceOrderItem = commerceOrderItems.get(0);
 
 		Assert.assertTrue(
 			BigDecimalUtil.eq(
 				commerceOrderItem.getQuantity(), BigDecimal.valueOf(2)));
+
+		Assert.assertEquals(
+			commerceOrderItems.toString(), 1, commerceOrderItems.size());
 	}
 
 	@Test

@@ -204,8 +204,6 @@ public class FriendlyUrlHistoryResourceTest
 	private void _assertFriendlyUrlHistoryJSONObject(
 		JSONObject jsonObject, List<String> friendlyURLs) {
 
-		Assert.assertEquals(1, jsonObject.length());
-
 		JSONArray jsonArray = jsonObject.getJSONArray(
 			LocaleUtil.toBCP47LanguageId(LocaleUtil.getSiteDefault()));
 
@@ -214,6 +212,8 @@ public class FriendlyUrlHistoryResourceTest
 		for (int i = 0; i < friendlyURLs.size(); i++) {
 			Assert.assertEquals(friendlyURLs.get(i), jsonArray.getString(i));
 		}
+
+		Assert.assertEquals(1, jsonObject.length());
 	}
 
 	private void _assertProblemException(String expectedTitle, Layout layout)

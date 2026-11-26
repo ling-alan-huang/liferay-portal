@@ -647,10 +647,6 @@ public class JournalExportImportTest extends BasePortletExportImportTestCase {
 				exportImportConfiguration.getCompanyId(),
 				exportImportConfiguration.getExportImportConfigurationId());
 
-		Assert.assertEquals(
-			exportImportReportEntries.toString(), 1,
-			exportImportReportEntries.size());
-
 		ExportImportReportEntry exportImportReportEntry =
 			exportImportReportEntries.get(0);
 
@@ -661,6 +657,10 @@ public class JournalExportImportTest extends BasePortletExportImportTestCase {
 				"') was not found. Defaulting to the current '",
 				importedGroup.getGroupKey(), "' group"),
 			exportImportReportEntry.getErrorMessage());
+
+		Assert.assertEquals(
+			exportImportReportEntries.toString(), 1,
+			exportImportReportEntries.size());
 
 		Assert.assertEquals(
 			1,
@@ -2031,15 +2031,15 @@ public class JournalExportImportTest extends BasePortletExportImportTestCase {
 				importedArticle.getResourcePrimKey(), QueryUtil.ALL_POS,
 				QueryUtil.ALL_POS);
 
-		Assert.assertEquals(
-			assetCategories.toString(), 1, assetCategories.size());
-
 		AssetCategory importedAssetCategory = assetCategories.get(0);
 
 		Assert.assertEquals(
 			assetCategory.getUuid(), importedAssetCategory.getUuid());
 		Assert.assertEquals(
 			assetCategory.getName(), importedAssetCategory.getName());
+
+		Assert.assertEquals(
+			assetCategories.toString(), 1, assetCategories.size());
 	}
 
 	private void _assertClassPK(String content, long classPK) throws Exception {

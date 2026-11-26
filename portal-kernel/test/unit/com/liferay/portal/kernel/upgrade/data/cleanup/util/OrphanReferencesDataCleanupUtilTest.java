@@ -174,8 +174,6 @@ public class OrphanReferencesDataCleanupUtilTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals(
@@ -189,6 +187,8 @@ public class OrphanReferencesDataCleanupUtilTest {
 			else {
 				Assert.assertNull(logEntry.getThrowable());
 			}
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 
 		Mockito.verify(

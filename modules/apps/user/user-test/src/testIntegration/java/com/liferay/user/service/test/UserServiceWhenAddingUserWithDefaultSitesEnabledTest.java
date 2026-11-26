@@ -102,12 +102,12 @@ public class UserServiceWhenAddingUserWithDefaultSitesEnabledTest {
 			_userGroupRoleLocalService.getUserGroupRoles(
 				_user.getUserId(), _group.getGroupId());
 
-		Assert.assertEquals(
-			userGroupRoles.toString(), 1, userGroupRoles.size());
-
 		UserGroupRole userGroupRole = userGroupRoles.get(0);
 
 		Assert.assertEquals(_siteRole.getRoleId(), userGroupRole.getRoleId());
+
+		Assert.assertEquals(
+			userGroupRoles.toString(), 1, userGroupRoles.size());
 	}
 
 	@Inject

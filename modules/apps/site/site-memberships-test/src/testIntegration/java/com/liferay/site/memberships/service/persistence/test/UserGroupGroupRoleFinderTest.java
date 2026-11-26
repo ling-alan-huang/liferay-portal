@@ -64,9 +64,6 @@ public class UserGroupGroupRoleFinderTest {
 			_userGroupGroupRoleFinder.findByUserGroupsUsers(
 				_user.getUserId(), _group.getGroupId());
 
-		Assert.assertEquals(
-			userGroupGroupRoles.toString(), 1, userGroupGroupRoles.size());
-
 		UserGroupGroupRole userGroupGroupRole = userGroupGroupRoles.get(0);
 
 		Assert.assertEquals(
@@ -74,6 +71,9 @@ public class UserGroupGroupRoleFinderTest {
 		Assert.assertEquals(
 			_group.getGroupId(), userGroupGroupRole.getGroupId());
 		Assert.assertEquals(_role.getRoleId(), userGroupGroupRole.getRoleId());
+
+		Assert.assertEquals(
+			userGroupGroupRoles.toString(), 1, userGroupGroupRoles.size());
 	}
 
 	@DeleteAfterTestRun

@@ -1621,10 +1621,6 @@ public class ExportImportLayoutPageTemplateEntriesTest {
 
 		Assert.assertNotNull(layoutsImporterResultEntries);
 
-		Assert.assertEquals(
-			layoutsImporterResultEntries.toString(), 1,
-			layoutsImporterResultEntries.size());
-
 		LayoutsImporterResultEntry layoutPageTemplateImportEntry =
 			layoutsImporterResultEntries.get(0);
 
@@ -1643,6 +1639,10 @@ public class ExportImportLayoutPageTemplateEntriesTest {
 		Assert.assertNotNull(layoutPageTemplateEntry);
 
 		return layoutPageTemplateEntry;
+
+		Assert.assertEquals(
+			layoutsImporterResultEntries.toString(), 1,
+			layoutsImporterResultEntries.size());
 	}
 
 	private ServiceContext _getServiceContext(Group group, long userId)

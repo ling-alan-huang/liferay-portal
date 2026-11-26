@@ -789,10 +789,6 @@ public class StaticSiteExporterTest {
 		List<StaticSiteExportEntry> staticSiteExportEntries =
 			staticSiteExport.getStaticSiteExportEntries();
 
-		Assert.assertEquals(
-			staticSiteExportEntries.toString(), 1,
-			staticSiteExportEntries.size());
-
 		LayoutStaticSiteExportEntry layoutStaticSiteExportEntry =
 			(LayoutStaticSiteExportEntry)staticSiteExportEntries.get(0);
 
@@ -862,6 +858,10 @@ public class StaticSiteExporterTest {
 			Assert.assertThat(
 				html, CoreMatchers.containsString(StringPool.SLASH + path));
 		}
+
+		Assert.assertEquals(
+			staticSiteExportEntries.toString(), 1,
+			staticSiteExportEntries.size());
 
 		Assert.assertTrue(staticSiteExportResources.toString(), auiResource);
 		Assert.assertTrue(staticSiteExportResources.toString(), bundleResource);

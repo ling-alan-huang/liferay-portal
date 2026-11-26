@@ -186,14 +186,14 @@ public class CategoriesInputFragmentRendererTest
 			return;
 		}
 
-		Assert.assertEquals(
-			selectedItems.toString(), expectedResult, selectedItems.size());
-
 		Map<String, Object> selectedItem = selectedItems.get(0);
 
 		Assert.assertEquals(
 			String.valueOf(_assetCategory.getCategoryId()),
 			selectedItem.get("value"));
+
+		Assert.assertEquals(
+			selectedItems.toString(), expectedResult, selectedItems.size());
 	}
 
 	@Override

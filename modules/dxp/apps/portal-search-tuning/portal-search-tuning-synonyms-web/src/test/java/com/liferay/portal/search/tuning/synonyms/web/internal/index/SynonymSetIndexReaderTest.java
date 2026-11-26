@@ -85,12 +85,12 @@ public class SynonymSetIndexReaderTest extends BaseSynonymsWebTestCase {
 		List<SynonymSet> synonymSets = _synonymSetIndexReaderImpl.search(
 			Mockito.mock(SynonymSetIndexName.class));
 
-		Assert.assertEquals(1, synonymSets.size(), 0.0);
-
 		SynonymSet synonymSet = synonymSets.get(0);
 
 		Assert.assertEquals("car,automobile", synonymSet.getSynonyms());
 		Assert.assertEquals("id", synonymSet.getSynonymSetDocumentId());
+
+		Assert.assertEquals(1, synonymSets.size(), 0.0);
 	}
 
 	@Override

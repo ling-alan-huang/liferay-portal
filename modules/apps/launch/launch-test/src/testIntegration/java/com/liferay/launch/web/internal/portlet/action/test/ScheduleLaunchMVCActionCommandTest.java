@@ -132,8 +132,6 @@ public class ScheduleLaunchMVCActionCommandTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Throwable throwable = logEntry.getThrowable();
@@ -142,6 +140,8 @@ public class ScheduleLaunchMVCActionCommandTest {
 				"Launch set " + _launchSetObjectEntry.getObjectEntryId() +
 					" must be open to be scheduled",
 				throwable.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 
 		Assert.assertEquals(
@@ -168,13 +168,13 @@ public class ScheduleLaunchMVCActionCommandTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals(
 				"Redirect URL " + redirect + " is not allowed",
 				logEntry.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 
 		Assert.assertTrue(Validator.isNull(jsonObject.getString("redirect")));

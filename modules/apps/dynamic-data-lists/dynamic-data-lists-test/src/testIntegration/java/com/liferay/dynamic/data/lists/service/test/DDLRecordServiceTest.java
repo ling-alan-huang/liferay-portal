@@ -451,14 +451,14 @@ public class DDLRecordServiceTest {
 		List<DDMFormFieldValue> ddmFormFieldValues =
 			record.getDDMFormFieldValues(fieldName);
 
-		Assert.assertEquals(
-			ddmFormFieldValues.toString(), 1, ddmFormFieldValues.size());
-
 		DDMFormFieldValue ddmFormFieldValue = ddmFormFieldValues.get(0);
 
 		Value value = ddmFormFieldValue.getValue();
 
 		Assert.assertEquals(expectedValue, value.getString(_defaultLocale));
+
+		Assert.assertEquals(
+			ddmFormFieldValues.toString(), 1, ddmFormFieldValues.size());
 	}
 
 	protected DDMForm createDDMForm() {

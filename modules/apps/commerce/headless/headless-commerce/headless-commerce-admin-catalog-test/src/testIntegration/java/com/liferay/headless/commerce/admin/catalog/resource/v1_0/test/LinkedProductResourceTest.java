@@ -166,9 +166,6 @@ public class LinkedProductResourceTest
 		List<LinkedProduct> linkedProducts =
 			(List<LinkedProduct>)linkedProductsPage.getItems();
 
-		Assert.assertEquals(
-			linkedProducts.toString(), 1, linkedProducts.size());
-
 		LinkedProduct pageLinkedProduct = linkedProducts.get(0);
 
 		Assert.assertEquals(
@@ -176,6 +173,9 @@ public class LinkedProductResourceTest
 			pageLinkedProduct.getProductExternalReferenceCode());
 		Assert.assertEquals(
 			linkedProduct.getProductId(), pageLinkedProduct.getProductId());
+
+		Assert.assertEquals(
+			linkedProducts.toString(), 1, linkedProducts.size());
 	}
 
 	@Inject

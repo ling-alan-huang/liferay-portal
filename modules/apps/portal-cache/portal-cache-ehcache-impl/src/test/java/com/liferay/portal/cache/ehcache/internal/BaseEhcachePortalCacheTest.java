@@ -585,8 +585,6 @@ public class BaseEhcachePortalCacheTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 3, logEntries.size());
-
 			LogEntry logEntry1 = logEntries.get(0);
 
 			Assert.assertEquals(
@@ -608,6 +606,8 @@ public class BaseEhcachePortalCacheTest {
 			Assert.assertEquals(
 				"Cleared " + _ehcachePortalCache.getPortalCacheName(),
 				logEntry3.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 3, logEntries.size());
 		}
 	}
 

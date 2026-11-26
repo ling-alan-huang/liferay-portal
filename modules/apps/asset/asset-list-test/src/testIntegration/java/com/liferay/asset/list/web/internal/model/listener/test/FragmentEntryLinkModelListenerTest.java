@@ -111,9 +111,6 @@ public class FragmentEntryLinkModelListenerTest {
 				_portal.getClassNameId(FragmentEntryLink.class),
 				layout.getPlid());
 
-		Assert.assertEquals(
-			assetListEntryUsages.toString(), 1, assetListEntryUsages.size());
-
 		AssetListEntryUsage assetListEntryUsage = assetListEntryUsages.get(0);
 
 		Assert.assertEquals(
@@ -122,6 +119,9 @@ public class FragmentEntryLinkModelListenerTest {
 		Assert.assertEquals(
 			String.valueOf(assetListEntry.getAssetListEntryId()),
 			assetListEntryUsage.getKey());
+
+		Assert.assertEquals(
+			assetListEntryUsages.toString(), 1, assetListEntryUsages.size());
 	}
 
 	@Inject

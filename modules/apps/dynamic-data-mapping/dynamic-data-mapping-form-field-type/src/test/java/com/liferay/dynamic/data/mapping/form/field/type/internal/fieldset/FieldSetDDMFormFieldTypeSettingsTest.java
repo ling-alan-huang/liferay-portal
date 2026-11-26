@@ -76,8 +76,6 @@ public class FieldSetDDMFormFieldTypeSettingsTest
 
 		List<DDMFormRule> ddmFormRules = ddmForm.getDDMFormRules();
 
-		Assert.assertEquals(ddmFormRules.toString(), 1, ddmFormRules.size());
-
 		DDMFormRule ddmFormRule = ddmFormRules.get(0);
 
 		Assert.assertEquals("TRUE", ddmFormRule.getCondition());
@@ -99,6 +97,8 @@ public class FieldSetDDMFormFieldTypeSettingsTest
 		Assert.assertEquals("setVisible('rows', FALSE)", actions.get(6));
 		Assert.assertEquals(
 			"setVisible('upgradedStructure', FALSE)", actions.get(7));
+
+		Assert.assertEquals(ddmFormRules.toString(), 1, ddmFormRules.size());
 	}
 
 }

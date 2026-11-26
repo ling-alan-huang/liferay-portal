@@ -326,9 +326,6 @@ public class LayoutPageTemplateStructureRelUpgradeProcessTest {
 				getFragmentEntryLinksBySegmentsExperienceId(
 					_group.getGroupId(), segmentsExperienceId, plid);
 
-		Assert.assertEquals(
-			fragmentEntryLinks.toString(), 1, fragmentEntryLinks.size());
-
 		FragmentEntryLink fragmentEntryLink = fragmentEntryLinks.get(0);
 
 		Assert.assertTrue(
@@ -350,6 +347,9 @@ public class LayoutPageTemplateStructureRelUpgradeProcessTest {
 
 		Assert.assertEquals(
 			expectedValue, elementHTMLJSONObject.getString(_languageId));
+
+		Assert.assertEquals(
+			fragmentEntryLinks.toString(), 1, fragmentEntryLinks.size());
 	}
 
 	private void _assertFragmentEntryLink(
@@ -361,9 +361,6 @@ public class LayoutPageTemplateStructureRelUpgradeProcessTest {
 			_fragmentEntryLinkLocalService.
 				getFragmentEntryLinksBySegmentsExperienceId(
 					_group.getGroupId(), segmentsExperienceId, plid);
-
-		Assert.assertEquals(
-			fragmentEntryLinks.toString(), 1, fragmentEntryLinks.size());
 
 		FragmentEntryLink fragmentEntryLink = fragmentEntryLinks.get(0);
 
@@ -386,6 +383,9 @@ public class LayoutPageTemplateStructureRelUpgradeProcessTest {
 		_assertPortletPreferenceValue(
 			expected, name, plid,
 			StringBundler.concat(portletId, _INSTANCE_SEPARATOR, instanceId));
+
+		Assert.assertEquals(
+			fragmentEntryLinks.toString(), 1, fragmentEntryLinks.size());
 	}
 
 	private void _assertFragmentStyledLayoutStructureItem(
@@ -401,10 +401,6 @@ public class LayoutPageTemplateStructureRelUpgradeProcessTest {
 		Map<Long, LayoutStructureItem> fragmentLayoutStructureItems =
 			layoutStructure.getFragmentLayoutStructureItems();
 
-		Assert.assertEquals(
-			MapUtil.toString(fragmentLayoutStructureItems), 1,
-			fragmentLayoutStructureItems.size());
-
 		FragmentStyledLayoutStructureItem fragmentStyledLayoutStructureItem =
 			(FragmentStyledLayoutStructureItem)fragmentLayoutStructureItems.get(
 				fragmentEntryLinkId);
@@ -412,6 +408,10 @@ public class LayoutPageTemplateStructureRelUpgradeProcessTest {
 		Assert.assertEquals(
 			fragmentEntryLinkId,
 			fragmentStyledLayoutStructureItem.getFragmentEntryLinkId());
+
+		Assert.assertEquals(
+			MapUtil.toString(fragmentLayoutStructureItems), 1,
+			fragmentLayoutStructureItems.size());
 	}
 
 	private void _assertGetFragmentEntryLinksByPlid(int count, long plid) {

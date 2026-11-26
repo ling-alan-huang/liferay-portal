@@ -344,10 +344,6 @@ public class EditContentItemCommentStrutsActionTest {
 			UserNotificationEventTestUtil.getUserNotificationEvents(
 				user.getUserId());
 
-		Assert.assertEquals(
-			userNotificationEvents.toString(), 1,
-			userNotificationEvents.size());
-
 		UserNotificationEvent userNotificationEvent =
 			userNotificationEvents.get(0);
 
@@ -365,6 +361,10 @@ public class EditContentItemCommentStrutsActionTest {
 			HttpComponentsUtil.getParameter(
 				payloadJSONObject.getString("entryURL"), "objectEntryId",
 				false));
+
+		Assert.assertEquals(
+			userNotificationEvents.toString(), 1,
+			userNotificationEvents.size());
 
 		_depotEntryLocalService.deleteDepotEntry(depotEntry);
 		_layoutLocalService.deleteLayout(layout);
@@ -695,10 +695,6 @@ public class EditContentItemCommentStrutsActionTest {
 			UserNotificationEventTestUtil.getUserNotificationEvents(
 				user1.getUserId());
 
-		Assert.assertEquals(
-			userNotificationEvents.toString(), 1,
-			userNotificationEvents.size());
-
 		UserNotificationEvent userNotificationEvent =
 			userNotificationEvents.get(0);
 
@@ -711,6 +707,10 @@ public class EditContentItemCommentStrutsActionTest {
 		Assert.assertEquals(
 			objectEntry.getObjectEntryId(),
 			payloadJSONObject.getLong("discussionClassPK"));
+
+		Assert.assertEquals(
+			userNotificationEvents.toString(), 1,
+			userNotificationEvents.size());
 
 		User user2 = UserTestUtil.addUser();
 

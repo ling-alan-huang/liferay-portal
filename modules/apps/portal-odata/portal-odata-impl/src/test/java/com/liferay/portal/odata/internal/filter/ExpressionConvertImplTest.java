@@ -221,9 +221,6 @@ public class ExpressionConvertImplTest {
 
 		List<BooleanClause<Query>> booleanClauses = booleanQuery.clauses();
 
-		Assert.assertEquals(
-			booleanClauses.toString(), 1, booleanClauses.size());
-
 		BooleanClause<Query> booleanClause = booleanClauses.get(0);
 
 		TermQuery termQuery = (TermQuery)booleanClause.getClause();
@@ -232,6 +229,9 @@ public class ExpressionConvertImplTest {
 
 		Assert.assertEquals("title", queryTerm.getField());
 		Assert.assertEquals("test", queryTerm.getValue());
+
+		Assert.assertEquals(
+			booleanClauses.toString(), 1, booleanClauses.size());
 	}
 
 	@Test

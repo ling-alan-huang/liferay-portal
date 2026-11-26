@@ -403,10 +403,6 @@ public class OpenSearchSearchEngineAdapterSearchRequestTest
 			List<SuggestSearchResult.Entry> suggestSearchResultEntries =
 				suggestSearchResult.getEntries();
 
-			Assert.assertEquals(
-				"Expected 1 SuggestSearchResult.Entry", 1,
-				suggestSearchResultEntries.size());
-
 			SuggestSearchResult.Entry suggestSearchResultEntry =
 				suggestSearchResultEntries.get(0);
 
@@ -422,6 +418,10 @@ public class OpenSearchSearchEngineAdapterSearchRequestTest
 				_toList(suggestSearchResultEntryOptions));
 
 			Assert.assertEquals(expectedSuggestions, actualSuggestions);
+
+			Assert.assertEquals(
+				"Expected 1 SuggestSearchResult.Entry", 1,
+				suggestSearchResultEntries.size());
 		}
 	}
 

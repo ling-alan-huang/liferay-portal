@@ -101,10 +101,6 @@ public class CommerceDeliverySubscriptionsTest {
 					_user.getUserId(), QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 					null);
 
-		Assert.assertEquals(
-			commerceSubscriptionEntries.toString(), 1,
-			commerceSubscriptionEntries.size());
-
 		CommerceSubscriptionEntry commerceSubscriptionEntry =
 			commerceSubscriptionEntries.get(0);
 
@@ -175,6 +171,10 @@ public class CommerceDeliverySubscriptionsTest {
 		Assert.assertEquals(
 			CommerceSubscriptionEntryConstants.SUBSCRIPTION_STATUS_CANCELLED,
 			commerceSubscriptionEntry.getDeliverySubscriptionStatus());
+
+		Assert.assertEquals(
+			commerceSubscriptionEntries.toString(), 1,
+			commerceSubscriptionEntries.size());
 	}
 
 	@Test
@@ -197,10 +197,6 @@ public class CommerceDeliverySubscriptionsTest {
 					_user.getCompanyId(), _commerceChannel.getGroupId(),
 					_user.getUserId(), QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 					null);
-
-		Assert.assertEquals(
-			commerceSubscriptionEntries.toString(), 1,
-			commerceSubscriptionEntries.size());
 
 		CommerceSubscriptionEntry commerceSubscriptionEntry =
 			commerceSubscriptionEntries.get(0);
@@ -229,6 +225,10 @@ public class CommerceDeliverySubscriptionsTest {
 		Assert.assertEquals(
 			commerceSubscriptionEntry.getDeliveryCurrentCycle() + 1,
 			renewedCommerceSubscriptionEntry.getDeliveryCurrentCycle());
+
+		Assert.assertEquals(
+			commerceSubscriptionEntries.toString(), 1,
+			commerceSubscriptionEntries.size());
 
 		long[] groupIds = {_commerceChannel.getGroupId()};
 

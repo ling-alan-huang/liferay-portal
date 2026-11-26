@@ -121,10 +121,6 @@ public class CommercePricingClassLocalServiceTest {
 					getCommercePricingClassCPDefinitionRels(
 						commercePricingClass.getCommercePricingClassId());
 
-		Assert.assertEquals(
-			commercePricingClassCPDefinitionRels.toString(), 1,
-			commercePricingClassCPDefinitionRels.size());
-
 		CommercePricingClassCPDefinitionRel
 			commercePricingClassCPDefinitionRel =
 				commercePricingClassCPDefinitionRels.get(0);
@@ -132,6 +128,10 @@ public class CommercePricingClassLocalServiceTest {
 		Assert.assertEquals(
 			cpDefinition.getCPDefinitionId(),
 			commercePricingClassCPDefinitionRel.getCPDefinitionId());
+
+		Assert.assertEquals(
+			commercePricingClassCPDefinitionRels.toString(), 1,
+			commercePricingClassCPDefinitionRels.size());
 	}
 
 	@Test

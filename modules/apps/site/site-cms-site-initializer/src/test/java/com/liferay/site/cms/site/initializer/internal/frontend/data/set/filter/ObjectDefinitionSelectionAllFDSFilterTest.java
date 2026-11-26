@@ -83,16 +83,16 @@ public class ObjectDefinitionSelectionAllFDSFilterTest {
 			_objectDefinitionSelectionAllFDSFilter.getSelectionFDSFilterItems(
 				_locale);
 
-		Assert.assertEquals(
-			selectionFDSFilterItems.toString(), 1,
-			selectionFDSFilterItems.size());
-
 		SelectionFDSFilterItem objectDefinitionSelectionFDSFilterItem =
 			selectionFDSFilterItems.get(0);
 
 		Assert.assertEquals(
 			objectDefinitionExternalReferenceCode,
 			objectDefinitionSelectionFDSFilterItem.getValue());
+
+		Assert.assertEquals(
+			selectionFDSFilterItems.toString(), 1,
+			selectionFDSFilterItems.size());
 
 		CMSStructureObjectFolderContributor
 			cmsStructureObjectFolderContributor = Mockito.mock(

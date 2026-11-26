@@ -215,9 +215,6 @@ public class CustomFacetDisplayContextBuilderTest
 		List<BucketDisplayContext> bucketDisplayContexts =
 			customFacetDisplayContext.getBucketDisplayContexts();
 
-		Assert.assertEquals(
-			bucketDisplayContexts.toString(), 2, bucketDisplayContexts.size());
-
 		BucketDisplayContext bucketDisplayContext = bucketDisplayContexts.get(
 			0);
 
@@ -227,6 +224,9 @@ public class CustomFacetDisplayContextBuilderTest
 
 		Assert.assertEquals(
 			"some-time-ago", bucketDisplayContext.getBucketText());
+
+		Assert.assertEquals(
+			bucketDisplayContexts.toString(), 2, bucketDisplayContexts.size());
 	}
 
 	@Override
@@ -413,9 +413,6 @@ public class CustomFacetDisplayContextBuilderTest
 		List<BucketDisplayContext> bucketDisplayContexts =
 			facetDisplayContext.getBucketDisplayContexts();
 
-		Assert.assertEquals(
-			bucketDisplayContexts.toString(), 1, bucketDisplayContexts.size());
-
 		BucketDisplayContext bucketDisplayContext = bucketDisplayContexts.get(
 			0);
 
@@ -423,6 +420,9 @@ public class CustomFacetDisplayContextBuilderTest
 		Assert.assertEquals(frequency, bucketDisplayContext.getFrequency());
 		Assert.assertTrue(bucketDisplayContext.isFrequencyVisible());
 		Assert.assertFalse(bucketDisplayContext.isSelected());
+
+		Assert.assertEquals(
+			bucketDisplayContexts.toString(), 1, bucketDisplayContexts.size());
 
 		Assert.assertTrue(facetDisplayContext.isNothingSelected());
 		Assert.assertFalse(facetDisplayContext.isRenderNothing());
@@ -452,9 +452,6 @@ public class CustomFacetDisplayContextBuilderTest
 		List<BucketDisplayContext> bucketDisplayContexts =
 			facetDisplayContext.getBucketDisplayContexts();
 
-		Assert.assertEquals(
-			bucketDisplayContexts.toString(), 1, bucketDisplayContexts.size());
-
 		BucketDisplayContext bucketDisplayContext = bucketDisplayContexts.get(
 			0);
 
@@ -462,6 +459,9 @@ public class CustomFacetDisplayContextBuilderTest
 		Assert.assertEquals(frequency, bucketDisplayContext.getFrequency());
 		Assert.assertTrue(bucketDisplayContext.isFrequencyVisible());
 		Assert.assertTrue(bucketDisplayContext.isSelected());
+
+		Assert.assertEquals(
+			bucketDisplayContexts.toString(), 1, bucketDisplayContexts.size());
 
 		Assert.assertFalse(facetDisplayContext.isNothingSelected());
 		Assert.assertFalse(facetDisplayContext.isRenderNothing());

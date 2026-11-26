@@ -485,8 +485,6 @@ public class DefaultUserResolverTest extends BaseSamlTestCase {
 		List<UserGroup> userGroups = _userGroupLocalService.getUserUserGroups(
 			user.getUserId());
 
-		Assert.assertEquals(userGroups.toString(), 2, userGroups.size());
-
 		UserGroup userGroup = userGroups.get(0);
 
 		Assert.assertEquals(_USER_GROUP_NAME_EXISTING, userGroup.getName());
@@ -494,6 +492,8 @@ public class DefaultUserResolverTest extends BaseSamlTestCase {
 		userGroup = userGroups.get(1);
 
 		Assert.assertEquals(_USER_GROUP_NAME_NEW, userGroup.getName());
+
+		Assert.assertEquals(userGroups.toString(), 2, userGroups.size());
 	}
 
 	private User _createBlankUser() {

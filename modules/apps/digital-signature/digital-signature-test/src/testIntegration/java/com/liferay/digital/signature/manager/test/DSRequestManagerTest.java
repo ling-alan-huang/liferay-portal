@@ -320,10 +320,6 @@ public class DSRequestManagerTest {
 				dsRecipient.getEmailAddress(),
 				MapUtil.getString(values, "emailAddress")));
 
-		Assert.assertEquals(
-			dsRequestRecipientValuesList.toString(), 1,
-			dsRequestRecipientValuesList.size());
-
 		Map<String, Serializable> dsRequestRecipientValues =
 			dsRequestRecipientValuesList.get(0);
 
@@ -340,6 +336,10 @@ public class DSRequestManagerTest {
 			dsRequestRecipientValues.get("requestRecipientStatusDate"));
 		Assert.assertEquals(
 			2, MapUtil.getInteger(dsRequestRecipientValues, "signingOrder"));
+
+		Assert.assertEquals(
+			dsRequestRecipientValuesList.toString(), 1,
+			dsRequestRecipientValuesList.size());
 
 		_testAddDSRequestWithCompletedExpiredDSEnvelope();
 		_testAddDSRequestWithDeletedDSRequestRecipientUser();
@@ -380,8 +380,6 @@ public class DSRequestManagerTest {
 		List<DSRequest> dsRequests = _dsRequestManager.getFileEntryDSRequests(
 			TestPropsValues.getCompanyId(), fileEntryId);
 
-		Assert.assertEquals(dsRequests.toString(), 2, dsRequests.size());
-
 		DSRequest dsRequest1 = dsRequests.get(0);
 
 		Assert.assertEquals(
@@ -391,6 +389,8 @@ public class DSRequestManagerTest {
 
 		Assert.assertEquals(
 			DSRequestConstants.STATUS_VOIDED, dsRequest2.getStatus());
+
+		Assert.assertEquals(dsRequests.toString(), 2, dsRequests.size());
 	}
 
 	@Test
@@ -497,10 +497,6 @@ public class DSRequestManagerTest {
 		List<NotificationQueueEntry> notificationQueueEntries =
 			_getNotificationQueueEntries(dsRequest);
 
-		Assert.assertEquals(
-			notificationQueueEntries.toString(), 1,
-			notificationQueueEntries.size());
-
 		NotificationQueueEntry notificationQueueEntry =
 			notificationQueueEntries.get(0);
 
@@ -524,6 +520,10 @@ public class DSRequestManagerTest {
 			user.getEmailAddress(),
 			notificationRecipientSettingsMap.get(
 				NotificationRecipientSettingConstants.NAME_TO));
+
+		Assert.assertEquals(
+			notificationQueueEntries.toString(), 1,
+			notificationQueueEntries.size());
 
 		_testSendDSRequestNotificationsWithVoidedDSRequest();
 		_testSendDSRequestNotificationsWithoutNotificationTemplate();
@@ -931,10 +931,6 @@ public class DSRequestManagerTest {
 		dsRequestRecipientValuesList = _getValuesList(
 			filterString, _dsRequestRecipientObjectDefinition);
 
-		Assert.assertEquals(
-			dsRequestRecipientValuesList.toString(), 1,
-			dsRequestRecipientValuesList.size());
-
 		Map<String, Serializable> dsRequestRecipientValues =
 			dsRequestRecipientValuesList.get(0);
 
@@ -946,6 +942,10 @@ public class DSRequestManagerTest {
 			MapUtil.getLong(
 				dsRequestRecipientValues,
 				"r_userToDSRequestRecipients_userId"));
+
+		Assert.assertEquals(
+			dsRequestRecipientValuesList.toString(), 1,
+			dsRequestRecipientValuesList.size());
 	}
 
 	private void _testAddDSRequestWithDigitalSignatureDisabled()

@@ -149,8 +149,6 @@ public class UserModelListenerTest extends BaseModelListenerTestCase {
 				workflowInstanceLink.getWorkflowInstanceId(), null,
 				QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 
-		Assert.assertEquals(workflowTasks.toString(), 1, workflowTasks.size());
-
 		WorkflowTask workflowTask = workflowTasks.get(0);
 
 		auditMessages.clear();
@@ -159,6 +157,8 @@ public class UserModelListenerTest extends BaseModelListenerTestCase {
 			TestPropsValues.getCompanyId(), TestPropsValues.getUserId(),
 			workflowTask.getWorkflowTaskId(), TestPropsValues.getUserId(),
 			StringPool.BLANK, null, null);
+
+		Assert.assertEquals(workflowTasks.toString(), 1, workflowTasks.size());
 	}
 
 	private void _assertAuditRequestContext(
@@ -208,9 +208,6 @@ public class UserModelListenerTest extends BaseModelListenerTestCase {
 			updateAuditMessages.add(auditMessage);
 		}
 
-		Assert.assertEquals(
-			updateAuditMessages.toString(), 1, updateAuditMessages.size());
-
 		AuditMessage auditMessage = updateAuditMessages.get(0);
 
 		Assert.assertEquals(
@@ -239,6 +236,9 @@ public class UserModelListenerTest extends BaseModelListenerTestCase {
 		JSONObject additionalInfoJSONObject = auditMessage.getAdditionalInfo();
 
 		Assert.assertFalse(additionalInfoJSONObject.has("doAsUserId"));
+
+		Assert.assertEquals(
+			updateAuditMessages.toString(), 1, updateAuditMessages.size());
 	}
 
 	private AuditRequestContext _createAuditRequestContext() throws Exception {

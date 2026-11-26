@@ -598,9 +598,6 @@ public class FilterParserImplTest {
 			methodExpression.getExpressions();
 
 		Assert.assertNotNull(methodExpressionExpressions);
-		Assert.assertEquals(
-			methodExpressionExpressions.toString(), 2,
-			methodExpressionExpressions.size());
 
 		MemberExpression methodExpressionMemberExpression =
 			(MemberExpression)methodExpressionExpressions.get(0);
@@ -619,6 +616,10 @@ public class FilterParserImplTest {
 		Assert.assertEquals("'alu'", literalExpression.getText());
 		Assert.assertEquals(
 			LiteralExpression.Type.STRING, literalExpression.getType());
+
+		Assert.assertEquals(
+			methodExpressionExpressions.toString(), 2,
+			methodExpressionExpressions.size());
 	}
 
 	@Test

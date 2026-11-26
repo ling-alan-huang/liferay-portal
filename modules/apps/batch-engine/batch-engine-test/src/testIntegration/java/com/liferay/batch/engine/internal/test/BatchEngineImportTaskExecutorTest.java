@@ -1438,11 +1438,12 @@ public class BatchEngineImportTaskExecutorTest
 		List<LogEntry> logEntries = _importBlogPostings(_getCallbackURL(host));
 
 		Assert.assertEquals(count, testApplication.getCount());
-		Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 
 		LogEntry logEntry = logEntries.get(0);
 
 		Assert.assertEquals(LoggerTestUtil.ERROR, logEntry.getPriority());
+
+		Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 	}
 
 	private void _assertAllowedCallbackURL(
@@ -1556,21 +1557,19 @@ public class BatchEngineImportTaskExecutorTest
 				getBatchEngineImportTaskErrors(
 					_batchEngineImportTask.getBatchEngineImportTaskId());
 
-		Assert.assertEquals(
-			batchEngineImportTaskErrors.toString(), 1,
-			batchEngineImportTaskErrors.size());
-
 		BatchEngineImportTaskError batchEngineImportTaskError =
 			batchEngineImportTaskErrors.get(0);
 
 		Assert.assertEquals(
 			invalidItemRowNumber, batchEngineImportTaskError.getItemIndex());
 
+		Assert.assertEquals(
+			batchEngineImportTaskErrors.toString(), 1,
+			batchEngineImportTaskErrors.size());
+
 		Assert.assertEquals(initialCount, getBlogEntriesCount());
 
 		List<LogEntry> logEntries = logCapture.getLogEntries();
-
-		Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 
 		LogEntry logEntry = logEntries.get(0);
 
@@ -1580,6 +1579,8 @@ public class BatchEngineImportTaskExecutorTest
 
 		Assert.assertTrue(
 			message.startsWith("Unable to update batch engine import task"));
+
+		Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 	}
 
 	private void _assertSkippedCallbackURL(
@@ -1593,7 +1594,6 @@ public class BatchEngineImportTaskExecutorTest
 		List<LogEntry> logEntries = _importBlogPostings(callbackURL);
 
 		Assert.assertEquals(count, testApplication.getCount());
-		Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 
 		LogEntry logEntry = logEntries.get(0);
 
@@ -1601,6 +1601,8 @@ public class BatchEngineImportTaskExecutorTest
 		Assert.assertEquals(
 			"Skipping callback to disallowed URL " + callbackURL,
 			logEntry.getMessage());
+
+		Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 	}
 
 	private void _assertUpdatedBlogPostings() throws Exception {

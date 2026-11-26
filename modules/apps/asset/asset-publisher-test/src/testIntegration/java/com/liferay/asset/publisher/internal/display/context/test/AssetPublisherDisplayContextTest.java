@@ -735,9 +735,6 @@ public class AssetPublisherDisplayContextTest {
 	private List<AssetEntry> _testGetAssetEntryResults(
 		List<AssetEntryResult> assetEntryResults, int expectedAssetEntries) {
 
-		Assert.assertEquals(
-			assetEntryResults.toString(), 1, assetEntryResults.size());
-
 		AssetEntryResult assetEntryResult = assetEntryResults.get(0);
 
 		List<AssetEntry> assetEntries = assetEntryResult.getAssetEntries();
@@ -746,6 +743,9 @@ public class AssetPublisherDisplayContextTest {
 			assetEntries.toString(), expectedAssetEntries, assetEntries.size());
 
 		return assetEntries;
+
+		Assert.assertEquals(
+			assetEntryResults.toString(), 1, assetEntryResults.size());
 	}
 
 	private void _testGetAssetEntryResultsOrderByColumn(

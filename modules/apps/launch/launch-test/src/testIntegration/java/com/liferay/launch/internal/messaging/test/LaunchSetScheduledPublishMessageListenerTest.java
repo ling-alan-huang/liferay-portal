@@ -208,13 +208,13 @@ public class LaunchSetScheduledPublishMessageListenerTest {
 			_getBackgroundTasks(),
 			Comparator.comparingLong(BackgroundTask::getBackgroundTaskId));
 
-		Assert.assertEquals(
-			backgroundTasks.toString(), expectedCount, backgroundTasks.size());
-
 		BackgroundTask backgroundTask = backgroundTasks.get(
 			backgroundTasks.size() - 1);
 
 		Assert.assertEquals(expectedStatus, backgroundTask.getStatus());
+
+		Assert.assertEquals(
+			backgroundTasks.toString(), expectedCount, backgroundTasks.size());
 	}
 
 	private void _assertStatus(int expectedStatus) throws Exception {
@@ -294,14 +294,14 @@ public class LaunchSetScheduledPublishMessageListenerTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals(
 				"Unable to publish launch set " +
 					_launchSetObjectEntry.getObjectEntryId(),
 				logEntry.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 	}
 

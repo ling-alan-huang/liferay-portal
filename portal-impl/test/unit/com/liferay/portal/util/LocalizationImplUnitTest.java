@@ -65,14 +65,14 @@ public class LocalizationImplUnitTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals(
 				"Language es_ES is missing for com.liferay.portal.className " +
 					"with primary key 0. Setting default language to bg_BG.",
 				logEntry.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 	}
 

@@ -217,10 +217,6 @@ public class TimerExecutorTest {
 				getKaleoTaskAssignmentInstances(
 					kaleoTaskInstanceToken.getKaleoTaskInstanceTokenId());
 
-		Assert.assertEquals(
-			kaleoTaskAssignmentInstances.toString(), 1,
-			kaleoTaskAssignmentInstances.size());
-
 		KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance =
 			kaleoTaskAssignmentInstances.get(0);
 
@@ -230,6 +226,10 @@ public class TimerExecutorTest {
 		Assert.assertEquals(
 			TestPropsValues.getUserId(),
 			kaleoTaskAssignmentInstance.getAssigneeClassPK());
+
+		Assert.assertEquals(
+			kaleoTaskAssignmentInstances.toString(), 1,
+			kaleoTaskAssignmentInstances.size());
 	}
 
 	@Test

@@ -370,10 +370,6 @@ public class SkuResourceTest extends BaseSkuResourceTestCase {
 			_cpInstanceHelper.getCPInstanceCPInstanceOptionValueRels(
 				sku.getId());
 
-		Assert.assertEquals(
-			cpInstanceOptionValueRels.toString(), 1,
-			cpInstanceOptionValueRels.size());
-
 		CPInstanceOptionValueRel cpInstanceOptionValueRel =
 			cpInstanceOptionValueRels.get(0);
 
@@ -383,6 +379,10 @@ public class SkuResourceTest extends BaseSkuResourceTestCase {
 		Assert.assertEquals(
 			cpDefinitionOptionValueRel.getCPDefinitionOptionValueRelId(),
 			cpInstanceOptionValueRel.getCPDefinitionOptionValueRelId());
+
+		Assert.assertEquals(
+			cpInstanceOptionValueRels.toString(), 1,
+			cpInstanceOptionValueRels.size());
 	}
 
 	private void _assertSkuUnitOfMeasures(Sku expectedSku, Sku sku) {

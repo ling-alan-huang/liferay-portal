@@ -790,13 +790,13 @@ public class ObjectEntryInfoItemFieldValuesUpdaterTest
 				0, childObjectDefinition.getObjectDefinitionId(),
 				QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 
-		Assert.assertEquals(objectEntries.toString(), 1, objectEntries.size());
-
 		ObjectEntry childObjectEntry = objectEntries.get(0);
 
 		Assert.assertEquals(
 			childTextValue,
 			MapUtil.getString(childObjectEntry.getValues(), "text"));
+
+		Assert.assertEquals(objectEntries.toString(), 1, objectEntries.size());
 
 		objectRelationship =
 			_objectRelationshipLocalService.updateObjectRelationship(
@@ -1186,10 +1186,6 @@ public class ObjectEntryInfoItemFieldValuesUpdaterTest
 				objectEntryLocalService.getObjectEntriesCount(
 					cmsBasicDocumentObjectDefinition.getObjectDefinitionId()));
 
-			Assert.assertEquals(
-				cmsBasicDocumentObjectEntries.toString(), 1,
-				cmsBasicDocumentObjectEntries.size());
-
 			ObjectEntry cmsBasicDocumentObjectEntry =
 				cmsBasicDocumentObjectEntries.get(0);
 
@@ -1233,6 +1229,10 @@ public class ObjectEntryInfoItemFieldValuesUpdaterTest
 					Assert.assertEquals(0, objectEntryFoldersCount);
 				}
 			}
+
+			Assert.assertEquals(
+				cmsBasicDocumentObjectEntries.toString(), 1,
+				cmsBasicDocumentObjectEntries.size());
 
 			_updateFromInfoItemFieldValues(
 				InfoItemFieldValues.builder(
@@ -1448,14 +1448,14 @@ public class ObjectEntryInfoItemFieldValuesUpdaterTest
 					childObjectEntry.getObjectEntryId(), true, false, null,
 					QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 
-			Assert.assertEquals(
-				objectEntries.toString(), 1, objectEntries.size());
-
 			ObjectEntry objectEntry = objectEntries.get(0);
 
 			Assert.assertEquals(
 				relatedObjectEntry.getObjectEntryId(),
 				objectEntry.getObjectEntryId());
+
+			Assert.assertEquals(
+				objectEntries.toString(), 1, objectEntries.size());
 		}
 		else {
 			com.liferay.object.rest.dto.v1_0.ObjectEntry dtoObjectEntry =

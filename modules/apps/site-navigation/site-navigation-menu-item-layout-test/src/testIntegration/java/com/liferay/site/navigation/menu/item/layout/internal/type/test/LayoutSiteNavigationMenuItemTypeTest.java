@@ -198,14 +198,14 @@ public class LayoutSiteNavigationMenuItemTypeTest {
 			_siteNavigationMenuItemLocalService.getSiteNavigationMenuItems(
 				_siteNavigationMenu.getSiteNavigationMenuId());
 
-		Assert.assertEquals(
-			siteNavigationMenuItems.toString(), 1,
-			siteNavigationMenuItems.size());
-
 		SiteNavigationMenuItem siteNavigationMenuItem =
 			siteNavigationMenuItems.get(0);
 
 		Assert.assertEquals("welcome", siteNavigationMenuItem.getName());
+
+		Assert.assertEquals(
+			siteNavigationMenuItems.toString(), 1,
+			siteNavigationMenuItems.size());
 	}
 
 	@Test
@@ -416,8 +416,6 @@ public class LayoutSiteNavigationMenuItemTypeTest {
 				return;
 			}
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals(
@@ -427,6 +425,8 @@ public class LayoutSiteNavigationMenuItemTypeTest {
 					" with external reference code ", externalReferenceCode,
 					" and group ID ", _group.getGroupId()),
 				logEntry.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 	}
 

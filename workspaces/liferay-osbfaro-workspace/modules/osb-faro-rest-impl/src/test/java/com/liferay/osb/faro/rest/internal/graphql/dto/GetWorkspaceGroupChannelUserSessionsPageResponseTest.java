@@ -71,8 +71,6 @@ public class GetWorkspaceGroupChannelUserSessionsPageResponseTest {
 		List<GetWorkspaceGroupChannelUserSessionsPageResponse.UserSession>
 			userSessions = userSessionBag.getUserSessions();
 
-		Assert.assertEquals(userSessions.toString(), 1, userSessions.size());
-
 		GetWorkspaceGroupChannelUserSessionsPageResponse.UserSession
 			userSession = userSessions.get(0);
 
@@ -82,6 +80,8 @@ public class GetWorkspaceGroupChannelUserSessionsPageResponseTest {
 		Assert.assertEquals(
 			Date.from(Instant.parse("2026-10-20T06:41:05Z")),
 			userSession.getCreateDate());
+
+		Assert.assertEquals(userSessions.toString(), 1, userSessions.size());
 	}
 
 }

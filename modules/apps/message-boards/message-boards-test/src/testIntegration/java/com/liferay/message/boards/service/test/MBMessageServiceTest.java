@@ -302,13 +302,13 @@ public class MBMessageServiceTest {
 				message.getMessageId(), false,
 				new QueryDefinition<>(WorkflowConstants.STATUS_ANY));
 
-			Assert.assertEquals(
-				childMessages.toString(), 1, childMessages.size());
-
 			MBMessage childMessage = childMessages.get(0);
 
 			Assert.assertEquals(
 				WorkflowConstants.STATUS_APPROVED, childMessage.getStatus());
+
+			Assert.assertEquals(
+				childMessages.toString(), 1, childMessages.size());
 		}
 
 		_user = UserTestUtil.addUser();

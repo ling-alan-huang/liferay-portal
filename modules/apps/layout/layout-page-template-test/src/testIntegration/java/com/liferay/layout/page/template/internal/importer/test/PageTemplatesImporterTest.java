@@ -227,10 +227,6 @@ public class PageTemplatesImporterTest {
 				TestPropsValues.getUserId(), _group.getGroupId(), 0, file,
 				LayoutsImportStrategy.DO_NOT_OVERWRITE, true);
 
-			Assert.assertEquals(
-				layoutsImporterResultEntries.toString(), 1,
-				layoutsImporterResultEntries.size());
-
 			layoutsImporterResultEntry = layoutsImporterResultEntries.get(0);
 
 			Assert.assertEquals(
@@ -239,6 +235,10 @@ public class PageTemplatesImporterTest {
 			Assert.assertEquals(
 				LayoutsImporterResultEntry.Status.IMPORTED,
 				layoutsImporterResultEntry.getStatus());
+
+			Assert.assertEquals(
+				layoutsImporterResultEntries.toString(), 1,
+				layoutsImporterResultEntries.size());
 		}
 		finally {
 			ServiceContextThreadLocal.popServiceContext();
@@ -543,9 +543,6 @@ public class PageTemplatesImporterTest {
 				layoutPageTemplateEntry.getCompanyId(), _testPortletName,
 				ResourceConstants.SCOPE_INDIVIDUAL, resourcePrimKey);
 
-		Assert.assertEquals(
-			resourcePermissions.toString(), 1, resourcePermissions.size());
-
 		ResourcePermission resourcePermission = resourcePermissions.get(0);
 
 		Assert.assertEquals(role.getRoleId(), resourcePermission.getRoleId());
@@ -569,6 +566,9 @@ public class PageTemplatesImporterTest {
 
 		Assert.assertTrue(
 			(resourcePermission.getActionIds() & bitwiseValue) == bitwiseValue);
+
+		Assert.assertEquals(
+			resourcePermissions.toString(), 1, resourcePermissions.size());
 	}
 
 	@Test
@@ -1410,10 +1410,6 @@ public class PageTemplatesImporterTest {
 
 		Assert.assertNotNull(layoutsImporterResultEntries);
 
-		Assert.assertEquals(
-			layoutsImporterResultEntries.toString(), 1,
-			layoutsImporterResultEntries.size());
-
 		LayoutsImporterResultEntry layoutPageTemplateImportEntry =
 			layoutsImporterResultEntries.get(0);
 
@@ -1434,6 +1430,10 @@ public class PageTemplatesImporterTest {
 		Assert.assertNotNull(layoutPageTemplateEntry);
 
 		return layoutPageTemplateEntry;
+
+		Assert.assertEquals(
+			layoutsImporterResultEntries.toString(), 1,
+			layoutsImporterResultEntries.size());
 	}
 
 	private LayoutPageTemplateEntry _getLayoutPageTemplateEntry(
@@ -1496,12 +1496,12 @@ public class PageTemplatesImporterTest {
 		List<String> childrenItemIds =
 			mainLayoutStructureItem.getChildrenItemIds();
 
-		Assert.assertEquals(
-			childrenItemIds.toString(), 1, childrenItemIds.size());
-
 		String childItemId = childrenItemIds.get(0);
 
 		return layoutStructure.getLayoutStructureItem(childItemId);
+
+		Assert.assertEquals(
+			childrenItemIds.toString(), 1, childrenItemIds.size());
 	}
 
 	private void _populateZipWriter(

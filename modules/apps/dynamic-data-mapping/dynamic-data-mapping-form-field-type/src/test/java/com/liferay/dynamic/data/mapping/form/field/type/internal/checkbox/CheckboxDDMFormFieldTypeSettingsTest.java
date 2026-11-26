@@ -98,8 +98,6 @@ public class CheckboxDDMFormFieldTypeSettingsTest
 
 		List<DDMFormRule> ddmFormRules = ddmForm.getDDMFormRules();
 
-		Assert.assertEquals(ddmFormRules.toString(), 2, ddmFormRules.size());
-
 		DDMFormRule ddmFormRule0 = ddmFormRules.get(0);
 
 		Assert.assertEquals(
@@ -129,6 +127,8 @@ public class CheckboxDDMFormFieldTypeSettingsTest
 		Assert.assertEquals(
 			"setVisible('requiredErrorMessage', getValue('required'))",
 			actions.get(2));
+
+		Assert.assertEquals(ddmFormRules.toString(), 2, ddmFormRules.size());
 	}
 
 	@Test

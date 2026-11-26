@@ -670,9 +670,6 @@ public class StagingLocalServiceTest {
 
 				List<LogEntry> logEntries = logCapture.getLogEntries();
 
-				Assert.assertEquals(
-					logEntries.toString(), 1, logEntries.size());
-
 				LogEntry logEntry = logEntries.get(0);
 
 				String message = logEntry.getMessage();
@@ -682,6 +679,9 @@ public class StagingLocalServiceTest {
 					message.contains(
 						"Feature flag LPD-57283 is disabled for company " +
 							group.getCompanyId()));
+
+				Assert.assertEquals(
+					logEntries.toString(), 1, logEntries.size());
 			}
 
 			Group stagingGroup = group.getStagingGroup();

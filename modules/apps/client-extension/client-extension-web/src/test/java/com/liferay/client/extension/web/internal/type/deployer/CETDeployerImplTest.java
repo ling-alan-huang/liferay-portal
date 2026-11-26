@@ -109,12 +109,12 @@ public class CETDeployerImplTest {
 
 		cetDeployerImpl.deploy(customElementCET);
 
-		Assert.assertEquals(dictionaries.toString(), 1, dictionaries.size());
-
 		Dictionary<String, Object> dictionary = dictionaries.get(0);
 
 		Assert.assertEquals(
 			dictionary.toString(), 300, dictionary.get("panel.app.order"));
+
+		Assert.assertEquals(dictionaries.toString(), 1, dictionaries.size());
 	}
 
 	@Test

@@ -140,16 +140,16 @@ public class SegmentsExperimentLocalServiceTest {
 			_segmentsExperimentRelLocalService.getSegmentsExperimentRels(
 				actualSegmentsExperiment.getSegmentsExperimentId());
 
-		Assert.assertEquals(
-			segmentsExperimentRels.toString(), 1,
-			segmentsExperimentRels.size());
-
 		SegmentsExperimentRel segmentsExperimentRel =
 			segmentsExperimentRels.get(0);
 
 		Assert.assertEquals(
 			actualSegmentsExperiment.getSegmentsExperienceId(),
 			segmentsExperimentRel.getSegmentsExperienceId());
+
+		Assert.assertEquals(
+			segmentsExperimentRels.toString(), 1,
+			segmentsExperimentRels.size());
 	}
 
 	@Test(expected = SegmentsExperimentNameException.class)

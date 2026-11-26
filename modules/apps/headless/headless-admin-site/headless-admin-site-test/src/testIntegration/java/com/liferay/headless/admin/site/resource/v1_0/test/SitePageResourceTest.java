@@ -2596,14 +2596,14 @@ public class SitePageResourceTest extends BaseSitePageResourceTestCase {
 
 		List<SitePage> sitePages = new ArrayList<>(sitePagesPage.getItems());
 
-		Assert.assertEquals(sitePages.toString(), 1, sitePages.size());
-
 		SitePage sitePage = sitePages.get(0);
 
 		_assertPageSpecificationVersions(
 			_layoutLocalService.getLayoutByExternalReferenceCode(
 				sitePage.getExternalReferenceCode(), testGroup.getGroupId()),
 			sitePage.getPageSpecificationVersions());
+
+		Assert.assertEquals(sitePages.toString(), 1, sitePages.size());
 	}
 
 	private void _testGetSiteSitePageSitePagesPageWithPermissions()
@@ -4259,13 +4259,13 @@ public class SitePageResourceTest extends BaseSitePageResourceTestCase {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			String message = logEntry.getMessage();
 
 			Assert.assertTrue(message.contains("LayoutPageTemplateEntry"));
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 
 		_testPostSiteSitePage(_getRandomSitePageWithWidgetPageTemplate(true));
@@ -4497,9 +4497,6 @@ public class SitePageResourceTest extends BaseSitePageResourceTestCase {
 			_fragmentEntryLinkLocalService.getFragmentEntryLinksByPlid(
 				testGroup.getGroupId(), layout.getPlid());
 
-		Assert.assertEquals(
-			fragmentEntryLinks.toString(), 1, fragmentEntryLinks.size());
-
 		FragmentEntryLink fragmentEntryLink = fragmentEntryLinks.get(0);
 
 		_fragmentEntryLinkCache.putFragmentEntryLinkContent(
@@ -4525,6 +4522,9 @@ public class SitePageResourceTest extends BaseSitePageResourceTestCase {
 		Assert.assertNull(
 			_fragmentEntryLinkCache.getFragmentEntryLinkContent(
 				fragmentEntryLink, locale));
+
+		Assert.assertEquals(
+			fragmentEntryLinks.toString(), 1, fragmentEntryLinks.size());
 	}
 
 	private void _testPutSiteSitePageWithContentPageSpecification()

@@ -173,9 +173,6 @@ public class AnalyticsReportsDataProviderTest {
 		List<HistogramMetric> histogramMetrics =
 			historicalMetric.getHistogramMetrics();
 
-		Assert.assertEquals(
-			histogramMetrics.toString(), 1, histogramMetrics.size());
-
 		HistogramMetric histogramMetric = histogramMetrics.get(0);
 
 		Assert.assertEquals(5.0, histogramMetric.getValue(), 0.0);
@@ -187,6 +184,9 @@ public class AnalyticsReportsDataProviderTest {
 		ZonedDateTime zonedDateTime = instant.atZone(ZoneId.systemDefault());
 
 		Assert.assertEquals(localDate, zonedDateTime.toLocalDate());
+
+		Assert.assertEquals(
+			histogramMetrics.toString(), 1, histogramMetrics.size());
 	}
 
 	@Test
@@ -214,9 +214,6 @@ public class AnalyticsReportsDataProviderTest {
 			analyticsReportsDataProvider.getPageExperiences(
 				RandomTestUtil.randomLong(), RandomTestUtil.randomString());
 
-		Assert.assertEquals(
-			pageExperiences.toString(), 2, pageExperiences.size());
-
 		PageExperience pageExperience1 = pageExperiences.get(0);
 
 		Assert.assertEquals("exp1", pageExperience1.getId());
@@ -226,6 +223,9 @@ public class AnalyticsReportsDataProviderTest {
 
 		Assert.assertEquals("exp2", pageExperience2.getId());
 		Assert.assertEquals("Experience 2", pageExperience2.getName());
+
+		Assert.assertEquals(
+			pageExperiences.toString(), 2, pageExperiences.size());
 	}
 
 	@Test

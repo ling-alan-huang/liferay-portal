@@ -220,14 +220,14 @@ public class ContentDashboardFileExtensionItemSelectorViewTest {
 		JSONArray fileExtensionsJSONArray =
 			fileExtensionGroupJSONObject.getJSONArray("fileExtensions");
 
-		Assert.assertEquals(1, fileExtensionsJSONArray.length());
-
 		JSONObject fileExtensionJSONObject =
 			fileExtensionsJSONArray.getJSONObject(0);
 
 		Assert.assertEquals(
 			expectedFileExtension,
 			fileExtensionJSONObject.getString("fileExtension"));
+
+		Assert.assertEquals(1, fileExtensionsJSONArray.length());
 	}
 
 	private Map<String, Object> _getData(Group group) throws Exception {

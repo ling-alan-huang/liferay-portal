@@ -1,0 +1,160 @@
+/**
+ * SPDX-FileCopyrightText: (c) 2026 Liferay, Inc. https://liferay.com
+ * SPDX-License-Identifier: LGPL-2.1-or-later OR LicenseRef-Liferay-DXP-EULA-2.0.0-2023-06
+ */
+
+package com.liferay.source.formatter.dependencies;
+
+import java.util.List;
+
+import org.junit.Assert;
+import org.junit.Test;
+
+/**
+ * @author Alan Huang
+ */
+public class SizeAssertionOrderTest {
+
+	@Test
+	public void testAddName() throws Exception {
+		List<String> names = _getNames();
+
+		Assert.assertEquals(names.toString(), 1, names.size());
+
+		String name = names.get(0);
+
+		names.add(name + "2");
+
+		Assert.assertEquals("alpha", name);
+	}
+
+	@Test
+	public void testGetFileEntries() throws Exception {
+		List<CPDVirtualSettingFileEntry> cpdVirtualSettingFileEntries =
+			_getCPDVirtualSettingFileEntries();
+
+		CPDVirtualSettingFileEntry cpdVirtualSettingFileEntry =
+			cpdVirtualSettingFileEntries.get(0);
+
+		Assert.assertEquals(
+			_fileEntry.getFileEntryId(),
+			cpdVirtualSettingFileEntry.getFileEntryId());
+
+		Assert.assertEquals(
+			cpdVirtualSettingFileEntries.toString(), 1,
+			cpdVirtualSettingFileEntries.size());
+	}
+
+	@Test
+	public void testGetGroup() throws Exception {
+		Group group = _getGroup();
+
+		Assert.assertEquals("Guest", group.getName());
+
+		UnicodeProperties typeSettingsUnicodeProperties =
+			group.getTypeSettingsProperties();
+
+		Assert.assertEquals(
+			"true", typeSettingsUnicodeProperties.getProperty("inherit"));
+	}
+
+	@Test
+	public void testGetItems() throws Exception {
+		List<Item> items = _getItems();
+
+		Item item = items.get(0);
+
+		Assert.assertEquals("alpha", item.getName());
+
+		_assertItem(items.get(1), "beta");
+
+		Assert.assertEquals(items.toString(), 2, items.size());
+
+		Assert.assertTrue(_isIndexed());
+	}
+
+	@Test
+	public void testGetLogEntries() throws Exception {
+		List<LogEntry> logEntries = _getLogEntries();
+
+		LogEntry logEntry = logEntries.get(0);
+
+		Assert.assertTrue(
+			logEntry.getThrowable() instanceof PrincipalException);
+
+		Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
+	}
+
+	@Test
+	public void testGetMappingTypes() throws Exception {
+		JSONArray mappingTypesJSONArray = _getMappingTypesJSONArray();
+
+		JSONObject mappingTypeJSONObject = mappingTypesJSONArray.getJSONObject(
+			0);
+
+		Assert.assertEquals("id", mappingTypeJSONObject.getString("id"));
+
+		JSONArray subtypesJSONArray = mappingTypeJSONObject.getJSONArray(
+			"subtypes");
+
+		JSONObject subtypeJSONObject = subtypesJSONArray.getJSONObject(0);
+
+		Assert.assertEquals("label", subtypeJSONObject.getString("label"));
+
+		Assert.assertEquals(
+			subtypesJSONArray.toString(), 1, subtypesJSONArray.length());
+
+		Assert.assertEquals(
+			mappingTypesJSONArray.toString(), 1,
+			mappingTypesJSONArray.length());
+	}
+
+	@Test
+	public void testGetNames() throws Exception {
+		List<String> names = _getNames();
+
+		String name = names.get(0);
+
+		Assert.assertNotNull(name);
+		Assert.assertEquals("alpha", name);
+
+		Assert.assertEquals(names.toString(), 2, names.size());
+
+		_deleteNames();
+	}
+
+	@Test
+	public void testGetPrimaryDropdownItems() throws Exception {
+		List<DropdownItem> primaryDropdownItems = _getPrimaryDropdownItems();
+
+		if (_featureFlagEnabled) {
+			DropdownItem primaryDropdownItem = primaryDropdownItems.get(1);
+
+			Assert.assertEquals(
+				Boolean.TRUE, primaryDropdownItem.get("deprecated"));
+
+			Assert.assertEquals(
+				primaryDropdownItems.toString(), 2,
+				primaryDropdownItems.size());
+		}
+		else {
+			Assert.assertEquals(
+				primaryDropdownItems.toString(), 1,
+				primaryDropdownItems.size());
+		}
+	}
+
+	@Test
+	public void testGetUsersByName() throws Exception {
+		List<User> users = _getUsers();
+
+		User user1 = users.get(0);
+
+		Assert.assertEquals("alpha", user1.getScreenName());
+
+		User user2 = users.get(1);
+
+		Assert.assertEquals("beta", user2.getScreenName());
+	}
+
+}

@@ -372,13 +372,13 @@ public class NoticeableThreadPoolExecutorTest {
 		noticeableThreadPoolExecutor.execute(slowRunnable);
 		noticeableThreadPoolExecutor.execute(slowRunnable);
 
-		Assert.assertEquals(
-			rejectedRunnables.toString(), 2, rejectedRunnables.size());
-
 		Runnable runnable = rejectedRunnables.get(0);
 
 		Assert.assertSame(slowRunnable, rejectedRunnables.get(0));
 		Assert.assertSame(slowRunnable, rejectedRunnables.get(1));
+
+		Assert.assertEquals(
+			rejectedRunnables.toString(), 2, rejectedRunnables.size());
 
 		noticeableThreadPoolExecutor.shutdownNow();
 

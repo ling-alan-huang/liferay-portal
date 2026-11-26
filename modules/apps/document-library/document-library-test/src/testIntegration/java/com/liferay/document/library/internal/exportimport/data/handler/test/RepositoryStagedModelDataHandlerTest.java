@@ -119,14 +119,14 @@ public class RepositoryStagedModelDataHandlerTest
 		List<StagedModel> dependentStagedModels = dependentStagedModelsMap.get(
 			RepositoryEntry.class.getSimpleName());
 
-		Assert.assertEquals(
-			dependentStagedModels.toString(), 1, dependentStagedModels.size());
-
 		RepositoryEntry repositoryEntry =
 			(RepositoryEntry)dependentStagedModels.get(0);
 
 		RepositoryEntryLocalServiceUtil.getRepositoryEntryByUuidAndGroupId(
 			repositoryEntry.getUuid(), group.getGroupId());
+
+		Assert.assertEquals(
+			dependentStagedModels.toString(), 1, dependentStagedModels.size());
 	}
 
 	@Override

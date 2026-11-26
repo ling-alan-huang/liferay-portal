@@ -135,9 +135,6 @@ public class OrphanPortletsDisplayContextTest {
 			_fragmentEntryLinkLocalService.getFragmentEntryLinksByPlid(
 				layout.getGroupId(), layout.getPlid());
 
-		Assert.assertEquals(
-			fragmentEntryLinks.toString(), 1, fragmentEntryLinks.size());
-
 		List<String> portletIds =
 			_portletRegistry.getFragmentEntryLinkPortletIds(
 				fragmentEntryLinks.get(0));
@@ -145,6 +142,9 @@ public class OrphanPortletsDisplayContextTest {
 		Assert.assertEquals(portletIds.toString(), 1, portletIds.size());
 
 		return portletIds.get(0);
+
+		Assert.assertEquals(
+			fragmentEntryLinks.toString(), 1, fragmentEntryLinks.size());
 	}
 
 	private void _testGetOrphanPortletsWithMasterLayoutPortlet()
@@ -209,13 +209,13 @@ public class OrphanPortletsDisplayContextTest {
 
 		List<Portlet> orphanPortlets = _getOrphanPortlets(layout);
 
-		Assert.assertEquals(
-			orphanPortlets.toString(), 1, orphanPortlets.size());
-
 		Portlet portlet = orphanPortlets.get(0);
 
 		Assert.assertEquals(
 			JournalContentPortletKeys.JOURNAL_CONTENT, portlet.getPortletId());
+
+		Assert.assertEquals(
+			orphanPortlets.toString(), 1, orphanPortlets.size());
 	}
 
 	private void _testGetOrphanPortletsWithTypeContentLayout()

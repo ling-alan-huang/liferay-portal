@@ -138,8 +138,6 @@ public class JournalFeedStagedModelDataHandlerTest
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			String message = logEntry.getMessage();
@@ -149,6 +147,8 @@ public class JournalFeedStagedModelDataHandlerTest
 			Assert.assertTrue(
 				message,
 				message.contains(" already exists. The new generated ID is "));
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 	}
 
@@ -238,9 +238,6 @@ public class JournalFeedStagedModelDataHandlerTest
 
 				List<LogEntry> logEntries = logCapture.getLogEntries();
 
-				Assert.assertEquals(
-					logEntries.toString(), 1, logEntries.size());
-
 				LogEntry logEntry = logEntries.get(0);
 
 				String message = logEntry.getMessage();
@@ -250,6 +247,9 @@ public class JournalFeedStagedModelDataHandlerTest
 					message.startsWith(
 						"Staged model {class: " + JournalFeed.class.getName()));
 				Assert.assertTrue(message, message.endsWith("import failed"));
+
+				Assert.assertEquals(
+					logEntries.toString(), 1, logEntries.size());
 			}
 			finally {
 				ExportImportThreadLocal.setPortletImportInProcess(false);
@@ -364,8 +364,6 @@ public class JournalFeedStagedModelDataHandlerTest
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			String message = logEntry.getMessage();
@@ -375,6 +373,8 @@ public class JournalFeedStagedModelDataHandlerTest
 			Assert.assertTrue(
 				message,
 				message.contains(" already exists. The new generated ID is "));
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 	}
 
@@ -453,15 +453,15 @@ public class JournalFeedStagedModelDataHandlerTest
 		List<StagedModel> ddmStructureDependentStagedModels =
 			dependentStagedModelsMap.get(DDMStructure.class.getSimpleName());
 
-		Assert.assertEquals(
-			ddmStructureDependentStagedModels.toString(), 1,
-			ddmStructureDependentStagedModels.size());
-
 		DDMStructure ddmStructure =
 			(DDMStructure)ddmStructureDependentStagedModels.get(0);
 
 		DDMStructureLocalServiceUtil.getDDMStructureByUuidAndGroupId(
 			ddmStructure.getUuid(), group.getGroupId());
+
+		Assert.assertEquals(
+			ddmStructureDependentStagedModels.toString(), 1,
+			ddmStructureDependentStagedModels.size());
 
 		List<StagedModel> ddmTemplateDependentStagedModels =
 			dependentStagedModelsMap.get(DDMTemplate.class.getSimpleName());

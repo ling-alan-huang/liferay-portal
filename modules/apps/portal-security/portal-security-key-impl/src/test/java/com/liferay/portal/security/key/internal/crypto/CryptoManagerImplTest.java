@@ -376,13 +376,13 @@ public class CryptoManagerImplTest {
 		List<KeyReference> keyReferences = _cryptoManagerImpl.getKeyReferences(
 			RandomTestUtil.randomLong(), cryptoProviderId);
 
-		Assert.assertEquals(keyReferences.toString(), 1, keyReferences.size());
-
 		KeyReference keyReference = keyReferences.get(0);
 
 		Assert.assertEquals(KeyReference.Type.CRYPTO, keyReference.getType());
 		Assert.assertEquals(cryptoProviderId, keyReference.getProviderId());
 		Assert.assertEquals(keyIdentifier, keyReference.getIdentifier());
+
+		Assert.assertEquals(keyReferences.toString(), 1, keyReferences.size());
 	}
 
 	@Test

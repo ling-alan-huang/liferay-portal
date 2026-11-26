@@ -297,13 +297,13 @@ public class QueryUtilTest {
 			List<Integer> result = (List<Integer>)QueryUtil.list(
 				sqlQuery, _sessionFactory.getDialect(), start, end, true);
 
-			Assert.assertEquals(result.toString(), end - start, result.size());
-
 			Number firstId = result.get(0);
 			Number lastId = result.get(result.size() - 1);
 
 			Assert.assertEquals(expectedFirstValue, firstId.intValue());
 			Assert.assertEquals(expectedLastValue, lastId.intValue());
+
+			Assert.assertEquals(result.toString(), end - start, result.size());
 		}
 		finally {
 			_sessionFactory.closeSession(session);
@@ -331,14 +331,14 @@ public class QueryUtilTest {
 			List<Object[]> result = (List<Object[]>)QueryUtil.list(
 				sqlQuery, _sessionFactory.getDialect(), start, end, true);
 
-			Assert.assertEquals(result.toString(), size, result.size());
-
 			Object[] firstRow = result.get(0);
 			Object[] lastRow = result.get(result.size() - 1);
 
 			Assert.assertEquals(
 				firstType, StringUtil.trim((String)firstRow[0]));
 			Assert.assertEquals(lastType, StringUtil.trim((String)lastRow[0]));
+
+			Assert.assertEquals(result.toString(), size, result.size());
 		}
 		finally {
 			_sessionFactory.closeSession(session);

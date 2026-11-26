@@ -398,8 +398,6 @@ public class SelectDDMFormFieldTemplateContextContributorTest
 
 		List<Object> options = (List<Object>)parameters.get("options");
 
-		Assert.assertEquals(options.toString(), 3, options.size());
-
 		Map<String, String> optionMap = (Map<String, String>)options.get(0);
 
 		Assert.assertEquals("Label 1", optionMap.get("label"));
@@ -414,6 +412,8 @@ public class SelectDDMFormFieldTemplateContextContributorTest
 
 		Assert.assertEquals("Label 3", optionMap.get("label"));
 		Assert.assertEquals("value 3", optionMap.get("value"));
+
+		Assert.assertEquals(options.toString(), 3, options.size());
 
 		Assert.assertTrue((boolean)parameters.get("showEmptyOption"));
 
@@ -474,8 +474,6 @@ public class SelectDDMFormFieldTemplateContextContributorTest
 
 		List<Object> options = (List<Object>)parameters.get("options");
 
-		Assert.assertEquals(options.toString(), 3, options.size());
-
 		Map<String, String> optionMap = (Map<String, String>)options.get(0);
 
 		Assert.assertEquals("Label 1", optionMap.get("label"));
@@ -490,6 +488,8 @@ public class SelectDDMFormFieldTemplateContextContributorTest
 
 		Assert.assertEquals("Label 3", optionMap.get("label"));
 		Assert.assertEquals("value 3", optionMap.get("value"));
+
+		Assert.assertEquals(options.toString(), 3, options.size());
 
 		List<String> predefinedValueParameter = (List<String>)parameters.get(
 			"predefinedValue");

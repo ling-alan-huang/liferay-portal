@@ -356,11 +356,11 @@ public class EditUserMVCActionCommandTest {
 				).getWorkflowInstanceId(),
 				null, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 
-		Assert.assertEquals(workflowTasks.toString(), 1, workflowTasks.size());
-
 		WorkflowTask workflowTask = workflowTasks.get(0);
 
 		Assert.assertTrue(workflowTask.isCompleted());
+
+		Assert.assertEquals(workflowTasks.toString(), 1, workflowTasks.size());
 
 		user = _userLocalService.getUser(user.getUserId());
 

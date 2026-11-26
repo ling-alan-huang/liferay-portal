@@ -197,10 +197,6 @@ public class OpenSearchSearchEngineAdapterDocumentRequestTest
 		List<BulkDocumentItemResponse> bulkDocumentItemResponses1 =
 			bulkDocumentResponse1.getBulkDocumentItemResponses();
 
-		Assert.assertEquals(
-			bulkDocumentItemResponses1.toString(), 2,
-			bulkDocumentItemResponses1.size());
-
 		BulkDocumentItemResponse bulkDocumentItemResponse1 =
 			bulkDocumentItemResponses1.get(0);
 
@@ -210,6 +206,10 @@ public class OpenSearchSearchEngineAdapterDocumentRequestTest
 			bulkDocumentItemResponses1.get(1);
 
 		Assert.assertEquals("2", bulkDocumentItemResponse2.getId());
+
+		Assert.assertEquals(
+			bulkDocumentItemResponses1.toString(), 2,
+			bulkDocumentItemResponses1.size());
 
 		BulkDocumentRequest bulkDocumentRequest2 = new BulkDocumentRequest();
 
@@ -232,10 +232,6 @@ public class OpenSearchSearchEngineAdapterDocumentRequestTest
 		List<BulkDocumentItemResponse> bulkDocumentItemResponses2 =
 			bulkDocumentResponse2.getBulkDocumentItemResponses();
 
-		Assert.assertEquals(
-			bulkDocumentItemResponses2.toString(), 2,
-			bulkDocumentItemResponses2.size());
-
 		BulkDocumentItemResponse bulkDocumentItemResponse3 =
 			bulkDocumentItemResponses2.get(0);
 
@@ -245,6 +241,10 @@ public class OpenSearchSearchEngineAdapterDocumentRequestTest
 			bulkDocumentItemResponses2.get(1);
 
 		Assert.assertEquals("2", bulkDocumentItemResponse4.getId());
+
+		Assert.assertEquals(
+			bulkDocumentItemResponses2.toString(), 2,
+			bulkDocumentItemResponses2.size());
 
 		GetResponse<JsonData> getResponse1 = _getDocument("1");
 
@@ -290,10 +290,6 @@ public class OpenSearchSearchEngineAdapterDocumentRequestTest
 		List<BulkDocumentItemResponse> bulkDocumentItemResponses1 =
 			bulkDocumentResponse1.getBulkDocumentItemResponses();
 
-		Assert.assertEquals(
-			bulkDocumentItemResponses1.toString(), 2,
-			bulkDocumentItemResponses1.size());
-
 		BulkDocumentItemResponse bulkDocumentItemResponse1 =
 			bulkDocumentItemResponses1.get(0);
 
@@ -332,10 +328,6 @@ public class OpenSearchSearchEngineAdapterDocumentRequestTest
 		List<BulkDocumentItemResponse> bulkDocumentItemResponses2 =
 			bulkDocumentResponse2.getBulkDocumentItemResponses();
 
-		Assert.assertEquals(
-			bulkDocumentItemResponses2.toString(), 2,
-			bulkDocumentItemResponses2.size());
-
 		BulkDocumentItemResponse bulkDocumentItemResponse3 =
 			bulkDocumentItemResponses2.get(0);
 
@@ -349,6 +341,10 @@ public class OpenSearchSearchEngineAdapterDocumentRequestTest
 		Assert.assertEquals(
 			bulkDocumentItemResponse2.getId(),
 			bulkDocumentItemResponse4.getId());
+
+		Assert.assertEquals(
+			bulkDocumentItemResponses2.toString(), 2,
+			bulkDocumentItemResponses2.size());
 
 		GetResponse<JsonData> getResponse1 = _getDocument(
 			bulkDocumentItemResponse1.getId());
@@ -368,6 +364,10 @@ public class OpenSearchSearchEngineAdapterDocumentRequestTest
 
 		Assert.assertEquals(
 			Boolean.TRUE.toString(), String.valueOf(map2.get(_FIELD_NAME)));
+
+		Assert.assertEquals(
+			bulkDocumentItemResponses1.toString(), 2,
+			bulkDocumentItemResponses1.size());
 	}
 
 	@Test

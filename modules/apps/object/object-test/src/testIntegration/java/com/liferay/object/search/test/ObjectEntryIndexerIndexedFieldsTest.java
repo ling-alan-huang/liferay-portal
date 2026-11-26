@@ -231,12 +231,12 @@ public class ObjectEntryIndexerIndexedFieldsTest {
 
 		List<SearchHit> searchHitsList = searchHits.getSearchHits();
 
-		Assert.assertEquals(
-			searchHitsList.toString(), 1, searchHitsList.size());
-
 		SearchHit searchHit = searchHitsList.get(0);
 
 		return searchHit.getDocument();
+
+		Assert.assertEquals(
+			searchHitsList.toString(), 1, searchHitsList.size());
 	}
 
 	private String _getIndexedDisplayDate(long objectEntryId) throws Exception {

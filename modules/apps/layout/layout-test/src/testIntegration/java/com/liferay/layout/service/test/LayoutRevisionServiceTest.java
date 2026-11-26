@@ -116,13 +116,13 @@ public class LayoutRevisionServiceTest {
 			_portletPreferencesLocalService.getPortletPreferencesByPlid(
 				layoutRevision.getLayoutRevisionId());
 
-		Assert.assertEquals(
-			portletPreferencesList.toString(), 1,
-			portletPreferencesList.size());
-
 		PortletPreferences portletPreferences = portletPreferencesList.get(0);
 
 		Assert.assertEquals(portletId, portletPreferences.getPortletId());
+
+		Assert.assertEquals(
+			portletPreferencesList.toString(), 1,
+			portletPreferencesList.size());
 	}
 
 	private void _testAddLayoutRevision() throws Exception {

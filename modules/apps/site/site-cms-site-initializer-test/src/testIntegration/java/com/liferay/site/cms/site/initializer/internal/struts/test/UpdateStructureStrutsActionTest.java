@@ -718,8 +718,6 @@ public class UpdateStructureStrutsActionTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals(LoggerTestUtil.ERROR, logEntry.getPriority());
@@ -727,6 +725,8 @@ public class UpdateStructureStrutsActionTest {
 			Throwable throwable = logEntry.getThrowable();
 
 			Assert.assertEquals(exceptionClass, throwable.getClass());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 	}
 

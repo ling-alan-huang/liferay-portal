@@ -294,15 +294,15 @@ public class IndexUpdaterUtilTest {
 
 				logEntries = indexUpdaterUtilLogCapture.getLogEntries();
 
-				Assert.assertEquals(
-					logEntries.toString(), 1, logEntries.size());
-
 				logEntry = logEntries.get(0);
 
 				Assert.assertEquals(
 					"Deleted duplicate records from table TestTable before " +
 						"retrying unique index creation",
 					logEntry.getMessage());
+
+				Assert.assertEquals(
+					logEntries.toString(), 1, logEntries.size());
 			}
 
 			try (Connection connection = DataAccess.getConnection();

@@ -173,11 +173,11 @@ public class LayoutLockManagerTest {
 			TestPropsValues.getCompanyId(), _group.getGroupId(),
 			LocaleUtil.getDefault());
 
-		Assert.assertEquals(lockedLayouts.toString(), 1, lockedLayouts.size());
-
 		LockedLayout lockedLayout = lockedLayouts.get(0);
 
 		Assert.assertEquals(draftLayout.getPlid(), lockedLayout.getPlid());
+
+		Assert.assertEquals(lockedLayouts.toString(), 1, lockedLayouts.size());
 	}
 
 	@Test

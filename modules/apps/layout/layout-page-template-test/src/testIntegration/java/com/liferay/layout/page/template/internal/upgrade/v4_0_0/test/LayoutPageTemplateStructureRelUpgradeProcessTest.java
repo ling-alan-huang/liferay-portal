@@ -257,10 +257,6 @@ public class LayoutPageTemplateStructureRelUpgradeProcessTest {
 			collectionStyledLayoutStructureItems =
 				layoutStructure.getCollectionStyledLayoutStructureItems();
 
-		Assert.assertEquals(
-			collectionStyledLayoutStructureItems.toString(), 1,
-			collectionStyledLayoutStructureItems.size());
-
 		CollectionStyledLayoutStructureItem
 			collectionStyledLayoutStructureItem =
 				collectionStyledLayoutStructureItems.get(0);
@@ -284,6 +280,10 @@ public class LayoutPageTemplateStructureRelUpgradeProcessTest {
 		_assertItemConfigJSONObject(
 			layoutPageTemplateStructure.getData(segmentsExperienceId),
 			collectionStyledLayoutStructureItem.getItemId(), expectedMap);
+
+		Assert.assertEquals(
+			collectionStyledLayoutStructureItems.toString(), 1,
+			collectionStyledLayoutStructureItems.size());
 	}
 
 	private JSONObject _getItemConfigJSONObject(String data, String itemId)

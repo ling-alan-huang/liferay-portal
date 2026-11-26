@@ -232,10 +232,6 @@ public class ObjectEntryInfoItemExceptionRequestHandlerTest {
 				infoFormValidationExceptionRuleValidation.
 					getCustomValidations();
 
-		Assert.assertEquals(
-			infoFormValidationExceptionCustomValidations.toString(), 1,
-			infoFormValidationExceptionCustomValidations.size());
-
 		InfoFormValidationException.CustomValidation
 			infoFormValidationExceptionCustomValidation =
 				infoFormValidationExceptionCustomValidations.get(0);
@@ -248,6 +244,10 @@ public class ObjectEntryInfoItemExceptionRequestHandlerTest {
 			errorMessage,
 			infoFormValidationExceptionCustomValidation.getLocalizedMessage(
 				LocaleUtil.US));
+
+		Assert.assertEquals(
+			infoFormValidationExceptionCustomValidations.toString(), 1,
+			infoFormValidationExceptionCustomValidations.size());
 	}
 
 	private void _testHandleInfoFormExceptionWhenOptimisticLockException() {

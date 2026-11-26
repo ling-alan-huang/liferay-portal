@@ -823,9 +823,6 @@ public class PlaywrightBatchTestClassGroupTest
 		}
 
 		if (expectedPlaywrightJSONObject == null) {
-			Assert.assertEquals(
-				runtimeExceptions.toString(), 2, runtimeExceptions.size());
-
 			RuntimeException runtimeException = runtimeExceptions.get(0);
 
 			if (reports[reports.length - 1] == null) {
@@ -841,6 +838,9 @@ public class PlaywrightBatchTestClassGroupTest
 			}
 
 			Assert.assertSame(runtimeException, runtimeExceptions.get(1));
+
+			Assert.assertEquals(
+				runtimeExceptions.toString(), 2, runtimeExceptions.size());
 
 			return;
 		}

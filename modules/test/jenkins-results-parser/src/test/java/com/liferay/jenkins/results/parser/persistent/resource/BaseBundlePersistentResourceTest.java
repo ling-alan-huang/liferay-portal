@@ -1933,14 +1933,14 @@ public class BaseBundlePersistentResourceTest
 		JSONArray populatedRedispatchHistoryJSONArray =
 			populatedDataJSONObject.getJSONArray("redispatch_history");
 
-		Assert.assertEquals(2, populatedRedispatchHistoryJSONArray.length());
-
 		JSONObject redispatchHistoryJSONObject =
 			populatedRedispatchHistoryJSONArray.getJSONObject(1);
 
 		Assert.assertEquals(
 			dataJSONObject.getString("controller_build_url"),
 			redispatchHistoryJSONObject.getString("controller_build_url"));
+
+		Assert.assertEquals(2, populatedRedispatchHistoryJSONArray.length());
 	}
 
 	private void _testUpdateSubclass(

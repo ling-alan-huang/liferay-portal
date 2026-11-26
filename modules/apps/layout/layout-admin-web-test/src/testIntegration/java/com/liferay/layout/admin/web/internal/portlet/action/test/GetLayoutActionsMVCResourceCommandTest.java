@@ -194,9 +194,6 @@ public class GetLayoutActionsMVCResourceCommandTest {
 			_fragmentEntryLinkLocalService.getFragmentEntryLinksByPlid(
 				layout.getGroupId(), layout.getPlid());
 
-		Assert.assertEquals(
-			fragmentEntryLinks.toString(), 1, fragmentEntryLinks.size());
-
 		List<String> portletIds =
 			_portletRegistry.getFragmentEntryLinkPortletIds(
 				fragmentEntryLinks.get(0));
@@ -204,6 +201,9 @@ public class GetLayoutActionsMVCResourceCommandTest {
 		Assert.assertEquals(portletIds.toString(), 1, portletIds.size());
 
 		return portletIds.get(0);
+
+		Assert.assertEquals(
+			fragmentEntryLinks.toString(), 1, fragmentEntryLinks.size());
 	}
 
 	private ThemeDisplay _getThemeDisplay(HttpServletRequest httpServletRequest)

@@ -114,8 +114,6 @@ public class CommerceDiscountCommerceAccountGroupRelLocalServiceTest {
 
 		List<Document> documents = searchResponse.getDocuments();
 
-		Assert.assertEquals(documents.toString(), 1, documents.size());
-
 		Document document = documents.get(0);
 
 		Assert.assertEquals(
@@ -124,6 +122,8 @@ public class CommerceDiscountCommerceAccountGroupRelLocalServiceTest {
 		Assert.assertEquals(
 			Long.valueOf(expectedCommerceAccountGroupIds.size()),
 			document.getLong("commerceAccountGroupIds_required_matches"));
+
+		Assert.assertEquals(documents.toString(), 1, documents.size());
 	}
 
 	private AccountGroup _accountGroup;

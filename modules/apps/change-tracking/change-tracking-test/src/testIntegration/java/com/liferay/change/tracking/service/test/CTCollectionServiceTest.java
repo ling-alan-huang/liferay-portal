@@ -316,11 +316,11 @@ public class CTCollectionServiceTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals("Conflict detected", logEntry.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 		catch (PortalException portalException) {
 			Assert.assertTrue(
@@ -377,11 +377,11 @@ public class CTCollectionServiceTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals("Conflict detected", logEntry.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 		catch (PortalException portalException) {
 			Assert.assertTrue(
@@ -429,11 +429,11 @@ public class CTCollectionServiceTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals("Conflict detected", logEntry.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 		catch (PortalException portalException) {
 			Assert.assertTrue(
@@ -494,8 +494,6 @@ public class CTCollectionServiceTest {
 			WorkflowConstants.STATUS_ANY, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 			null);
 
-		Assert.assertEquals(ctProcesses.toString(), 1, ctProcesses.size());
-
 		CTProcess ctProcess = ctProcesses.get(0);
 
 		BackgroundTask backgroundTask =
@@ -510,6 +508,8 @@ public class CTCollectionServiceTest {
 
 		Assert.assertEquals(
 			_ctCollection.getCtCollectionId(), ctProcess.getCtCollectionId());
+
+		Assert.assertEquals(ctProcesses.toString(), 1, ctProcesses.size());
 	}
 
 	@Inject

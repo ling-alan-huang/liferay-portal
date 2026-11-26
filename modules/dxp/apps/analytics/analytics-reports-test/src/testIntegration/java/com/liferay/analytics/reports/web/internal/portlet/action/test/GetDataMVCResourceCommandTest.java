@@ -193,9 +193,6 @@ public class GetDataMVCResourceCommandTest {
 				JSONArray jsonArray = contextJSONObject.getJSONArray(
 					"viewURLs");
 
-				Assert.assertEquals(
-					String.valueOf(jsonArray), 1, jsonArray.length());
-
 				JSONObject viewURLJSONObject = jsonArray.getJSONObject(0);
 
 				Assert.assertEquals(
@@ -219,6 +216,9 @@ public class GetDataMVCResourceCommandTest {
 				Assert.assertTrue(
 					viewURL.contains(
 						"param_languageId=" + LocaleUtil.toLanguageId(locale)));
+
+				Assert.assertEquals(
+					String.valueOf(jsonArray), 1, jsonArray.length());
 			});
 	}
 
@@ -312,9 +312,6 @@ public class GetDataMVCResourceCommandTest {
 				JSONArray jsonArray = contextJSONObject.getJSONArray(
 					"viewURLs");
 
-				Assert.assertEquals(
-					String.valueOf(jsonArray), 1, jsonArray.length());
-
 				JSONObject viewURLJSONObject = jsonArray.getJSONObject(0);
 
 				Assert.assertEquals(
@@ -329,6 +326,9 @@ public class GetDataMVCResourceCommandTest {
 					viewURL.contains(
 						"param_languageId=" +
 							LocaleUtil.toLanguageId(LocaleUtil.getDefault())));
+
+				Assert.assertEquals(
+					String.valueOf(jsonArray), 1, jsonArray.length());
 			});
 	}
 
@@ -405,9 +405,6 @@ public class GetDataMVCResourceCommandTest {
 				JSONArray jsonArray = contextJSONObject.getJSONArray(
 					"viewURLs");
 
-				Assert.assertEquals(
-					String.valueOf(jsonArray), jsonArray.length(), 1);
-
 				JSONObject viewURLJSONObject = jsonArray.getJSONObject(0);
 
 				Assert.assertEquals(
@@ -422,6 +419,9 @@ public class GetDataMVCResourceCommandTest {
 					viewURL.contains(
 						"param_languageId=" +
 							LocaleUtil.toLanguageId(LocaleUtil.getDefault())));
+
+				Assert.assertEquals(
+					String.valueOf(jsonArray), jsonArray.length(), 1);
 			});
 	}
 
@@ -457,9 +457,6 @@ public class GetDataMVCResourceCommandTest {
 				JSONArray jsonArray = contextJSONObject.getJSONArray(
 					"viewURLs");
 
-				Assert.assertEquals(
-					String.valueOf(jsonArray), jsonArray.length(), 2);
-
 				JSONObject viewURLJSONObject1 = jsonArray.getJSONObject(0);
 
 				Assert.assertEquals(
@@ -489,6 +486,9 @@ public class GetDataMVCResourceCommandTest {
 					viewURL2.contains(
 						"param_languageId=" +
 							LocaleUtil.toLanguageId(LocaleUtil.US)));
+
+				Assert.assertEquals(
+					String.valueOf(jsonArray), jsonArray.length(), 2);
 			});
 	}
 

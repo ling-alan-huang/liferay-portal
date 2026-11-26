@@ -430,10 +430,6 @@ public class CheckKBArticleSchedulerJobConfigurationTest {
 			UserNotificationEventTestUtil.getUserNotificationEvents(
 				user.getUserId());
 
-		Assert.assertEquals(
-			userNotificationEvents.toString(), 1,
-			userNotificationEvents.size());
-
 		UserNotificationEvent userNotificationEvent =
 			userNotificationEvents.get(0);
 
@@ -449,6 +445,10 @@ public class CheckKBArticleSchedulerJobConfigurationTest {
 				ServiceContextTestUtil.getServiceContext(_group.getGroupId()));
 
 		Assert.assertEquals(title, userNotificationFeedEntry.getTitle());
+
+		Assert.assertEquals(
+			userNotificationEvents.toString(), 1,
+			userNotificationEvents.size());
 	}
 
 	private ServiceContext _getServiceContext(User user) throws Exception {

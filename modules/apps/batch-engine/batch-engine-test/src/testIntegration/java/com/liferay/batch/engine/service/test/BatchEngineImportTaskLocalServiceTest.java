@@ -509,8 +509,6 @@ public class BatchEngineImportTaskLocalServiceTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals(
@@ -520,6 +518,8 @@ public class BatchEngineImportTaskLocalServiceTest {
 					batchEngineImportTask.getBatchEngineImportTaskId(), ": ",
 					JsonEOFException.class.getName()),
 				logEntry.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 
 		try (InputStream inputStream =

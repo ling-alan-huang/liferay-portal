@@ -613,11 +613,6 @@ public class CopyLayoutMVCActionCommandTest {
 								draftLayout.getPlid()),
 						draftLayout.getPlid());
 
-		Assert.assertEquals(
-			actualLayoutSegmentsExperienceLayoutFragmentEntryLinks.toString(),
-			expectedLayoutSegmentsExperienceLayoutFragmentEntryLinks.size(),
-			actualLayoutSegmentsExperienceLayoutFragmentEntryLinks.size());
-
 		FragmentEntryLink expectedLayoutFragmentEntryLink =
 			expectedLayoutSegmentsExperienceLayoutFragmentEntryLinks.get(0);
 
@@ -648,6 +643,11 @@ public class CopyLayoutMVCActionCommandTest {
 		Assert.assertEquals(
 			expectedLayoutFragmentEntryLink.getPosition(),
 			actualLayoutFragmentEntryLink.getPosition());
+
+		Assert.assertEquals(
+			actualLayoutSegmentsExperienceLayoutFragmentEntryLinks.toString(),
+			expectedLayoutSegmentsExperienceLayoutFragmentEntryLinks.size(),
+			actualLayoutSegmentsExperienceLayoutFragmentEntryLinks.size());
 
 		List<ResourcePermission> expectedResourcePermissions =
 			_resourcePermissionLocalService.getResourcePermissions(

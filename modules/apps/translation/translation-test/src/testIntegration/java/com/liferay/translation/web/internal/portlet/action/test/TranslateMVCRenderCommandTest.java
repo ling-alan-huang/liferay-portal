@@ -110,8 +110,6 @@ public class TranslateMVCRenderCommandTest {
 			(List<Object>)infoFieldSetEntriesData.get("infoFieldSetEntries");
 
 		Assert.assertNotNull(infoFieldSetEntries);
-		Assert.assertEquals(
-			infoFieldSetEntries.toString(), 2, infoFieldSetEntries.size());
 
 		Map<String, Object> structureFields =
 			(Map<String, Object>)infoFieldSetEntries.get(1);
@@ -123,7 +121,6 @@ public class TranslateMVCRenderCommandTest {
 		List<Object> fields = (List<Object>)structureFields.get("fields");
 
 		Assert.assertNotNull(fields);
-		Assert.assertEquals(fields.toString(), 1, fields.size());
 
 		Map<String, Object> fieldAttributes = (Map<String, Object>)fields.get(
 			0);
@@ -140,6 +137,11 @@ public class TranslateMVCRenderCommandTest {
 		Assert.assertEquals(
 			LocaleUtil.SPAIN.toString(),
 			fieldAttributes.get("targetLanguageId"));
+
+		Assert.assertEquals(fields.toString(), 1, fields.size());
+
+		Assert.assertEquals(
+			infoFieldSetEntries.toString(), 2, infoFieldSetEntries.size());
 	}
 
 	private JournalArticle _addJournalArticle() throws Exception {

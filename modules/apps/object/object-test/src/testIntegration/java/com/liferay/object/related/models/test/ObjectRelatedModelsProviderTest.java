@@ -841,15 +841,15 @@ public class ObjectRelatedModelsProviderTest {
 				objectRelationship.getObjectRelationshipId(), null,
 				QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 
-		Assert.assertEquals(
-			unrelatedObjectEntries.toString(), objectEntriesCount,
-			unrelatedObjectEntries.size());
-
 		ObjectEntry objectEntry2 = unrelatedObjectEntries.get(0);
 
 		ObjectRelationshipTestUtil.addObjectRelationshipMappingTableValues(
 			objectRelationship.getObjectRelationshipId(),
 			objectEntry1.getObjectEntryId(), objectEntry2.getObjectEntryId());
+
+		Assert.assertEquals(
+			unrelatedObjectEntries.toString(), objectEntriesCount,
+			unrelatedObjectEntries.size());
 
 		Assert.assertEquals(
 			objectEntriesCount - 1,

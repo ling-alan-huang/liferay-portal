@@ -109,8 +109,6 @@ public class SelectDDMFormFieldTypeSettingsTest
 
 		List<DDMFormRule> ddmFormRules = ddmForm.getDDMFormRules();
 
-		Assert.assertEquals(ddmFormRules.toString(), 4, ddmFormRules.size());
-
 		DDMFormRule ddmFormRule0 = ddmFormRules.get(0);
 
 		Assert.assertEquals(
@@ -217,6 +215,8 @@ public class SelectDDMFormFieldTypeSettingsTest
 			"setValue('required', isRequiredObjectField(getValue('" +
 				"objectFieldName')))",
 			actions.get(1));
+
+		Assert.assertEquals(ddmFormRules.toString(), 4, ddmFormRules.size());
 	}
 
 	@Test

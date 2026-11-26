@@ -509,9 +509,6 @@ public class DisplayPagesImporterTest {
 		List<String> childrenItemIds =
 			mainLayoutStructureItem.getChildrenItemIds();
 
-		Assert.assertEquals(
-			childrenItemIds.toString(), 1, childrenItemIds.size());
-
 		String childItemId = childrenItemIds.get(0);
 
 		LayoutStructureItem layoutStructureItem =
@@ -535,6 +532,9 @@ public class DisplayPagesImporterTest {
 				"provider.AssetCategoriesForAssetEntryRelatedInfoItem" +
 					"CollectionProvider",
 			collectionJSONObject.getString("key"));
+
+		Assert.assertEquals(
+			childrenItemIds.toString(), 1, childrenItemIds.size());
 	}
 
 	@Test

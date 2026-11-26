@@ -937,13 +937,13 @@ public class UpgradeLogProgressTrackerTest {
 
 			String progressId = _getProgressId(wrappedResultSet);
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals(
 				progressId + " is still executing. Processed 1 rows.",
 				logEntry.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 		finally {
 			UpgradeLogProgressTracker.stop();
@@ -1167,8 +1167,6 @@ public class UpgradeLogProgressTrackerTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals(
@@ -1176,6 +1174,8 @@ public class UpgradeLogProgressTrackerTest {
 					"decrease performance.",
 				logEntry.getMessage());
 			Assert.assertEquals("WARN", logEntry.getPriority());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 		finally {
 			UpgradeLogProgressTracker.stop();

@@ -290,10 +290,6 @@ public class ObjectEntryLayoutDisplayPageObjectProviderTest {
 				_getRelatedLayoutDisplayPageObjectProviders(
 					parentObjectEntry, objectRelationship);
 
-		Assert.assertEquals(
-			relatedLayoutDisplayPageObjectProviders.toString(), 1,
-			relatedLayoutDisplayPageObjectProviders.size());
-
 		LayoutDisplayPageObjectProvider<?>
 			relatedLayoutDisplayPageObjectProvider =
 				relatedLayoutDisplayPageObjectProviders.get(0);
@@ -301,6 +297,10 @@ public class ObjectEntryLayoutDisplayPageObjectProviderTest {
 		Assert.assertEquals(
 			childObjectEntry.getObjectEntryId(),
 			relatedLayoutDisplayPageObjectProvider.getClassPK());
+
+		Assert.assertEquals(
+			relatedLayoutDisplayPageObjectProviders.toString(), 1,
+			relatedLayoutDisplayPageObjectProviders.size());
 
 		TreeTestUtil.deleteObjectDefinitionHierarchy(
 			_objectDefinitionLocalService,

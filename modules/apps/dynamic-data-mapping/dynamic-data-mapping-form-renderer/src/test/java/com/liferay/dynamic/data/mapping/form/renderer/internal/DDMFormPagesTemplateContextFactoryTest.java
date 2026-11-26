@@ -251,9 +251,6 @@ public class DDMFormPagesTemplateContextFactoryTest {
 		List<Object> pagesTemplateContext =
 			ddmFormPagesTemplateContextFactory.create();
 
-		Assert.assertEquals(
-			pagesTemplateContext.toString(), 3, pagesTemplateContext.size());
-
 		Map<String, Object> page1TemplateContext =
 			(Map<String, Object>)pagesTemplateContext.get(0);
 
@@ -268,6 +265,9 @@ public class DDMFormPagesTemplateContextFactoryTest {
 			(Map<String, Object>)pagesTemplateContext.get(2);
 
 		Assert.assertTrue(MapUtil.getBoolean(page3TemplateContext, "enabled"));
+
+		Assert.assertEquals(
+			pagesTemplateContext.toString(), 3, pagesTemplateContext.size());
 	}
 
 	@Test
@@ -438,16 +438,12 @@ public class DDMFormPagesTemplateContextFactoryTest {
 
 		List<Object> pages = ddmFormPagesTemplateContextFactory.create();
 
-		Assert.assertEquals(pages.toString(), 1, pages.size());
-
 		Map<String, Object> page1 = (Map<String, Object>)pages.get(0);
 
 		Assert.assertEquals("Page 1", page1.get("title"));
 		Assert.assertEquals("Page 1 Description", page1.get("description"));
 
 		List<Object> rows = (List<Object>)page1.get("rows");
-
-		Assert.assertEquals(rows.toString(), 3, rows.size());
 
 		Map<String, Object> row1 = (Map<String, Object>)rows.get(0);
 
@@ -473,6 +469,10 @@ public class DDMFormPagesTemplateContextFactoryTest {
 		Assert.assertEquals(columnsRow3.toString(), 1, columnsRow3.size());
 
 		_assertColumnSize(12, (Map<String, Object>)columnsRow3.get(0));
+
+		Assert.assertEquals(rows.toString(), 3, rows.size());
+
+		Assert.assertEquals(pages.toString(), 1, pages.size());
 	}
 
 	@Test
@@ -621,9 +621,6 @@ public class DDMFormPagesTemplateContextFactoryTest {
 		List<Object> pagesTemplateContext =
 			ddmFormPagesTemplateContextFactory.create();
 
-		Assert.assertEquals(
-			pagesTemplateContext.toString(), 2, pagesTemplateContext.size());
-
 		Map<String, Object> page1TemplateContext =
 			(Map<String, Object>)pagesTemplateContext.get(0);
 
@@ -637,6 +634,9 @@ public class DDMFormPagesTemplateContextFactoryTest {
 		Assert.assertFalse(
 			MapUtil.getBoolean(
 				page2TemplateContext, "showRequiredFieldsWarning"));
+
+		Assert.assertEquals(
+			pagesTemplateContext.toString(), 2, pagesTemplateContext.size());
 	}
 
 	@Test
@@ -677,9 +677,6 @@ public class DDMFormPagesTemplateContextFactoryTest {
 		List<Object> pagesTemplateContext =
 			ddmFormPagesTemplateContextFactory.create();
 
-		Assert.assertEquals(
-			pagesTemplateContext.toString(), 2, pagesTemplateContext.size());
-
 		Map<String, Object> page1TemplateContext =
 			(Map<String, Object>)pagesTemplateContext.get(0);
 
@@ -693,6 +690,9 @@ public class DDMFormPagesTemplateContextFactoryTest {
 		Assert.assertFalse(
 			MapUtil.getBoolean(
 				page2TemplateContext, "showRequiredFieldsWarning"));
+
+		Assert.assertEquals(
+			pagesTemplateContext.toString(), 2, pagesTemplateContext.size());
 	}
 
 	@Test
