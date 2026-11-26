@@ -1394,53 +1394,62 @@ public class JavaSourceProcessorTest extends BaseSourceProcessorTestCase {
 			SourceProcessorTestParameters.create(
 				"SizeAssertionOrderTest.testjava"
 			).addExpectedMessage(
+				"Move the size assertion of \"accountLifecycleStages\" at " +
+					"line \"37\" after line \"45\", where its elements are " +
+						"last used",
+				37
+			).addExpectedMessage(
+				"Move the size assertion of \"values\" at line \"65\" after " +
+					"line \"70\", where its elements are last used",
+				65
+			).addExpectedMessage(
 				"Move the size assertion of \"cpdVirtualSettingFileEntries\" " +
-					"at line \"46\" after line \"55\", where its elements " +
+					"at line \"78\" after line \"87\", where its elements " +
 						"are last used",
-				46
+				78
 			).addExpectedMessage(
-				"Move the size assertion of \"items\" at line \"75\" after " +
-					"line \"81\", where its elements are last used",
-				75
+				"Move the size assertion of \"items\" at line \"119\" after " +
+					"line \"125\", where its elements are last used",
+				119
 			).addExpectedMessage(
-				"Move the size assertion of \"logEntries\" at line \"90\" " +
-					"after line \"95\", where its elements are last used",
-				90
+				"Move the size assertion of \"logEntries\" at line \"134\" " +
+					"after line \"139\", where its elements are last used",
+				134
 			).addExpectedMessage(
 				"Move the size assertion of \"mappingTypesJSONArray\" at " +
-					"line \"102\" after line \"119\", where its elements are " +
+					"line \"146\" after line \"163\", where its elements are " +
 						"last used",
-				102
+				146
 			).addExpectedMessage(
 				"Move the size assertion of \"subtypesJSONArray\" at line " +
-					"\"114\" after line \"119\", where its elements are last " +
+					"\"158\" after line \"163\", where its elements are last " +
 						"used",
-				114
+				158
 			).addExpectedMessage(
-				"Move the size assertion of \"names\" at line \"141\" after " +
-					"line \"146\", where its elements are last used",
-				141
+				"Move the size assertion of \"names\" at line \"185\" after " +
+					"line \"190\", where its elements are last used",
+				185
 			).addExpectedMessage(
 				"Move the size assertion of \"primaryDropdownItems\" at line " +
-					"\"156\" after line \"163\", where its elements are last " +
+					"\"200\" after line \"207\", where its elements are last " +
 						"used",
-				156
+				200
 			).addExpectedMessage(
-				"Move the size assertion of \"tags\" at line \"187\" after " +
-					"line \"195\", where its elements are last used",
-				187
+				"Move the size assertion of \"tags\" at line \"231\" after " +
+					"line \"239\", where its elements are last used",
+				231
 			).addExpectedMessage(
-				"Move the size assertion of \"logEntries\" at line \"212\" " +
-					"after line \"214\", where its elements are last used",
-				212
+				"Move the size assertion of \"logEntries\" at line \"256\" " +
+					"after line \"258\", where its elements are last used",
+				256
 			).addExpectedMessage(
-				"Move the size assertion of \"values\" at line \"234\" after " +
-					"line \"238\", where its elements are last used",
-				234
+				"Move the size assertion of \"values\" at line \"278\" after " +
+					"line \"282\", where its elements are last used",
+				278
 			).addExpectedMessage(
-				"Move the size assertion of \"roles\" at line \"253\" after " +
-					"line \"255\", where its elements are last used",
-				253
+				"Move the size assertion of \"roles\" at line \"310\" after " +
+					"line \"312\", where its elements are last used",
+				310
 			));
 	}
 
