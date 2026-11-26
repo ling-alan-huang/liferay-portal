@@ -253,7 +253,6 @@ public class PortalCatapultTest {
 					clientExtensionHttpServer, Http.Method.GET, null,
 					(companyId, headers, homePageURL, location,
 					 oAuth2ApplicationFeatures, userId) -> {
-
 					}));
 
 			Throwable throwable = executionException.getCause();
@@ -288,7 +287,6 @@ public class PortalCatapultTest {
 					clientExtensionHttpServer, Http.Method.POST, null,
 					(companyId, headers, homePageURL, location,
 					 oAuth2ApplicationFeatures, userId) -> {
-
 					}));
 		}
 	}
@@ -301,7 +299,6 @@ public class PortalCatapultTest {
 				clientExtensionHttpServer, Http.Method.GET, null,
 				(companyId, headers, homePageURL, location,
 				 oAuth2ApplicationFeatures, userId) -> {
-
 				});
 
 			List<String> authorizations = clientExtensionHttpServer._getHeaders(
