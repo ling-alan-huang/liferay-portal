@@ -406,10 +406,6 @@ public class WikiPageLocalServiceTest {
 		List<FileEntry> copyAttachmentsFileEntries =
 			copyPage.getAttachmentsFileEntries();
 
-		Assert.assertEquals(
-			attachmentsFileEntries.toString(),
-			copyAttachmentsFileEntries.size(), attachmentsFileEntries.size());
-
 		FileEntry fileEntry = attachmentsFileEntries.get(0);
 		FileEntry copyFileEntry = copyAttachmentsFileEntries.get(0);
 
@@ -419,6 +415,10 @@ public class WikiPageLocalServiceTest {
 			copyFileEntry.getMimeType(), fileEntry.getMimeType());
 		Assert.assertEquals(copyFileEntry.getTitle(), fileEntry.getTitle());
 		Assert.assertEquals(copyFileEntry.getSize(), fileEntry.getSize());
+
+		Assert.assertEquals(
+			attachmentsFileEntries.toString(),
+			copyAttachmentsFileEntries.size(), attachmentsFileEntries.size());
 	}
 
 	@Test

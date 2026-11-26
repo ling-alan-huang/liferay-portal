@@ -76,8 +76,6 @@ public class BannedKeyLicenseTest extends BaseLicenseTestCase {
 		String[] bannedKeys = ArrayUtil.toStringArray(
 			(Set<String>)_bannedKeysField.get(getValidateClass()));
 
-		Assert.assertEquals(Arrays.toString(bannedKeys), 88, bannedKeys.length);
-
 		String bannedKey = bannedKeys[bannedKeys.length - 1];
 
 		try (SafeCloseable safeCloseable1 = setVersionWithSafeCloseable(
@@ -106,6 +104,8 @@ public class BannedKeyLicenseTest extends BaseLicenseTestCase {
 
 			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
+
+		Assert.assertEquals(Arrays.toString(bannedKeys), 88, bannedKeys.length);
 	}
 
 	@Test

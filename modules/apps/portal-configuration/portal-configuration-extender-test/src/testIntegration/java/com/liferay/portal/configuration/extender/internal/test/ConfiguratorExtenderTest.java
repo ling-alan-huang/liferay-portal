@@ -199,13 +199,13 @@ public class ConfiguratorExtenderTest {
 		Configuration[] configurations = _configurationAdmin.listConfigurations(
 			"(service.factoryPid=test.factory.pid)");
 
-		Assert.assertEquals(
-			Arrays.toString(configurations), 1, configurations.length);
-
 		Dictionary<String, Object> properties =
 			configurations[0].getProperties();
 
 		Assert.assertEquals("value", properties.get("key"));
+
+		Assert.assertEquals(
+			Arrays.toString(configurations), 1, configurations.length);
 	}
 
 	@Test
@@ -262,13 +262,13 @@ public class ConfiguratorExtenderTest {
 		Configuration[] configurations = _configurationAdmin.listConfigurations(
 			"(service.pid=test.pid)");
 
-		Assert.assertEquals(
-			Arrays.toString(configurations), 1, configurations.length);
-
 		Dictionary<String, Object> properties =
 			configurations[0].getProperties();
 
 		Assert.assertEquals("value", properties.get("key"));
+
+		Assert.assertEquals(
+			Arrays.toString(configurations), 1, configurations.length);
 	}
 
 	@Test
@@ -285,13 +285,13 @@ public class ConfiguratorExtenderTest {
 		Configuration[] configurations = _configurationAdmin.listConfigurations(
 			"(service.pid=test.pid)");
 
-		Assert.assertEquals(
-			Arrays.toString(configurations), 1, configurations.length);
-
 		Dictionary<String, Object> properties =
 			configurations[0].getProperties();
 
 		Assert.assertEquals("value", properties.get("key"));
+
+		Assert.assertEquals(
+			Arrays.toString(configurations), 1, configurations.length);
 	}
 
 	@Test
@@ -311,13 +311,13 @@ public class ConfiguratorExtenderTest {
 		Configuration[] configurations = _configurationAdmin.listConfigurations(
 			"(service.pid=test.pid)");
 
-		Assert.assertEquals(
-			Arrays.toString(configurations), 1, configurations.length);
-
 		Dictionary<String, Object> properties =
 			configurations[0].getProperties();
 
 		Assert.assertEquals("value", properties.get("key"));
+
+		Assert.assertEquals(
+			Arrays.toString(configurations), 1, configurations.length);
 	}
 
 	@Test

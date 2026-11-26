@@ -370,9 +370,6 @@ public class SerializerTest {
 
 		newBytes = (byte[])_getBufferMethod.invoke(serializer, _COUNT + 1);
 
-		Assert.assertEquals(
-			Arrays.toString(newBytes), (bytes.length * 2) + 1, newBytes.length);
-
 		for (int i = 0; i < bytes.length; i++) {
 			Assert.assertEquals(bytes[i], newBytes[i]);
 		}
@@ -380,6 +377,9 @@ public class SerializerTest {
 		for (int i = bytes.length; i < newBytes.length; i++) {
 			Assert.assertEquals(0, newBytes[i]);
 		}
+
+		Assert.assertEquals(
+			Arrays.toString(newBytes), (bytes.length * 2) + 1, newBytes.length);
 	}
 
 	@Test

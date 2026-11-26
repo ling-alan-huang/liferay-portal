@@ -134,9 +134,6 @@ public class NaturalOrderStringComparatorTest {
 			array,
 			new NaturalOrderStringComparator(true, caseSensitive, collator));
 
-		Assert.assertEquals(
-			Arrays.toString(sortedArray), array.length, sortedArray.length);
-
 		for (int i = 0; i < array.length; i++) {
 			Assert.assertEquals(sortedArray[i], array[i]);
 		}
@@ -149,6 +146,9 @@ public class NaturalOrderStringComparatorTest {
 			Assert.assertEquals(
 				sortedArray[sortedArray.length - (i + 1)], array[i]);
 		}
+
+		Assert.assertEquals(
+			Arrays.toString(sortedArray), array.length, sortedArray.length);
 	}
 
 }

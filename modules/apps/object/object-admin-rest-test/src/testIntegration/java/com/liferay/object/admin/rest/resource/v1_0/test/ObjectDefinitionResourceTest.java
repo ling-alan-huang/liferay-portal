@@ -1811,10 +1811,6 @@ public class ObjectDefinitionResourceTest
 		ObjectRelationship[] objectRelationships =
 			putObjectDefinition.getObjectRelationships();
 
-		Assert.assertEquals(
-			Arrays.toString(objectRelationships), 1,
-			objectRelationships.length);
-
 		ObjectRelationship objectRelationship = objectRelationships[0];
 
 		Assert.assertEquals(
@@ -1831,6 +1827,10 @@ public class ObjectDefinitionResourceTest
 		Assert.assertEquals(
 			"TESTOBJECTDEFINITION2",
 			objectRelationship.getObjectDefinitionExternalReferenceCode2());
+
+		Assert.assertEquals(
+			Arrays.toString(objectRelationships), 1,
+			objectRelationships.length);
 
 		Assert.assertEquals(
 			"titleObjectFieldName",
@@ -2254,11 +2254,6 @@ public class ObjectDefinitionResourceTest
 			ObjectFieldSetting[] actualObjectFieldSettings =
 				objectField.getObjectFieldSettings();
 
-			Assert.assertEquals(
-				Arrays.toString(actualObjectFieldSettings),
-				expectedObjectFieldSettings.length,
-				actualObjectFieldSettings.length);
-
 			for (int i = 0; i < expectedObjectFieldSettings.length; i++) {
 				ObjectFieldSetting actualObjectFieldSetting =
 					actualObjectFieldSettings[i];
@@ -2272,6 +2267,11 @@ public class ObjectDefinitionResourceTest
 					expectedObjectFieldSetting.getValue(),
 					actualObjectFieldSetting.getValue());
 			}
+
+			Assert.assertEquals(
+				Arrays.toString(actualObjectFieldSettings),
+				expectedObjectFieldSettings.length,
+				actualObjectFieldSettings.length);
 		}
 		else {
 			Assert.assertEquals(expectedValue, function.apply(objectField));
@@ -3070,9 +3070,10 @@ public class ObjectDefinitionResourceTest
 			getObjectDefinition.getObjectFields(),
 			objectField -> !objectField.getSystem());
 
+		Assert.assertTrue(objectFields[0].getRequired());
+
 		Assert.assertEquals(
 			Arrays.toString(objectFields), 1, objectFields.length);
-		Assert.assertTrue(objectFields[0].getRequired());
 	}
 
 	private void _testPatchObjectDefinitionWithPermissions() throws Exception {
@@ -4307,9 +4308,6 @@ public class ObjectDefinitionResourceTest
 
 		ObjectView[] objectViews = objectDefinition.getObjectViews();
 
-		Assert.assertEquals(
-			Arrays.toString(objectViews), 1, objectViews.length);
-
 		String objectViewExternalReferenceCode =
 			objectViews[0].getExternalReferenceCode();
 
@@ -4324,6 +4322,9 @@ public class ObjectDefinitionResourceTest
 
 		Assert.assertNull(
 			_getObjectView(objectViewExternalReferenceCode, objectDefinition));
+
+		Assert.assertEquals(
+			Arrays.toString(objectViews), 1, objectViews.length);
 	}
 
 	private JSONObject _waitForFinish(

@@ -251,17 +251,10 @@ public class UpdateDataDefinitionMVCActionCommandTest
 		DataDefinitionField[] dataDefinitionFields =
 			dataDefinition.getDataDefinitionFields();
 
-		Assert.assertEquals(
-			dataDefinitionFields.toString(), 1, dataDefinitionFields.length);
-
 		DataDefinitionField dataDefinitionField = dataDefinitionFields[0];
 
 		DataDefinitionField[] nestedDataDefinitionFields =
 			dataDefinitionField.getNestedDataDefinitionFields();
-
-		Assert.assertEquals(
-			nestedDataDefinitionFields.toString(), 1,
-			nestedDataDefinitionFields.length);
 
 		DataDefinitionField nestedDataDefinitionField =
 			nestedDataDefinitionFields[0];
@@ -270,6 +263,13 @@ public class UpdateDataDefinitionMVCActionCommandTest
 			predefinedValue,
 			MapUtil.getString(
 				nestedDataDefinitionField.getDefaultValue(), "en_US"));
+
+		Assert.assertEquals(
+			nestedDataDefinitionFields.toString(), 1,
+			nestedDataDefinitionFields.length);
+
+		Assert.assertEquals(
+			dataDefinitionFields.toString(), 1, dataDefinitionFields.length);
 	}
 
 	@Inject

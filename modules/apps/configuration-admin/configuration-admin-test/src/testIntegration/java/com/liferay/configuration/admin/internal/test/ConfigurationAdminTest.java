@@ -52,9 +52,6 @@ public class ConfigurationAdminTest {
 		Configuration[] configurations = _configurationAdmin.listConfigurations(
 			"(service.pid=" + ConfigurationAdminTest.class.getName() + ")");
 
-		Assert.assertEquals(
-			Arrays.toString(configurations), 1, configurations.length);
-
 		Configuration configuration = configurations[0];
 
 		Assert.assertEquals(_configuration, configuration);
@@ -75,6 +72,9 @@ public class ConfigurationAdminTest {
 		properties = configuration.getProperties();
 
 		Assert.assertEquals("value2", properties.get("key1"));
+
+		Assert.assertEquals(
+			Arrays.toString(configurations), 1, configurations.length);
 	}
 
 	private Configuration _configuration;

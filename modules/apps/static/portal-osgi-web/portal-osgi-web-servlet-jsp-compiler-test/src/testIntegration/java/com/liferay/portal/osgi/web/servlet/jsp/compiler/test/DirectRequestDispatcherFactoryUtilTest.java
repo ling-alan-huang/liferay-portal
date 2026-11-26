@@ -114,11 +114,8 @@ public class DirectRequestDispatcherFactoryUtilTest {
 								PortalUtil.getPortalServerPort(false),
 								contextPath, "/outer.jsp")))));
 
-			Assert.assertEquals(Arrays.toString(lines), 2, lines.length);
-
 			String[] values = StringUtil.split(lines[0]);
 
-			Assert.assertEquals(lines[0], 7, values.length);
 			Assert.assertEquals(contextPath, values[0]);
 			Assert.assertEquals(values[2], values[1]);
 			Assert.assertEquals("/inner.jsp", values[3]);
@@ -126,7 +123,11 @@ public class DirectRequestDispatcherFactoryUtilTest {
 			Assert.assertEquals("null", values[5]);
 			Assert.assertEquals(values[2], values[6]);
 
+			Assert.assertEquals(lines[0], 7, values.length);
+
 			Assert.assertEquals("null,null", lines[1]);
+
+			Assert.assertEquals(Arrays.toString(lines), 2, lines.length);
 
 			List<String> messages = logCapture.getMessages();
 

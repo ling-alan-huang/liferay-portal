@@ -108,12 +108,12 @@ public class SegmentsExperimentSegmentsExperienceRequestProcessorTest {
 					new long[] {segmentsExperience.getSegmentsExperienceId()});
 
 			Assert.assertEquals(
-				Arrays.toString(segmentsExperienceIds), 1,
-				segmentsExperienceIds.length);
-
-			Assert.assertEquals(
 				segmentsExperience.getSegmentsExperienceId(),
 				segmentsExperienceIds[0]);
+
+			Assert.assertEquals(
+				Arrays.toString(segmentsExperienceIds), 1,
+				segmentsExperienceIds.length);
 		}
 	}
 
@@ -173,10 +173,11 @@ public class SegmentsExperimentSegmentsExperienceRequestProcessorTest {
 					new long[] {defaultSegmentsExperienceId});
 
 			Assert.assertEquals(
+				defaultSegmentsExperienceId, segmentsExperienceIds[0]);
+
+			Assert.assertEquals(
 				Arrays.toString(segmentsExperienceIds), 1,
 				segmentsExperienceIds.length);
-			Assert.assertEquals(
-				defaultSegmentsExperienceId, segmentsExperienceIds[0]);
 		}
 	}
 
@@ -225,12 +226,12 @@ public class SegmentsExperimentSegmentsExperienceRequestProcessorTest {
 					_group.getGroupId(), _layout.getPlid(), new long[0]);
 
 			Assert.assertEquals(
-				Arrays.toString(segmentsExperienceIds), 1,
-				segmentsExperienceIds.length);
-
-			Assert.assertEquals(
 				segmentsExperience.getSegmentsExperienceId(),
 				segmentsExperienceIds[0]);
+
+			Assert.assertEquals(
+				Arrays.toString(segmentsExperienceIds), 1,
+				segmentsExperienceIds.length);
 		}
 	}
 
@@ -286,11 +287,11 @@ public class SegmentsExperimentSegmentsExperienceRequestProcessorTest {
 					new long[] {defaultSegmentsExperienceId});
 
 			Assert.assertEquals(
-				Arrays.toString(segmentsExperienceIds), 1,
-				segmentsExperienceIds.length);
+				defaultSegmentsExperienceId, segmentsExperienceIds[0]);
 
 			Assert.assertEquals(
-				defaultSegmentsExperienceId, segmentsExperienceIds[0]);
+				Arrays.toString(segmentsExperienceIds), 1,
+				segmentsExperienceIds.length);
 		}
 	}
 
@@ -335,12 +336,12 @@ public class SegmentsExperimentSegmentsExperienceRequestProcessorTest {
 					new long[] {segmentsExperience.getSegmentsExperienceId()});
 
 			Assert.assertEquals(
-				Arrays.toString(segmentsExperienceIds), 1,
-				segmentsExperienceIds.length);
-
-			Assert.assertEquals(
 				segmentsExperience.getSegmentsExperienceId(),
 				segmentsExperienceIds[0]);
+
+			Assert.assertEquals(
+				Arrays.toString(segmentsExperienceIds), 1,
+				segmentsExperienceIds.length);
 		}
 	}
 
@@ -380,12 +381,12 @@ public class SegmentsExperimentSegmentsExperienceRequestProcessorTest {
 					_group.getGroupId(), _layout.getPlid(), new long[0]);
 
 			Assert.assertEquals(
-				Arrays.toString(segmentsExperienceIds), 1,
-				segmentsExperienceIds.length);
-
-			Assert.assertEquals(
 				segmentsExperience.getSegmentsExperienceId(),
 				segmentsExperienceIds[0]);
+
+			Assert.assertEquals(
+				Arrays.toString(segmentsExperienceIds), 1,
+				segmentsExperienceIds.length);
 		}
 	}
 
@@ -423,12 +424,12 @@ public class SegmentsExperimentSegmentsExperienceRequestProcessorTest {
 					_group.getGroupId(), _layout.getPlid(), new long[0]);
 
 			Assert.assertEquals(
-				Arrays.toString(segmentsExperienceIds), 1,
-				segmentsExperienceIds.length);
-
-			Assert.assertEquals(
 				segmentsExperience.getSegmentsExperienceId(),
 				segmentsExperienceIds[0]);
+
+			Assert.assertEquals(
+				Arrays.toString(segmentsExperienceIds), 1,
+				segmentsExperienceIds.length);
 		}
 	}
 
@@ -474,12 +475,12 @@ public class SegmentsExperimentSegmentsExperienceRequestProcessorTest {
 					_group.getGroupId(), _layout.getPlid(), new long[0]);
 
 			Assert.assertEquals(
-				Arrays.toString(segmentsExperienceIds), 1,
-				segmentsExperienceIds.length);
-
-			Assert.assertEquals(
 				segmentsExperience.getSegmentsExperienceId(),
 				segmentsExperienceIds[0]);
+
+			Assert.assertEquals(
+				Arrays.toString(segmentsExperienceIds), 1,
+				segmentsExperienceIds.length);
 		}
 	}
 
@@ -511,11 +512,11 @@ public class SegmentsExperimentSegmentsExperienceRequestProcessorTest {
 					_group.getGroupId(), _layout.getPlid(),
 					new long[] {12345L});
 
+			Assert.assertEquals(12345L, segmentsExperienceIds[0]);
+
 			Assert.assertEquals(
 				Arrays.toString(segmentsExperienceIds), 1,
 				segmentsExperienceIds.length);
-
-			Assert.assertEquals(12345L, segmentsExperienceIds[0]);
 		}
 	}
 

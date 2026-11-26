@@ -1288,9 +1288,6 @@ public class DisplayPageTemplateResourceTest
 			friendlyURLMap = layout.getFriendlyURLMap();
 		}
 
-		Assert.assertEquals(
-			jsonObject.toString(), friendlyURLMap.size(), jsonObject.length());
-
 		for (Map.Entry<Locale, String> entry : friendlyURLMap.entrySet()) {
 			String key = LocaleUtil.toBCP47LanguageId(entry.getKey());
 
@@ -1301,6 +1298,9 @@ public class DisplayPageTemplateResourceTest
 
 			Assert.assertEquals(jsonArray.toString(), 1, jsonArray.length());
 		}
+
+		Assert.assertEquals(
+			jsonObject.toString(), friendlyURLMap.size(), jsonObject.length());
 
 		PageSpecificationsTestUtil.assertPageSpecifications(
 			layout, displayPageTemplate.getPageSpecifications());

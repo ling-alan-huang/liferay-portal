@@ -1144,10 +1144,6 @@ public class FragmentsImporterTest {
 		Map<String, FileEntry> resourcesMap =
 			fragmentCollection.getResourcesMap();
 
-		Assert.assertEquals(
-			resourcesMap.toString(), expectedResourcesMap.size(),
-			resourcesMap.size());
-
 		for (Map.Entry<String, String> entry :
 				expectedResourcesMap.entrySet()) {
 
@@ -1156,6 +1152,10 @@ public class FragmentsImporterTest {
 			Assert.assertNotNull(fileEntry);
 			Assert.assertEquals(entry.getValue(), fileEntry.getTitle());
 		}
+
+		Assert.assertEquals(
+			resourcesMap.toString(), expectedResourcesMap.size(),
+			resourcesMap.size());
 	}
 
 	private void _testImportFragmentEntriesWithFolderResources(

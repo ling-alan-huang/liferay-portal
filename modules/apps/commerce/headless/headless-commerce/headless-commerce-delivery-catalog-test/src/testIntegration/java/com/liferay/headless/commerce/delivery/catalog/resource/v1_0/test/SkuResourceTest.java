@@ -809,10 +809,6 @@ public class SkuResourceTest extends BaseSkuResourceTestCase {
 			SkuUnitOfMeasure[] skuUnitOfMeasures = sku.getSkuUnitOfMeasures();
 
 			if (Objects.equals(sku.getId(), sku1.getId())) {
-				Assert.assertEquals(
-					Arrays.toString(skuUnitOfMeasures), 1,
-					skuUnitOfMeasures.length);
-
 				SkuUnitOfMeasure skuUnitOfMeasure = skuUnitOfMeasures[0];
 
 				Price skuUnitOfMeasurePrice = skuUnitOfMeasure.getPrice();
@@ -828,20 +824,24 @@ public class SkuResourceTest extends BaseSkuResourceTestCase {
 
 				Assert.assertEquals(
 					Arrays.toString(tierPrices), 2, tierPrices.length);
+
+				Assert.assertEquals(
+					Arrays.toString(skuUnitOfMeasures), 1,
+					skuUnitOfMeasures.length);
 			}
 
 			if (!Objects.equals(sku.getId(), sku2.getId())) {
 				continue;
 			}
 
-			Assert.assertEquals(
-				Arrays.toString(skuUnitOfMeasures), 1,
-				skuUnitOfMeasures.length);
-
 			SkuUnitOfMeasure skuUnitOfMeasure = skuUnitOfMeasures[0];
 
 			Assert.assertNull(skuUnitOfMeasure.getPrice());
 			Assert.assertNull(skuUnitOfMeasure.getTierPrices());
+
+			Assert.assertEquals(
+				Arrays.toString(skuUnitOfMeasures), 1,
+				skuUnitOfMeasures.length);
 		}
 	}
 

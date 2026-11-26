@@ -368,10 +368,10 @@ public class ArrayUtilTest {
 			new User[] {new User("james", 17), new User("john", 26)},
 			_userPredicate);
 
-		Assert.assertEquals(Arrays.toString(array), 1, array.length);
-
 		Assert.assertEquals("john", array[0].getName());
 		Assert.assertEquals(26, array[0].getAge());
+
+		Assert.assertEquals(Arrays.toString(array), 1, array.length);
 	}
 
 	@Test
@@ -1074,9 +1074,9 @@ public class ArrayUtilTest {
 
 		int[][] arraySplit = (int[][])ArrayUtil.split(array, 2);
 
-		Assert.assertEquals(Arrays.toString(arraySplit), 1, arraySplit.length);
-
 		Assert.assertSame(array, arraySplit[0]);
+
+		Assert.assertEquals(Arrays.toString(arraySplit), 1, arraySplit.length);
 	}
 
 	@Test
@@ -1087,11 +1087,11 @@ public class ArrayUtilTest {
 
 		int[][] arraySplit = (int[][])ArrayUtil.split(array, 1);
 
-		Assert.assertEquals(Arrays.toString(arraySplit), 2, arraySplit.length);
-
 		for (int i = 0; i < arraySplit.length; i++) {
 			Assert.assertArrayEquals(expected[i], arraySplit[i]);
 		}
+
+		Assert.assertEquals(Arrays.toString(arraySplit), 2, arraySplit.length);
 	}
 
 	@Test
@@ -1100,9 +1100,9 @@ public class ArrayUtilTest {
 
 		int[][] arraySplit = (int[][])ArrayUtil.split(array, 5);
 
-		Assert.assertEquals(Arrays.toString(arraySplit), 1, arraySplit.length);
-
 		Assert.assertSame(array, arraySplit[0]);
+
+		Assert.assertEquals(Arrays.toString(arraySplit), 1, arraySplit.length);
 	}
 
 	@Test

@@ -1057,8 +1057,9 @@ public class KeywordResourceTest extends BaseKeywordResourceTestCase {
 
 		Project[] projects = keyword4.getProjects();
 
-		Assert.assertEquals(Arrays.toString(projects), 1, projects.length);
 		Assert.assertEquals(project.getId(), projects[0].getId());
+
+		Assert.assertEquals(Arrays.toString(projects), 1, projects.length);
 	}
 
 	private void _testPostSiteKeywordWithoutProjectManageTagPermission()

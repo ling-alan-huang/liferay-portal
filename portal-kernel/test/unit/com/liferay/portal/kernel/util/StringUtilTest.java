@@ -772,12 +772,13 @@ public class StringUtilTest {
 
 		lines = StringUtil.splitLines(splitByMix);
 
-		Assert.assertEquals(Arrays.toString(lines), 5, lines.length);
 		Assert.assertEquals("abcd", lines[0]);
 		Assert.assertEquals("efg", lines[1]);
 		Assert.assertEquals("hijk", lines[2]);
 		Assert.assertEquals("", lines[3]);
 		Assert.assertEquals("lmn", lines[4]);
+
+		Assert.assertEquals(Arrays.toString(lines), 5, lines.length);
 	}
 
 	@Test(timeout = 1000)

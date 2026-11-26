@@ -148,9 +148,10 @@ public class UnsyncFilterOutputStreamTest {
 
 			Throwable[] throwables = ioException1.getSuppressed();
 
+			Assert.assertSame(ioException2, throwables[0]);
+
 			Assert.assertEquals(
 				Arrays.toString(throwables), 1, throwables.length);
-			Assert.assertSame(ioException2, throwables[0]);
 		}
 	}
 

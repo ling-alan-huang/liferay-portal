@@ -149,9 +149,6 @@ public class AssetMetricResourceTest extends BaseAssetMetricResourceTestCase {
 
 			Metric[] selectedMetrics = assetMetric.getSelectedMetrics();
 
-			Assert.assertEquals(
-				Arrays.toString(selectedMetrics), 1, selectedMetrics.length);
-
 			metric = selectedMetrics[0];
 
 			Assert.assertEquals(1, metric.getValue(), 0);
@@ -163,6 +160,9 @@ public class AssetMetricResourceTest extends BaseAssetMetricResourceTestCase {
 			Assert.assertEquals(
 				Trend.TrendClassification.POSITIVE.toString(),
 				String.valueOf(trend.getTrendClassification()));
+
+			Assert.assertEquals(
+				Arrays.toString(selectedMetrics), 1, selectedMetrics.length);
 		}
 	}
 

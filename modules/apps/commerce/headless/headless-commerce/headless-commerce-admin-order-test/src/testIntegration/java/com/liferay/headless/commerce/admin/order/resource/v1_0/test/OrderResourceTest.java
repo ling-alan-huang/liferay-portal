@@ -233,10 +233,11 @@ public class OrderResourceTest extends BaseOrderResourceTestCase {
 
 		OrderItem[] actualOrderItems = actualOrder.getOrderItems();
 
+		Assert.assertNotNull(actualOrderItems[0].getShippingAddress());
+
 		Assert.assertEquals(
 			Arrays.toString(actualOrderItems), expectedOrderItems.length,
 			actualOrderItems.length);
-		Assert.assertNotNull(actualOrderItems[0].getShippingAddress());
 	}
 
 	@Override

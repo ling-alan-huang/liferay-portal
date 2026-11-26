@@ -211,10 +211,6 @@ public class DDMFormInstanceFactoryTest {
 				dynamicFormWithRepeatablePrimitiveArrayTypesFieldSet.
 					primitiveArrayTypes();
 
-		Assert.assertEquals(
-			Arrays.toString(dynamicFormWithPrimitiveArrayTypes), 2,
-			dynamicFormWithPrimitiveArrayTypes.length);
-
 		Assert.assertArrayEquals(
 			new Boolean[] {true, false},
 			dynamicFormWithPrimitiveArrayTypes[0].booleanValues());
@@ -228,6 +224,10 @@ public class DDMFormInstanceFactoryTest {
 		Assert.assertArrayEquals(
 			new String[] {"C", "D", "E"},
 			dynamicFormWithPrimitiveArrayTypes[1].stringValues());
+
+		Assert.assertEquals(
+			Arrays.toString(dynamicFormWithPrimitiveArrayTypes), 2,
+			dynamicFormWithPrimitiveArrayTypes.length);
 	}
 
 	@Test
@@ -366,11 +366,11 @@ public class DDMFormInstanceFactoryTest {
 
 		String[] actualLetters = dynamicFormWithSelectFields.letters();
 
-		Assert.assertEquals(
-			Arrays.toString(actualLetters), 2, actualLetters.length);
-
 		Assert.assertEquals("b,c", actualLetters[0]);
 		Assert.assertEquals("c", actualLetters[1]);
+
+		Assert.assertEquals(
+			Arrays.toString(actualLetters), 2, actualLetters.length);
 
 		Assert.assertEquals("b", dynamicFormWithSelectFields.letter());
 	}

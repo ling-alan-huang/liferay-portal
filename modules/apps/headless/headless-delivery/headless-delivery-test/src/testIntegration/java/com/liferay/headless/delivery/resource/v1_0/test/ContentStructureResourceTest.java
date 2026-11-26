@@ -245,10 +245,11 @@ public class ContentStructureResourceTest
 			contentStructureResource.getContentStructure(
 				ddmStructure.getStructureId()));
 
-		Assert.assertEquals(Arrays.toString(options), 3, options.length);
 		Assert.assertEquals("OptionReference1", options[0].getValue());
 		Assert.assertEquals("OptionReference2", options[1].getValue());
 		Assert.assertEquals("OptionReference3", options[2].getValue());
+
+		Assert.assertEquals(Arrays.toString(options), 3, options.length);
 	}
 
 	private ContentStructure _toContentStructure(DDMStructure structure) {

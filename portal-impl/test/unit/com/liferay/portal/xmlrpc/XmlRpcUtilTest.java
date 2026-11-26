@@ -83,9 +83,10 @@ public class XmlRpcUtilTest {
 
 		Object[] arguments = (Object[])tuple.getObject(1);
 
-		Assert.assertEquals(Arrays.toString(arguments), 2, arguments.length);
 		Assert.assertEquals("hello", arguments[0]);
 		Assert.assertEquals("world", arguments[1]);
+
+		Assert.assertEquals(Arrays.toString(arguments), 2, arguments.length);
 	}
 
 	@Test
@@ -98,12 +99,13 @@ public class XmlRpcUtilTest {
 		Object[] parameterizedMethodArguments =
 			(Object[])parameterizedMethodTuple.getObject(1);
 
-		Assert.assertEquals(
-			Arrays.toString(parameterizedMethodArguments), 3,
-			parameterizedMethodArguments.length);
 		Assert.assertEquals(1024, parameterizedMethodArguments[0]);
 		Assert.assertEquals("hello", parameterizedMethodArguments[1]);
 		Assert.assertEquals("world", parameterizedMethodArguments[2]);
+
+		Assert.assertEquals(
+			Arrays.toString(parameterizedMethodArguments), 3,
+			parameterizedMethodArguments.length);
 
 		for (String xml : _NONPARAMETERIZED_METHODS) {
 			Tuple nonparameterizedMethodTuple = XmlRpcUtil.parseMethod(xml);

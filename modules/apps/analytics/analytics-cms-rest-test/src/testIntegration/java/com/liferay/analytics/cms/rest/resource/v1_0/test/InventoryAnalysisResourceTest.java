@@ -140,15 +140,15 @@ public class InventoryAnalysisResourceTest
 
 		inventoryAnalysisItems = inventoryAnalysis.getInventoryAnalysisItems();
 
-		Assert.assertEquals(
-			Arrays.toString(inventoryAnalysisItems), 1,
-			inventoryAnalysisItems.length);
-
 		inventoryAnalysisItem = inventoryAnalysisItems[0];
 
 		Assert.assertEquals(1L, (long)inventoryAnalysisItem.getCount());
 
 		Assert.assertEquals("Category", inventoryAnalysisItem.getTitle());
+
+		Assert.assertEquals(
+			Arrays.toString(inventoryAnalysisItems), 1,
+			inventoryAnalysisItems.length);
 
 		try {
 			inventoryAnalysisResource.getInventoryAnalysis(

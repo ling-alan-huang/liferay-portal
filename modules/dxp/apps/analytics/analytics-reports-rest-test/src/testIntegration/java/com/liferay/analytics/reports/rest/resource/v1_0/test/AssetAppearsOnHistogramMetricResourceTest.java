@@ -122,10 +122,6 @@ public class AssetAppearsOnHistogramMetricResourceTest
 			AssetAppearsOnHistogram[] assetAppearsOnHistograms =
 				assetAppearsOnHistogramMetric.getAssetAppearsOnHistograms();
 
-			Assert.assertEquals(
-				Arrays.toString(assetAppearsOnHistograms), 1,
-				assetAppearsOnHistograms.length);
-
 			AssetAppearsOnHistogram assetAppearsOnHistogram =
 				assetAppearsOnHistograms[0];
 
@@ -135,16 +131,20 @@ public class AssetAppearsOnHistogramMetricResourceTest
 			AppearsOnHistogram[] appearsOnHistograms =
 				assetAppearsOnHistogram.getAppearsOnHistograms();
 
-			Assert.assertEquals(
-				Arrays.toString(appearsOnHistograms), 1,
-				appearsOnHistograms.length);
-
 			AppearsOnHistogram appearsOnHistogram = appearsOnHistograms[0];
 
 			Assert.assertEquals(
 				"https://test.com/1", appearsOnHistogram.getCanonicalUrl());
 			Assert.assertEquals("Title 1", appearsOnHistogram.getPageTitle());
 			Assert.assertEquals(3, appearsOnHistogram.getTotalValue(), 0);
+
+			Assert.assertEquals(
+				Arrays.toString(appearsOnHistograms), 1,
+				appearsOnHistograms.length);
+
+			Assert.assertEquals(
+				Arrays.toString(assetAppearsOnHistograms), 1,
+				assetAppearsOnHistograms.length);
 		}
 	}
 

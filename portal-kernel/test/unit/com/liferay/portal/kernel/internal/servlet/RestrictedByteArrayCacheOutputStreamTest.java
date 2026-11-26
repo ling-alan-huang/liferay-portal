@@ -56,12 +56,12 @@ public class RestrictedByteArrayCacheOutputStreamTest {
 		byte[] unsafeGetByteArray =
 			restrictedByteArrayCacheOutputStream.unsafeGetByteArray();
 
-		Assert.assertEquals(
-			Arrays.toString(unsafeGetByteArray), 18, unsafeGetByteArray.length);
-
 		for (int i = 0; i < 10; i++) {
 			Assert.assertEquals(bytes[i], unsafeGetByteArray[i]);
 		}
+
+		Assert.assertEquals(
+			Arrays.toString(unsafeGetByteArray), 18, unsafeGetByteArray.length);
 
 		ByteBuffer byteBuffer =
 			restrictedByteArrayCacheOutputStream.unsafeGetByteBuffer();

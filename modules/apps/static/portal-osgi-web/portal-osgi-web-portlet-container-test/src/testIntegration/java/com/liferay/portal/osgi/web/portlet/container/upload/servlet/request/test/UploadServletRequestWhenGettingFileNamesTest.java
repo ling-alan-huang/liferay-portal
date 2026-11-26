@@ -72,15 +72,15 @@ public class UploadServletRequestWhenGettingFileNamesTest {
 
 			FileItem[] fileItems = entry.getValue();
 
+			for (int i = 0; i < fileNames.length; i++) {
+				Assert.assertEquals(fileItems[i].getFileName(), fileNames[i]);
+			}
+
 			Assert.assertEquals(
 				Arrays.toString(fileNames), fileItems.length, fileNames.length);
 
 			Assert.assertEquals(
 				Arrays.toString(fileNames), 2, fileNames.length);
-
-			for (int i = 0; i < fileNames.length; i++) {
-				Assert.assertEquals(fileItems[i].getFileName(), fileNames[i]);
-			}
 		}
 	}
 

@@ -448,11 +448,12 @@ public class FIPSApplicationStateMachineUtilTest {
 
 		Throwable[] suppressedThrowables1 = securityException1.getSuppressed();
 
+		Assert.assertSame(
+			IllegalStateException.class, suppressedThrowables1[0].getClass());
+
 		Assert.assertEquals(
 			ArrayUtil.toString(suppressedThrowables1, ""), 1,
 			suppressedThrowables1.length);
-		Assert.assertSame(
-			IllegalStateException.class, suppressedThrowables1[0].getClass());
 
 		_fipsAuditLogEntries.clear();
 
@@ -505,11 +506,12 @@ public class FIPSApplicationStateMachineUtilTest {
 
 		Throwable[] suppressedThrowables2 = securityException2.getSuppressed();
 
+		Assert.assertSame(
+			RuntimeException.class, suppressedThrowables2[0].getClass());
+
 		Assert.assertEquals(
 			ArrayUtil.toString(suppressedThrowables2, ""), 1,
 			suppressedThrowables2.length);
-		Assert.assertSame(
-			RuntimeException.class, suppressedThrowables2[0].getClass());
 	}
 
 	private void _assertEnvelope(

@@ -239,14 +239,14 @@ public class IndexerPostProcessorRegistryTest {
 		IndexerPostProcessor[] organizationIndexerPostProcessors =
 			organizationIndexer.getIndexerPostProcessors();
 
-		Assert.assertEquals(
-			Arrays.toString(organizationIndexerPostProcessors), 1,
-			organizationIndexerPostProcessors.length);
-
 		IndexerPostProcessor organizationIndexerPostProcessor =
 			organizationIndexerPostProcessors[0];
 
 		Assert.assertNotNull(organizationIndexerPostProcessor);
+
+		Assert.assertEquals(
+			Arrays.toString(organizationIndexerPostProcessors), 1,
+			organizationIndexerPostProcessors.length);
 	}
 
 	@Test
@@ -257,14 +257,14 @@ public class IndexerPostProcessorRegistryTest {
 		IndexerPostProcessor[] contactIndexerPostProcessors =
 			contactIndexer.getIndexerPostProcessors();
 
-		Assert.assertEquals(
-			Arrays.toString(contactIndexerPostProcessors), 1,
-			contactIndexerPostProcessors.length);
-
 		IndexerPostProcessor contactIndexerPostProcessor =
 			contactIndexerPostProcessors[0];
 
 		Assert.assertNotNull(contactIndexerPostProcessor);
+
+		Assert.assertEquals(
+			Arrays.toString(contactIndexerPostProcessors), 1,
+			contactIndexerPostProcessors.length);
 	}
 
 	@Rule
@@ -298,10 +298,11 @@ public class IndexerPostProcessorRegistryTest {
 		try {
 			indexerPostProcessors = indexer.getIndexerPostProcessors();
 
+			Assert.assertEquals(indexerPostProcessor, indexerPostProcessors[0]);
+
 			Assert.assertEquals(
 				Arrays.toString(indexerPostProcessors), 1,
 				indexerPostProcessors.length);
-			Assert.assertEquals(indexerPostProcessor, indexerPostProcessors[0]);
 		}
 		finally {
 			serviceRegistration.unregister();

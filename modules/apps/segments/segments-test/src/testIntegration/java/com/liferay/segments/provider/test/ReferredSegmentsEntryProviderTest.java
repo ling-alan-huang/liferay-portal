@@ -529,9 +529,10 @@ public class ReferredSegmentsEntryProviderTest {
 				context);
 
 		Assert.assertEquals(
-			Arrays.toString(segmentsEntryIds), 1, segmentsEntryIds.length);
-		Assert.assertEquals(
 			segmentsEntry.getSegmentsEntryId(), segmentsEntryIds[0]);
+
+		Assert.assertEquals(
+			Arrays.toString(segmentsEntryIds), 1, segmentsEntryIds.length);
 	}
 
 	@Test
@@ -645,9 +646,10 @@ public class ReferredSegmentsEntryProviderTest {
 				new Context());
 
 		Assert.assertEquals(
-			Arrays.toString(segmentsEntryIds), 1, segmentsEntryIds.length);
-		Assert.assertEquals(
 			segmentsEntry.getSegmentsEntryId(), segmentsEntryIds[0]);
+
+		Assert.assertEquals(
+			Arrays.toString(segmentsEntryIds), 1, segmentsEntryIds.length);
 	}
 
 	@Test
@@ -676,9 +678,10 @@ public class ReferredSegmentsEntryProviderTest {
 				new Context());
 
 		Assert.assertEquals(
-			Arrays.toString(segmentsEntryIds), 1, segmentsEntryIds.length);
-		Assert.assertEquals(
 			segmentsEntry.getSegmentsEntryId(), segmentsEntryIds[0]);
+
+		Assert.assertEquals(
+			Arrays.toString(segmentsEntryIds), 1, segmentsEntryIds.length);
 	}
 
 	@Inject(

@@ -2742,13 +2742,13 @@ public class StructuredContentResourceTest
 
 		relatedContents = getStructuredContent.getRelatedContents();
 
-		Assert.assertEquals(
-			Arrays.toString(relatedContents), 1, relatedContents.length);
-
 		RelatedContent relatedContent = relatedContents[0];
 
 		Assert.assertEquals(
 			Long.valueOf(_blogsEntry.getEntryId()), relatedContent.getId());
+
+		Assert.assertEquals(
+			Arrays.toString(relatedContents), 1, relatedContents.length);
 	}
 
 	private void _testGetStructuredContentWithRelatedContentsWithDeletedEntry()
@@ -2788,13 +2788,13 @@ public class StructuredContentResourceTest
 		RelatedContent[] relatedContents =
 			getStructuredContent.getRelatedContents();
 
-		Assert.assertEquals(
-			Arrays.toString(relatedContents), 1, relatedContents.length);
-
 		RelatedContent relatedContent = relatedContents[0];
 
 		Assert.assertEquals(
 			Long.valueOf(_blogsEntry.getEntryId()), relatedContent.getId());
+
+		Assert.assertEquals(
+			Arrays.toString(relatedContents), 1, relatedContents.length);
 	}
 
 	private void _testGetStructuredContentWithRoleAdministrator()

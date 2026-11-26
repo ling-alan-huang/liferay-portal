@@ -4079,9 +4079,6 @@ public class RenderLayoutStructureTagTest {
 
 		String[] pageItems = html.split("page-item");
 
-		Assert.assertEquals(
-			pageItems.toString(), numberOfPages + 3, pageItems.length);
-
 		Assert.assertTrue(
 			pageItems[pageNumber],
 			StringUtil.endsWith(pageItems[pageNumber], "\"active "));
@@ -4105,6 +4102,9 @@ public class RenderLayoutStructureTagTest {
 				pageItems[pageNumber + 1],
 				StringUtil.endsWith(pageItems[pageNumber + 1], "\"disabled "));
 		}
+
+		Assert.assertEquals(
+			pageItems.toString(), numberOfPages + 3, pageItems.length);
 	}
 
 	private void _assertPagination(

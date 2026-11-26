@@ -92,8 +92,9 @@ public class PortletPreferencesFactoryImplUnitTest {
 
 		String[] values = preference.getValues();
 
-		Assert.assertEquals(Arrays.toString(values), 1, values.length);
 		Assert.assertEquals("", values[0]);
+
+		Assert.assertEquals(Arrays.toString(values), 1, values.length);
 	}
 
 	@Test
@@ -183,9 +184,10 @@ public class PortletPreferencesFactoryImplUnitTest {
 
 		values = preference.getValues();
 
-		Assert.assertEquals(Arrays.toString(values), 2, values.length);
 		Assert.assertEquals("value2", values[0]);
 		Assert.assertEquals("value3", values[1]);
+
+		Assert.assertEquals(Arrays.toString(values), 2, values.length);
 
 		Assert.assertTrue(preference.isReadOnly());
 
@@ -291,9 +293,10 @@ public class PortletPreferencesFactoryImplUnitTest {
 
 		values = preference.getValues();
 
-		Assert.assertEquals(Arrays.toString(values), 2, values.length);
 		Assert.assertEquals("value1", values[0]);
 		Assert.assertEquals("value2", values[1]);
+
+		Assert.assertEquals(Arrays.toString(values), 2, values.length);
 	}
 
 	@Test
@@ -331,8 +334,9 @@ public class PortletPreferencesFactoryImplUnitTest {
 
 		String[] values = preference.getValues();
 
-		Assert.assertEquals(Arrays.toString(values), 1, values.length);
 		Assert.assertEquals("value", values[0]);
+
+		Assert.assertEquals(Arrays.toString(values), 1, values.length);
 	}
 
 	private String _getPortletPreferencesXML(String name, String[] values) {

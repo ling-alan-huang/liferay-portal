@@ -250,15 +250,15 @@ public class DocumentDataDefinitionTypeResourceTest
 		DataLayoutPage[] expectedDataLayoutDataLayoutPages =
 			expectedDataLayout.getDataLayoutPages();
 
-		Assert.assertEquals(
-			Arrays.toString(actualDataLayoutPages),
-			expectedDataLayoutDataLayoutPages.length,
-			actualDataLayoutPages.length);
-
 		for (int i = 0; i < expectedDataLayoutDataLayoutPages.length; i++) {
 			_assertDataLayoutPage(
 				actualDataLayoutPages[i], expectedDataLayoutDataLayoutPages[i]);
 		}
+
+		Assert.assertEquals(
+			Arrays.toString(actualDataLayoutPages),
+			expectedDataLayoutDataLayoutPages.length,
+			actualDataLayoutPages.length);
 	}
 
 	private void _assertDataLayoutPage(
@@ -273,14 +273,14 @@ public class DocumentDataDefinitionTypeResourceTest
 		DataLayoutRow[] expectedDataLayoutRows =
 			expectedDataLayoutPage.getDataLayoutRows();
 
-		Assert.assertEquals(
-			Arrays.toString(actualDataLayoutRows),
-			expectedDataLayoutRows.length, actualDataLayoutRows.length);
-
 		for (int i = 0; i < expectedDataLayoutRows.length; i++) {
 			_assertDataLayoutRow(
 				actualDataLayoutRows[i], expectedDataLayoutRows[i]);
 		}
+
+		Assert.assertEquals(
+			Arrays.toString(actualDataLayoutRows),
+			expectedDataLayoutRows.length, actualDataLayoutRows.length);
 	}
 
 	private void _assertDataLayoutRow(
@@ -294,10 +294,6 @@ public class DocumentDataDefinitionTypeResourceTest
 
 		DataLayoutColumn[] expectedDataLayoutColumns =
 			expectedDataLayoutRow.getDataLayoutColumns();
-
-		Assert.assertEquals(
-			Arrays.toString(actualDataLayoutColumns),
-			expectedDataLayoutColumns.length, actualDataLayoutColumns.length);
 
 		for (int i = 0; i < expectedDataLayoutColumns.length; i++) {
 			DataLayoutColumn actualDataLayoutColumn =
@@ -315,6 +311,10 @@ public class DocumentDataDefinitionTypeResourceTest
 				expectedDataLayoutColumn.getFieldNames(),
 				actualDataLayoutColumn.getFieldNames());
 		}
+
+		Assert.assertEquals(
+			Arrays.toString(actualDataLayoutColumns),
+			expectedDataLayoutColumns.length, actualDataLayoutColumns.length);
 	}
 
 	private void _assertDocumentDataDefinitionType(

@@ -211,9 +211,6 @@ public class ObjectEntryHistogramMetricResourceTest
 
 			Histogram[] histograms = objectEntryHistogramMetric.getHistograms();
 
-			Assert.assertEquals(
-				Arrays.toString(histograms), 1, histograms.length);
-
 			Histogram histogram = histograms[0];
 
 			Assert.assertEquals("downloadsMetric", histogram.getMetricName());
@@ -223,6 +220,9 @@ public class ObjectEntryHistogramMetricResourceTest
 			Metric[] metrics = histogram.getMetrics();
 
 			Assert.assertEquals(Arrays.toString(metrics), 7, metrics.length);
+
+			Assert.assertEquals(
+				Arrays.toString(histograms), 1, histograms.length);
 		}
 	}
 

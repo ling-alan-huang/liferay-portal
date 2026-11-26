@@ -275,11 +275,12 @@ public class ExportLayoutPageTemplateEntriesMVCResourceCommandTest {
 			_getMockLiferayResourceRequest(expectedLayoutPageTemplateEntryId));
 
 		Assert.assertEquals(
-			Arrays.toString(actualLayoutPageTemplateEntryIds), 1,
-			actualLayoutPageTemplateEntryIds.length);
-		Assert.assertEquals(
 			expectedLayoutPageTemplateEntryId,
 			actualLayoutPageTemplateEntryIds[0]);
+
+		Assert.assertEquals(
+			Arrays.toString(actualLayoutPageTemplateEntryIds), 1,
+			actualLayoutPageTemplateEntryIds.length);
 	}
 
 	private LayoutPageTemplateEntry _addLayoutPageTemplateEntry(

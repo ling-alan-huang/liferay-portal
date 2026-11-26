@@ -71,10 +71,11 @@ public class PostgreSQLDBTest extends DBTest {
 		String[] columnNames = indexMetadata.getColumnNames();
 
 		Assert.assertEquals(
-			Arrays.toString(columnNames), 1, columnNames.length);
-		Assert.assertEquals(
 			dbInspector.normalizeName(_INDEX_COLUMN_NAME_LEFT_CLAUSE),
 			columnNames[0]);
+
+		Assert.assertEquals(
+			Arrays.toString(columnNames), 1, columnNames.length);
 
 		Assert.assertEquals(
 			indexMetadatas.toString(), 1, indexMetadatas.size());

@@ -551,10 +551,11 @@ public class AssetLibraryResourceTest extends BaseAssetLibraryResourceTestCase {
 				Arrays.toString(mimeTypeLimits), 0, mimeTypeLimits.length);
 		}
 		else {
+			Assert.assertEquals(expectedMimeTypeLimits[0], mimeTypeLimits[0]);
+
 			Assert.assertEquals(
 				Arrays.toString(mimeTypeLimits), expectedMimeTypeLimits.length,
 				mimeTypeLimits.length);
-			Assert.assertEquals(expectedMimeTypeLimits[0], mimeTypeLimits[0]);
 		}
 
 		Assert.assertEquals(

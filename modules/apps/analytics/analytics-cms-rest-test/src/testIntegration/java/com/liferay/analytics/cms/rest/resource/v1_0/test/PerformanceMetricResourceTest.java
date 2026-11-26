@@ -187,10 +187,10 @@ public class PerformanceMetricResourceTest
 
 		Metric[] metrics = performanceMetric.getMetrics();
 
-		Assert.assertEquals(Arrays.toString(metrics), 2, metrics.length);
-
 		_assertMetric(metrics[0], value1, valueKey1);
 		_assertMetric(metrics[1], value2, valueKey2);
+
+		Assert.assertEquals(Arrays.toString(metrics), 2, metrics.length);
 	}
 
 	private void _testGetPerformanceMetricExport(
@@ -589,9 +589,9 @@ public class PerformanceMetricResourceTest
 
 			Metric[] metrics = performanceMetric.getMetrics();
 
-			Assert.assertEquals(Arrays.toString(metrics), 1, metrics.length);
-
 			_assertMetric(metrics[0], value, valueKey);
+
+			Assert.assertEquals(Arrays.toString(metrics), 1, metrics.length);
 
 			DepotEntryTestUtil.assertCMPProjectId(
 				objectEntry, analyticsCloudHttpServer.getLocation());

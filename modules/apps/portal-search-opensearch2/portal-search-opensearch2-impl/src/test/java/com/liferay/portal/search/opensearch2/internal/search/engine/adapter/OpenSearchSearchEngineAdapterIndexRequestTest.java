@@ -408,8 +408,9 @@ public class OpenSearchSearchEngineAdapterIndexRequestTest
 
 		String[] indexNames = getIndexIndexResponse.getIndexNames();
 
-		Assert.assertEquals(Arrays.toString(indexNames), 1, indexNames.length);
 		Assert.assertEquals(TEST_INDEX_NAME, indexNames[0]);
+
+		Assert.assertEquals(Arrays.toString(indexNames), 1, indexNames.length);
 
 		Map<String, String> indexMappings =
 			getIndexIndexResponse.getIndexMappings();

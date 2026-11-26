@@ -389,9 +389,9 @@ public class JournalArticleAssetEntryTest {
 
 		String[] values = document.getValues(Field.ARTICLE_ID);
 
-		Assert.assertEquals(values.toString(), 1, values.length);
-
 		Assert.assertEquals(journalArticle.getArticleId(), values[0]);
+
+		Assert.assertEquals(values.toString(), 1, values.length);
 	}
 
 	private void _assertSearch(String keyword, JournalArticle journalArticle) {

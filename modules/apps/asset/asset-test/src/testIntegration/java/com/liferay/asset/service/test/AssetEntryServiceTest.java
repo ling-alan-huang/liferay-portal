@@ -182,14 +182,14 @@ public class AssetEntryServiceTest {
 		List<AssetEntry> assetEntries = _assetEntryLocalService.getEntries(
 			assetEntryQuery);
 
-		Assert.assertEquals(
-			assetEntries.toString(), initialAssetEntries.size() + 1,
-			assetEntries.size());
-
 		AssetEntry assetEntry = assetEntries.get(0);
 
 		Assert.assertTrue(
 			assetEntries.toString(), assetEntries.contains(assetEntry));
+
+		Assert.assertEquals(
+			assetEntries.toString(), initialAssetEntries.size() + 1,
+			assetEntries.size());
 	}
 
 	@Test
