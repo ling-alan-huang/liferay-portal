@@ -30,12 +30,44 @@ public class SizeAssertionOrderTest {
 	}
 
 	@Test
+	public void testGetAccountLifecycleStages() throws Exception {
+		AccountLifecycleStage[] accountLifecycleStages =
+			_getAccountLifecycleStages();
+
+		Assert.assertEquals(
+			accountLifecycleStages.toString(), 2,
+			accountLifecycleStages.length);
+
+		AccountLifecycleStage accountLifecycleStage = accountLifecycleStages[0];
+
+		Assert.assertEquals("alpha", accountLifecycleStage.getName());
+
+		_assertAccountLifecycleStage(accountLifecycleStages[1], "beta");
+
+		Assert.assertTrue(_isIndexed());
+	}
+
+	@Test
 	public void testGetActions() throws Exception {
 		Map<String, Object> actions = _getActions();
 
 		Assert.assertEquals(actions.toString(), 2, actions.size());
 		Assert.assertTrue(actions.containsKey("delete"));
 		Assert.assertTrue(actions.containsKey("get"));
+	}
+
+	@Test
+	public void testGetExpectedValues() throws Exception {
+		String[] expectedValues = _getExpectedValues();
+
+		List<String> values = _getValues();
+
+		Assert.assertEquals(
+			values.toString(), expectedValues.length, values.size());
+
+		String value = values.get(0);
+
+		Assert.assertEquals(expectedValues[0], value);
 	}
 
 	@Test
@@ -66,6 +98,18 @@ public class SizeAssertionOrderTest {
 
 		Assert.assertEquals(
 			"true", typeSettingsUnicodeProperties.getProperty("inherit"));
+	}
+
+	@Test
+	public void testGetIncludeAndOverrides() throws Exception {
+		String[] includeAndOverrides = _getIncludeAndOverrides();
+
+		Assert.assertEquals(
+			"a.properties",
+			includeAndOverrides[includeAndOverrides.length - 2]);
+		Assert.assertEquals(
+			"b.properties",
+			includeAndOverrides[includeAndOverrides.length - 1]);
 	}
 
 	@Test
@@ -238,6 +282,19 @@ public class SizeAssertionOrderTest {
 		Assert.assertEquals("alpha", value);
 
 		Assert.assertEquals(_expectedValues, values);
+	}
+
+	@Test
+	public void testReadBuffer() throws Exception {
+		char[] buffer = new char[8];
+
+		int read = _read(buffer);
+
+		Assert.assertEquals(buffer.length, read);
+
+		for (int i = 0; i < read; i++) {
+			Assert.assertEquals('a', buffer[i]);
+		}
 	}
 
 	@Test

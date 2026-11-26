@@ -134,14 +134,31 @@ public class SizeAssertionOrderCheck extends BaseCheck {
 	}
 
 	private String _getSizeVariableName(DetailAST detailAST) {
-		List<DetailAST> methodCallDetailASTs = getAllChildTokens(
-			detailAST, true, TokenTypes.METHOD_CALL);
+		DetailAST elistDetailAST = detailAST.findFirstToken(TokenTypes.ELIST);
 
-		for (DetailAST methodCallDetailAST : methodCallDetailASTs) {
-			String methodName = getMethodName(methodCallDetailAST);
+		DetailAST lastArgumentDetailAST = elistDetailAST.getLastChild();
+
+		if (lastArgumentDetailAST == null) {
+			return null;
+		}
+
+		DetailAST argumentDetailAST = lastArgumentDetailAST.getFirstChild();
+
+		if (argumentDetailAST.getType() == TokenTypes.METHOD_CALL) {
+			String methodName = getMethodName(argumentDetailAST);
 
 			if (methodName.equals("length") || methodName.equals("size")) {
-				return getClassOrVariableName(methodCallDetailAST);
+				return getClassOrVariableName(argumentDetailAST);
+			}
+		}
+		else if (argumentDetailAST.getType() == TokenTypes.DOT) {
+			DetailAST firstChildDetailAST = argumentDetailAST.getFirstChild();
+			DetailAST lastChildDetailAST = argumentDetailAST.getLastChild();
+
+			if ((firstChildDetailAST.getType() == TokenTypes.IDENT) &&
+				Objects.equals(lastChildDetailAST.getText(), "length")) {
+
+				return firstChildDetailAST.getText();
 			}
 		}
 
@@ -195,6 +212,12 @@ public class SizeAssertionOrderCheck extends BaseCheck {
 	private boolean _isReadOnlyCall(DetailAST identDetailAST) {
 		DetailAST parentDetailAST = identDetailAST.getParent();
 
+		if ((parentDetailAST.getType() == TokenTypes.INDEX_OP) &&
+			equals(parentDetailAST.getFirstChild(), identDetailAST)) {
+
+			return true;
+		}
+
 		if ((parentDetailAST.getType() != TokenTypes.DOT) ||
 			!equals(parentDetailAST.getFirstChild(), identDetailAST)) {
 
@@ -237,6 +260,19 @@ public class SizeAssertionOrderCheck extends BaseCheck {
 			if (methodName.startsWith("get") &&
 				variableName.equals(
 					getClassOrVariableName(methodCallDetailAST))) {
+
+				return true;
+			}
+		}
+
+		List<DetailAST> indexOpDetailASTs = getAllChildTokens(
+			detailAST, true, TokenTypes.INDEX_OP);
+
+		for (DetailAST indexOpDetailAST : indexOpDetailASTs) {
+			DetailAST firstChildDetailAST = indexOpDetailAST.getFirstChild();
+
+			if ((firstChildDetailAST.getType() == TokenTypes.IDENT) &&
+				variableName.equals(firstChildDetailAST.getText())) {
 
 				return true;
 			}
