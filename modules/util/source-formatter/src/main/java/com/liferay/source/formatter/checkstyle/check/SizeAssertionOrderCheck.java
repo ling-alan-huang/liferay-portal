@@ -144,14 +144,7 @@ public class SizeAssertionOrderCheck extends BaseCheck {
 
 		DetailAST argumentDetailAST = lastArgumentDetailAST.getFirstChild();
 
-		if (argumentDetailAST.getType() == TokenTypes.METHOD_CALL) {
-			String methodName = getMethodName(argumentDetailAST);
-
-			if (methodName.equals("length") || methodName.equals("size")) {
-				return getClassOrVariableName(argumentDetailAST);
-			}
-		}
-		else if (argumentDetailAST.getType() == TokenTypes.DOT) {
+		if (argumentDetailAST.getType() == TokenTypes.DOT) {
 			DetailAST firstChildDetailAST = argumentDetailAST.getFirstChild();
 			DetailAST lastChildDetailAST = argumentDetailAST.getLastChild();
 
@@ -159,6 +152,13 @@ public class SizeAssertionOrderCheck extends BaseCheck {
 				Objects.equals(lastChildDetailAST.getText(), "length")) {
 
 				return firstChildDetailAST.getText();
+			}
+		}
+		else if (argumentDetailAST.getType() == TokenTypes.METHOD_CALL) {
+			String methodName = getMethodName(argumentDetailAST);
+
+			if (methodName.equals("length") || methodName.equals("size")) {
+				return getClassOrVariableName(argumentDetailAST);
 			}
 		}
 
