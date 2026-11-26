@@ -1201,11 +1201,11 @@ public class CTTableMapperTest {
 				rightPrimaryKey, 1, 2, null);
 		}
 
-		Assert.assertEquals(lefts.toString(), 1, lefts.size());
-
 		Left left3 = lefts.get(0);
 
 		Assert.assertEquals(leftPrimaryKey2, left3.getPrimaryKeyObj());
+
+		Assert.assertEquals(lefts.toString(), 1, lefts.size());
 
 		// No such model exception
 
@@ -1474,11 +1474,11 @@ public class CTTableMapperTest {
 				leftPrimaryKey, 1, 2, null);
 		}
 
-		Assert.assertEquals(rights.toString(), 1, rights.size());
-
 		Right right3 = rights.get(0);
 
 		Assert.assertEquals(rightPrimaryKey2, right3.getPrimaryKeyObj());
+
+		Assert.assertEquals(rights.toString(), 1, rights.size());
 
 		// No such model exception
 

@@ -148,13 +148,13 @@ public class JournalFolderStagedModelDataHandlerTest
 		List<StagedModel> dependentStagedModels = dependentStagedModelsMap.get(
 			JournalFolder.class.getSimpleName());
 
-		Assert.assertEquals(
-			dependentStagedModels.toString(), 1, dependentStagedModels.size());
-
 		JournalFolder folder = (JournalFolder)dependentStagedModels.get(0);
 
 		JournalFolderLocalServiceUtil.getJournalFolderByUuidAndGroupId(
 			folder.getUuid(), group.getGroupId());
+
+		Assert.assertEquals(
+			dependentStagedModels.toString(), 1, dependentStagedModels.size());
 	}
 
 	@Override

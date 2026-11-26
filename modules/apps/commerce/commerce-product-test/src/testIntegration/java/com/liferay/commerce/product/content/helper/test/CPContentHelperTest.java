@@ -120,8 +120,6 @@ public class CPContentHelperTest {
 		List<CPMedia> cpMedias = _cpContentHelper.getImages(
 			cpDefinition.getCPDefinitionId(), true, themeDisplay);
 
-		Assert.assertEquals(cpMedias.toString(), 1, cpMedias.size());
-
 		String adaptiveMediaImageHTMLTag = ReflectionTestUtil.invoke(
 			cpMedias.get(0), "getAdaptiveMediaImageHTMLTag", new Class<?>[0]);
 
@@ -131,6 +129,8 @@ public class CPContentHelperTest {
 		Assert.assertTrue(
 			adaptiveMediaImageHTMLTag.contains(
 				"src=\"" + HtmlUtil.escapeAttribute(cdnURL) + "\""));
+
+		Assert.assertEquals(cpMedias.toString(), 1, cpMedias.size());
 	}
 
 	@Rule

@@ -142,8 +142,6 @@ public class CompanyLogServletTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Throwable throwable = logEntry.getThrowable();
@@ -151,6 +149,8 @@ public class CompanyLogServletTest {
 			Assert.assertSame(
 				FileNotFoundException.class, throwable.getClass());
 			Assert.assertEquals(message, throwable.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 	}
 
@@ -366,8 +366,6 @@ public class CompanyLogServletTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Throwable throwable = logEntry.getThrowable();
@@ -375,6 +373,8 @@ public class CompanyLogServletTest {
 			Assert.assertSame(
 				IllegalArgumentException.class, throwable.getClass());
 			Assert.assertEquals(message, throwable.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 		finally {
 			_mockHttpServletResponse.setCommitted(false);
@@ -475,14 +475,14 @@ public class CompanyLogServletTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Throwable throwable = logEntry.getThrowable();
 
 			Assert.assertSame(clazz, throwable.getClass());
 			Assert.assertEquals(message, throwable.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 	}
 

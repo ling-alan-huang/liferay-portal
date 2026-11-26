@@ -311,9 +311,6 @@ public class GetContentItemMentionUsersStrutsActionTest {
 
 		JSONArray usersJSONArray = jsonObject.getJSONArray("users");
 
-		Assert.assertEquals(
-			usersJSONArray.toString(), 2, usersJSONArray.length());
-
 		JSONObject userJSONObject1 = usersJSONArray.getJSONObject(0);
 
 		Assert.assertEquals(
@@ -329,6 +326,9 @@ public class GetContentItemMentionUsersStrutsActionTest {
 		Assert.assertEquals(
 			user1.getExternalReferenceCode(), userJSONObject2.getString("id"));
 		Assert.assertFalse(userJSONObject2.getBoolean("recent"));
+
+		Assert.assertEquals(
+			usersJSONArray.toString(), 2, usersJSONArray.length());
 	}
 
 	private void _testExecuteWithClassNameId() throws Exception {
@@ -361,13 +361,13 @@ public class GetContentItemMentionUsersStrutsActionTest {
 
 		JSONArray usersJSONArray = jsonObject.getJSONArray("users");
 
-		Assert.assertEquals(
-			usersJSONArray.toString(), 1, usersJSONArray.length());
-
 		JSONObject userJSONObject = usersJSONArray.getJSONObject(0);
 
 		Assert.assertEquals(
 			user.getExternalReferenceCode(), userJSONObject.getString("id"));
+
+		Assert.assertEquals(
+			usersJSONArray.toString(), 1, usersJSONArray.length());
 	}
 
 	private void _testExecuteWithCompanyScopedObjectDefinition()
@@ -421,24 +421,24 @@ public class GetContentItemMentionUsersStrutsActionTest {
 
 		userGroupsJSONArray = jsonObject.getJSONArray("userGroups");
 
-		Assert.assertEquals(
-			userGroupsJSONArray.toString(), 1, userGroupsJSONArray.length());
-
 		JSONObject userGroupJSONObject = userGroupsJSONArray.getJSONObject(0);
 
 		Assert.assertEquals(
 			userGroup.getExternalReferenceCode(),
 			userGroupJSONObject.getString("id"));
 
-		usersJSONArray = jsonObject.getJSONArray("users");
-
 		Assert.assertEquals(
-			usersJSONArray.toString(), 1, usersJSONArray.length());
+			userGroupsJSONArray.toString(), 1, userGroupsJSONArray.length());
+
+		usersJSONArray = jsonObject.getJSONArray("users");
 
 		JSONObject userJSONObject = usersJSONArray.getJSONObject(0);
 
 		Assert.assertEquals(
 			user1.getExternalReferenceCode(), userJSONObject.getString("id"));
+
+		Assert.assertEquals(
+			usersJSONArray.toString(), 1, usersJSONArray.length());
 	}
 
 	private void _testExecuteWithKeywords() throws Exception {
@@ -484,13 +484,13 @@ public class GetContentItemMentionUsersStrutsActionTest {
 
 		usersJSONArray = jsonObject.getJSONArray("users");
 
-		Assert.assertEquals(
-			usersJSONArray.toString(), 1, usersJSONArray.length());
-
 		JSONObject userJSONObject2 = usersJSONArray.getJSONObject(0);
 
 		Assert.assertEquals(
 			user2.getExternalReferenceCode(), userJSONObject2.getString("id"));
+
+		Assert.assertEquals(
+			usersJSONArray.toString(), 1, usersJSONArray.length());
 	}
 
 	private void _testExecuteWithManyUserGroups() throws Exception {

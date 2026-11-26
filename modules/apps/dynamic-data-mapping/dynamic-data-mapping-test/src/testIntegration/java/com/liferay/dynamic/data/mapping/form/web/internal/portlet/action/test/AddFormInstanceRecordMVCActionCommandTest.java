@@ -276,10 +276,6 @@ public class AddFormInstanceRecordMVCActionCommandTest {
 			_ddmFormInstanceRecordLocalService.getFormInstanceRecords(
 				ddmFormInstance.getFormInstanceId());
 
-		Assert.assertEquals(
-			String.valueOf(ddmFormInstanceRecords), 1,
-			ddmFormInstanceRecords.size());
-
 		DDMFormInstanceRecord ddmFormInstanceRecord =
 			ddmFormInstanceRecords.get(0);
 
@@ -291,6 +287,10 @@ public class AddFormInstanceRecordMVCActionCommandTest {
 		_assertValue("TextField1", ddmFormFieldValuesMap, value1);
 		_assertValue("TextField2", ddmFormFieldValuesMap, StringPool.BLANK);
 		_assertValue("TextField3", ddmFormFieldValuesMap, value3);
+
+		Assert.assertEquals(
+			String.valueOf(ddmFormInstanceRecords), 1,
+			ddmFormInstanceRecords.size());
 	}
 
 	private void _assertValue(
@@ -301,15 +301,15 @@ public class AddFormInstanceRecordMVCActionCommandTest {
 		List<DDMFormFieldValue> ddmFormFieldValues = ddmFormFieldValuesMap.get(
 			ddmFormFieldName);
 
-		Assert.assertEquals(
-			String.valueOf(ddmFormFieldValues), 1, ddmFormFieldValues.size());
-
 		DDMFormFieldValue ddmFormFieldValue = ddmFormFieldValues.get(0);
 
 		LocalizedValue localizedValue =
 			(LocalizedValue)ddmFormFieldValue.getValue();
 
 		Assert.assertEquals(value, localizedValue.getString(LocaleUtil.BRAZIL));
+
+		Assert.assertEquals(
+			String.valueOf(ddmFormFieldValues), 1, ddmFormFieldValues.size());
 	}
 
 	private MockLiferayPortletActionRequest

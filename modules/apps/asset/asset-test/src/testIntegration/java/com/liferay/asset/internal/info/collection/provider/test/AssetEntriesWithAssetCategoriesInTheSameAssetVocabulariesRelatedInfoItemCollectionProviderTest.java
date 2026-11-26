@@ -187,8 +187,6 @@ public class
 
 			pageItems = collectionInfoPage.getPageItems();
 
-			Assert.assertEquals(pageItems.toString(), 1, pageItems.size());
-
 			assetEntry = pageItems.get(0);
 
 			Assert.assertEquals(
@@ -196,6 +194,8 @@ public class
 					objectDefinition.getClassName(),
 					objectEntry.getObjectEntryId()),
 				assetEntry);
+
+			Assert.assertEquals(pageItems.toString(), 1, pageItems.size());
 		}
 		finally {
 			ServiceContextThreadLocal.popServiceContext();
@@ -239,11 +239,11 @@ public class
 			List<? extends AssetEntry> pageItems =
 				collectionInfoPage.getPageItems();
 
-			Assert.assertEquals(pageItems.toString(), 1, pageItems.size());
-
 			AssetEntry assetEntry = pageItems.get(0);
 
 			Assert.assertEquals(_getAssetEntry(journalArticle), assetEntry);
+
+			Assert.assertEquals(pageItems.toString(), 1, pageItems.size());
 		}
 		finally {
 			ServiceContextThreadLocal.popServiceContext();
@@ -301,11 +301,11 @@ public class
 			List<? extends AssetEntry> pageItems =
 				collectionInfoPage.getPageItems();
 
-			Assert.assertEquals(pageItems.toString(), 1, pageItems.size());
-
 			AssetEntry assetEntry = pageItems.get(0);
 
 			Assert.assertEquals(_getAssetEntry(journalArticle), assetEntry);
+
+			Assert.assertEquals(pageItems.toString(), 1, pageItems.size());
 		}
 		finally {
 			ServiceContextThreadLocal.popServiceContext();
@@ -334,8 +334,6 @@ public class
 			List<InfoField<?>> infoFields =
 				configurationInfoForm.getAllInfoFields();
 
-			Assert.assertEquals(infoFields.toString(), 1, infoFields.size());
-
 			InfoField<?> infoField = infoFields.get(0);
 
 			Assert.assertTrue(
@@ -345,6 +343,8 @@ public class
 				_language.get(LocaleUtil.US, "item-type"),
 				infoField.getLabel(LocaleUtil.US));
 			Assert.assertEquals("item_types", infoField.getName());
+
+			Assert.assertEquals(infoFields.toString(), 1, infoFields.size());
 		}
 		finally {
 			ServiceContextThreadLocal.popServiceContext();

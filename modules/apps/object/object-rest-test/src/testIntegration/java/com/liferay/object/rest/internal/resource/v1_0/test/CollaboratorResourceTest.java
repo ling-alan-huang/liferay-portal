@@ -879,11 +879,11 @@ public class CollaboratorResourceTest {
 			objectEntry.getObjectEntryId(),
 			TicketConstants.TYPE_INVITE_COLLABORATOR);
 
-		Assert.assertEquals(tickets.toString(), 1, tickets.size());
-
 		Ticket ticket2 = tickets.get(0);
 
 		Assert.assertEquals(ticket1.getTicketId(), ticket2.getTicketId());
+
+		Assert.assertEquals(tickets.toString(), 1, tickets.size());
 
 		User user1 = _addUser(emailAddress1);
 

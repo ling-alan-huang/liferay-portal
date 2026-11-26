@@ -348,10 +348,6 @@ public class CPInstanceHelperTest {
 				WorkflowConstants.STATUS_APPROVED, QueryUtil.ALL_POS,
 				QueryUtil.ALL_POS, null);
 
-		Assert.assertEquals(
-			"Product approved instances count", 1,
-			approvedCPDefinitionInstances.size());
-
 		CPInstance cpInstance = approvedCPDefinitionInstances.get(0);
 
 		CPInstance defaultCPInstance = _cpInstanceHelper.getDefaultCPInstance(
@@ -360,6 +356,10 @@ public class CPInstanceHelperTest {
 		Assert.assertEquals(
 			"Default commerce product instance ID value",
 			cpInstance.getCPInstanceId(), defaultCPInstance.getCPInstanceId());
+
+		Assert.assertEquals(
+			"Product approved instances count", 1,
+			approvedCPDefinitionInstances.size());
 	}
 
 	@Test

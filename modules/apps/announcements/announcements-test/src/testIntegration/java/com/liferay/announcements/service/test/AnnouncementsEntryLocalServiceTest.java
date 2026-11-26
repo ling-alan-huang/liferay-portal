@@ -250,13 +250,13 @@ public class AnnouncementsEntryLocalServiceTest {
 				AnnouncementsFlagConstants.NOT_HIDDEN, QueryUtil.ALL_POS,
 				QueryUtil.ALL_POS);
 
-		Assert.assertEquals(
-			notHiddenAnnouncementsEntries.toString(), 1,
-			notHiddenAnnouncementsEntries.size());
-
 		AnnouncementsEntry entry4 = notHiddenAnnouncementsEntries.get(0);
 
 		Assert.assertEquals(entry4.getEntryId(), entry3.getEntryId());
+
+		Assert.assertEquals(
+			notHiddenAnnouncementsEntries.toString(), 1,
+			notHiddenAnnouncementsEntries.size());
 	}
 
 	@Test

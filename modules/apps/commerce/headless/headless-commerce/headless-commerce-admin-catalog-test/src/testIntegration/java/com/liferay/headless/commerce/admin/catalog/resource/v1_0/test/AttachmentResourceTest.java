@@ -1011,9 +1011,6 @@ public class AttachmentResourceTest extends BaseAttachmentResourceTestCase {
 					WorkflowConstants.STATUS_DRAFT, QueryUtil.ALL_POS,
 					QueryUtil.ALL_POS);
 
-			Assert.assertEquals(
-				cpDefinitions.toString(), 1, cpDefinitions.size());
-
 			CPDefinition cpDefinition2 = cpDefinitions.get(0);
 
 			_cpDefinitions.add(cpDefinition2);
@@ -1025,6 +1022,9 @@ public class AttachmentResourceTest extends BaseAttachmentResourceTestCase {
 						classNameId, cpDefinition2.getCPDefinitionId(),
 						CPAttachmentFileEntryConstants.TYPE_OTHER,
 						WorkflowConstants.STATUS_ANY));
+
+			Assert.assertEquals(
+				cpDefinitions.toString(), 1, cpDefinitions.size());
 		}
 	}
 

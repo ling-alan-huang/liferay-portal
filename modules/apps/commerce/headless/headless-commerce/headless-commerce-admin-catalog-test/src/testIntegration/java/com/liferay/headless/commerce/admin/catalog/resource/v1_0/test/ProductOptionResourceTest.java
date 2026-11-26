@@ -419,9 +419,6 @@ public class ProductOptionResourceTest
 					WorkflowConstants.STATUS_DRAFT, QueryUtil.ALL_POS,
 					QueryUtil.ALL_POS);
 
-			Assert.assertEquals(
-				cpDefinitions.toString(), 1, cpDefinitions.size());
-
 			CPDefinition cpDefinition2 = cpDefinitions.get(0);
 
 			_cpDefinitions.add(cpDefinition2);
@@ -463,6 +460,9 @@ public class ProductOptionResourceTest
 			Assert.assertEquals(
 				cpDefinition2.getCPDefinitionId(),
 				cpDefinition3.getCPDefinitionId());
+
+			Assert.assertEquals(
+				cpDefinitions.toString(), 1, cpDefinitions.size());
 
 			Assert.assertEquals(
 				2,

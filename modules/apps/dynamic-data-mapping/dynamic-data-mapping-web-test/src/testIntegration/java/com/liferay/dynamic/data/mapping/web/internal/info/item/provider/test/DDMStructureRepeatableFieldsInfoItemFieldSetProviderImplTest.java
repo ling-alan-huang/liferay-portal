@@ -74,9 +74,6 @@ public class DDMStructureRepeatableFieldsInfoItemFieldSetProviderImplTest {
 			_ddmStructureRepeatableFieldsInfoItemFieldSetProvider.
 				getInfoItemFieldSet(ddmStructure.getStructureId());
 
-		Assert.assertEquals(
-			infoFieldSetEntries.toString(), 2, infoFieldSetEntries.size());
-
 		InfoFieldSetEntry infoFieldSetEntry1 = infoFieldSetEntries.get(0);
 
 		Assert.assertTrue(infoFieldSetEntry1 instanceof InfoField<?>);
@@ -92,6 +89,9 @@ public class DDMStructureRepeatableFieldsInfoItemFieldSetProviderImplTest {
 		InfoField<?> infoField2 = (InfoField<?>)infoFieldSetEntry2;
 
 		Assert.assertEquals("Text2", infoField2.getName());
+
+		Assert.assertEquals(
+			infoFieldSetEntries.toString(), 2, infoFieldSetEntries.size());
 	}
 
 	@Test
@@ -111,9 +111,6 @@ public class DDMStructureRepeatableFieldsInfoItemFieldSetProviderImplTest {
 			_ddmStructureRepeatableFieldsInfoItemFieldSetProvider.
 				getInfoItemFieldSet(ddmStructure.getStructureId());
 
-		Assert.assertEquals(
-			infoFieldSetEntries.toString(), 1, infoFieldSetEntries.size());
-
 		InfoFieldSetEntry infoFieldSetEntry = infoFieldSetEntries.get(0);
 
 		Assert.assertTrue(infoFieldSetEntry instanceof InfoFieldSet);
@@ -124,8 +121,6 @@ public class DDMStructureRepeatableFieldsInfoItemFieldSetProviderImplTest {
 
 		List<InfoField<?>> infoFields = infoFieldSet.getAllInfoFields();
 
-		Assert.assertEquals(infoFields.toString(), 2, infoFields.size());
-
 		InfoField<?> infoField1 = infoFields.get(0);
 
 		Assert.assertEquals("Text", infoField1.getName());
@@ -133,6 +128,11 @@ public class DDMStructureRepeatableFieldsInfoItemFieldSetProviderImplTest {
 		InfoField<?> infoField2 = infoFields.get(1);
 
 		Assert.assertEquals("Image", infoField2.getName());
+
+		Assert.assertEquals(infoFields.toString(), 2, infoFields.size());
+
+		Assert.assertEquals(
+			infoFieldSetEntries.toString(), 1, infoFieldSetEntries.size());
 	}
 
 	private DDMForm _deserialize(String content) {

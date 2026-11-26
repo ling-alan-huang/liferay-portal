@@ -149,14 +149,14 @@ public class IndividualResourceTest extends BaseIndividualResourceTestCase {
 
 		List<OrderByField> orderByFields = (List<OrderByField>)objects[20];
 
-		Assert.assertEquals(orderByFields.toString(), 1, orderByFields.size());
-
 		OrderByField orderByField = orderByFields.get(0);
 
 		Assert.assertEquals("activitiesCount", orderByField.getFieldName());
 		Assert.assertEquals(
 			OrderByField.OrderBy.desc, orderByField.getOrderBy());
 		Assert.assertTrue(orderByField.isSystem());
+
+		Assert.assertEquals(orderByFields.toString(), 1, orderByFields.size());
 	}
 
 	private void _testGetWorkspaceGroupChannelIndividualsPageWithoutProfileType()

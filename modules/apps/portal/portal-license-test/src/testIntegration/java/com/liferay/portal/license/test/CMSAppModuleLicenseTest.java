@@ -40,8 +40,6 @@ public class CMSAppModuleLicenseTest extends BaseAppModuleLicenseTestCase {
 		catch (LogEntriesException logEntriesException) {
 			List<LogEntry> logEntries = logEntriesException.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals(
@@ -52,6 +50,8 @@ public class CMSAppModuleLicenseTest extends BaseAppModuleLicenseTestCase {
 			Assert.assertEquals(
 				"This product does not support the \"DSR\" app license",
 				throwable.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 	}
 

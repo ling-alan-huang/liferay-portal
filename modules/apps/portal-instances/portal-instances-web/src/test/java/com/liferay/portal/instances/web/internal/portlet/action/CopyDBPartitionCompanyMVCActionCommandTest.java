@@ -177,8 +177,6 @@ public class CopyDBPartitionCompanyMVCActionCommandTest {
 		List<Map<String, Object>> maps =
 			(List<Map<String, Object>>)argumentCaptor.getValue();
 
-		Assert.assertEquals(maps.toString(), 1, maps.size());
-
 		Map<String, Object> map = maps.get(0);
 
 		Assert.assertEquals(
@@ -187,6 +185,8 @@ public class CopyDBPartitionCompanyMVCActionCommandTest {
 		Assert.assertEquals(_SOURCE_WEB_ID, map.get("sourcePortalInstanceId"));
 		Assert.assertEquals(_VIRTUAL_HOST, map.get("virtualHost"));
 		Assert.assertEquals(_WEB_ID, map.get("webId"));
+
+		Assert.assertEquals(maps.toString(), 1, maps.size());
 	}
 
 	@Test

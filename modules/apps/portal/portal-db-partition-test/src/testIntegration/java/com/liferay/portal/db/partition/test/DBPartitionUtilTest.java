@@ -280,7 +280,6 @@ public class DBPartitionUtilTest extends BaseDBPartitionTestCase {
 			}
 
 			Assert.assertEquals(List.of(true), results);
-			Assert.assertEquals(throwables.toString(), 1, throwables.size());
 
 			Throwable throwable = throwables.get(0);
 
@@ -295,6 +294,8 @@ public class DBPartitionUtilTest extends BaseDBPartitionTestCase {
 			Assert.assertEquals(
 				"Database partition " + partitionName + " already exists",
 				throwable.getMessage());
+
+			Assert.assertEquals(throwables.toString(), 1, throwables.size());
 
 			Assert.assertTrue(
 				dbPartitionDB.existsPartition(connection, partitionName));
@@ -921,11 +922,11 @@ public class DBPartitionUtilTest extends BaseDBPartitionTestCase {
 				InfrastructureUtil.setDataSource(dataSource);
 			}
 
-			Assert.assertEquals(connections.toString(), 1, connections.size());
-
 			Connection connection = connections.get(0);
 
 			Assert.assertTrue(connection.isClosed());
+
+			Assert.assertEquals(connections.toString(), 1, connections.size());
 		}
 		finally {
 			for (Connection connection : connections) {

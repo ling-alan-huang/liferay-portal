@@ -49,8 +49,6 @@ public class DateTimeDDMFormFieldTypeSettingsTest
 
 		List<DDMFormRule> ddmFormRules = ddmForm.getDDMFormRules();
 
-		Assert.assertEquals(ddmFormRules.toString(), 2, ddmFormRules.size());
-
 		DDMFormRule ddmFormRule0 = ddmFormRules.get(0);
 
 		Assert.assertEquals(
@@ -80,6 +78,8 @@ public class DateTimeDDMFormFieldTypeSettingsTest
 			actions.get(2));
 
 		Assert.assertEquals("TRUE", ddmFormRule1.getCondition());
+
+		Assert.assertEquals(ddmFormRules.toString(), 2, ddmFormRules.size());
 	}
 
 	@Test

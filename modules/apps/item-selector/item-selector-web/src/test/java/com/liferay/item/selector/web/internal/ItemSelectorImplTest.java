@@ -145,9 +145,6 @@ public class ItemSelectorImplTest {
 		List<ItemSelectorCriterion> itemSelectorCriteria =
 			_itemSelectorImpl.getItemSelectorCriteria(itemSelectorURL);
 
-		Assert.assertEquals(
-			itemSelectorCriteria.toString(), 2, itemSelectorCriteria.size());
-
 		MediaItemSelectorCriterion mediaItemSelectorCriterion =
 			(MediaItemSelectorCriterion)itemSelectorCriteria.get(0);
 
@@ -170,6 +167,9 @@ public class ItemSelectorImplTest {
 
 		Assert.assertTrue(
 			itemSelectorCriteria.get(1) instanceof FlickrItemSelectorCriterion);
+
+		Assert.assertEquals(
+			itemSelectorCriteria.toString(), 2, itemSelectorCriteria.size());
 	}
 
 	@Test

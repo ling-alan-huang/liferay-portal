@@ -79,8 +79,6 @@ public class SolrIndexWriterLoggingTest extends BaseIndexingTestCase {
 	private void _assertLogCapture(LogCapture logCapture) {
 		List<LogEntry> logEntries = logCapture.getLogEntries();
 
-		Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 		LogEntry logEntry = logEntries.get(0);
 
 		Assert.assertEquals(LoggerTestUtil.INFO, logEntry.getPriority());
@@ -98,6 +96,8 @@ public class SolrIndexWriterLoggingTest extends BaseIndexingTestCase {
 		Assert.assertTrue(
 			message + " does not contain " + expectedLog,
 			message.contains(expectedLog));
+
+		Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 	}
 
 }

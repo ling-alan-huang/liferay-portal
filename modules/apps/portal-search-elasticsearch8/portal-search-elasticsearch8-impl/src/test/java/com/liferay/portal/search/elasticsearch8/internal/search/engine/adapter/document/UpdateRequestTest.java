@@ -91,11 +91,11 @@ public class UpdateRequestTest {
 
 		JsonArray jsonArray = _getJsonArrayValue(fields.get("field2"));
 
-		Assert.assertEquals(jsonArray.toString(), 1, jsonArray.size());
-
 		JsonValue jsonValue = jsonArray.get(0);
 
 		Assert.assertEquals(JsonValue.ValueType.NULL, jsonValue.getValueType());
+
+		Assert.assertEquals(jsonArray.toString(), 1, jsonArray.size());
 	}
 
 	@Test

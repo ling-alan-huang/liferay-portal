@@ -330,7 +330,6 @@ public class GetObjectEntriesValuesStrutsActionTest {
 			parentObjectEntryValuesJSONObject.getJSONArray("related");
 
 		Assert.assertNotNull(relatedJSONArray);
-		Assert.assertEquals(1, relatedJSONArray.length());
 
 		JSONObject childObjectEntryValuesJSONObject =
 			relatedJSONArray.getJSONObject(0);
@@ -353,6 +352,8 @@ public class GetObjectEntriesValuesStrutsActionTest {
 		Assert.assertNotNull(childTextFieldJSONObject);
 		Assert.assertEquals(
 			childTextFieldValue, childTextFieldJSONObject.getString("value"));
+
+		Assert.assertEquals(1, relatedJSONArray.length());
 	}
 
 	@Test
@@ -441,14 +442,14 @@ public class GetObjectEntriesValuesStrutsActionTest {
 			JSONArray resultJSONArray = _jsonFactory.createJSONArray(
 				mockHttpServletResponse.getContentAsString());
 
-			Assert.assertEquals(1, resultJSONArray.length());
-
 			JSONObject objectEntryValuesJSONObject =
 				resultJSONArray.getJSONObject(0);
 
 			Assert.assertEquals(
 				String.valueOf(objectEntry1.getObjectEntryId()),
 				objectEntryValuesJSONObject.getString("id"));
+
+			Assert.assertEquals(1, resultJSONArray.length());
 		}
 	}
 

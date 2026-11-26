@@ -246,11 +246,11 @@ public class ContentDashboardAdminManagementToolbarDisplayContextTest {
 			contentDashboardAdminManagementToolbarDisplayContext.
 				getFilterLabelItems();
 
-		Assert.assertEquals(String.valueOf(labelItems), 1, labelItems.size());
-
 		LabelItem labelItem = labelItems.get(0);
 
 		Assert.assertEquals("status: scheduled", labelItem.get("label"));
+
+		Assert.assertEquals(String.valueOf(labelItems), 1, labelItems.size());
 	}
 
 	@Test

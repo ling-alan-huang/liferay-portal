@@ -452,9 +452,6 @@ public class DisplayPageInfoItemFieldSetProviderTest {
 
 		List<InfoField<?>> sortedInfoFields = _getSortedInfoFields();
 
-		Assert.assertEquals(
-			sortedInfoFields.toString(), 3, sortedInfoFields.size());
-
 		InfoField<?> infoField = sortedInfoFields.get(0);
 
 		_assertInfoField(
@@ -472,6 +469,9 @@ public class DisplayPageInfoItemFieldSetProviderTest {
 				designLibraryGroup, designLibraryLayoutPageTemplateEntry,
 				LocaleUtil.SPAIN),
 			infoField.getLabel(LocaleUtil.SPAIN));
+
+		Assert.assertEquals(
+			sortedInfoFields.toString(), 3, sortedInfoFields.size());
 	}
 
 	private void _testGetInfoFieldSetWithConnectedDesignLibraryWithSameName()

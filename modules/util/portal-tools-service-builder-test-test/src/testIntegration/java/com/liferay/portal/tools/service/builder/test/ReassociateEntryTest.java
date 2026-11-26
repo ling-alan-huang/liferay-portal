@@ -80,8 +80,6 @@ public class ReassociateEntryTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 2, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			String message = logEntry.getMessage();
@@ -93,6 +91,8 @@ public class ReassociateEntryTest {
 			message = logEntry.getMessage();
 
 			Assert.assertTrue(message, message.startsWith("update"));
+
+			Assert.assertEquals(logEntries.toString(), 2, logEntries.size());
 		}
 
 		session.clear();
@@ -116,13 +116,13 @@ public class ReassociateEntryTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			String message = logEntry.getMessage();
 
 			Assert.assertTrue(message, message.startsWith("update"));
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 	}
 

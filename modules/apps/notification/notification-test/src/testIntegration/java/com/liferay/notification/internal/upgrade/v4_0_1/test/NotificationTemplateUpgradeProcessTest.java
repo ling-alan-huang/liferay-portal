@@ -79,8 +79,6 @@ public class NotificationTemplateUpgradeProcessTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals(
@@ -89,6 +87,8 @@ public class NotificationTemplateUpgradeProcessTest {
 					"\"COMMERCE_ORDER_TEMPLATE\" because it is already used ",
 					"by notification template ", _NOTIFICATION_TEMPLATE_ID_1),
 				logEntry.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 
 		NotificationTemplate notificationTemplate =

@@ -297,10 +297,6 @@ public class CommercePaymentEntryLocalServiceTest {
 				_commerceOrder.getCommerceOrderId(), QueryUtil.ALL_POS,
 				QueryUtil.ALL_POS);
 
-		Assert.assertEquals(
-			refundCommercePaymentEntries.toString(), 1,
-			refundCommercePaymentEntries.size());
-
 		CommercePaymentEntry refundCommercePaymentEntry2 =
 			refundCommercePaymentEntries.get(0);
 
@@ -308,6 +304,10 @@ public class CommercePaymentEntryLocalServiceTest {
 
 		Assert.assertEquals(
 			refundCommercePaymentEntry1, refundCommercePaymentEntry2);
+
+		Assert.assertEquals(
+			refundCommercePaymentEntries.toString(), 1,
+			refundCommercePaymentEntries.size());
 	}
 
 	@Test

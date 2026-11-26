@@ -134,9 +134,6 @@ public class AudiencesCriteriaProviderTest {
 		List<AudiencesCriteria> audiencesCriterias =
 			audiencesCriteriaType.getAudiencesCriterias();
 
-		Assert.assertEquals(
-			audiencesCriterias.toString(), 1, audiencesCriterias.size());
-
 		AudiencesCriteria audiencesCriteria = audiencesCriterias.get(0);
 
 		Assert.assertEquals(name, audiencesCriteria.getLabel());
@@ -146,6 +143,9 @@ public class AudiencesCriteriaProviderTest {
 		String key = audiencesCriteria.getKey();
 
 		Assert.assertTrue(key, key.endsWith(StringPool.POUND + symbol));
+
+		Assert.assertEquals(
+			audiencesCriterias.toString(), 1, audiencesCriterias.size());
 	}
 
 	@Test

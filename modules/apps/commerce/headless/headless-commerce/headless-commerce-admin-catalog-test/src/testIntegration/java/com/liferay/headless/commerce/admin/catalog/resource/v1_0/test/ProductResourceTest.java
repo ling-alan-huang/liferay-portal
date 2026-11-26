@@ -953,13 +953,13 @@ public class ProductResourceTest extends BaseProductResourceTestCase {
 				0, _classNameLocalService.getClassNameId(CProduct.class),
 				product.getProductId(), SystemEventConstants.TYPE_DELETE);
 
-		Assert.assertEquals(systemEvents.toString(), 1, systemEvents.size());
-
 		SystemEvent systemEvent = systemEvents.get(0);
 
 		Assert.assertEquals(
 			product.getExternalReferenceCode(),
 			systemEvent.getClassExternalReferenceCode());
+
+		Assert.assertEquals(systemEvents.toString(), 1, systemEvents.size());
 	}
 
 	private void _testGetProductByExternalReferenceCodeWithNestedProductOptionValues()

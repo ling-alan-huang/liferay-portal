@@ -1163,8 +1163,6 @@ public class StructuredContentResourceTest
 			List<StructuredContent> items =
 				(List<StructuredContent>)page.getItems();
 
-			Assert.assertEquals(items.toString(), 1, items.size());
-
 			StructuredContent structuredContent = items.get(0);
 
 			Assert.assertEquals(
@@ -1173,6 +1171,8 @@ public class StructuredContentResourceTest
 
 			structuredContentResource.deleteStructuredContent(
 				structuredContent.getId());
+
+			Assert.assertEquals(items.toString(), 1, items.size());
 		}
 		finally {
 			LocaleThreadLocal.setSiteDefaultLocale(currentLocale);
@@ -2034,8 +2034,6 @@ public class StructuredContentResourceTest
 		List<StructuredContent> items =
 			(List<StructuredContent>)page.getItems();
 
-		Assert.assertEquals(items.toString(), 1, items.size());
-
 		StructuredContent structuredContent = items.get(0);
 
 		Assert.assertEquals(
@@ -2044,6 +2042,8 @@ public class StructuredContentResourceTest
 
 		structuredContentResource.deleteStructuredContent(
 			structuredContent.getId());
+
+		Assert.assertEquals(items.toString(), 1, items.size());
 	}
 
 	private void _testGetSiteStructuredContentsPageByDefaultPriority()

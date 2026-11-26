@@ -62,8 +62,6 @@ public class CMSCheckLicenseTest extends BaseCheckLicenseTestCase {
 		catch (LogEntriesException logEntriesException) {
 			List<LogEntry> logEntries = logEntriesException.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			String message = logEntry.getMessage();
@@ -81,6 +79,8 @@ public class CMSCheckLicenseTest extends BaseCheckLicenseTestCase {
 					"This product does not support the \"", productName,
 					"\" portal license"),
 				throwable.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 	}
 

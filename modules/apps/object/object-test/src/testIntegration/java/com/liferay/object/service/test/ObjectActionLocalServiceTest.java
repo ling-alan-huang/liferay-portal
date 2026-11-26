@@ -418,10 +418,6 @@ public class ObjectActionLocalServiceTest {
 				NotificationConstants.TYPE_EMAIL,
 				NotificationQueueEntryConstants.STATUS_SENT);
 
-		Assert.assertEquals(
-			notificationQueueEntries.toString(), 4,
-			notificationQueueEntries.size());
-
 		NotificationQueueEntry notificationQueueEntry =
 			notificationQueueEntries.get(3);
 
@@ -451,6 +447,10 @@ public class ObjectActionLocalServiceTest {
 			notificationQueueEntries.get(2));
 		_notificationQueueEntryLocalService.deleteNotificationQueueEntry(
 			notificationQueueEntries.get(3));
+
+		Assert.assertEquals(
+			notificationQueueEntries.toString(), 4,
+			notificationQueueEntries.size());
 
 		_objectActionLocalService.deleteObjectAction(objectAction1);
 		_objectActionLocalService.deleteObjectAction(objectAction2);
@@ -2622,13 +2622,13 @@ public class ObjectActionLocalServiceTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals(
 				"Object entry ID " + objectEntry.getObjectEntryId(),
 				logEntry.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 
 			_objectDefinitionLocalService.deleteObjectDefinition(
 				objectDefinition);
@@ -4025,10 +4025,6 @@ public class ObjectActionLocalServiceTest {
 				NotificationConstants.TYPE_EMAIL,
 				NotificationQueueEntryConstants.STATUS_SENT);
 
-		Assert.assertEquals(
-			notificationQueueEntries.toString(), 1,
-			notificationQueueEntries.size());
-
 		NotificationQueueEntry notificationQueueEntry =
 			notificationQueueEntries.get(0);
 
@@ -4037,6 +4033,10 @@ public class ObjectActionLocalServiceTest {
 
 		_notificationQueueEntryLocalService.deleteNotificationQueueEntry(
 			notificationQueueEntry);
+
+		Assert.assertEquals(
+			notificationQueueEntries.toString(), 1,
+			notificationQueueEntries.size());
 	}
 
 	private void _assertObjectAction(

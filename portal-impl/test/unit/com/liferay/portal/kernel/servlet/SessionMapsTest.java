@@ -193,13 +193,13 @@ public class SessionMapsTest extends BaseSessionMapsTestCase {
 
 			Assert.assertTrue(SessionMaps.isEmpty(httpSession, _MAP_KEY));
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals("Invalidated", logEntry.getMessage());
 			Assert.assertTrue(
 				logEntry.getThrowable() instanceof IllegalStateException);
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 	}
 

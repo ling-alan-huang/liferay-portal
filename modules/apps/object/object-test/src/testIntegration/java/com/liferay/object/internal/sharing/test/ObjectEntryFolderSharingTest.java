@@ -89,8 +89,6 @@ public class ObjectEntryFolderSharingTest
 
 			List<LogEntry> logEntries2 = logCapture2.getLogEntries();
 
-			Assert.assertEquals(logEntries2.toString(), 1, logEntries2.size());
-
 			LogEntry logEntry = logEntries2.get(0);
 
 			Assert.assertEquals(LoggerTestUtil.ERROR, logEntry.getPriority());
@@ -107,6 +105,8 @@ public class ObjectEntryFolderSharingTest
 			Assert.assertEquals(
 				PrincipalException.MustHavePermission.class,
 				throwable.getClass());
+
+			Assert.assertEquals(logEntries2.toString(), 1, logEntries2.size());
 		}
 	}
 
@@ -131,8 +131,6 @@ public class ObjectEntryFolderSharingTest
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals(LoggerTestUtil.ERROR, logEntry.getPriority());
@@ -144,6 +142,8 @@ public class ObjectEntryFolderSharingTest
 
 			Assert.assertEquals(
 				NoSuchResourceActionException.class, throwable.getClass());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 	}
 
@@ -167,8 +167,6 @@ public class ObjectEntryFolderSharingTest
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals(LoggerTestUtil.ERROR, logEntry.getPriority());
@@ -180,6 +178,8 @@ public class ObjectEntryFolderSharingTest
 
 			Assert.assertEquals(
 				NoSuchResourceActionException.class, throwable.getClass());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 	}
 
@@ -196,8 +196,6 @@ public class ObjectEntryFolderSharingTest
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals(LoggerTestUtil.ERROR, logEntry.getPriority());
@@ -209,6 +207,8 @@ public class ObjectEntryFolderSharingTest
 
 			Assert.assertEquals(
 				NoSuchResourceActionException.class, throwable.getClass());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 	}
 
@@ -227,8 +227,6 @@ public class ObjectEntryFolderSharingTest
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals(LoggerTestUtil.ERROR, logEntry.getPriority());
@@ -240,6 +238,8 @@ public class ObjectEntryFolderSharingTest
 
 			Assert.assertEquals(
 				NoSuchResourceActionException.class, throwable.getClass());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 	}
 
@@ -265,8 +265,6 @@ public class ObjectEntryFolderSharingTest
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals(LoggerTestUtil.ERROR, logEntry.getPriority());
@@ -278,6 +276,8 @@ public class ObjectEntryFolderSharingTest
 
 			Assert.assertEquals(
 				NoSuchResourceActionException.class, throwable.getClass());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 	}
 

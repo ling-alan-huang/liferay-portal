@@ -396,10 +396,6 @@ public class MissingRequiredFieldsAssetResourceTest
 			(List<MissingRequiredFieldsAsset>)
 				missingRequiredFieldsAssetsPage.getItems();
 
-		Assert.assertEquals(
-			missingRequiredFieldsAssets.toString(), 2,
-			missingRequiredFieldsAssets.size());
-
 		MissingRequiredFieldsAsset firstMissingRequiredFieldsAsset =
 			missingRequiredFieldsAssets.get(0);
 
@@ -411,6 +407,10 @@ public class MissingRequiredFieldsAssetResourceTest
 
 		Assert.assertEquals(
 			expectedSecondTitle, secondMissingRequiredFieldsAsset.getTitle());
+
+		Assert.assertEquals(
+			missingRequiredFieldsAssets.toString(), 2,
+			missingRequiredFieldsAssets.size());
 	}
 
 	private void _assertTotalCount(
@@ -585,10 +585,6 @@ public class MissingRequiredFieldsAssetResourceTest
 			(List<MissingRequiredFieldsAsset>)
 				missingRequiredFieldsAssetsPage.getItems();
 
-		Assert.assertEquals(
-			missingRequiredFieldsAssets.toString(), 1,
-			missingRequiredFieldsAssets.size());
-
 		MissingRequiredFieldsAsset missingRequiredFieldsAsset =
 			missingRequiredFieldsAssets.get(0);
 
@@ -599,6 +595,10 @@ public class MissingRequiredFieldsAssetResourceTest
 			objectDefinition.getExternalReferenceCode(),
 			missingRequiredFieldsAsset.
 				getObjectDefinitionExternalReferenceCode());
+
+		Assert.assertEquals(
+			missingRequiredFieldsAssets.toString(), 1,
+			missingRequiredFieldsAssets.size());
 	}
 
 	private void _testGetMissingRequiredFieldsAssetsPageWithFreeTier()
@@ -643,14 +643,14 @@ public class MissingRequiredFieldsAssetResourceTest
 			(List<MissingRequiredFieldsAsset>)
 				missingRequiredFieldsAssetsPage.getItems();
 
-		Assert.assertEquals(
-			missingRequiredFieldsAssets.toString(), 1,
-			missingRequiredFieldsAssets.size());
-
 		MissingRequiredFieldsAsset missingRequiredFieldsAsset =
 			missingRequiredFieldsAssets.get(0);
 
 		Assert.assertEquals(title, missingRequiredFieldsAsset.getTitle());
+
+		Assert.assertEquals(
+			missingRequiredFieldsAssets.toString(), 1,
+			missingRequiredFieldsAssets.size());
 	}
 
 	private void _testGetMissingRequiredFieldsAssetsPageWithStatuses()

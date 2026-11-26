@@ -424,16 +424,16 @@ public class AssetListEntryStagingTest {
 					SegmentsEntryConstants.ID_DEFAULT, QueryUtil.ALL_POS,
 					QueryUtil.ALL_POS);
 
-		Assert.assertEquals(
-			assetListEntryAssetEntryRels.toString(), 1,
-			assetListEntryAssetEntryRels.size());
-
 		AssetListEntryAssetEntryRel assetListEntryAssetEntryRel =
 			assetListEntryAssetEntryRels.get(0);
 
 		Assert.assertEquals(
 			assetEntry.getEntryId(),
 			assetListEntryAssetEntryRel.getAssetEntryId());
+
+		Assert.assertEquals(
+			assetListEntryAssetEntryRels.toString(), 1,
+			assetListEntryAssetEntryRels.size());
 	}
 
 	@Test

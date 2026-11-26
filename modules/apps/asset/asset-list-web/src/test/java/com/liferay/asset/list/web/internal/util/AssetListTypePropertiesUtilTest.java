@@ -130,15 +130,15 @@ public class AssetListTypePropertiesUtilTest {
 
 		itemsJSONArray = groupJSONObject.getJSONArray("items");
 
-		Assert.assertEquals(
-			itemsJSONArray.toString(), 1, itemsJSONArray.length());
-
 		JSONObject itemJSONObject = itemsJSONArray.getJSONObject(0);
 
 		Assert.assertEquals("keyword_field", itemJSONObject.getString("name"));
 		Assert.assertEquals(
 			itemJSONObject.toString(), "keyword",
 			itemJSONObject.getString("type"));
+
+		Assert.assertEquals(
+			itemsJSONArray.toString(), 1, itemsJSONArray.length());
 	}
 
 	@Test
@@ -161,16 +161,11 @@ public class AssetListTypePropertiesUtilTest {
 				new long[] {_CLASS_NAME_ID_1, _CLASS_NAME_ID_2}, _COMPANY_ID,
 				LocaleUtil.US);
 
-		Assert.assertEquals(jsonArray.toString(), 3, jsonArray.length());
-
 		JSONObject groupJSONObject1 = jsonArray.getJSONObject(1);
 
 		Assert.assertEquals(_LABEL_1, groupJSONObject1.getString("label"));
 
 		JSONArray itemsJSONArray1 = groupJSONObject1.getJSONArray("items");
-
-		Assert.assertEquals(
-			itemsJSONArray1.toString(), 1, itemsJSONArray1.length());
 
 		JSONObject itemJSONObject1 = itemsJSONArray1.getJSONObject(0);
 
@@ -179,14 +174,14 @@ public class AssetListTypePropertiesUtilTest {
 			itemJSONObject1.getString("objectDefinitionExternalReferenceCode"));
 		Assert.assertEquals("title", itemJSONObject1.getString("name"));
 
+		Assert.assertEquals(
+			itemsJSONArray1.toString(), 1, itemsJSONArray1.length());
+
 		JSONObject groupJSONObject2 = jsonArray.getJSONObject(2);
 
 		Assert.assertEquals(_LABEL_2, groupJSONObject2.getString("label"));
 
 		JSONArray itemsJSONArray2 = groupJSONObject2.getJSONArray("items");
-
-		Assert.assertEquals(
-			itemsJSONArray2.toString(), 2, itemsJSONArray2.length());
 
 		JSONObject itemJSONObject2 = itemsJSONArray2.getJSONObject(0);
 
@@ -202,6 +197,11 @@ public class AssetListTypePropertiesUtilTest {
 			itemJSONObject3.getString("objectDefinitionExternalReferenceCode"));
 		Assert.assertEquals("priority", itemJSONObject3.getString("name"));
 		Assert.assertEquals("integer", itemJSONObject3.getString("type"));
+
+		Assert.assertEquals(
+			itemsJSONArray2.toString(), 2, itemsJSONArray2.length());
+
+		Assert.assertEquals(jsonArray.toString(), 3, jsonArray.length());
 	}
 
 	@Test
@@ -296,8 +296,6 @@ public class AssetListTypePropertiesUtilTest {
 			AssetListTypePropertiesUtil.getTypePropertiesJSONArray(
 				new long[] {_CLASS_NAME_ID_1}, _COMPANY_ID, LocaleUtil.US);
 
-		Assert.assertEquals(jsonArray.toString(), 2, jsonArray.length());
-
 		JSONObject groupJSONObject = jsonArray.getJSONObject(1);
 
 		Assert.assertEquals(_LABEL_1, groupJSONObject.getString("label"));
@@ -306,6 +304,8 @@ public class AssetListTypePropertiesUtilTest {
 
 		Assert.assertEquals(
 			itemsJSONArray.toString(), 0, itemsJSONArray.length());
+
+		Assert.assertEquals(jsonArray.toString(), 2, jsonArray.length());
 	}
 
 	@Test
@@ -320,16 +320,11 @@ public class AssetListTypePropertiesUtilTest {
 			AssetListTypePropertiesUtil.getTypePropertiesJSONArray(
 				new long[] {_CLASS_NAME_ID_1}, _COMPANY_ID, LocaleUtil.US);
 
-		Assert.assertEquals(jsonArray.toString(), 2, jsonArray.length());
-
 		JSONObject groupJSONObject = jsonArray.getJSONObject(1);
 
 		Assert.assertEquals(_LABEL_1, groupJSONObject.getString("label"));
 
 		JSONArray itemsJSONArray = groupJSONObject.getJSONArray("items");
-
-		Assert.assertEquals(
-			itemsJSONArray.toString(), 1, itemsJSONArray.length());
 
 		JSONObject itemJSONObject = itemsJSONArray.getJSONObject(0);
 
@@ -338,6 +333,11 @@ public class AssetListTypePropertiesUtilTest {
 			itemJSONObject.getString("objectDefinitionExternalReferenceCode"));
 		Assert.assertEquals("title", itemJSONObject.getString("name"));
 		Assert.assertEquals("text", itemJSONObject.getString("type"));
+
+		Assert.assertEquals(
+			itemsJSONArray.toString(), 1, itemsJSONArray.length());
+
+		Assert.assertEquals(jsonArray.toString(), 2, jsonArray.length());
 	}
 
 	@Test
@@ -397,8 +397,6 @@ public class AssetListTypePropertiesUtilTest {
 			AssetListTypePropertiesUtil.getTypePropertiesJSONArray(
 				new long[] {_CLASS_NAME_ID_1}, _COMPANY_ID, LocaleUtil.US);
 
-		Assert.assertEquals(jsonArray.toString(), 2, jsonArray.length());
-
 		JSONObject itemJSONObject = jsonArray.getJSONObject(
 			1
 		).getJSONArray(
@@ -427,6 +425,8 @@ public class AssetListTypePropertiesUtilTest {
 			).getString(
 				"value"
 			));
+
+		Assert.assertEquals(jsonArray.toString(), 2, jsonArray.length());
 	}
 
 	@Test
@@ -434,8 +434,6 @@ public class AssetListTypePropertiesUtilTest {
 		JSONArray jsonArray =
 			AssetListTypePropertiesUtil.getTypePropertiesJSONArray(
 				new long[0], _COMPANY_ID, LocaleUtil.US);
-
-		Assert.assertEquals(jsonArray.toString(), 1, jsonArray.length());
 
 		JSONObject groupJSONObject = jsonArray.getJSONObject(0);
 
@@ -459,6 +457,8 @@ public class AssetListTypePropertiesUtilTest {
 		for (String expectedName : expectedNames) {
 			Assert.assertTrue(expectedName, actualNames.contains(expectedName));
 		}
+
+		Assert.assertEquals(jsonArray.toString(), 1, jsonArray.length());
 	}
 
 	@Test
@@ -474,11 +474,11 @@ public class AssetListTypePropertiesUtilTest {
 				new long[] {_CLASS_NAME_ID_1, RandomTestUtil.randomLong()},
 				_COMPANY_ID, LocaleUtil.US);
 
-		Assert.assertEquals(jsonArray.toString(), 2, jsonArray.length());
-
 		JSONObject groupJSONObject = jsonArray.getJSONObject(1);
 
 		Assert.assertEquals(_LABEL_1, groupJSONObject.getString("label"));
+
+		Assert.assertEquals(jsonArray.toString(), 2, jsonArray.length());
 	}
 
 	private static void _setUpJSONFactoryUtil() {

@@ -564,11 +564,11 @@ public class DatabaseTableAndColumnCaseDataCleanupPreupgradeProcessTest
 
 				List<String> messages = logCapture.getMessages();
 
-				Assert.assertEquals(messages.toString(), 1, messages.size());
-
 				String message = messages.get(0);
 
 				Assert.assertEquals(message, expectedLogMessage, message);
+
+				Assert.assertEquals(messages.toString(), 1, messages.size());
 			}
 			finally {
 				alterTableDropColumn(tableName, columnName);

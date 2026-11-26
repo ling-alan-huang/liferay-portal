@@ -85,10 +85,6 @@ public class DDMFormBuilderSettingsRetrieverHelperImplTest {
 			populateCustomDDMExpressionFunctionsMetadata(
 				ddmExpressionFunctionMetadatasMap, LocaleUtil.US);
 
-		Assert.assertEquals(
-			ddmExpressionFunctionMetadatasMap.toString(), 2,
-			ddmExpressionFunctionMetadatasMap.size());
-
 		List<DDMExpressionFunctionMetadata> ddmExpressionFunctionMetadatas =
 			ddmExpressionFunctionMetadatasMap.get("number");
 
@@ -112,6 +108,10 @@ public class DDMFormBuilderSettingsRetrieverHelperImplTest {
 				"binaryFunction", "Binary Function", "boolean",
 				new String[] {"text", "text"}),
 			ddmExpressionFunctionMetadatas.get(0));
+
+		Assert.assertEquals(
+			ddmExpressionFunctionMetadatasMap.toString(), 2,
+			ddmExpressionFunctionMetadatasMap.size());
 	}
 
 	@Test
@@ -122,10 +122,6 @@ public class DDMFormBuilderSettingsRetrieverHelperImplTest {
 		_ddmFormBuilderSettingsRetrieverHelperImpl.
 			populateDDMExpressionFunctionsMetadata(
 				ddmExpressionFunctionMetadatasMap, _resourceBundle);
-
-		Assert.assertEquals(
-			ddmExpressionFunctionMetadatasMap.toString(), 4,
-			ddmExpressionFunctionMetadatasMap.size());
 
 		List<DDMExpressionFunctionMetadata> ddmExpressionFunctionMetadatas =
 			ddmExpressionFunctionMetadatasMap.get("boolean");
@@ -154,6 +150,10 @@ public class DDMFormBuilderSettingsRetrieverHelperImplTest {
 		Assert.assertEquals(
 			ddmExpressionFunctionMetadatas.toString(), 1,
 			ddmExpressionFunctionMetadatas.size());
+
+		Assert.assertEquals(
+			ddmExpressionFunctionMetadatasMap.toString(), 4,
+			ddmExpressionFunctionMetadatasMap.size());
 	}
 
 	private void _mockDDMExpressionFunctionRegistry() {

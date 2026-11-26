@@ -258,12 +258,12 @@ public class AddFragmentEntryLinkCommentMVCActionCommandTest {
 			parentCommentId, WorkflowConstants.STATUS_ANY, QueryUtil.ALL_POS,
 			QueryUtil.ALL_POS);
 
-		Assert.assertEquals(childComments.toString(), 1, childComments.size());
-
 		Comment childComment = childComments.get(0);
 
 		Assert.assertEquals(
 			jsonObject.getLong("commentId"), childComment.getCommentId());
+
+		Assert.assertEquals(childComments.toString(), 1, childComments.size());
 	}
 
 	private void _testDoTransactionalCommandReplyFromAnotherFragmentEntryLink()

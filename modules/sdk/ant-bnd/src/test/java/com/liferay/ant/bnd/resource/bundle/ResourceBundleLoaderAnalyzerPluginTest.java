@@ -60,8 +60,6 @@ public class ResourceBundleLoaderAnalyzerPluginTest {
 			List<Map.Entry<String, Attrs>> provides = new ArrayList<>(
 				provideCapabilityHeaders.entrySet());
 
-			Assert.assertEquals(provides.toString(), 1, provides.size());
-
 			Map.Entry<String, Attrs> entry = provides.get(0);
 
 			Assert.assertEquals(
@@ -78,6 +76,8 @@ public class ResourceBundleLoaderAnalyzerPluginTest {
 			Assert.assertEquals("true", attrs.get("module.only"));
 			Assert.assertEquals(
 				"content.Language", attrs.get("resource.bundle.base.name"));
+
+			Assert.assertEquals(provides.toString(), 1, provides.size());
 		}
 	}
 
@@ -122,8 +122,6 @@ public class ResourceBundleLoaderAnalyzerPluginTest {
 
 			List<Map.Entry<String, Attrs>> provides = new ArrayList<>(
 				provideCapabilityHeaders.entrySet());
-
-			Assert.assertEquals(provides.toString(), 2, provides.size());
 
 			Map.Entry<String, Attrs> aggregateEntry = provides.get(0);
 
@@ -182,6 +180,8 @@ public class ResourceBundleLoaderAnalyzerPluginTest {
 			Assert.assertEquals(
 				"content.Language",
 				liferayResourceBundleAttrs.get("resource.bundle.base.name"));
+
+			Assert.assertEquals(provides.toString(), 2, provides.size());
 		}
 	}
 

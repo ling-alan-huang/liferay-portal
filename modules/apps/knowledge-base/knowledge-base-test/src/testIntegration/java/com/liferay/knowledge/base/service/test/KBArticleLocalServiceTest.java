@@ -1166,10 +1166,6 @@ public class KBArticleLocalServiceTest {
 			UserNotificationEventTestUtil.getUserNotificationEvents(
 				user.getUserId());
 
-		Assert.assertEquals(
-			userNotificationEvents.toString(), 1,
-			userNotificationEvents.size());
-
 		UserNotificationEvent userNotificationEvent =
 			userNotificationEvents.get(0);
 
@@ -1187,6 +1183,10 @@ public class KBArticleLocalServiceTest {
 		Assert.assertEquals(
 			"A knowledge base article has expired.",
 			userNotificationFeedEntry.getTitle());
+
+		Assert.assertEquals(
+			userNotificationEvents.toString(), 1,
+			userNotificationEvents.size());
 	}
 
 	@FeatureFlag("LPD-11003")
@@ -1367,10 +1367,6 @@ public class KBArticleLocalServiceTest {
 				WorkflowConstants.STATUS_APPROVED,
 				KBArticlePriorityComparator.getInstance(true));
 
-		Assert.assertEquals(
-			kbArticleAndAllDescendantKBArticles.toString(), 5,
-			kbArticleAndAllDescendantKBArticles.size());
-
 		KBArticle currentChildKBArticle =
 			kbArticleAndAllDescendantKBArticles.get(0);
 		KBArticle currentGrandchildKBArticleA =
@@ -1397,6 +1393,10 @@ public class KBArticleLocalServiceTest {
 		Assert.assertEquals(
 			greatGrandchildKBArticleB.getResourcePrimKey(),
 			currentGreatGrandchildKBArticleB.getResourcePrimKey());
+
+		Assert.assertEquals(
+			kbArticleAndAllDescendantKBArticles.toString(), 5,
+			kbArticleAndAllDescendantKBArticles.size());
 	}
 
 	@Test
@@ -1451,10 +1451,6 @@ public class KBArticleLocalServiceTest {
 				WorkflowConstants.STATUS_APPROVED,
 				KBArticlePriorityComparator.getInstance(true));
 
-		Assert.assertEquals(
-			kbArticleAndAllDescendantKBArticles.toString(), 6,
-			kbArticleAndAllDescendantKBArticles.size());
-
 		KBArticle currentParentKBArticle =
 			kbArticleAndAllDescendantKBArticles.get(0);
 		KBArticle currentChildKBArticle =
@@ -1486,6 +1482,10 @@ public class KBArticleLocalServiceTest {
 		Assert.assertEquals(
 			greatGrandchildKBArticleB.getResourcePrimKey(),
 			currentGreatGrandchildKBArticleB.getResourcePrimKey());
+
+		Assert.assertEquals(
+			kbArticleAndAllDescendantKBArticles.toString(), 6,
+			kbArticleAndAllDescendantKBArticles.size());
 	}
 
 	@Test(expected = KBArticleParentException.class)

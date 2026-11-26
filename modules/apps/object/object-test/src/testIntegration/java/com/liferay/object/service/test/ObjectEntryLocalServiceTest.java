@@ -6500,10 +6500,6 @@ public class ObjectEntryLocalServiceTest {
 						TestPropsValues.getCompanyId(),
 						exportImportConfigurationId);
 
-			Assert.assertEquals(
-				exportImportReportEntries.toString(), 1,
-				exportImportReportEntries.size());
-
 			ExportImportReportEntry exportImportReportEntry =
 				exportImportReportEntries.get(0);
 
@@ -6527,6 +6523,10 @@ public class ObjectEntryLocalServiceTest {
 			Assert.assertEquals(
 				ExportImportReportEntryConstants.STATUS_UNRESOLVED,
 				exportImportReportEntry.getStatus());
+
+			Assert.assertEquals(
+				exportImportReportEntries.toString(), 1,
+				exportImportReportEntries.size());
 
 			ExportImportThreadLocal.setPortletImportInProcess(false);
 
@@ -12132,14 +12132,14 @@ public class ObjectEntryLocalServiceTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals(
 				"Use cached values for object entry " +
 					objectEntry.getObjectEntryId(),
 				logEntry.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 	}
 
@@ -12359,14 +12359,14 @@ public class ObjectEntryLocalServiceTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals(
 				logEntry.getMessage(),
 				"Use cached values for object entry " +
 					objectEntry.getObjectEntryId());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 
 		return values;
@@ -12386,14 +12386,14 @@ public class ObjectEntryLocalServiceTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals(
 				logEntry.getMessage(),
 				"Get values for object entry " +
 					objectEntry.getObjectEntryId());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 
 		return values;

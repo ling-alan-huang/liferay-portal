@@ -1024,10 +1024,6 @@ public class FragmentCollectionLocalServiceTest {
 			_fragmentCollectionLocalService.getFragmentCollections(
 				_group.getGroupId(), 1, 4, null);
 
-		Assert.assertEquals(
-			fragmentCollections.toString(), collectionSize - 2,
-			fragmentCollections.size());
-
 		FragmentCollection firstFragmentCollection = fragmentCollections.get(0);
 
 		FragmentCollection lastFragmentCollection = fragmentCollections.get(
@@ -1038,6 +1034,10 @@ public class FragmentCollectionLocalServiceTest {
 
 		Assert.assertEquals(
 			"Fragment Collection 3", lastFragmentCollection.getName());
+
+		Assert.assertEquals(
+			fragmentCollections.toString(), collectionSize - 2,
+			fragmentCollections.size());
 	}
 
 	@Test

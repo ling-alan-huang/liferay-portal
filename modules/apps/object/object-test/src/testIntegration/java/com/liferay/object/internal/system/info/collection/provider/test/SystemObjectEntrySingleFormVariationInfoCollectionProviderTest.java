@@ -124,9 +124,6 @@ public class SystemObjectEntrySingleFormVariationInfoCollectionProviderTest {
 		List<SystemObjectEntry> systemObjectEntries =
 			(List<SystemObjectEntry>)infoPage.getPageItems();
 
-		Assert.assertEquals(
-			systemObjectEntries.toString(), 1, systemObjectEntries.size());
-
 		SystemObjectEntry systemObjectEntry = systemObjectEntries.get(0);
 
 		Assert.assertEquals(expectedClassPK, systemObjectEntry.getClassPK());
@@ -135,6 +132,9 @@ public class SystemObjectEntrySingleFormVariationInfoCollectionProviderTest {
 
 		Assert.assertEquals(expectedComment, values.get("comment"));
 		Assert.assertEquals(expectedName, values.get("name"));
+
+		Assert.assertEquals(
+			systemObjectEntries.toString(), 1, systemObjectEntries.size());
 	}
 
 	private ServiceContext _getServiceContext() throws Exception {

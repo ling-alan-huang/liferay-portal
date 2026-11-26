@@ -161,10 +161,6 @@ public class CommerceSubscriptionsNotificationTest {
 					_commerceOrder.getUserId(), QueryUtil.ALL_POS,
 					QueryUtil.ALL_POS, null);
 
-		Assert.assertEquals(
-			commerceSubscriptionEntries.toString(), 1,
-			commerceSubscriptionEntries.size());
-
 		CommerceSubscriptionEntry commerceSubscriptionEntry =
 			commerceSubscriptionEntries.get(0);
 
@@ -182,6 +178,10 @@ public class CommerceSubscriptionsNotificationTest {
 
 		_commerceSubscriptionEngine.cancelRecurringPayment(
 			commerceSubscriptionEntry.getCommerceSubscriptionEntryId());
+
+		Assert.assertEquals(
+			commerceSubscriptionEntries.toString(), 1,
+			commerceSubscriptionEntries.size());
 
 		_checkCommerceNotificationTemplate(
 			CommerceSubscriptionNotificationConstants.SUBSCRIPTION_CANCELLED);

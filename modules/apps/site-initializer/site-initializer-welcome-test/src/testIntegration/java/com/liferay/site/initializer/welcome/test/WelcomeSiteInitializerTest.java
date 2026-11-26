@@ -393,14 +393,14 @@ public class WelcomeSiteInitializerTest {
 			_portletPreferencesLocalService.getPortletPreferencesByPlid(
 				layoutUtilityPageEntryPlid);
 
-		Assert.assertEquals(
-			portletPreferencesList.toString(), 1,
-			portletPreferencesList.size());
-
 		PortletPreferences portletPreferences = portletPreferencesList.get(0);
 
 		Assert.assertEquals(
 			expectedPortletId, portletPreferences.getPortletId());
+
+		Assert.assertEquals(
+			portletPreferencesList.toString(), 1,
+			portletPreferencesList.size());
 	}
 
 	private LayoutStructure _getLayoutStructure(Layout layout) {

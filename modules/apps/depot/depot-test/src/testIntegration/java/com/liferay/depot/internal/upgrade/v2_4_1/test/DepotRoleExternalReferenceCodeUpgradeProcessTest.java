@@ -95,8 +95,6 @@ public class DepotRoleExternalReferenceCodeUpgradeProcessTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 2, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals(
@@ -121,6 +119,8 @@ public class DepotRoleExternalReferenceCodeUpgradeProcessTest {
 					"\" role in company ", TestPropsValues.getCompanyId(),
 					" because it was customized"),
 				logEntry.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 2, logEntries.size());
 
 			Role assetLibraryAdministratorRole = _roleLocalService.getRole(
 				TestPropsValues.getCompanyId(),

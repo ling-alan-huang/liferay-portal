@@ -142,8 +142,6 @@ public class UserGroupServiceTest {
 		List<UserGroup> userGroups1 = _userGroupService.getGtUserGroups(
 			0, TestPropsValues.getCompanyId(), parentUserGroupId, size);
 
-		Assert.assertEquals(userGroups1.toString(), size, userGroups1.size());
-
 		UserGroup lastUserGroup = userGroups1.get(userGroups1.size() - 1);
 
 		List<UserGroup> userGroups2 = _userGroupService.getGtUserGroups(
@@ -162,6 +160,8 @@ public class UserGroupServiceTest {
 
 			previousUserGroupId = userGroupId;
 		}
+
+		Assert.assertEquals(userGroups1.toString(), size, userGroups1.size());
 	}
 
 	@Test

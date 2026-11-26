@@ -82,10 +82,6 @@ public class BaseSettingsPanelAppTest {
 			_baseSettingsPanelApp.getPanelAppNavigationItems(
 				_httpServletRequest);
 
-		Assert.assertEquals(
-			panelAppNavigationItems.toString(), 2,
-			panelAppNavigationItems.size());
-
 		PanelAppNavigationItem panelAppNavigationItem =
 			panelAppNavigationItems.get(0);
 
@@ -103,6 +99,10 @@ public class BaseSettingsPanelAppTest {
 
 		Assert.assertTrue(
 			href, href.contains("configurationScreenKey=screenKeyValue"));
+
+		Assert.assertEquals(
+			panelAppNavigationItems.toString(), 2,
+			panelAppNavigationItems.size());
 	}
 
 	@Test
@@ -139,10 +139,6 @@ public class BaseSettingsPanelAppTest {
 			_baseSettingsPanelApp.getPanelAppNavigationItems(
 				_httpServletRequest);
 
-		Assert.assertEquals(
-			panelAppNavigationItems.toString(), 4,
-			panelAppNavigationItems.size());
-
 		PanelAppNavigationItem panelAppNavigationItem =
 			panelAppNavigationItems.get(0);
 
@@ -167,6 +163,10 @@ public class BaseSettingsPanelAppTest {
 		panelAppNavigationItem = panelAppNavigationItems.get(3);
 
 		Assert.assertEquals("Screen", panelAppNavigationItem.getLabel());
+
+		Assert.assertEquals(
+			panelAppNavigationItems.toString(), 4,
+			panelAppNavigationItems.size());
 	}
 
 	@Test

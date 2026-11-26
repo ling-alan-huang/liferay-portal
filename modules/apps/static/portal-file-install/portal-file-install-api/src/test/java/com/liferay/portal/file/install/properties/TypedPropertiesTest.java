@@ -94,12 +94,12 @@ public class TypedPropertiesTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals(
 				"Unable to parse config line: " + line, logEntry.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 
 			Assert.assertEquals(null, typedProperties.get("testKey"));
 
@@ -263,13 +263,13 @@ public class TypedPropertiesTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals(
 				"Multiple comment lines found: [#comment1, #comment2]",
 				logEntry.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 
 			Assert.assertEquals("testValue", typedProperties.get("testKey"));
 
@@ -287,13 +287,13 @@ public class TypedPropertiesTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals(
 				"Comment must be at beginning of config file: #comment",
 				logEntry.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 
 			Assert.assertEquals("testValue", typedProperties.get("testKey"));
 

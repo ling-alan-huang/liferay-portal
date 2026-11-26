@@ -137,19 +137,19 @@ public class TableReferenceInfoFactoryTest {
 		Map<Table<?>, List<TableJoinHolder>> childTableJoinHoldersMap =
 			tableReferenceInfo.getChildTableJoinHoldersMap();
 
-		Assert.assertEquals(
-			childTableJoinHoldersMap.toString(), 1,
-			childTableJoinHoldersMap.size());
-
 		List<TableJoinHolder> childJoinHolders = childTableJoinHoldersMap.get(
 			ReferenceExampleTable.INSTANCE);
-
-		Assert.assertEquals(
-			childJoinHolders.toString(), 1, childJoinHolders.size());
 
 		TableJoinHolder childJoinHolder = childJoinHolders.get(0);
 
 		Assert.assertSame(childJoinFunction, childJoinHolder.getJoinFunction());
+
+		Assert.assertEquals(
+			childJoinHolders.toString(), 1, childJoinHolders.size());
+
+		Assert.assertEquals(
+			childTableJoinHoldersMap.toString(), 1,
+			childTableJoinHoldersMap.size());
 
 		Map<Table<?>, List<TableJoinHolder>> parentTableJoinHoldersMap =
 			tableReferenceInfo.getParentTableJoinHoldersMap();
@@ -395,15 +395,8 @@ public class TableReferenceInfoFactoryTest {
 		Map<Table<?>, List<TableJoinHolder>> childTableJoinHoldersMap =
 			tableReferenceInfo.getChildTableJoinHoldersMap();
 
-		Assert.assertEquals(
-			childTableJoinHoldersMap.toString(), 1,
-			childTableJoinHoldersMap.size());
-
 		List<TableJoinHolder> childTableJoinHolders =
 			childTableJoinHoldersMap.get(ReferenceExampleTable.INSTANCE);
-
-		Assert.assertEquals(
-			childTableJoinHolders.toString(), 1, childTableJoinHolders.size());
 
 		TableJoinHolder childJoinHolder = childTableJoinHolders.get(0);
 
@@ -419,10 +412,6 @@ public class TableReferenceInfoFactoryTest {
 
 		Map<Table<?>, List<TableJoinHolder>> parentTableJoinHoldersMap =
 			tableReferenceInfo.getParentTableJoinHoldersMap();
-
-		Assert.assertEquals(
-			parentTableJoinHoldersMap.toString(), 2,
-			parentTableJoinHoldersMap.size());
 
 		List<TableJoinHolder> parentTableJoinHolders =
 			parentTableJoinHoldersMap.get(MainExampleTable.INSTANCE);
@@ -453,6 +442,10 @@ public class TableReferenceInfoFactoryTest {
 
 		childJoinHolder = parentTableJoinHolders.get(0);
 
+		Assert.assertEquals(
+			parentTableJoinHoldersMap.toString(), 2,
+			parentTableJoinHoldersMap.size());
+
 		Assert.assertSame(selfJoinFunction2, childJoinHolder.getJoinFunction());
 
 		Assert.assertSame(
@@ -462,6 +455,13 @@ public class TableReferenceInfoFactoryTest {
 		Assert.assertSame(
 			ReferenceExampleTable.INSTANCE.referenceExampleIdColumn,
 			childJoinHolder.getChildPKColumn());
+
+		Assert.assertEquals(
+			childTableJoinHolders.toString(), 1, childTableJoinHolders.size());
+
+		Assert.assertEquals(
+			childTableJoinHoldersMap.toString(), 1,
+			childTableJoinHoldersMap.size());
 
 		Assert.assertEquals(
 			ReferenceExampleTable.CLASS_NAME_ID,
@@ -870,9 +870,6 @@ public class TableReferenceInfoFactoryTest {
 
 		Assert.assertNotNull(tableJoinHolders);
 
-		Assert.assertEquals(
-			tableJoinHolders.toString(), 1, tableJoinHolders.size());
-
 		TableJoinHolder tableJoinHolder = tableJoinHolders.get(0);
 
 		WhereStep whereStep = tableJoinHolder.getMissingRequirementWhereStep();
@@ -888,6 +885,9 @@ public class TableReferenceInfoFactoryTest {
 		Assert.assertEquals(
 			expectedDSLQuery.toSQL(expectedDefaultASTNodeListener),
 			dslQuery.toSQL(actualDefaultASTNodeListener));
+
+		Assert.assertEquals(
+			tableJoinHolders.toString(), 1, tableJoinHolders.size());
 
 		Assert.assertEquals(
 			expectedDefaultASTNodeListener.getScalarValues(),

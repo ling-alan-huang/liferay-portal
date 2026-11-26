@@ -231,9 +231,6 @@ public class CategoryFacetConfigurationDisplayContextTest {
 
 		JSONArray childrenJSONArray = groupJSONObject.getJSONArray("children");
 
-		Assert.assertEquals(
-			childrenJSONArray.toString(), 1, childrenJSONArray.length());
-
 		JSONObject assetVocabularyJSONObject = childrenJSONArray.getJSONObject(
 			0);
 
@@ -247,6 +244,9 @@ public class CategoryFacetConfigurationDisplayContextTest {
 		Assert.assertEquals(
 			assetVocabulary.getTitle(LocaleUtil.US),
 			assetVocabularyJSONObject.getString("name"));
+
+		Assert.assertEquals(
+			childrenJSONArray.toString(), 1, childrenJSONArray.length());
 	}
 
 	private void _assertGroup(Group group, JSONObject jsonObject)

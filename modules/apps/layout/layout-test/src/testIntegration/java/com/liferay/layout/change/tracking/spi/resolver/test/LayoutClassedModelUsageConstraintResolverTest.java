@@ -121,13 +121,8 @@ public class LayoutClassedModelUsageConstraintResolverTest {
 		Map<Long, List<ConflictInfo>> conflictInfoMap =
 			_ctCollectionLocalService.checkConflicts(_ctCollection);
 
-		Assert.assertEquals(
-			conflictInfoMap.toString(), 1, conflictInfoMap.size());
-
 		List<ConflictInfo> conflictInfos = conflictInfoMap.get(
 			_portal.getClassNameId(LayoutClassedModelUsage.class));
-
-		Assert.assertEquals(conflictInfos.toString(), 1, conflictInfos.size());
 
 		ConflictInfo conflictInfo = conflictInfos.get(0);
 
@@ -138,6 +133,11 @@ public class LayoutClassedModelUsageConstraintResolverTest {
 		Assert.assertEquals(
 			productionLayoutClassedModelUsage.getLayoutClassedModelUsageId(),
 			conflictInfo.getTargetPrimaryKey());
+
+		Assert.assertEquals(conflictInfos.toString(), 1, conflictInfos.size());
+
+		Assert.assertEquals(
+			conflictInfoMap.toString(), 1, conflictInfoMap.size());
 	}
 
 	@DeleteAfterTestRun

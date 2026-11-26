@@ -133,8 +133,6 @@ public class ImportDataDefinitionMVCActionCommandTest
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals(LoggerTestUtil.ERROR, logEntry.getPriority());
@@ -145,6 +143,8 @@ public class ImportDataDefinitionMVCActionCommandTest
 				"The sum of all column sizes of a row must be less than the " +
 					"maximum row size of 12",
 				throwable.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 	}
 
@@ -249,8 +249,6 @@ public class ImportDataDefinitionMVCActionCommandTest
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals(LoggerTestUtil.ERROR, logEntry.getPriority());
@@ -260,6 +258,8 @@ public class ImportDataDefinitionMVCActionCommandTest
 			Assert.assertTrue(
 				StringUtil.startsWith(
 					throwable.getMessage(), "Name is null for locale"));
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 	}
 
@@ -316,8 +316,6 @@ public class ImportDataDefinitionMVCActionCommandTest
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals(LoggerTestUtil.ERROR, logEntry.getPriority());
@@ -327,6 +325,8 @@ public class ImportDataDefinitionMVCActionCommandTest
 			Assert.assertTrue(
 				StringUtil.startsWith(
 					throwable.getMessage(), "Name is null for locale"));
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 	}
 

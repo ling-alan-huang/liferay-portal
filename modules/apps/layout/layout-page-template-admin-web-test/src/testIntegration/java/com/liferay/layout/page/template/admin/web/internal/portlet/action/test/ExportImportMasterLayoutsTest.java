@@ -143,10 +143,6 @@ public class ExportImportMasterLayoutsTest {
 
 		Assert.assertNotNull(layoutsImporterResultEntries);
 
-		Assert.assertEquals(
-			layoutsImporterResultEntries.toString(), 1,
-			layoutsImporterResultEntries.size());
-
 		LayoutsImporterResultEntry layoutPageTemplateImportEntry =
 			layoutsImporterResultEntries.get(0);
 
@@ -204,6 +200,10 @@ public class ExportImportMasterLayoutsTest {
 
 		_validateDropZoneLayoutStructureItem(
 			dropZoneLayoutStructureItem1, dropZoneLayoutStructureItem2);
+
+		Assert.assertEquals(
+			layoutsImporterResultEntries.toString(), 1,
+			layoutsImporterResultEntries.size());
 	}
 
 	private DropZoneLayoutStructureItem _getDropZoneLayoutStructureItem(

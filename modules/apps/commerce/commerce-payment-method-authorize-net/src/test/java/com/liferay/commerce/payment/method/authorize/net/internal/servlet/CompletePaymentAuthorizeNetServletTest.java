@@ -326,8 +326,6 @@ public class CompletePaymentAuthorizeNetServletTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals(
@@ -337,6 +335,8 @@ public class CompletePaymentAuthorizeNetServletTest {
 					" because the Authorize.net signature key is not ",
 					"configured for group ", commerceOrder.getGroupId()),
 				logEntry.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 	}
 
@@ -465,8 +465,6 @@ public class CompletePaymentAuthorizeNetServletTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals(
@@ -475,6 +473,8 @@ public class CompletePaymentAuthorizeNetServletTest {
 					"because the signature key is not configured for group ",
 					commerceOrder.getGroupId()),
 				logEntry.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 
 		Mockito.verify(

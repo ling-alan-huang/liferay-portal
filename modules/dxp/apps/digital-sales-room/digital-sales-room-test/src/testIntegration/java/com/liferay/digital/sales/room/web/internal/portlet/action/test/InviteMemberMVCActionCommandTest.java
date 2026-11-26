@@ -276,8 +276,6 @@ public class InviteMemberMVCActionCommandTest {
 			Group.class.getName(), group.getGroupId(),
 			DSRTicketConstants.TYPE_EXPIRE_MEMBERSHIP);
 
-		Assert.assertEquals(tickets.toString(), 1, tickets.size());
-
 		Ticket expireMembershipTicket = tickets.get(0);
 
 		Assert.assertEquals(
@@ -288,6 +286,8 @@ public class InviteMemberMVCActionCommandTest {
 			expireMembershipTicket.getExtraInfo());
 
 		Assert.assertEquals(user.getUserId(), jsonObject.getLong("userId"));
+
+		Assert.assertEquals(tickets.toString(), 1, tickets.size());
 	}
 
 	private MockLiferayPortletActionRequest _getMockLiferayPortletActionRequest(

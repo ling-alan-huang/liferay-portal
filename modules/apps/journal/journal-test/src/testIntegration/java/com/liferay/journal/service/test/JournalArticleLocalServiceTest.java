@@ -3566,22 +3566,22 @@ public class JournalArticleLocalServiceTest {
 		List<AssetLink> assetLinks = _assetLinkLocalService.getDirectLinks(
 			assetEntry.getEntryId(), false);
 
-		Assert.assertEquals(assetLinks.toString(), 1, assetLinks.size());
-
 		AssetLink assetLink = assetLinks.get(0);
 
 		Assert.assertEquals(assetLinkEntryId, assetLink.getEntryId2());
+
+		Assert.assertEquals(assetLinks.toString(), 1, assetLinks.size());
 	}
 
 	private void _assertAssetTagIds(long classPK, long assetTagId) {
 		List<AssetTag> assetTags = _assetTagLocalService.getTags(
 			JournalArticle.class.getName(), classPK);
 
-		Assert.assertEquals(assetTags.toString(), 1, assetTags.size());
-
 		AssetTag assetTag = assetTags.get(0);
 
 		Assert.assertEquals(assetTagId, assetTag.getTagId());
+
+		Assert.assertEquals(assetTags.toString(), 1, assetTags.size());
 	}
 
 	private void _assertDynamicContentElementLanguageId(
@@ -3590,15 +3590,15 @@ public class JournalArticleLocalServiceTest {
 		List<Element> dynamicContentElements = dynamicElement.elements(
 			"dynamic-content");
 
-		Assert.assertEquals(
-			dynamicContentElements.toString(), 1,
-			dynamicContentElements.size());
-
 		Element dymanicContentElement = dynamicContentElements.get(0);
 
 		Assert.assertEquals(
 			LocaleUtil.toLanguageId(locale),
 			dymanicContentElement.attributeValue("language-id"));
+
+		Assert.assertEquals(
+			dynamicContentElements.toString(), 1,
+			dynamicContentElements.size());
 	}
 
 	private void _assertGetArticleDisplayWithTemplateError(

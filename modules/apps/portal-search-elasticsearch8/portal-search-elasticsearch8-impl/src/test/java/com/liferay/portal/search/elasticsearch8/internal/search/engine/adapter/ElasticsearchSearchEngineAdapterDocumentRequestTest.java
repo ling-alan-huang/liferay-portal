@@ -216,10 +216,6 @@ public class ElasticsearchSearchEngineAdapterDocumentRequestTest {
 		List<BulkDocumentItemResponse> bulkDocumentItemResponses1 =
 			bulkDocumentResponse1.getBulkDocumentItemResponses();
 
-		Assert.assertEquals(
-			bulkDocumentItemResponses1.toString(), 2,
-			bulkDocumentItemResponses1.size());
-
 		BulkDocumentItemResponse bulkDocumentItemResponse1 =
 			bulkDocumentItemResponses1.get(0);
 
@@ -229,6 +225,10 @@ public class ElasticsearchSearchEngineAdapterDocumentRequestTest {
 			bulkDocumentItemResponses1.get(1);
 
 		Assert.assertEquals("2", bulkDocumentItemResponse2.getId());
+
+		Assert.assertEquals(
+			bulkDocumentItemResponses1.toString(), 2,
+			bulkDocumentItemResponses1.size());
 
 		DeleteDocumentRequest deleteDocumentRequest = new DeleteDocumentRequest(
 			_INDEX_NAME, "1");
@@ -261,10 +261,6 @@ public class ElasticsearchSearchEngineAdapterDocumentRequestTest {
 		List<BulkDocumentItemResponse> bulkDocumentItemResponses2 =
 			bulkDocumentResponse2.getBulkDocumentItemResponses();
 
-		Assert.assertEquals(
-			bulkDocumentItemResponses2.toString(), 2,
-			bulkDocumentItemResponses2.size());
-
 		BulkDocumentItemResponse bulkDocumentItemResponse3 =
 			bulkDocumentItemResponses2.get(0);
 
@@ -274,6 +270,10 @@ public class ElasticsearchSearchEngineAdapterDocumentRequestTest {
 			bulkDocumentItemResponses2.get(1);
 
 		Assert.assertEquals("2", bulkDocumentItemResponse4.getId());
+
+		Assert.assertEquals(
+			bulkDocumentItemResponses2.toString(), 2,
+			bulkDocumentItemResponses2.size());
 
 		GetResponse getResponse1 = _getDocument("1");
 
@@ -329,10 +329,6 @@ public class ElasticsearchSearchEngineAdapterDocumentRequestTest {
 		List<BulkDocumentItemResponse> bulkDocumentItemResponses1 =
 			bulkDocumentResponse1.getBulkDocumentItemResponses();
 
-		Assert.assertEquals(
-			bulkDocumentItemResponses1.toString(), 2,
-			bulkDocumentItemResponses1.size());
-
 		BulkDocumentItemResponse bulkDocumentItemResponse1 =
 			bulkDocumentItemResponses1.get(0);
 
@@ -377,10 +373,6 @@ public class ElasticsearchSearchEngineAdapterDocumentRequestTest {
 		List<BulkDocumentItemResponse> bulkDocumentItemResponses2 =
 			bulkDocumentResponse2.getBulkDocumentItemResponses();
 
-		Assert.assertEquals(
-			bulkDocumentItemResponses2.toString(), 2,
-			bulkDocumentItemResponses2.size());
-
 		BulkDocumentItemResponse bulkDocumentItemResponse3 =
 			bulkDocumentItemResponses2.get(0);
 
@@ -394,6 +386,10 @@ public class ElasticsearchSearchEngineAdapterDocumentRequestTest {
 		Assert.assertEquals(
 			bulkDocumentItemResponse2.getId(),
 			bulkDocumentItemResponse4.getId());
+
+		Assert.assertEquals(
+			bulkDocumentItemResponses2.toString(), 2,
+			bulkDocumentItemResponses2.size());
 
 		GetResponse getResponse1 = _getDocument(
 			bulkDocumentItemResponse1.getId());
@@ -413,6 +409,10 @@ public class ElasticsearchSearchEngineAdapterDocumentRequestTest {
 
 		Assert.assertEquals(
 			Boolean.TRUE.toString(), String.valueOf(map2.get(_FIELD_NAME)));
+
+		Assert.assertEquals(
+			bulkDocumentItemResponses1.toString(), 2,
+			bulkDocumentItemResponses1.size());
 	}
 
 	@Test

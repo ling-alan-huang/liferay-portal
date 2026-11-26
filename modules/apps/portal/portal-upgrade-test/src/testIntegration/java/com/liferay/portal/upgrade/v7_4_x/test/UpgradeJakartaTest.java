@@ -612,14 +612,14 @@ public class UpgradeJakartaTest {
 		List<KaleoDefinitionVersion> kaleoDefinitionVersions =
 			kaleoDefinition.getKaleoDefinitionVersions();
 
-		Assert.assertEquals(
-			kaleoDefinitionVersions.toString(), 1,
-			kaleoDefinitionVersions.size());
-
 		KaleoDefinitionVersion kaleoDefinitionVersion =
 			kaleoDefinitionVersions.get(0);
 
 		content = kaleoDefinitionVersion.getContentAsXML();
+
+		Assert.assertEquals(
+			kaleoDefinitionVersions.toString(), 1,
+			kaleoDefinitionVersions.size());
 
 		Assert.assertTrue(content.contains(_JAKARTA_IMPORT));
 

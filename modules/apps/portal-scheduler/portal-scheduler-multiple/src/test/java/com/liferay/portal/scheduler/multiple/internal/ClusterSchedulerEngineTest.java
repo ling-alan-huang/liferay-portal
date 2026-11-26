@@ -395,8 +395,6 @@ public class ClusterSchedulerEngineTest {
 
 			clusterMasterTokenTransitionListener.masterTokenReleased();
 
-			Assert.assertEquals(logEntries.toString(), 3, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals(
@@ -413,6 +411,8 @@ public class ClusterSchedulerEngineTest {
 
 			Assert.assertEquals(
 				"Unable to notify slave", logEntry.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 3, logEntries.size());
 
 			Assert.assertFalse(_mockClusterMasterExecutor.isMaster());
 
@@ -923,8 +923,6 @@ public class ClusterSchedulerEngineTest {
 
 			clusterMasterTokenTransitionListener.masterTokenAcquired();
 
-			Assert.assertEquals(logEntries.toString(), 2, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals(
@@ -935,6 +933,8 @@ public class ClusterSchedulerEngineTest {
 
 			Assert.assertEquals(
 				"Unable to notify slave", logEntry.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 2, logEntries.size());
 
 			Assert.assertTrue(_mockClusterMasterExecutor.isMaster());
 

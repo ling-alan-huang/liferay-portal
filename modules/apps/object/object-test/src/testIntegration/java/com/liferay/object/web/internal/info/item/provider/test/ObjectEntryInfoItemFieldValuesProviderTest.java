@@ -496,15 +496,15 @@ public class ObjectEntryInfoItemFieldValuesProviderTest {
 				(List<KeyLocalizedLabelPair>)
 					categoriesInfoFieldValue.getValue();
 
-			Assert.assertEquals(
-				keyLocalizedLabelPairs.toString(), 1,
-				keyLocalizedLabelPairs.size());
-
 			KeyLocalizedLabelPair keyLocalizedLabelPair =
 				keyLocalizedLabelPairs.get(0);
 
 			Assert.assertEquals(
 				assetCategory.getName(), keyLocalizedLabelPair.getKey());
+
+			Assert.assertEquals(
+				keyLocalizedLabelPairs.toString(), 1,
+				keyLocalizedLabelPairs.size());
 
 			InfoFieldValue<Object> tagNamesInfoFieldValue =
 				infoItemFieldValues.getInfoFieldValue("tagNames");

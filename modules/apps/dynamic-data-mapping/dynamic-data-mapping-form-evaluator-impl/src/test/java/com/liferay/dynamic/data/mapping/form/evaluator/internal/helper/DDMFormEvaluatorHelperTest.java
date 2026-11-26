@@ -156,16 +156,16 @@ public class DDMFormEvaluatorHelperTest {
 				ddmFormEvaluatorEvaluateResponse.
 					getDDMFormFieldsPropertyChanges();
 
-		Assert.assertEquals(
-			ddmFormFieldsPropertyChanges.toString(), 1,
-			ddmFormFieldsPropertyChanges.size());
-
 		Map<String, Object> ddmFormFieldPropertyChanges =
 			ddmFormFieldsPropertyChanges.get(
 				new DDMFormEvaluatorFieldContextKey(
 					"field0", "field0_instanceId"));
 
 		Assert.assertTrue((boolean)ddmFormFieldPropertyChanges.get("readOnly"));
+
+		Assert.assertEquals(
+			ddmFormFieldsPropertyChanges.toString(), 1,
+			ddmFormFieldsPropertyChanges.size());
 	}
 
 	@Test
@@ -217,16 +217,16 @@ public class DDMFormEvaluatorHelperTest {
 				ddmFormEvaluatorEvaluateResponse.
 					getDDMFormFieldsPropertyChanges();
 
-		Assert.assertEquals(
-			ddmFormFieldsPropertyChanges.toString(), 1,
-			ddmFormFieldsPropertyChanges.size());
-
 		Map<String, Object> ddmFormFieldPropertyChanges =
 			ddmFormFieldsPropertyChanges.get(
 				new DDMFormEvaluatorFieldContextKey(
 					"field0", "field0_instanceId"));
 
 		Assert.assertTrue((boolean)ddmFormFieldPropertyChanges.get("readOnly"));
+
+		Assert.assertEquals(
+			ddmFormFieldsPropertyChanges.toString(), 1,
+			ddmFormFieldsPropertyChanges.size());
 	}
 
 	@Test
@@ -557,16 +557,16 @@ public class DDMFormEvaluatorHelperTest {
 				ddmFormEvaluatorEvaluateResponse.
 					getDDMFormFieldsPropertyChanges();
 
-		Assert.assertEquals(
-			ddmFormFieldsPropertyChanges.toString(), 1,
-			ddmFormFieldsPropertyChanges.size());
-
 		Map<String, Object> ddmFormFieldPropertyChanges =
 			ddmFormFieldsPropertyChanges.get(
 				new DDMFormEvaluatorFieldContextKey(
 					"field0", "field0_instanceId"));
 
 		Assert.assertFalse((boolean)ddmFormFieldPropertyChanges.get("visible"));
+
+		Assert.assertEquals(
+			ddmFormFieldsPropertyChanges.toString(), 1,
+			ddmFormFieldsPropertyChanges.size());
 	}
 
 	@Test
@@ -605,16 +605,16 @@ public class DDMFormEvaluatorHelperTest {
 				ddmFormEvaluatorEvaluateResponse.
 					getDDMFormFieldsPropertyChanges();
 
-		Assert.assertEquals(
-			ddmFormFieldsPropertyChanges.toString(), 1,
-			ddmFormFieldsPropertyChanges.size());
-
 		Map<String, Object> ddmFormFieldPropertyChanges =
 			ddmFormFieldsPropertyChanges.get(
 				new DDMFormEvaluatorFieldContextKey(
 					"field0", "field0_instanceId"));
 
 		Assert.assertFalse((boolean)ddmFormFieldPropertyChanges.get("visible"));
+
+		Assert.assertEquals(
+			ddmFormFieldsPropertyChanges.toString(), 1,
+			ddmFormFieldsPropertyChanges.size());
 	}
 
 	@Test
@@ -756,10 +756,6 @@ public class DDMFormEvaluatorHelperTest {
 				ddmFormEvaluatorEvaluateResponse.
 					getDDMFormFieldsPropertyChanges();
 
-		Assert.assertEquals(
-			ddmFormFieldsPropertyChanges.toString(), 1,
-			ddmFormFieldsPropertyChanges.size());
-
 		Map<String, Object> ddmFormFieldPropertyChanges =
 			ddmFormFieldsPropertyChanges.get(
 				new DDMFormEvaluatorFieldContextKey(
@@ -769,6 +765,10 @@ public class DDMFormEvaluatorHelperTest {
 			"This field is required.",
 			ddmFormFieldPropertyChanges.get("errorMessage"));
 		Assert.assertFalse((boolean)ddmFormFieldPropertyChanges.get("valid"));
+
+		Assert.assertEquals(
+			ddmFormFieldsPropertyChanges.toString(), 1,
+			ddmFormFieldsPropertyChanges.size());
 	}
 
 	@Test
@@ -804,10 +804,6 @@ public class DDMFormEvaluatorHelperTest {
 				ddmFormEvaluatorEvaluateResponse.
 					getDDMFormFieldsPropertyChanges();
 
-		Assert.assertEquals(
-			ddmFormFieldsPropertyChanges.toString(), 1,
-			ddmFormFieldsPropertyChanges.size());
-
 		Map<String, Object> ddmFormFieldPropertyChanges =
 			ddmFormFieldsPropertyChanges.get(
 				new DDMFormEvaluatorFieldContextKey(
@@ -815,6 +811,10 @@ public class DDMFormEvaluatorHelperTest {
 
 		Assert.assertNull(ddmFormFieldPropertyChanges.get("errorMessage"));
 		Assert.assertNull(ddmFormFieldPropertyChanges.get("valid"));
+
+		Assert.assertEquals(
+			ddmFormFieldsPropertyChanges.toString(), 1,
+			ddmFormFieldsPropertyChanges.size());
 	}
 
 	@Test
@@ -843,10 +843,6 @@ public class DDMFormEvaluatorHelperTest {
 				ddmFormEvaluatorEvaluateResponse.
 					getDDMFormFieldsPropertyChanges();
 
-		Assert.assertEquals(
-			ddmFormFieldsPropertyChanges.toString(), 1,
-			ddmFormFieldsPropertyChanges.size());
-
 		Map<String, Object> ddmFormFieldPropertyChanges =
 			ddmFormFieldsPropertyChanges.get(
 				new DDMFormEvaluatorFieldContextKey(
@@ -856,6 +852,10 @@ public class DDMFormEvaluatorHelperTest {
 			"This field is required.",
 			ddmFormFieldPropertyChanges.get("errorMessage"));
 		Assert.assertFalse((boolean)ddmFormFieldPropertyChanges.get("valid"));
+
+		Assert.assertEquals(
+			ddmFormFieldsPropertyChanges.toString(), 1,
+			ddmFormFieldsPropertyChanges.size());
 	}
 
 	@Test
@@ -893,10 +893,6 @@ public class DDMFormEvaluatorHelperTest {
 				ddmFormEvaluatorEvaluateResponse.
 					getDDMFormFieldsPropertyChanges();
 
-		Assert.assertEquals(
-			ddmFormFieldsPropertyChanges.toString(), 1,
-			ddmFormFieldsPropertyChanges.size());
-
 		Map<String, Object> ddmFormFieldPropertyChanges =
 			ddmFormFieldsPropertyChanges.get(
 				new DDMFormEvaluatorFieldContextKey(
@@ -906,6 +902,10 @@ public class DDMFormEvaluatorHelperTest {
 			"This field is required.",
 			ddmFormFieldPropertyChanges.get("errorMessage"));
 		Assert.assertFalse((boolean)ddmFormFieldPropertyChanges.get("valid"));
+
+		Assert.assertEquals(
+			ddmFormFieldsPropertyChanges.toString(), 1,
+			ddmFormFieldsPropertyChanges.size());
 	}
 
 	@Test
@@ -992,10 +992,6 @@ public class DDMFormEvaluatorHelperTest {
 				ddmFormEvaluatorEvaluateResponse.
 					getDDMFormFieldsPropertyChanges();
 
-		Assert.assertEquals(
-			ddmFormFieldsPropertyChanges.toString(), 1,
-			ddmFormFieldsPropertyChanges.size());
-
 		Map<String, Object> ddmFormFieldPropertyChanges =
 			ddmFormFieldsPropertyChanges.get(
 				new DDMFormEvaluatorFieldContextKey(
@@ -1006,6 +1002,10 @@ public class DDMFormEvaluatorHelperTest {
 			ddmFormFieldPropertyChanges.size());
 
 		Assert.assertTrue((Boolean)ddmFormFieldPropertyChanges.get("visible"));
+
+		Assert.assertEquals(
+			ddmFormFieldsPropertyChanges.toString(), 1,
+			ddmFormFieldsPropertyChanges.size());
 	}
 
 	@Test
@@ -1411,10 +1411,6 @@ public class DDMFormEvaluatorHelperTest {
 				ddmFormEvaluatorEvaluateResponse.
 					getDDMFormFieldsPropertyChanges();
 
-		Assert.assertEquals(
-			ddmFormFieldsPropertyChanges.toString(), 1,
-			ddmFormFieldsPropertyChanges.size());
-
 		Map<String, Object> ddmFormFieldPropertyChanges =
 			ddmFormFieldsPropertyChanges.get(
 				new DDMFormEvaluatorFieldContextKey(
@@ -1424,6 +1420,10 @@ public class DDMFormEvaluatorHelperTest {
 			"This field should be zero.",
 			ddmFormFieldPropertyChanges.get("errorMessage"));
 		Assert.assertFalse((boolean)ddmFormFieldPropertyChanges.get("valid"));
+
+		Assert.assertEquals(
+			ddmFormFieldsPropertyChanges.toString(), 1,
+			ddmFormFieldsPropertyChanges.size());
 	}
 
 	@Test
@@ -1474,10 +1474,6 @@ public class DDMFormEvaluatorHelperTest {
 				ddmFormEvaluatorEvaluateResponse.
 					getDDMFormFieldsPropertyChanges();
 
-		Assert.assertEquals(
-			ddmFormFieldsPropertyChanges.toString(), 1,
-			ddmFormFieldsPropertyChanges.size());
-
 		Map<String, Object> ddmFormFieldPropertyChanges =
 			ddmFormFieldsPropertyChanges.get(
 				new DDMFormEvaluatorFieldContextKey(
@@ -1487,6 +1483,10 @@ public class DDMFormEvaluatorHelperTest {
 			"This field is invalid.",
 			ddmFormFieldPropertyChanges.get("errorMessage"));
 		Assert.assertFalse((boolean)ddmFormFieldPropertyChanges.get("valid"));
+
+		Assert.assertEquals(
+			ddmFormFieldsPropertyChanges.toString(), 1,
+			ddmFormFieldsPropertyChanges.size());
 	}
 
 	@Test
@@ -1609,10 +1609,6 @@ public class DDMFormEvaluatorHelperTest {
 				ddmFormEvaluatorEvaluateResponse.
 					getDDMFormFieldsPropertyChanges();
 
-		Assert.assertEquals(
-			ddmFormFieldsPropertyChanges.toString(), 1,
-			ddmFormFieldsPropertyChanges.size());
-
 		Map<String, Object> ddmFormFieldPropertyChanges =
 			ddmFormFieldsPropertyChanges.get(
 				new DDMFormEvaluatorFieldContextKey(
@@ -1622,6 +1618,10 @@ public class DDMFormEvaluatorHelperTest {
 			"This field is invalid.",
 			ddmFormFieldPropertyChanges.get("errorMessage"));
 		Assert.assertFalse((boolean)ddmFormFieldPropertyChanges.get("valid"));
+
+		Assert.assertEquals(
+			ddmFormFieldsPropertyChanges.toString(), 1,
+			ddmFormFieldsPropertyChanges.size());
 	}
 
 	@Test
@@ -1723,10 +1723,6 @@ public class DDMFormEvaluatorHelperTest {
 				ddmFormEvaluatorEvaluateResponse.
 					getDDMFormFieldsPropertyChanges();
 
-		Assert.assertEquals(
-			ddmFormFieldsPropertyChanges.toString(), 2,
-			ddmFormFieldsPropertyChanges.size());
-
 		Map<String, Object> ddmFormFieldPropertyChanges1 =
 			ddmFormFieldsPropertyChanges.get(
 				new DDMFormEvaluatorFieldContextKey("field0", "field0_0"));
@@ -1743,6 +1739,10 @@ public class DDMFormEvaluatorHelperTest {
 
 		Assert.assertFalse((boolean)ddmFormFieldPropertyChanges1.get("valid"));
 		Assert.assertTrue((boolean)ddmFormFieldPropertyChanges2.get("valid"));
+
+		Assert.assertEquals(
+			ddmFormFieldsPropertyChanges.toString(), 2,
+			ddmFormFieldsPropertyChanges.size());
 	}
 
 	@Test
@@ -1774,10 +1774,6 @@ public class DDMFormEvaluatorHelperTest {
 				ddmFormEvaluatorEvaluateResponse.
 					getDDMFormFieldsPropertyChanges();
 
-		Assert.assertEquals(
-			ddmFormFieldsPropertyChanges.toString(), 1,
-			ddmFormFieldsPropertyChanges.size());
-
 		Map<String, Object> ddmFormFieldPropertyChanges =
 			ddmFormFieldsPropertyChanges.get(
 				new DDMFormEvaluatorFieldContextKey(
@@ -1787,6 +1783,10 @@ public class DDMFormEvaluatorHelperTest {
 			"The value should be greater than 10.",
 			ddmFormFieldPropertyChanges.get("errorMessage"));
 		Assert.assertFalse((boolean)ddmFormFieldPropertyChanges.get("valid"));
+
+		Assert.assertEquals(
+			ddmFormFieldsPropertyChanges.toString(), 1,
+			ddmFormFieldsPropertyChanges.size());
 	}
 
 	@Test
@@ -1822,16 +1822,16 @@ public class DDMFormEvaluatorHelperTest {
 				ddmFormEvaluatorEvaluateResponse.
 					getDDMFormFieldsPropertyChanges();
 
-		Assert.assertEquals(
-			ddmFormFieldsPropertyChanges.toString(), 1,
-			ddmFormFieldsPropertyChanges.size());
-
 		Map<String, Object> ddmFormFieldPropertyChanges =
 			ddmFormFieldsPropertyChanges.get(
 				new DDMFormEvaluatorFieldContextKey(
 					"field1", "field1_instanceId"));
 
 		Assert.assertTrue((boolean)ddmFormFieldPropertyChanges.get("visible"));
+
+		Assert.assertEquals(
+			ddmFormFieldsPropertyChanges.toString(), 1,
+			ddmFormFieldsPropertyChanges.size());
 	}
 
 	protected DDMFormEvaluatorEvaluateResponse evaluate(

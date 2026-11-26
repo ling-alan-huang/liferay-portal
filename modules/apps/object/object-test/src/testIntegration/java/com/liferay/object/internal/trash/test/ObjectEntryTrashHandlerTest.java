@@ -286,13 +286,13 @@ public class ObjectEntryTrashHandlerTest extends BaseTrashHandlerTestCase {
 				_portal.getClassNameId(objectEntry.getModelClassName()),
 				primaryKey, SystemEventConstants.TYPE_DELETE);
 
-		Assert.assertEquals(systemEvents.toString(), 1, systemEvents.size());
-
 		SystemEvent systemEvent = systemEvents.get(0);
 
 		Assert.assertEquals(
 			objectEntry.getExternalReferenceCode(),
 			systemEvent.getClassExternalReferenceCode());
+
+		Assert.assertEquals(systemEvents.toString(), 1, systemEvents.size());
 	}
 
 	private void _testCheckEntriesWithPermissions() throws Exception {

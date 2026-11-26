@@ -305,14 +305,14 @@ public class AssetCategoryServiceTest {
 				new long[] {_assetVocabulary.getVocabularyId()},
 				QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 
-			Assert.assertEquals(jsonArray.toString(), 1, jsonArray.length());
-
 			JSONObject jsonObject = JSONFactoryUtil.createJSONObject(
 				String.valueOf(jsonArray.get(0)));
 
 			Assert.assertEquals(
 				assetCategory2.getCategoryId(),
 				jsonObject.getLong("categoryId"));
+
+			Assert.assertEquals(jsonArray.toString(), 1, jsonArray.length());
 		}
 		finally {
 			_userLocalService.deleteUser(siteAdministratorUser.getUserId());

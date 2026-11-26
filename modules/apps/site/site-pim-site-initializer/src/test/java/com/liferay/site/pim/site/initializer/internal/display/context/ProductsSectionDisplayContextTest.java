@@ -151,10 +151,6 @@ public class ProductsSectionDisplayContextTest {
 			bulkActionDropdownItems =
 				productsSectionDisplayContext.getBulkActionDropdownItems();
 
-			Assert.assertEquals(
-				bulkActionDropdownItems.toString(), 1,
-				bulkActionDropdownItems.size());
-
 			DropdownItem deleteDropdownItem = bulkActionDropdownItems.get(0);
 
 			Assert.assertEquals("#", deleteDropdownItem.get("href"));
@@ -164,6 +160,10 @@ public class ProductsSectionDisplayContextTest {
 			Map<?, ?> data = (Map<?, ?>)deleteDropdownItem.get("data");
 
 			Assert.assertEquals("delete", data.get("id"));
+
+			Assert.assertEquals(
+				bulkActionDropdownItems.toString(), 1,
+				bulkActionDropdownItems.size());
 		}
 	}
 

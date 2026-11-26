@@ -1103,10 +1103,6 @@ public class LayoutStructureTest {
 		List<LayoutStructureItem> copiedLayoutStructureItems,
 		LayoutStructureItem parentLayoutStructureItem) {
 
-		Assert.assertEquals(
-			copiedLayoutStructureItems.toString(), expectedCopiedItemsIds,
-			copiedLayoutStructureItems.size());
-
 		LayoutStructureItem layoutStructureItem =
 			copiedLayoutStructureItems.get(0);
 
@@ -1122,6 +1118,10 @@ public class LayoutStructureTest {
 			childrenItemIds.size());
 		Assert.assertEquals(
 			childrenItemIds.get(childIndex), layoutStructureItem.getItemId());
+
+		Assert.assertEquals(
+			copiedLayoutStructureItems.toString(), expectedCopiedItemsIds,
+			copiedLayoutStructureItems.size());
 	}
 
 	private FragmentEntry _fragmentEntry;

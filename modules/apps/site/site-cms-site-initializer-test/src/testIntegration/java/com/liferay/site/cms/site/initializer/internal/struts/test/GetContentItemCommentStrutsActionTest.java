@@ -220,8 +220,6 @@ public class GetContentItemCommentStrutsActionTest {
 
 		JSONArray jsonArray = _execute(layout, objectEntry, user);
 
-		Assert.assertEquals(jsonArray.toString(), 1, jsonArray.length());
-
 		JSONObject jsonObject = jsonArray.getJSONObject(0);
 
 		Assert.assertEquals(
@@ -229,6 +227,8 @@ public class GetContentItemCommentStrutsActionTest {
 			jsonObject.getString("ratingsClassName"));
 		Assert.assertEquals(thumbDown, jsonObject.getBoolean("thumbDown"));
 		Assert.assertEquals(thumbUp, jsonObject.getBoolean("thumbUp"));
+
+		Assert.assertEquals(jsonArray.toString(), 1, jsonArray.length());
 	}
 
 	@Inject

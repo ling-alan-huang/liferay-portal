@@ -2703,10 +2703,6 @@ public class BatchEnginePortletDataHandlerTest {
 				notificationTemplateJSONObject.getString(
 					"externalReferenceCode")));
 
-		Assert.assertEquals(
-			notificationTemplateJSONObjects.toString(), 1,
-			notificationTemplateJSONObjects.size());
-
 		JSONObject notificationTemplateJSONObject =
 			notificationTemplateJSONObjects.get(0);
 
@@ -2721,6 +2717,10 @@ public class BatchEnginePortletDataHandlerTest {
 			objectDefinition.getExternalReferenceCode(),
 			notificationTemplateJSONObject.getString(
 				"objectDefinitionExternalReferenceCode"));
+
+		Assert.assertEquals(
+			notificationTemplateJSONObjects.toString(), 1,
+			notificationTemplateJSONObjects.size());
 
 		_notificationTemplateLocalService.deleteNotificationTemplate(
 			notificationTemplate);
@@ -4086,13 +4086,13 @@ public class BatchEnginePortletDataHandlerTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals(
 				"Specify at least one assignment for the review task node",
 				logEntry.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 
 		Assert.assertNull(
@@ -4207,9 +4207,6 @@ public class BatchEnginePortletDataHandlerTest {
 					KaleoNode.class.getName(),
 					kaleoDefinitionVersion.getKaleoDefinitionVersionId());
 
-		Assert.assertEquals(
-			kaleoNotifications.toString(), 1, kaleoNotifications.size());
-
 		KaleoNotification kaleoNotification = kaleoNotifications.get(0);
 
 		Assert.assertEquals(
@@ -4231,6 +4228,9 @@ public class BatchEnginePortletDataHandlerTest {
 				_kaleoTaskAssignmentLocalService.getKaleoTaskAssignments(
 					kaleoTask.getKaleoTaskId()),
 				KaleoTaskAssignment::getAssigneeClassPK));
+
+		Assert.assertEquals(
+			kaleoNotifications.toString(), 1, kaleoNotifications.size());
 
 		List<ExportImportReportEntry> exportImportReportEntries =
 			_exportImportReportEntryLocalService.getExportImportReportEntries(
@@ -4818,14 +4818,14 @@ public class BatchEnginePortletDataHandlerTest {
 				objectDefinition.getObjectDefinitionId(), QueryUtil.ALL_POS,
 				QueryUtil.ALL_POS);
 
-		Assert.assertEquals(
-			importedObjectEntries.toString(), 1, importedObjectEntries.size());
-
 		ObjectEntry importedObjectEntry = importedObjectEntries.get(0);
 
 		Assert.assertEquals(
 			listTypeEntries[0].getKey(),
 			MapUtil.getString(importedObjectEntry.getValues(), picklistName));
+
+		Assert.assertEquals(
+			importedObjectEntries.toString(), 1, importedObjectEntries.size());
 	}
 
 	@Test
@@ -6762,10 +6762,6 @@ public class BatchEnginePortletDataHandlerTest {
 				TestPropsValues.getCompanyId(),
 				exportImportConfiguration.getExportImportConfigurationId());
 
-		Assert.assertEquals(
-			exportImportReportEntries.toString(), 1,
-			exportImportReportEntries.size());
-
 		ExportImportReportEntry exportImportReportEntry =
 			exportImportReportEntries.get(0);
 
@@ -6777,6 +6773,10 @@ public class BatchEnginePortletDataHandlerTest {
 			ExportImportReportEntryConstants.STATUS_UNRESOLVED,
 			ExportImportReportEntryConstants.TYPE_ERROR,
 			exportImportReportEntry);
+
+		Assert.assertEquals(
+			exportImportReportEntries.toString(), 1,
+			exportImportReportEntries.size());
 	}
 
 	private void
@@ -7144,9 +7144,6 @@ public class BatchEnginePortletDataHandlerTest {
 				objectDefinition.getObjectDefinitionId(), QueryUtil.ALL_POS,
 				QueryUtil.ALL_POS);
 
-		Assert.assertEquals(
-			objectEntriesList.toString(), 1, objectEntriesList.size());
-
 		ObjectEntry importedObjectEntry = objectEntriesList.get(0);
 
 		String importedRichTextValue = MapUtil.getString(
@@ -7195,6 +7192,9 @@ public class BatchEnginePortletDataHandlerTest {
 		}
 
 		_deleteObjectEntries(importedObjectEntry);
+
+		Assert.assertEquals(
+			objectEntriesList.toString(), 1, objectEntriesList.size());
 	}
 
 	private void _testExportImportSiteObjectEntriesWithRichTextAndURLs(

@@ -663,10 +663,6 @@ public class UserNotificationTypeTest extends BaseNotificationTypeTest {
 			notificationQueueEntryLocalService.getNotificationQueueEntries(
 				QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 
-		Assert.assertEquals(
-			notificationQueueEntries.toString(), 1,
-			notificationQueueEntries.size());
-
 		NotificationQueueEntry notificationQueueEntry =
 			notificationQueueEntries.get(0);
 
@@ -684,6 +680,10 @@ public class UserNotificationTypeTest extends BaseNotificationTypeTest {
 
 		notificationQueueEntryLocalService.deleteNotificationQueueEntry(
 			notificationQueueEntry);
+
+		Assert.assertEquals(
+			notificationQueueEntries.toString(), 1,
+			notificationQueueEntries.size());
 	}
 
 	private void _assertNotificationRecipientSetting(

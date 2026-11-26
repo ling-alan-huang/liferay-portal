@@ -162,13 +162,13 @@ public class UnscheduleLaunchMVCActionCommandTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals(
 				"Redirect URL " + redirect + " is not allowed",
 				logEntry.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 
 		Assert.assertTrue(Validator.isNull(jsonObject.getString("redirect")));

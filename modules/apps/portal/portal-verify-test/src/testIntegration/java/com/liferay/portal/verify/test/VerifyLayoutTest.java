@@ -137,12 +137,12 @@ public class VerifyLayoutTest extends BaseVerifyProcessTestCase {
 
 		super.testVerify();
 
-		Assert.assertEquals(
-			_errorMessages.toString(), 1, _errorMessages.size());
-
 		String errorMessage = _errorMessages.get(0);
 
 		Assert.assertTrue(errorMessage.contains(_keyword1));
+
+		Assert.assertEquals(
+			_errorMessages.toString(), 1, _errorMessages.size());
 	}
 
 	@Test
@@ -154,12 +154,12 @@ public class VerifyLayoutTest extends BaseVerifyProcessTestCase {
 
 		super.testVerify();
 
-		Assert.assertEquals(
-			_errorMessages.toString(), 1, _errorMessages.size());
-
 		String errorMessage = _errorMessages.get(0);
 
 		Assert.assertTrue(errorMessage.contains(_keyword1));
+
+		Assert.assertEquals(
+			_errorMessages.toString(), 1, _errorMessages.size());
 	}
 
 	@Test
@@ -215,12 +215,12 @@ public class VerifyLayoutTest extends BaseVerifyProcessTestCase {
 
 		super.testVerify();
 
-		Assert.assertEquals(
-			_errorMessages.toString(), 1, _errorMessages.size());
-
 		String errorMessage = _errorMessages.get(0);
 
 		Assert.assertTrue(errorMessage.contains(_keyword1));
+
+		Assert.assertEquals(
+			_errorMessages.toString(), 1, _errorMessages.size());
 	}
 
 	@Test

@@ -516,14 +516,14 @@ public class LayoutUpgradeProcessTest extends BaseCTUpgradeProcessTestCase {
 			return;
 		}
 
-		Assert.assertEquals(
-			fragmentEntryLinks.toString(), 1, fragmentEntryLinks.size());
-
 		FragmentEntryLink fragmentEntryLink = fragmentEntryLinks.get(0);
 
 		_executeUpdate(
 			"update FragmentEntryLink set uuid_ = ? where plid = ?",
 			fragmentEntryLink.getUuid(), layout.getPlid());
+
+		Assert.assertEquals(
+			fragmentEntryLinks.toString(), 1, fragmentEntryLinks.size());
 	}
 
 	private void _executeUpdate(String sql, Object... parameters)

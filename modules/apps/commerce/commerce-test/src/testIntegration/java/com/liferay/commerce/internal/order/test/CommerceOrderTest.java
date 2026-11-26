@@ -307,9 +307,6 @@ public class CommerceOrderTest {
 
 		commerceOrders = _getUserOrders(commerceChannelGroupId, false);
 
-		Assert.assertEquals(
-			commerceOrders.toString(), 1, commerceOrders.size());
-
 		CommerceOrder actualCommerceOrder = commerceOrders.get(0);
 
 		AccountEntry acutalAccountEntry = actualCommerceOrder.getAccountEntry();
@@ -319,6 +316,9 @@ public class CommerceOrderTest {
 		Assert.assertEquals(accountEntry, acutalAccountEntry);
 		Assert.assertNotEquals(secondAccountEntry, acutalAccountEntry);
 		Assert.assertNotEquals(secondCommerceOrder, actualCommerceOrder);
+
+		Assert.assertEquals(
+			commerceOrders.toString(), 1, commerceOrders.size());
 
 		_commerceOrderLocalService.deleteCommerceOrders(commerceChannelGroupId);
 		_accountEntryLocalService.deleteAccountEntry(accountEntry);

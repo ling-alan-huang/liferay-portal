@@ -277,11 +277,11 @@ public class ExportInstanceMVCActionCommandTest {
 		List<Map<String, String>> maps =
 			(List<Map<String, String>>)argumentCaptor.getValue();
 
-		Assert.assertEquals(maps.toString(), 1, maps.size());
-
 		Map<String, String> map = maps.get(0);
 
 		Assert.assertEquals(_PORTAL_INSTANCE_ID, map.get("portalInstanceId"));
+
+		Assert.assertEquals(maps.toString(), 1, maps.size());
 	}
 
 	@Test
