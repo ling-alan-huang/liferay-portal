@@ -202,10 +202,6 @@ public class ObjectEntryEntityModelTest {
 		Map<String, EntityField> expectedEntityFieldsMap,
 		Map<String, EntityField> actualEntityFieldsMap) {
 
-		Assert.assertEquals(
-			actualEntityFieldsMap.toString(), expectedEntityFieldsMap.size(),
-			actualEntityFieldsMap.size());
-
 		for (Map.Entry<String, EntityField> entry :
 				expectedEntityFieldsMap.entrySet()) {
 
@@ -220,6 +216,10 @@ public class ObjectEntryEntityModelTest {
 				actualEntityField.toString(), expectedEntityField.getType(),
 				actualEntityField.getType());
 		}
+
+		Assert.assertEquals(
+			actualEntityFieldsMap.toString(), expectedEntityFieldsMap.size(),
+			actualEntityFieldsMap.size());
 	}
 
 	private ObjectField _createObjectField(String dbType) {

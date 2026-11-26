@@ -427,15 +427,15 @@ public class ImportTaskResourceTest {
 
 			FailedItem[] failedItems = importTask.getFailedItems();
 
-			Assert.assertEquals(
-				Arrays.toString(failedItems), 1, failedItems.length);
-
 			FailedItem failedItem = failedItems[0];
 
 			String item = failedItem.getItem();
 
 			Assert.assertTrue(item, item.contains(_user.getEmailAddress()));
 			Assert.assertFalse(item, item.contains(password));
+
+			Assert.assertEquals(
+				Arrays.toString(failedItems), 1, failedItems.length);
 
 			String content = _getContent(importTask.getId());
 

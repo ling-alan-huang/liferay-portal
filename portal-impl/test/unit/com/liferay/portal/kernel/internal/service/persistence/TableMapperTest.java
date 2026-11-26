@@ -2167,7 +2167,6 @@ public class TableMapperTest {
 
 		@Override
 		public int update(Object... params) {
-			Assert.assertEquals(3, params.length);
 			Assert.assertSame(Long.class, params[0].getClass());
 			Assert.assertSame(Long.class, params[1].getClass());
 			Assert.assertSame(Long.class, params[2].getClass());
@@ -2197,6 +2196,8 @@ public class TableMapperTest {
 
 				_mappingStore.put(leftPrimaryKey, rightPrimaryKeys);
 			}
+
+			Assert.assertEquals(3, params.length);
 
 			return 1;
 		}
@@ -2247,7 +2248,6 @@ public class TableMapperTest {
 
 		@Override
 		public List<Integer> execute(Object... params) {
-			Assert.assertEquals(2, params.length);
 			Assert.assertSame(Long.class, params[0].getClass());
 			Assert.assertSame(Long.class, params[1].getClass());
 
@@ -2267,6 +2267,8 @@ public class TableMapperTest {
 			if (ArrayUtil.contains(rightPrimaryKeys, rightPrimaryKey)) {
 				return Collections.singletonList(1);
 			}
+
+			Assert.assertEquals(2, params.length);
 
 			return Collections.singletonList(0);
 		}
@@ -2340,7 +2342,6 @@ public class TableMapperTest {
 
 		@Override
 		public int update(Object... params) {
-			Assert.assertEquals(2, params.length);
 			Assert.assertSame(Long.class, params[0].getClass());
 			Assert.assertSame(Long.class, params[1].getClass());
 
@@ -2367,6 +2368,8 @@ public class TableMapperTest {
 				return 1;
 			}
 
+			Assert.assertEquals(2, params.length);
+
 			return 0;
 		}
 
@@ -2391,7 +2394,6 @@ public class TableMapperTest {
 
 		@Override
 		public int update(Object... params) {
-			Assert.assertEquals(1, params.length);
 			Assert.assertSame(Long.class, params[0].getClass());
 
 			if (_databaseError) {
@@ -2417,6 +2419,8 @@ public class TableMapperTest {
 				entry.setValue(rightPrimaryKeys);
 			}
 
+			Assert.assertEquals(1, params.length);
+
 			return count;
 		}
 
@@ -2439,7 +2443,6 @@ public class TableMapperTest {
 
 		@Override
 		public List<Long> execute(Object... params) {
-			Assert.assertEquals(1, params.length);
 			Assert.assertSame(Long.class, params[0].getClass());
 
 			if (_databaseError) {
@@ -2459,6 +2462,8 @@ public class TableMapperTest {
 
 				leftPrimaryKeysList.add(entry.getKey());
 			}
+
+			Assert.assertEquals(1, params.length);
 
 			return leftPrimaryKeysList;
 		}

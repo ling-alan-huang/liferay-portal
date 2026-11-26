@@ -578,16 +578,17 @@ public class LayoutWorkflowHandlerTest {
 			HttpComponentsUtil.getParameterMap(
 				HttpComponentsUtil.getQueryString(url));
 
-		Assert.assertEquals(
-			currentParameterMap.toString(), parameterMap.size(),
-			currentParameterMap.size());
-
 		for (Map.Entry<String, String> entry : parameterMap.entrySet()) {
 			String[] values = currentParameterMap.get(entry.getKey());
 
-			Assert.assertEquals(values.toString(), 1, values.length);
 			Assert.assertEquals(entry.getValue(), values[0]);
+
+			Assert.assertEquals(values.toString(), 1, values.length);
 		}
+
+		Assert.assertEquals(
+			currentParameterMap.toString(), parameterMap.size(),
+			currentParameterMap.size());
 	}
 
 	private void _assertSegmentExperienceFragmentEntryLink(

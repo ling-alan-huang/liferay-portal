@@ -1071,10 +1071,6 @@ public class DataDefinitionResourceTest
 		DataDefinitionField[] dataDefinitionFields1,
 		DataDefinitionField[] dataDefinitionFields2) {
 
-		Assert.assertEquals(
-			Arrays.toString(dataDefinitionFields2),
-			dataDefinitionFields1.length, dataDefinitionFields2.length);
-
 		for (int i = 0; i < dataDefinitionFields1.length; i++) {
 			Assert.assertEquals(
 				"CopyOf" + dataDefinitionFields1[i].getName(),
@@ -1108,6 +1104,10 @@ public class DataDefinitionResourceTest
 				dataDefinitionFields1[i].getNestedDataDefinitionFields(),
 				dataDefinitionFields2[i].getNestedDataDefinitionFields());
 		}
+
+		Assert.assertEquals(
+			Arrays.toString(dataDefinitionFields2),
+			dataDefinitionFields1.length, dataDefinitionFields2.length);
 	}
 
 	private void _testGetSiteDataDefinitionsPage(

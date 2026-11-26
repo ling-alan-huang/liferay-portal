@@ -1790,8 +1790,6 @@ public class SitePageResourceTest extends BaseSitePageResourceTestCase {
 
 		Assert.assertNotNull(pageElements);
 
-		Assert.assertEquals(pageElements.toString(), 1, pageElements.length);
-
 		PageElement actualFragmentPageElement = pageElements[0];
 
 		JSONObject originalDefinitionJSONObject =
@@ -1801,6 +1799,8 @@ public class SitePageResourceTest extends BaseSitePageResourceTestCase {
 			_objectMapper.readTree(originalDefinitionJSONObject.toString()),
 			_objectMapper.readTree(
 				(String)actualFragmentPageElement.getDefinition()));
+
+		Assert.assertEquals(pageElements.toString(), 1, pageElements.length);
 	}
 
 	private void _testPostSiteSitePageSuccessPageDefinitionSettingsClientExtensionEntries()

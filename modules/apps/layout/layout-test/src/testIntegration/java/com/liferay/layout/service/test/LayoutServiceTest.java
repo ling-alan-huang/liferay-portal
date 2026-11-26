@@ -481,9 +481,10 @@ public class LayoutServiceTest {
 			String[] tempFileNames = _layoutService.getTempFileNames(
 				_group.getGroupId(), folderName);
 
+			Assert.assertEquals(fileName, tempFileNames[0]);
+
 			Assert.assertEquals(
 				Arrays.toString(tempFileNames), 1, tempFileNames.length);
-			Assert.assertEquals(fileName, tempFileNames[0]);
 		}
 		finally {
 			_ctCollectionLocalService.deleteCTCollection(ctCollection);

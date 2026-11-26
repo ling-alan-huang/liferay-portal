@@ -160,10 +160,11 @@ public class AssetPublisherHelperTest {
 		long[] assetCategoryIds = _assetPublisherHelper.getAssetCategoryIds(
 			portletPreferences);
 
-		Assert.assertEquals(
-			Arrays.toString(assetCategoryIds), 2, assetCategoryIds.length);
 		Assert.assertEquals(assetCategoryId1, assetCategoryIds[0]);
 		Assert.assertEquals(assetCategoryId2, assetCategoryIds[1]);
+
+		Assert.assertEquals(
+			Arrays.toString(assetCategoryIds), 2, assetCategoryIds.length);
 	}
 
 	@Test
@@ -181,9 +182,10 @@ public class AssetPublisherHelperTest {
 		long[] assetCategoryIds = _assetPublisherHelper.getAssetCategoryIds(
 			portletPreferences);
 
+		Assert.assertEquals(assetCategoryId, assetCategoryIds[0]);
+
 		Assert.assertEquals(
 			Arrays.toString(assetCategoryIds), 1, assetCategoryIds.length);
-		Assert.assertEquals(assetCategoryId, assetCategoryIds[0]);
 	}
 
 	@Test
@@ -226,9 +228,10 @@ public class AssetPublisherHelperTest {
 		long[] assetCategoryIds = _assetPublisherHelper.getAssetCategoryIds(
 			portletPreferences);
 
+		Assert.assertEquals(assetCategoryId, assetCategoryIds[0]);
+
 		Assert.assertEquals(
 			Arrays.toString(assetCategoryIds), 1, assetCategoryIds.length);
-		Assert.assertEquals(assetCategoryId, assetCategoryIds[0]);
 	}
 
 	@Test
@@ -463,9 +466,10 @@ public class AssetPublisherHelperTest {
 		String[] assetTagNames = _assetPublisherHelper.getAssetTagNames(
 			portletPreferences);
 
+		Assert.assertEquals(assetTagName, assetTagNames[0]);
+
 		Assert.assertEquals(
 			Arrays.toString(assetTagNames), 1, assetTagNames.length);
-		Assert.assertEquals(assetTagName, assetTagNames[0]);
 	}
 
 	@Test
@@ -484,10 +488,11 @@ public class AssetPublisherHelperTest {
 		String[] assetTagNames = _assetPublisherHelper.getAssetTagNames(
 			portletPreferences);
 
-		Assert.assertEquals(
-			Arrays.toString(assetTagNames), 2, assetTagNames.length);
 		Assert.assertEquals(assetTagName1, assetTagNames[0]);
 		Assert.assertEquals(assetTagName2, assetTagNames[1]);
+
+		Assert.assertEquals(
+			Arrays.toString(assetTagNames), 2, assetTagNames.length);
 	}
 
 	@Test
@@ -504,9 +509,10 @@ public class AssetPublisherHelperTest {
 		String[] assetTagNames = _assetPublisherHelper.getAssetTagNames(
 			portletPreferences);
 
+		Assert.assertEquals(assetTagName, assetTagNames[0]);
+
 		Assert.assertEquals(
 			Arrays.toString(assetTagNames), 1, assetTagNames.length);
-		Assert.assertEquals(assetTagName, assetTagNames[0]);
 	}
 
 	@Test

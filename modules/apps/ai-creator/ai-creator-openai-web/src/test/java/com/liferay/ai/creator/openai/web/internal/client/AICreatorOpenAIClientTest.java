@@ -330,9 +330,10 @@ public class AICreatorOpenAIClientTest {
 
 		String[] arguments = argumentCaptor.getValue();
 
-		Assert.assertEquals(arguments.toString(), 2, arguments.length);
 		Assert.assertEquals(String.valueOf(words), arguments[0]);
 		Assert.assertEquals(tone, arguments[1]);
+
+		Assert.assertEquals(arguments.toString(), 2, arguments.length);
 	}
 
 	private void _assertOptions(String apiKey, String location)

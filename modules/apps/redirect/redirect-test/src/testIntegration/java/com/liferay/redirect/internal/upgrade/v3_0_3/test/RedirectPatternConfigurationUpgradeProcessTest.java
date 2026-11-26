@@ -77,9 +77,6 @@ public class RedirectPatternConfigurationUpgradeProcessTest {
 
 		Configuration[] configurations = _getConfigurations();
 
-		Assert.assertEquals(
-			Arrays.toString(configurations), 1, configurations.length);
-
 		Configuration configuration = configurations[0];
 
 		Dictionary<String, Object> properties = configuration.getProperties();
@@ -88,10 +85,13 @@ public class RedirectPatternConfigurationUpgradeProcessTest {
 
 		String[] patternStrings = (String[])properties.get("patternStrings");
 
+		Assert.assertEquals("test*test liferay.com all", patternStrings[0]);
+
 		Assert.assertEquals(
 			Arrays.toString(patternStrings), 1, patternStrings.length);
 
-		Assert.assertEquals("test*test liferay.com all", patternStrings[0]);
+		Assert.assertEquals(
+			Arrays.toString(configurations), 1, configurations.length);
 	}
 
 	private Configuration[] _getConfigurations() throws Exception {

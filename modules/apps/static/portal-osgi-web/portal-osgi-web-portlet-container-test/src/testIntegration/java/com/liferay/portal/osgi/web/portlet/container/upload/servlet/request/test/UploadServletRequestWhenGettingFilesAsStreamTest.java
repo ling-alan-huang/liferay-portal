@@ -76,18 +76,18 @@ public class UploadServletRequestWhenGettingFilesAsStreamTest {
 
 			FileItem[] fileItems = entry.getValue();
 
+			for (int i = 0; i < inputStreams.length; i++) {
+				Assert.assertTrue(
+					IOUtils.contentEquals(
+						fileItems[i].getInputStream(), inputStreams[i]));
+			}
+
 			Assert.assertEquals(
 				Arrays.toString(inputStreams), fileItems.length,
 				inputStreams.length);
 
 			Assert.assertEquals(
 				Arrays.toString(inputStreams), 2, inputStreams.length);
-
-			for (int i = 0; i < inputStreams.length; i++) {
-				Assert.assertTrue(
-					IOUtils.contentEquals(
-						fileItems[i].getInputStream(), inputStreams[i]));
-			}
 		}
 	}
 

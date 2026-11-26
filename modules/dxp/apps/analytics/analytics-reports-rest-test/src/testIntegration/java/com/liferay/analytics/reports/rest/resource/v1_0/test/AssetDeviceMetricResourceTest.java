@@ -114,21 +114,21 @@ public class AssetDeviceMetricResourceTest
 
 			DeviceMetric[] deviceMetrics = assetDeviceMetric.getDeviceMetrics();
 
-			Assert.assertEquals(
-				Arrays.toString(deviceMetrics), 1, deviceMetrics.length);
-
 			DeviceMetric deviceMetric = deviceMetrics[0];
 
 			Assert.assertEquals("Desktop", deviceMetric.getMetricName());
 
 			Metric[] metrics = deviceMetric.getMetrics();
 
-			Assert.assertEquals(Arrays.toString(metrics), 1, metrics.length);
-
 			Metric metric = metrics[0];
 
 			Assert.assertEquals("VIEWS", metric.getMetricType());
 			Assert.assertEquals(3, metric.getValue(), 0);
+
+			Assert.assertEquals(Arrays.toString(metrics), 1, metrics.length);
+
+			Assert.assertEquals(
+				Arrays.toString(deviceMetrics), 1, deviceMetrics.length);
 		}
 	}
 

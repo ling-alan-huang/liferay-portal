@@ -1006,15 +1006,15 @@ public class MasterPageResourceTest extends BaseMasterPageResourceTestCase {
 		PageExperience[] pageExperiences =
 			contentPageSpecification.getPageExperiences();
 
-		Assert.assertEquals(
-			Arrays.toString(pageExperiences), 1, pageExperiences.length);
-
 		PageExperience pageExperience = pageExperiences[0];
 
 		PageElement[] pageElements = pageExperience.getPageElements();
 
 		Assert.assertEquals(
 			Arrays.toString(pageElements), count, pageElements.length);
+
+		Assert.assertEquals(
+			Arrays.toString(pageExperiences), 1, pageExperiences.length);
 	}
 
 	private void _assertPageElements(
@@ -1040,15 +1040,15 @@ public class MasterPageResourceTest extends BaseMasterPageResourceTestCase {
 		int expectedPublishedLayoutPageElementsCount,
 		PageSpecification[] pageSpecifications) {
 
-		Assert.assertEquals(
-			Arrays.toString(pageSpecifications), 2, pageSpecifications.length);
-
 		_assertContentPageSpecificationPageElements(
 			(ContentPageSpecification)pageSpecifications[0],
 			expectedPublishedLayoutPageElementsCount);
 		_assertContentPageSpecificationPageElements(
 			(ContentPageSpecification)pageSpecifications[1],
 			expectedDraftLayoutPageElementsCount);
+
+		Assert.assertEquals(
+			Arrays.toString(pageSpecifications), 2, pageSpecifications.length);
 	}
 
 	private void _assertPageSpecifications(

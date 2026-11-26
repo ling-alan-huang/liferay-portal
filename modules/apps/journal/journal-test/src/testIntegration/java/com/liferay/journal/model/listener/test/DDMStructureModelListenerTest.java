@@ -419,10 +419,6 @@ public class DDMStructureModelListenerTest {
 		Map<String, List<DDMFormFieldValue>> ddmFormFieldValuesMap =
 			ddmFormValues.getDDMFormFieldValuesMap(true);
 
-		Assert.assertEquals(
-			ddmFormFieldValuesMap.toString(), expectedFieldValuesMap.size(),
-			ddmFormFieldValuesMap.size());
-
 		for (Map.Entry<String, List<String>> entry :
 				expectedFieldValuesMap.entrySet()) {
 
@@ -451,6 +447,10 @@ public class DDMStructureModelListenerTest {
 				ddmFormFieldValues.toString(), expectedFieldValues.size(),
 				ddmFormFieldValues.size());
 		}
+
+		Assert.assertEquals(
+			ddmFormFieldValuesMap.toString(), expectedFieldValuesMap.size(),
+			ddmFormFieldValuesMap.size());
 	}
 
 	private void _assertDataDefinitionStructureKeyChanged(

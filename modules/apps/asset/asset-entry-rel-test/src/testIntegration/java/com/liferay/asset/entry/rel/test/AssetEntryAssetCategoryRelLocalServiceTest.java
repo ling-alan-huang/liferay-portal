@@ -216,12 +216,12 @@ public class AssetEntryAssetCategoryRelLocalServiceTest {
 			_assetEntryAssetCategoryRelLocalService.getAssetCategoryPrimaryKeys(
 				assetEntryId);
 
+		Assert.assertEquals(assetCategoryId1, assetCategoryPrimaryKeys[0]);
+		Assert.assertEquals(assetCategoryId2, assetCategoryPrimaryKeys[1]);
+
 		Assert.assertEquals(
 			Arrays.toString(assetCategoryPrimaryKeys), 2,
 			assetCategoryPrimaryKeys.length);
-
-		Assert.assertEquals(assetCategoryId1, assetCategoryPrimaryKeys[0]);
-		Assert.assertEquals(assetCategoryId2, assetCategoryPrimaryKeys[1]);
 	}
 
 	@Test

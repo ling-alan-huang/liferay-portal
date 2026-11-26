@@ -195,12 +195,12 @@ public class SpaceDepotEntryBreadcrumbEntryContributorTest {
 			BreadcrumbEntryContributorUtil.contribute(
 				originalBreadcrumbEntries, mockHttpServletRequest);
 
+		_assertSpaceDepotEntryBreadcrumbEntry(
+			breadcrumbEntries.get(0), depotEntry, mockHttpServletRequest);
+
 		Assert.assertEquals(
 			breadcrumbEntries.toString(), originalBreadcrumbEntries.size() + 1,
 			breadcrumbEntries.size());
-
-		_assertSpaceDepotEntryBreadcrumbEntry(
-			breadcrumbEntries.get(0), depotEntry, mockHttpServletRequest);
 
 		Assert.assertEquals(
 			breadcrumbEntries.subList(1, breadcrumbEntries.size()),

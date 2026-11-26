@@ -93,9 +93,10 @@ public class AnalyticsSettingsManagerTest {
 				new long[] {_siteGroup1.getGroupId()});
 
 		Assert.assertEquals(
-			Arrays.toString(commerceChannelIds), 1, commerceChannelIds.length);
-		Assert.assertEquals(
 			_commerceChannelGroup1.getClassPK(), commerceChannelIds[0]);
+
+		Assert.assertEquals(
+			Arrays.toString(commerceChannelIds), 1, commerceChannelIds.length);
 
 		long[] bothCommerceChannelIds =
 			_analyticsSettingsManager.getCommerceChannelIds(
@@ -218,9 +219,10 @@ public class AnalyticsSettingsManagerTest {
 				Long[] siteIds = _analyticsSettingsManager.getSiteIds(
 					_analyticsChannelId1, TestPropsValues.getCompanyId());
 
+				Assert.assertEquals(_siteGroup1.getGroupId(), (long)siteIds[0]);
+
 				Assert.assertEquals(
 					Arrays.toString(siteIds), 1, siteIds.length);
-				Assert.assertEquals(_siteGroup1.getGroupId(), (long)siteIds[0]);
 
 				return null;
 			});

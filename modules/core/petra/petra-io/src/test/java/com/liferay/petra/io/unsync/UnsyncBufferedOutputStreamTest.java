@@ -146,13 +146,13 @@ public class UnsyncBufferedOutputStreamTest extends BaseOutputStreamTestCase {
 
 		byte[] buffer = (byte[])_bufferField.get(unsyncBufferedOutputStream);
 
-		Assert.assertEquals(Arrays.toString(buffer), _SIZE * 2, buffer.length);
-
 		for (int i = 0; i < _SIZE; i++) {
 			unsyncBufferedOutputStream.write(i);
 
 			Assert.assertEquals(i, buffer[i]);
 		}
+
+		Assert.assertEquals(Arrays.toString(buffer), _SIZE * 2, buffer.length);
 
 		unsyncBufferedOutputStream.flush();
 

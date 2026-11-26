@@ -291,9 +291,6 @@ public class ServletResponseUtilRangeTest {
 
 		String[] responseBodies = StringUtil.split(responseBody, boundary);
 
-		Assert.assertEquals(
-			Arrays.toString(responseBodies), ranges.size() + 2,
-			responseBodies.length);
 		Assert.assertEquals(StringPool.DOUBLE_DASH, responseBodies[0]);
 		Assert.assertEquals(
 			StringPool.DOUBLE_DASH, responseBodies[ranges.size() + 1]);
@@ -318,6 +315,10 @@ public class ServletResponseUtilRangeTest {
 
 			Assert.assertEquals(StringPool.DOUBLE_DASH, lines[4]);
 		}
+
+		Assert.assertEquals(
+			Arrays.toString(responseBodies), ranges.size() + 2,
+			responseBodies.length);
 	}
 
 	private static final String _CONTENT_TYPE_BOUNDARY_PREFACE =

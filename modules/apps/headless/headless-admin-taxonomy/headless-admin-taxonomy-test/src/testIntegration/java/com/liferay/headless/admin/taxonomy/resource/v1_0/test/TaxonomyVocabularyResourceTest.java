@@ -452,8 +452,9 @@ public class TaxonomyVocabularyResourceTest
 	private <T> void _assertSingletonArrayEquals(
 		T[] array, long expected, Function<T, Long> function) {
 
-		Assert.assertEquals(Arrays.toString(array), 1, array.length);
 		Assert.assertEquals(Long.valueOf(expected), function.apply(array[0]));
+
+		Assert.assertEquals(Arrays.toString(array), 1, array.length);
 	}
 
 	private Project _randomProject() throws Exception {
@@ -752,13 +753,13 @@ public class TaxonomyVocabularyResourceTest
 
 		AssetType[] assetTypes = postTaxonomyVocabulary.getAssetTypes();
 
-		Assert.assertEquals(assetTypes.toString(), 1, assetTypes.length);
-
 		AssetType assetType = assetTypes[0];
 
 		Assert.assertEquals("AllAssetSubtypes", assetType.getSubtype());
 		Assert.assertEquals("StructuredContent", assetType.getType());
 		Assert.assertFalse(assetType.getRequired());
+
+		Assert.assertEquals(assetTypes.toString(), 1, assetTypes.length);
 	}
 
 	private void _testPostSiteTaxonomyVocabularyInvalidAssetTypeType()
@@ -799,13 +800,13 @@ public class TaxonomyVocabularyResourceTest
 
 		AssetType[] assetTypes = postTaxonomyVocabulary.getAssetTypes();
 
-		Assert.assertEquals(assetTypes.toString(), 1, assetTypes.length);
-
 		AssetType assetType = assetTypes[0];
 
 		Assert.assertEquals("AllAssetSubtypes", assetType.getSubtype());
 		Assert.assertEquals("AllAssetTypes", assetType.getType());
 		Assert.assertFalse(assetType.getRequired());
+
+		Assert.assertEquals(assetTypes.toString(), 1, assetTypes.length);
 	}
 
 	private void _testPutSiteTaxonomyVocabularyByExternalReferenceCodeExternalReferenceCode()

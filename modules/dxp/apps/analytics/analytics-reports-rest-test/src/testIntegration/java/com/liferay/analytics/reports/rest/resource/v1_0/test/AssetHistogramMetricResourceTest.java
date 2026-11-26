@@ -117,9 +117,6 @@ public class AssetHistogramMetricResourceTest
 
 			Histogram[] histograms = assetHistogramMetric.getHistograms();
 
-			Assert.assertEquals(
-				Arrays.toString(histograms), 1, histograms.length);
-
 			Histogram histogram = histograms[0];
 
 			Assert.assertEquals("viewsMetric", histogram.getMetricName());
@@ -127,12 +124,15 @@ public class AssetHistogramMetricResourceTest
 
 			Metric[] metrics = histogram.getMetrics();
 
-			Assert.assertEquals(Arrays.toString(metrics), 1, metrics.length);
-
 			Metric metric = metrics[0];
 
 			Assert.assertEquals("VIEWS", metric.getMetricType());
 			Assert.assertEquals(3, metric.getValue(), 0);
+
+			Assert.assertEquals(Arrays.toString(metrics), 1, metrics.length);
+
+			Assert.assertEquals(
+				Arrays.toString(histograms), 1, histograms.length);
 		}
 	}
 

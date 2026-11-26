@@ -181,9 +181,10 @@ public class EmptyResultTest {
 		Object[] savedArgs = ReflectionTestUtil.getFieldValue(
 			emptyResult, "_args");
 
-		Assert.assertEquals(Arrays.toString(savedArgs), 5, savedArgs.length);
 		Assert.assertEquals(0, savedArgs[3]);
 		Assert.assertEquals(0, savedArgs[4]);
+
+		Assert.assertEquals(Arrays.toString(savedArgs), 5, savedArgs.length);
 
 		Assert.assertTrue(emptyResult.matches(args));
 

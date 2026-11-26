@@ -169,15 +169,15 @@ public class BackgroundTaskStatusMessageListenerTest {
 				group.getCompanyId(), group.getGroupId(),
 				CommentGroupServiceConfiguration.class.getName(), null));
 
-		Assert.assertEquals(
-			Arrays.toString(configurations), 1, configurations.length);
-
 		Configuration configuration = configurations[0];
 
 		Dictionary<String, Object> properties = configuration.getProperties();
 
 		Assert.assertTrue(
 			GetterUtil.getBoolean(properties.get("alwaysEditableByOwner")));
+
+		Assert.assertEquals(
+			Arrays.toString(configurations), 1, configurations.length);
 	}
 
 	private void _assertHasResourcePermission(

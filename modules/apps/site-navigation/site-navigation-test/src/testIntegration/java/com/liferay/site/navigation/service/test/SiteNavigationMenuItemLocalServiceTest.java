@@ -524,12 +524,12 @@ public class SiteNavigationMenuItemLocalServiceTest {
 				parentSiteNavigationMenuItem.getSiteNavigationMenuItemId());
 
 		Assert.assertEquals(
+			childSiteNavigationMenuItem, actualSiteNavigationMenuItems.get(0));
+
+		Assert.assertEquals(
 			actualSiteNavigationMenuItems.toString(),
 			originalSiteNavigationMenuItems.size() + 1,
 			actualSiteNavigationMenuItems.size());
-
-		Assert.assertEquals(
-			childSiteNavigationMenuItem, actualSiteNavigationMenuItems.get(0));
 	}
 
 	@Test

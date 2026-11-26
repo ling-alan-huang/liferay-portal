@@ -617,10 +617,10 @@ public class SQLDSLTest {
 
 		Expression<?>[] expressions = groupBy.getExpressions();
 
+		Assert.assertSame(MainExampleTable.INSTANCE.nameColumn, expressions[0]);
+
 		Assert.assertEquals(
 			Arrays.toString(expressions), 1, expressions.length);
-
-		Assert.assertSame(MainExampleTable.INSTANCE.nameColumn, expressions[0]);
 
 		DSLQuery dslQuery = groupBy.limit(0, 20);
 

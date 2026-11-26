@@ -145,13 +145,13 @@ public class XMLSitemapIndexEnabledConfigurationUpgradeProcessTest {
 			_sitemapConfigurationManager.getCompanySitemapGroupIds(
 				_company.getCompanyId());
 
-		Assert.assertEquals(
-			Arrays.toString(sitemapGroupIds), expectedSitemapGroupIds.length,
-			sitemapGroupIds.length);
-
 		if (expectedSitemapGroupIds.length > 0) {
 			Assert.assertEquals(expectedSitemapGroupIds[0], sitemapGroupIds[0]);
 		}
+
+		Assert.assertEquals(
+			Arrays.toString(sitemapGroupIds), expectedSitemapGroupIds.length,
+			sitemapGroupIds.length);
 
 		Assert.assertEquals(
 			expectedIncludeCategoriesCompanyEnabled,

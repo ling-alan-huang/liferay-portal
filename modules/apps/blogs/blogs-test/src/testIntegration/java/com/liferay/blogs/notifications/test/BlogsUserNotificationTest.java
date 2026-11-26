@@ -85,12 +85,12 @@ public class BlogsUserNotificationTest extends BaseUserNotificationTestCase {
 
 		String[] mailMessageTo = mailMessage.getHeaderValues("To");
 
-		Assert.assertEquals(mailMessageTo.toString(), 1, mailMessageTo.length);
-
 		Assert.assertEquals(
 			StringBundler.concat(
 				user.getFullName(), " <", user.getEmailAddress(), ">"),
 			mailMessageTo[0]);
+
+		Assert.assertEquals(mailMessageTo.toString(), 1, mailMessageTo.length);
 
 		String mailMessageBody = mailMessage.getBody();
 

@@ -938,9 +938,6 @@ public class SignatureRequestResourceTest
 		FileEntryBrief[] fileEntryBriefs =
 			postSignatureRequest.getFileEntryBriefs();
 
-		Assert.assertEquals(
-			Arrays.toString(fileEntryBriefs), 1, fileEntryBriefs.length);
-
 		FileEntryBrief fileEntryBrief = fileEntryBriefs[0];
 
 		Assert.assertEquals(fileEntryIds[0], fileEntryBrief.getId());
@@ -948,6 +945,9 @@ public class SignatureRequestResourceTest
 		FileEntry fileEntry = _dlAppLocalService.getFileEntry(fileEntryIds[0]);
 
 		Assert.assertEquals(fileEntry.getTitle(), fileEntryBrief.getTitle());
+
+		Assert.assertEquals(
+			Arrays.toString(fileEntryBriefs), 1, fileEntryBriefs.length);
 
 		DSEnvelope dsEnvelope = _dsEnvelopeAtomicReference.get();
 

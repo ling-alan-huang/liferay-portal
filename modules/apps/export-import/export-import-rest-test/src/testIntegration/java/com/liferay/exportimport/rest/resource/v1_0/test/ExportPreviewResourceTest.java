@@ -642,14 +642,15 @@ public class ExportPreviewResourceTest
 			exportPreview, ExportImportConstants.SECTION_KEY_CONFIGURATION);
 
 		Assert.assertEquals(
-			Arrays.toString(portletDataHandlers), 1,
-			portletDataHandlers.length);
-		Assert.assertEquals(
 			"PORTLET_CONFIGURATION_" + portletId,
 			portletDataHandlers[0].getName());
 		Assert.assertTrue(
 			ArrayUtil.isNotEmpty(
 				portletDataHandlers[0].getPortletDataHandlerControls()));
+
+		Assert.assertEquals(
+			Arrays.toString(portletDataHandlers), 1,
+			portletDataHandlers.length);
 	}
 
 	@TestInfo("LPD-105790")

@@ -117,14 +117,14 @@ public class ObjectFolderResourceTest extends BaseObjectFolderResourceTestCase {
 		ObjectFolderItem[] objectFolderItems =
 			patchObjectFolder.getObjectFolderItems();
 
-		Assert.assertEquals(
-			Arrays.toString(objectFolderItems), 1, objectFolderItems.length);
-
 		ObjectFolderItem objectFolderItem = objectFolderItems[0];
 
 		Assert.assertEquals(
 			finalObjectDefinition.getExternalReferenceCode(),
 			objectFolderItem.getObjectDefinitionExternalReferenceCode());
+
+		Assert.assertEquals(
+			Arrays.toString(objectFolderItems), 1, objectFolderItems.length);
 	}
 
 	@Override
@@ -169,11 +169,11 @@ public class ObjectFolderResourceTest extends BaseObjectFolderResourceTestCase {
 			putObjectFolder.getObjectFolderItems();
 
 		Assert.assertEquals(
-			Arrays.toString(objectFolderItems), 1, objectFolderItems.length);
-
-		Assert.assertEquals(
 			finalObjectDefinition.getExternalReferenceCode(),
 			objectFolderItems[0].getObjectDefinitionExternalReferenceCode());
+
+		Assert.assertEquals(
+			Arrays.toString(objectFolderItems), 1, objectFolderItems.length);
 	}
 
 	@Override

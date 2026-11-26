@@ -185,9 +185,10 @@ public class CoalescedPipeTest {
 
 		snapShot = coalescedPipe.takeSnapshot();
 
-		Assert.assertEquals(Arrays.toString(snapShot), 2, snapShot.length);
 		Assert.assertEquals("test1", snapShot[0]);
 		Assert.assertEquals("test2", snapShot[1]);
+
+		Assert.assertEquals(Arrays.toString(snapShot), 2, snapShot.length);
 	}
 
 }

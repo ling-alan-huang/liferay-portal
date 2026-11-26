@@ -204,10 +204,11 @@ public class DSRAnalyticsChannelBackgroundTaskExecutorTest {
 
 		DataSource[] dataSources = channel.getDataSources();
 
-		Assert.assertEquals(
-			Arrays.toString(dataSources), 1, dataSources.length);
 		Assert.assertArrayEquals(
 			new Long[] {_GROUP_ID}, dataSources[0].getSiteIds());
+
+		Assert.assertEquals(
+			Arrays.toString(dataSources), 1, dataSources.length);
 	}
 
 	private static final String _CHANNEL_ID = RandomTestUtil.randomString();

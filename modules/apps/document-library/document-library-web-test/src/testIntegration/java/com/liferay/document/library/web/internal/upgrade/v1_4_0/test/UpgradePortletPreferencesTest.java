@@ -196,13 +196,13 @@ public class UpgradePortletPreferencesTest {
 
 			Map<String, String[]> map = portletPreferences.getMap();
 
-			Assert.assertEquals(
-				MapUtil.toString(map), expectedMap.size(), map.size());
-
 			for (Map.Entry<String, String> entry : expectedMap.entrySet()) {
 				Assert.assertArrayEquals(
 					new String[] {entry.getValue()}, map.get(entry.getKey()));
 			}
+
+			Assert.assertEquals(
+				MapUtil.toString(map), expectedMap.size(), map.size());
 		}
 	}
 

@@ -121,9 +121,6 @@ public class StructuredContentDTOConverterTest {
 
 		ContentField[] contentFields = structuredContent.getContentFields();
 
-		Assert.assertEquals(
-			Arrays.toString(contentFields), 1, contentFields.length);
-
 		ContentField contentField = contentFields[0];
 
 		ContentFieldValue contentFieldValue =
@@ -133,6 +130,9 @@ public class StructuredContentDTOConverterTest {
 			JSONUtil.equals(
 				expectedDataJSONArray,
 				JSONFactoryUtil.createJSONArray(contentFieldValue.getData())));
+
+		Assert.assertEquals(
+			Arrays.toString(contentFields), 1, contentFields.length);
 	}
 
 	private StructuredContent _toDTO(JournalArticle journalArticle)

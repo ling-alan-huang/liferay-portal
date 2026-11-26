@@ -138,9 +138,10 @@ public class DefaultTransactionExecutorTest {
 
 			Throwable[] throwables = commitException.getSuppressed();
 
+			Assert.assertEquals(appException, throwables[0]);
+
 			Assert.assertEquals(
 				Arrays.toString(throwables), 1, throwables.length);
-			Assert.assertEquals(appException, throwables[0]);
 		}
 
 		recordPlatformTransactionManager.verify(
@@ -208,9 +209,10 @@ public class DefaultTransactionExecutorTest {
 				Throwable[] throwables = throwable.getSuppressed();
 
 				Assert.assertEquals(
-					Arrays.toString(throwables), 1, throwables.length);
-				Assert.assertEquals(
 					"commitThrowable", throwables[0].getMessage());
+
+				Assert.assertEquals(
+					Arrays.toString(throwables), 1, throwables.length);
 			}
 
 			Exception exception1 = new Exception();
@@ -236,10 +238,11 @@ public class DefaultTransactionExecutorTest {
 
 				throwables = throwables[0].getSuppressed();
 
-				Assert.assertEquals(
-					Arrays.toString(throwables), 1, throwables.length);
 				Assert.assertSame(
 					"commitThrowable", throwables[0].getMessage());
+
+				Assert.assertEquals(
+					Arrays.toString(throwables), 1, throwables.length);
 			}
 
 			try {
@@ -254,9 +257,10 @@ public class DefaultTransactionExecutorTest {
 				Throwable[] throwables = throwable.getSuppressed();
 
 				Assert.assertEquals(
-					Arrays.toString(throwables), 1, throwables.length);
-				Assert.assertEquals(
 					"commitThrowable", throwables[0].getMessage());
+
+				Assert.assertEquals(
+					Arrays.toString(throwables), 1, throwables.length);
 			}
 
 			Exception exception2 = new Exception();
@@ -282,10 +286,11 @@ public class DefaultTransactionExecutorTest {
 
 				throwables = throwables[0].getSuppressed();
 
-				Assert.assertEquals(
-					Arrays.toString(throwables), 1, throwables.length);
 				Assert.assertSame(
 					"rollbackThrowable", throwables[0].getMessage());
+
+				Assert.assertEquals(
+					Arrays.toString(throwables), 1, throwables.length);
 			}
 		}
 		finally {
@@ -374,9 +379,10 @@ public class DefaultTransactionExecutorTest {
 
 			Throwable[] throwables = rollbackException.getSuppressed();
 
+			Assert.assertEquals(appException, throwables[0]);
+
 			Assert.assertEquals(
 				Arrays.toString(throwables), 1, throwables.length);
-			Assert.assertEquals(appException, throwables[0]);
 		}
 
 		recordPlatformTransactionManager.verify(

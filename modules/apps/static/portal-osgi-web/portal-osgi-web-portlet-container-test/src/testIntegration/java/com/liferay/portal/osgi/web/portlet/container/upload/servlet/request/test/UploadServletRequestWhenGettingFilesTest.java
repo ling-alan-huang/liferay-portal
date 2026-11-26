@@ -73,11 +73,6 @@ public class UploadServletRequestWhenGettingFilesTest {
 
 			FileItem[] fileItems = entry.getValue();
 
-			Assert.assertEquals(
-				Arrays.toString(files), fileItems.length, files.length);
-
-			Assert.assertEquals(Arrays.toString(files), 2, files.length);
-
 			for (int i = 0; i < files.length; i++) {
 				File storeLocation = fileItems[i].getStoreLocation();
 
@@ -85,6 +80,11 @@ public class UploadServletRequestWhenGettingFilesTest {
 					storeLocation.getAbsolutePath(),
 					files[i].getAbsolutePath());
 			}
+
+			Assert.assertEquals(
+				Arrays.toString(files), fileItems.length, files.length);
+
+			Assert.assertEquals(Arrays.toString(files), 2, files.length);
 		}
 	}
 

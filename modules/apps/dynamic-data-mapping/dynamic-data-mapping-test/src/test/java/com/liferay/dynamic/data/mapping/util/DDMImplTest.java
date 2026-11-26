@@ -715,13 +715,13 @@ public class DDMImplTest extends BaseDDMTestCase {
 	}
 
 	protected void testValues(String[] actualValues, String... expectedValues) {
-		Assert.assertEquals(
-			Arrays.toString(actualValues), expectedValues.length,
-			actualValues.length);
-
 		for (int i = 0; i < expectedValues.length; i++) {
 			Assert.assertEquals(expectedValues[i], actualValues[i]);
 		}
+
+		Assert.assertEquals(
+			Arrays.toString(actualValues), expectedValues.length,
+			actualValues.length);
 	}
 
 	private final DDMFormValuesDeserializer _ddmFormValuesDeserializer =

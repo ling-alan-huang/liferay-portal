@@ -149,10 +149,6 @@ public class ThemeBuilderCompareTest {
 		Map<String, byte[]> warFileNameDigests = _getFileNameDigests(
 			warDir.toPath(), excludePatterns);
 
-		Assert.assertEquals(
-			warFileNameDigests.toString(), outputFileNameDigests.size(),
-			warFileNameDigests.size());
-
 		for (Map.Entry<String, byte[]> entry :
 				outputFileNameDigests.entrySet()) {
 
@@ -165,6 +161,10 @@ public class ThemeBuilderCompareTest {
 				"File " + fileName + " does not match", outputFileDigest,
 				warFileDigest);
 		}
+
+		Assert.assertEquals(
+			warFileNameDigests.toString(), outputFileNameDigests.size(),
+			warFileNameDigests.size());
 	}
 
 	@Rule

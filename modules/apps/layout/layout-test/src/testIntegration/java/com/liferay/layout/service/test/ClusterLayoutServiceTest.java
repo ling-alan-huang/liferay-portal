@@ -142,10 +142,6 @@ public class ClusterLayoutServiceTest implements Serializable {
 							new SchedulerResponse[0]);
 					});
 
-			Assert.assertEquals(
-				Arrays.toString(schedulerResponses), 1,
-				schedulerResponses.length);
-
 			SchedulerResponse schedulerResponse = schedulerResponses[0];
 
 			Assert.assertEquals(
@@ -153,6 +149,10 @@ public class ClusterLayoutServiceTest implements Serializable {
 			Assert.assertEquals(
 				DestinationNames.LAYOUTS_LOCAL_PUBLISHER,
 				schedulerResponse.getDestinationName());
+
+			Assert.assertEquals(
+				Arrays.toString(schedulerResponses), 1,
+				schedulerResponses.length);
 		}
 		finally {
 			masterTomcatNode.syncExecute(

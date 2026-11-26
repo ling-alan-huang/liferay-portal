@@ -59,10 +59,10 @@ public class UnsafeConsumerTest {
 
 			Throwable[] throwables = exception.getSuppressed();
 
+			Assert.assertSame(_exceptions.get(0), throwables[0]);
+
 			Assert.assertEquals(
 				Arrays.toString(throwables), 1, throwables.length);
-
-			Assert.assertSame(_exceptions.get(0), throwables[0]);
 		}
 	}
 
@@ -108,10 +108,11 @@ public class UnsafeConsumerTest {
 
 			Throwable[] throwables = exception.getSuppressed();
 
-			Assert.assertEquals(
-				Arrays.toString(throwables), 2, throwables.length);
 			Assert.assertSame(_exceptions.get(1), throwables[0]);
 			Assert.assertSame(_exceptions.get(2), throwables[1]);
+
+			Assert.assertEquals(
+				Arrays.toString(throwables), 2, throwables.length);
 		}
 	}
 
@@ -133,10 +134,11 @@ public class UnsafeConsumerTest {
 
 			Throwable[] throwables = throwable.getSuppressed();
 
-			Assert.assertEquals(
-				Arrays.toString(throwables), 2, throwables.length);
 			Assert.assertSame(_exceptions.get(1), throwables[0]);
 			Assert.assertSame(_exceptions.get(2), throwables[1]);
+
+			Assert.assertEquals(
+				Arrays.toString(throwables), 2, throwables.length);
 		}
 	}
 
