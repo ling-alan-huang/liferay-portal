@@ -954,7 +954,7 @@
 		<module name="com.liferay.source.formatter.checkstyle.check.SizeAssertionOrderCheck">
 			<property name="category" value="Styling" />
 			<property name="description" value="Checks that a size assertion in a test comes after the last statement that uses the elements it guards." />
-			<message key="size.assertion.move" value="Move the size assertion of &quot;{0}&quot; after the last statement that uses its elements" />
+			<message key="size.assertion.move" value="Move the size assertion of &quot;{0}&quot; at line &quot;{1}&quot; after line &quot;{2}&quot;, where its elements are last used" />
 		</module>
 		<module name="com.liferay.source.formatter.checkstyle.check.SizeIsZeroCheck">
 			<property name="category" value="Styling" />
