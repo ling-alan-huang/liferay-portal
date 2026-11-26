@@ -152,9 +152,9 @@ public class SizeAssertionOrderCheck extends BaseCheck {
 
 		String methodName = methodNameDetailAST.getText();
 
-		if (methodName.equals("contains") || methodName.startsWith("get") ||
-			methodName.startsWith("is") || methodName.equals("length") ||
-			methodName.equals("size") || methodName.equals("toString")) {
+		if (methodName.equals("contains") || methodName.equals("length") ||
+			methodName.equals("size") || methodName.equals("toString") ||
+			methodName.startsWith("get") || methodName.startsWith("is")) {
 
 			return true;
 		}
