@@ -1708,7 +1708,6 @@ public class CustomFDSSerializerTest extends BaseFDSSerializerTestCase {
 		jsonArray = _customFDSSerializer.serializeViews(
 			FDS_NAMES[0], httpServletRequest);
 
-		Assert.assertEquals(3, jsonArray.length());
 		Assert.assertEquals(
 			"table",
 			jsonArray.getJSONObject(
@@ -1745,6 +1744,8 @@ public class CustomFDSSerializerTest extends BaseFDSSerializerTestCase {
 			).getString(
 				"name"
 			));
+
+		Assert.assertEquals(3, jsonArray.length());
 	}
 
 	private boolean _containsLabel(

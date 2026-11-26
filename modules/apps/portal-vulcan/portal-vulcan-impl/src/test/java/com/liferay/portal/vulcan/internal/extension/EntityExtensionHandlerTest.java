@@ -96,11 +96,12 @@ public class EntityExtensionHandlerTest {
 		);
 
 		Assert.assertEquals(
-			extendedProperties.toString(), 2, extendedProperties.size());
-		Assert.assertEquals(
 			propertyValue1, extendedProperties.get(propertyName1));
 		Assert.assertEquals(
 			propertyValue2, extendedProperties.get(propertyName2));
+
+		Assert.assertEquals(
+			extendedProperties.toString(), 2, extendedProperties.size());
 	}
 
 	@Test
@@ -148,15 +149,16 @@ public class EntityExtensionHandlerTest {
 			_COMPANY_ID, _CLASS_NAME
 		);
 
-		Assert.assertEquals(
-			MapUtil.toString(extendedPropertyDefinitions), 2,
-			extendedPropertyDefinitions.size());
 		Assert.assertSame(
 			propertyDefinition1,
 			extendedPropertyDefinitions.get(propertyName1));
 		Assert.assertSame(
 			propertyDefinition2,
 			extendedPropertyDefinitions.get(propertyName2));
+
+		Assert.assertEquals(
+			MapUtil.toString(extendedPropertyDefinitions), 2,
+			extendedPropertyDefinitions.size());
 	}
 
 	@Test

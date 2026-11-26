@@ -144,11 +144,11 @@ public class RulesEngineImplTest {
 			Arrays.asList(new Fact<UserProfile>("userProfile", userProfile)),
 			Query.createStandardQuery());
 
-		Assert.assertEquals(results.toString(), 1, results.size());
-
 		userProfile = (UserProfile)results.get("userProfile");
 
 		Assert.assertEquals(30, userProfile.getAge());
+
+		Assert.assertEquals(results.toString(), 1, results.size());
 	}
 
 	@Test
@@ -164,11 +164,11 @@ public class RulesEngineImplTest {
 			Arrays.asList(new Fact<UserProfile>("userProfile", userProfile)),
 			Query.createStandardQuery());
 
-		Assert.assertEquals(results.toString(), 1, results.size());
-
 		userProfile = (UserProfile)results.get("userProfile");
 
 		Assert.assertEquals(50, userProfile.getAge());
+
+		Assert.assertEquals(results.toString(), 1, results.size());
 	}
 
 	@Test

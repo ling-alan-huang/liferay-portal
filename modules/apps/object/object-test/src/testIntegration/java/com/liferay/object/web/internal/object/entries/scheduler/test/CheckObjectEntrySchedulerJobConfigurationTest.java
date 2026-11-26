@@ -287,14 +287,14 @@ public class CheckObjectEntrySchedulerJobConfigurationTest {
 			_objectEntryVersionLocalService.getObjectEntryVersions(
 				objectEntry.getObjectEntryId());
 
-		Assert.assertEquals(
-			objectEntryVersions.toString(), 1, objectEntryVersions.size());
-
 		objectEntryVersion = objectEntryVersions.get(0);
 
 		Assert.assertEquals(
 			WorkflowConstants.STATUS_APPROVED, objectEntryVersion.getStatus());
 		Assert.assertEquals(1, objectEntryVersion.getVersion());
+
+		Assert.assertEquals(
+			objectEntryVersions.toString(), 1, objectEntryVersions.size());
 
 		_objectDefinitionLocalService.deleteObjectDefinition(objectDefinition);
 	}

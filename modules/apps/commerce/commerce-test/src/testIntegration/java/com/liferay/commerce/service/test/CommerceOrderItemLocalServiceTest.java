@@ -1454,12 +1454,12 @@ public class CommerceOrderItemLocalServiceTest {
 		commerceOrderItems = commerceOrder.getCommerceOrderItems();
 
 		Assert.assertEquals(
-			commerceOrderItems.size(), 2, commerceOrderItems.size());
-
-		Assert.assertEquals(
 			originalQuantity1, commerceOrderItem1.getQuantity());
 		Assert.assertEquals(
 			originalQuantity2, commerceOrderItem2.getQuantity());
+
+		Assert.assertEquals(
+			commerceOrderItems.size(), 2, commerceOrderItems.size());
 	}
 
 	@Test(expected = ProductBundleException.class)

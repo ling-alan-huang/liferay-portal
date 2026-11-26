@@ -191,10 +191,11 @@ public class DisplayPageTemplateServiceTest {
 				WorkflowConstants.STATUS_APPROVED);
 
 		Assert.assertEquals(
+			layoutPageTemplateEntry1, layoutPageTemplateEntries.get(0));
+
+		Assert.assertEquals(
 			layoutPageTemplateEntries.toString(), 1,
 			layoutPageTemplateEntries.size());
-		Assert.assertEquals(
-			layoutPageTemplateEntry1, layoutPageTemplateEntries.get(0));
 	}
 
 	private void _testGetLayoutPageTemplateEntriesAcrossGroupsWithName()
@@ -275,10 +276,11 @@ public class DisplayPageTemplateServiceTest {
 				QueryUtil.ALL_POS, null);
 
 		Assert.assertEquals(
+			layoutPageTemplateEntry1, layoutPageTemplateEntries.get(0));
+
+		Assert.assertEquals(
 			layoutPageTemplateEntries.toString(), 1,
 			layoutPageTemplateEntries.size());
-		Assert.assertEquals(
-			layoutPageTemplateEntry1, layoutPageTemplateEntries.get(0));
 	}
 
 	private void _testGetLayoutPageTemplateEntriesAcrossGroupsWithPagination()

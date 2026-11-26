@@ -80,8 +80,6 @@ public class PIMConnectorChannelFieldFDSActionProviderTest {
 					RandomTestUtil.randomLong(), false, Collections.emptyList(),
 					Collections.emptyList(), RandomTestUtil.randomBoolean()));
 
-		Assert.assertEquals(dropdownItems.toString(), 2, dropdownItems.size());
-
 		dropdownItem = dropdownItems.get(1);
 
 		Assert.assertEquals("text-danger", dropdownItem.get("className"));
@@ -95,6 +93,8 @@ public class PIMConnectorChannelFieldFDSActionProviderTest {
 		Assert.assertEquals(
 			_API_URL_MAPPING_RULE,
 			_getDataValue(dropdownItem, "mappingRuleAPIURL"));
+
+		Assert.assertEquals(dropdownItems.toString(), 2, dropdownItems.size());
 	}
 
 	private Object _getDataValue(DropdownItem dropdownItem, String key) {

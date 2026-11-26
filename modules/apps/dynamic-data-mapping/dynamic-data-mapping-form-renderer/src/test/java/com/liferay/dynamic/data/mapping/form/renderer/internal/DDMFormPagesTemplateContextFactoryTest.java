@@ -449,26 +449,26 @@ public class DDMFormPagesTemplateContextFactoryTest {
 
 		List<Object> columnsRow1 = (List<Object>)row1.get("columns");
 
-		Assert.assertEquals(columnsRow1.toString(), 2, columnsRow1.size());
-
 		_assertColumnSize(6, (Map<String, Object>)columnsRow1.get(0));
 		_assertColumnSize(6, (Map<String, Object>)columnsRow1.get(1));
+
+		Assert.assertEquals(columnsRow1.toString(), 2, columnsRow1.size());
 
 		Map<String, Object> row2 = (Map<String, Object>)rows.get(1);
 
 		List<Object> columnsRow2 = (List<Object>)row2.get("columns");
 
-		Assert.assertEquals(columnsRow2.toString(), 1, columnsRow2.size());
-
 		_assertColumnSize(12, (Map<String, Object>)columnsRow2.get(0));
+
+		Assert.assertEquals(columnsRow2.toString(), 1, columnsRow2.size());
 
 		Map<String, Object> row3 = (Map<String, Object>)rows.get(2);
 
 		List<Object> columnsRow3 = (List<Object>)row3.get("columns");
 
-		Assert.assertEquals(columnsRow3.toString(), 1, columnsRow3.size());
-
 		_assertColumnSize(12, (Map<String, Object>)columnsRow3.get(0));
+
+		Assert.assertEquals(columnsRow3.toString(), 1, columnsRow3.size());
 
 		Assert.assertEquals(rows.toString(), 3, rows.size());
 

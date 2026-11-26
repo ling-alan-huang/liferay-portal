@@ -684,14 +684,14 @@ public class BaseNotificationTypeTest {
 	protected void assertTermValues(
 		List<String> expectedTermValues, List<String> actualTermValues) {
 
-		Assert.assertEquals(
-			expectedTermValues.toString(), expectedTermValues.size(),
-			actualTermValues.size());
-
 		for (int i = 0; i < actualTermValues.size(); i++) {
 			Assert.assertEquals(
 				expectedTermValues.get(i), actualTermValues.get(i));
 		}
+
+		Assert.assertEquals(
+			expectedTermValues.toString(), expectedTermValues.size(),
+			actualTermValues.size());
 	}
 
 	protected void executeNotificationObjectAction(

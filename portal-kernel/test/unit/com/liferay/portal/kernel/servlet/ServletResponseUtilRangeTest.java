@@ -117,12 +117,13 @@ public class ServletResponseUtilRangeTest {
 			new Class<?>[] {HttpServletRequest.class, long.class},
 			_httpServletRequest, 1000);
 
-		Assert.assertEquals(ranges.toString(), 5, ranges.size());
 		assertRange(ranges.get(0), 1, 3, 3);
 		assertRange(ranges.get(1), 3, 8, 6);
 		assertRange(ranges.get(2), 9, 11, 3);
 		assertRange(ranges.get(3), 12, 12, 1);
 		assertRange(ranges.get(4), 30, 999, 970);
+
+		Assert.assertEquals(ranges.toString(), 5, ranges.size());
 	}
 
 	@Test
@@ -190,9 +191,10 @@ public class ServletResponseUtilRangeTest {
 			new Class<?>[] {HttpServletRequest.class, long.class},
 			_httpServletRequest, length);
 
-		Assert.assertEquals(ranges.toString(), 2, ranges.size());
 		assertRange(ranges.get(0), 500, 700, 201);
 		assertRange(ranges.get(1), 601, 999, 399);
+
+		Assert.assertEquals(ranges.toString(), 2, ranges.size());
 	}
 
 	@Test
@@ -204,8 +206,9 @@ public class ServletResponseUtilRangeTest {
 			new Class<?>[] {HttpServletRequest.class, long.class},
 			_httpServletRequest, 1000);
 
-		Assert.assertEquals(ranges.toString(), 1, ranges.size());
 		assertRange(ranges.get(0), 0, 999, 1000);
+
+		Assert.assertEquals(ranges.toString(), 1, ranges.size());
 	}
 
 	@Test

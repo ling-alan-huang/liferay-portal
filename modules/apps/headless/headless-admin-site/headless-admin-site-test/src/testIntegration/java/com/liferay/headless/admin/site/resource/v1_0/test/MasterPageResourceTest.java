@@ -1728,10 +1728,6 @@ public class MasterPageResourceTest extends BaseMasterPageResourceTestCase {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(
-				logEntries.toString(), missingFragmentEntryLinkIds.length,
-				logEntries.size());
-
 			for (int i = 0; i < missingFragmentEntryLinkIds.length; i++) {
 				LogEntry logEntry = logEntries.get(i);
 
@@ -1740,6 +1736,10 @@ public class MasterPageResourceTest extends BaseMasterPageResourceTestCase {
 						missingFragmentEntryLinkIds[i],
 					logEntry.getMessage());
 			}
+
+			Assert.assertEquals(
+				logEntries.toString(), missingFragmentEntryLinkIds.length,
+				logEntries.size());
 		}
 	}
 

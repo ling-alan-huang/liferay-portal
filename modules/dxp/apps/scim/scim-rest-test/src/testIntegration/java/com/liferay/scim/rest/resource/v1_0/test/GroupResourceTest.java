@@ -714,8 +714,6 @@ public class GroupResourceTest extends BaseGroupResourceTestCase {
 		JSONArray resourcesJSONArray = listResponseJSONObject.getJSONArray(
 			"Resources");
 
-		Assert.assertEquals(expectedGroups.length, resourcesJSONArray.length());
-
 		for (int i = 0; i < resourcesJSONArray.length(); i++) {
 			JSONObject groupJSONObject = resourcesJSONArray.getJSONObject(i);
 
@@ -723,6 +721,8 @@ public class GroupResourceTest extends BaseGroupResourceTestCase {
 				Group.toDTO(groupJSONObject.toString()),
 				Arrays.asList(expectedGroups));
 		}
+
+		Assert.assertEquals(expectedGroups.length, resourcesJSONArray.length());
 	}
 
 	private Group _getGroup(long userGroupId) throws Exception {

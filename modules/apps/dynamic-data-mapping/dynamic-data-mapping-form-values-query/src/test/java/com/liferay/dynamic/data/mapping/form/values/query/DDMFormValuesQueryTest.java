@@ -68,13 +68,14 @@ public class DDMFormValuesQueryTest {
 			ddmFormValuesQuery.selectDDMFormFieldValues();
 
 		Assert.assertEquals(
-			ddmFormFieldValues.toString(), 3, ddmFormFieldValues.size());
-		Assert.assertEquals(
 			"text1", getDDMFormFieldValueFieldName(ddmFormFieldValues.get(0)));
 		Assert.assertEquals(
 			"text2", getDDMFormFieldValueFieldName(ddmFormFieldValues.get(1)));
 		Assert.assertEquals(
 			"text3", getDDMFormFieldValueFieldName(ddmFormFieldValues.get(2)));
+
+		Assert.assertEquals(
+			ddmFormFieldValues.toString(), 3, ddmFormFieldValues.size());
 	}
 
 	@Test
@@ -88,8 +89,6 @@ public class DDMFormValuesQueryTest {
 			ddmFormValuesQuery.selectDDMFormFieldValues();
 
 		Assert.assertEquals(
-			ddmFormFieldValues.toString(), 4, ddmFormFieldValues.size());
-		Assert.assertEquals(
 			"text11", getDDMFormFieldValueFieldName(ddmFormFieldValues.get(0)));
 		Assert.assertEquals(
 			"text11", getDDMFormFieldValueFieldName(ddmFormFieldValues.get(1)));
@@ -97,6 +96,9 @@ public class DDMFormValuesQueryTest {
 			"text11", getDDMFormFieldValueFieldName(ddmFormFieldValues.get(2)));
 		Assert.assertEquals(
 			"text12", getDDMFormFieldValueFieldName(ddmFormFieldValues.get(3)));
+
+		Assert.assertEquals(
+			ddmFormFieldValues.toString(), 4, ddmFormFieldValues.size());
 	}
 
 	@Test
@@ -167,10 +169,11 @@ public class DDMFormValuesQueryTest {
 			ddmFormValuesQuery.selectDDMFormFieldValues();
 
 		Assert.assertEquals(
-			ddmFormFieldValues.toString(), 1, ddmFormFieldValues.size());
-		Assert.assertEquals(
 			"text313",
 			getDDMFormFieldValueFieldName(ddmFormFieldValues.get(0)));
+
+		Assert.assertEquals(
+			ddmFormFieldValues.toString(), 1, ddmFormFieldValues.size());
 	}
 
 	@Test
@@ -182,10 +185,11 @@ public class DDMFormValuesQueryTest {
 			ddmFormValuesQuery.selectDDMFormFieldValues();
 
 		Assert.assertEquals(
-			ddmFormFieldValues.toString(), 1, ddmFormFieldValues.size());
-		Assert.assertEquals(
 			"text313",
 			getDDMFormFieldValueFieldName(ddmFormFieldValues.get(0)));
+
+		Assert.assertEquals(
+			ddmFormFieldValues.toString(), 1, ddmFormFieldValues.size());
 	}
 
 	@Test

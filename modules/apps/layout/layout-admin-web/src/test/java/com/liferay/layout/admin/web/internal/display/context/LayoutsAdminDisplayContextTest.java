@@ -843,9 +843,6 @@ public class LayoutsAdminDisplayContextTest {
 					Mockito.mock(
 						SelectLayoutPageTemplateEntryDisplayContext.class));
 
-			Assert.assertEquals(
-				verticalNavItemList.toString(), 3, verticalNavItemList.size());
-
 			_assertVerticalNavItem(
 				StringPool.BLANK, null, name, layoutPageTemplateCollectionId1,
 				null, verticalNavItemList.get(1));
@@ -855,6 +852,9 @@ public class LayoutsAdminDisplayContextTest {
 					IconItem.of("books-brush", StringPool.BLANK)),
 				name, layoutPageTemplateCollectionId2, title,
 				verticalNavItemList.get(2));
+
+			Assert.assertEquals(
+				verticalNavItemList.toString(), 3, verticalNavItemList.size());
 		}
 	}
 

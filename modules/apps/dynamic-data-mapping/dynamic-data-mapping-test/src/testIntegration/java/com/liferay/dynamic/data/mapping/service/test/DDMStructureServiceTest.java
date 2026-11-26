@@ -259,10 +259,11 @@ public class DDMStructureServiceTest extends BaseDDMServiceTestCase {
 			List<DDMStructure> ddmStructures =
 				DDMStructureUtil.filterFindByGroupId(groupIds);
 
-			Assert.assertEquals(
-				ddmStructures.toString(), 2, ddmStructures.size());
 			Assert.assertEquals(structure1, ddmStructures.get(0));
 			Assert.assertEquals(structure2, ddmStructures.get(1));
+
+			Assert.assertEquals(
+				ddmStructures.toString(), 2, ddmStructures.size());
 		}
 		finally {
 			_userLocalService.deleteUser(siteAdminUser);
@@ -394,8 +395,9 @@ public class DDMStructureServiceTest extends BaseDDMServiceTestCase {
 			WorkflowConstants.STATUS_ANY, true, QueryUtil.ALL_POS,
 			QueryUtil.ALL_POS, null);
 
-		Assert.assertEquals(ddmStructures.toString(), 1, ddmStructures.size());
 		Assert.assertEquals(ddmStructure, ddmStructures.get(0));
+
+		Assert.assertEquals(ddmStructures.toString(), 1, ddmStructures.size());
 	}
 
 	@Test

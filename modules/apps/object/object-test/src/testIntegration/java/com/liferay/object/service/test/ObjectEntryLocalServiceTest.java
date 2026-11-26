@@ -4139,10 +4139,6 @@ public class ObjectEntryLocalServiceTest {
 				objectValidationRuleEngineException.
 					getObjectValidationRuleResults();
 
-			Assert.assertEquals(
-				objectValidationRuleResults.toString(), 6,
-				objectValidationRuleResults.size());
-
 			_assertObjectValidationRuleResult(
 				objectValidationRule2.getErrorLabel(LocaleUtil.getDefault()),
 				null, objectValidationRuleResults.get(0));
@@ -4161,6 +4157,10 @@ public class ObjectEntryLocalServiceTest {
 			_assertObjectValidationRuleResult(
 				objectValidationRule9.getErrorLabel(LocaleUtil.getDefault()),
 				null, objectValidationRuleResults.get(5));
+
+			Assert.assertEquals(
+				objectValidationRuleResults.toString(), 6,
+				objectValidationRuleResults.size());
 		}
 
 		// Disable object validation rule 9
@@ -7246,14 +7246,14 @@ public class ObjectEntryLocalServiceTest {
 			_objectDefinition.getObjectDefinitionId(), null, null,
 			QueryUtil.ALL_POS, QueryUtil.ALL_POS, sorts);
 
-		Assert.assertEquals(valuesList.toString(), 3, valuesList.size());
-
 		_assertObjectEntryValues(
 			24, values1, valuesList.get(0), selectedObjectFieldNames);
 		_assertObjectEntryValues(
 			24, values2, valuesList.get(1), selectedObjectFieldNames);
 		_assertObjectEntryValues(
 			24, values3, valuesList.get(2), selectedObjectFieldNames);
+
+		Assert.assertEquals(valuesList.toString(), 3, valuesList.size());
 	}
 
 	@Test
@@ -11855,13 +11855,13 @@ public class ObjectEntryLocalServiceTest {
 			objectValidationRuleEngineException.
 				getObjectValidationRuleResults();
 
-		Assert.assertEquals(
-			objectValidationRuleResults.toString(), 1,
-			objectValidationRuleResults.size());
-
 		_assertObjectValidationRuleResult(
 			objectValidationRule.getErrorLabel(LocaleUtil.getDefault()), null,
 			objectValidationRuleResults.get(0));
+
+		Assert.assertEquals(
+			objectValidationRuleResults.toString(), 1,
+			objectValidationRuleResults.size());
 	}
 
 	private void _assertFriendlyURLEntries(

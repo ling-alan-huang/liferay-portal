@@ -908,10 +908,6 @@ public class SitePageResourceTest extends BaseSitePageResourceTestCase {
 		FragmentEditableElement[] fragmentEditableElements =
 			fragmentInstance.getFragmentEditableElements();
 
-		Assert.assertEquals(
-			fragmentEditableElements.toString(), 1,
-			fragmentEditableElements.length);
-
 		FragmentEditableElement fragmentEditableElement =
 			fragmentEditableElements[0];
 
@@ -924,6 +920,10 @@ public class SitePageResourceTest extends BaseSitePageResourceTestCase {
 
 		Assert.assertEquals(
 			fragmentImageValue, fragmentImage.getFragmentImageValue());
+
+		Assert.assertEquals(
+			fragmentEditableElements.toString(), 1,
+			fragmentEditableElements.length);
 	}
 
 	private void _assertFragmentImageValues(
@@ -1089,12 +1089,12 @@ public class SitePageResourceTest extends BaseSitePageResourceTestCase {
 	private void _assertMapEquals(
 		Map<String, String> expectedMap, Map<String, String> map) {
 
-		Assert.assertEquals(
-			MapUtil.toString(map), expectedMap.size(), map.size());
-
 		for (Map.Entry<String, String> entry : expectedMap.entrySet()) {
 			Assert.assertEquals(entry.getValue(), map.get(entry.getKey()));
 		}
+
+		Assert.assertEquals(
+			MapUtil.toString(map), expectedMap.size(), map.size());
 	}
 
 	private void _assertNestedFields(SitePage sitePage) throws Exception {
@@ -5076,10 +5076,6 @@ public class SitePageResourceTest extends BaseSitePageResourceTestCase {
 		TaxonomyCategoryBrief[] putTaxonomyCategoryBriefs =
 			putSitePage.getTaxonomyCategoryBriefs();
 
-		Assert.assertEquals(
-			Arrays.toString(putTaxonomyCategoryBriefs), 1,
-			putTaxonomyCategoryBriefs.length);
-
 		TaxonomyCategoryBrief putTaxonomyCategoryBrief =
 			putTaxonomyCategoryBriefs[0];
 
@@ -5093,6 +5089,10 @@ public class SitePageResourceTest extends BaseSitePageResourceTestCase {
 			taxonomyCategoryBrief3.getTaxonomyCategoryExternalReferenceCode(),
 			putTaxonomyCategoryBrief.
 				getTaxonomyCategoryExternalReferenceCode());
+
+		Assert.assertEquals(
+			Arrays.toString(putTaxonomyCategoryBriefs), 1,
+			putTaxonomyCategoryBriefs.length);
 	}
 
 	private void _testPutSiteSitePageWithPageElements() throws Exception {

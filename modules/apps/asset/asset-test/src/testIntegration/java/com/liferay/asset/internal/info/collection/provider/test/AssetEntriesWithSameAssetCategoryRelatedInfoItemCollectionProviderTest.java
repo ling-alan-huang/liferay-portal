@@ -724,8 +724,6 @@ public class
 			List<InfoField<?>> infoFields =
 				configurationInfoForm.getAllInfoFields();
 
-			Assert.assertEquals(infoFields.toString(), 3, infoFields.size());
-
 			_assertInfoField(
 				infoFields.get(0), MultiselectInfoFieldType.class,
 				_language.get(LocaleUtil.US, "item-type"), "item_types");
@@ -737,6 +735,8 @@ public class
 				infoFields.get(2), CategoriesInfoFieldType.class,
 				_language.get(LocaleUtil.US, "category"),
 				"specificAssetCategoryJSONObject");
+
+			Assert.assertEquals(infoFields.toString(), 3, infoFields.size());
 		}
 		finally {
 			ServiceContextThreadLocal.popServiceContext();

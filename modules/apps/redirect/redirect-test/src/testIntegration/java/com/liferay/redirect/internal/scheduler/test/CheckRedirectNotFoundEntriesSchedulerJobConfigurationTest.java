@@ -92,10 +92,11 @@ public class CheckRedirectNotFoundEntriesSchedulerJobConfigurationTest {
 				null);
 
 		Assert.assertEquals(
+			redirectNotFoundEntry, redirectNotFoundEntries.get(0));
+
+		Assert.assertEquals(
 			redirectNotFoundEntries.toString(), 1,
 			redirectNotFoundEntries.size());
-		Assert.assertEquals(
-			redirectNotFoundEntry, redirectNotFoundEntries.get(0));
 
 		Assert.assertEquals(1, _getRedirectNotFoundEntryCount());
 	}

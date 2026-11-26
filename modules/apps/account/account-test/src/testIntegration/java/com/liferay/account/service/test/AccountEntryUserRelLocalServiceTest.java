@@ -927,8 +927,9 @@ public class AccountEntryUserRelLocalServiceTest {
 
 		List<User> users = baseModelSearchResult.getBaseModels();
 
-		Assert.assertEquals(users.toString(), 1, users.size());
 		Assert.assertEquals(users.get(0), user);
+
+		Assert.assertEquals(users.toString(), 1, users.size());
 	}
 
 	private void _testDeleteAccountEntryUserRelsByAccountEntryId(

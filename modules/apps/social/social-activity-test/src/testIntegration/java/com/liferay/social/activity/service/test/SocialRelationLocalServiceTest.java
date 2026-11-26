@@ -367,11 +367,11 @@ public class SocialRelationLocalServiceTest {
 			SocialRelationConstants.TYPE_UNI_CHILD, QueryUtil.ALL_POS,
 			QueryUtil.ALL_POS, UserScreenNameComparator.getInstance(true));
 
-		Assert.assertEquals(users.toString(), 1, users.size());
-
 		user1 = users.get(0);
 
 		Assert.assertEquals("fra1", user1.getScreenName());
+
+		Assert.assertEquals(users.toString(), 1, users.size());
 	}
 
 	@Test

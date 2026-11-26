@@ -58,8 +58,6 @@ public class DDMRESTDataProviderSettingsTest {
 		Map<String, DDMFormField> ddmFormFields = ddmForm.getDDMFormFieldsMap(
 			false);
 
-		Assert.assertEquals(ddmFormFields.toString(), 12, ddmFormFields.size());
-
 		_assertCacheable(ddmFormFields.get("cacheable"));
 		_assertFilterable(ddmFormFields.get("filterable"));
 		_assertFilterParameterName(ddmFormFields.get("filterParameterName"));
@@ -74,6 +72,8 @@ public class DDMRESTDataProviderSettingsTest {
 		_assertTimeout(ddmFormFields.get("timeout"));
 		_assertURL(ddmFormFields.get("url"));
 		_assertUsername(ddmFormFields.get("username"));
+
+		Assert.assertEquals(ddmFormFields.toString(), 12, ddmFormFields.size());
 	}
 
 	private static void _setUpLanguageUtil() {
@@ -149,10 +149,6 @@ public class DDMRESTDataProviderSettingsTest {
 		Map<String, DDMFormField> nestedDDMFormFieldsMap =
 			ddmFormField.getNestedDDMFormFieldsMap();
 
-		Assert.assertEquals(
-			nestedDDMFormFieldsMap.toString(), 4,
-			nestedDDMFormFieldsMap.size());
-
 		// Label
 
 		DDMFormField inputParameterLabelDDMFormField =
@@ -224,6 +220,10 @@ public class DDMRESTDataProviderSettingsTest {
 			"checkbox", inputParameterRequiredDDMFormField.getType());
 		Assert.assertEquals(
 			"boolean", inputParameterRequiredDDMFormField.getDataType());
+
+		Assert.assertEquals(
+			nestedDDMFormFieldsMap.toString(), 4,
+			nestedDDMFormFieldsMap.size());
 	}
 
 	private void _assertOutputParameters(DDMFormField ddmFormField) {
@@ -234,10 +234,6 @@ public class DDMRESTDataProviderSettingsTest {
 
 		Map<String, DDMFormField> nestedDDMFormFieldsMap =
 			ddmFormField.getNestedDDMFormFieldsMap();
-
-		Assert.assertEquals(
-			nestedDDMFormFieldsMap.toString(), 4,
-			nestedDDMFormFieldsMap.size());
 
 		// Name
 
@@ -299,6 +295,10 @@ public class DDMRESTDataProviderSettingsTest {
 			optionsValues.toString(), optionsValues.contains("text"));
 		Assert.assertTrue(
 			optionsValues.toString(), optionsValues.contains("number"));
+
+		Assert.assertEquals(
+			nestedDDMFormFieldsMap.toString(), 4,
+			nestedDDMFormFieldsMap.size());
 	}
 
 	private void _assertPagination(DDMFormField ddmFormField) {

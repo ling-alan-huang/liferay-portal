@@ -356,11 +356,12 @@ public class TextDDMFormFieldTypeSettingsTest
 
 		actions = ddmFormRule6.getActions();
 
-		Assert.assertEquals(actions.toString(), 2, actions.size());
 		Assert.assertEquals(
 			"setValue('ddmDataProviderInstanceId', '')", actions.get(0));
 		Assert.assertEquals(
 			"setValue('ddmDataProviderInstanceOutput', '')", actions.get(1));
+
+		Assert.assertEquals(actions.toString(), 2, actions.size());
 
 		Assert.assertEquals(ddmFormRules.toString(), 7, ddmFormRules.size());
 	}

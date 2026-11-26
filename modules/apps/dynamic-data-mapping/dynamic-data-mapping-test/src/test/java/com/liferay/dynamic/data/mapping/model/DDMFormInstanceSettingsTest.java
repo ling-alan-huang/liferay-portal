@@ -110,9 +110,10 @@ public class DDMFormInstanceSettingsTest
 
 		actions = ddmFormRule3.getActions();
 
-		Assert.assertEquals(actions.toString(), 1, actions.size());
 		Assert.assertEquals(
 			"setEnabled('autosaveEnabled', TRUE)", actions.get(0));
+
+		Assert.assertEquals(actions.toString(), 1, actions.size());
 
 		Assert.assertEquals(ddmFormRules.toString(), 4, ddmFormRules.size());
 	}

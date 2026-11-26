@@ -88,12 +88,12 @@ public class CategoryFacetConfigurationDisplayContextTest {
 		JSONArray jsonArray =
 			_categoryFacetConfigurationDisplayContext.getGroupsJSONArray();
 
-		Assert.assertEquals(jsonArray.toString(), 4, jsonArray.length());
-
 		_assertSite(siteGroup, jsonArray.getJSONObject(0));
 		_assertSite(otherSiteGroup, jsonArray.getJSONObject(1));
 		_assertAssetLibrary(depotGroup, jsonArray.getJSONObject(2));
 		_assertAssetLibrary(otherDepotGroup, jsonArray.getJSONObject(3));
+
+		Assert.assertEquals(jsonArray.toString(), 4, jsonArray.length());
 	}
 
 	@Test
@@ -112,11 +112,11 @@ public class CategoryFacetConfigurationDisplayContextTest {
 		JSONArray jsonArray =
 			_categoryFacetConfigurationDisplayContext.getGroupsJSONArray();
 
-		Assert.assertEquals(jsonArray.toString(), 3, jsonArray.length());
-
 		_assertSite(siteGroup, jsonArray.getJSONObject(0));
 		_assertSite(otherSiteGroup, jsonArray.getJSONObject(1));
 		_assertAssetLibrary(depotGroup, jsonArray.getJSONObject(2));
+
+		Assert.assertEquals(jsonArray.toString(), 3, jsonArray.length());
 	}
 
 	@Test
@@ -184,9 +184,9 @@ public class CategoryFacetConfigurationDisplayContextTest {
 		JSONArray jsonArray =
 			_categoryFacetConfigurationDisplayContext.getGroupsJSONArray();
 
-		Assert.assertEquals(jsonArray.toString(), 1, jsonArray.length());
-
 		_assertSite(siteGroup, jsonArray.getJSONObject(0));
+
+		Assert.assertEquals(jsonArray.toString(), 1, jsonArray.length());
 	}
 
 	@Test
@@ -211,9 +211,9 @@ public class CategoryFacetConfigurationDisplayContextTest {
 		JSONArray jsonArray =
 			_categoryFacetConfigurationDisplayContext.getGroupsJSONArray();
 
-		Assert.assertEquals(jsonArray.toString(), 1, jsonArray.length());
-
 		_assertSite(siteGroup, jsonArray.getJSONObject(0));
+
+		Assert.assertEquals(jsonArray.toString(), 1, jsonArray.length());
 	}
 
 	private void _assertAssetLibrary(Group group, JSONObject jsonObject)

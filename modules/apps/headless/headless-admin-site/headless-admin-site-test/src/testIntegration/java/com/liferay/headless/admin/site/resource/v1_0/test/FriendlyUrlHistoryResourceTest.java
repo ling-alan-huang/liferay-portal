@@ -207,11 +207,11 @@ public class FriendlyUrlHistoryResourceTest
 		JSONArray jsonArray = jsonObject.getJSONArray(
 			LocaleUtil.toBCP47LanguageId(LocaleUtil.getSiteDefault()));
 
-		Assert.assertEquals(4, jsonArray.length());
-
 		for (int i = 0; i < friendlyURLs.size(); i++) {
 			Assert.assertEquals(friendlyURLs.get(i), jsonArray.getString(i));
 		}
+
+		Assert.assertEquals(4, jsonArray.length());
 
 		Assert.assertEquals(1, jsonObject.length());
 	}

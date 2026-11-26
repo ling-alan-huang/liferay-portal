@@ -101,9 +101,10 @@ public class FinderCacheImplTest {
 		Map<String, PortalCache<Serializable, Serializable>> portalCaches =
 			ReflectionTestUtil.getFieldValue(finderCacheImpl, "_portalCaches");
 
-		Assert.assertEquals(portalCaches.toString(), 1, portalCaches.size());
 		Assert.assertSame(
 			portalCache, portalCaches.get(FinderCacheImplTest.class.getName()));
+
+		Assert.assertEquals(portalCaches.toString(), 1, portalCaches.size());
 
 		finderCacheImpl.notifyPortalCacheRemoved(
 			portalCache.getPortalCacheName());

@@ -642,14 +642,14 @@ public class GetContentItemMentionUsersStrutsActionTest {
 
 		userGroupsJSONArray = jsonObject.getJSONArray("userGroups");
 
-		Assert.assertEquals(
-			userGroupsJSONArray.toString(), 1, userGroupsJSONArray.length());
-
 		userGroupJSONObject2 = userGroupsJSONArray.getJSONObject(0);
 
 		Assert.assertEquals(
 			userGroup2.getExternalReferenceCode(),
 			userGroupJSONObject2.getString("id"));
+
+		Assert.assertEquals(
+			userGroupsJSONArray.toString(), 1, userGroupsJSONArray.length());
 	}
 
 	private void _testExecuteWithoutAddDiscussionPermission() throws Exception {

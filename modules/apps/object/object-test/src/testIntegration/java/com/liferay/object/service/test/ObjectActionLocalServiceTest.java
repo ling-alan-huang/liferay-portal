@@ -2012,11 +2012,11 @@ public class ObjectActionLocalServiceTest {
 		objectActions = _objectActionLocalService.getObjectActions(
 			objectDefinition.getObjectDefinitionId());
 
-		Assert.assertEquals(objectActions.size(), 3, objectActions.size());
-
 		_assertObjectAction(true, "SubscriptionAdded", objectActions.get(0));
 		_assertObjectAction(true, "SubscriptionExpired", objectActions.get(1));
 		_assertObjectAction(true, "SubscriptionUpdated", objectActions.get(2));
+
+		Assert.assertEquals(objectActions.size(), 3, objectActions.size());
 
 		_objectDefinitionLocalService.deleteObjectDefinition(
 			objectDefinition.getObjectDefinitionId());

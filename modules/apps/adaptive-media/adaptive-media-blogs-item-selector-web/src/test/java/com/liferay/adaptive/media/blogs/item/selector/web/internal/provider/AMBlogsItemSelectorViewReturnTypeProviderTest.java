@@ -47,15 +47,16 @@ public class AMBlogsItemSelectorViewReturnTypeProviderTest {
 				populateSupportedItemSelectorReturnTypes(
 					supportedItemSelectorReturnTypes);
 
-		Assert.assertEquals(
-			itemSelectorReturnTypes.toString(), 2,
-			itemSelectorReturnTypes.size());
 		Assert.assertTrue(
 			itemSelectorReturnTypes.get(0) instanceof
 				AMImageFileEntryItemSelectorReturnType);
 		Assert.assertTrue(
 			itemSelectorReturnTypes.get(1) instanceof
 				AMImageURLItemSelectorReturnType);
+
+		Assert.assertEquals(
+			itemSelectorReturnTypes.toString(), 2,
+			itemSelectorReturnTypes.size());
 	}
 
 	@Test
@@ -78,9 +79,6 @@ public class AMBlogsItemSelectorViewReturnTypeProviderTest {
 				populateSupportedItemSelectorReturnTypes(
 					supportedItemSelectorReturnTypes);
 
-		Assert.assertEquals(
-			itemSelectorReturnTypes.toString(), 4,
-			itemSelectorReturnTypes.size());
 		Assert.assertTrue(
 			itemSelectorReturnTypes.get(0) instanceof
 				FileEntryItemSelectorReturnType);
@@ -93,6 +91,10 @@ public class AMBlogsItemSelectorViewReturnTypeProviderTest {
 		Assert.assertTrue(
 			itemSelectorReturnTypes.get(3) instanceof
 				AMImageURLItemSelectorReturnType);
+
+		Assert.assertEquals(
+			itemSelectorReturnTypes.toString(), 4,
+			itemSelectorReturnTypes.size());
 	}
 
 }

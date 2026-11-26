@@ -393,10 +393,6 @@ public class ObjectEntrySingleFormVariationInfoCollectionProviderTest {
 			List<ObjectEntry> actualObjectEntries =
 				(List<ObjectEntry>)infoPage.getPageItems();
 
-			Assert.assertEquals(
-				actualObjectEntries.toString(), expectedObjectEntries.size(),
-				actualObjectEntries.size());
-
 			for (int i = 0; i < expectedObjectEntries.size(); i++) {
 				ObjectEntry actualObjectEntry = actualObjectEntries.get(i);
 				ObjectEntry expectedObjectEntry = expectedObjectEntries.get(i);
@@ -405,6 +401,10 @@ public class ObjectEntrySingleFormVariationInfoCollectionProviderTest {
 					expectedObjectEntry.getObjectEntryId(),
 					actualObjectEntry.getObjectEntryId());
 			}
+
+			Assert.assertEquals(
+				actualObjectEntries.toString(), expectedObjectEntries.size(),
+				actualObjectEntries.size());
 		}
 		finally {
 			_objectDefinitionLocalService.deleteObjectDefinition(

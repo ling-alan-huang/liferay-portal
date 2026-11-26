@@ -481,15 +481,15 @@ public class PIMConnectorChannelFieldFDSDataProviderTest {
 				_mockFDSKeywords(StringPool.BLANK), _mockFDSPagination(0, 20),
 				_httpServletRequest, null);
 
-		Assert.assertEquals(
-			pimConnectorChannelFieldDisplays.toString(), 1,
-			pimConnectorChannelFieldDisplays.size());
-
 		pimConnectorChannelFieldDisplay = pimConnectorChannelFieldDisplays.get(
 			0);
 
 		Assert.assertEquals(
 			"Tags[]", pimConnectorChannelFieldDisplay.getChannelField());
+
+		Assert.assertEquals(
+			pimConnectorChannelFieldDisplays.toString(), 1,
+			pimConnectorChannelFieldDisplays.size());
 	}
 
 	@Test

@@ -60,10 +60,11 @@ public class StyleBookScopedCSSVariablesProviderTest {
 			),
 			FrontendTokenDefinitionConstants.PRIORITY_THEME,
 			cssVariables -> {
-				Assert.assertEquals(
-					cssVariables.toString(), 2, cssVariables.size());
 				Assert.assertEquals("#222", cssVariables.get("--a"));
 				Assert.assertEquals("#111", cssVariables.get("--b"));
+
+				Assert.assertEquals(
+					cssVariables.toString(), 2, cssVariables.size());
 			});
 	}
 
@@ -89,12 +90,13 @@ public class StyleBookScopedCSSVariablesProviderTest {
 			),
 			FrontendTokenDefinitionConstants.PRIORITY_THEME,
 			cssVariables -> {
-				Assert.assertEquals(
-					cssVariables.toString(), 4, cssVariables.size());
 				Assert.assertEquals("#333", cssVariables.get("--a"));
 				Assert.assertEquals("#333", cssVariables.get("--b"));
 				Assert.assertEquals("#333", cssVariables.get("--c"));
 				Assert.assertEquals("var(--e)", cssVariables.get("--d"));
+
+				Assert.assertEquals(
+					cssVariables.toString(), 4, cssVariables.size());
 			});
 	}
 
@@ -114,10 +116,11 @@ public class StyleBookScopedCSSVariablesProviderTest {
 			FrontendTokenDefinitionConstants.PRIORITY_THEME,
 			cssVariables -> {
 				Assert.assertEquals(
-					cssVariables.toString(), 2, cssVariables.size());
-				Assert.assertEquals(
 					"#000", cssVariables.get("--theme-primary"));
 				Assert.assertEquals("#fff", cssVariables.get("--clay-primary"));
+
+				Assert.assertEquals(
+					cssVariables.toString(), 2, cssVariables.size());
 			});
 	}
 
@@ -147,11 +150,12 @@ public class StyleBookScopedCSSVariablesProviderTest {
 			FrontendTokenDefinitionConstants.PRIORITY_THEME,
 			cssVariables -> {
 				Assert.assertEquals(
-					cssVariables.toString(), 2, cssVariables.size());
-				Assert.assertEquals(
 					"#000", cssVariables.get("--primary-color"));
 				Assert.assertEquals(
 					"#0f0", cssVariables.get("--secondary-color"));
+
+				Assert.assertEquals(
+					cssVariables.toString(), 2, cssVariables.size());
 			});
 		_testGetScopedCSSVariablesCollection(
 			FrontendTokenDefinitionConstants.PRIORITY_THEME,
@@ -159,11 +163,12 @@ public class StyleBookScopedCSSVariablesProviderTest {
 			FrontendTokenDefinitionConstants.PRIORITY_GLOBAL,
 			cssVariables -> {
 				Assert.assertEquals(
-					cssVariables.toString(), 2, cssVariables.size());
-				Assert.assertEquals(
 					"#fff", cssVariables.get("--primary-color"));
 				Assert.assertEquals(
 					"#0f0", cssVariables.get("--secondary-color"));
+
+				Assert.assertEquals(
+					cssVariables.toString(), 2, cssVariables.size());
 			});
 	}
 

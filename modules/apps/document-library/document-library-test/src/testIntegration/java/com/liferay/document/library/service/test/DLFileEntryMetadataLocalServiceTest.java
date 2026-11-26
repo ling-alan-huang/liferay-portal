@@ -230,10 +230,11 @@ public class DLFileEntryMetadataLocalServiceTest {
 					getMismatchedCompanyIdFileEntryMetadatas();
 
 			Assert.assertEquals(
+				dlFileEntryMetadata, dlFileEntryMetadatas.get(0));
+
+			Assert.assertEquals(
 				dlFileEntryMetadatas.toString(), 1,
 				dlFileEntryMetadatas.size());
-			Assert.assertEquals(
-				dlFileEntryMetadata, dlFileEntryMetadatas.get(0));
 		}
 		finally {
 			if (_ddmStructure != null) {

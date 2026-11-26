@@ -1158,13 +1158,13 @@ public class LiferayCommercePIMConnectorTest {
 
 		JSONArray jsonArray = jsonObject.getJSONArray("productSpecifications");
 
-		Assert.assertEquals(jsonArray.toString(), 1, jsonArray.length());
-
 		jsonObject = jsonArray.getJSONObject(0);
 
 		JSONObject valueJSONObject = jsonObject.getJSONObject("value");
 
 		Assert.assertEquals("Small", valueJSONObject.getString("en_US"));
+
+		Assert.assertEquals(jsonArray.toString(), 1, jsonArray.length());
 	}
 
 	private void _testExecuteWithProductOptions() throws Exception {

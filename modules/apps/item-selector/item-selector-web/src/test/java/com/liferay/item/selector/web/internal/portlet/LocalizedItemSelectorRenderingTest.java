@@ -129,13 +129,13 @@ public class LocalizedItemSelectorRenderingTest {
 		List<NavigationItem> navigationItems =
 			localizedItemSelectorRendering.getNavigationItems();
 
-		Assert.assertEquals(
-			navigationItems.toString(), 2, navigationItems.size());
-
 		_assertNavigationItem(
 			TestItemSelectorView1.class, navigationItems.get(0), title);
 		_assertNavigationItem(
 			TestItemSelectorView2.class, navigationItems.get(1), title);
+
+		Assert.assertEquals(
+			navigationItems.toString(), 2, navigationItems.size());
 	}
 
 	private class BaseItemSelectorView

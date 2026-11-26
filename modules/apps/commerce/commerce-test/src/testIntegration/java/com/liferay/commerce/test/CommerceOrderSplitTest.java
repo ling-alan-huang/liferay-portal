@@ -733,9 +733,6 @@ public class CommerceOrderSplitTest {
 				commerceOrderItem.getCommerceOrderItemId(), QueryUtil.ALL_POS,
 				QueryUtil.ALL_POS);
 
-		Assert.assertEquals(
-			commerceOrderItems.toString(), 1, commerceOrderItems.size());
-
 		commerceOrderItem = commerceOrderItems.get(0);
 
 		List<CommerceShipmentItem> commerceShipmentItems =
@@ -750,6 +747,9 @@ public class CommerceOrderSplitTest {
 			commerceShipmentItem.getCommerceShipmentId());
 
 		Assert.assertEquals(trackingURL, commerceShipment.getTrackingURL());
+
+		Assert.assertEquals(
+			commerceOrderItems.toString(), 1, commerceOrderItems.size());
 	}
 
 	private AccountEntry _addAccountEntry() throws Exception {

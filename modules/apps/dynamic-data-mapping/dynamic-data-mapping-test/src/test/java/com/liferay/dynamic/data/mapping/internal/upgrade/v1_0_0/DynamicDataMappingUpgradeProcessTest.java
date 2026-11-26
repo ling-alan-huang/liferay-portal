@@ -677,14 +677,14 @@ public class DynamicDataMappingUpgradeProcessTest extends BaseDDMTestCase {
 
 		int expectedDataValuesSize = expectedDataValues.size();
 
-		Assert.assertEquals(
-			actualDataValues.toString(), expectedDataValuesSize,
-			actualDataValues.size());
-
 		for (int i = 0; i < expectedDataValuesSize; i++) {
 			Assert.assertEquals(
 				expectedDataValues.get(i), actualDataValues.get(i));
 		}
+
+		Assert.assertEquals(
+			actualDataValues.toString(), expectedDataValuesSize,
+			actualDataValues.size());
 	}
 
 	private Element _createDynamicElementElement(

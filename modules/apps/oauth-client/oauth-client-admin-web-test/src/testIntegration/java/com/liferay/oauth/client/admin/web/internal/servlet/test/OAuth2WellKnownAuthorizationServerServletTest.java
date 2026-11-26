@@ -245,8 +245,9 @@ public class OAuth2WellKnownAuthorizationServerServletTest {
 		JSONArray codeChallengeMethodsJSONArray =
 			responseJSONObject.getJSONArray("code_challenge_methods_supported");
 
-		Assert.assertEquals(1, codeChallengeMethodsJSONArray.length());
 		Assert.assertEquals("S256", codeChallengeMethodsJSONArray.getString(0));
+
+		Assert.assertEquals(1, codeChallengeMethodsJSONArray.length());
 
 		Assert.assertEquals(
 			url2 + "/o/oauth2/introspect",
@@ -255,8 +256,9 @@ public class OAuth2WellKnownAuthorizationServerServletTest {
 		JSONArray responseTypesJSONArray = responseJSONObject.getJSONArray(
 			"response_types_supported");
 
-		Assert.assertEquals(1, responseTypesJSONArray.length());
 		Assert.assertEquals("code", responseTypesJSONArray.getString(0));
+
+		Assert.assertEquals(1, responseTypesJSONArray.length());
 
 		JSONArray tokenEndpointAuthMethodsJSONArray =
 			responseJSONObject.getJSONArray(

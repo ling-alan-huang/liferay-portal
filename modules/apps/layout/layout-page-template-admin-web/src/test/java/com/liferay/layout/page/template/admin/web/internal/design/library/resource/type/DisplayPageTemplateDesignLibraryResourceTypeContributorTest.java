@@ -175,10 +175,6 @@ public class DisplayPageTemplateDesignLibraryResourceTypeContributorTest {
 				getFDSActionDropdownItems(
 					_httpServletRequest, _depotEntry, _BACK_URL);
 
-		Assert.assertEquals(
-			fdsActionDropdownItems.toString(), 8,
-			fdsActionDropdownItems.size());
-
 		_assertFDSActionDropdownItem(
 			fdsActionDropdownItems.get(0), "pencil", "edit", "edit", null,
 			"get", "link");
@@ -253,10 +249,6 @@ public class DisplayPageTemplateDesignLibraryResourceTypeContributorTest {
 		List<FDSActionDropdownItem> copyFDSActionDropdownItems =
 			(List<FDSActionDropdownItem>)copyFDSActionDropdownItem.get("items");
 
-		Assert.assertEquals(
-			copyFDSActionDropdownItems.toString(), 2,
-			copyFDSActionDropdownItems.size());
-
 		_assertFDSActionDropdownItem(
 			copyFDSActionDropdownItems.get(0), null, "copy", "display-page",
 			"post", "copy", "async");
@@ -279,6 +271,10 @@ public class DisplayPageTemplateDesignLibraryResourceTypeContributorTest {
 			"{actions.copyWithPermission.href}",
 			displayPageWithPermissionsFDSActionDropdownItem.get("href"));
 
+		Assert.assertEquals(
+			copyFDSActionDropdownItems.toString(), 2,
+			copyFDSActionDropdownItems.size());
+
 		FDSActionDropdownItem configureFDSActionDropdownItem =
 			fdsActionDropdownItems.get(5);
 
@@ -298,6 +294,10 @@ public class DisplayPageTemplateDesignLibraryResourceTypeContributorTest {
 
 		Assert.assertEquals(
 			"{actions.delete.href}", deleteFDSActionDropdownItem.get("href"));
+
+		Assert.assertEquals(
+			fdsActionDropdownItems.toString(), 8,
+			fdsActionDropdownItems.size());
 
 		Mockito.verify(
 			_configureLiferayPortletURL
@@ -503,10 +503,6 @@ public class DisplayPageTemplateDesignLibraryResourceTypeContributorTest {
 					getCreationItems(
 						_httpServletRequest, _depotEntry, _BACK_URL);
 
-		Assert.assertEquals(
-			designLibraryResourceCreationItems.toString(), 1,
-			designLibraryResourceCreationItems.size());
-
 		DesignLibraryResourceCreationItem designLibraryResourceCreationItem =
 			designLibraryResourceCreationItems.get(0);
 
@@ -554,6 +550,10 @@ public class DisplayPageTemplateDesignLibraryResourceTypeContributorTest {
 		Assert.assertEquals(
 			mappingTypesJSONArray.toString(), 1,
 			mappingTypesJSONArray.length());
+
+		Assert.assertEquals(
+			designLibraryResourceCreationItems.toString(), 1,
+			designLibraryResourceCreationItems.size());
 	}
 
 	private void _testGetCreationItemsWhenFeatureFlagIsEnabled()

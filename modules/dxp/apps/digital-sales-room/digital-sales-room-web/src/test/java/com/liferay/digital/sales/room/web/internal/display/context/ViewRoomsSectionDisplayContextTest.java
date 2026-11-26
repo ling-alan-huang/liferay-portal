@@ -383,13 +383,13 @@ public class ViewRoomsSectionDisplayContextTest {
 		fdsActionDropdownItems =
 			viewRoomsSectionDisplayContext.getFDSActionDropdownItems();
 
-		Assert.assertEquals(
-			fdsActionDropdownItems.toString(), 8,
-			fdsActionDropdownItems.size());
-
 		_assertFDSActionDropdownItem(
 			"#", "copy", "duplicate", "Duplicate", null, "update", null,
 			fdsActionDropdownItems.get(2));
+
+		Assert.assertEquals(
+			fdsActionDropdownItems.toString(), 8,
+			fdsActionDropdownItems.size());
 	}
 
 	@Test

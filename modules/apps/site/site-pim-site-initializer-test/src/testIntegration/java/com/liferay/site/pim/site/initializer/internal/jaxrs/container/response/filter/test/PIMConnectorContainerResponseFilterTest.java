@@ -179,12 +179,12 @@ public class PIMConnectorContainerResponseFilterTest {
 
 		jsonArray = jsonObject.getJSONArray("items");
 
-		Assert.assertEquals(4, jsonArray.length());
-
 		jsonObject = jsonArray.getJSONObject(0);
 
 		Assert.assertFalse(jsonObject.has("lastExecutionStatus"));
 		Assert.assertFalse(jsonObject.has("mappingStatus"));
+
+		Assert.assertEquals(4, jsonArray.length());
 	}
 
 	private ObjectEntry _addPIMConnectorFieldMappingObjectEntry(

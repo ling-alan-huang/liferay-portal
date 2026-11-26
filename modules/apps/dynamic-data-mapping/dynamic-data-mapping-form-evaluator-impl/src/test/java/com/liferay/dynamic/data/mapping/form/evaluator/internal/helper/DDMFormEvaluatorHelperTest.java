@@ -997,11 +997,11 @@ public class DDMFormEvaluatorHelperTest {
 				new DDMFormEvaluatorFieldContextKey(
 					"text2", "text2_instanceId"));
 
+		Assert.assertTrue((Boolean)ddmFormFieldPropertyChanges.get("visible"));
+
 		Assert.assertEquals(
 			ddmFormFieldPropertyChanges.toString(), 1,
 			ddmFormFieldPropertyChanges.size());
-
-		Assert.assertTrue((Boolean)ddmFormFieldPropertyChanges.get("visible"));
 
 		Assert.assertEquals(
 			ddmFormFieldsPropertyChanges.toString(), 1,
@@ -1046,10 +1046,6 @@ public class DDMFormEvaluatorHelperTest {
 				ddmFormEvaluatorEvaluateResponse.
 					getDDMFormFieldsPropertyChanges();
 
-		Assert.assertEquals(
-			ddmFormFieldsPropertyChanges.toString(), 2,
-			ddmFormFieldsPropertyChanges.size());
-
 		// Field 0
 
 		Assert.assertNull(
@@ -1077,11 +1073,15 @@ public class DDMFormEvaluatorHelperTest {
 		ddmFormFieldPropertyChanges = ddmFormFieldsPropertyChanges.get(
 			new DDMFormEvaluatorFieldContextKey("field2", "field2_instanceId"));
 
+		Assert.assertTrue((boolean)ddmFormFieldPropertyChanges.get("readOnly"));
+
 		Assert.assertEquals(
 			ddmFormFieldPropertyChanges.toString(), 1,
 			ddmFormFieldPropertyChanges.size());
 
-		Assert.assertTrue((boolean)ddmFormFieldPropertyChanges.get("readOnly"));
+		Assert.assertEquals(
+			ddmFormFieldsPropertyChanges.toString(), 2,
+			ddmFormFieldsPropertyChanges.size());
 	}
 
 	@Test
@@ -1183,10 +1183,6 @@ public class DDMFormEvaluatorHelperTest {
 				ddmFormEvaluatorEvaluateResponse.
 					getDDMFormFieldsPropertyChanges();
 
-		Assert.assertEquals(
-			ddmFormFieldsPropertyChanges.toString(), 1,
-			ddmFormFieldsPropertyChanges.size());
-
 		// Field 0
 
 		Assert.assertNull(
@@ -1209,12 +1205,16 @@ public class DDMFormEvaluatorHelperTest {
 					"field2", "field2_instanceId"));
 
 		Assert.assertEquals(
+			ddmFormFieldPropertyChanges.toString(), new BigDecimal(10.0),
+			ddmFormFieldPropertyChanges.get("value"));
+
+		Assert.assertEquals(
 			ddmFormFieldPropertyChanges.toString(), 1,
 			ddmFormFieldPropertyChanges.size());
 
 		Assert.assertEquals(
-			ddmFormFieldPropertyChanges.toString(), new BigDecimal(10.0),
-			ddmFormFieldPropertyChanges.get("value"));
+			ddmFormFieldsPropertyChanges.toString(), 1,
+			ddmFormFieldsPropertyChanges.size());
 	}
 
 	@Test

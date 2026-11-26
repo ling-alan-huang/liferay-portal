@@ -185,14 +185,14 @@ public class CPDefinitionOptionValueRelLocalServiceTest {
 				WorkflowConstants.STATUS_APPROVED, QueryUtil.ALL_POS,
 				QueryUtil.ALL_POS, null);
 
-		Assert.assertEquals(cpInstances.toString(), 3, cpInstances.size());
-
 		_cpInstanceLocalService.updateStatus(
 			_serviceContext.getUserId(),
 			cpInstances.get(
 				0
 			).getCPInstanceId(),
 			WorkflowConstants.STATUS_DRAFT);
+
+		Assert.assertEquals(cpInstances.toString(), 3, cpInstances.size());
 
 		List<CPDefinitionOptionValueRel> cpDefinitionOptionValueRels =
 			_cpDefinitionOptionValueRelLocalService.

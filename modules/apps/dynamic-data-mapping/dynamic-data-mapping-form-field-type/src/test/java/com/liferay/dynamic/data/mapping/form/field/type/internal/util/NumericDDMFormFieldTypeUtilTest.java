@@ -98,7 +98,6 @@ public class NumericDDMFormFieldTypeUtilTest
 				"double", new DDMFormField("field", "numeric"),
 				ddmFormFieldRenderingContext);
 
-		Assert.assertEquals(parameters.toString(), 2, parameters.size());
 		Assert.assertEquals(
 			HashMapBuilder.put(
 				"en_US",
@@ -123,6 +122,8 @@ public class NumericDDMFormFieldTypeUtilTest
 				"thousandsSeparator", ","
 			).build(),
 			parameters.get("symbols"));
+
+		Assert.assertEquals(parameters.toString(), 2, parameters.size());
 	}
 
 	@Test

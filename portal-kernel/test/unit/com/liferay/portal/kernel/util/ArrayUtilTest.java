@@ -1146,13 +1146,13 @@ public class ArrayUtilTest {
 
 		double[] array = ArrayUtil.toDoubleArray(list);
 
-		Assert.assertEquals(list.toString(), array.length, list.size());
-
 		for (int i = 0; i < list.size(); i++) {
 			Double value = list.get(i);
 
 			AssertUtils.assertEquals(value.doubleValue(), array[i]);
 		}
+
+		Assert.assertEquals(list.toString(), array.length, list.size());
 	}
 
 	@Test
@@ -1164,13 +1164,13 @@ public class ArrayUtilTest {
 
 		float[] array = ArrayUtil.toFloatArray(list);
 
-		Assert.assertEquals(list.toString(), array.length, list.size());
-
 		for (int i = 0; i < list.size(); i++) {
 			Float value = list.get(i);
 
 			AssertUtils.assertEquals(value.floatValue(), array[i]);
 		}
+
+		Assert.assertEquals(list.toString(), array.length, list.size());
 	}
 
 	@Test
@@ -1182,13 +1182,13 @@ public class ArrayUtilTest {
 
 		int[] array = ArrayUtil.toIntArray(list);
 
-		Assert.assertEquals(list.toString(), array.length, list.size());
-
 		for (int i = 0; i < list.size(); i++) {
 			Integer value = list.get(i);
 
 			Assert.assertEquals(value.intValue(), array[i]);
 		}
+
+		Assert.assertEquals(list.toString(), array.length, list.size());
 	}
 
 	@Test
@@ -1200,13 +1200,13 @@ public class ArrayUtilTest {
 
 		long[] array = ArrayUtil.toLongArray(list);
 
-		Assert.assertEquals(list.toString(), array.length, list.size());
-
 		for (int i = 0; i < list.size(); i++) {
 			Long value = list.get(i);
 
 			Assert.assertEquals(value.longValue(), array[i]);
 		}
+
+		Assert.assertEquals(list.toString(), array.length, list.size());
 	}
 
 	@Test

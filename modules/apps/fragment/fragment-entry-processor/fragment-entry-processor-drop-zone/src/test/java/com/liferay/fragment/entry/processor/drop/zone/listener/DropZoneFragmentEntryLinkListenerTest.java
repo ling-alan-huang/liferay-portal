@@ -425,10 +425,6 @@ public class DropZoneFragmentEntryLinkListenerTest {
 		List<String> childrenItemIds =
 			fragmentStyledLayoutStructureItem.getChildrenItemIds();
 
-		Assert.assertEquals(
-			childrenItemIds.toString(), dropZoneIdItemIdKeyValuePairs.length,
-			childrenItemIds.size());
-
 		for (int i = 0; i < dropZoneIdItemIdKeyValuePairs.length; i++) {
 			LayoutStructureItem layoutStructureItem =
 				layoutStructure.getLayoutStructureItem(childrenItemIds.get(i));
@@ -459,6 +455,10 @@ public class DropZoneFragmentEntryLinkListenerTest {
 
 			Assert.assertEquals(itemId, layoutStructureItem.getItemId());
 		}
+
+		Assert.assertEquals(
+			childrenItemIds.toString(), dropZoneIdItemIdKeyValuePairs.length,
+			childrenItemIds.size());
 
 		for (String deletedItemId : deletedItemIds) {
 			Assert.assertTrue(

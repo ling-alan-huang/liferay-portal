@@ -51,8 +51,9 @@ public class AsyncBrokerTest {
 
 		NoticeableFuture<String> noticeableFuture = asyncBroker.post(_KEY);
 
-		Assert.assertEquals(map.toString(), 1, map.size());
 		Assert.assertSame(noticeableFuture, map.get(_KEY));
+
+		Assert.assertEquals(map.toString(), 1, map.size());
 
 		noticeableFuture.cancel(true);
 
@@ -88,10 +89,12 @@ public class AsyncBrokerTest {
 
 		NoticeableFuture<String> noticeableFuture = asyncBroker.post(_KEY);
 
+		Assert.assertSame(noticeableFuture, defaultNoticeableFutures.get(_KEY));
+
 		Assert.assertEquals(
 			defaultNoticeableFutures.toString(), 1,
 			defaultNoticeableFutures.size());
-		Assert.assertSame(noticeableFuture, defaultNoticeableFutures.get(_KEY));
+
 		Assert.assertSame(noticeableFuture, asyncBroker.post(_KEY));
 		Assert.assertEquals(
 			defaultNoticeableFutures.toString(), 1,
@@ -132,10 +135,12 @@ public class AsyncBrokerTest {
 
 		NoticeableFuture<String> noticeableFuture = asyncBroker.post(_KEY);
 
+		Assert.assertSame(noticeableFuture, defaultNoticeableFutures.get(_KEY));
+
 		Assert.assertEquals(
 			defaultNoticeableFutures.toString(), 1,
 			defaultNoticeableFutures.size());
-		Assert.assertSame(noticeableFuture, defaultNoticeableFutures.get(_KEY));
+
 		Assert.assertSame(noticeableFuture, asyncBroker.take(_KEY));
 		Assert.assertTrue(
 			defaultNoticeableFutures.toString(),
@@ -162,10 +167,12 @@ public class AsyncBrokerTest {
 
 		NoticeableFuture<String> noticeableFuture = asyncBroker.post(_KEY);
 
+		Assert.assertSame(noticeableFuture, defaultNoticeableFutures.get(_KEY));
+
 		Assert.assertEquals(
 			defaultNoticeableFutures.toString(), 1,
 			defaultNoticeableFutures.size());
-		Assert.assertSame(noticeableFuture, defaultNoticeableFutures.get(_KEY));
+
 		Assert.assertTrue(asyncBroker.takeWithException(_KEY, exception));
 
 		try {
@@ -199,10 +206,12 @@ public class AsyncBrokerTest {
 
 		NoticeableFuture<String> noticeableFuture = asyncBroker.post(_KEY);
 
+		Assert.assertSame(noticeableFuture, defaultNoticeableFutures.get(_KEY));
+
 		Assert.assertEquals(
 			defaultNoticeableFutures.toString(), 1,
 			defaultNoticeableFutures.size());
-		Assert.assertSame(noticeableFuture, defaultNoticeableFutures.get(_KEY));
+
 		Assert.assertTrue(asyncBroker.takeWithResult(_KEY, _VALUE));
 		Assert.assertEquals(_VALUE, noticeableFuture.get());
 		Assert.assertTrue(

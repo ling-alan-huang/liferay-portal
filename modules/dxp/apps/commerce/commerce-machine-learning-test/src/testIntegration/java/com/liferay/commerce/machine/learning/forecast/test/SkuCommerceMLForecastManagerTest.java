@@ -156,10 +156,6 @@ public class SkuCommerceMLForecastManagerTest {
 					TestPropsValues.getCompanyId(), sku, _actualDate,
 					_HISTORY_LENGTH, _FORECAST_LENGTH);
 
-		Assert.assertEquals(
-			"Forecast list size", expectedSkuCommerceMLForecasts.size(),
-			skuCommerceMLForecasts.size());
-
 		for (int i = 0; i < expectedSkuCommerceMLForecasts.size(); i++) {
 			SkuCommerceMLForecast skuCommerceMLForecast =
 				skuCommerceMLForecasts.get(i);
@@ -187,6 +183,10 @@ public class SkuCommerceMLForecastManagerTest {
 				"Timestamp", expectedSkuCommerceMLForecast.getTimestamp(),
 				skuCommerceMLForecast.getTimestamp());
 		}
+
+		Assert.assertEquals(
+			"Forecast list size", expectedSkuCommerceMLForecasts.size(),
+			skuCommerceMLForecasts.size());
 	}
 
 	private SkuCommerceMLForecast _createSkuCommerceMLForecast(

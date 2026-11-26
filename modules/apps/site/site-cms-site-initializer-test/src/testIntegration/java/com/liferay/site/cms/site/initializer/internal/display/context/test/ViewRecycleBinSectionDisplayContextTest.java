@@ -114,15 +114,15 @@ public class ViewRecycleBinSectionDisplayContextTest
 		List<FDSActionDropdownItem> bulkActionDropdownItems =
 			getBulkActionDropdownItems();
 
-		Assert.assertEquals(
-			bulkActionDropdownItems.toString(), 2,
-			bulkActionDropdownItems.size());
-
 		FrontendDataSetTestUtil.assertFDSActionDropdownItem(
 			"trash", "delete", "Delete", null, bulkActionDropdownItems.get(0));
 		FrontendDataSetTestUtil.assertFDSActionDropdownItem(
 			"restore", "restore", "Restore", null,
 			bulkActionDropdownItems.get(1));
+
+		Assert.assertEquals(
+			bulkActionDropdownItems.toString(), 2,
+			bulkActionDropdownItems.size());
 	}
 
 	@Override
@@ -211,10 +211,6 @@ public class ViewRecycleBinSectionDisplayContextTest
 		List<FDSActionDropdownItem> fdsActionDropdownItems =
 			getFDSActionDropdownItems();
 
-		Assert.assertEquals(
-			fdsActionDropdownItems.toString(), 3,
-			fdsActionDropdownItems.size());
-
 		FrontendDataSetTestUtil.assertFDSActionDropdownItem(
 			"view", "actionLinkFolder", "View Folder", "get",
 			HashMapBuilder.<String, Object>put(
@@ -227,6 +223,10 @@ public class ViewRecycleBinSectionDisplayContextTest
 		FrontendDataSetTestUtil.assertFDSActionDropdownItem(
 			"restore", "restore", "Restore", "restore",
 			fdsActionDropdownItems.get(2));
+
+		Assert.assertEquals(
+			fdsActionDropdownItems.toString(), 3,
+			fdsActionDropdownItems.size());
 	}
 
 	@Override

@@ -333,13 +333,13 @@ public class CountryLocalServiceTest {
 
 		List<Country> actualCountries = baseModelSearchResult.getBaseModels();
 
-		Assert.assertEquals(
-			actualCountries.toString(), end - start, actualCountries.size());
-
 		for (int i = 0; i < (end - start); i++) {
 			Assert.assertEquals(
 				expectedCountries.get(start + i), actualCountries.get(i));
 		}
+
+		Assert.assertEquals(
+			actualCountries.toString(), end - start, actualCountries.size());
 	}
 
 	private void _testSearchCountries(

@@ -285,13 +285,13 @@ public class EntryAttachmentContentUpdaterTest {
 	private void _assertEquals(
 		List<Element> expectedElements, List<Element> actualElements) {
 
-		Assert.assertEquals(
-			"Wrong number of elements", expectedElements.size(),
-			actualElements.size());
-
 		for (int i = 0; i < expectedElements.size(); i++) {
 			_assertEquals(expectedElements.get(i), actualElements.get(i));
 		}
+
+		Assert.assertEquals(
+			"Wrong number of elements", expectedElements.size(),
+			actualElements.size());
 	}
 
 	private InputStream _getInputStream() {

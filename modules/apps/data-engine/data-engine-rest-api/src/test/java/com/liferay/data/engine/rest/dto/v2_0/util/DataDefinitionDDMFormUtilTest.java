@@ -351,11 +351,12 @@ public class DataDefinitionDDMFormUtilTest {
 
 		List<DDMFormField> ddmFormFields = ddmForm.getDDMFormFields();
 
-		Assert.assertEquals(ddmFormFields.toString(), 1, ddmFormFields.size());
 		Assert.assertNull(
 			ddmFormFields.get(
 				0
 			).getPredefinedValue());
+
+		Assert.assertEquals(ddmFormFields.toString(), 1, ddmFormFields.size());
 	}
 
 	private void _whenLanguageIsAvailableLocale(Locale locale) {

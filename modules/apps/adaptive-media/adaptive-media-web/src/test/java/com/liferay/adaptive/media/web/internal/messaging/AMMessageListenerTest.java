@@ -77,9 +77,11 @@ public class AMMessageListenerTest {
 		_amMessageListener.doReceive(message);
 
 		Assert.assertEquals(
-			_ctCollectionIds.toString(), 1, _ctCollectionIds.size());
-		Assert.assertEquals(
 			Long.valueOf(messageCTCollectionId), _ctCollectionIds.get(0));
+
+		Assert.assertEquals(
+			_ctCollectionIds.toString(), 1, _ctCollectionIds.size());
+
 		Assert.assertEquals(
 			ctCollectionId, CTCollectionThreadLocal.getCTCollectionId());
 	}

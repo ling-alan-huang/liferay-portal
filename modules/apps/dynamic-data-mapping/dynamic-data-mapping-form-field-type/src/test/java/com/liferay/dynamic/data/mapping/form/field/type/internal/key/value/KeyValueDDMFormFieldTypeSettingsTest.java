@@ -86,9 +86,9 @@ public class KeyValueDDMFormFieldTypeSettingsTest
 
 		List<String> actions = ddmFormRule.getActions();
 
-		Assert.assertEquals(actions.toString(), 1, actions.size());
-
 		Assert.assertEquals("setVisible('indexType', false)", actions.get(0));
+
+		Assert.assertEquals(actions.toString(), 1, actions.size());
 
 		Assert.assertEquals(ddmFormRules.toString(), 1, ddmFormRules.size());
 	}

@@ -166,7 +166,6 @@ public class PortletSessionImplTest {
 		attributeMap = portletSessionImpl.getAttributeMap(
 			PortletSession.APPLICATION_SCOPE);
 
-		Assert.assertEquals(attributeMap.toString(), 5, attributeMap.size());
 		Assert.assertSame(
 			_value1, attributeMap.get(scopePrefix.concat(_KEY_1)));
 		Assert.assertSame(
@@ -175,6 +174,8 @@ public class PortletSessionImplTest {
 			_value3, attributeMap.get(scopePrefix.concat(_KEY_3)));
 		Assert.assertSame(_value4, attributeMap.get(_KEY_4));
 		Assert.assertSame(_value5, attributeMap.get(_KEY_5));
+
+		Assert.assertEquals(attributeMap.toString(), 5, attributeMap.size());
 	}
 
 	@Test

@@ -199,10 +199,10 @@ public class CurrencyResourceTest extends BaseCurrencyResourceTestCase {
 
 		Currency actualCurrency = currencyItems.get(0);
 
+		Assert.assertEquals(currency1.getId(), actualCurrency.getId());
+
 		Assert.assertEquals(
 			currencyItems.toString(), currencyCount, currencyItems.size());
-
-		Assert.assertEquals(currency1.getId(), actualCurrency.getId());
 	}
 
 	@DeleteAfterTestRun

@@ -3599,8 +3599,6 @@ public class BundleSiteInitializerTest {
 
 		List<Layout> layouts = layout.getAllChildren();
 
-		Assert.assertEquals(layouts.toString(), 1, layouts.size());
-
 		layout = layouts.get(0);
 
 		Assert.assertEquals(
@@ -3725,6 +3723,8 @@ public class BundleSiteInitializerTest {
 		Assert.assertEquals("link_to_layout", layout.getType());
 		Assert.assertFalse(layout.isHidden());
 
+		Assert.assertEquals(layouts.toString(), 1, layouts.size());
+
 		sitePage = sitePageResource.getSiteSitePage(
 			_group.getGroupId(), "test-public-layout");
 
@@ -3749,8 +3749,6 @@ public class BundleSiteInitializerTest {
 		Assert.assertFalse(layout.isHidden());
 
 		List<Layout> layouts = layout.getAllChildren();
-
-		Assert.assertEquals(layouts.toString(), 1, layouts.size());
 
 		layout = layouts.get(0);
 
@@ -3880,6 +3878,8 @@ public class BundleSiteInitializerTest {
 			layout.getName(LocaleUtil.getSiteDefault()));
 		Assert.assertEquals("link_to_layout", layout.getType());
 		Assert.assertFalse(layout.isHidden());
+
+		Assert.assertEquals(layouts.toString(), 1, layouts.size());
 	}
 
 	private void _assertResourceAction(
@@ -4780,8 +4780,6 @@ public class BundleSiteInitializerTest {
 
 		roles = user.getRoles();
 
-		Assert.assertEquals(roles.toString(), 2, roles.size());
-
 		role = roles.get(0);
 
 		Assert.assertEquals(RoleConstants.USER, role.getName());
@@ -4789,6 +4787,8 @@ public class BundleSiteInitializerTest {
 		role = roles.get(1);
 
 		Assert.assertEquals("Test Role 3", role.getName());
+
+		Assert.assertEquals(roles.toString(), 2, roles.size());
 	}
 
 	private void _assertUserSiteGroups(long userId) throws Exception {

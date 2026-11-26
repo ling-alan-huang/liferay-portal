@@ -138,14 +138,14 @@ public class DBTest {
 
 			List<String> messages = logCapture.getMessages();
 
-			Assert.assertEquals(messages.toString(), 1, messages.size());
-
 			Assert.assertEquals(
 				StringBundler.concat(
 					"Ignoring column definition \"typeVarcharTest VARCHAR(75) ",
 					"null\" passed as the new name of ", TABLE_NAME_1,
 					".typeVarchar"),
 				messages.get(0));
+
+			Assert.assertEquals(messages.toString(), 1, messages.size());
 		}
 
 		Assert.assertTrue(

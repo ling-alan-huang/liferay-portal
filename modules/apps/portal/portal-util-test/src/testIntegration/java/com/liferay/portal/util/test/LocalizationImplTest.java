@@ -195,8 +195,9 @@ public class LocalizationImplTest {
 		Map<Locale, String> map = LocalizationUtil.getMap(
 			new LocalizedValuesMap("defaultValue"));
 
-		Assert.assertEquals(map.toString(), 1, map.size());
 		Assert.assertEquals("defaultValue", map.get(LocaleUtil.getDefault()));
+
+		Assert.assertEquals(map.toString(), 1, map.size());
 	}
 
 	@Test

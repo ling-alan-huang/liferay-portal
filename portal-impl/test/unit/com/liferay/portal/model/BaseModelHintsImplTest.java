@@ -133,8 +133,9 @@ public class BaseModelHintsImplTest {
 		Map<String, String> defaultHints =
 			_testBaseModelHintsImpl.getDefaultHints(_MODEL);
 
-		Assert.assertEquals(defaultHints.toString(), 1, defaultHints.size());
 		Assert.assertEquals("210", defaultHints.get("display-width"));
+
+		Assert.assertEquals(defaultHints.toString(), 1, defaultHints.size());
 	}
 
 	@Test
@@ -176,9 +177,9 @@ public class BaseModelHintsImplTest {
 	public void testGetModels() {
 		List<String> models = _testBaseModelHintsImpl.getModels();
 
-		Assert.assertEquals(models.toString(), 1, models.size());
-
 		Assert.assertEquals(_MODEL, models.get(0));
+
+		Assert.assertEquals(models.toString(), 1, models.size());
 	}
 
 	@Test
@@ -261,12 +262,12 @@ public class BaseModelHintsImplTest {
 		validators = _testBaseModelHintsImpl.getValidators(
 			_MODEL, "combinedField");
 
-		Assert.assertEquals(validators.toString(), 1, validators.size());
-
 		requiredValidator = validators.get(0);
 
 		Assert.assertEquals("combinedField", requiredValidator.getObject(0));
 		Assert.assertEquals("required", requiredValidator.getObject(1));
+
+		Assert.assertEquals(validators.toString(), 1, validators.size());
 	}
 
 	@Test

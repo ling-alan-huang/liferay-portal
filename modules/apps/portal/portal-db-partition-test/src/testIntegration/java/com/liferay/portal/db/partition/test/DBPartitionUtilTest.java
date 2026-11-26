@@ -1185,12 +1185,12 @@ public class DBPartitionUtilTest extends BaseDBPartitionTestCase {
 			});
 
 		Assert.assertEquals(
-			companyIds.toString(), _getDefaultSchemaCount("Company"),
-			companyIds.size());
-
-		Assert.assertEquals(
 			companyIds.toString(),
 			(Long)PortalInstancePool.getDefaultCompanyId(), companyIds.get(0));
+
+		Assert.assertEquals(
+			companyIds.toString(), _getDefaultSchemaCount("Company"),
+			companyIds.size());
 	}
 
 	private static final String _JOB_GROUP_NAME = "liferay/test";

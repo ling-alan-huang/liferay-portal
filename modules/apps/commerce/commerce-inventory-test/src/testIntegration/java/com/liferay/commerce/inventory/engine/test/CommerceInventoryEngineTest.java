@@ -1345,12 +1345,12 @@ public class CommerceInventoryEngineTest {
 				getCommerceInventoryWarehouses(
 					0, _commerceChannel.getGroupId(), _cpInstance2.getSku());
 
-		Assert.assertEquals(
-			expectedWarehouses.toString(), 1, expectedWarehouses.size());
-
 		retrievedWarehouse = expectedWarehouses.get(0);
 
 		Assert.assertEquals(commerceInventoryWarehouse3, retrievedWarehouse);
+
+		Assert.assertEquals(
+			expectedWarehouses.toString(), 1, expectedWarehouses.size());
 	}
 
 	@Test

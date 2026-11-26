@@ -162,8 +162,9 @@ public class AccountUserRetrieverWhenSearchingAccountRoleUsersTest {
 
 		List<User> users = baseModelSearchResult.getBaseModels();
 
-		Assert.assertEquals(users.toString(), 1, users.size());
 		Assert.assertEquals(_users.get(1), users.get(0));
+
+		Assert.assertEquals(users.toString(), 1, users.size());
 
 		baseModelSearchResult = _accountUserRetriever.searchAccountRoleUsers(
 			_accountEntry1.getAccountEntryId(), _accountRole.getAccountRoleId(),

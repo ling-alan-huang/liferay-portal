@@ -4573,9 +4573,6 @@ public class ObjectDefinitionLocalServiceTest {
 			objectDefinition.getFriendlyURLSeparator(), objectDefinition,
 			Collections.emptyList());
 
-		Assert.assertEquals(
-			clusterRequests.toString(), 1, clusterRequests.size());
-
 		clusterRequest = clusterRequests.get(0);
 
 		Assert.assertTrue(clusterRequest.isMulticast());
@@ -4593,6 +4590,9 @@ public class ObjectDefinitionLocalServiceTest {
 		Assert.assertEquals(
 			"site_administration.content",
 			deployedObjectDefinition.getPanelCategoryKey());
+
+		Assert.assertEquals(
+			clusterRequests.toString(), 1, clusterRequests.size());
 
 		ReflectionTestUtil.setFieldValue(
 			clusterExecutorSnapshot, "_serviceSupplier", serviceSupplier);

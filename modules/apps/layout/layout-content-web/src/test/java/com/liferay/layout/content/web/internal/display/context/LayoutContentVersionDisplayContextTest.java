@@ -154,10 +154,6 @@ public class LayoutContentVersionDisplayContextTest {
 	private void _assertAvailableLanguages(
 		Map<String, Object> availableLanguages, Locale... locales) {
 
-		Assert.assertEquals(
-			availableLanguages.toString(), locales.length,
-			availableLanguages.size());
-
 		for (Locale locale : locales) {
 			Map<String, Object> languageMap =
 				(Map<String, Object>)availableLanguages.get(
@@ -170,6 +166,10 @@ public class LayoutContentVersionDisplayContextTest {
 				LocaleUtil.toW3cLanguageId(locale),
 				languageMap.get("w3cLanguageId"));
 		}
+
+		Assert.assertEquals(
+			availableLanguages.toString(), locales.length,
+			availableLanguages.size());
 	}
 
 	private void _assertSegmentsExperience(

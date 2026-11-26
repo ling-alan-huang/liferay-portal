@@ -147,13 +147,14 @@ public class ObjectDefinitionsDetailsDisplayContextTest {
 		Assert.assertEquals(jsonArray.toString(), 1, jsonArray.length());
 
 		Assert.assertEquals(
-			panelCategoryLabels.toString(), 2, panelCategoryLabels.size());
-		Assert.assertEquals(
 			_getLabel(_OTHER_PANEL_CATEGORY_KEY),
 			panelCategoryLabels.get(_OTHER_PANEL_CATEGORY_KEY));
 		Assert.assertEquals(
 			_getLabel(_PANEL_CATEGORY_KEY),
 			panelCategoryLabels.get(_PANEL_CATEGORY_KEY));
+
+		Assert.assertEquals(
+			panelCategoryLabels.toString(), 2, panelCategoryLabels.size());
 	}
 
 	private static String _getLabel(String panelCategoryKey) {

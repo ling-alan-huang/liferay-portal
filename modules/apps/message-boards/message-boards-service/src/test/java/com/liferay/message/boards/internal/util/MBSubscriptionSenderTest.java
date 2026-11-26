@@ -170,12 +170,12 @@ public class MBSubscriptionSenderTest {
 
 			List<String> messages = logCapture.getMessages();
 
-			Assert.assertEquals(messages.toString(), 1, messages.size());
-
 			Assert.assertEquals(
 				"Unable to resolve the outgoing mail server credential for " +
 					"mailing list ID " + mailingListId,
 				messages.get(0));
+
+			Assert.assertEquals(messages.toString(), 1, messages.size());
 		}
 
 		Assert.assertFalse(mbSubscriptionSender.hasSubscribers());

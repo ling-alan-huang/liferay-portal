@@ -83,11 +83,11 @@ public class DDMImplTest extends BaseDDMTestCase {
 		List<DDMFormLayoutRow> ddmFormLayoutRows =
 			ddmFormLayoutPage.getDDMFormLayoutRows();
 
-		Assert.assertEquals(
-			ddmFormLayoutRows.toString(), 2, ddmFormLayoutRows.size());
-
 		assertDefaultDDMFormLayoutRow("Text1", ddmFormLayoutRows.get(0));
 		assertDefaultDDMFormLayoutRow("Text2", ddmFormLayoutRows.get(1));
+
+		Assert.assertEquals(
+			ddmFormLayoutRows.toString(), 2, ddmFormLayoutRows.size());
 
 		Assert.assertEquals(
 			ddmFormLayoutPages.toString(), 1, ddmFormLayoutPages.size());
@@ -705,13 +705,13 @@ public class DDMImplTest extends BaseDDMTestCase {
 	protected void testValues(
 		List<Serializable> actualValues, String... expectedValues) {
 
-		Assert.assertEquals(
-			actualValues.toString(), expectedValues.length,
-			actualValues.size());
-
 		for (int i = 0; i < expectedValues.length; i++) {
 			Assert.assertEquals(expectedValues[i], actualValues.get(i));
 		}
+
+		Assert.assertEquals(
+			actualValues.toString(), expectedValues.length,
+			actualValues.size());
 	}
 
 	protected void testValues(String[] actualValues, String... expectedValues) {

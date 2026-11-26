@@ -74,10 +74,6 @@ public class ImportAndOverrideDataDefinitionMVCActionCommandTest
 
 		List<DDMFormField> ddmFormFields = ddmStructure.getDDMFormFields(false);
 
-		Assert.assertEquals(
-			ddmFormFields.toString(), expectedDDMFormFieldReference.length,
-			ddmFormFields.size());
-
 		for (int i = 0; i < expectedDDMFormFieldReference.length; i++) {
 			DDMFormField formField = ddmFormFields.get(i);
 
@@ -85,6 +81,10 @@ public class ImportAndOverrideDataDefinitionMVCActionCommandTest
 				expectedDDMFormFieldReference[i],
 				formField.getFieldReference());
 		}
+
+		Assert.assertEquals(
+			ddmFormFields.toString(), expectedDDMFormFieldReference.length,
+			ddmFormFields.size());
 	}
 
 	private void _assertJournalArticleContent(long resourcePrimKey)

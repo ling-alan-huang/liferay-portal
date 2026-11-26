@@ -144,9 +144,10 @@ public class ConfigurationImplTest {
 
 		properties = configurationImpl.getProperties("namespace.", true);
 
-		Assert.assertEquals(2, properties.size());
 		Assert.assertEquals("value1", properties.get("key1"));
 		Assert.assertEquals("valuex", properties.get("key2"));
+
+		Assert.assertEquals(2, properties.size());
 	}
 
 	@NewEnv(type = NewEnv.Type.JVM)
@@ -350,9 +351,10 @@ public class ConfigurationImplTest {
 
 			properties = configurationImpl.getProperties("namespace.", true);
 
-			Assert.assertEquals(2, properties.size());
 			Assert.assertEquals("value1", properties.get("key1"));
 			Assert.assertEquals("valuex", properties.get("key2"));
+
+			Assert.assertEquals(2, properties.size());
 
 			configurationImpl.clearCache();
 		}

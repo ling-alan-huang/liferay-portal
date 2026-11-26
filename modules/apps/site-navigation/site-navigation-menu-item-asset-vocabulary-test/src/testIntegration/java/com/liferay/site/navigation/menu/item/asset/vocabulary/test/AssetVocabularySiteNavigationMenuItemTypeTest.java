@@ -519,12 +519,12 @@ public class AssetVocabularySiteNavigationMenuItemTypeTest {
 				mockHttpServletRequest, assetCategorySiteNavigationMenuItem);
 
 		Assert.assertEquals(
-			siteNavigationMenuItems.toString(), 1,
-			siteNavigationMenuItems.size());
-
-		Assert.assertEquals(
 			assetCategorySiteNavigationMenuItem,
 			siteNavigationMenuItems.get(0));
+
+		Assert.assertEquals(
+			siteNavigationMenuItems.toString(), 1,
+			siteNavigationMenuItems.size());
 	}
 
 	@Test
@@ -605,12 +605,12 @@ public class AssetVocabularySiteNavigationMenuItemTypeTest {
 				mockHttpServletRequest, assetVocabularySiteNavigationMenuItem);
 
 		Assert.assertEquals(
-			siteNavigationMenuItems.toString(), 1,
-			siteNavigationMenuItems.size());
-
-		Assert.assertEquals(
 			assetVocabularySiteNavigationMenuItem,
 			siteNavigationMenuItems.get(0));
+
+		Assert.assertEquals(
+			siteNavigationMenuItems.toString(), 1,
+			siteNavigationMenuItems.size());
 	}
 
 	@Test

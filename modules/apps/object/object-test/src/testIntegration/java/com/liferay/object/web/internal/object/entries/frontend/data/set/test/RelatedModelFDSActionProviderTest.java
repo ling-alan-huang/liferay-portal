@@ -278,10 +278,6 @@ public class RelatedModelFDSActionProviderTest {
 		String[] expectedDropdownItemLabels,
 		List<DropdownItem> actualDropdownItems) {
 
-		Assert.assertEquals(
-			actualDropdownItems.toString(), expectedDropdownItemLabels.length,
-			actualDropdownItems.size());
-
 		for (int i = 0; i < expectedDropdownItemLabels.length; i++) {
 			DropdownItem actualDropdownItem = actualDropdownItems.get(i);
 
@@ -297,6 +293,10 @@ public class RelatedModelFDSActionProviderTest {
 
 			Assert.assertEquals("view", data.get("id"));
 		}
+
+		Assert.assertEquals(
+			actualDropdownItems.toString(), expectedDropdownItemLabels.length,
+			actualDropdownItems.size());
 	}
 
 	private MockHttpServletRequest _getMockHttpServletRequest(

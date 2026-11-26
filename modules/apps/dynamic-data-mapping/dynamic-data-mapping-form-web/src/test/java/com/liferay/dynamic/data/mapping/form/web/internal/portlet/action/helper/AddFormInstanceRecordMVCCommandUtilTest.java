@@ -164,12 +164,12 @@ public class AddFormInstanceRecordMVCCommandUtilTest {
 		List<DDMFormFieldValue> nestedDDMFormFieldValues =
 			ddmFormFieldValue.getNestedDDMFormFieldValues();
 
+		_assertDDMFormFieldValue(
+			"nestedValue", nestedDDMFormFieldValues.get(0));
+
 		Assert.assertEquals(
 			nestedDDMFormFieldValues.toString(), 1,
 			nestedDDMFormFieldValues.size());
-
-		_assertDDMFormFieldValue(
-			"nestedValue", nestedDDMFormFieldValues.get(0));
 
 		_assertDDMFormFieldValue("value2", ddmFormFieldValues.get(1));
 

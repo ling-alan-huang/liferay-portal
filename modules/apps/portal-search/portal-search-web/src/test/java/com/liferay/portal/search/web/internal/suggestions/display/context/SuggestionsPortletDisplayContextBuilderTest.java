@@ -84,16 +84,16 @@ public class SuggestionsPortletDisplayContextBuilderTest {
 		List<SuggestionDisplayContext> suggestionDisplayContexts =
 			buildRelatedQueriesSuggestions(Arrays.asList("a C", "a b C"));
 
-		Assert.assertEquals(
-			suggestionDisplayContexts.toString(), 2,
-			suggestionDisplayContexts.size());
-
 		_assertSuggestion(
 			"a [<strong>C</strong>] | q=a+C", suggestionDisplayContexts.get(0));
 
 		_assertSuggestion(
 			"a b [<strong>C</strong>] | q=a+b+C",
 			suggestionDisplayContexts.get(1));
+
+		Assert.assertEquals(
+			suggestionDisplayContexts.toString(), 2,
+			suggestionDisplayContexts.size());
 	}
 
 	@Test
@@ -113,13 +113,13 @@ public class SuggestionsPortletDisplayContextBuilderTest {
 		List<SuggestionDisplayContext> suggestionDisplayContexts =
 			buildRelatedQueriesSuggestions(Arrays.asList("a b", "a b C"));
 
-		Assert.assertEquals(
-			suggestionDisplayContexts.toString(), 1,
-			suggestionDisplayContexts.size());
-
 		_assertSuggestion(
 			"a b [<strong>C</strong>] | q=a+b+C",
 			suggestionDisplayContexts.get(0));
+
+		Assert.assertEquals(
+			suggestionDisplayContexts.toString(), 1,
+			suggestionDisplayContexts.size());
 	}
 
 	@Test
@@ -129,13 +129,13 @@ public class SuggestionsPortletDisplayContextBuilderTest {
 		List<SuggestionDisplayContext> suggestionDisplayContexts =
 			buildRelatedQueriesSuggestions(Arrays.asList(null, "", "a b C"));
 
-		Assert.assertEquals(
-			suggestionDisplayContexts.toString(), 1,
-			suggestionDisplayContexts.size());
-
 		_assertSuggestion(
 			"a b [<strong>C</strong>] | q=a+b+C",
 			suggestionDisplayContexts.get(0));
+
+		Assert.assertEquals(
+			suggestionDisplayContexts.toString(), 1,
+			suggestionDisplayContexts.size());
 	}
 
 	@Test

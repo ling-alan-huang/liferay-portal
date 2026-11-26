@@ -1191,10 +1191,6 @@ public class AssetListFiltersUtilTest {
 		List<BooleanClause<Query>> nestedFieldBooleanClauses =
 			booleanQuery.clauses();
 
-		Assert.assertEquals(
-			nestedFieldBooleanClauses.toString(), expectedValues.length,
-			nestedFieldBooleanClauses.size());
-
 		for (int i = 0; i < expectedValues.length; i++) {
 			BooleanClause<Query> booleanClause = nestedFieldBooleanClauses.get(
 				i);
@@ -1207,6 +1203,10 @@ public class AssetListFiltersUtilTest {
 				"nestedFieldArray.value_keyword", expectedValues[i],
 				booleanClause.getClause());
 		}
+
+		Assert.assertEquals(
+			nestedFieldBooleanClauses.toString(), expectedValues.length,
+			nestedFieldBooleanClauses.size());
 	}
 
 	private void _assertTermQuery(

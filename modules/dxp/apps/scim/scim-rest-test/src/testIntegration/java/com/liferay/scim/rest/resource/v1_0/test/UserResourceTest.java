@@ -520,8 +520,6 @@ public class UserResourceTest extends BaseUserResourceTestCase {
 		JSONArray resourcesJSONArray = listResponseJSONObject.getJSONArray(
 			"Resources");
 
-		Assert.assertEquals(expectedItemsPerPage, resourcesJSONArray.length());
-
 		for (int i = 0; i < resourcesJSONArray.length(); i++) {
 			JSONObject userJSONObject = resourcesJSONArray.getJSONObject(i);
 
@@ -529,6 +527,8 @@ public class UserResourceTest extends BaseUserResourceTestCase {
 				User.toDTO(userJSONObject.toString()),
 				Arrays.asList(expectedUsers));
 		}
+
+		Assert.assertEquals(expectedItemsPerPage, resourcesJSONArray.length());
 	}
 
 	private User _createUser(com.liferay.portal.kernel.model.User portalUser)

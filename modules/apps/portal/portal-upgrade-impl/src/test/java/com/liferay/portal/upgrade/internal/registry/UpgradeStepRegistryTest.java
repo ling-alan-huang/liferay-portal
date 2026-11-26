@@ -85,10 +85,11 @@ public class UpgradeStepRegistryTest {
 
 		List<UpgradeInfo> upgradeInfos = upgradeStepRegistry.getUpgradeInfos();
 
-		Assert.assertEquals(upgradeInfos.toString(), 1, upgradeInfos.size());
 		Assert.assertEquals(
 			new UpgradeInfo("0.0.0", "1.0.0", testUpgradeStep),
 			upgradeInfos.get(0));
+
+		Assert.assertEquals(upgradeInfos.toString(), 1, upgradeInfos.size());
 	}
 
 	@Test
@@ -165,10 +166,11 @@ public class UpgradeStepRegistryTest {
 
 		List<UpgradeInfo> upgradeInfos = upgradeStepRegistry.getUpgradeInfos();
 
-		Assert.assertEquals(upgradeInfos.toString(), 1, upgradeInfos.size());
 		Assert.assertEquals(
 			new UpgradeInfo("1.0.0", "2.0.0", testUpgradeStep),
 			upgradeInfos.get(0));
+
+		Assert.assertEquals(upgradeInfos.toString(), 1, upgradeInfos.size());
 	}
 
 	@Test

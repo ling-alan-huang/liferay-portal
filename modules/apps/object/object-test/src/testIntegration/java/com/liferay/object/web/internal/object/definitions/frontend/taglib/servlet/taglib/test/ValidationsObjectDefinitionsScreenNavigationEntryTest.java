@@ -186,10 +186,6 @@ public class ValidationsObjectDefinitionsScreenNavigationEntryTest {
 		List<Map<String, Object>> objectValidationRuleElements) {
 
 		Assert.assertEquals(
-			objectValidationRuleElements.toString(), expectedSize,
-			objectValidationRuleElements.size());
-
-		Assert.assertEquals(
 			"Fields",
 			MapUtil.getString(objectValidationRuleElements.get(0), "label"));
 		Assert.assertEquals(
@@ -201,6 +197,10 @@ public class ValidationsObjectDefinitionsScreenNavigationEntryTest {
 		Assert.assertEquals(
 			"Functions",
 			MapUtil.getString(objectValidationRuleElements.get(3), "label"));
+
+		Assert.assertEquals(
+			objectValidationRuleElements.toString(), expectedSize,
+			objectValidationRuleElements.size());
 	}
 
 	private void _assertItems(

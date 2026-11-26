@@ -254,15 +254,16 @@ public class ExportImportLayoutUtilityPageTest {
 			LayoutsImportStrategy.OVERWRITE, true);
 
 		Assert.assertNotNull(layoutsImporterResultEntries);
-		Assert.assertEquals(
-			layoutsImporterResultEntries.toString(), 1,
-			layoutsImporterResultEntries.size());
 
 		layoutUtilityPageImportEntry = layoutsImporterResultEntries.get(0);
 
 		Assert.assertEquals(
 			LayoutsImporterResultEntry.Status.IMPORTED,
 			layoutUtilityPageImportEntry.getStatus());
+
+		Assert.assertEquals(
+			layoutsImporterResultEntries.toString(), 1,
+			layoutsImporterResultEntries.size());
 
 		LayoutUtilityPageEntry layoutUtilityPageEntry2 =
 			_layoutUtilityPageEntryLocalService.

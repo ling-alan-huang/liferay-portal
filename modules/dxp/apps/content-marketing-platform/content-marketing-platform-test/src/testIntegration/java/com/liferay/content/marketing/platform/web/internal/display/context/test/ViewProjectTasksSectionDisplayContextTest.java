@@ -77,10 +77,6 @@ public class ViewProjectTasksSectionDisplayContextTest
 		List<FDSActionDropdownItem> fdsActionDropdownItems =
 			getFDSActionDropdownItems(assetEntry);
 
-		Assert.assertEquals(
-			fdsActionDropdownItems.toString(), 7,
-			fdsActionDropdownItems.size());
-
 		FrontendDataSetTestUtil.assertFDSActionDropdownItem(
 			"pencil", "edit", "Edit", "get",
 			Collections.singletonMap(
@@ -112,6 +108,10 @@ public class ViewProjectTasksSectionDisplayContextTest
 			Collections.singletonMap(
 				"entryClassName", objectDefinition.getClassName()),
 			fdsActionDropdownItems.get(6));
+
+		Assert.assertEquals(
+			fdsActionDropdownItems.toString(), 7,
+			fdsActionDropdownItems.size());
 	}
 
 	@FeatureFlag("LPD-107678")

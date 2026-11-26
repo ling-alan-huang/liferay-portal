@@ -240,10 +240,6 @@ public class ViewRelatedAssetsSectionDisplayContextTest
 					getMockHttpServletRequest()),
 				"getFDSActionDropdownItems", new Class<?>[0]);
 
-		Assert.assertEquals(
-			fdsActionDropdownItems.toString(), 5,
-			fdsActionDropdownItems.size());
-
 		FrontendDataSetTestUtil.assertFDSActionDropdownItem(
 			"pencil", "actionLink", "Edit", "get",
 			fdsActionDropdownItems.get(0));
@@ -258,6 +254,10 @@ public class ViewRelatedAssetsSectionDisplayContextTest
 			"chain-broken", "unlink-asset",
 			"Remove from " + _objectDefinition.getLabel(LocaleUtil.US), null,
 			fdsActionDropdownItems.get(4));
+
+		Assert.assertEquals(
+			fdsActionDropdownItems.toString(), 5,
+			fdsActionDropdownItems.size());
 	}
 
 	private DepotEntry _addDepotEntry() throws Exception {

@@ -134,9 +134,9 @@ public class DateEntryTest {
 				DateEntryTable.INSTANCE.companyId.eq(_COMPANY_ID)
 			));
 
-		Assert.assertEquals(results.toString(), 1, results.size());
-
 		_assertSQLDate(DBManagerUtil.getDBType(), results.get(0));
+
+		Assert.assertEquals(results.toString(), 1, results.size());
 
 		_assertSQLDateRows(
 			_dateEntryLocalService.dslQuery(
@@ -161,9 +161,9 @@ public class DateEntryTest {
 		List<Object> results = _dateEntryLocalService.dynamicQuery(
 			dynamicQuery);
 
-		Assert.assertEquals(results.toString(), 1, results.size());
-
 		_assertTimestamp(_microsNanos, results.get(0));
+
+		Assert.assertEquals(results.toString(), 1, results.size());
 
 		dynamicQuery = _createDynamicQuery();
 
@@ -291,13 +291,13 @@ public class DateEntryTest {
 		dateEntries = _dateEntryLocalService.getDateEntries(
 			_toTimestamp(_MILLIS_TIME, _MICROSECONDS));
 
-		Assert.assertEquals(dateEntries.toString(), 1, dateEntries.size());
-
 		dateEntry = dateEntries.get(0);
 
 		Assert.assertEquals(_microsDateEntryId, dateEntry.getDateEntryId());
 
 		_assertDate(_MILLIS_TIME, dateEntry.getSnapshotDate());
+
+		Assert.assertEquals(dateEntries.toString(), 1, dateEntries.size());
 	}
 
 	@Test
@@ -537,11 +537,11 @@ public class DateEntryTest {
 	}
 
 	private void _assertTimestampRows(List<Object[]> rows) {
-		Assert.assertEquals(rows.toString(), 3, rows.size());
-
 		_assertTimestampRow(_midnightDateEntryId, _midnightNanos, rows.get(0));
 		_assertTimestampRow(_millisDateEntryId, _millisNanos, rows.get(1));
 		_assertTimestampRow(_microsDateEntryId, _microsNanos, rows.get(2));
+
+		Assert.assertEquals(rows.toString(), 3, rows.size());
 	}
 
 	private DynamicQuery _createDynamicQuery() {

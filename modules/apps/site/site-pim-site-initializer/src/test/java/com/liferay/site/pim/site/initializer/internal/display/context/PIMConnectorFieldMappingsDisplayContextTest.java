@@ -300,8 +300,6 @@ public class PIMConnectorFieldMappingsDisplayContextTest {
 
 		jsonArray = (JSONArray)breadcrumbProps.get("actionItems");
 
-		Assert.assertEquals(jsonArray.toString(), 4, jsonArray.length());
-
 		jsonObject = jsonArray.getJSONObject(1);
 
 		Assert.assertEquals(
@@ -315,6 +313,8 @@ public class PIMConnectorFieldMappingsDisplayContextTest {
 			jsonObject.getString("successMessage"));
 		Assert.assertEquals("play", jsonObject.getString("symbolLeft"));
 		Assert.assertEquals("asyncPost", jsonObject.getString("target"));
+
+		Assert.assertEquals(jsonArray.toString(), 4, jsonArray.length());
 
 		_testGetBreadcrumbPropsWithIncompleteMapping();
 	}

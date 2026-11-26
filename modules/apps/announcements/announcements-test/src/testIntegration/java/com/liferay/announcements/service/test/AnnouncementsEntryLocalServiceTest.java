@@ -303,10 +303,10 @@ public class AnnouncementsEntryLocalServiceTest {
 				_user.getCompanyId(), 0, 0, false, QueryUtil.ALL_POS,
 				QueryUtil.ALL_POS);
 
+		Assert.assertEquals(entry, announcementsEntries.get(0));
+
 		Assert.assertEquals(
 			announcementsEntries.toString(), 1, announcementsEntries.size());
-
-		Assert.assertEquals(entry, announcementsEntries.get(0));
 	}
 
 	private AnnouncementsEntry _addEntry(long classNameId, long classPK)

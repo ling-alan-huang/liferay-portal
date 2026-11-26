@@ -1042,8 +1042,9 @@ public class JournalTransformerTest {
 
 		List<String> options = templateNode.getOptions();
 
-		Assert.assertEquals(options.toString(), 1, options.size());
 		Assert.assertEquals(json, options.get(0));
+
+		Assert.assertEquals(options.toString(), 1, options.size());
 
 		Assert.assertTrue(MapUtil.isEmpty(templateNode.getOptionsMap()));
 	}
@@ -1193,8 +1194,9 @@ public class JournalTransformerTest {
 
 		List<String> options = templateNode.getOptions();
 
-		Assert.assertEquals(options.toString(), 1, options.size());
 		Assert.assertEquals("value", options.get(0));
+
+		Assert.assertEquals(options.toString(), 1, options.size());
 	}
 
 	private void _testCreateTemplateNodeTextDDMFormField(String text) {

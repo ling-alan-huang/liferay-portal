@@ -132,9 +132,6 @@ public class PortletPreferencesFactoryImplUnitTest {
 
 		preferencesMap = portletPreferencesImpl.getPreferences();
 
-		Assert.assertEquals(
-			preferencesMap.toString(), 4, preferencesMap.size());
-
 		// Blank
 
 		preference = preferencesMap.get("");
@@ -191,6 +188,9 @@ public class PortletPreferencesFactoryImplUnitTest {
 		Assert.assertEquals("value3", values[1]);
 
 		Assert.assertTrue(preference.isReadOnly());
+
+		Assert.assertEquals(
+			preferencesMap.toString(), 4, preferencesMap.size());
 	}
 
 	@Test

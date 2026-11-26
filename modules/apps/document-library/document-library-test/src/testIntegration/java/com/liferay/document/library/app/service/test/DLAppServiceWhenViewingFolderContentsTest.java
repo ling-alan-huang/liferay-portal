@@ -393,10 +393,6 @@ public class DLAppServiceWhenViewingFolderContentsTest
 				QueryUtil.ALL_POS,
 				new RepositoryModelReadCountComparator<>(true));
 
-		Assert.assertEquals(
-			actualFoldersAndFileEntriesAndFileShortcuts.toString(), 3,
-			actualFoldersAndFileEntriesAndFileShortcuts.size());
-
 		for (int i = 0; i < 3; i++) {
 			FileEntry expectedFileEntry = expectedFileEntries.get(i);
 			FileEntry actualFileEntry =
@@ -406,6 +402,10 @@ public class DLAppServiceWhenViewingFolderContentsTest
 				expectedFileEntry.getFileEntryId(),
 				actualFileEntry.getFileEntryId());
 		}
+
+		Assert.assertEquals(
+			actualFoldersAndFileEntriesAndFileShortcuts.toString(), 3,
+			actualFoldersAndFileEntriesAndFileShortcuts.size());
 	}
 
 	@Test
@@ -444,10 +444,6 @@ public class DLAppServiceWhenViewingFolderContentsTest
 				QueryUtil.ALL_POS,
 				new RepositoryModelTitleComparator<FileEntry>(true));
 
-		Assert.assertEquals(
-			actualFoldersAndFileEntriesAndFileShortcuts.toString(), 3,
-			actualFoldersAndFileEntriesAndFileShortcuts.size());
-
 		for (int i = 0; i < 3; i++) {
 			FileEntry expectedFileEntry = expectedFileEntries.get(i);
 			FileEntry actualFileEntry =
@@ -457,6 +453,10 @@ public class DLAppServiceWhenViewingFolderContentsTest
 				expectedFileEntry.getFileEntryId(),
 				actualFileEntry.getFileEntryId());
 		}
+
+		Assert.assertEquals(
+			actualFoldersAndFileEntriesAndFileShortcuts.toString(), 3,
+			actualFoldersAndFileEntriesAndFileShortcuts.size());
 	}
 
 	private void _assertFoldersAndFileEntriesAndFileShortcutsCount(

@@ -607,16 +607,16 @@ public class LaunchSetPublisherTest {
 			_getBackgroundTasks(launchSetId),
 			Comparator.comparingLong(BackgroundTask::getBackgroundTaskId));
 
-		Assert.assertEquals(
-			backgroundTasks.toString(), expectedStatuses.length,
-			backgroundTasks.size());
-
 		for (int i = 0; i < expectedStatuses.length; i++) {
 			BackgroundTask backgroundTask = backgroundTasks.get(i);
 
 			Assert.assertEquals(
 				expectedStatuses[i], backgroundTask.getStatus());
 		}
+
+		Assert.assertEquals(
+			backgroundTasks.toString(), expectedStatuses.length,
+			backgroundTasks.size());
 	}
 
 	private void _assertPublishFails(long launchSetId, String messageSuffix) {

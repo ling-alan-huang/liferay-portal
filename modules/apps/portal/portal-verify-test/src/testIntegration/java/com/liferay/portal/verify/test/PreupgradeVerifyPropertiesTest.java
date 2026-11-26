@@ -56,9 +56,9 @@ public class PreupgradeVerifyPropertiesTest extends BaseVerifyProcessTestCase {
 				PreupgradeVerifyProperties.class, "verifyPortalProperties",
 				null);
 
-			Assert.assertEquals(keys.toString(), 1, keys.size());
-
 			Assert.assertEquals(migratedPortalKey, keys.get(0));
+
+			Assert.assertEquals(keys.toString(), 1, keys.size());
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 

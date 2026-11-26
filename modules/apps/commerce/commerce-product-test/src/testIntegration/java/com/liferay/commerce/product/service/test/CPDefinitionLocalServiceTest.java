@@ -829,9 +829,9 @@ public class CPDefinitionLocalServiceTest {
 			_cpInstanceLocalService.getCPDefinitionApprovedCPInstances(
 				cpDefinition.getCPDefinitionId());
 
-		Assert.assertEquals(cpInstances.toString(), 1, cpInstances.size());
-
 		_cpInstanceLocalService.deleteCPInstance(cpInstances.get(0));
+
+		Assert.assertEquals(cpInstances.toString(), 1, cpInstances.size());
 
 		cpDefinition = _cpDefinitionLocalService.getCPDefinition(
 			cpDefinition.getCPDefinitionId());

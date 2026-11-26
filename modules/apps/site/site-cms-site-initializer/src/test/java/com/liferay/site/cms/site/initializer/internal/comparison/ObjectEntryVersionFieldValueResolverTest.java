@@ -341,10 +341,11 @@ public class ObjectEntryVersionFieldValueResolverTest {
 			_objectEntryVersionFieldValueResolver.getFieldValues(
 				"en_US", "es_ES", objectEntryId, version);
 
-		Assert.assertEquals(fieldValues.toString(), 2, fieldValues.size());
 		Assert.assertEquals(
 			"hello-world", fieldValues.get("objectEntryFriendlyURL"));
 		Assert.assertEquals("Hello", fieldValues.get("title"));
+
+		Assert.assertEquals(fieldValues.toString(), 2, fieldValues.size());
 	}
 
 	private void _testGetFieldValuesWithTranslation() throws Exception {
@@ -385,11 +386,12 @@ public class ObjectEntryVersionFieldValueResolverTest {
 			_objectEntryVersionFieldValueResolver.getFieldValues(
 				"en_US", "es_ES", objectEntryId, version);
 
-		Assert.assertEquals(fieldValues.toString(), 3, fieldValues.size());
 		Assert.assertEquals("<p>Hello</p>", fieldValues.get("content"));
 		Assert.assertEquals(
 			"hola-mundo", fieldValues.get("objectEntryFriendlyURL"));
 		Assert.assertEquals("Hola", fieldValues.get("title"));
+
+		Assert.assertEquals(fieldValues.toString(), 3, fieldValues.size());
 	}
 
 	private void _testGetFieldValuesWithoutTranslation() throws Exception {
@@ -421,10 +423,11 @@ public class ObjectEntryVersionFieldValueResolverTest {
 			_objectEntryVersionFieldValueResolver.getFieldValues(
 				"en_US", "es_ES", objectEntryId, version);
 
-		Assert.assertEquals(fieldValues.toString(), 2, fieldValues.size());
 		Assert.assertEquals(
 			"hello-world", fieldValues.get("objectEntryFriendlyURL"));
 		Assert.assertEquals("Hello", fieldValues.get("title"));
+
+		Assert.assertEquals(fieldValues.toString(), 2, fieldValues.size());
 	}
 
 	private void _testToDiffHtmlWithAttachmentObjectField() throws Exception {

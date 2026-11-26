@@ -149,14 +149,14 @@ public class GetDSRequestRecipientUsersMVCResourceCommandTest {
 				_commerceOrder.getCommerceOrderId(), user.getScreenName(),
 				TestPropsValues.getUser()));
 
-		Assert.assertEquals(jsonArray.toString(), 1, jsonArray.length());
-
 		jsonObject = jsonArray.getJSONObject(0);
 
 		Assert.assertEquals(
 			user.getEmailAddress(), jsonObject.getString("emailAddress"));
 		Assert.assertEquals(user.getFullName(), jsonObject.getString("name"));
 		Assert.assertEquals(user.getUserId(), jsonObject.getLong("userId"));
+
+		Assert.assertEquals(jsonArray.toString(), 1, jsonArray.length());
 
 		_testServeResourceWithoutUserViewPermission();
 	}

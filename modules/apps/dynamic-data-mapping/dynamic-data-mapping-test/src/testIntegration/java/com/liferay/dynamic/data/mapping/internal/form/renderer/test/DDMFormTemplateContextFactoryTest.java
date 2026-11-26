@@ -312,8 +312,6 @@ public class DDMFormTemplateContextFactoryTest {
 		validations = (Map<String, Object[]>)ddmFormTemplateContext.get(
 			"validations");
 
-		Assert.assertEquals(validations.toString(), 3, validations.size());
-
 		_assertValidations(
 			TransformUtil.transformToList(
 				validations.get("date"), object -> (Map<String, String>)object),
@@ -428,6 +426,8 @@ public class DDMFormTemplateContextFactoryTest {
 				).put(
 					"template", "isURL({name})"
 				).build()));
+
+		Assert.assertEquals(validations.toString(), 3, validations.size());
 
 		ddmFormTemplateContext = builder.withHttpServletRequest(
 			_getMockHttpServletRequest()

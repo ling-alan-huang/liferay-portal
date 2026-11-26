@@ -107,8 +107,6 @@ public class NumericInputMaskDDMFormFieldTemplateContextContributorTest
 			"decimalSymbols");
 
 		Assert.assertEquals(
-			decimalSymbols.toString(), 2, decimalSymbols.size());
-		Assert.assertEquals(
 			HashMapBuilder.put(
 				"label", "0.00"
 			).put(
@@ -127,13 +125,14 @@ public class NumericInputMaskDDMFormFieldTemplateContextContributorTest
 			).build(),
 			decimalSymbols.get(1));
 
+		Assert.assertEquals(
+			decimalSymbols.toString(), 2, decimalSymbols.size());
+
 		Assert.assertEquals("\'", parameters.get("thousandsSeparator"));
 
 		List<Object> thousandsSeparators = (List<Object>)parameters.get(
 			"thousandsSeparators");
 
-		Assert.assertEquals(
-			thousandsSeparators.toString(), 5, thousandsSeparators.size());
 		Assert.assertEquals(
 			HashMapBuilder.<String, Object>put(
 				"label",
@@ -182,6 +181,9 @@ public class NumericInputMaskDDMFormFieldTemplateContextContributorTest
 				"value", "\'"
 			).build(),
 			thousandsSeparators.get(4));
+
+		Assert.assertEquals(
+			thousandsSeparators.toString(), 5, thousandsSeparators.size());
 	}
 
 	private void _setUpJSONFactory() {

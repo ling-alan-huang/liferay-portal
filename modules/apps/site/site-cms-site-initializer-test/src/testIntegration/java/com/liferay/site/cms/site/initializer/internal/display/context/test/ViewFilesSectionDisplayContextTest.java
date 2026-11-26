@@ -89,10 +89,6 @@ public class ViewFilesSectionDisplayContextTest
 				"post", bulkActionDropdownItems.remove(8));
 		}
 
-		Assert.assertEquals(
-			bulkActionDropdownItems.toString(), 15,
-			bulkActionDropdownItems.size());
-
 		FrontendDataSetTestUtil.assertFDSActionDropdownItem(
 			"trash", "delete", "Delete", null, bulkActionDropdownItems.get(0));
 		FrontendDataSetTestUtil.assertFDSActionDropdownItem(
@@ -137,6 +133,10 @@ public class ViewFilesSectionDisplayContextTest
 			"password-policies", "reset-to-default-permissions",
 			"Reset to Default Permissions", null,
 			bulkActionDropdownItems.get(14));
+
+		Assert.assertEquals(
+			bulkActionDropdownItems.toString(), 15,
+			bulkActionDropdownItems.size());
 	}
 
 	@Test

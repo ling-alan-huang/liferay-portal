@@ -160,10 +160,10 @@ public class CommerceDiscountLocalServiceTest {
 				_group.getCompanyId(), cpDefinition.getCPDefinitionId(),
 				cpInstance.getCPInstanceId(), null);
 
+		Assert.assertEquals(commerceDiscount, commerceDiscounts.get(0));
+
 		Assert.assertEquals(
 			commerceDiscounts.toString(), 1, commerceDiscounts.size());
-
-		Assert.assertEquals(commerceDiscount, commerceDiscounts.get(0));
 	}
 
 	@Test
@@ -200,10 +200,10 @@ public class CommerceDiscountLocalServiceTest {
 				_group.getCompanyId(), cpDefinition.getCPDefinitionId(),
 				cpInstance.getCPInstanceId(), null);
 
+		Assert.assertEquals(commerceDiscount, commerceDiscounts.get(0));
+
 		Assert.assertEquals(
 			commerceDiscounts.toString(), 1, commerceDiscounts.size());
-
-		Assert.assertEquals(commerceDiscount, commerceDiscounts.get(0));
 	}
 
 	@Test

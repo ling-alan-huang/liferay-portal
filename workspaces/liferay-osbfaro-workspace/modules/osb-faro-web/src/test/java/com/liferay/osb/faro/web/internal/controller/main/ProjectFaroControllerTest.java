@@ -256,14 +256,14 @@ public class ProjectFaroControllerTest {
 		List<OSBOfferingEntry> osbOfferingEntries =
 			osbAccountEntry.getOfferingEntries();
 
-		Assert.assertEquals(
-			osbOfferingEntries.toString(), 1, osbOfferingEntries.size());
-
 		osbOfferingEntry = osbOfferingEntries.get(0);
 
 		Assert.assertEquals(
 			ProductConstants.SALESFORCE_PRODUCT_ID_ENTERPRISE,
 			osbOfferingEntry.getProductEntryId());
+
+		Assert.assertEquals(
+			osbOfferingEntries.toString(), 1, osbOfferingEntries.size());
 	}
 
 	@Test

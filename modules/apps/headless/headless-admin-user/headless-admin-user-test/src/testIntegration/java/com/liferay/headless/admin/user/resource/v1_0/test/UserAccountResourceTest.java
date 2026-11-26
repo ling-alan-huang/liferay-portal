@@ -2028,8 +2028,6 @@ public class UserAccountResourceTest extends BaseUserAccountResourceTestCase {
 	private void _assertListEntries(
 		JSONArray jsonArray, String... listTypeEntryKeys) {
 
-		Assert.assertEquals(listTypeEntryKeys.length, jsonArray.length());
-
 		for (int i = 0; i < listTypeEntryKeys.length; i++) {
 			JSONObject jsonObject = jsonArray.getJSONObject(i);
 
@@ -2038,6 +2036,8 @@ public class UserAccountResourceTest extends BaseUserAccountResourceTestCase {
 			Assert.assertEquals(
 				listTypeEntryKeys[i], jsonObject.getString("name"));
 		}
+
+		Assert.assertEquals(listTypeEntryKeys.length, jsonArray.length());
 	}
 
 	private <T extends Exception> void _assertProblem(

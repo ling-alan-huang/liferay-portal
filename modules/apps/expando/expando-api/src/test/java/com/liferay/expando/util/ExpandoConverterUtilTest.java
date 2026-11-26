@@ -138,9 +138,9 @@ public class ExpandoConverterUtilTest {
 
 		Map<Locale, String> map = (HashMap<Locale, String>)attribute;
 
-		Assert.assertEquals(map.toString(), 1, map.size());
-
 		Assert.assertEquals("hello", map.get(LocaleUtil.getDefault()));
+
+		Assert.assertEquals(map.toString(), 1, map.size());
 	}
 
 }

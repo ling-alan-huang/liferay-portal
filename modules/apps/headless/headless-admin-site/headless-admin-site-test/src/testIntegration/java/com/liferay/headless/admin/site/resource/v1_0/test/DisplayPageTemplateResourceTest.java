@@ -1296,9 +1296,10 @@ public class DisplayPageTemplateResourceTest
 
 			JSONArray jsonArray = jsonObject.getJSONArray(key);
 
-			Assert.assertEquals(jsonArray.toString(), 1, jsonArray.length());
 			Assert.assertEquals(
 				jsonArray.toString(), entry.getValue(), jsonArray.getString(0));
+
+			Assert.assertEquals(jsonArray.toString(), 1, jsonArray.length());
 		}
 
 		PageSpecificationsTestUtil.assertPageSpecifications(
