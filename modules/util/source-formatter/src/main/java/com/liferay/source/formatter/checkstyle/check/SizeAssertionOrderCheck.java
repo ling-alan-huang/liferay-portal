@@ -94,7 +94,6 @@ public class SizeAssertionOrderCheck extends BaseCheck {
 		while (childDetailAST != null) {
 			if (equals(childDetailAST, detailAST)) {
 				afterAssertion = true;
-
 				childDetailAST = childDetailAST.getNextSibling();
 
 				continue;
@@ -110,21 +109,25 @@ public class SizeAssertionOrderCheck extends BaseCheck {
 				return -1;
 			}
 
-			if (usesElements) {
-				if (afterAssertion) {
-					if (childDetailAST.getType() == TokenTypes.LITERAL_RETURN) {
-						return -1;
-					}
+			if (!usesElements) {
+				childDetailAST = childDetailAST.getNextSibling();
 
-					lastLineNumber = getEndLineNumber(childDetailAST);
+				continue;
+			}
+
+			if (afterAssertion) {
+				if (childDetailAST.getType() == TokenTypes.LITERAL_RETURN) {
+					return -1;
 				}
 
-				String elementVariableName = _getAssignedVariableName(
-					childDetailAST);
+				lastLineNumber = getEndLineNumber(childDetailAST);
+			}
 
-				if (elementVariableName != null) {
-					elementVariableNames.add(elementVariableName);
-				}
+			String elementVariableName = _getAssignedVariableName(
+				childDetailAST);
+
+			if (elementVariableName != null) {
+				elementVariableNames.add(elementVariableName);
 			}
 
 			childDetailAST = childDetailAST.getNextSibling();
