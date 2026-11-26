@@ -163,14 +163,14 @@ public class FrontendTokenDefinitionUtilTest {
 	}
 
 	private void _assertNames(JSONArray jsonArray, String... names) {
-		Assert.assertEquals(
-			jsonArray.toString(), names.length, jsonArray.length());
-
 		for (int i = 0; i < names.length; i++) {
 			JSONObject jsonObject = jsonArray.getJSONObject(i);
 
 			Assert.assertEquals(names[i], jsonObject.getString("name"));
 		}
+
+		Assert.assertEquals(
+			jsonArray.toString(), names.length, jsonArray.length());
 	}
 
 	private JSONObject _createFrontendTokenCategoryJSONObject(
@@ -456,10 +456,11 @@ public class FrontendTokenDefinitionUtilTest {
 							_createFrontendTokenJSONObject(frontendTokenName),
 							RandomTestUtil.randomString()))));
 
-		Assert.assertEquals(
-			frontendTokenNames.toString(), 2, frontendTokenNames.size());
 		Assert.assertEquals(frontendTokenName, frontendTokenNames.get(0));
 		Assert.assertEquals(frontendTokenName, frontendTokenNames.get(1));
+
+		Assert.assertEquals(
+			frontendTokenNames.toString(), 2, frontendTokenNames.size());
 	}
 
 	private void _testGetFrontendTokenNamesWithInvalidCategories() {

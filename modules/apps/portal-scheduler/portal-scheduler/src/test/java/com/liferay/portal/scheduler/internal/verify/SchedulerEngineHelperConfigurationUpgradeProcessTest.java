@@ -100,10 +100,10 @@ public class SchedulerEngineHelperConfigurationUpgradeProcessTest {
 
 		Dictionary<String, Object> dictionary = _argumentCaptor.getValue();
 
-		Assert.assertEquals(1, dictionary.size());
-
 		Assert.assertEquals(
 			Boolean.TRUE, dictionary.get(_AUDIT_SCHEDULER_JOB_ENABLED));
+
+		Assert.assertEquals(1, dictionary.size());
 	}
 
 	private static final String _AUDIT_SCHEDULER_JOB_ENABLED =

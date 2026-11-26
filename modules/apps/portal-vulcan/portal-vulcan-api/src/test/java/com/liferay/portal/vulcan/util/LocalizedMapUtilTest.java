@@ -75,9 +75,10 @@ public class LocalizedMapUtilTest {
 				"hu_HU", "szia"
 			).build());
 
-		Assert.assertEquals(i18nMap.toString(), 2, i18nMap.size());
 		Assert.assertEquals("hello", i18nMap.get("en_US"));
 		Assert.assertEquals("bonjour", i18nMap.get("fr_FR"));
+
+		Assert.assertEquals(i18nMap.toString(), 2, i18nMap.size());
 	}
 
 	@Test
@@ -112,8 +113,9 @@ public class LocalizedMapUtilTest {
 			).build(),
 			"en_US", null);
 
-		Assert.assertEquals(map.toString(), 0, map.size());
 		Assert.assertNull(map.get("en_US"));
+
+		Assert.assertEquals(map.toString(), 0, map.size());
 	}
 
 	@Test
@@ -157,9 +159,10 @@ public class LocalizedMapUtilTest {
 			).build(),
 			new AbstractMap.SimpleEntry<>(LocaleUtil.FRANCE, "bonjour"));
 
-		Assert.assertEquals(map.toString(), 2, map.size());
 		Assert.assertEquals("bonjour", map.get(LocaleUtil.FRANCE));
 		Assert.assertEquals("hello", map.get(LocaleUtil.US));
+
+		Assert.assertEquals(map.toString(), 2, map.size());
 	}
 
 	@Test

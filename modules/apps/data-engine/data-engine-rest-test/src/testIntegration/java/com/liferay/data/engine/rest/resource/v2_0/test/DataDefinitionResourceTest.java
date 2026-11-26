@@ -1055,16 +1055,16 @@ public class DataDefinitionResourceTest
 		List<String> dataLayoutColumnFieldNames2 =
 			_getDataLayoutColumnFieldNames(dataLayout2);
 
-		Assert.assertEquals(
-			dataLayoutColumnFieldNames2.toString(),
-			dataLayoutColumnFieldNames1.size(),
-			dataLayoutColumnFieldNames2.size());
-
 		for (int i = 0; i < dataLayoutColumnFieldNames1.size(); i++) {
 			Assert.assertEquals(
 				"CopyOf" + dataLayoutColumnFieldNames1.get(i),
 				dataLayoutColumnFieldNames2.get(i));
 		}
+
+		Assert.assertEquals(
+			dataLayoutColumnFieldNames2.toString(),
+			dataLayoutColumnFieldNames1.size(),
+			dataLayoutColumnFieldNames2.size());
 	}
 
 	private void _testCopiedDataDefinitionFields(

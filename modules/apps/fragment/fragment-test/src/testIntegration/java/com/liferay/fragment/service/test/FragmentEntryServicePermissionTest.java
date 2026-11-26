@@ -514,9 +514,10 @@ public class FragmentEntryServicePermissionTest {
 			_fragmentEntryService.getFragmentEntries(
 				_fragmentCollection.getFragmentCollectionId());
 
+		Assert.assertEquals(fragmentEntry, fragmentEntries.get(0));
+
 		Assert.assertEquals(
 			fragmentEntries.toString(), 1, fragmentEntries.size());
-		Assert.assertEquals(fragmentEntry, fragmentEntries.get(0));
 	}
 
 	@Test(expected = PrincipalException.MustHavePermission.class)

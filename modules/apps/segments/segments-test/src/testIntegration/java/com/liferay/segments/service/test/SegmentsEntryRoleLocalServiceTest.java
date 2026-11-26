@@ -216,9 +216,10 @@ public class SegmentsEntryRoleLocalServiceTest {
 			_segmentsEntryRoleLocalService.getSegmentsEntryRoles(
 				segmentsEntry.getSegmentsEntryId());
 
+		Assert.assertEquals(segmentsEntryRole, segmentsEntryRoles.get(0));
+
 		Assert.assertEquals(
 			segmentsEntryRoles.toString(), 1, segmentsEntryRoles.size());
-		Assert.assertEquals(segmentsEntryRole, segmentsEntryRoles.get(0));
 	}
 
 	private void _testSetSegmentsEntrySiteRoles() throws Exception {

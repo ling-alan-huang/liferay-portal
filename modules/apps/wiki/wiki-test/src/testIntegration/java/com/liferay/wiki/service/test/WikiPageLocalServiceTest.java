@@ -704,9 +704,9 @@ public class WikiPageLocalServiceTest {
 			_group.getGroupId(), _node.getNodeId(), QueryUtil.ALL_POS,
 			QueryUtil.ALL_POS);
 
-		Assert.assertEquals(recentPages.toString(), 1, recentPages.size());
-
 		Assert.assertEquals(page, recentPages.get(0));
+
+		Assert.assertEquals(recentPages.toString(), 1, recentPages.size());
 	}
 
 	@Test
@@ -739,10 +739,10 @@ public class WikiPageLocalServiceTest {
 			_group.getGroupId(), _node.getNodeId(), QueryUtil.ALL_POS,
 			QueryUtil.ALL_POS);
 
-		Assert.assertEquals(recentPages.toString(), 2, recentPages.size());
-
 		Assert.assertEquals(updatedPage2, recentPages.get(0));
 		Assert.assertEquals(page1, recentPages.get(1));
+
+		Assert.assertEquals(recentPages.toString(), 2, recentPages.size());
 	}
 
 	@Test
@@ -784,10 +784,10 @@ public class WikiPageLocalServiceTest {
 			_group.getGroupId(), _node.getNodeId(), QueryUtil.ALL_POS,
 			QueryUtil.ALL_POS);
 
-		Assert.assertEquals(recentPages.toString(), 2, recentPages.size());
-
 		Assert.assertEquals(page2, recentPages.get(0));
 		Assert.assertEquals(page1, recentPages.get(1));
+
+		Assert.assertEquals(recentPages.toString(), 2, recentPages.size());
 	}
 
 	@Test
@@ -809,10 +809,10 @@ public class WikiPageLocalServiceTest {
 			_group.getGroupId(), _node.getNodeId(), QueryUtil.ALL_POS,
 			QueryUtil.ALL_POS);
 
-		Assert.assertEquals(recentPages.toString(), 2, recentPages.size());
-
 		Assert.assertEquals(updatedPage1, recentPages.get(0));
 		Assert.assertEquals(page2, recentPages.get(1));
+
+		Assert.assertEquals(recentPages.toString(), 2, recentPages.size());
 	}
 
 	@Test

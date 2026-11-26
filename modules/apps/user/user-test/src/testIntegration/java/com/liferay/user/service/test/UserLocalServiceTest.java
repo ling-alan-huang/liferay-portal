@@ -1511,11 +1511,11 @@ public class UserLocalServiceTest {
 			WorkflowConstants.STATUS_APPROVED, null, QueryUtil.ALL_POS,
 			QueryUtil.ALL_POS, (OrderByComparator<User>)null);
 
-		Assert.assertEquals(users.toString(), 1, users.size());
-
 		user2 = users.get(0);
 
 		Assert.assertEquals(user1.getUserId(), user2.getUserId());
+
+		Assert.assertEquals(users.toString(), 1, users.size());
 	}
 
 	@Test

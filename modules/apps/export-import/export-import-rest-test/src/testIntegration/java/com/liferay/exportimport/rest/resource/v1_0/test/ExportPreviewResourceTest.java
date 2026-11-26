@@ -532,9 +532,9 @@ public class ExportPreviewResourceTest
 				groupId, objectDefinition.getObjectDefinitionId(),
 				QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 
-		Assert.assertEquals(objectEntries.toString(), 2, objectEntries.size());
-
 		_objectEntryLocalService.deleteObjectEntry(objectEntries.get(0));
+
+		Assert.assertEquals(objectEntries.toString(), 2, objectEntries.size());
 
 		PortletDataHandler portletDataHandler = _getPortletDataHandler(
 			unsafeSupplier.get(),

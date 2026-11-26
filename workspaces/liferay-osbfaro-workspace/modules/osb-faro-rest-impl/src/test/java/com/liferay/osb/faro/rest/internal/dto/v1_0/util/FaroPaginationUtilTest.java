@@ -46,12 +46,12 @@ public class FaroPaginationUtilTest {
 
 		orderByFields = FaroPaginationUtil.toOrderByFields(sorts, true);
 
-		Assert.assertEquals(orderByFields.toString(), 2, orderByFields.size());
-
 		_assertOrderByField(
 			fieldName1, OrderByField.OrderBy.desc, orderByFields.get(0), true);
 		_assertOrderByField(
 			fieldName2, OrderByField.OrderBy.asc, orderByFields.get(1), true);
+
+		Assert.assertEquals(orderByFields.toString(), 2, orderByFields.size());
 	}
 
 	@Test

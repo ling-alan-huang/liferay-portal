@@ -165,18 +165,20 @@ public class DatabaseUtilTest extends BaseTestCase {
 	private void _assert(LiferayDatabase liferayDatabase, boolean isDefault) {
 		List<Company> companies = liferayDatabase.getCompanies();
 
-		Assert.assertEquals(companies.toString(), 2, companies.size());
 		Assert.assertEquals(_company1, companies.get(0));
 		Assert.assertEquals(_company2, companies.get(1));
+
+		Assert.assertEquals(companies.toString(), 2, companies.size());
 
 		Assert.assertEquals(
 			_COMPANY_ID, (Long)liferayDatabase.getExportedCompanyId());
 
 		List<Release> releases = liferayDatabase.getReleases();
 
-		Assert.assertEquals(releases.toString(), 2, releases.size());
 		Assert.assertEquals(_module1Release, releases.get(0));
 		Assert.assertEquals(_module2Release, releases.get(1));
+
+		Assert.assertEquals(releases.toString(), 2, releases.size());
 
 		List<String> tableNames = liferayDatabase.getTableNames();
 

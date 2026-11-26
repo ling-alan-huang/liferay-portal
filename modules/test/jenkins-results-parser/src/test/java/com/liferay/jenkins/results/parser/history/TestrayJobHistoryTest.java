@@ -85,8 +85,6 @@ public class TestrayJobHistoryTest
 			TestrayJobHistory.getExpectedTestCounts(buildDatabaseJSONObject);
 
 		Assert.assertEquals(
-			expectedTestCounts.toString(), 3, expectedTestCounts.size());
-		Assert.assertEquals(
 			expectedTestCounts.get("functional-tomcat101-postgresql163"),
 			Integer.valueOf(2));
 		Assert.assertEquals(
@@ -94,6 +92,9 @@ public class TestrayJobHistoryTest
 			Integer.valueOf(3));
 		Assert.assertEquals(
 			expectedTestCounts.get("source-format"), Integer.valueOf(0));
+
+		Assert.assertEquals(
+			expectedTestCounts.toString(), 3, expectedTestCounts.size());
 	}
 
 	private JSONObject _getBatchJSONObject(

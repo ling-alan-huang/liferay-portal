@@ -152,8 +152,9 @@ public class SearchLocationDDMFormFieldTypeSettingsTest
 
 		actions = ddmFormRule.getActions();
 
-		Assert.assertEquals(actions.toString(), 1, actions.size());
 		Assert.assertEquals("jumpPage(0, 2)", actions.get(0));
+
+		Assert.assertEquals(actions.toString(), 1, actions.size());
 
 		Assert.assertEquals(ddmFormRules.toString(), 2, ddmFormRules.size());
 	}

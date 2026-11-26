@@ -632,14 +632,14 @@ public class PortletRegistryImplTest {
 		List<String> fragmentEntryLinkPortletIds =
 			_portletRegistry.getFragmentEntryLinkPortletIds(fragmentEntryLink);
 
-		Assert.assertEquals(
-			fragmentEntryLinkPortletIds.toString(), portletIds.length,
-			fragmentEntryLinkPortletIds.size());
-
 		for (int i = 0; i < fragmentEntryLinkPortletIds.size(); i++) {
 			Assert.assertEquals(
 				portletIds[i], fragmentEntryLinkPortletIds.get(i));
 		}
+
+		Assert.assertEquals(
+			fragmentEntryLinkPortletIds.toString(), portletIds.length,
+			fragmentEntryLinkPortletIds.size());
 	}
 
 	private void _assertGetFragmentEntryLinkPortletIdsTypePortlet(

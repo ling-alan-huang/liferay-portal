@@ -111,15 +111,15 @@ public class CacheFieldEntryPersistenceImplTest {
 		cacheFieldEntries = _cacheFieldEntryPersistence.findByGroupId(
 			groupId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null, false);
 
-		Assert.assertEquals(
-			cacheFieldEntries.toString(), 1, cacheFieldEntries.size());
-
 		existingCacheFieldEntry = cacheFieldEntries.get(0);
 
 		Assert.assertEquals(
 			"Nickname_test.name",
 			ReflectionTestUtil.getFieldValue(
 				existingCacheFieldEntry, "_nickname"));
+
+		Assert.assertEquals(
+			cacheFieldEntries.toString(), 1, cacheFieldEntries.size());
 	}
 
 	@Test

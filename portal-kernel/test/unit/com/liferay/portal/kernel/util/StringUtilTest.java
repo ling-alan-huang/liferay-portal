@@ -435,8 +435,9 @@ public class StringUtilTest {
 		StringUtil.readLines(
 			new ByteArrayInputStream(" Test ".getBytes()), lines);
 
-		Assert.assertEquals(lines.toString(), 3, lines.size());
 		Assert.assertEquals(" Test ", lines.get(2));
+
+		Assert.assertEquals(lines.toString(), 3, lines.size());
 	}
 
 	@Test

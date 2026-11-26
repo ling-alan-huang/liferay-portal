@@ -263,9 +263,10 @@ public class SegmentsEntryLocalServiceTest {
 		List<SegmentsEntry> segmentsEntries =
 			baseModelSearchResult.getBaseModels();
 
+		Assert.assertEquals(segmentsEntry, segmentsEntries.get(0));
+
 		Assert.assertEquals(
 			segmentsEntries.toString(), 1, segmentsEntries.size());
-		Assert.assertEquals(segmentsEntry, segmentsEntries.get(0));
 	}
 
 	@Test
@@ -304,9 +305,10 @@ public class SegmentsEntryLocalServiceTest {
 		List<SegmentsEntry> segmentsEntries =
 			baseModelSearchResult.getBaseModels();
 
+		Assert.assertEquals(segmentsEntry2, segmentsEntries.get(0));
+
 		Assert.assertEquals(
 			segmentsEntries.toString(), 1, segmentsEntries.size());
-		Assert.assertEquals(segmentsEntry2, segmentsEntries.get(0));
 	}
 
 	@Test
@@ -351,9 +353,10 @@ public class SegmentsEntryLocalServiceTest {
 		List<SegmentsEntry> segmentsEntries =
 			baseModelSearchResult.getBaseModels();
 
+		Assert.assertEquals(segmentsEntry, segmentsEntries.get(0));
+
 		Assert.assertEquals(
 			segmentsEntries.toString(), 1, segmentsEntries.size());
-		Assert.assertEquals(segmentsEntry, segmentsEntries.get(0));
 	}
 
 	@Test
@@ -378,9 +381,10 @@ public class SegmentsEntryLocalServiceTest {
 		List<SegmentsEntry> segmentsEntries =
 			baseModelSearchResult.getBaseModels();
 
+		Assert.assertEquals(segmentsEntry, segmentsEntries.get(0));
+
 		Assert.assertEquals(
 			segmentsEntries.toString(), 1, segmentsEntries.size());
-		Assert.assertEquals(segmentsEntry, segmentsEntries.get(0));
 	}
 
 	@Test
@@ -405,9 +409,10 @@ public class SegmentsEntryLocalServiceTest {
 		List<SegmentsEntry> segmentsEntries =
 			baseModelSearchResult.getBaseModels();
 
+		Assert.assertEquals(segmentsEntry2, segmentsEntries.get(0));
+
 		Assert.assertEquals(
 			segmentsEntries.toString(), 1, segmentsEntries.size());
-		Assert.assertEquals(segmentsEntry2, segmentsEntries.get(0));
 	}
 
 	@Test
@@ -438,9 +443,10 @@ public class SegmentsEntryLocalServiceTest {
 		List<SegmentsEntry> segmentsEntries =
 			baseModelSearchResult.getBaseModels();
 
+		Assert.assertEquals(segmentsEntry, segmentsEntries.get(0));
+
 		Assert.assertEquals(
 			segmentsEntries.toString(), 1, segmentsEntries.size());
-		Assert.assertEquals(segmentsEntry, segmentsEntries.get(0));
 	}
 
 	@Test
@@ -463,9 +469,10 @@ public class SegmentsEntryLocalServiceTest {
 		List<SegmentsEntry> segmentsEntries =
 			baseModelSearchResult.getBaseModels();
 
+		Assert.assertEquals(segmentsEntry, segmentsEntries.get(0));
+
 		Assert.assertEquals(
 			segmentsEntries.toString(), 1, segmentsEntries.size());
-		Assert.assertEquals(segmentsEntry, segmentsEntries.get(0));
 	}
 
 	@Test
@@ -822,9 +829,10 @@ public class SegmentsEntryLocalServiceTest {
 		List<SegmentsEntry> segmentsEntries =
 			baseModelSearchResult.getBaseModels();
 
+		Assert.assertEquals(segmentsEntry, segmentsEntries.get(0));
+
 		Assert.assertEquals(
 			segmentsEntries.toString(), 1, segmentsEntries.size());
-		Assert.assertEquals(segmentsEntry, segmentsEntries.get(0));
 	}
 
 	private void _testSearchSegmentsEntriesExcludesRealTimeType()

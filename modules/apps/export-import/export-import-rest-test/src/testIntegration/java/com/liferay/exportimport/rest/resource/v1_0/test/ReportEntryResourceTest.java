@@ -251,14 +251,14 @@ public class ReportEntryResourceTest extends BaseReportEntryResourceTestCase {
 
 		List<ReportEntry> items = (List<ReportEntry>)page.getItems();
 
-		Assert.assertEquals(
-			items.toString(), expectedReportEntryIds.length, items.size());
-
 		for (int i = 0; i < expectedReportEntryIds.length; i++) {
 			ReportEntry reportEntry = items.get(i);
 
 			Assert.assertEquals(expectedReportEntryIds[i], reportEntry.getId());
 		}
+
+		Assert.assertEquals(
+			items.toString(), expectedReportEntryIds.length, items.size());
 	}
 
 	private ReportEntry _randomReportEntry(int typeCode) throws Exception {

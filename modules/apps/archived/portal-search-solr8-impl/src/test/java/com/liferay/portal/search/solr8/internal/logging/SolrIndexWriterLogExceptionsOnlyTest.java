@@ -377,9 +377,9 @@ public class SolrIndexWriterLogExceptionsOnlyTest extends BaseIndexingTestCase {
 
 		List<LogEntry> logEntries = logCapture.getLogEntries();
 
-		Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 		_assertLogEntry(consumer, logEntries.get(0), logLevel, throwableClass);
+
+		Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 	}
 
 	private void _assertLogEntry(

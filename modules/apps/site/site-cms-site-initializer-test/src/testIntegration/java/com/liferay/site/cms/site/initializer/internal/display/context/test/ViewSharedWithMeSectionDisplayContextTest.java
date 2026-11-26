@@ -183,10 +183,6 @@ public class ViewSharedWithMeSectionDisplayContextTest
 		List<FDSActionDropdownItem> fdsActionDropdownItems =
 			getFDSActionDropdownItems();
 
-		Assert.assertEquals(
-			fdsActionDropdownItems.toString(), 9,
-			fdsActionDropdownItems.size());
-
 		FrontendDataSetTestUtil.assertFDSActionDropdownItem(
 			"view", "actionLink", "View", "get", fdsActionDropdownItems.get(0));
 		FrontendDataSetTestUtil.assertFDSActionDropdownItem(
@@ -220,6 +216,10 @@ public class ViewSharedWithMeSectionDisplayContextTest
 				"className", ObjectEntryFolder.class.getName()
 			).build(),
 			fdsActionDropdownItems.get(8));
+
+		Assert.assertEquals(
+			fdsActionDropdownItems.toString(), 9,
+			fdsActionDropdownItems.size());
 	}
 
 	@Override

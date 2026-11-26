@@ -151,10 +151,10 @@ public class BatchEngineExportTaskExecutorTest
 			_batchEngineExportTaskLocalService.getBatchEngineExportTask(
 				_batchEngineExportTask.getBatchEngineExportTaskId()));
 
-		Assert.assertEquals(rowValuesList.toString(), 1, rowValuesList.size());
-
 		_assertExportedValues(
 			blogsEntries.get(1), fieldNames, rowValuesList.get(0));
+
+		Assert.assertEquals(rowValuesList.toString(), 1, rowValuesList.size());
 	}
 
 	@Test

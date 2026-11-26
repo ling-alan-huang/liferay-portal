@@ -293,9 +293,9 @@ public class MBThreadServiceTest {
 		List<MBThread> threads = MBThreadServiceUtil.getThreads(
 			_group.getGroupId(), _category.getCategoryId(), queryDefinition);
 
-		Assert.assertEquals(threads.toString(), 1, threads.size());
-
 		Assert.assertEquals(approvedMessage.getThread(), threads.get(0));
+
+		Assert.assertEquals(threads.toString(), 1, threads.size());
 	}
 
 	@Test
@@ -323,8 +323,9 @@ public class MBThreadServiceTest {
 				_group.getGroupId(), _category.getCategoryId(),
 				queryDefinition);
 
-			Assert.assertEquals(threads.toString(), 1, threads.size());
 			Assert.assertEquals(draftMessage.getThread(), threads.get(0));
+
+			Assert.assertEquals(threads.toString(), 1, threads.size());
 		}
 	}
 
@@ -379,9 +380,9 @@ public class MBThreadServiceTest {
 		List<MBThread> threads = MBThreadServiceUtil.getThreads(
 			_group.getGroupId(), _category.getCategoryId(), queryDefinition);
 
-		Assert.assertEquals(threads.toString(), 1, threads.size());
-
 		Assert.assertEquals(draftMessage.getThread(), threads.get(0));
+
+		Assert.assertEquals(threads.toString(), 1, threads.size());
 	}
 
 	private MBCategory _category;

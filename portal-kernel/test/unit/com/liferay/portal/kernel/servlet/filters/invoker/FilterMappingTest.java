@@ -353,15 +353,15 @@ public class FilterMappingTest {
 
 			runnable.run();
 
-			Assert.assertEquals(
-				logEntries.toString(), expectedMessages.length,
-				logEntries.size());
-
 			for (int i = 0; i < logEntries.size(); i++) {
 				LogEntry logEntry = logEntries.get(i);
 
 				Assert.assertEquals(expectedMessages[i], logEntry.getMessage());
 			}
+
+			Assert.assertEquals(
+				logEntries.toString(), expectedMessages.length,
+				logEntries.size());
 		}
 	}
 

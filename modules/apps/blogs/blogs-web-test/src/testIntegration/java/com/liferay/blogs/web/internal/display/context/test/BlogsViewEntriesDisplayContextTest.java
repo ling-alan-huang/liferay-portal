@@ -280,14 +280,14 @@ public class BlogsViewEntriesDisplayContextTest {
 
 		List<BlogsEntry> blogsEntries = searchContainer.getResults();
 
-		Assert.assertEquals(
-			blogsEntries.toString(), expectedBlogsEntries.size(),
-			blogsEntries.size());
-
 		for (int i = 0; i < expectedBlogsEntries.size(); i++) {
 			Assert.assertEquals(
 				expectedBlogsEntries.get(i), blogsEntries.get(i));
 		}
+
+		Assert.assertEquals(
+			blogsEntries.toString(), expectedBlogsEntries.size(),
+			blogsEntries.size());
 	}
 
 	private MockHttpServletRequest _getMockHttpServletRequest()

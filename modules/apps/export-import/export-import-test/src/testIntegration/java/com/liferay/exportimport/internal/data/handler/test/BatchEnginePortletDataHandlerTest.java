@@ -1048,16 +1048,16 @@ public class BatchEnginePortletDataHandlerTest {
 				exportImportConfiguration.getExportImportConfigurationId());
 
 		Assert.assertEquals(
-			exportImportReportEntries.toString(), 1,
-			exportImportReportEntries.size());
-
-		Assert.assertEquals(
 			"The data handler for the \"" +
 				objectDefinition2.getPluralLabel(LocaleUtil.getDefault()) +
 					"\" portlet is missing from the system.",
 			exportImportReportEntries.get(
 				0
 			).getErrorMessage());
+
+		Assert.assertEquals(
+			exportImportReportEntries.toString(), 1,
+			exportImportReportEntries.size());
 
 		_objectDefinitionLocalService.deleteObjectDefinition(
 			targetObjectDefinition);
@@ -4032,10 +4032,6 @@ public class BatchEnginePortletDataHandlerTest {
 				TestPropsValues.getCompanyId(),
 				exportImportConfiguration.getExportImportConfigurationId());
 
-		Assert.assertEquals(
-			exportImportReportEntries.toString(), 1,
-			exportImportReportEntries.size());
-
 		_assertExportImportReportEntry(
 			_classNameLocalService.getClassNameId(KaleoDefinition.class), 0,
 			workflowDefinition.getExternalReferenceCode(), 0,
@@ -4043,6 +4039,10 @@ public class BatchEnginePortletDataHandlerTest {
 			ExportImportReportEntryConstants.STATUS_UNRESOLVED,
 			ExportImportReportEntryConstants.TYPE_WARNING,
 			exportImportReportEntries.get(0));
+
+		Assert.assertEquals(
+			exportImportReportEntries.toString(), 1,
+			exportImportReportEntries.size());
 
 		_userLocalService.deleteUser(user1);
 		_userLocalService.deleteUser(user2);
@@ -4104,10 +4104,6 @@ public class BatchEnginePortletDataHandlerTest {
 				TestPropsValues.getCompanyId(),
 				exportImportConfiguration.getExportImportConfigurationId());
 
-		Assert.assertEquals(
-			exportImportReportEntries.toString(), 2,
-			exportImportReportEntries.size());
-
 		_assertExportImportReportEntry(
 			_classNameLocalService.getClassNameId(KaleoDefinition.class), 0,
 			workflowDefinition.getExternalReferenceCode(), 0,
@@ -4123,6 +4119,10 @@ public class BatchEnginePortletDataHandlerTest {
 			ExportImportReportEntryConstants.STATUS_UNRESOLVED,
 			ExportImportReportEntryConstants.TYPE_ERROR,
 			exportImportReportEntries.get(1));
+
+		Assert.assertEquals(
+			exportImportReportEntries.toString(), 2,
+			exportImportReportEntries.size());
 
 		_userLocalService.deleteUser(user3);
 		_userLocalService.deleteUser(user4);
@@ -4237,10 +4237,6 @@ public class BatchEnginePortletDataHandlerTest {
 				TestPropsValues.getCompanyId(),
 				exportImportConfiguration.getExportImportConfigurationId());
 
-		Assert.assertEquals(
-			exportImportReportEntries.toString(), 2,
-			exportImportReportEntries.size());
-
 		_assertExportImportReportEntry(
 			_classNameLocalService.getClassNameId(Role.class), 0L,
 			role1.getExternalReferenceCode(), 0L, "role",
@@ -4253,6 +4249,10 @@ public class BatchEnginePortletDataHandlerTest {
 			ExportImportReportEntryConstants.STATUS_UNRESOLVED,
 			ExportImportReportEntryConstants.TYPE_EMPTY,
 			exportImportReportEntries.get(1));
+
+		Assert.assertEquals(
+			exportImportReportEntries.toString(), 2,
+			exportImportReportEntries.size());
 
 		_roleLocalService.deleteRole(importedRole1);
 		_roleLocalService.deleteRole(importedRole2);
@@ -4314,10 +4314,6 @@ public class BatchEnginePortletDataHandlerTest {
 				TestPropsValues.getCompanyId(),
 				exportImportConfiguration.getExportImportConfigurationId());
 
-		Assert.assertEquals(
-			exportImportReportEntries.toString(), 1,
-			exportImportReportEntries.size());
-
 		_assertExportImportReportEntry(
 			_classNameLocalService.getClassNameId(KaleoDefinition.class), 0,
 			workflowDefinition.getExternalReferenceCode(), 0,
@@ -4325,6 +4321,10 @@ public class BatchEnginePortletDataHandlerTest {
 			ExportImportReportEntryConstants.STATUS_UNRESOLVED,
 			ExportImportReportEntryConstants.TYPE_WARNING,
 			exportImportReportEntries.get(0));
+
+		Assert.assertEquals(
+			exportImportReportEntries.toString(), 1,
+			exportImportReportEntries.size());
 
 		_userLocalService.deleteUser(user1);
 		_userLocalService.deleteUser(user3);

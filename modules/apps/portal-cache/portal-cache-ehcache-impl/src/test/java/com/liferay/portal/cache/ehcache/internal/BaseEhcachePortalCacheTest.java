@@ -737,9 +737,10 @@ public class BaseEhcachePortalCacheTest {
 
 		keys = ehcachePortalCache.getKeys();
 
-		Assert.assertEquals(keys.toString(), 2, keys.size());
 		Assert.assertEquals(_KEY_1, keys.get(0));
 		Assert.assertEquals(_KEY_2, keys.get(1));
+
+		Assert.assertEquals(keys.toString(), 2, keys.size());
 
 		ehcachePortalCache.remove(_KEY_1);
 

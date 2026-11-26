@@ -92,13 +92,6 @@ public class LayoutPageTemplateStructureRelElementVariationLocalServiceTest {
 					getLayoutPageTemplateStructureRelElementVariationAudienceEntryRels(
 						_group.getGroupId(), externalReferenceCode);
 
-		Assert.assertEquals(
-			layoutPageTemplateStructureRelElementVariationAudienceEntryRels.
-				toString(),
-			1,
-			layoutPageTemplateStructureRelElementVariationAudienceEntryRels.
-				size());
-
 		LayoutPageTemplateStructureRelElementVariationAudienceEntryRel
 			layoutPageTemplateStructureRelElementVariationAudienceEntryRel =
 				layoutPageTemplateStructureRelElementVariationAudienceEntryRels.
@@ -108,6 +101,13 @@ public class LayoutPageTemplateStructureRelElementVariationLocalServiceTest {
 			audienceEntryERC,
 			layoutPageTemplateStructureRelElementVariationAudienceEntryRel.
 				getAudienceEntryERC());
+
+		Assert.assertEquals(
+			layoutPageTemplateStructureRelElementVariationAudienceEntryRels.
+				toString(),
+			1,
+			layoutPageTemplateStructureRelElementVariationAudienceEntryRels.
+				size());
 	}
 
 	private void _addLayoutPageTemplateStructureRelElementVariation(

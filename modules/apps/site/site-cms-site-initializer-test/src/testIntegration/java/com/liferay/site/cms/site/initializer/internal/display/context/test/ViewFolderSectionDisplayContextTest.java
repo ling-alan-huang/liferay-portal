@@ -444,9 +444,6 @@ public class ViewFolderSectionDisplayContextTest
 
 		JSONArray jsonArray = (JSONArray)breadcrumbProps.get("breadcrumbItems");
 
-		Assert.assertEquals(
-			jsonArray.toString(), expectedLabels.length, jsonArray.length());
-
 		for (int i = 0; i < expectedLabels.length; i++) {
 			JSONObject jsonObject = jsonArray.getJSONObject(i);
 
@@ -460,6 +457,9 @@ public class ViewFolderSectionDisplayContextTest
 
 		Assert.assertTrue(
 			jsonArray.toString(), lastJSONObject.getBoolean("active"));
+
+		Assert.assertEquals(
+			jsonArray.toString(), expectedLabels.length, jsonArray.length());
 	}
 
 	private Map<String, Object> _getAdditionalProps(

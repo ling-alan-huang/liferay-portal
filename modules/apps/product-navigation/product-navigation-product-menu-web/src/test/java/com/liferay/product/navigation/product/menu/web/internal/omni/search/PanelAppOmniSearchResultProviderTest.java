@@ -135,9 +135,6 @@ public class PanelAppOmniSearchResultProviderTest {
 
 		omniSearchResults = omniSearchResult.getOmniSearchResults();
 
-		Assert.assertEquals(
-			omniSearchResults.toString(), 1, omniSearchResults.size());
-
 		omniSearchResult = omniSearchResults.get(0);
 
 		Assert.assertEquals("Users", omniSearchResult.getDescription());
@@ -148,6 +145,9 @@ public class PanelAppOmniSearchResultProviderTest {
 			OmniSearchResult.Type.ENTRY, omniSearchResult.getType());
 		Assert.assertEquals(
 			String.valueOf(portletURL), omniSearchResult.getURL());
+
+		Assert.assertEquals(
+			omniSearchResults.toString(), 1, omniSearchResults.size());
 	}
 
 	@Test
@@ -170,14 +170,14 @@ public class PanelAppOmniSearchResultProviderTest {
 
 		omniSearchResults = omniSearchResult.getOmniSearchResults();
 
-		Assert.assertEquals(
-			omniSearchResults.toString(), 1, omniSearchResults.size());
-
 		omniSearchResult = omniSearchResults.get(0);
 
 		Assert.assertEquals(
 			"Users \u203a Memberships", omniSearchResult.getDescription());
 		Assert.assertEquals("Organizations", omniSearchResult.getTitle());
+
+		Assert.assertEquals(
+			omniSearchResults.toString(), 1, omniSearchResults.size());
 	}
 
 	@Test

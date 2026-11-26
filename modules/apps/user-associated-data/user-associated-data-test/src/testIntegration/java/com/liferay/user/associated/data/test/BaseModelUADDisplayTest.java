@@ -325,11 +325,11 @@ public class BaseModelUADDisplayTest {
 			_user.getUserId(), null, null, orderByCol, orderByType,
 			QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 
-		Assert.assertEquals(actual.toString(), expected.length, actual.size());
-
 		for (int i = 0; i < expected.length; i++) {
 			Assert.assertEquals(expected[i], actual.get(i));
 		}
+
+		Assert.assertEquals(actual.toString(), expected.length, actual.size());
 	}
 
 	private long _searchCountGroupLayouts(long... groupIds) {

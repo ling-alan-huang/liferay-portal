@@ -238,8 +238,9 @@ public class DLContentLocalServiceTest {
 		dlContents = _dlContentLocalService.getContentsByDirectory(
 			_companyId, _repositoryId, path2);
 
-		Assert.assertEquals(dlContents.toString(), 1, dlContents.size());
 		Assert.assertEquals(dlContent2, dlContents.get(0));
+
+		Assert.assertEquals(dlContents.toString(), 1, dlContents.size());
 	}
 
 	@Test

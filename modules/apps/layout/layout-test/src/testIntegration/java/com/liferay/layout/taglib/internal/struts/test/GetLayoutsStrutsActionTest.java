@@ -223,8 +223,6 @@ public class GetLayoutsStrutsActionTest {
 
 		JSONArray jsonArray = jsonObject.getJSONArray("items");
 
-		Assert.assertEquals(count, jsonArray.length());
-
 		for (int j = 0; j < jsonArray.length(); j++) {
 			JSONObject layoutJSONObject = jsonArray.getJSONObject(j);
 
@@ -245,6 +243,8 @@ public class GetLayoutsStrutsActionTest {
 					PropsValues.LAYOUT_MANAGE_PAGES_INITIAL_CHILDREN),
 				layoutJSONObject.getBoolean("paginated"));
 		}
+
+		Assert.assertEquals(count, jsonArray.length());
 	}
 
 	private void _assertLayoutInTree(boolean expected, Layout layout)

@@ -410,8 +410,9 @@ public class OrganizationLocalServiceTest {
 		List<Organization> organizations =
 			_organizationLocalService.getNoAssetOrganizations();
 
-		Assert.assertEquals(organizations.toString(), 1, organizations.size());
 		Assert.assertEquals(organization2, organizations.get(0));
+
+		Assert.assertEquals(organizations.toString(), 1, organizations.size());
 	}
 
 	@Test
@@ -578,14 +579,14 @@ public class OrganizationLocalServiceTest {
 		List<Organization> actualOrganizations =
 			baseModelSearchResult.getBaseModels();
 
-		Assert.assertEquals(
-			actualOrganizations.toString(), expectedOrganizations.size(),
-			actualOrganizations.size());
-
 		for (int i = 0; i < expectedOrganizations.size(); i++) {
 			Assert.assertEquals(
 				expectedOrganizations.get(i), actualOrganizations.get(i));
 		}
+
+		Assert.assertEquals(
+			actualOrganizations.toString(), expectedOrganizations.size(),
+			actualOrganizations.size());
 	}
 
 	private void _assertSearchUser(

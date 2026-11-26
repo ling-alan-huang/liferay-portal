@@ -64,14 +64,14 @@ public class DDMStructureLayoutServiceTest extends BaseDDMServiceTestCase {
 			ddmFormLayoutRow.getDDMFormLayoutColumns();
 
 		Assert.assertEquals(
-			ddmFormLayoutColumns.toString(), 2, ddmFormLayoutColumns.size());
-
-		Assert.assertEquals(
 			"Text1",
 			getDDMFormLayoutColumnFieldName(ddmFormLayoutColumns.get(0), 0));
 		Assert.assertEquals(
 			"Text2",
 			getDDMFormLayoutColumnFieldName(ddmFormLayoutColumns.get(1), 0));
+
+		Assert.assertEquals(
+			ddmFormLayoutColumns.toString(), 2, ddmFormLayoutColumns.size());
 	}
 
 	protected List<DDMFormLayoutColumn> createDDMFormLayoutColumns(

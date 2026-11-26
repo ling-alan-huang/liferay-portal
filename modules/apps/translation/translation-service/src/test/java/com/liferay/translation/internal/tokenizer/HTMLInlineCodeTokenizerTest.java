@@ -30,9 +30,6 @@ public class HTMLInlineCodeTokenizerTest {
 		List<HTMLInlineCodeToken> htmlInlineCodeTokens = _tokenize(
 			"<p title=a'b>Hello x'y stop</p>");
 
-		Assert.assertEquals(
-			htmlInlineCodeTokens.toString(), 3, htmlInlineCodeTokens.size());
-
 		_assertToken(
 			htmlInlineCodeTokens.get(0), HTMLInlineCodeToken.Type.OPENING,
 			"<p title=a'b>");
@@ -42,6 +39,9 @@ public class HTMLInlineCodeTokenizerTest {
 		_assertToken(
 			htmlInlineCodeTokens.get(2), HTMLInlineCodeToken.Type.CLOSING,
 			"</p>");
+
+		Assert.assertEquals(
+			htmlInlineCodeTokens.toString(), 3, htmlInlineCodeTokens.size());
 	}
 
 	@Test
@@ -49,12 +49,12 @@ public class HTMLInlineCodeTokenizerTest {
 		List<HTMLInlineCodeToken> htmlInlineCodeTokens = _tokenize(
 			"a < b && c > d");
 
-		Assert.assertEquals(
-			htmlInlineCodeTokens.toString(), 1, htmlInlineCodeTokens.size());
-
 		_assertToken(
 			htmlInlineCodeTokens.get(0), HTMLInlineCodeToken.Type.TEXT,
 			"a < b && c > d");
+
+		Assert.assertEquals(
+			htmlInlineCodeTokens.toString(), 1, htmlInlineCodeTokens.size());
 	}
 
 	@Test
@@ -62,12 +62,12 @@ public class HTMLInlineCodeTokenizerTest {
 		List<HTMLInlineCodeToken> htmlInlineCodeTokens = _tokenize(
 			"a<![CDATA[literal <b> & text]]>b");
 
-		Assert.assertEquals(
-			htmlInlineCodeTokens.toString(), 3, htmlInlineCodeTokens.size());
-
 		_assertToken(
 			htmlInlineCodeTokens.get(1), HTMLInlineCodeToken.Type.PLACEHOLDER,
 			"<![CDATA[literal <b> & text]]>");
+
+		Assert.assertEquals(
+			htmlInlineCodeTokens.toString(), 3, htmlInlineCodeTokens.size());
 	}
 
 	@Test
@@ -75,12 +75,12 @@ public class HTMLInlineCodeTokenizerTest {
 		List<HTMLInlineCodeToken> htmlInlineCodeTokens = _tokenize(
 			"a<!-- comment with <b> tags -->b");
 
-		Assert.assertEquals(
-			htmlInlineCodeTokens.toString(), 3, htmlInlineCodeTokens.size());
-
 		_assertToken(
 			htmlInlineCodeTokens.get(1), HTMLInlineCodeToken.Type.PLACEHOLDER,
 			"<!-- comment with <b> tags -->");
+
+		Assert.assertEquals(
+			htmlInlineCodeTokens.toString(), 3, htmlInlineCodeTokens.size());
 	}
 
 	@Test
@@ -145,12 +145,12 @@ public class HTMLInlineCodeTokenizerTest {
 		List<HTMLInlineCodeToken> htmlInlineCodeTokens = _tokenize(
 			"<a href=\"x?a>b\" title='y>z'>link</a>");
 
-		Assert.assertEquals(
-			htmlInlineCodeTokens.toString(), 3, htmlInlineCodeTokens.size());
-
 		_assertToken(
 			htmlInlineCodeTokens.get(0), HTMLInlineCodeToken.Type.OPENING,
 			"<a href=\"x?a>b\" title='y>z'>");
+
+		Assert.assertEquals(
+			htmlInlineCodeTokens.toString(), 3, htmlInlineCodeTokens.size());
 	}
 
 	@Test
@@ -158,12 +158,12 @@ public class HTMLInlineCodeTokenizerTest {
 		List<HTMLInlineCodeToken> htmlInlineCodeTokens = _tokenize(
 			"<script>var s = \"</scriptFoo>\"; doWork();</script>");
 
-		Assert.assertEquals(
-			htmlInlineCodeTokens.toString(), 1, htmlInlineCodeTokens.size());
-
 		_assertToken(
 			htmlInlineCodeTokens.get(0), HTMLInlineCodeToken.Type.PLACEHOLDER,
 			"<script>var s = \"</scriptFoo>\"; doWork();</script>");
+
+		Assert.assertEquals(
+			htmlInlineCodeTokens.toString(), 1, htmlInlineCodeTokens.size());
 	}
 
 	@Test
@@ -206,24 +206,21 @@ public class HTMLInlineCodeTokenizerTest {
 		List<HTMLInlineCodeToken> htmlInlineCodeTokens = _tokenize(
 			"Fish &Chips; specials &eacute;");
 
-		Assert.assertEquals(
-			htmlInlineCodeTokens.toString(), 2, htmlInlineCodeTokens.size());
-
 		_assertToken(
 			htmlInlineCodeTokens.get(0), HTMLInlineCodeToken.Type.TEXT,
 			"Fish &Chips; specials ");
 		_assertToken(
 			htmlInlineCodeTokens.get(1), HTMLInlineCodeToken.Type.PLACEHOLDER,
 			"&eacute;");
+
+		Assert.assertEquals(
+			htmlInlineCodeTokens.toString(), 2, htmlInlineCodeTokens.size());
 	}
 
 	@Test
 	public void testTokenizeUnmatchedQuoteInSelfClosingTag() {
 		List<HTMLInlineCodeToken> htmlInlineCodeTokens = _tokenize(
 			"a<a href=a\"b c/>b");
-
-		Assert.assertEquals(
-			htmlInlineCodeTokens.toString(), 3, htmlInlineCodeTokens.size());
 
 		_assertToken(
 			htmlInlineCodeTokens.get(0), HTMLInlineCodeToken.Type.TEXT, "a");
@@ -232,15 +229,15 @@ public class HTMLInlineCodeTokenizerTest {
 			"<a href=a\"b c/>");
 		_assertToken(
 			htmlInlineCodeTokens.get(2), HTMLInlineCodeToken.Type.TEXT, "b");
+
+		Assert.assertEquals(
+			htmlInlineCodeTokens.toString(), 3, htmlInlineCodeTokens.size());
 	}
 
 	@Test
 	public void testTokenizeUnquotedAttributeValueTrailingSlash() {
 		List<HTMLInlineCodeToken> htmlInlineCodeTokens = _tokenize(
 			"<a href=https://liferay.com/>link</a><input value=foo />");
-
-		Assert.assertEquals(
-			htmlInlineCodeTokens.toString(), 4, htmlInlineCodeTokens.size());
 
 		_assertToken(
 			htmlInlineCodeTokens.get(0), HTMLInlineCodeToken.Type.OPENING,
@@ -253,6 +250,9 @@ public class HTMLInlineCodeTokenizerTest {
 		_assertToken(
 			htmlInlineCodeTokens.get(3), HTMLInlineCodeToken.Type.PLACEHOLDER,
 			"<input value=foo />");
+
+		Assert.assertEquals(
+			htmlInlineCodeTokens.toString(), 4, htmlInlineCodeTokens.size());
 	}
 
 	@Test
@@ -260,12 +260,12 @@ public class HTMLInlineCodeTokenizerTest {
 		List<HTMLInlineCodeToken> htmlInlineCodeTokens = _tokenize(
 			"a<script>never closed");
 
-		Assert.assertEquals(
-			htmlInlineCodeTokens.toString(), 1, htmlInlineCodeTokens.size());
-
 		_assertToken(
 			htmlInlineCodeTokens.get(0), HTMLInlineCodeToken.Type.TEXT,
 			"a<script>never closed");
+
+		Assert.assertEquals(
+			htmlInlineCodeTokens.toString(), 1, htmlInlineCodeTokens.size());
 	}
 
 	@Test

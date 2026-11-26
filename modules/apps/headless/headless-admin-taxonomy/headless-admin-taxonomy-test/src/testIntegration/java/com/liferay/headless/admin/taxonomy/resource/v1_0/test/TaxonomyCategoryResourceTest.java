@@ -2041,13 +2041,13 @@ public class TaxonomyCategoryResourceTest
 					assetVocabulary.getVocabularyId(),
 					DepotConstants.TYPE_SPACE);
 
-		Assert.assertEquals(
-			assetVocabularyGroupRels.toString(), 1,
-			assetVocabularyGroupRels.size());
-
 		assetVocabularyGroupRel = assetVocabularyGroupRels.get(0);
 
 		Assert.assertEquals(-1L, assetVocabularyGroupRel.getGroupId());
+
+		Assert.assertEquals(
+			assetVocabularyGroupRels.toString(), 1,
+			assetVocabularyGroupRels.size());
 
 		irrelevantGroup = originalIrrelevantGroup;
 		testGroup = originalTestGroup;

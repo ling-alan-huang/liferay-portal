@@ -180,10 +180,6 @@ public class UserCommerceMLRecommendationManagerTest {
 		int expectedRecommendationsSize = Math.min(
 			10, expectedUserCommerceMLRecommendations.size());
 
-		Assert.assertEquals(
-			"Recommendation list size", expectedRecommendationsSize,
-			userCommerceMLRecommendations.size());
-
 		for (int i = 0; i < expectedRecommendationsSize; i++) {
 			UserCommerceMLRecommendation expectedUserCommerceMLRecommendation =
 				expectedUserCommerceMLRecommendations.get(i);
@@ -204,6 +200,10 @@ public class UserCommerceMLRecommendationManagerTest {
 				expectedUserCommerceMLRecommendation.getScore(),
 				userCommerceMLRecommendation.getScore(), 0.0);
 		}
+
+		Assert.assertEquals(
+			"Recommendation list size", expectedRecommendationsSize,
+			userCommerceMLRecommendations.size());
 	}
 
 	private UserCommerceMLRecommendation _createUserCommerceMLRecommendation(

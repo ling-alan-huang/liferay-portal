@@ -816,10 +816,6 @@ public class CommerceOrderEngineTest {
 			_user.getUserId(), true);
 
 		Assert.assertEquals(
-			nextCommerceOrderStatuses.toString(), 1,
-			nextCommerceOrderStatuses.size());
-
-		Assert.assertEquals(
 			Test3CommerceOrderStatusImpl.KEY, _commerceOrder.getOrderStatus());
 
 		List<CommerceOrderItem> commerceOrderItems =
@@ -895,6 +891,10 @@ public class CommerceOrderEngineTest {
 		Assert.assertEquals(
 			CommerceOrderConstants.ORDER_STATUS_COMPLETED,
 			_commerceOrder.getOrderStatus());
+
+		Assert.assertEquals(
+			nextCommerceOrderStatuses.toString(), 1,
+			nextCommerceOrderStatuses.size());
 
 		for (ComponentDescriptionDTO componentDescriptionDTO :
 				componentDescriptionDTOs) {

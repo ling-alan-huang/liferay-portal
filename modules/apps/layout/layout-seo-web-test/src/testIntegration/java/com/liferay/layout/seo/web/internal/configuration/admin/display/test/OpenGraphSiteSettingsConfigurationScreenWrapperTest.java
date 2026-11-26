@@ -246,8 +246,9 @@ public class OpenGraphSiteSettingsConfigurationScreenWrapperTest {
 
 		properties = configurationScreen.exportProperties(group.getGroupId());
 
-		Assert.assertEquals(properties.toString(), 1, properties.size());
 		Assert.assertEquals(Boolean.FALSE, properties.get("openGraphEnabled"));
+
+		Assert.assertEquals(properties.toString(), 1, properties.size());
 	}
 
 	private void _testExportPropertiesWithoutLayoutSEOSite() throws Exception {

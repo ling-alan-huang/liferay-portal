@@ -76,11 +76,11 @@ public class ColumnValuesExtractorTest {
 
 		csvRecord = _toCSVRecord((String)values2[2]);
 
-		Assert.assertEquals(5, csvRecord.size());
-
 		for (int i = 0; i < arraysAggregator.length; i++) {
 			Assert.assertEquals(arraysAggregator.strings[i], csvRecord.get(i));
 		}
+
+		Assert.assertEquals(5, csvRecord.size());
 	}
 
 	@Test
@@ -130,11 +130,11 @@ public class ColumnValuesExtractorTest {
 
 		csvRecord = _toCSVRecord((String)values2[2]);
 
-		Assert.assertEquals(5, csvRecord.size());
-
 		for (int i = 0; i < arraysAggregator.length; i++) {
 			Assert.assertEquals(arraysAggregator.strings[i], csvRecord.get(i));
 		}
+
+		Assert.assertEquals(5, csvRecord.size());
 	}
 
 	@Test

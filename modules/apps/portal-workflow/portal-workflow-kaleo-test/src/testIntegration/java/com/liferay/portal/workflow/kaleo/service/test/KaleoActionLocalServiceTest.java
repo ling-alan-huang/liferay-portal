@@ -53,8 +53,9 @@ public class KaleoActionLocalServiceTest extends BaseKaleoLocalServiceTestCase {
 			companyId, KaleoNode.class.getName(), kaleoNode.getKaleoNodeId(),
 			ExecutionType.ON_ASSIGNMENT.getValue());
 
-		Assert.assertEquals(kaleoActions.toString(), 1, kaleoActions.size());
 		Assert.assertEquals(kaleoAction, kaleoActions.get(0));
+
+		Assert.assertEquals(kaleoActions.toString(), 1, kaleoActions.size());
 	}
 
 	@Rule

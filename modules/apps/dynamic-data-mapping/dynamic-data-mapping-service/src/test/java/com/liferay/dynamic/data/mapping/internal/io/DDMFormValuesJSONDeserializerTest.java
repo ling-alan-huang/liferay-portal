@@ -179,9 +179,6 @@ public class DDMFormValuesJSONDeserializerTest extends BaseDDMTestCase {
 		List<DDMFormFieldValue> ddmFormFieldValues =
 			ddmFormValues.getDDMFormFieldValues();
 
-		Assert.assertEquals(
-			ddmFormFieldValues.toString(), 3, ddmFormFieldValues.size());
-
 		for (int i = 0; i < ddmFormFieldValues.size(); i++) {
 			DDMFormFieldValue separatorDDMFormFieldValue =
 				ddmFormFieldValues.get(i);
@@ -191,14 +188,17 @@ public class DDMFormValuesJSONDeserializerTest extends BaseDDMTestCase {
 			List<DDMFormFieldValue> separatorNestedDDMFormFieldValues =
 				separatorDDMFormFieldValue.getNestedDDMFormFieldValues();
 
-			Assert.assertEquals(
-				separatorNestedDDMFormFieldValues.toString(), 1,
-				separatorNestedDDMFormFieldValues.size());
-
 			_testTextDDMFormFieldValue(
 				separatorNestedDDMFormFieldValues.get(0), "Content " + i,
 				"Conteudo " + i);
+
+			Assert.assertEquals(
+				separatorNestedDDMFormFieldValues.toString(), 1,
+				separatorNestedDDMFormFieldValues.size());
 		}
+
+		Assert.assertEquals(
+			ddmFormFieldValues.toString(), 3, ddmFormFieldValues.size());
 	}
 
 	@Test
@@ -217,13 +217,13 @@ public class DDMFormValuesJSONDeserializerTest extends BaseDDMTestCase {
 		List<DDMFormFieldValue> ddmFormFieldValues =
 			ddmFormValues.getDDMFormFieldValues();
 
-		Assert.assertEquals(
-			ddmFormFieldValues.toString(), 3, ddmFormFieldValues.size());
-
 		for (int i = 0; i < ddmFormFieldValues.size(); i++) {
 			_testTextDDMFormFieldValue(
 				ddmFormFieldValues.get(i), "Name " + i, "Nome " + i);
 		}
+
+		Assert.assertEquals(
+			ddmFormFieldValues.toString(), 3, ddmFormFieldValues.size());
 	}
 
 	@Test
@@ -274,9 +274,6 @@ public class DDMFormValuesJSONDeserializerTest extends BaseDDMTestCase {
 		List<DDMFormFieldValue> ddmFormFieldValues =
 			ddmFormValues.getDDMFormFieldValues();
 
-		Assert.assertEquals(
-			ddmFormFieldValues.toString(), 7, ddmFormFieldValues.size());
-
 		_testBooleanDDMFormFieldValueValues(ddmFormFieldValues.get(0));
 		_testDocumentLibraryDDMFormFieldValueValues(ddmFormFieldValues.get(1));
 		_testGeolocationDDMFormFieldValueValues(ddmFormFieldValues.get(2));
@@ -284,6 +281,9 @@ public class DDMFormValuesJSONDeserializerTest extends BaseDDMTestCase {
 		_testImageDDMFormFieldValueValues(ddmFormFieldValues.get(4));
 		_testLinkToPageDDMFormFieldValueValues(ddmFormFieldValues.get(5));
 		_testSelectDDMFormFieldValueValues(ddmFormFieldValues.get(6));
+
+		Assert.assertEquals(
+			ddmFormFieldValues.toString(), 7, ddmFormFieldValues.size());
 	}
 
 	@Test

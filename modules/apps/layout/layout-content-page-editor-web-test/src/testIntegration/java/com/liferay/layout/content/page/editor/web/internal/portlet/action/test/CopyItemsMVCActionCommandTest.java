@@ -846,8 +846,9 @@ public class CopyItemsMVCActionCommandTest {
 				new Class<?>[] {ActionRequest.class, Exception.class},
 				mockLiferayPortletActionRequest, exception);
 
-			Assert.assertEquals(jsonObject.toString(), 1, jsonObject.length());
 			Assert.assertEquals(error, jsonObject.getString("error"));
+
+			Assert.assertEquals(jsonObject.toString(), 1, jsonObject.length());
 		}
 
 		layoutStructure = _layoutStructureProvider.getLayoutStructure(

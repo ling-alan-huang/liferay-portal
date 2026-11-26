@@ -1427,14 +1427,14 @@ public class CollaboratorResourceTest {
 	private void _assertEquals(
 		JSONArray actualJSONArray, JSONArray expectedJSONArray) {
 
-		Assert.assertEquals(
-			expectedJSONArray.length(), actualJSONArray.length());
-
 		for (int i = 0; i < expectedJSONArray.length(); i++) {
 			_assertEquals(
 				actualJSONArray.getJSONObject(i),
 				expectedJSONArray.getJSONObject(i));
 		}
+
+		Assert.assertEquals(
+			expectedJSONArray.length(), actualJSONArray.length());
 	}
 
 	private void _assertEquals(JSONObject jsonObject1, JSONObject jsonObject2) {

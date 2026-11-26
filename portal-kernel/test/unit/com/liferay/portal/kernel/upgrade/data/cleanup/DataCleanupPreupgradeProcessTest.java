@@ -94,12 +94,13 @@ public class DataCleanupPreupgradeProcessTest {
 		List<DataCleanupPreupgradeProcess> dataCleanupPreupgradeProcesses1 =
 			dataCleanupPreupgradeProcessesList.get(0);
 
-		Assert.assertEquals(
-			dataCleanupPreupgradeProcesses1.toString(), 1,
-			dataCleanupPreupgradeProcesses1.size());
 		Assert.assertSame(
 			dataCleanupPreupgradeProcess1,
 			dataCleanupPreupgradeProcesses1.get(0));
+
+		Assert.assertEquals(
+			dataCleanupPreupgradeProcesses1.toString(), 1,
+			dataCleanupPreupgradeProcesses1.size());
 
 		List<DataCleanupPreupgradeProcess> dataCleanupPreupgradeProcesses2 =
 			dataCleanupPreupgradeProcessesList.get(1);
@@ -117,12 +118,13 @@ public class DataCleanupPreupgradeProcessTest {
 		List<DataCleanupPreupgradeProcess> dataCleanupPreupgradeProcesses3 =
 			dataCleanupPreupgradeProcessesList.get(2);
 
-		Assert.assertEquals(
-			dataCleanupPreupgradeProcesses3.toString(), 1,
-			dataCleanupPreupgradeProcesses3.size());
 		Assert.assertSame(
 			dataCleanupPreupgradeProcess4,
 			dataCleanupPreupgradeProcesses3.get(0));
+
+		Assert.assertEquals(
+			dataCleanupPreupgradeProcesses3.toString(), 1,
+			dataCleanupPreupgradeProcesses3.size());
 
 		Assert.assertEquals(
 			dataCleanupPreupgradeProcessesList.toString(), 3,

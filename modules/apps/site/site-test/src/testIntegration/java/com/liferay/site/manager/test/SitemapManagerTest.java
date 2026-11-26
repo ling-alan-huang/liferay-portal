@@ -1811,13 +1811,13 @@ public class SitemapManagerTest {
 						return null;
 					});
 
-				Assert.assertEquals(locs.toString(), 3, locs.size());
-
 				for (int i = 0; i < locs.size(); i++) {
 					String loc = locs.get(i);
 
 					Assert.assertTrue(loc.contains("&page=" + (i + 1)));
 				}
+
+				Assert.assertEquals(locs.toString(), 3, locs.size());
 			}
 			finally {
 				ReflectionTestUtil.setFieldValue(

@@ -561,10 +561,11 @@ public class DepotEntryGroupRelLocalServiceTest {
 				_group1.getGroupId(), 0, searchableDepotEntryGroupRelsCount);
 
 		Assert.assertEquals(
+			depotEntryGroupRel, searchableDepotEntryGroupRels.get(0));
+
+		Assert.assertEquals(
 			searchableDepotEntryGroupRels.toString(), 1,
 			searchableDepotEntryGroupRels.size());
-		Assert.assertEquals(
-			depotEntryGroupRel, searchableDepotEntryGroupRels.get(0));
 	}
 
 	@Test

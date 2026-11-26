@@ -175,9 +175,6 @@ public class DeleteSegmentsExperienceMVCActionCommandTest {
 					draftLayout.getGroupId(), segmentsExperienceId,
 					draftLayout.getPlid());
 
-		Assert.assertEquals(
-			fragmentEntryLinks.toString(), 0, fragmentEntryLinks.size());
-
 		segmentsExperiencePortletPreferences =
 			_portletPreferencesLocalService.getPortletPreferencesByPortletId(
 				segmentsExperiencePortletId);
@@ -185,6 +182,9 @@ public class DeleteSegmentsExperienceMVCActionCommandTest {
 		Assert.assertEquals(
 			segmentsExperiencePortletPreferences.toString(), 0,
 			segmentsExperiencePortletPreferences.size());
+
+		Assert.assertEquals(
+			fragmentEntryLinks.toString(), 0, fragmentEntryLinks.size());
 	}
 
 	private String _addJournalContentPortletToLayout(Layout layout)

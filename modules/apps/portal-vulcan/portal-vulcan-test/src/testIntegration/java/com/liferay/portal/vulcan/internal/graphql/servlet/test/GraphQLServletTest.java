@@ -1151,8 +1151,6 @@ public class GraphQLServletTest {
 				).toString(),
 				"graphql", Http.Method.POST));
 
-		Assert.assertEquals(size, jsonArray.length());
-
 		for (int i = 0; i < size; i++) {
 			_assertEquals(
 				false, _testDTO1,
@@ -1160,6 +1158,8 @@ public class GraphQLServletTest {
 					jsonArray.getJSONObject(i), "JSONObject/data",
 					"JSONObject/testDTO1"));
 		}
+
+		Assert.assertEquals(size, jsonArray.length());
 	}
 
 	private void _assertEquals(

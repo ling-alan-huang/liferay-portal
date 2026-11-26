@@ -146,10 +146,6 @@ public class ViewWorkflowTasksSectionDisplayContextTest
 			(List<FDSActionDropdownItem>)groupFDSActionDropdownItem.get(
 				"items");
 
-		Assert.assertEquals(
-			fdsActionDropdownItems.toString(), 4,
-			fdsActionDropdownItems.size());
-
 		FrontendDataSetTestUtil.assertFDSActionDropdownItem(
 			"view", "actionLinkWorkflowTask", "View", null,
 			Collections.singletonMap(
@@ -183,6 +179,10 @@ public class ViewWorkflowTasksSectionDisplayContextTest
 			fdsActionDropdownItems.get(3));
 
 		Assert.assertEquals(
+			fdsActionDropdownItems.toString(), 4,
+			fdsActionDropdownItems.size());
+
+		Assert.assertEquals(
 			groupFDSActionDropdownItems.toString(), 2,
 			groupFDSActionDropdownItems.size());
 	}
@@ -191,8 +191,6 @@ public class ViewWorkflowTasksSectionDisplayContextTest
 	@Test
 	public void testGetFDSFilters() throws Exception {
 		List<FDSFilter> fdsFilters = getFDSFilters(null);
-
-		Assert.assertEquals(fdsFilters.toString(), 3, fdsFilters.size());
 
 		assertFDSFilter(
 			FDSEntityFieldTypes.STRING, "cmpAssignTo", "assignee",
@@ -203,6 +201,8 @@ public class ViewWorkflowTasksSectionDisplayContextTest
 		assertFDSFilter(
 			FDSEntityFieldTypes.BOOLEAN, "completed", "status",
 			fdsFilters.get(2));
+
+		Assert.assertEquals(fdsFilters.toString(), 3, fdsFilters.size());
 	}
 
 	@Override

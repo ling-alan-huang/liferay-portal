@@ -498,10 +498,6 @@ public class AssetEntryServiceTest {
 		List<AssetEntry> expectedAssetEntries,
 		List<AssetEntry> actualAssetEntries) {
 
-		Assert.assertEquals(
-			actualAssetEntries.toString(), expectedAssetEntries.size(),
-			actualAssetEntries.size());
-
 		for (int i = 0; i < expectedAssetEntries.size(); i++) {
 			AssetEntry expectedAssetEntry = expectedAssetEntries.get(i);
 			AssetEntry actualAssetEntry = actualAssetEntries.get(i);
@@ -509,6 +505,10 @@ public class AssetEntryServiceTest {
 			Assert.assertEquals(
 				expectedAssetEntry.getEntryId(), actualAssetEntry.getEntryId());
 		}
+
+		Assert.assertEquals(
+			actualAssetEntries.toString(), expectedAssetEntries.size(),
+			actualAssetEntries.size());
 	}
 
 	@Inject

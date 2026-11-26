@@ -98,8 +98,9 @@ public class MethodKeyTest {
 		Map<MethodKey, Method> methods = ReflectionTestUtil.getFieldValue(
 			MethodKey.class, "_methods");
 
-		Assert.assertEquals(methods.toString(), 1, methods.size());
 		Assert.assertEquals(method, methods.get(methodKey));
+
+		Assert.assertEquals(methods.toString(), 1, methods.size());
 
 		MethodKey.resetCache();
 

@@ -101,13 +101,14 @@ public class DDMFormBuilderSettingsRetrieverHelperImplTest {
 			"text");
 
 		Assert.assertEquals(
-			ddmExpressionFunctionMetadatas.toString(), 1,
-			ddmExpressionFunctionMetadatas.size());
-		Assert.assertEquals(
 			new DDMExpressionFunctionMetadata(
 				"binaryFunction", "Binary Function", "boolean",
 				new String[] {"text", "text"}),
 			ddmExpressionFunctionMetadatas.get(0));
+
+		Assert.assertEquals(
+			ddmExpressionFunctionMetadatas.toString(), 1,
+			ddmExpressionFunctionMetadatas.size());
 
 		Assert.assertEquals(
 			ddmExpressionFunctionMetadatasMap.toString(), 2,

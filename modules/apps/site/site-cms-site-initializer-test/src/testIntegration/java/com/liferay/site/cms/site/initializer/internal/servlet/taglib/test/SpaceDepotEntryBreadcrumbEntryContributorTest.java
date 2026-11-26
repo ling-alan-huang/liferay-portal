@@ -222,9 +222,6 @@ public class SpaceDepotEntryBreadcrumbEntryContributorTest {
 			BreadcrumbEntryContributorUtil.contribute(
 				Collections.emptyList(), mockHttpServletRequest);
 
-		Assert.assertEquals(
-			breadcrumbEntries.toString(), 2, breadcrumbEntries.size());
-
 		_assertSpaceDepotEntryBreadcrumbEntry(
 			breadcrumbEntries.get(0), depotEntry, mockHttpServletRequest);
 
@@ -237,6 +234,9 @@ public class SpaceDepotEntryBreadcrumbEntryContributorTest {
 
 		_assertBreadcrumbEntryNotBrowsable(
 			breadcrumbEntries.get(breadcrumbEntries.size() - 1));
+
+		Assert.assertEquals(
+			breadcrumbEntries.toString(), 2, breadcrumbEntries.size());
 	}
 
 	@Inject

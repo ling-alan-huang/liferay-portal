@@ -603,8 +603,9 @@ public class RoleLocalServiceTest {
 		roles = _roleLocalService.getUserTeamRoles(
 			_user.getUserId(), _group.getGroupId());
 
-		Assert.assertEquals(roles.toString(), 1, roles.size());
 		Assert.assertEquals(teamRole, roles.get(0));
+
+		Assert.assertEquals(roles.toString(), 1, roles.size());
 	}
 
 	@Test

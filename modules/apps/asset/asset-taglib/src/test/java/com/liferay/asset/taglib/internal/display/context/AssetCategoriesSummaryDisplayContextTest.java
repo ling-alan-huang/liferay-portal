@@ -90,10 +90,10 @@ public class AssetCategoriesSummaryDisplayContextTest {
 		_testGetVocabularies(
 			assetCategoriesSummaryDisplayContext, DepotConstants.TYPE_SPACE,
 			assetVocabularies -> {
+				Assert.assertEquals(_assetVocabulary, assetVocabularies.get(0));
+
 				Assert.assertEquals(
 					assetVocabularies.toString(), 1, assetVocabularies.size());
-
-				Assert.assertEquals(_assetVocabulary, assetVocabularies.get(0));
 			});
 	}
 

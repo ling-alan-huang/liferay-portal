@@ -328,13 +328,13 @@ public class CommentResourceTest {
 
 		JSONArray jsonArray = jsonObject.getJSONArray("items");
 
-		Assert.assertEquals(1, jsonArray.length());
-
 		jsonObject = jsonArray.getJSONObject(0);
 
 		Assert.assertEquals(
 			externalReferenceCode,
 			jsonObject.getString("externalReferenceCode"));
+
+		Assert.assertEquals(1, jsonArray.length());
 	}
 
 	private void _assertCommentsPageWithSort(

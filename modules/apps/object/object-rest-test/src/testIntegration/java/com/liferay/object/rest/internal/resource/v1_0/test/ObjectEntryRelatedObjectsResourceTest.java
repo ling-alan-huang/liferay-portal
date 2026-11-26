@@ -1546,8 +1546,9 @@ public class ObjectEntryRelatedObjectsResourceTest {
 		JSONArray keywordsJSONArray = nestedObjectEntryJSONObject.getJSONArray(
 			"keywords");
 
-		Assert.assertEquals(1, keywordsJSONArray.length());
 		Assert.assertEquals(keyword, keywordsJSONArray.getString(0));
+
+		Assert.assertEquals(1, keywordsJSONArray.length());
 
 		// Many to one relationship
 
@@ -2692,9 +2693,9 @@ public class ObjectEntryRelatedObjectsResourceTest {
 	private <T> void _assertEquals(
 		BaseModel<T> baseModel, JSONArray jsonArray) {
 
-		Assert.assertEquals(1, jsonArray.length());
-
 		_assertEquals(baseModel, jsonArray.getJSONObject(0));
+
+		Assert.assertEquals(1, jsonArray.length());
 	}
 
 	private <T> void _assertEquals(
@@ -3034,11 +3035,11 @@ public class ObjectEntryRelatedObjectsResourceTest {
 
 		JSONArray itemsJSONArray = jsonObject.getJSONArray("items");
 
-		Assert.assertEquals(
-			itemsJSONArray.toString(), 2, itemsJSONArray.length());
-
 		_assertEquals(objectEntry2, itemsJSONArray.getJSONObject(0));
 		_assertEquals(objectEntry3, itemsJSONArray.getJSONObject(1));
+
+		Assert.assertEquals(
+			itemsJSONArray.toString(), 2, itemsJSONArray.length());
 
 		String endpoint = StringBundler.concat(
 			"/by-external-reference-code/",
@@ -3369,13 +3370,13 @@ public class ObjectEntryRelatedObjectsResourceTest {
 			JSONArray relatedSystemObjectEntriesJSONArray =
 				jsonObject.getJSONArray(objectRelationship.getName());
 
-			Assert.assertEquals(
-				1, relatedSystemObjectEntriesJSONArray.length());
-
 			_assertSystemObjectEntry(
 				relatedSystemObjectEntriesJSONArray.getJSONObject(0),
 				_SYSTEM_OBJECT_FIELD_NAME_2, systemObjectFieldValue,
 				putUserAccount);
+
+			Assert.assertEquals(
+				1, relatedSystemObjectEntriesJSONArray.length());
 		}
 
 		JaxRsApplicationDescriptor jaxRsApplicationDescriptor =
@@ -3468,13 +3469,13 @@ public class ObjectEntryRelatedObjectsResourceTest {
 			JSONArray relatedSystemObjectEntriesJSONArray =
 				jsonObject.getJSONArray(objectRelationship.getName());
 
-			Assert.assertEquals(
-				1, relatedSystemObjectEntriesJSONArray.length());
-
 			_assertSystemObjectEntry(
 				relatedSystemObjectEntriesJSONArray.getJSONObject(0),
 				_SYSTEM_OBJECT_FIELD_NAME_3, systemObjectFieldValue,
 				putUserAccount);
+
+			Assert.assertEquals(
+				1, relatedSystemObjectEntriesJSONArray.length());
 		}
 
 		JaxRsApplicationDescriptor jaxRsApplicationDescriptor =

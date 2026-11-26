@@ -275,9 +275,6 @@ public class HeadlessApplicationProviderTest {
 		List<HeadlessApplicationProvider.OpenAPIDocument> openAPIDocuments =
 			application.getOpenAPIDocuments();
 
-		Assert.assertEquals(
-			openAPIDocuments.toString(), 1, openAPIDocuments.size());
-
 		openAPIDocument = openAPIDocuments.get(0);
 
 		Assert.assertNull(openAPIDocument.getVersion());
@@ -285,6 +282,9 @@ public class HeadlessApplicationProviderTest {
 			"/test-vulcan-application-unversioned/openapi.json",
 			openAPIDocument.getPath(
 				HeadlessApplicationProvider.OpenAPIDocument.Type.JSON));
+
+		Assert.assertEquals(
+			openAPIDocuments.toString(), 1, openAPIDocuments.size());
 
 		Assert.assertNotNull(
 			_getApplication("/test-vulcan-application-company"));

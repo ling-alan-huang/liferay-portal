@@ -524,9 +524,9 @@ public class LayoutCTTest {
 				_group.getGroupId(), layout.isPrivateLayout(), 1, 2,
 				OrderByComparatorFactoryUtil.create("Layout", "plid", true));
 
-			Assert.assertEquals(layouts.toString(), 1, layouts.size());
-
 			Assert.assertEquals(newLayout, layouts.get(0));
+
+			Assert.assertEquals(layouts.toString(), 1, layouts.size());
 		}
 	}
 
@@ -769,12 +769,12 @@ public class LayoutCTTest {
 		assetTags = _assetTagLocalService.getEntryTags(
 			assetEntry1.getEntryId());
 
-		Assert.assertEquals(assetTags.toString(), 1, assetTags.size());
-
 		assetTag = assetTags.get(0);
 
 		Assert.assertEquals(tagName2, assetTag.getName());
 		Assert.assertEquals(1, assetTag.getAssetCount());
+
+		Assert.assertEquals(assetTags.toString(), 1, assetTags.size());
 	}
 
 	@Test

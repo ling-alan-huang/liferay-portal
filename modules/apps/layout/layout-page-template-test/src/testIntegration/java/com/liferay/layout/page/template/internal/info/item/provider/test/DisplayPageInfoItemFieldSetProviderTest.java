@@ -419,9 +419,6 @@ public class DisplayPageInfoItemFieldSetProviderTest {
 	private void _testGetInfoFieldSet() {
 		List<InfoField<?>> sortedInfoFields = _getSortedInfoFields();
 
-		Assert.assertEquals(
-			sortedInfoFields.toString(), 2, sortedInfoFields.size());
-
 		_assertInfoField(
 			"LayoutPageTemplateEntry_displayPageURL", sortedInfoFields.get(0),
 			LanguageUtil.get(LocaleUtil.getSiteDefault(), "default"),
@@ -433,6 +430,9 @@ public class DisplayPageInfoItemFieldSetProviderTest {
 			_layoutPageTemplateEntry.getName(),
 			"LayoutPageTemplateEntry_" +
 				_layoutPageTemplateEntry.getLayoutPageTemplateEntryId());
+
+		Assert.assertEquals(
+			sortedInfoFields.toString(), 2, sortedInfoFields.size());
 	}
 
 	private void _testGetInfoFieldSetWithConnectedDesignLibrary()
@@ -491,9 +491,6 @@ public class DisplayPageInfoItemFieldSetProviderTest {
 
 		List<InfoField<?>> sortedInfoFields = _getSortedInfoFields();
 
-		Assert.assertEquals(
-			sortedInfoFields.toString(), 4, sortedInfoFields.size());
-
 		_assertInfoField(
 			"LayoutPageTemplateEntry__ERC__" +
 				designLibraryLayoutPageTemplateEntry.getExternalReferenceCode(),
@@ -510,6 +507,9 @@ public class DisplayPageInfoItemFieldSetProviderTest {
 			_layoutPageTemplateEntry.getName(),
 			"LayoutPageTemplateEntry_" +
 				_layoutPageTemplateEntry.getLayoutPageTemplateEntryId());
+
+		Assert.assertEquals(
+			sortedInfoFields.toString(), 4, sortedInfoFields.size());
 	}
 
 	private void _testGetInfoFieldSetWithDisconnectedDesignLibrary()

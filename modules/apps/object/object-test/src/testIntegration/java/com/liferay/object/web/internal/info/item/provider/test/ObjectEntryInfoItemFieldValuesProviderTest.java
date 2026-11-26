@@ -512,9 +512,9 @@ public class ObjectEntryInfoItemFieldValuesProviderTest {
 			List<String> tagNames =
 				(List<String>)tagNamesInfoFieldValue.getValue();
 
-			Assert.assertEquals(tagNames.toString(), 1, tagNames.size());
-
 			Assert.assertEquals(assetTagName, tagNames.get(0));
+
+			Assert.assertEquals(tagNames.toString(), 1, tagNames.size());
 		}
 		finally {
 			ServiceContextThreadLocal.popServiceContext();

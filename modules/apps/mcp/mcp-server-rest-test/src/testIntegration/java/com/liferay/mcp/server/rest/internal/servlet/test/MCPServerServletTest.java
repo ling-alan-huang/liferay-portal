@@ -1023,11 +1023,11 @@ public class MCPServerServletTest {
 
 		tools = listToolsResult.tools();
 
-		Assert.assertEquals(tools.toString(), 1, tools.size());
-
 		_assertTool(
 			tools.get(0), "getMCPServerProfilesPage",
 			"get_mcp_server_profiles.json");
+
+		Assert.assertEquals(tools.toString(), 1, tools.size());
 
 		mcpSyncClient.closeGracefully();
 	}
@@ -1089,14 +1089,14 @@ public class MCPServerServletTest {
 
 		List<McpSchema.Tool> tools = listToolsResult.tools();
 
-		Assert.assertEquals(tools.toString(), 2, tools.size());
-
 		_assertTool(
 			tools.get(0), "getMCPServerProfilesPage",
 			"get_mcp_server_profiles.json");
 		_assertTool(
 			tools.get(1), "postMCPServerProfile",
 			"post_mcp_server_profiles.json");
+
+		Assert.assertEquals(tools.toString(), 2, tools.size());
 
 		String entryName = RandomTestUtil.randomString();
 
@@ -1537,8 +1537,6 @@ public class MCPServerServletTest {
 
 		List<McpSchema.Tool> tools = listToolsResult.tools();
 
-		Assert.assertEquals(tools.toString(), 4, tools.size());
-
 		_assertTool(tools.get(0), "getToolSetsPage", "get_tool_sets.json");
 		_assertTool(
 			tools.get(1), "getToolSetToolSetNameToolSummariesPage",
@@ -1547,6 +1545,8 @@ public class MCPServerServletTest {
 		_assertTool(
 			tools.get(3), "postToolSetToolSetNameToolInvoke",
 			"invoke_tool.json");
+
+		Assert.assertEquals(tools.toString(), 4, tools.size());
 
 		McpSchema.CallToolResult callToolResult = mcpSyncClient.callTool(
 			new McpSchema.CallToolRequest(

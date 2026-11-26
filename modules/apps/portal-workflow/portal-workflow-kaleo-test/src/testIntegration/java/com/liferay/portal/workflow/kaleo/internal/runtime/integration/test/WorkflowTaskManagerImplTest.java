@@ -1887,11 +1887,6 @@ public class WorkflowTaskManagerImplTest extends BaseWorkflowManagerTestCase {
 	private void _assertEquals(
 		List<WorkflowTask> workflowTasks1, List<WorkflowTask> workflowTasks2) {
 
-		Assert.assertEquals(
-			workflowTasks1.toString() + " does not equal " +
-				workflowTasks2.toString(),
-			workflowTasks1.size(), workflowTasks2.size());
-
 		for (int i = 0; i < workflowTasks1.size(); i++) {
 			WorkflowTask workflowTask1 = workflowTasks1.get(i);
 			WorkflowTask workflowTask2 = workflowTasks2.get(i);
@@ -1902,6 +1897,11 @@ public class WorkflowTaskManagerImplTest extends BaseWorkflowManagerTestCase {
 				workflowTask1.getWorkflowTaskId(),
 				workflowTask2.getWorkflowTaskId());
 		}
+
+		Assert.assertEquals(
+			workflowTasks1.toString() + " does not equal " +
+				workflowTasks2.toString(),
+			workflowTasks1.size(), workflowTasks2.size());
 	}
 
 	private void _assertMustHavePermission(ThrowingRunnable throwingRunnable)

@@ -55,8 +55,9 @@ public class GetIndexIndexRequestExecutorTest {
 
 		List<String> indices = getIndexRequest.index();
 
-		Assert.assertEquals(String.join(", ", indices), 1, indices.size());
 		Assert.assertEquals(_INDEX_NAME, indices.get(0));
+
+		Assert.assertEquals(String.join(", ", indices), 1, indices.size());
 	}
 
 	private static final String _INDEX_NAME = "test_request_index";

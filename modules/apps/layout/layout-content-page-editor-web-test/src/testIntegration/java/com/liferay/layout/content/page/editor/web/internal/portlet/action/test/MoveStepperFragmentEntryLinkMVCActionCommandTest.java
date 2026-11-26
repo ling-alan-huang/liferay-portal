@@ -159,13 +159,13 @@ public class MoveStepperFragmentEntryLinkMVCActionCommandTest {
 		JSONArray addedItemIdsJSONArray = jsonObject.getJSONArray(
 			"addedItemIds");
 
-		Assert.assertEquals(5, addedItemIdsJSONArray.length());
-
 		for (int i = 0; i < addedItemIdsJSONArray.length(); i++) {
 			Assert.assertNotEquals(
 				fragmentStyledLayoutStructureItem.getItemId(),
 				addedItemIdsJSONArray.get(i));
 		}
+
+		Assert.assertEquals(5, addedItemIdsJSONArray.length());
 
 		JSONArray movedItemIdsJSONArray = jsonObject.getJSONArray(
 			"movedItemIds");

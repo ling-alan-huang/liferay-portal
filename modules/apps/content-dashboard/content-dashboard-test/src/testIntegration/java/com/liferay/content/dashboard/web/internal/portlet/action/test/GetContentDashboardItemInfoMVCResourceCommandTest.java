@@ -173,10 +173,11 @@ public class GetContentDashboardItemInfoMVCResourceCommandTest {
 			JSONArray categoriesJSONArray =
 				vocabularyDataJSONObject.getJSONArray("categories");
 
-			Assert.assertEquals(1, categoriesJSONArray.length());
 			Assert.assertEquals(
 				assetCategory.getTitle(LocaleUtil.getSiteDefault()),
 				categoriesJSONArray.getString(0));
+
+			Assert.assertEquals(1, categoriesJSONArray.length());
 		}
 
 		InfoItemReference infoItemReference =
@@ -397,9 +398,6 @@ public class GetContentDashboardItemInfoMVCResourceCommandTest {
 	private void _assertSpecificFieldsJSONArrayTitles(
 		List<String> expectedTitles, JSONArray specificFieldsJSONArray) {
 
-		Assert.assertEquals(
-			expectedTitles.size(), specificFieldsJSONArray.length());
-
 		for (int i = 0; i < expectedTitles.size(); i++) {
 			JSONObject specificFieldJSONObject =
 				specificFieldsJSONArray.getJSONObject(i);
@@ -407,6 +405,9 @@ public class GetContentDashboardItemInfoMVCResourceCommandTest {
 			Assert.assertEquals(
 				expectedTitles.get(i), specificFieldJSONObject.get("title"));
 		}
+
+		Assert.assertEquals(
+			expectedTitles.size(), specificFieldsJSONArray.length());
 	}
 
 	private ContentDashboardItem<?> _createContentDashboardBlogItem()

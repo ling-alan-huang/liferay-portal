@@ -204,16 +204,16 @@ public class GetContentDashboardItemVersionsResourceCommandTest {
 
 		Assert.assertNotNull(versionsJSONArray);
 
-		Assert.assertEquals(
-			versionsJSONArray.toString(), maxDisplayVersions,
-			versionsJSONArray.length());
-
 		for (int i = 0; i < versionsJSONArray.length(); i++) {
 			JSONObject versionJSONObject = versionsJSONArray.getJSONObject(i);
 
 			Assert.assertEquals(
 				versionsCount - i, versionJSONObject.getInt("version"));
 		}
+
+		Assert.assertEquals(
+			versionsJSONArray.toString(), maxDisplayVersions,
+			versionsJSONArray.length());
 	}
 
 	private MockLiferayResourceRequest _getMockLiferayPortletResourceRequest() {

@@ -211,12 +211,12 @@ public class AuditConfigurationModelListenerTest {
 					ConfigurationAdminPortletKeys.INSTANCE_SETTINGS,
 					!pseudonymizationEnabled));
 
-			Assert.assertEquals(
-				_auditMessages.toString(), 1, _auditMessages.size());
-
 			_assertAuditMessage(
 				_auditMessages.get(0), !pseudonymizationEnabled,
 				pseudonymizationEnabled);
+
+			Assert.assertEquals(
+				_auditMessages.toString(), 1, _auditMessages.size());
 		}
 		finally {
 			_configurationProvider.deleteCompanyConfiguration(
@@ -241,12 +241,12 @@ public class AuditConfigurationModelListenerTest {
 						ConfigurationAdminPortletKeys.SYSTEM_SETTINGS,
 						!pseudonymizationEnabled))) {
 
-			Assert.assertEquals(
-				_auditMessages.toString(), 1, _auditMessages.size());
-
 			_assertAuditMessage(
 				_auditMessages.get(0), !pseudonymizationEnabled,
 				pseudonymizationEnabled);
+
+			Assert.assertEquals(
+				_auditMessages.toString(), 1, _auditMessages.size());
 		}
 	}
 

@@ -48,11 +48,11 @@ public class OpenSearchIndexSearcherLoggingTest extends BaseIndexingTestCase {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			_assertLogEntry(
 				"The search engine processed", logEntries.get(0),
 				LoggerTestUtil.DEBUG);
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 	}
 
@@ -65,13 +65,13 @@ public class OpenSearchIndexSearcherLoggingTest extends BaseIndexingTestCase {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 2, logEntries.size());
-
 			_assertLogEntry(
 				"The search engine processed", logEntries.get(0),
 				LoggerTestUtil.INFO);
 			_assertLogEntry(
 				"Searching took", logEntries.get(1), LoggerTestUtil.INFO);
+
+			Assert.assertEquals(logEntries.toString(), 2, logEntries.size());
 		}
 	}
 
@@ -84,13 +84,13 @@ public class OpenSearchIndexSearcherLoggingTest extends BaseIndexingTestCase {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 2, logEntries.size());
-
 			_assertLogEntry(
 				"The search engine processed", logEntries.get(0),
 				LoggerTestUtil.INFO);
 			_assertLogEntry(
 				"Searching took", logEntries.get(1), LoggerTestUtil.INFO);
+
+			Assert.assertEquals(logEntries.toString(), 2, logEntries.size());
 		}
 	}
 
@@ -104,13 +104,13 @@ public class OpenSearchIndexSearcherLoggingTest extends BaseIndexingTestCase {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 2, logEntries.size());
-
 			_assertLogEntry(
 				"Search query:", logEntries.get(0), LoggerTestUtil.TRACE);
 			_assertLogEntry(
 				"The search engine processed", logEntries.get(1),
 				LoggerTestUtil.DEBUG);
+
+			Assert.assertEquals(logEntries.toString(), 2, logEntries.size());
 		}
 	}
 
@@ -124,11 +124,11 @@ public class OpenSearchIndexSearcherLoggingTest extends BaseIndexingTestCase {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			_assertLogEntry(
 				"The search engine processed", logEntries.get(0),
 				LoggerTestUtil.DEBUG);
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 	}
 

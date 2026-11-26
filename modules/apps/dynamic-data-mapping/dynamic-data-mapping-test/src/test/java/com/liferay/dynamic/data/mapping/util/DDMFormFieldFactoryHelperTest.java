@@ -121,7 +121,6 @@ public class DDMFormFieldFactoryHelperTest {
 		Map<String, Object> properties =
 			ddmFormFieldFactoryHelper.getProperties();
 
-		Assert.assertEquals(properties.toString(), 4, properties.size());
 		Assert.assertEquals("true", properties.get("autoFocus"));
 		Assert.assertEquals(
 			"%enter-a-field-label", properties.get("placeholder"));
@@ -130,6 +129,8 @@ public class DDMFormFieldFactoryHelperTest {
 				"information-you-want",
 			properties.get("tooltip"));
 		Assert.assertEquals("true", properties.get("visualProperty"));
+
+		Assert.assertEquals(properties.toString(), 4, properties.size());
 	}
 
 	@Test

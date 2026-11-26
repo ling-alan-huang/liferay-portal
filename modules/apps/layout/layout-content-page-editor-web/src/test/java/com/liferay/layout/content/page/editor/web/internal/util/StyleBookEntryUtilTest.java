@@ -124,9 +124,6 @@ public class StyleBookEntryUtilTest {
 					frontendTokenDefinition, includeFrontendTokensValues,
 					layout, themeDisplay);
 
-			Assert.assertEquals(
-				styleBookEntryMaps.toString(), 4, styleBookEntryMaps.size());
-
 			_assertStyleBookEntryMap(
 				currentScopeStyleBookEntry.getExternalReferenceCode(),
 				includeFrontendTokensValues, null, styleBookEntryMaps.get(0));
@@ -141,6 +138,9 @@ public class StyleBookEntryUtilTest {
 				otherScopeStyleBookEntry2.getExternalReferenceCode(),
 				includeFrontendTokensValues, otherScopeGroup,
 				styleBookEntryMaps.get(3));
+
+			Assert.assertEquals(
+				styleBookEntryMaps.toString(), 4, styleBookEntryMaps.size());
 
 			_groupLocalServiceUtilMockedStatic.verify(
 				() -> GroupLocalServiceUtil.fetchGroup(

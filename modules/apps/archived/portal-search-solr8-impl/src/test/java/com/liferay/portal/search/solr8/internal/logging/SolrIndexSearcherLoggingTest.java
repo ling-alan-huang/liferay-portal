@@ -80,13 +80,13 @@ public class SolrIndexSearcherLoggingTest extends BaseIndexingTestCase {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 2, logEntries.size());
-
 			_assertLogEntry(
 				_SEARCH_ENGINE_PROCESSED, logEntries.get(0),
 				LoggerTestUtil.INFO);
 			_assertLogEntry(
 				"Searching took", logEntries.get(1), LoggerTestUtil.INFO);
+
+			Assert.assertEquals(logEntries.toString(), 2, logEntries.size());
 		}
 	}
 
@@ -99,13 +99,13 @@ public class SolrIndexSearcherLoggingTest extends BaseIndexingTestCase {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 2, logEntries.size());
-
 			_assertLogEntry(
 				_SEARCH_ENGINE_PROCESSED, logEntries.get(0),
 				LoggerTestUtil.INFO);
 			_assertLogEntry(
 				"Searching took", logEntries.get(1), LoggerTestUtil.INFO);
+
+			Assert.assertEquals(logEntries.toString(), 2, logEntries.size());
 		}
 	}
 

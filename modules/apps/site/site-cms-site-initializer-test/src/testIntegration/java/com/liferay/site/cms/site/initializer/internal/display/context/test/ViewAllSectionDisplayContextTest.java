@@ -112,10 +112,6 @@ public class ViewAllSectionDisplayContextTest
 				"post", bulkActionDropdownItems.remove(9));
 		}
 
-		Assert.assertEquals(
-			bulkActionDropdownItems.toString(), 17,
-			bulkActionDropdownItems.size());
-
 		FrontendDataSetTestUtil.assertFDSActionDropdownItem(
 			"trash", "delete", "Delete", null, bulkActionDropdownItems.get(0));
 		FrontendDataSetTestUtil.assertFDSActionDropdownItem(
@@ -166,6 +162,10 @@ public class ViewAllSectionDisplayContextTest
 			"password-policies", "reset-to-default-permissions",
 			"Reset to Default Permissions", null,
 			bulkActionDropdownItems.get(16));
+
+		Assert.assertEquals(
+			bulkActionDropdownItems.toString(), 17,
+			bulkActionDropdownItems.size());
 	}
 
 	@Test

@@ -89,10 +89,10 @@ public class RichTextDDMFormFieldTemplateContextContributorTest {
 				ddmFormField, _getDDMFormFieldRenderingContext(),
 				DDMFormFieldTypeConstants.TEXT);
 
-		Assert.assertEquals(data.toString(), 2, data.size());
-
 		Assert.assertEquals(value1, data.get("key1"));
 		Assert.assertEquals(value2, data.get("key2"));
+
+		Assert.assertEquals(data.toString(), 2, data.size());
 	}
 
 	private DDMFormFieldRenderingContext _getDDMFormFieldRenderingContext() {

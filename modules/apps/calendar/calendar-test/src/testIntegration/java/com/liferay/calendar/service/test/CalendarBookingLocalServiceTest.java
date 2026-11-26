@@ -2716,8 +2716,6 @@ public class CalendarBookingLocalServiceTest {
 				_user.getFullName(), StringPool.SPACE, StringPool.LESS_THAN,
 				_user.getEmailAddress(), StringPool.GREATER_THAN));
 
-		Assert.assertEquals(mailMessages.toString(), 1, mailMessages.size());
-
 		mailMessage = mailMessages.get(0);
 
 		String body = mailMessage.getBody();
@@ -2727,6 +2725,8 @@ public class CalendarBookingLocalServiceTest {
 				StringBundler.concat(
 					"<strong>", deniedCalendar.getName(_user.getLanguageId()),
 					"</strong> has declined this invitation.")));
+
+		Assert.assertEquals(mailMessages.toString(), 1, mailMessages.size());
 	}
 
 	@Test
@@ -3501,10 +3501,10 @@ public class CalendarBookingLocalServiceTest {
 		List<java.util.Calendar> exceptionJCalendars =
 			recurrence.getExceptionJCalendars();
 
+		assertSameDay(exceptionJCalendar, exceptionJCalendars.get(0));
+
 		Assert.assertEquals(
 			exceptionJCalendars.toString(), 1, exceptionJCalendars.size());
-
-		assertSameDay(exceptionJCalendar, exceptionJCalendars.get(0));
 	}
 
 	protected void assertRepeatsUntil(

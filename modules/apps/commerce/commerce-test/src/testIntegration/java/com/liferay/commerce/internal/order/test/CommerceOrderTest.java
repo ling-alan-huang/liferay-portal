@@ -935,9 +935,10 @@ public class CommerceOrderTest {
 				_group.getCompanyId(), groupId, keywords, QueryUtil.ALL_POS,
 				QueryUtil.ALL_POS);
 
+		Assert.assertEquals(commerceOrder, commerceOrders.get(0));
+
 		Assert.assertEquals(
 			commerceOrders.toString(), 1, commerceOrders.size());
-		Assert.assertEquals(commerceOrder, commerceOrders.get(0));
 
 		_commerceOrderLocalService.deleteCommerceOrders(groupId);
 		_accountEntryLocalService.deleteAccountEntry(accountEntry);
@@ -974,9 +975,10 @@ public class CommerceOrderTest {
 				_group.getCompanyId(), groupId, keywords, QueryUtil.ALL_POS,
 				QueryUtil.ALL_POS);
 
+		Assert.assertEquals(commerceOrder, commerceOrders.get(0));
+
 		Assert.assertEquals(
 			commerceOrders.toString(), 1, commerceOrders.size());
-		Assert.assertEquals(commerceOrder, commerceOrders.get(0));
 
 		_commerceOrderLocalService.deleteCommerceOrders(groupId);
 		_accountEntryLocalService.deleteAccountEntry(accountEntry);

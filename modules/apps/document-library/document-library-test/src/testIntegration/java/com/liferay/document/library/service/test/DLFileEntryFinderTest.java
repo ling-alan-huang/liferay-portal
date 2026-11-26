@@ -836,11 +836,11 @@ public class DLFileEntryFinderTest {
 		List<DLFileEntry> dlFileEntries = doFindBy_G_U_R_F_M(
 			_user.getUserId(), repositoryIds, folderIds, null, queryDefinition);
 
-		Assert.assertEquals(dlFileEntries.toString(), 1, dlFileEntries.size());
-
 		dlFileEntry = dlFileEntries.get(0);
 
 		Assert.assertEquals("FE.txt", dlFileEntry.getTitle());
+
+		Assert.assertEquals(dlFileEntries.toString(), 1, dlFileEntries.size());
 	}
 
 	@Test

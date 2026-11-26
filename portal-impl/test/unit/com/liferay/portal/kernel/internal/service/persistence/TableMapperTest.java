@@ -1548,8 +1548,9 @@ public class TableMapperTest {
 				_RIGHT_COLUMN_NAME, _leftBasePersistence,
 				_rightBasePersistence);
 
-		Assert.assertEquals(tableMappers.toString(), 1, tableMappers.size());
 		Assert.assertSame(tableMapper, tableMappers.get(_TABLE_NAME));
+
+		Assert.assertEquals(tableMappers.toString(), 1, tableMappers.size());
 
 		TableMapper<Right, Left> reverseTableMapper =
 			tableMapper.getReverseTableMapper();
@@ -1605,7 +1606,6 @@ public class TableMapperTest {
 				leftKey, _TABLE_NAME, _COMPANY_COLUMN_NAME, _LEFT_COLUMN_NAME,
 				_RIGHT_COLUMN_NAME, _leftBasePersistence, Right.class);
 
-		Assert.assertEquals(tableMappers.toString(), 1, tableMappers.size());
 		Assert.assertSame(tableMapperImpl, tableMappers.get(leftKey));
 
 		long leftPrimaryKey = 1;
@@ -1648,8 +1648,11 @@ public class TableMapperTest {
 		Assert.assertNotSame(tableMapperImpl, rightTableMapperImpl);
 		Assert.assertSame(rightTableMapperImpl, tableMappers.get(rightKey));
 
-		Assert.assertEquals(tableMappers.toString(), 2, tableMappers.size());
 		Assert.assertNotSame(tableMapperImpl, tableMappers.get(rightKey));
+
+		Assert.assertEquals(tableMappers.toString(), 1, tableMappers.size());
+
+		Assert.assertEquals(tableMappers.toString(), 2, tableMappers.size());
 
 		// Reverse mapping table
 
@@ -1751,8 +1754,6 @@ public class TableMapperTest {
 					PortalCacheManagerNames.MULTI_VM),
 				"_dynamicPortalCaches");
 
-		Assert.assertEquals(portalCaches.toString(), 2, portalCaches.size());
-
 		if (tableMapper instanceof ReverseTableMapper) {
 			Assert.assertSame(
 				ReflectionTestUtil.getFieldValue(
@@ -1787,6 +1788,8 @@ public class TableMapperTest {
 						TableMapper.class.getName(), "-", _TABLE_NAME, "-",
 						_RIGHT_COLUMN_NAME, "-To-", _LEFT_COLUMN_NAME)));
 		}
+
+		Assert.assertEquals(portalCaches.toString(), 2, portalCaches.size());
 
 		tableMapper.destroy();
 

@@ -122,8 +122,6 @@ public class AccountRoleLocalServiceTest {
 			_accountRoleLocalService.getAccountRolesByAccountEntryIds(
 				new long[] {_accountEntry1.getAccountEntryId()});
 
-		Assert.assertEquals(accountRoles.toString(), 1, accountRoles.size());
-
 		accountRole = accountRoles.get(0);
 
 		Assert.assertEquals(name, accountRole.getRoleName());
@@ -132,6 +130,8 @@ public class AccountRoleLocalServiceTest {
 
 		Assert.assertEquals(AccountRole.class.getName(), role.getClassName());
 		Assert.assertEquals(accountRole.getAccountRoleId(), role.getClassPK());
+
+		Assert.assertEquals(accountRoles.toString(), 1, accountRoles.size());
 	}
 
 	@Test

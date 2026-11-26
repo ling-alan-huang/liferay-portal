@@ -146,12 +146,12 @@ public class DLFileEntryRepeatableFieldsInfoCollectionProviderTest {
 
 		pageItems = infoPage.getPageItems();
 
-		Assert.assertEquals(pageItems.toString(), 2, pageItems.size());
-
 		_assertInfoItemFieldValue(
 			"Text1", LocaleUtil.US, pageItems.get(0), "three");
 		_assertInfoItemFieldValue(
 			"Text1", LocaleUtil.US, pageItems.get(1), "four");
+
+		Assert.assertEquals(pageItems.toString(), 2, pageItems.size());
 	}
 
 	private FileEntry _addFileEntry() throws Exception {

@@ -198,9 +198,6 @@ public class CPInstanceHelperTest {
 				WorkflowConstants.STATUS_APPROVED, QueryUtil.ALL_POS,
 				QueryUtil.ALL_POS, null);
 
-		Assert.assertEquals(
-			"Product instance count", 1, cpDefinitionInstances.size());
-
 		CPInstance fetchCPInstance = _cpInstanceHelper.fetchCPInstance(
 			cpDefinition.getCPDefinitionId(),
 			_getSerializedFormFieldValues(cpInstanceA));
@@ -221,6 +218,9 @@ public class CPInstanceHelperTest {
 					cpDefinition.getCPDefinitionId(),
 					deletedCPInstanceFormFieldSerializedValue));
 		}
+
+		Assert.assertEquals(
+			"Product instance count", 1, cpDefinitionInstances.size());
 	}
 
 	@Test
@@ -419,13 +419,13 @@ public class CPInstanceHelperTest {
 				QueryUtil.ALL_POS, null);
 
 		Assert.assertEquals(
-			"Product approved instances count", 1,
-			approvedCPDefinitionInstances.size());
-
-		Assert.assertEquals(
 			_cpInstanceHelper.getDefaultCPInstance(
 				cpDefinition.getCPDefinitionId()),
 			approvedCPDefinitionInstances.get(0));
+
+		Assert.assertEquals(
+			"Product approved instances count", 1,
+			approvedCPDefinitionInstances.size());
 	}
 
 	@Test

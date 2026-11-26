@@ -68,13 +68,14 @@ public class AssetCategorySAPEntryPortalInstanceLifecycleListenerTest {
 			sapEntry.getAllowedServiceSignaturesList();
 
 		Assert.assertTrue(ListUtil.isNotEmpty(allowedServiceSignatures));
-		Assert.assertEquals(
-			allowedServiceSignatures.toString(), 1,
-			allowedServiceSignatures.size());
 
 		Assert.assertEquals(
 			AssetCategoryService.class.getName() + "#search",
 			allowedServiceSignatures.get(0));
+
+		Assert.assertEquals(
+			allowedServiceSignatures.toString(), 1,
+			allowedServiceSignatures.size());
 	}
 
 	private static final String _SAP_ENTRY_NAME = "ASSET_CATEGORY_DEFAULT";

@@ -46,8 +46,6 @@ public class ElasticsearchIndexSearcherLoggingTest
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 3, logEntries.size());
-
 			_assertLogEntry(
 				"Stack trace for", logEntries.get(0), LoggerTestUtil.INFO);
 			_assertLogEntry(
@@ -56,6 +54,8 @@ public class ElasticsearchIndexSearcherLoggingTest
 			_assertLogEntry(
 				"The search engine processed the request in", logEntries.get(2),
 				LoggerTestUtil.DEBUG);
+
+			Assert.assertEquals(logEntries.toString(), 3, logEntries.size());
 		}
 	}
 
@@ -69,13 +69,13 @@ public class ElasticsearchIndexSearcherLoggingTest
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 2, logEntries.size());
-
 			_assertLogEntry(
 				"The search engine processed", logEntries.get(0),
 				LoggerTestUtil.INFO);
 			_assertLogEntry(
 				"Searching took", logEntries.get(1), LoggerTestUtil.INFO);
+
+			Assert.assertEquals(logEntries.toString(), 2, logEntries.size());
 		}
 	}
 
@@ -89,13 +89,13 @@ public class ElasticsearchIndexSearcherLoggingTest
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 2, logEntries.size());
-
 			_assertLogEntry(
 				"The search engine processed", logEntries.get(0),
 				LoggerTestUtil.INFO);
 			_assertLogEntry(
 				"Searching took", logEntries.get(1), LoggerTestUtil.INFO);
+
+			Assert.assertEquals(logEntries.toString(), 2, logEntries.size());
 		}
 	}
 
@@ -109,8 +109,6 @@ public class ElasticsearchIndexSearcherLoggingTest
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 3, logEntries.size());
-
 			_assertLogEntry(
 				"Stack trace for", logEntries.get(0), LoggerTestUtil.INFO);
 			_assertLogEntry(
@@ -119,6 +117,8 @@ public class ElasticsearchIndexSearcherLoggingTest
 			_assertLogEntry(
 				"The search engine processed the request in", logEntries.get(2),
 				LoggerTestUtil.DEBUG);
+
+			Assert.assertEquals(logEntries.toString(), 3, logEntries.size());
 		}
 	}
 

@@ -352,10 +352,6 @@ public class AssetListEntryServiceTest {
 					SegmentsEntryConstants.ID_DEFAULT, QueryUtil.ALL_POS,
 					QueryUtil.ALL_POS);
 
-		Assert.assertEquals(
-			assetListEntryAssetEntryRels.toString(),
-			expectedAssetEntryIds.length, assetListEntryAssetEntryRels.size());
-
 		for (int i = 0; i < expectedAssetEntryIds.length; i++) {
 			AssetListEntryAssetEntryRel assetListEntryAssetEntryRel =
 				assetListEntryAssetEntryRels.get(i);
@@ -365,6 +361,10 @@ public class AssetListEntryServiceTest {
 				expectedAssetEntryIds[i],
 				assetListEntryAssetEntryRel.getAssetEntryId());
 		}
+
+		Assert.assertEquals(
+			assetListEntryAssetEntryRels.toString(),
+			expectedAssetEntryIds.length, assetListEntryAssetEntryRels.size());
 	}
 
 	@Test

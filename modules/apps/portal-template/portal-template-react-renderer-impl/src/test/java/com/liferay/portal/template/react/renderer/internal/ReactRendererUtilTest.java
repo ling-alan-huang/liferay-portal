@@ -174,8 +174,6 @@ public class ReactRendererUtilTest {
 
 		List<ESImport> esImports = jsFragment.getESImports();
 
-		Assert.assertEquals(esImports.toString(), 5, esImports.size());
-
 		_assertESImportEquals(
 			StringPool.BLANK, "deps-context#index.js", "dep1",
 			esImports.get(0));
@@ -191,6 +189,8 @@ public class ReactRendererUtilTest {
 		_assertESImportEquals(
 			"propsTransformer", "props-transformer-context#index.js",
 			"myTransformer", esImports.get(4));
+
+		Assert.assertEquals(esImports.toString(), 5, esImports.size());
 
 		Assert.assertEquals(
 			portletDataMap.toString(), 1, portletDataMap.size());

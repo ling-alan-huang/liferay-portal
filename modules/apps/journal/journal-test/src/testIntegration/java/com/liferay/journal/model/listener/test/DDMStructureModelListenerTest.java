@@ -433,10 +433,6 @@ public class DDMStructureModelListenerTest {
 
 			List<String> expectedFieldValues = entry.getValue();
 
-			Assert.assertEquals(
-				ddmFormFieldValues.toString(), expectedFieldValues.size(),
-				ddmFormFieldValues.size());
-
 			for (int i = 0; i < expectedFieldValues.size(); i++) {
 				String stringValue = StringPool.BLANK;
 
@@ -450,6 +446,10 @@ public class DDMStructureModelListenerTest {
 
 				Assert.assertEquals(expectedFieldValues.get(i), stringValue);
 			}
+
+			Assert.assertEquals(
+				ddmFormFieldValues.toString(), expectedFieldValues.size(),
+				ddmFormFieldValues.size());
 		}
 	}
 

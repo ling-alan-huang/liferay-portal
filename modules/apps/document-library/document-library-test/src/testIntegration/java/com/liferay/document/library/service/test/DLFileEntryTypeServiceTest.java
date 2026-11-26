@@ -174,8 +174,6 @@ public class DLFileEntryTypeServiceTest {
 		List<DDMStructure> ddmStructures = DLFileEntryTypeUtil.getDDMStructures(
 			dlFileEntryType);
 
-		Assert.assertEquals(ddmStructures.toString(), 1, ddmStructures.size());
-
 		ddmStructure = ddmStructures.get(0);
 
 		Locale[] availableLocales = LocaleUtil.fromLanguageIds(
@@ -195,6 +193,8 @@ public class DLFileEntryTypeServiceTest {
 			availableLocales, user.getLocale());
 
 		Assert.assertTrue(hasUserLocale);
+
+		Assert.assertEquals(ddmStructures.toString(), 1, ddmStructures.size());
 
 		_dlFileEntryTypeLocalService.deleteFileEntryType(dlFileEntryType);
 	}

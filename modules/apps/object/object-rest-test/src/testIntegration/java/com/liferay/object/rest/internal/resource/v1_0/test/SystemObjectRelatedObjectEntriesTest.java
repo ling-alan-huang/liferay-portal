@@ -1250,11 +1250,11 @@ public class SystemObjectRelatedObjectEntriesTest {
 		nestedObjectEntriesJSONArray = jsonObject.getJSONArray(
 			objectRelationship.getName());
 
-		Assert.assertEquals(1, nestedObjectEntriesJSONArray.length());
-
 		_assertObjectEntryField(
 			(JSONObject)nestedObjectEntriesJSONArray.get(0),
 			_OBJECT_FIELD_NAME_1, _NEW_OBJECT_FIELD_VALUE_1);
+
+		Assert.assertEquals(1, nestedObjectEntriesJSONArray.length());
 	}
 
 	private void
@@ -1304,11 +1304,11 @@ public class SystemObjectRelatedObjectEntriesTest {
 		nestedObjectEntriesJSONArray = jsonObject.getJSONArray(
 			objectRelationship.getName());
 
-		Assert.assertEquals(1, nestedObjectEntriesJSONArray.length());
-
 		_assertObjectEntryField(
 			(JSONObject)nestedObjectEntriesJSONArray.get(0),
 			_OBJECT_FIELD_NAME_1, _NEW_OBJECT_FIELD_VALUE_1);
+
+		Assert.assertEquals(1, nestedObjectEntriesJSONArray.length());
 	}
 
 	private static final String _ERC_VALUE_1 = RandomTestUtil.randomString();

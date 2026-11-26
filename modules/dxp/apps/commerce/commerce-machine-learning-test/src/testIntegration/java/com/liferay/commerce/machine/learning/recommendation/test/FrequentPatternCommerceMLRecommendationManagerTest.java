@@ -162,10 +162,6 @@ public class FrequentPatternCommerceMLRecommendationManagerTest {
 		int expectedRecommendationsSize = Math.min(
 			10, expectedFrequentPatternCommerceMLRecommendations.size());
 
-		Assert.assertEquals(
-			"Recommendation list size", expectedRecommendationsSize,
-			frequentPatternCommerceMLRecommendations.size());
-
 		for (int i = 0; i < expectedRecommendationsSize; i++) {
 			FrequentPatternCommerceMLRecommendation
 				expectedFrequentPatternCommerceMLRecommendation =
@@ -185,6 +181,10 @@ public class FrequentPatternCommerceMLRecommendationManagerTest {
 				expectedFrequentPatternCommerceMLRecommendation.getScore(),
 				frequentPatternCommerceMLRecommendation.getScore(), 0.0);
 		}
+
+		Assert.assertEquals(
+			"Recommendation list size", expectedRecommendationsSize,
+			frequentPatternCommerceMLRecommendations.size());
 	}
 
 	private FrequentPatternCommerceMLRecommendation

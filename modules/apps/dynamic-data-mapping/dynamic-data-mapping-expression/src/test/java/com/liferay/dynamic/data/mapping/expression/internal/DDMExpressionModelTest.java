@@ -373,10 +373,10 @@ public class DDMExpressionModelTest {
 
 		term = (Term)parameterExpression;
 
+		Assert.assertEquals("Var2", term.getValue());
+
 		Assert.assertEquals(
 			parameterExpressions.toString(), 2, parameterExpressions.size());
-
-		Assert.assertEquals("Var2", term.getValue());
 	}
 
 	@Test
@@ -505,13 +505,13 @@ public class DDMExpressionModelTest {
 
 		term = (Term)parameterExpression4;
 
+		Assert.assertEquals("Var4", term.getValue());
+
 		Assert.assertEquals(
 			parameterExpressions2.toString(), 2, parameterExpressions2.size());
 
 		Assert.assertEquals(
 			parameterExpressions1.toString(), 2, parameterExpressions1.size());
-
-		Assert.assertEquals("Var4", term.getValue());
 	}
 
 	private static DDMExpressionFunctionRegistry _ddmExpressionFunctionRegistry;

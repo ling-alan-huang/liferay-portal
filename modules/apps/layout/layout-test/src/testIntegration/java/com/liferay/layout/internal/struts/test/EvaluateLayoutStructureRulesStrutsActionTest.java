@@ -538,10 +538,6 @@ public class EvaluateLayoutStructureRulesStrutsActionTest {
 		JSONArray actualJSONArray = _jsonFactory.createJSONArray(
 			mockHttpServletResponse.getContentAsString());
 
-		Assert.assertEquals(
-			actualJSONArray.toString(), expectedJSONArray.length(),
-			actualJSONArray.length());
-
 		for (int i = 0; i < expectedJSONArray.length(); i++) {
 			JSONObject jsonObject = expectedJSONArray.getJSONObject(i);
 			JSONObject actualJSONObject = actualJSONArray.getJSONObject(i);
@@ -553,6 +549,10 @@ public class EvaluateLayoutStructureRulesStrutsActionTest {
 				jsonObject.getString("itemId"),
 				actualJSONObject.getString("itemId"));
 		}
+
+		Assert.assertEquals(
+			actualJSONArray.toString(), expectedJSONArray.length(),
+			actualJSONArray.length());
 	}
 
 	private Layout _draftLayout;

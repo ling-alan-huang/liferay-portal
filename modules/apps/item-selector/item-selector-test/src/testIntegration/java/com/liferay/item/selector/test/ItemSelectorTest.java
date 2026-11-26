@@ -81,12 +81,13 @@ public class ItemSelectorTest {
 		List<ItemSelectorReturnType> desiredItemSelectorReturnTypes =
 			itemSelectorCriterion.getDesiredItemSelectorReturnTypes();
 
-		Assert.assertEquals(
-			desiredItemSelectorReturnTypes.toString(), 1,
-			desiredItemSelectorReturnTypes.size());
 		Assert.assertTrue(
 			desiredItemSelectorReturnTypes.get(0) instanceof
 				URLItemSelectorReturnType);
+
+		Assert.assertEquals(
+			desiredItemSelectorReturnTypes.toString(), 1,
+			desiredItemSelectorReturnTypes.size());
 
 		Assert.assertEquals(
 			itemSelectorCriteria.toString(), 1, itemSelectorCriteria.size());
@@ -139,12 +140,13 @@ public class ItemSelectorTest {
 		desiredItemSelectorReturnTypes =
 			audioItemSelectorCriterion.getDesiredItemSelectorReturnTypes();
 
-		Assert.assertEquals(
-			desiredItemSelectorReturnTypes.toString(), 1,
-			desiredItemSelectorReturnTypes.size());
 		Assert.assertTrue(
 			desiredItemSelectorReturnTypes.get(0) instanceof
 				DownloadURLItemSelectorReturnType);
+
+		Assert.assertEquals(
+			desiredItemSelectorReturnTypes.toString(), 1,
+			desiredItemSelectorReturnTypes.size());
 
 		Assert.assertEquals(
 			itemSelectorCriteria.toString(), 2, itemSelectorCriteria.size());

@@ -631,9 +631,10 @@ public class FriendlyURLEntryLocalServiceTest {
 					LocaleUtil.US, urlTitle
 				).build());
 
-		Assert.assertEquals(urlTitleMap.toString(), 1, urlTitleMap.size());
 		Assert.assertEquals(
 			urlTitle, urlTitleMap.get(_language.getLanguageId(LocaleUtil.US)));
+
+		Assert.assertEquals(urlTitleMap.toString(), 1, urlTitleMap.size());
 	}
 
 	@Test

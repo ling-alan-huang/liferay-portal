@@ -55,11 +55,11 @@ public class ViewStructuresDisplayContextTest
 		List<DropdownItem> dropdownItems = (List<DropdownItem>)creationMenu.get(
 			"primaryItems");
 
-		Assert.assertEquals(dropdownItems.toString(), 2, dropdownItems.size());
-
 		_assertDropdownItem(
 			dropdownItems.get(0), "content", "L_CMS_CONTENT_STRUCTURES");
 		_assertDropdownItem(dropdownItems.get(1), "file", "L_CMS_FILE_TYPES");
+
+		Assert.assertEquals(dropdownItems.toString(), 2, dropdownItems.size());
 	}
 
 	@Test
@@ -68,10 +68,6 @@ public class ViewStructuresDisplayContextTest
 			ReflectionTestUtil.invoke(
 				_getSectionDisplayContext(getMockHttpServletRequest()),
 				"getFDSActionDropdownItems", new Class<?>[0]);
-
-		Assert.assertEquals(
-			fdsActionDropdownItems.toString(), 6,
-			fdsActionDropdownItems.size());
 
 		FrontendDataSetTestUtil.assertFDSActionDropdownItem(
 			"pencil", "edit", "Edit", "get", fdsActionDropdownItems.get(0));
@@ -90,6 +86,10 @@ public class ViewStructuresDisplayContextTest
 		FrontendDataSetTestUtil.assertFDSActionDropdownItem(
 			"trash", "delete", "Delete", "delete", Map.of("system", false),
 			fdsActionDropdownItems.get(5));
+
+		Assert.assertEquals(
+			fdsActionDropdownItems.toString(), 6,
+			fdsActionDropdownItems.size());
 	}
 
 	private void _assertDropdownItem(

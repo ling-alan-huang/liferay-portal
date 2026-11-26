@@ -126,10 +126,10 @@ public class BatchTestEntityActionResourceTest
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 2, logEntries.size());
-
 			_assertLogEntry(batchTestEntityAction1, logEntries.get(0));
 			_assertLogEntry(batchTestEntityAction2, logEntries.get(1));
+
+			Assert.assertEquals(logEntries.toString(), 2, logEntries.size());
 		}
 	}
 

@@ -93,10 +93,6 @@ public class JournalRecentArticlesResultRowSplitterTest {
 		List<ResultRowSplitterEntry> resultRowSplitterEntries =
 			journalRecentArticlesResultRowSplitter.split(resultRows);
 
-		Assert.assertEquals(
-			resultRowSplitterEntries.toString(), 4,
-			resultRowSplitterEntries.size());
-
 		_assertResultRowSplitterEntry(
 			"today", resultRowSplitterEntries.get(0), themeDisplay,
 			todayJournalArticle);
@@ -109,6 +105,10 @@ public class JournalRecentArticlesResultRowSplitterTest {
 		_assertResultRowSplitterEntry(
 			"older", resultRowSplitterEntries.get(3), themeDisplay,
 			thirtyOneDaysAgoJournalArticle);
+
+		Assert.assertEquals(
+			resultRowSplitterEntries.toString(), 4,
+			resultRowSplitterEntries.size());
 	}
 
 	@Test
@@ -128,13 +128,13 @@ public class JournalRecentArticlesResultRowSplitterTest {
 		List<ResultRowSplitterEntry> resultRowSplitterEntries =
 			journalRecentArticlesResultRowSplitter.split(resultRows);
 
-		Assert.assertEquals(
-			resultRowSplitterEntries.toString(), 1,
-			resultRowSplitterEntries.size());
-
 		_assertResultRowSplitterEntry(
 			"older", resultRowSplitterEntries.get(0), themeDisplay,
 			thirtyOneDaysAgoJournalArticle);
+
+		Assert.assertEquals(
+			resultRowSplitterEntries.toString(), 1,
+			resultRowSplitterEntries.size());
 	}
 
 	private void _assertResultRowSplitterEntry(
@@ -147,16 +147,16 @@ public class JournalRecentArticlesResultRowSplitterTest {
 
 		List<ResultRow> resultRows = resultRowSplitterEntry.getResultRows();
 
-		Assert.assertEquals(
-			resultRows.toString(), expectedJournalArticles.length,
-			resultRows.size());
-
 		for (int i = 0; i < resultRows.size(); i++) {
 			ResultRow resultRow = resultRows.get(i);
 
 			Assert.assertEquals(
 				expectedJournalArticles[i], resultRow.getObject());
 		}
+
+		Assert.assertEquals(
+			resultRows.toString(), expectedJournalArticles.length,
+			resultRows.size());
 	}
 
 	private JournalArticle _getJournalArticle(

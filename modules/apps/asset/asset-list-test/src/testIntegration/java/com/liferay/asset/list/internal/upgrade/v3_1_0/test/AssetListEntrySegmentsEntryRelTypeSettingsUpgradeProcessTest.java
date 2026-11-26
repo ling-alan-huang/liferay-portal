@@ -212,9 +212,6 @@ public class AssetListEntrySegmentsEntryRelTypeSettingsUpgradeProcessTest {
 		JSONArray filtersJSONArray = _jsonFactory.createJSONArray(
 			unicodeProperties.getProperty("filters"));
 
-		Assert.assertEquals(
-			filtersJSONArray.toString(), 12, filtersJSONArray.length());
-
 		_assertFilter(
 			filtersJSONArray.getJSONObject(0), "contains", "assetCategories",
 			"all", assetCategoryId1, assetCategoryId2);
@@ -251,6 +248,9 @@ public class AssetListEntrySegmentsEntryRelTypeSettingsUpgradeProcessTest {
 		_assertFilter(
 			filtersJSONArray.getJSONObject(11), "not-contains", "keywords",
 			"any", keyword4 + StringPool.SPACE + keyword1);
+
+		Assert.assertEquals(
+			filtersJSONArray.toString(), 12, filtersJSONArray.length());
 	}
 
 	@Test

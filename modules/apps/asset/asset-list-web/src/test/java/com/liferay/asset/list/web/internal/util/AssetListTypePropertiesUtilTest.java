@@ -261,9 +261,6 @@ public class AssetListTypePropertiesUtilTest {
 		JSONArray itemsJSONArray = JSONUtil.getValueAsJSONArray(
 			jsonArray, "JSONObject/1", "JSONArray/items");
 
-		Assert.assertEquals(
-			itemsJSONArray.toString(), 8, itemsJSONArray.length());
-
 		for (int i = 0; i < itemsJSONArray.length(); i++) {
 			JSONObject itemJSONObject = itemsJSONArray.getJSONObject(i);
 
@@ -281,6 +278,9 @@ public class AssetListTypePropertiesUtilTest {
 				itemJSONObject.toString(), expectedSortable,
 				itemJSONObject.getBoolean("sortable"));
 		}
+
+		Assert.assertEquals(
+			itemsJSONArray.toString(), 8, itemsJSONArray.length());
 	}
 
 	@Test
@@ -410,8 +410,6 @@ public class AssetListTypePropertiesUtilTest {
 		JSONArray optionsJSONArray = itemJSONObject.getJSONArray("options");
 
 		Assert.assertEquals(
-			optionsJSONArray.toString(), 2, optionsJSONArray.length());
-		Assert.assertEquals(
 			"Approved",
 			optionsJSONArray.getJSONObject(
 				0
@@ -425,6 +423,9 @@ public class AssetListTypePropertiesUtilTest {
 			).getString(
 				"value"
 			));
+
+		Assert.assertEquals(
+			optionsJSONArray.toString(), 2, optionsJSONArray.length());
 
 		Assert.assertEquals(jsonArray.toString(), 2, jsonArray.length());
 	}

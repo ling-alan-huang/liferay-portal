@@ -124,11 +124,12 @@ public class BaseServiceTest {
 		List<ExchangeFilterFunction> exchangeFilterFunctions =
 			testService.getExchangeFilterFunctions();
 
+		Assert.assertSame(
+			exchangeFilterFunctions.get(0), exchangeFilterFunctions.get(1));
+
 		Assert.assertEquals(
 			exchangeFilterFunctions.toString(), 2,
 			exchangeFilterFunctions.size());
-		Assert.assertSame(
-			exchangeFilterFunctions.get(0), exchangeFilterFunctions.get(1));
 	}
 
 	@Test

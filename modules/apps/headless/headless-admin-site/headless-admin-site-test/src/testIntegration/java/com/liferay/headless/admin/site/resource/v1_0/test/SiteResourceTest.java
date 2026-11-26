@@ -913,9 +913,9 @@ public class SiteResourceTest extends BaseSiteResourceTestCase {
 
 		List<Site> items = (List<Site>)sitesPage.getItems();
 
-		Assert.assertEquals(items.toString(), 1, items.size());
-
 		assertEquals(postSite, items.get(0));
+
+		Assert.assertEquals(items.toString(), 1, items.size());
 	}
 
 	private void _testGetSitesPageWithUser(Site site, User user)

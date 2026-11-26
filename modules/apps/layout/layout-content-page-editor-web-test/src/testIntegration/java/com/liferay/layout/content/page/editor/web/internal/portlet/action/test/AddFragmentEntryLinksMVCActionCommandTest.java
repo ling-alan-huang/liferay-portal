@@ -746,13 +746,14 @@ public class AddFragmentEntryLinksMVCActionCommandTest {
 				new Class<?>[] {ActionRequest.class, Exception.class},
 				mockLiferayPortletActionRequest, exception);
 
-			Assert.assertEquals(jsonObject.toString(), 1, jsonObject.length());
 			Assert.assertEquals(
 				_language.get(
 					_portal.getSiteDefaultLocale(_group),
 					"this-form-component-can-only-be-placed-inside-a-mapped-" +
 						"form-container"),
 				jsonObject.getString("error"));
+
+			Assert.assertEquals(jsonObject.toString(), 1, jsonObject.length());
 		}
 	}
 

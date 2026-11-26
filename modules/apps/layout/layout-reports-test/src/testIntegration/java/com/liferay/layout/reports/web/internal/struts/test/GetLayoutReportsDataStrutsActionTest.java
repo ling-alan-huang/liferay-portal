@@ -93,11 +93,12 @@ public class GetLayoutReportsDataStrutsActionTest {
 		JSONArray tabsDataJSONArray = jsonObject.getJSONArray("tabsData");
 
 		Assert.assertNotNull(tabsDataJSONArray);
-		Assert.assertEquals(2, tabsDataJSONArray.length());
 		_assertRenderTimesTabJSONObject(
 			layout, tabsDataJSONArray.getJSONObject(0));
 		_assertGooglePageSpeedInsightsTabJSONObject(
 			layout, tabsDataJSONArray.getJSONObject(1));
+
+		Assert.assertEquals(2, tabsDataJSONArray.length());
 	}
 
 	@Test
@@ -116,9 +117,10 @@ public class GetLayoutReportsDataStrutsActionTest {
 						"tabsData");
 
 					Assert.assertNotNull(tabsDataJSONArray);
-					Assert.assertEquals(1, tabsDataJSONArray.length());
 					_assertRenderTimesTabJSONObject(
 						layout, tabsDataJSONArray.getJSONObject(0));
+
+					Assert.assertEquals(1, tabsDataJSONArray.length());
 				});
 	}
 
@@ -206,9 +208,10 @@ public class GetLayoutReportsDataStrutsActionTest {
 		JSONArray tabsDataJSONArray = jsonObject.getJSONArray("tabsData");
 
 		Assert.assertNotNull(tabsDataJSONArray);
-		Assert.assertEquals(1, tabsDataJSONArray.length());
 		_assertGooglePageSpeedInsightsTabJSONObject(
 			layout, tabsDataJSONArray.getJSONObject(0));
+
+		Assert.assertEquals(1, tabsDataJSONArray.length());
 	}
 
 	@Test

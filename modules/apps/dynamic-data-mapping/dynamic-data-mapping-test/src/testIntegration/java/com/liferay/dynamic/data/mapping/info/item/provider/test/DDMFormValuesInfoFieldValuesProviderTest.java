@@ -313,10 +313,6 @@ public class DDMFormValuesInfoFieldValuesProviderTest
 			_ddmFormValuesInfoFieldValuesProvider.getInfoFieldValues(
 				journalArticle, journalArticle.getDDMFormValues());
 
-		Assert.assertEquals(
-			infoFieldValues.toString(), ddmFormFields.size(),
-			infoFieldValues.size());
-
 		for (int i = 0; i < ddmFormFields.size(); i++) {
 			DDMFormField ddmFormField = ddmFormFields.get(i);
 
@@ -330,6 +326,10 @@ public class DDMFormValuesInfoFieldValuesProviderTest
 			assertValueUnsafeConsumer.accept(
 				infoFieldValue.getValue(LocaleUtil.US));
 		}
+
+		Assert.assertEquals(
+			infoFieldValues.toString(), ddmFormFields.size(),
+			infoFieldValues.size());
 	}
 
 	private DDMFormField _createDDMFormField(

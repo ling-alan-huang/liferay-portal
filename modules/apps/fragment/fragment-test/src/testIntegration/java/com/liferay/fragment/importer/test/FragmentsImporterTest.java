@@ -532,9 +532,6 @@ public class FragmentsImporterTest {
 			_fragmentCollectionLocalService.getFragmentCollections(
 				_group.getGroupId(), QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 
-		Assert.assertEquals(
-			fragmentCollections.toString(), 1, fragmentCollections.size());
-
 		fragmentCollection = fragmentCollections.get(0);
 
 		filteredFragmentEntries = ListUtil.filter(
@@ -543,14 +540,17 @@ public class FragmentsImporterTest {
 			fragmentEntry -> Objects.equals(
 				fragmentEntry.getName(), "Fragment One Updated"));
 
-		Assert.assertEquals(
-			filteredFragmentEntries.toString(), 1,
-			filteredFragmentEntries.size());
-
 		filteredFragmentEntry = filteredFragmentEntries.get(0);
 
 		Assert.assertEquals(
 			fragmentEntryKey, filteredFragmentEntry.getFragmentEntryKey());
+
+		Assert.assertEquals(
+			filteredFragmentEntries.toString(), 1,
+			filteredFragmentEntries.size());
+
+		Assert.assertEquals(
+			fragmentCollections.toString(), 1, fragmentCollections.size());
 	}
 
 	@Test

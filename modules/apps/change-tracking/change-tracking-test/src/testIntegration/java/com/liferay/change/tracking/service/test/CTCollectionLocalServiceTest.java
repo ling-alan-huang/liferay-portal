@@ -211,24 +211,24 @@ public class CTCollectionLocalServiceTest {
 				_journalArticleLocalService.getArticlesByResourcePrimKey(
 					journalArticle.getResourcePrimKey());
 
-			Assert.assertEquals(
-				journalArticles.toString(), 3, journalArticles.size());
-
 			Assert.assertEquals(ctJournalArticle2, journalArticles.get(0));
 			Assert.assertEquals(ctJournalArticle1, journalArticles.get(1));
 			Assert.assertEquals(journalArticle, journalArticles.get(2));
+
+			Assert.assertEquals(
+				journalArticles.toString(), 3, journalArticles.size());
 		}
 
 		List<JournalArticle> journalArticles =
 			_journalArticleLocalService.getArticlesByResourcePrimKey(
 				journalArticle.getResourcePrimKey());
 
-		Assert.assertEquals(
-			journalArticles.toString(), 3, journalArticles.size());
-
 		Assert.assertEquals(productionJournalArticle2, journalArticles.get(0));
 		Assert.assertEquals(productionJournalArticle1, journalArticles.get(1));
 		Assert.assertEquals(journalArticle, journalArticles.get(2));
+
+		Assert.assertEquals(
+			journalArticles.toString(), 3, journalArticles.size());
 
 		conflictInfoMap = _ctCollectionLocalService.checkConflicts(
 			_ctCollection1);
@@ -305,10 +305,10 @@ public class CTCollectionLocalServiceTest {
 					JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID,
 					QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 
+			Assert.assertEquals(ctJournalFolder, journalFolders.get(0));
+
 			Assert.assertEquals(
 				journalFolders.toString(), 1, journalFolders.size());
-
-			Assert.assertEquals(ctJournalFolder, journalFolders.get(0));
 		}
 
 		List<JournalFolder> journalFolders =
@@ -317,10 +317,10 @@ public class CTCollectionLocalServiceTest {
 				JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID,
 				QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 
+		Assert.assertEquals(productionJournalFolder, journalFolders.get(0));
+
 		Assert.assertEquals(
 			journalFolders.toString(), 1, journalFolders.size());
-
-		Assert.assertEquals(productionJournalFolder, journalFolders.get(0));
 
 		conflictInfoMap = _ctCollectionLocalService.checkConflicts(
 			_ctCollection1);

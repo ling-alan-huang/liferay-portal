@@ -839,9 +839,10 @@ public class DDMStructureLocalServiceTest extends BaseDDMServiceTestCase {
 			WorkflowConstants.STATUS_APPROVED, QueryUtil.ALL_POS,
 			QueryUtil.ALL_POS, StructureIdComparator.getInstance(true));
 
-		Assert.assertEquals(ddmStructures.toString(), 2, ddmStructures.size());
 		Assert.assertEquals("Events", getStructureName(ddmStructures.get(0)));
 		Assert.assertEquals("Event", getStructureName(ddmStructures.get(1)));
+
+		Assert.assertEquals(ddmStructures.toString(), 2, ddmStructures.size());
 	}
 
 	@Test
@@ -856,9 +857,10 @@ public class DDMStructureLocalServiceTest extends BaseDDMServiceTestCase {
 			WorkflowConstants.STATUS_APPROVED, QueryUtil.ALL_POS,
 			QueryUtil.ALL_POS, StructureIdComparator.getInstance(true));
 
-		Assert.assertEquals(ddmStructures.toString(), 2, ddmStructures.size());
 		Assert.assertEquals("To Do", getStructureName(ddmStructures.get(0)));
 		Assert.assertEquals("To Doing", getStructureName(ddmStructures.get(1)));
+
+		Assert.assertEquals(ddmStructures.toString(), 2, ddmStructures.size());
 	}
 
 	@Test

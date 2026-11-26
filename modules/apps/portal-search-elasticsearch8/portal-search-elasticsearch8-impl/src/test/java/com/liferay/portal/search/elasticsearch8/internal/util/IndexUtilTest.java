@@ -93,8 +93,9 @@ public class IndexUtilTest {
 		JSONArray rulesJSONArray = dutchOverrideJSONObject.getJSONArray(
 			"rules");
 
-		Assert.assertEquals(4, rulesJSONArray.length());
 		Assert.assertEquals("fiets=>fiets", rulesJSONArray.getString(0));
+
+		Assert.assertEquals(4, rulesJSONArray.length());
 	}
 
 	private JSONObject _createDutchOverrideSettingsJSONObject(

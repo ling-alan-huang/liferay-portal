@@ -177,8 +177,9 @@ public class JSONStorageEntryLocalServiceTest {
 		JSONArray jsonArray = _jsonStorageEntryLocalService.getJSONArray(
 			_CLASS_NAME_ID, _CLASS_PK_1);
 
-		Assert.assertEquals(1, jsonArray.length());
 		Assert.assertNull(jsonArray.get(0));
+
+		Assert.assertEquals(1, jsonArray.length());
 	}
 
 	@Test

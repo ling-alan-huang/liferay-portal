@@ -36,10 +36,6 @@ public class WorkflowStatusSelectionFDSFilterTest {
 			workflowStatusSelectionFDSFilter.getSelectionFDSFilterItems(
 				LocaleUtil.US);
 
-		Assert.assertEquals(
-			selectionFDSFilterItems.toString(), 5,
-			selectionFDSFilterItems.size());
-
 		_assertSelectionFDSFilterItem(
 			WorkflowConstants.LABEL_APPROVED, selectionFDSFilterItems.get(0),
 			WorkflowConstants.STATUS_APPROVED);
@@ -55,6 +51,10 @@ public class WorkflowStatusSelectionFDSFilterTest {
 		_assertSelectionFDSFilterItem(
 			WorkflowConstants.LABEL_SCHEDULED, selectionFDSFilterItems.get(4),
 			WorkflowConstants.STATUS_SCHEDULED);
+
+		Assert.assertEquals(
+			selectionFDSFilterItems.toString(), 5,
+			selectionFDSFilterItems.size());
 	}
 
 	private void _assertSelectionFDSFilterItem(

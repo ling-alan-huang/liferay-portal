@@ -899,16 +899,16 @@ public class ObjectEntryInfoItemFieldValuesUpdaterTest
 				objectEntry2.getObjectEntryId(), true, false, null,
 				QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 
-		Assert.assertEquals(
-			objectEntries.toString(), objectEntryIds.length,
-			objectEntries.size());
-
 		for (int i = 0; i < objectEntryIds.length; i++) {
 			ObjectEntry objectEntry = objectEntries.get(i);
 
 			Assert.assertEquals(
 				objectEntryIds[i], objectEntry.getObjectEntryId());
 		}
+
+		Assert.assertEquals(
+			objectEntries.toString(), objectEntryIds.length,
+			objectEntries.size());
 	}
 
 	private List<ObjectEntry> _getCMSBasicDocumentObjectEntries(

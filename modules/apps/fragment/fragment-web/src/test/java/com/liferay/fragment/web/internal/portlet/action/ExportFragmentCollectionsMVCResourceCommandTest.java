@@ -120,13 +120,13 @@ public class ExportFragmentCollectionsMVCResourceCommandTest {
 
 		List<ZipWriter> zipWriters = _zipWriterMockedConstruction.constructed();
 
-		Assert.assertEquals(zipWriters.toString(), 1, zipWriters.size());
-
 		Mockito.verify(
 			_fragmentCollection
 		).populateZipWriter(
 			zipWriters.get(0)
 		);
+
+		Assert.assertEquals(zipWriters.toString(), 1, zipWriters.size());
 	}
 
 	private MockLiferayResourceRequest _getMockLiferayResourceRequest() {

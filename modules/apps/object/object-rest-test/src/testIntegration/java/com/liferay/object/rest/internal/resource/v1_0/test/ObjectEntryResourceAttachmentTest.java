@@ -647,8 +647,9 @@ public class ObjectEntryResourceAttachmentTest
 			JSONArray keywordsJSONArray = patchedJSONObject.getJSONArray(
 				"keywords");
 
-			Assert.assertEquals(1, keywordsJSONArray.length());
 			Assert.assertEquals("tag1", keywordsJSONArray.get(0));
+
+			Assert.assertEquals(1, keywordsJSONArray.length());
 		}
 	}
 

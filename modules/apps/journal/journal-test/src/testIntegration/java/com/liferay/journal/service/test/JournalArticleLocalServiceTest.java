@@ -1161,12 +1161,6 @@ public class JournalArticleLocalServiceTest {
 				ResourceConstants.SCOPE_INDIVIDUAL,
 				String.valueOf(newJournalArticle.getResourcePrimKey()));
 
-		Assert.assertEquals(
-			StringBundler.concat(
-				"Old resource permissions: ", oldResourcePermissions,
-				", new resource permissions: ", newResourcePermissions),
-			oldResourcePermissions.size(), newResourcePermissions.size());
-
 		for (int i = 0; i < oldResourcePermissions.size(); i++) {
 			ResourcePermission oldResourcePermission =
 				oldResourcePermissions.get(i);
@@ -1188,6 +1182,12 @@ public class JournalArticleLocalServiceTest {
 				oldResourcePermission.isViewActionId(),
 				newResourcePermission.isViewActionId());
 		}
+
+		Assert.assertEquals(
+			StringBundler.concat(
+				"Old resource permissions: ", oldResourcePermissions,
+				", new resource permissions: ", newResourcePermissions),
+			oldResourcePermissions.size(), newResourcePermissions.size());
 	}
 
 	@Test
@@ -2562,9 +2562,10 @@ public class JournalArticleLocalServiceTest {
 			_journalArticleLocalService.getArticlesByReviewDate(
 				_group.getCompanyId(), calendar.getTime(), new Date());
 
+		Assert.assertEquals(journalArticle, journalArticles.get(0));
+
 		Assert.assertEquals(
 			journalArticles.toString(), 1, journalArticles.size());
-		Assert.assertEquals(journalArticle, journalArticles.get(0));
 
 		_companyLocalService.deleteCompany(company);
 	}
@@ -2585,11 +2586,11 @@ public class JournalArticleLocalServiceTest {
 			content, LocaleUtil.US, new String[] {"name"},
 			new Locale[] {LocaleUtil.BRAZIL, LocaleUtil.US}, LocaleUtil.FRANCE);
 
-		Assert.assertEquals(
-			rootDynamicElements.toString(), 1, rootDynamicElements.size());
-
 		_assertDynamicContentElementLanguageId(
 			rootDynamicElements.get(0), LocaleUtil.US);
+
+		Assert.assertEquals(
+			rootDynamicElements.toString(), 1, rootDynamicElements.size());
 	}
 
 	@Test
@@ -2608,11 +2609,11 @@ public class JournalArticleLocalServiceTest {
 			content, LocaleUtil.US, new String[] {"name"},
 			new Locale[] {LocaleUtil.BRAZIL, LocaleUtil.US}, LocaleUtil.US);
 
-		Assert.assertEquals(
-			rootDynamicElements.toString(), 1, rootDynamicElements.size());
-
 		_assertDynamicContentElementLanguageId(
 			rootDynamicElements.get(0), LocaleUtil.US);
+
+		Assert.assertEquals(
+			rootDynamicElements.toString(), 1, rootDynamicElements.size());
 	}
 
 	@Test
@@ -2631,11 +2632,11 @@ public class JournalArticleLocalServiceTest {
 			content, LocaleUtil.US, new String[] {"name"},
 			new Locale[] {LocaleUtil.BRAZIL, LocaleUtil.US}, LocaleUtil.BRAZIL);
 
-		Assert.assertEquals(
-			rootDynamicElements.toString(), 1, rootDynamicElements.size());
-
 		_assertDynamicContentElementLanguageId(
 			rootDynamicElements.get(0), LocaleUtil.BRAZIL);
+
+		Assert.assertEquals(
+			rootDynamicElements.toString(), 1, rootDynamicElements.size());
 	}
 
 	@Test
@@ -2665,13 +2666,13 @@ public class JournalArticleLocalServiceTest {
 			new Locale[] {LocaleUtil.BRAZIL, LocaleUtil.SPAIN, LocaleUtil.US},
 			LocaleUtil.SPAIN);
 
-		Assert.assertEquals(
-			rootDynamicElements.toString(), 2, rootDynamicElements.size());
-
 		_assertDynamicContentElementLanguageId(
 			rootDynamicElements.get(0), LocaleUtil.SPAIN);
 		_assertDynamicContentElementLanguageId(
 			rootDynamicElements.get(1), LocaleUtil.US);
+
+		Assert.assertEquals(
+			rootDynamicElements.toString(), 2, rootDynamicElements.size());
 	}
 
 	@Test(expected = PortalException.class)
@@ -2750,9 +2751,10 @@ public class JournalArticleLocalServiceTest {
 		List<JournalArticle> journalArticles =
 			_journalArticleLocalService.getNoPermissionArticles();
 
+		Assert.assertEquals(journalArticle, journalArticles.get(0));
+
 		Assert.assertEquals(
 			journalArticles.toString(), 1, journalArticles.size());
-		Assert.assertEquals(journalArticle, journalArticles.get(0));
 	}
 
 	@Test
@@ -3858,12 +3860,6 @@ public class JournalArticleLocalServiceTest {
 				ResourceConstants.SCOPE_INDIVIDUAL,
 				String.valueOf(journalArticle1.getResourcePrimKey()));
 
-		Assert.assertEquals(
-			StringBundler.concat(
-				"Old resource permissions: ", oldResourcePermissions,
-				", new resource permissions: ", newResourcePermissions),
-			oldResourcePermissions.size(), newResourcePermissions.size());
-
 		for (int i = 0; i < oldResourcePermissions.size(); i++) {
 			ResourcePermission oldResourcePermission =
 				oldResourcePermissions.get(i);
@@ -3886,6 +3882,12 @@ public class JournalArticleLocalServiceTest {
 				oldResourcePermission.isViewActionId(),
 				newResourcePermission.isViewActionId());
 		}
+
+		Assert.assertEquals(
+			StringBundler.concat(
+				"Old resource permissions: ", oldResourcePermissions,
+				", new resource permissions: ", newResourcePermissions),
+			oldResourcePermissions.size(), newResourcePermissions.size());
 	}
 
 	private String _toJSON(FileEntry fileEntry) {

@@ -79,8 +79,9 @@ public class DLFolderLocalServiceTest {
 
 		dlFolders.removeAll(noAssetDLFolders);
 
-		Assert.assertEquals(dlFolders.toString(), 1, dlFolders.size());
 		Assert.assertEquals(dlFolder, dlFolders.get(0));
+
+		Assert.assertEquals(dlFolders.toString(), 1, dlFolders.size());
 	}
 
 	@Inject
