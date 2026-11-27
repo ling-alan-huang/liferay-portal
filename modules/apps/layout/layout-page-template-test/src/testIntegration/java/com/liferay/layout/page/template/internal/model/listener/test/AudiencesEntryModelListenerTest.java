@@ -99,13 +99,6 @@ public class AudiencesEntryModelListenerTest {
 				getLayoutPageTemplateStructureRelElementVariationAudienceEntryRels(
 					_group.getGroupId(), externalReferenceCode);
 
-		Assert.assertEquals(
-			layoutPageTemplateStructureRelElementVariationAudienceEntryRels.
-				toString(),
-			1,
-			layoutPageTemplateStructureRelElementVariationAudienceEntryRels.
-				size());
-
 		LayoutPageTemplateStructureRelElementVariationAudienceEntryRel
 			layoutPageTemplateStructureRelElementVariationAudienceEntryRel =
 				layoutPageTemplateStructureRelElementVariationAudienceEntryRels.
@@ -115,6 +108,13 @@ public class AudiencesEntryModelListenerTest {
 			audienceEntryERC,
 			layoutPageTemplateStructureRelElementVariationAudienceEntryRel.
 				getAudienceEntryERC());
+
+		Assert.assertEquals(
+			layoutPageTemplateStructureRelElementVariationAudienceEntryRels.
+				toString(),
+			1,
+			layoutPageTemplateStructureRelElementVariationAudienceEntryRels.
+				size());
 	}
 
 	@Inject

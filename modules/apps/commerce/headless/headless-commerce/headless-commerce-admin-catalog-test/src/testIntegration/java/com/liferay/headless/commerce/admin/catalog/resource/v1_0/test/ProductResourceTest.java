@@ -953,13 +953,13 @@ public class ProductResourceTest extends BaseProductResourceTestCase {
 				0, _classNameLocalService.getClassNameId(CProduct.class),
 				product.getProductId(), SystemEventConstants.TYPE_DELETE);
 
-		Assert.assertEquals(systemEvents.toString(), 1, systemEvents.size());
-
 		SystemEvent systemEvent = systemEvents.get(0);
 
 		Assert.assertEquals(
 			product.getExternalReferenceCode(),
 			systemEvent.getClassExternalReferenceCode());
+
+		Assert.assertEquals(systemEvents.toString(), 1, systemEvents.size());
 	}
 
 	private void _testGetProductByExternalReferenceCodeWithNestedProductOptionValues()
@@ -1007,17 +1007,18 @@ public class ProductResourceTest extends BaseProductResourceTestCase {
 
 		ProductOption[] productOptions = product.getProductOptions();
 
-		Assert.assertEquals(
-			Arrays.toString(productOptions), 1, productOptions.length);
-
 		ProductOptionValue[] productOptionValues =
 			productOptions[0].getProductOptionValues();
 
 		Assert.assertEquals(
+			productOptionValueKey, productOptionValues[0].getKey());
+
+		Assert.assertEquals(
 			Arrays.toString(productOptionValues), 1,
 			productOptionValues.length);
+
 		Assert.assertEquals(
-			productOptionValueKey, productOptionValues[0].getKey());
+			Arrays.toString(productOptions), 1, productOptions.length);
 	}
 
 	private void _testGetProductsPage() throws Exception {
@@ -1405,14 +1406,14 @@ public class ProductResourceTest extends BaseProductResourceTestCase {
 
 		ProductOption[] productOptions = product.getProductOptions();
 
-		Assert.assertEquals(
-			Arrays.toString(productOptions), 1, productOptions.length);
-
 		ProductOption productOption2 = productOptions[0];
 
 		Assert.assertEquals(
 			Long.valueOf(cpOption.getCPOptionId()),
 			productOption2.getOptionId());
+
+		Assert.assertEquals(
+			Arrays.toString(productOptions), 1, productOptions.length);
 	}
 
 	private void _testPatchProductWithInvalidCommerceCatalog()
@@ -2333,13 +2334,13 @@ public class ProductResourceTest extends BaseProductResourceTestCase {
 
 		GroupedProduct[] putGroupedProducts = putProduct.getGroupedProducts();
 
-		Assert.assertEquals(
-			Arrays.toString(putGroupedProducts), 1, putGroupedProducts.length);
-
 		GroupedProduct putGroupedProduct = putGroupedProducts[0];
 
 		Assert.assertEquals(
 			groupedProduct.getQuantity(), putGroupedProduct.getQuantity());
+
+		Assert.assertEquals(
+			Arrays.toString(putGroupedProducts), 1, putGroupedProducts.length);
 	}
 
 	private void _testPutProductByExternalReferenceCodeWithInvalidCommerceCatalog()

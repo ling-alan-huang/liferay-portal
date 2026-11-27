@@ -502,12 +502,12 @@ public class LayoutStructureRulesHelperTest {
 			List<String> actualList = actualMap.get(entry.getKey());
 			List<String> expectedList = entry.getValue();
 
-			Assert.assertEquals(
-				actualList.toString(), expectedList.size(), actualList.size());
-
 			for (int i = 0; i < expectedList.size(); i++) {
 				Assert.assertEquals(expectedList.get(i), actualList.get(i));
 			}
+
+			Assert.assertEquals(
+				actualList.toString(), expectedList.size(), actualList.size());
 		}
 	}
 

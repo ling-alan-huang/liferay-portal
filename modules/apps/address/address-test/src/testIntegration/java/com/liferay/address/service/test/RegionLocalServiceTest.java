@@ -345,13 +345,13 @@ public class RegionLocalServiceTest {
 
 		List<Region> actualRegions = baseModelSearchResult.getBaseModels();
 
-		Assert.assertEquals(
-			actualRegions.toString(), end - start, actualRegions.size());
-
 		for (int i = 0; i < (end - start); i++) {
 			Assert.assertEquals(
 				expectedRegions.get(start + i), actualRegions.get(i));
 		}
+
+		Assert.assertEquals(
+			actualRegions.toString(), end - start, actualRegions.size());
 	}
 
 	private void _testSearchRegions(

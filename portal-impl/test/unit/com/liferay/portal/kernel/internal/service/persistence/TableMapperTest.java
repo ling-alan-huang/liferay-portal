@@ -1155,11 +1155,11 @@ public class TableMapperTest {
 
 		lefts = _tableMapperImpl.getLeftBaseModels(rightPrimaryKey, 1, 2, null);
 
-		Assert.assertEquals(lefts.toString(), 1, lefts.size());
-
 		Left left3 = lefts.get(0);
 
 		Assert.assertEquals(leftPrimaryKey2, left3.getPrimaryKeyObj());
+
+		Assert.assertEquals(lefts.toString(), 1, lefts.size());
 
 		rightToLeftPortalCache.remove(rightPrimaryKey);
 
@@ -1342,11 +1342,11 @@ public class TableMapperTest {
 		rights = _tableMapperImpl.getRightBaseModels(
 			leftPrimaryKey, 1, 2, null);
 
-		Assert.assertEquals(rights.toString(), 1, rights.size());
-
 		Right right3 = rights.get(0);
 
 		Assert.assertEquals(rightPrimaryKey2, right3.getPrimaryKeyObj());
+
+		Assert.assertEquals(rights.toString(), 1, rights.size());
 
 		leftToRightPortalCache.remove(leftPrimaryKey);
 
@@ -1548,8 +1548,9 @@ public class TableMapperTest {
 				_RIGHT_COLUMN_NAME, _leftBasePersistence,
 				_rightBasePersistence);
 
-		Assert.assertEquals(tableMappers.toString(), 1, tableMappers.size());
 		Assert.assertSame(tableMapper, tableMappers.get(_TABLE_NAME));
+
+		Assert.assertEquals(tableMappers.toString(), 1, tableMappers.size());
 
 		TableMapper<Right, Left> reverseTableMapper =
 			tableMapper.getReverseTableMapper();
@@ -1605,7 +1606,6 @@ public class TableMapperTest {
 				leftKey, _TABLE_NAME, _COMPANY_COLUMN_NAME, _LEFT_COLUMN_NAME,
 				_RIGHT_COLUMN_NAME, _leftBasePersistence, Right.class);
 
-		Assert.assertEquals(tableMappers.toString(), 1, tableMappers.size());
 		Assert.assertSame(tableMapperImpl, tableMappers.get(leftKey));
 
 		long leftPrimaryKey = 1;
@@ -1648,8 +1648,11 @@ public class TableMapperTest {
 		Assert.assertNotSame(tableMapperImpl, rightTableMapperImpl);
 		Assert.assertSame(rightTableMapperImpl, tableMappers.get(rightKey));
 
-		Assert.assertEquals(tableMappers.toString(), 2, tableMappers.size());
 		Assert.assertNotSame(tableMapperImpl, tableMappers.get(rightKey));
+
+		Assert.assertEquals(tableMappers.toString(), 1, tableMappers.size());
+
+		Assert.assertEquals(tableMappers.toString(), 2, tableMappers.size());
 
 		// Reverse mapping table
 
@@ -1751,8 +1754,6 @@ public class TableMapperTest {
 					PortalCacheManagerNames.MULTI_VM),
 				"_dynamicPortalCaches");
 
-		Assert.assertEquals(portalCaches.toString(), 2, portalCaches.size());
-
 		if (tableMapper instanceof ReverseTableMapper) {
 			Assert.assertSame(
 				ReflectionTestUtil.getFieldValue(
@@ -1787,6 +1788,8 @@ public class TableMapperTest {
 						TableMapper.class.getName(), "-", _TABLE_NAME, "-",
 						_RIGHT_COLUMN_NAME, "-To-", _LEFT_COLUMN_NAME)));
 		}
+
+		Assert.assertEquals(portalCaches.toString(), 2, portalCaches.size());
 
 		tableMapper.destroy();
 
@@ -2164,7 +2167,6 @@ public class TableMapperTest {
 
 		@Override
 		public int update(Object... params) {
-			Assert.assertEquals(3, params.length);
 			Assert.assertSame(Long.class, params[0].getClass());
 			Assert.assertSame(Long.class, params[1].getClass());
 			Assert.assertSame(Long.class, params[2].getClass());
@@ -2194,6 +2196,8 @@ public class TableMapperTest {
 
 				_mappingStore.put(leftPrimaryKey, rightPrimaryKeys);
 			}
+
+			Assert.assertEquals(3, params.length);
 
 			return 1;
 		}
@@ -2244,7 +2248,6 @@ public class TableMapperTest {
 
 		@Override
 		public List<Integer> execute(Object... params) {
-			Assert.assertEquals(2, params.length);
 			Assert.assertSame(Long.class, params[0].getClass());
 			Assert.assertSame(Long.class, params[1].getClass());
 
@@ -2264,6 +2267,8 @@ public class TableMapperTest {
 			if (ArrayUtil.contains(rightPrimaryKeys, rightPrimaryKey)) {
 				return Collections.singletonList(1);
 			}
+
+			Assert.assertEquals(2, params.length);
 
 			return Collections.singletonList(0);
 		}
@@ -2337,7 +2342,6 @@ public class TableMapperTest {
 
 		@Override
 		public int update(Object... params) {
-			Assert.assertEquals(2, params.length);
 			Assert.assertSame(Long.class, params[0].getClass());
 			Assert.assertSame(Long.class, params[1].getClass());
 
@@ -2364,6 +2368,8 @@ public class TableMapperTest {
 				return 1;
 			}
 
+			Assert.assertEquals(2, params.length);
+
 			return 0;
 		}
 
@@ -2388,7 +2394,6 @@ public class TableMapperTest {
 
 		@Override
 		public int update(Object... params) {
-			Assert.assertEquals(1, params.length);
 			Assert.assertSame(Long.class, params[0].getClass());
 
 			if (_databaseError) {
@@ -2414,6 +2419,8 @@ public class TableMapperTest {
 				entry.setValue(rightPrimaryKeys);
 			}
 
+			Assert.assertEquals(1, params.length);
+
 			return count;
 		}
 
@@ -2436,7 +2443,6 @@ public class TableMapperTest {
 
 		@Override
 		public List<Long> execute(Object... params) {
-			Assert.assertEquals(1, params.length);
 			Assert.assertSame(Long.class, params[0].getClass());
 
 			if (_databaseError) {
@@ -2456,6 +2462,8 @@ public class TableMapperTest {
 
 				leftPrimaryKeysList.add(entry.getKey());
 			}
+
+			Assert.assertEquals(1, params.length);
 
 			return leftPrimaryKeysList;
 		}

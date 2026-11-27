@@ -90,12 +90,12 @@ public class WorkspaceResourceImplTest {
 
 		List<Workspace> workspaces = (List<Workspace>)workspacesPage.getItems();
 
-		Assert.assertEquals(workspaces.toString(), 1, workspaces.size());
-
 		Workspace workspace = workspaces.get(0);
 
 		Assert.assertEquals(String.valueOf(_GROUP_ID), workspace.getGroupId());
 		Assert.assertEquals(name, workspace.getName());
+
+		Assert.assertEquals(workspaces.toString(), 1, workspaces.size());
 	}
 
 	private static final long _GROUP_ID = RandomTestUtil.randomLong();

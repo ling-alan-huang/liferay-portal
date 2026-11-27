@@ -112,12 +112,12 @@ public class RedirectEntrySearchTest extends BaseSearchTestCase {
 
 		List<SearchResult> searchResults = _getSearchResults(searchContext);
 
-		Assert.assertEquals(searchResults.toString(), 1, searchResults.size());
-
 		SearchResult searchResult = searchResults.get(0);
 
 		Assert.assertEquals(
 			redirectEntry.getRedirectEntryId(), searchResult.getClassPK());
+
+		Assert.assertEquals(searchResults.toString(), 1, searchResults.size());
 	}
 
 	@Override
@@ -138,12 +138,12 @@ public class RedirectEntrySearchTest extends BaseSearchTestCase {
 		List<SearchResult> searchResults = _getSearchResults(
 			"http://www.liferay.com");
 
-		Assert.assertEquals(searchResults.toString(), 1, searchResults.size());
-
 		SearchResult searchResult = searchResults.get(0);
 
 		Assert.assertEquals(
 			redirectEntry.getRedirectEntryId(), searchResult.getClassPK());
+
+		Assert.assertEquals(searchResults.toString(), 1, searchResults.size());
 	}
 
 	@Test
@@ -159,12 +159,12 @@ public class RedirectEntrySearchTest extends BaseSearchTestCase {
 		List<SearchResult> searchResults = _getSearchResults(
 			"http://www.liferay.co");
 
-		Assert.assertEquals(searchResults.toString(), 1, searchResults.size());
-
 		SearchResult searchResult = searchResults.get(0);
 
 		Assert.assertEquals(
 			redirectEntry.getRedirectEntryId(), searchResult.getClassPK());
+
+		Assert.assertEquals(searchResults.toString(), 1, searchResults.size());
 	}
 
 	@Test
@@ -179,12 +179,12 @@ public class RedirectEntrySearchTest extends BaseSearchTestCase {
 
 		List<SearchResult> searchResults = _getSearchResults("liferay");
 
-		Assert.assertEquals(searchResults.toString(), 1, searchResults.size());
-
 		SearchResult searchResult = searchResults.get(0);
 
 		Assert.assertEquals(
 			redirectEntry.getRedirectEntryId(), searchResult.getClassPK());
+
+		Assert.assertEquals(searchResults.toString(), 1, searchResults.size());
 	}
 
 	@Test
@@ -199,12 +199,12 @@ public class RedirectEntrySearchTest extends BaseSearchTestCase {
 
 		List<SearchResult> searchResults = _getSearchResults("liferay.com");
 
-		Assert.assertEquals(searchResults.toString(), 1, searchResults.size());
-
 		SearchResult searchResult = searchResults.get(0);
 
 		Assert.assertEquals(
 			redirectEntry.getRedirectEntryId(), searchResult.getClassPK());
+
+		Assert.assertEquals(searchResults.toString(), 1, searchResults.size());
 	}
 
 	@Override
@@ -224,12 +224,12 @@ public class RedirectEntrySearchTest extends BaseSearchTestCase {
 
 		List<SearchResult> searchResults = _getSearchResults("test");
 
-		Assert.assertEquals(searchResults.toString(), 1, searchResults.size());
-
 		SearchResult searchResult = searchResults.get(0);
 
 		Assert.assertEquals(
 			redirectEntry.getRedirectEntryId(), searchResult.getClassPK());
+
+		Assert.assertEquals(searchResults.toString(), 1, searchResults.size());
 	}
 
 	@Test
@@ -251,12 +251,12 @@ public class RedirectEntrySearchTest extends BaseSearchTestCase {
 
 		List<SearchResult> searchResults = _getSearchResults("page2");
 
-		Assert.assertEquals(searchResults.toString(), 1, searchResults.size());
-
 		SearchResult searchResult = searchResults.get(0);
 
 		Assert.assertEquals(
 			redirectEntry.getRedirectEntryId(), searchResult.getClassPK());
+
+		Assert.assertEquals(searchResults.toString(), 1, searchResults.size());
 	}
 
 	@Test
@@ -271,12 +271,12 @@ public class RedirectEntrySearchTest extends BaseSearchTestCase {
 
 		List<SearchResult> searchResults = _getSearchResults("life");
 
-		Assert.assertEquals(searchResults.toString(), 1, searchResults.size());
-
 		SearchResult searchResult = searchResults.get(0);
 
 		Assert.assertEquals(
 			redirectEntry.getRedirectEntryId(), searchResult.getClassPK());
+
+		Assert.assertEquals(searchResults.toString(), 1, searchResults.size());
 	}
 
 	@Override
@@ -437,8 +437,6 @@ public class RedirectEntrySearchTest extends BaseSearchTestCase {
 		List<SearchResult> searchResults = SearchResultUtil.getSearchResults(
 			indexer.search(searchContext), LocaleUtil.getDefault());
 
-		Assert.assertEquals(searchResults.toString(), 2, searchResults.size());
-
 		SearchResult searchResult1 = searchResults.get(0);
 
 		Assert.assertEquals(
@@ -448,6 +446,8 @@ public class RedirectEntrySearchTest extends BaseSearchTestCase {
 
 		Assert.assertEquals(
 			redirectEntry2.getRedirectEntryId(), searchResult2.getClassPK());
+
+		Assert.assertEquals(searchResults.toString(), 2, searchResults.size());
 	}
 
 	private List<SearchResult> _getSearchResults(SearchContext searchContext)

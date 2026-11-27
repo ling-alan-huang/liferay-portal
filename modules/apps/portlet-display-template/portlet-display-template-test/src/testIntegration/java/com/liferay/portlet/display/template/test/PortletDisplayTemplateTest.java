@@ -89,8 +89,9 @@ public class PortletDisplayTemplateTest {
 				},
 				String.class);
 
-			Assert.assertEquals(clasNames.toString(), 1, clasNames.length);
 			Assert.assertEquals(className2, clasNames[0]);
+
+			Assert.assertEquals(clasNames.toString(), 1, clasNames.length);
 		}
 		finally {
 			for (ServiceRegistration<?> serviceRegistration :

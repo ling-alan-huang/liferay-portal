@@ -1048,16 +1048,16 @@ public class BatchEnginePortletDataHandlerTest {
 				exportImportConfiguration.getExportImportConfigurationId());
 
 		Assert.assertEquals(
-			exportImportReportEntries.toString(), 1,
-			exportImportReportEntries.size());
-
-		Assert.assertEquals(
 			"The data handler for the \"" +
 				objectDefinition2.getPluralLabel(LocaleUtil.getDefault()) +
 					"\" portlet is missing from the system.",
 			exportImportReportEntries.get(
 				0
 			).getErrorMessage());
+
+		Assert.assertEquals(
+			exportImportReportEntries.toString(), 1,
+			exportImportReportEntries.size());
 
 		_objectDefinitionLocalService.deleteObjectDefinition(
 			targetObjectDefinition);
@@ -2703,10 +2703,6 @@ public class BatchEnginePortletDataHandlerTest {
 				notificationTemplateJSONObject.getString(
 					"externalReferenceCode")));
 
-		Assert.assertEquals(
-			notificationTemplateJSONObjects.toString(), 1,
-			notificationTemplateJSONObjects.size());
-
 		JSONObject notificationTemplateJSONObject =
 			notificationTemplateJSONObjects.get(0);
 
@@ -2721,6 +2717,10 @@ public class BatchEnginePortletDataHandlerTest {
 			objectDefinition.getExternalReferenceCode(),
 			notificationTemplateJSONObject.getString(
 				"objectDefinitionExternalReferenceCode"));
+
+		Assert.assertEquals(
+			notificationTemplateJSONObjects.toString(), 1,
+			notificationTemplateJSONObjects.size());
 
 		_notificationTemplateLocalService.deleteNotificationTemplate(
 			notificationTemplate);
@@ -4032,10 +4032,6 @@ public class BatchEnginePortletDataHandlerTest {
 				TestPropsValues.getCompanyId(),
 				exportImportConfiguration.getExportImportConfigurationId());
 
-		Assert.assertEquals(
-			exportImportReportEntries.toString(), 1,
-			exportImportReportEntries.size());
-
 		_assertExportImportReportEntry(
 			_classNameLocalService.getClassNameId(KaleoDefinition.class), 0,
 			workflowDefinition.getExternalReferenceCode(), 0,
@@ -4043,6 +4039,10 @@ public class BatchEnginePortletDataHandlerTest {
 			ExportImportReportEntryConstants.STATUS_UNRESOLVED,
 			ExportImportReportEntryConstants.TYPE_WARNING,
 			exportImportReportEntries.get(0));
+
+		Assert.assertEquals(
+			exportImportReportEntries.toString(), 1,
+			exportImportReportEntries.size());
 
 		_userLocalService.deleteUser(user1);
 		_userLocalService.deleteUser(user2);
@@ -4086,13 +4086,13 @@ public class BatchEnginePortletDataHandlerTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals(
 				"Specify at least one assignment for the review task node",
 				logEntry.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 
 		Assert.assertNull(
@@ -4103,10 +4103,6 @@ public class BatchEnginePortletDataHandlerTest {
 			_exportImportReportEntryLocalService.getExportImportReportEntries(
 				TestPropsValues.getCompanyId(),
 				exportImportConfiguration.getExportImportConfigurationId());
-
-		Assert.assertEquals(
-			exportImportReportEntries.toString(), 2,
-			exportImportReportEntries.size());
 
 		_assertExportImportReportEntry(
 			_classNameLocalService.getClassNameId(KaleoDefinition.class), 0,
@@ -4123,6 +4119,10 @@ public class BatchEnginePortletDataHandlerTest {
 			ExportImportReportEntryConstants.STATUS_UNRESOLVED,
 			ExportImportReportEntryConstants.TYPE_ERROR,
 			exportImportReportEntries.get(1));
+
+		Assert.assertEquals(
+			exportImportReportEntries.toString(), 2,
+			exportImportReportEntries.size());
 
 		_userLocalService.deleteUser(user3);
 		_userLocalService.deleteUser(user4);
@@ -4207,9 +4207,6 @@ public class BatchEnginePortletDataHandlerTest {
 					KaleoNode.class.getName(),
 					kaleoDefinitionVersion.getKaleoDefinitionVersionId());
 
-		Assert.assertEquals(
-			kaleoNotifications.toString(), 1, kaleoNotifications.size());
-
 		KaleoNotification kaleoNotification = kaleoNotifications.get(0);
 
 		Assert.assertEquals(
@@ -4232,14 +4229,13 @@ public class BatchEnginePortletDataHandlerTest {
 					kaleoTask.getKaleoTaskId()),
 				KaleoTaskAssignment::getAssigneeClassPK));
 
+		Assert.assertEquals(
+			kaleoNotifications.toString(), 1, kaleoNotifications.size());
+
 		List<ExportImportReportEntry> exportImportReportEntries =
 			_exportImportReportEntryLocalService.getExportImportReportEntries(
 				TestPropsValues.getCompanyId(),
 				exportImportConfiguration.getExportImportConfigurationId());
-
-		Assert.assertEquals(
-			exportImportReportEntries.toString(), 2,
-			exportImportReportEntries.size());
 
 		_assertExportImportReportEntry(
 			_classNameLocalService.getClassNameId(Role.class), 0L,
@@ -4253,6 +4249,10 @@ public class BatchEnginePortletDataHandlerTest {
 			ExportImportReportEntryConstants.STATUS_UNRESOLVED,
 			ExportImportReportEntryConstants.TYPE_EMPTY,
 			exportImportReportEntries.get(1));
+
+		Assert.assertEquals(
+			exportImportReportEntries.toString(), 2,
+			exportImportReportEntries.size());
 
 		_roleLocalService.deleteRole(importedRole1);
 		_roleLocalService.deleteRole(importedRole2);
@@ -4314,10 +4314,6 @@ public class BatchEnginePortletDataHandlerTest {
 				TestPropsValues.getCompanyId(),
 				exportImportConfiguration.getExportImportConfigurationId());
 
-		Assert.assertEquals(
-			exportImportReportEntries.toString(), 1,
-			exportImportReportEntries.size());
-
 		_assertExportImportReportEntry(
 			_classNameLocalService.getClassNameId(KaleoDefinition.class), 0,
 			workflowDefinition.getExternalReferenceCode(), 0,
@@ -4325,6 +4321,10 @@ public class BatchEnginePortletDataHandlerTest {
 			ExportImportReportEntryConstants.STATUS_UNRESOLVED,
 			ExportImportReportEntryConstants.TYPE_WARNING,
 			exportImportReportEntries.get(0));
+
+		Assert.assertEquals(
+			exportImportReportEntries.toString(), 1,
+			exportImportReportEntries.size());
 
 		_userLocalService.deleteUser(user1);
 		_userLocalService.deleteUser(user3);
@@ -4818,14 +4818,14 @@ public class BatchEnginePortletDataHandlerTest {
 				objectDefinition.getObjectDefinitionId(), QueryUtil.ALL_POS,
 				QueryUtil.ALL_POS);
 
-		Assert.assertEquals(
-			importedObjectEntries.toString(), 1, importedObjectEntries.size());
-
 		ObjectEntry importedObjectEntry = importedObjectEntries.get(0);
 
 		Assert.assertEquals(
 			listTypeEntries[0].getKey(),
 			MapUtil.getString(importedObjectEntry.getValues(), picklistName));
+
+		Assert.assertEquals(
+			importedObjectEntries.toString(), 1, importedObjectEntries.size());
 	}
 
 	@Test
@@ -6762,10 +6762,6 @@ public class BatchEnginePortletDataHandlerTest {
 				TestPropsValues.getCompanyId(),
 				exportImportConfiguration.getExportImportConfigurationId());
 
-		Assert.assertEquals(
-			exportImportReportEntries.toString(), 1,
-			exportImportReportEntries.size());
-
 		ExportImportReportEntry exportImportReportEntry =
 			exportImportReportEntries.get(0);
 
@@ -6777,6 +6773,10 @@ public class BatchEnginePortletDataHandlerTest {
 			ExportImportReportEntryConstants.STATUS_UNRESOLVED,
 			ExportImportReportEntryConstants.TYPE_ERROR,
 			exportImportReportEntry);
+
+		Assert.assertEquals(
+			exportImportReportEntries.toString(), 1,
+			exportImportReportEntries.size());
 	}
 
 	private void
@@ -7144,9 +7144,6 @@ public class BatchEnginePortletDataHandlerTest {
 				objectDefinition.getObjectDefinitionId(), QueryUtil.ALL_POS,
 				QueryUtil.ALL_POS);
 
-		Assert.assertEquals(
-			objectEntriesList.toString(), 1, objectEntriesList.size());
-
 		ObjectEntry importedObjectEntry = objectEntriesList.get(0);
 
 		String importedRichTextValue = MapUtil.getString(
@@ -7195,6 +7192,9 @@ public class BatchEnginePortletDataHandlerTest {
 		}
 
 		_deleteObjectEntries(importedObjectEntry);
+
+		Assert.assertEquals(
+			objectEntriesList.toString(), 1, objectEntriesList.size());
 	}
 
 	private void _testExportImportSiteObjectEntriesWithRichTextAndURLs(

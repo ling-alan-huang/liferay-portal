@@ -135,9 +135,6 @@ public class AssetCategoriesSelectorTagTest {
 
 		Assert.assertNotNull(categoryIdsTitles);
 
-		Assert.assertEquals(
-			categoryIdsTitles.toString(), 2, categoryIdsTitles.size());
-
 		String[] categoryIdsTitle = categoryIdsTitles.get(0);
 
 		Assert.assertEquals(
@@ -157,6 +154,9 @@ public class AssetCategoriesSelectorTagTest {
 
 		Assert.assertEquals(StringPool.BLANK, categoryIdsTitle[0]);
 		Assert.assertEquals(StringPool.BLANK, categoryIdsTitle[1]);
+
+		Assert.assertEquals(
+			categoryIdsTitles.toString(), 2, categoryIdsTitles.size());
 	}
 
 	@Test

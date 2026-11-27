@@ -81,11 +81,11 @@ public class StripFilterTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals("Missing </script>", logEntry.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 
 			Assert.assertEquals("script>", stringWriter.toString());
 		}
@@ -125,11 +125,11 @@ public class StripFilterTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals("Missing </style>", logEntry.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 
 		Assert.assertEquals(
@@ -217,11 +217,11 @@ public class StripFilterTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals("Missing >", logEntry.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 
 			Assert.assertEquals("input", stringWriter.toString());
 			Assert.assertEquals(
@@ -282,11 +282,11 @@ public class StripFilterTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals("Missing </pre>", logEntry.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 
 			Assert.assertEquals("pre", stringWriter.toString());
 			Assert.assertEquals(">abcde", String.valueOf(charBuffer.slice()));
@@ -334,11 +334,11 @@ public class StripFilterTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals("Missing </textArea>", logEntry.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 
 			Assert.assertEquals("textarea ", stringWriter.toString());
 			Assert.assertEquals(">abcde", String.valueOf(charBuffer.slice()));

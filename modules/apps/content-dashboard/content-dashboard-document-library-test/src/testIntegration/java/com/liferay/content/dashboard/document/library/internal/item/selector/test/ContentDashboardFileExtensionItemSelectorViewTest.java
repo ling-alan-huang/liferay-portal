@@ -92,8 +92,6 @@ public class ContentDashboardFileExtensionItemSelectorViewTest {
 		JSONArray fileExtensionGroupsJSONArray = (JSONArray)data.get(
 			"fileExtensionGroups");
 
-		Assert.assertEquals(10, fileExtensionGroupsJSONArray.length());
-
 		_assertExtensionGroupJSONObject(
 			"mp3", "document-multimedia", "Audio",
 			fileExtensionGroupsJSONArray.getJSONObject(0));
@@ -124,6 +122,8 @@ public class ContentDashboardFileExtensionItemSelectorViewTest {
 		_assertExtensionGroupJSONObject(
 			"liferay", "document-default", "Other",
 			fileExtensionGroupsJSONArray.getJSONObject(9));
+
+		Assert.assertEquals(10, fileExtensionGroupsJSONArray.length());
 
 		Assert.assertNotNull(data.get("itemSelectorSaveEvent"));
 	}
@@ -179,8 +179,6 @@ public class ContentDashboardFileExtensionItemSelectorViewTest {
 			JSONArray fileExtensionGroupsJSONArray = (JSONArray)data.get(
 				"fileExtensionGroups");
 
-			Assert.assertEquals(4, fileExtensionGroupsJSONArray.length());
-
 			_assertExtensionGroupJSONObject(
 				"html", "document-code", "Code",
 				fileExtensionGroupsJSONArray.getJSONObject(1));
@@ -193,6 +191,8 @@ public class ContentDashboardFileExtensionItemSelectorViewTest {
 			_assertExtensionGroupJSONObject(
 				"txt", "document-text", "Text",
 				fileExtensionGroupsJSONArray.getJSONObject(3));
+
+			Assert.assertEquals(4, fileExtensionGroupsJSONArray.length());
 		}
 	}
 
@@ -220,14 +220,14 @@ public class ContentDashboardFileExtensionItemSelectorViewTest {
 		JSONArray fileExtensionsJSONArray =
 			fileExtensionGroupJSONObject.getJSONArray("fileExtensions");
 
-		Assert.assertEquals(1, fileExtensionsJSONArray.length());
-
 		JSONObject fileExtensionJSONObject =
 			fileExtensionsJSONArray.getJSONObject(0);
 
 		Assert.assertEquals(
 			expectedFileExtension,
 			fileExtensionJSONObject.getString("fileExtension"));
+
+		Assert.assertEquals(1, fileExtensionsJSONArray.length());
 	}
 
 	private Map<String, Object> _getData(Group group) throws Exception {

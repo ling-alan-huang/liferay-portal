@@ -416,16 +416,16 @@ public class AccountEntryLocalServiceTest {
 				objectValidationRuleEngineException.
 					getObjectValidationRuleResults();
 
-			Assert.assertEquals(
-				objectValidationRuleResults.toString(), 1,
-				objectValidationRuleResults.size());
-
 			ObjectValidationRuleResult objectValidationRuleResult =
 				objectValidationRuleResults.get(0);
 
 			Assert.assertEquals(
 				"This name is invalid.",
 				objectValidationRuleResult.getErrorMessage());
+
+			Assert.assertEquals(
+				objectValidationRuleResults.toString(), 1,
+				objectValidationRuleResults.size());
 		}
 
 		try {
@@ -448,16 +448,16 @@ public class AccountEntryLocalServiceTest {
 				objectValidationRuleEngineException.
 					getObjectValidationRuleResults();
 
-			Assert.assertEquals(
-				objectValidationRuleResults.toString(), 1,
-				objectValidationRuleResults.size());
-
 			ObjectValidationRuleResult objectValidationRuleResult =
 				objectValidationRuleResults.get(0);
 
 			Assert.assertEquals(
 				"This name is invalid.",
 				objectValidationRuleResult.getErrorMessage());
+
+			Assert.assertEquals(
+				objectValidationRuleResults.toString(), 1,
+				objectValidationRuleResults.size());
 		}
 	}
 
@@ -1594,9 +1594,10 @@ public class AccountEntryLocalServiceTest {
 				new String[] {AccountConstants.ACCOUNT_ENTRY_TYPE_BUSINESS},
 				QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 
+		Assert.assertEquals(expectedAccountEntry, accountEntries.get(0));
+
 		Assert.assertEquals(
 			accountEntries.toString(), 1, accountEntries.size());
-		Assert.assertEquals(expectedAccountEntry, accountEntries.get(0));
 	}
 
 	private void _assertKeywordSearch(
@@ -1637,15 +1638,15 @@ public class AccountEntryLocalServiceTest {
 		List<AccountEntry> actualAccountEntries =
 			baseModelSearchResult.getBaseModels();
 
-		Assert.assertEquals(
-			actualAccountEntries.toString(), delta,
-			actualAccountEntries.size());
-
 		for (int i = 0; i < delta; i++) {
 			Assert.assertEquals(
 				expectedAccountEntries.get(start + i),
 				actualAccountEntries.get(i));
 		}
+
+		Assert.assertEquals(
+			actualAccountEntries.toString(), delta,
+			actualAccountEntries.size());
 	}
 
 	private void _assertSearchWithParams(

@@ -120,14 +120,14 @@ public class DropZoneLayoutStructureItemMapperTest {
 		Fragment[] fragments = (Fragment[])fragmentSettings.get(
 			expectedFragmentSettingsKey);
 
-		Assert.assertEquals(
-			Arrays.toString(fragments), expectedFragmentEntryKeys.size(),
-			fragments.length);
-
 		for (int i = 0; i < fragments.length; i++) {
 			Assert.assertEquals(
 				expectedFragmentEntryKeys.get(i), fragments[i].getKey());
 		}
+
+		Assert.assertEquals(
+			Arrays.toString(fragments), expectedFragmentEntryKeys.size(),
+			fragments.length);
 
 		Assert.assertEquals(
 			fragmentSettings.toString(), 1, fragmentSettings.size());

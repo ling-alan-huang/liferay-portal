@@ -127,13 +127,13 @@ public class ObjectEntryInfoItemCreatorTest
 				objectEntry2.getObjectEntryId(), true, false, null,
 				QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 
-		Assert.assertEquals(objectEntries.toString(), 1, objectEntries.size());
-
 		ObjectEntry objectEntry = objectEntries.get(0);
 
 		Assert.assertEquals(
 			relatedObjectEntry.getObjectEntryId(),
 			objectEntry.getObjectEntryId());
+
+		Assert.assertEquals(objectEntries.toString(), 1, objectEntries.size());
 	}
 
 	@Test
@@ -204,13 +204,13 @@ public class ObjectEntryInfoItemCreatorTest
 				objectEntry2.getObjectEntryId(), null, QueryUtil.ALL_POS,
 				QueryUtil.ALL_POS, null);
 
-		Assert.assertEquals(organizations.toString(), 1, organizations.size());
-
 		Organization organization = organizations.get(0);
 
 		Assert.assertEquals(
 			_organization.getOrganizationId(),
 			organization.getOrganizationId());
+
+		Assert.assertEquals(organizations.toString(), 1, organizations.size());
 	}
 
 	@Test
@@ -332,13 +332,13 @@ public class ObjectEntryInfoItemCreatorTest
 				childObjectEntry.getObjectEntryId(), true, false, null,
 				QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 
-		Assert.assertEquals(objectEntries.toString(), 1, objectEntries.size());
-
 		ObjectEntry objectEntry = objectEntries.get(0);
 
 		Assert.assertEquals(
 			relatedObjectEntry.getObjectEntryId(),
 			objectEntry.getObjectEntryId());
+
+		Assert.assertEquals(objectEntries.toString(), 1, objectEntries.size());
 
 		_objectDefinitionLocalService.deleteObjectDefinition(
 			childObjectDefinition);

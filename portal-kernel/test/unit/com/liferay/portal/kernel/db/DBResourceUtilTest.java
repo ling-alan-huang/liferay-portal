@@ -132,13 +132,13 @@ public class DBResourceUtilTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals(
 				"Unable to parse the column definitions of [TestTable1]",
 				logEntry.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 	}
 
@@ -352,11 +352,11 @@ public class DBResourceUtilTest {
 
 		indexMetadatas = tablesIndexMetadatas.get("TestTable2");
 
-		Assert.assertEquals(
-			indexMetadatas.toString(), 1, indexMetadatas.size());
-
 		_assertIndexMetadata(
 			new String[] {"column1"}, "IX_TEST3", false, indexMetadatas.get(0));
+
+		Assert.assertEquals(
+			indexMetadatas.toString(), 1, indexMetadatas.size());
 	}
 
 	private InputStream _getSQLFileInputStream(String lineSeparator) {

@@ -195,8 +195,6 @@ public class GetLayoutReportsLayoutItemDataStrutsActionTest {
 
 		JSONArray jsonArray = _serveResource();
 
-		Assert.assertEquals(1, jsonArray.length());
-
 		JSONObject jsonObject = jsonArray.getJSONObject(0);
 
 		Assert.assertNotNull(jsonObject);
@@ -211,6 +209,8 @@ public class GetLayoutReportsLayoutItemDataStrutsActionTest {
 		Assert.assertEquals("collection", jsonObject.getString("itemType"));
 		Assert.assertEquals("collection-display", jsonObject.getString("name"));
 		Assert.assertNotNull(jsonObject.get("renderTime"));
+
+		Assert.assertEquals(1, jsonArray.length());
 	}
 
 	@Test
@@ -273,8 +273,6 @@ public class GetLayoutReportsLayoutItemDataStrutsActionTest {
 
 		JSONArray jsonArray = _serveResource();
 
-		Assert.assertEquals(1, jsonArray.length());
-
 		JSONObject jsonObject = jsonArray.getJSONObject(0);
 
 		Assert.assertNotNull(jsonObject);
@@ -289,6 +287,8 @@ public class GetLayoutReportsLayoutItemDataStrutsActionTest {
 		Assert.assertEquals("collection", jsonObject.getString("itemType"));
 		Assert.assertEquals("collection-display", jsonObject.getString("name"));
 		Assert.assertNotNull(jsonObject.get("renderTime"));
+
+		Assert.assertEquals(1, jsonArray.length());
 	}
 
 	@Test
@@ -314,8 +314,6 @@ public class GetLayoutReportsLayoutItemDataStrutsActionTest {
 
 		JSONArray jsonArray = _serveResource();
 
-		Assert.assertEquals(1, jsonArray.length());
-
 		JSONObject jsonObject = jsonArray.getJSONObject(0);
 
 		Assert.assertNotNull(jsonObject);
@@ -339,6 +337,8 @@ public class GetLayoutReportsLayoutItemDataStrutsActionTest {
 		Assert.assertEquals(
 			fragmentEntry.getName(), jsonObject.getString("name"));
 		Assert.assertNotNull(jsonObject.get("renderTime"));
+
+		Assert.assertEquals(1, jsonArray.length());
 	}
 
 	@Test
@@ -383,14 +383,14 @@ public class GetLayoutReportsLayoutItemDataStrutsActionTest {
 
 		JSONArray jsonArray = _serveResource();
 
-		Assert.assertEquals(1, jsonArray.length());
-
 		JSONObject jsonObject = jsonArray.getJSONObject(0);
 
 		Assert.assertNotNull(jsonObject);
 		Assert.assertEquals(
 			"grid > " + fragmentEntry.getName(),
 			jsonObject.getString("hierarchy"));
+
+		Assert.assertEquals(1, jsonArray.length());
 	}
 
 	@Test
@@ -419,8 +419,6 @@ public class GetLayoutReportsLayoutItemDataStrutsActionTest {
 
 		JSONArray jsonArray = _serveResource();
 
-		Assert.assertEquals(1, jsonArray.length());
-
 		JSONObject jsonObject = jsonArray.getJSONObject(0);
 
 		Assert.assertNotNull(jsonObject);
@@ -433,6 +431,8 @@ public class GetLayoutReportsLayoutItemDataStrutsActionTest {
 		Assert.assertEquals("fragment", jsonObject.getString("itemType"));
 		Assert.assertEquals(portletId, jsonObject.getString("name"));
 		Assert.assertNotNull(jsonObject.get("renderTime"));
+
+		Assert.assertEquals(1, jsonArray.length());
 	}
 
 	private FragmentEntry _addFragmentEntry(boolean cacheable)

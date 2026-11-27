@@ -106,13 +106,13 @@ public class VIESAccountEntryValidatorConfigurationDisplayContextTest {
 			_viesAccountEntryValidatorConfigurationDisplayContext.
 				getAvailableCountryCodeKVPs();
 
-		Assert.assertEquals(
-			availableCountryCodeKVPs.toString(), 1,
-			availableCountryCodeKVPs.size());
-
 		KeyValuePair keyValuePair = availableCountryCodeKVPs.get(0);
 
 		Assert.assertEquals(_availableCountryA2, keyValuePair.getKey());
+
+		Assert.assertEquals(
+			availableCountryCodeKVPs.toString(), 1,
+			availableCountryCodeKVPs.size());
 	}
 
 	@Test
@@ -137,13 +137,13 @@ public class VIESAccountEntryValidatorConfigurationDisplayContextTest {
 			_viesAccountEntryValidatorConfigurationDisplayContext.
 				getCurrentCountryCodeKVPs();
 
-		Assert.assertEquals(
-			currentCountryCodeKVPs.toString(), 1,
-			currentCountryCodeKVPs.size());
-
 		KeyValuePair keyValuePair = currentCountryCodeKVPs.get(0);
 
 		Assert.assertEquals(_currentCountryA2, keyValuePair.getKey());
+
+		Assert.assertEquals(
+			currentCountryCodeKVPs.toString(), 1,
+			currentCountryCodeKVPs.size());
 	}
 
 	@Test

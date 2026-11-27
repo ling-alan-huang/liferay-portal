@@ -253,15 +253,15 @@ public class DDLRecordStagedModelDataHandlerTest
 		List<StagedModel> ddmStructureDependentStagedModels =
 			dependentStagedModelsMap.get(DDMStructure.class.getSimpleName());
 
-		Assert.assertEquals(
-			ddmStructureDependentStagedModels.toString(), 1,
-			ddmStructureDependentStagedModels.size());
-
 		DDMStructure ddmStructure =
 			(DDMStructure)ddmStructureDependentStagedModels.get(0);
 
 		DDMStructureLocalServiceUtil.getDDMStructureByUuidAndGroupId(
 			ddmStructure.getUuid(), group.getGroupId());
+
+		Assert.assertEquals(
+			ddmStructureDependentStagedModels.toString(), 1,
+			ddmStructureDependentStagedModels.size());
 
 		List<StagedModel> ddmTemplateDependentStagedModels =
 			dependentStagedModelsMap.get(DDMTemplate.class.getSimpleName());
@@ -280,15 +280,15 @@ public class DDLRecordStagedModelDataHandlerTest
 		List<StagedModel> recordSetDependentStagedModels =
 			dependentStagedModelsMap.get(DDLRecordSet.class.getSimpleName());
 
-		Assert.assertEquals(
-			recordSetDependentStagedModels.toString(), 1,
-			recordSetDependentStagedModels.size());
-
 		DDLRecordSet recordSet =
 			(DDLRecordSet)recordSetDependentStagedModels.get(0);
 
 		DDLRecordSetLocalServiceUtil.getDDLRecordSetByUuidAndGroupId(
 			recordSet.getUuid(), group.getGroupId());
+
+		Assert.assertEquals(
+			recordSetDependentStagedModels.toString(), 1,
+			recordSetDependentStagedModels.size());
 	}
 
 	@Override

@@ -663,10 +663,6 @@ public class UserNotificationTypeTest extends BaseNotificationTypeTest {
 			notificationQueueEntryLocalService.getNotificationQueueEntries(
 				QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 
-		Assert.assertEquals(
-			notificationQueueEntries.toString(), 1,
-			notificationQueueEntries.size());
-
 		NotificationQueueEntry notificationQueueEntry =
 			notificationQueueEntries.get(0);
 
@@ -676,14 +672,19 @@ public class UserNotificationTypeTest extends BaseNotificationTypeTest {
 		List<NotificationRecipientSetting> notificationRecipientSettings =
 			notificationRecipient.getNotificationRecipientSettings();
 
-		Assert.assertEquals(
-			notificationRecipientSettings.toString(), 1,
-			notificationRecipientSettings.size());
 		_assertNotificationRecipientSetting(
 			notificationRecipientSettings.get(0), expectedUserFullName);
 
+		Assert.assertEquals(
+			notificationRecipientSettings.toString(), 1,
+			notificationRecipientSettings.size());
+
 		notificationQueueEntryLocalService.deleteNotificationQueueEntry(
 			notificationQueueEntry);
+
+		Assert.assertEquals(
+			notificationQueueEntries.toString(), 1,
+			notificationQueueEntries.size());
 	}
 
 	private void _assertNotificationRecipientSetting(
@@ -843,16 +844,16 @@ public class UserNotificationTypeTest extends BaseNotificationTypeTest {
 			notificationQueueEntryLocalService.getNotificationQueueEntries(
 				QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 
-		Assert.assertEquals(
-			notificationQueueEntries.toString(), 1,
-			notificationQueueEntries.size());
-
 		notificationQueueEntry = notificationQueueEntries.get(0);
 
 		assertTermValues(
 			getTermValues(),
 			ListUtil.fromString(
 				notificationQueueEntry.getSubject(), StringPool.SEMICOLON));
+
+		Assert.assertEquals(
+			notificationQueueEntries.toString(), 1,
+			notificationQueueEntries.size());
 
 		_assertNotificationRecipientSettings(user1, user2);
 	}
@@ -894,16 +895,16 @@ public class UserNotificationTypeTest extends BaseNotificationTypeTest {
 			notificationQueueEntryLocalService.getNotificationQueueEntries(
 				QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 
-		Assert.assertEquals(
-			notificationQueueEntries.toString(), 1,
-			notificationQueueEntries.size());
-
 		notificationQueueEntry = notificationQueueEntries.get(0);
 
 		assertTermValues(
 			getTermValues(),
 			ListUtil.fromString(
 				notificationQueueEntry.getSubject(), StringPool.SEMICOLON));
+
+		Assert.assertEquals(
+			notificationQueueEntries.toString(), 1,
+			notificationQueueEntries.size());
 
 		_assertNotificationRecipientSettings(users);
 	}

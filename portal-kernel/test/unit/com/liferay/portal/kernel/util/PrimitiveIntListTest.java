@@ -25,16 +25,16 @@ public class PrimitiveIntListTest {
 			primitiveIntList.add(i);
 		}
 
-		Assert.assertEquals(expected.length, primitiveIntList.size());
-
 		int[] actual = primitiveIntList.getArray();
-
-		Assert.assertEquals(
-			Arrays.toString(actual), expected.length, actual.length);
 
 		for (int i = 0; i < actual.length; i++) {
 			Assert.assertEquals(expected[i], actual[i]);
 		}
+
+		Assert.assertEquals(
+			Arrays.toString(actual), expected.length, actual.length);
+
+		Assert.assertEquals(expected.length, primitiveIntList.size());
 	}
 
 	@Test
@@ -45,16 +45,16 @@ public class PrimitiveIntListTest {
 
 		primitiveIntList.addAll(expected);
 
-		Assert.assertEquals(expected.length, primitiveIntList.size());
-
 		int[] actual = primitiveIntList.getArray();
-
-		Assert.assertEquals(
-			Arrays.toString(actual), expected.length, actual.length);
 
 		for (int i = 0; i < actual.length; i++) {
 			Assert.assertEquals(expected[i], actual[i]);
 		}
+
+		Assert.assertEquals(
+			Arrays.toString(actual), expected.length, actual.length);
+
+		Assert.assertEquals(expected.length, primitiveIntList.size());
 	}
 
 }

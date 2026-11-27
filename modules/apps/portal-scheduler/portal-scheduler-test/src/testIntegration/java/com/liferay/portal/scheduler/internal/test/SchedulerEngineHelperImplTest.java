@@ -218,9 +218,6 @@ public class SchedulerEngineHelperImplTest {
 			serviceRegistration2.unregister();
 		}
 
-		Assert.assertEquals(
-			auditRequestContexts.toString(), 1, auditRequestContexts.size());
-
 		AuditRequestContext auditRequestContext = auditRequestContexts.get(0);
 
 		Assert.assertNotSame(currentAuditRequestContext, auditRequestContext);
@@ -229,6 +226,9 @@ public class SchedulerEngineHelperImplTest {
 			currentAuditRequestContext.getRequestId(),
 			auditRequestContext.getRequestId());
 		Assert.assertNull(auditRequestContext.getSessionID());
+
+		Assert.assertEquals(
+			auditRequestContexts.toString(), 1, auditRequestContexts.size());
 
 		Assert.assertSame(
 			currentAuditRequestContext,
@@ -304,11 +304,11 @@ public class SchedulerEngineHelperImplTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals(message, logEntry.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 		finally {
 			serviceRegistration1.unregister();

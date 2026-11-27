@@ -225,12 +225,12 @@ public class WikiPageLocalServiceTest {
 			AssetCategoryLocalServiceUtil.getCategories(
 				WikiPage.class.getName(), page.getResourcePrimKey());
 
-		Assert.assertEquals(
-			assetCategories.toString(), 1, assetCategories.size());
-
 		AssetCategory persistedAssetCategory = assetCategories.get(0);
 
 		Assert.assertEquals(categoryId, persistedAssetCategory.getCategoryId());
+
+		Assert.assertEquals(
+			assetCategories.toString(), 1, assetCategories.size());
 	}
 
 	@Test
@@ -406,10 +406,6 @@ public class WikiPageLocalServiceTest {
 		List<FileEntry> copyAttachmentsFileEntries =
 			copyPage.getAttachmentsFileEntries();
 
-		Assert.assertEquals(
-			attachmentsFileEntries.toString(),
-			copyAttachmentsFileEntries.size(), attachmentsFileEntries.size());
-
 		FileEntry fileEntry = attachmentsFileEntries.get(0);
 		FileEntry copyFileEntry = copyAttachmentsFileEntries.get(0);
 
@@ -419,6 +415,10 @@ public class WikiPageLocalServiceTest {
 			copyFileEntry.getMimeType(), fileEntry.getMimeType());
 		Assert.assertEquals(copyFileEntry.getTitle(), fileEntry.getTitle());
 		Assert.assertEquals(copyFileEntry.getSize(), fileEntry.getSize());
+
+		Assert.assertEquals(
+			attachmentsFileEntries.toString(),
+			copyAttachmentsFileEntries.size(), attachmentsFileEntries.size());
 	}
 
 	@Test
@@ -704,9 +704,9 @@ public class WikiPageLocalServiceTest {
 			_group.getGroupId(), _node.getNodeId(), QueryUtil.ALL_POS,
 			QueryUtil.ALL_POS);
 
-		Assert.assertEquals(recentPages.toString(), 1, recentPages.size());
-
 		Assert.assertEquals(page, recentPages.get(0));
+
+		Assert.assertEquals(recentPages.toString(), 1, recentPages.size());
 	}
 
 	@Test
@@ -739,10 +739,10 @@ public class WikiPageLocalServiceTest {
 			_group.getGroupId(), _node.getNodeId(), QueryUtil.ALL_POS,
 			QueryUtil.ALL_POS);
 
-		Assert.assertEquals(recentPages.toString(), 2, recentPages.size());
-
 		Assert.assertEquals(updatedPage2, recentPages.get(0));
 		Assert.assertEquals(page1, recentPages.get(1));
+
+		Assert.assertEquals(recentPages.toString(), 2, recentPages.size());
 	}
 
 	@Test
@@ -784,10 +784,10 @@ public class WikiPageLocalServiceTest {
 			_group.getGroupId(), _node.getNodeId(), QueryUtil.ALL_POS,
 			QueryUtil.ALL_POS);
 
-		Assert.assertEquals(recentPages.toString(), 2, recentPages.size());
-
 		Assert.assertEquals(page2, recentPages.get(0));
 		Assert.assertEquals(page1, recentPages.get(1));
+
+		Assert.assertEquals(recentPages.toString(), 2, recentPages.size());
 	}
 
 	@Test
@@ -809,10 +809,10 @@ public class WikiPageLocalServiceTest {
 			_group.getGroupId(), _node.getNodeId(), QueryUtil.ALL_POS,
 			QueryUtil.ALL_POS);
 
-		Assert.assertEquals(recentPages.toString(), 2, recentPages.size());
-
 		Assert.assertEquals(updatedPage1, recentPages.get(0));
 		Assert.assertEquals(page2, recentPages.get(1));
+
+		Assert.assertEquals(recentPages.toString(), 2, recentPages.size());
 	}
 
 	@Test

@@ -66,13 +66,13 @@ public class LayoutFinderTest {
 		List<Layout> layouts = _layoutFinder.findByScopeGroup(
 			_group.getGroupId());
 
-		Assert.assertEquals(layouts.toString(), 1, layouts.size());
-
 		Layout scopeGroupLayout = layouts.get(0);
 
 		Assert.assertEquals(
 			layout.getClassNameId(), scopeGroupLayout.getClassNameId());
 		Assert.assertEquals(layout.getPlid(), scopeGroupLayout.getPlid());
+
+		Assert.assertEquals(layouts.toString(), 1, layouts.size());
 	}
 
 	@DeleteAfterTestRun

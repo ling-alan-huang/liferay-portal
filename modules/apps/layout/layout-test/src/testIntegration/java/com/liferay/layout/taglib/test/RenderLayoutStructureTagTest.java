@@ -1297,14 +1297,15 @@ public class RenderLayoutStructureTagTest {
 				"liferay-info:info-list-grid:infoListObjects");
 
 		Assert.assertNotNull(actualJournalArticles);
-		Assert.assertEquals(
-			actualJournalArticles.toString(), 1, actualJournalArticles.size());
 
 		JournalArticle actualJournalArticle1 = actualJournalArticles.get(0);
 
 		Assert.assertEquals(
 			expectedJournalArticle1.getArticleId(),
 			actualJournalArticle1.getArticleId());
+
+		Assert.assertEquals(
+			actualJournalArticles.toString(), 1, actualJournalArticles.size());
 	}
 
 	@Test
@@ -1387,14 +1388,15 @@ public class RenderLayoutStructureTagTest {
 				"liferay-info:info-list-grid:infoListObjects");
 
 		Assert.assertNotNull(actualJournalArticles);
-		Assert.assertEquals(
-			actualJournalArticles.toString(), 1, actualJournalArticles.size());
 
 		JournalArticle actualJournalArticle = actualJournalArticles.get(0);
 
 		Assert.assertEquals(
 			expectedJournalArticle2.getArticleId(),
 			actualJournalArticle.getArticleId());
+
+		Assert.assertEquals(
+			actualJournalArticles.toString(), 1, actualJournalArticles.size());
 	}
 
 	@Test
@@ -2134,14 +2136,15 @@ public class RenderLayoutStructureTagTest {
 				"liferay-info:info-list-grid:infoListObjects");
 
 		Assert.assertNotNull(actualJournalArticles);
-		Assert.assertEquals(
-			actualJournalArticles.toString(), 1, actualJournalArticles.size());
 
 		JournalArticle actualJournalArticle = actualJournalArticles.get(0);
 
 		Assert.assertEquals(
 			expectedJournalArticle1.getArticleId(),
 			actualJournalArticle.getArticleId());
+
+		Assert.assertEquals(
+			actualJournalArticles.toString(), 1, actualJournalArticles.size());
 	}
 
 	@Test
@@ -4076,9 +4079,6 @@ public class RenderLayoutStructureTagTest {
 
 		String[] pageItems = html.split("page-item");
 
-		Assert.assertEquals(
-			pageItems.toString(), numberOfPages + 3, pageItems.length);
-
 		Assert.assertTrue(
 			pageItems[pageNumber],
 			StringUtil.endsWith(pageItems[pageNumber], "\"active "));
@@ -4102,6 +4102,9 @@ public class RenderLayoutStructureTagTest {
 				pageItems[pageNumber + 1],
 				StringUtil.endsWith(pageItems[pageNumber + 1], "\"disabled "));
 		}
+
+		Assert.assertEquals(
+			pageItems.toString(), numberOfPages + 3, pageItems.length);
 	}
 
 	private void _assertPagination(

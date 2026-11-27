@@ -122,13 +122,14 @@ public class AccountEntryValidatorRegistryImplTest {
 		List<AccountEntryValidator> accountEntryValidators =
 			_accountEntryValidatorRegistryImpl.getAccountEntryValidators();
 
-		Assert.assertEquals(
-			accountEntryValidators.toString(), 2,
-			accountEntryValidators.size());
 		Assert.assertSame(
 			accountEntryValidator1, accountEntryValidators.get(0));
 		Assert.assertSame(
 			accountEntryValidator2, accountEntryValidators.get(1));
+
+		Assert.assertEquals(
+			accountEntryValidators.toString(), 2,
+			accountEntryValidators.size());
 	}
 
 	@Test
@@ -492,13 +493,14 @@ public class AccountEntryValidatorRegistryImplTest {
 			Mockito.any(), Mockito.any()
 		);
 
-		Assert.assertEquals(
-			accountEntryValidatorResults.toString(), 2,
-			accountEntryValidatorResults.size());
 		Assert.assertSame(
 			accountEntryValidatorResult1, accountEntryValidatorResults.get(0));
 		Assert.assertSame(
 			accountEntryValidatorResult2, accountEntryValidatorResults.get(1));
+
+		Assert.assertEquals(
+			accountEntryValidatorResults.toString(), 2,
+			accountEntryValidatorResults.size());
 	}
 
 	private ServiceWrapper<AccountEntryValidator> _getServiceWrapper(

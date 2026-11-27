@@ -211,15 +211,15 @@ public class EditObjectEntryRelatedModelMVCActionCommandTest {
 						")(mvc.command.name=/object_entries",
 						"/edit_object_entry_related_model))")));
 
-		Assert.assertEquals(
-			serviceReferences.toString(), 1, serviceReferences.size());
-
 		ReflectionTestUtil.invoke(
 			bundleContext.getService(serviceReferences.get(0)),
 			"doProcessAction",
 			new Class<?>[] {ActionRequest.class, ActionResponse.class},
 			mockLiferayPortletActionRequest,
 			new MockLiferayPortletActionResponse());
+
+		Assert.assertEquals(
+			serviceReferences.toString(), 1, serviceReferences.size());
 	}
 
 	private void _setUser(User user) {

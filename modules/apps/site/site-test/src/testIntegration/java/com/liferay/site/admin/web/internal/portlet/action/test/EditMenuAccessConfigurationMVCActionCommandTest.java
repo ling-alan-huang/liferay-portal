@@ -156,8 +156,6 @@ public class EditMenuAccessConfigurationMVCActionCommandTest {
 				MenuAccessConfiguration.class.getName(), null));
 
 		Assert.assertNotNull(configurations);
-		Assert.assertEquals(
-			Arrays.toString(configurations), 1, configurations.length);
 
 		Configuration configuration = configurations[0];
 
@@ -174,6 +172,9 @@ public class EditMenuAccessConfigurationMVCActionCommandTest {
 
 		Assert.assertTrue(
 			GetterUtil.getBoolean(properties.get("showControlMenuByRole")));
+
+		Assert.assertEquals(
+			Arrays.toString(configurations), 1, configurations.length);
 	}
 
 	private ThemeDisplay _getThemeDisplay(User user) {

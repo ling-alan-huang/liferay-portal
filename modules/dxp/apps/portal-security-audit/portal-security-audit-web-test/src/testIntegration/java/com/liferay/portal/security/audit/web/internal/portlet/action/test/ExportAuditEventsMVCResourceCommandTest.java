@@ -68,9 +68,10 @@ public class ExportAuditEventsMVCResourceCommandTest {
 
 		String[] lines = StringUtil.split(csv, CharPool.NEW_LINE);
 
-		Assert.assertEquals(Arrays.toString(lines), 2, lines.length);
 		Assert.assertEquals(
 			StringUtil.merge(_COLUMNS_DEFAULT, StringPool.COMMA), lines[0]);
+
+		Assert.assertEquals(Arrays.toString(lines), 2, lines.length);
 	}
 
 	@Test

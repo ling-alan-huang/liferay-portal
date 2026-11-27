@@ -1089,12 +1089,12 @@ public class LiferayCommercePIMConnectorTest {
 
 		jsonArray = skuJSONObject.getJSONArray("skuOptions");
 
-		Assert.assertEquals(jsonArray.toString(), 1, jsonArray.length());
-
 		JSONObject skuOptionJSONObject = jsonArray.getJSONObject(0);
 
 		Assert.assertEquals(
 			"extraLarge", skuOptionJSONObject.getString("value"));
+
+		Assert.assertEquals(jsonArray.toString(), 1, jsonArray.length());
 	}
 
 	private void _testExecuteWithPicklistProductSpecification()
@@ -1158,13 +1158,13 @@ public class LiferayCommercePIMConnectorTest {
 
 		JSONArray jsonArray = jsonObject.getJSONArray("productSpecifications");
 
-		Assert.assertEquals(jsonArray.toString(), 1, jsonArray.length());
-
 		jsonObject = jsonArray.getJSONObject(0);
 
 		JSONObject valueJSONObject = jsonObject.getJSONObject("value");
 
 		Assert.assertEquals("Small", valueJSONObject.getString("en_US"));
+
+		Assert.assertEquals(jsonArray.toString(), 1, jsonArray.length());
 	}
 
 	private void _testExecuteWithProductOptions() throws Exception {
@@ -1229,12 +1229,12 @@ public class LiferayCommercePIMConnectorTest {
 			"skuOptions"
 		);
 
-		Assert.assertEquals(jsonArray.toString(), 1, jsonArray.length());
-
 		JSONObject skuOptionJSONObject = jsonArray.getJSONObject(0);
 
 		Assert.assertEquals("color", skuOptionJSONObject.getString("key"));
 		Assert.assertEquals("red", skuOptionJSONObject.getString("value"));
+
+		Assert.assertEquals(jsonArray.toString(), 1, jsonArray.length());
 	}
 
 	private void _testExecuteWithProductSpecifications() throws Exception {
@@ -1261,8 +1261,6 @@ public class LiferayCommercePIMConnectorTest {
 
 		JSONArray jsonArray = jsonObject.getJSONArray("productSpecifications");
 
-		Assert.assertEquals(jsonArray.toString(), 1, jsonArray.length());
-
 		JSONObject productSpecificationJSONObject = jsonArray.getJSONObject(0);
 
 		Assert.assertEquals(
@@ -1275,6 +1273,8 @@ public class LiferayCommercePIMConnectorTest {
 			productSpecificationJSONObject.getJSONObject("label");
 
 		Assert.assertEquals("Color", labelJSONObject.getString("en_US"));
+
+		Assert.assertEquals(jsonArray.toString(), 1, jsonArray.length());
 	}
 
 	private void _testExecuteWithTrailingSlashURL() throws Exception {

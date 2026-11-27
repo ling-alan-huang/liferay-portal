@@ -77,11 +77,11 @@ public class MentionsPortletTest {
 		try {
 			JSONArray jsonArray = _getServletResponseJSONArray("example");
 
-			Assert.assertEquals(1, jsonArray.length());
-
 			JSONObject jsonObject = jsonArray.getJSONObject(0);
 
 			Assert.assertEquals("example", jsonObject.getString("screenName"));
+
+			Assert.assertEquals(1, jsonArray.length());
 		}
 		finally {
 			_userLocalService.deleteUser(user);
@@ -97,11 +97,11 @@ public class MentionsPortletTest {
 		try {
 			JSONArray jsonArray = _getServletResponseJSONArray("exa");
 
-			Assert.assertEquals(1, jsonArray.length());
-
 			JSONObject jsonObject = jsonArray.getJSONObject(0);
 
 			Assert.assertEquals("example", jsonObject.getString("screenName"));
+
+			Assert.assertEquals(1, jsonArray.length());
 		}
 		finally {
 			_userLocalService.deleteUser(user);
@@ -115,11 +115,11 @@ public class MentionsPortletTest {
 		try {
 			JSONArray jsonArray = _getServletResponseJSONArray("");
 
-			Assert.assertEquals(1, jsonArray.length());
-
 			JSONObject jsonObject = jsonArray.getJSONObject(0);
 
 			Assert.assertEquals("example", jsonObject.getString("screenName"));
+
+			Assert.assertEquals(1, jsonArray.length());
 		}
 		finally {
 			_userLocalService.deleteUser(user);
@@ -142,11 +142,11 @@ public class MentionsPortletTest {
 		try {
 			JSONArray jsonArray = _getServletResponseJSONArray(null);
 
-			Assert.assertEquals(1, jsonArray.length());
-
 			JSONObject jsonObject = jsonArray.getJSONObject(0);
 
 			Assert.assertEquals("example", jsonObject.getString("screenName"));
+
+			Assert.assertEquals(1, jsonArray.length());
 		}
 		finally {
 			_userLocalService.deleteUser(user);

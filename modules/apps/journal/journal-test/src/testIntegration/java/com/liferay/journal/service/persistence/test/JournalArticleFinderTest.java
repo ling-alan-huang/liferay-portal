@@ -213,9 +213,9 @@ public class JournalArticleFinderTest {
 				JournalArticleConstants.CLASS_NAME_ID_DEFAULT,
 				LocaleUtil.getSiteDefault(), queryDefinition);
 
-		Assert.assertEquals(articles.toString(), 1, articles.size());
-
 		Assert.assertEquals(articles.get(0), _article);
+
+		Assert.assertEquals(articles.toString(), 1, articles.size());
 	}
 
 	@Test

@@ -87,9 +87,6 @@ public class AssetListFiltersUpgradeUtilTest {
 		JSONArray filtersJSONArray = JSONFactoryUtil.createJSONArray(
 			unicodeProperties.getProperty("filters"));
 
-		Assert.assertEquals(
-			filtersJSONArray.toString(), 1, filtersJSONArray.length());
-
 		JSONObject filterJSONObject = filtersJSONArray.getJSONObject(0);
 
 		Assert.assertEquals(
@@ -100,6 +97,9 @@ public class AssetListFiltersUpgradeUtilTest {
 		Assert.assertEquals(
 			StringUtil.merge(keywords, StringPool.SPACE),
 			filterJSONObject.getString("value"));
+
+		Assert.assertEquals(
+			filtersJSONArray.toString(), 1, filtersJSONArray.length());
 	}
 
 	@Test
@@ -213,9 +213,6 @@ public class AssetListFiltersUpgradeUtilTest {
 		JSONArray filtersJSONArray = JSONFactoryUtil.createJSONArray(
 			unicodeProperties.getProperty("filters"));
 
-		Assert.assertEquals(
-			filtersJSONArray.toString(), 1, filtersJSONArray.length());
-
 		JSONObject filterJSONObject = filtersJSONArray.getJSONObject(0);
 
 		Assert.assertEquals(
@@ -240,6 +237,9 @@ public class AssetListFiltersUpgradeUtilTest {
 			Assert.assertArrayEquals(
 				expectedValues, new String[] {GetterUtil.getString(value)});
 		}
+
+		Assert.assertEquals(
+			filtersJSONArray.toString(), 1, filtersJSONArray.length());
 	}
 
 }

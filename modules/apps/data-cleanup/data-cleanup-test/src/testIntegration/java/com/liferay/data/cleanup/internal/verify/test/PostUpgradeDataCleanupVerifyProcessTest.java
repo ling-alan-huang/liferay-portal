@@ -93,11 +93,11 @@ public class PostUpgradeDataCleanupVerifyProcessTest {
 
 			List<String> messages = logCapture.getMessages();
 
-			Assert.assertEquals(messages.toString(), 1, messages.size());
-
 			Assert.assertEquals(
 				"Skipping search index cleanup: search engine unavailable",
 				messages.get(0));
+
+			Assert.assertEquals(messages.toString(), 1, messages.size());
 		}
 	}
 

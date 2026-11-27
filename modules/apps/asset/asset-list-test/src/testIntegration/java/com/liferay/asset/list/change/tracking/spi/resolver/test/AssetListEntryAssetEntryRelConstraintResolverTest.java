@@ -236,10 +236,6 @@ public class AssetListEntryAssetEntryRelConstraintResolverTest {
 					SegmentsEntryConstants.ID_DEFAULT, QueryUtil.ALL_POS,
 					QueryUtil.ALL_POS);
 
-		Assert.assertEquals(
-			actualAssetListEntryAssetEntryRels.toString(), indexes.length,
-			actualAssetListEntryAssetEntryRels.size());
-
 		for (int i = 0; i < indexes.length; i++) {
 			AssetListEntryAssetEntryRel assetListEntryAssetEntryRel =
 				actualAssetListEntryAssetEntryRels.get(i);
@@ -254,6 +250,10 @@ public class AssetListEntryAssetEntryRelConstraintResolverTest {
 
 			Assert.assertEquals(i, assetListEntryAssetEntryRel.getPosition());
 		}
+
+		Assert.assertEquals(
+			actualAssetListEntryAssetEntryRels.toString(), indexes.length,
+			actualAssetListEntryAssetEntryRels.size());
 	}
 
 	private void _assertPublish() throws Exception {

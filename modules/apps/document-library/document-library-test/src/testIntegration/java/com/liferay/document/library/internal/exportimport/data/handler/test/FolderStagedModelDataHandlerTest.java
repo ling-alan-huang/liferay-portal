@@ -348,10 +348,6 @@ public class FolderStagedModelDataHandlerTest
 		List<StagedModel> ddmStructureDependentStagedModels =
 			dependentStagedModelsMap.get(DDMStructure.class.getSimpleName());
 
-		Assert.assertEquals(
-			ddmStructureDependentStagedModels.toString(), 1,
-			ddmStructureDependentStagedModels.size());
-
 		DDMStructure ddmStructure =
 			(DDMStructure)ddmStructureDependentStagedModels.get(0);
 
@@ -360,12 +356,12 @@ public class FolderStagedModelDataHandlerTest
 			DDMStructureLocalServiceUtil.fetchDDMStructureByUuidAndGroupId(
 				ddmStructure.getUuid(), group.getGroupId()));
 
+		Assert.assertEquals(
+			ddmStructureDependentStagedModels.toString(), 1,
+			ddmStructureDependentStagedModels.size());
+
 		List<StagedModel> dlFileEntryTypesDependentStagedModels =
 			dependentStagedModelsMap.get(DLFileEntryType.class.getSimpleName());
-
-		Assert.assertEquals(
-			dlFileEntryTypesDependentStagedModels.toString(), 1,
-			dlFileEntryTypesDependentStagedModels.size());
 
 		DLFileEntryType dlFileEntryType =
 			(DLFileEntryType)dlFileEntryTypesDependentStagedModels.get(0);
@@ -375,6 +371,10 @@ public class FolderStagedModelDataHandlerTest
 			DLFileEntryTypeLocalServiceUtil.
 				fetchDLFileEntryTypeByUuidAndGroupId(
 					dlFileEntryType.getUuid(), group.getGroupId()));
+
+		Assert.assertEquals(
+			dlFileEntryTypesDependentStagedModels.toString(), 1,
+			dlFileEntryTypesDependentStagedModels.size());
 	}
 
 	@Override
@@ -386,22 +386,18 @@ public class FolderStagedModelDataHandlerTest
 		List<StagedModel> ddmStructureDependentStagedModels =
 			dependentStagedModelsMap.get(DDMStructure.class.getSimpleName());
 
-		Assert.assertEquals(
-			ddmStructureDependentStagedModels.toString(), 1,
-			ddmStructureDependentStagedModels.size());
-
 		DDMStructure ddmStructure =
 			(DDMStructure)ddmStructureDependentStagedModels.get(0);
 
 		DDMStructureLocalServiceUtil.getDDMStructureByUuidAndGroupId(
 			ddmStructure.getUuid(), group.getGroupId());
 
+		Assert.assertEquals(
+			ddmStructureDependentStagedModels.toString(), 1,
+			ddmStructureDependentStagedModels.size());
+
 		List<StagedModel> dlFileEntryTypesDependentStagedModels =
 			dependentStagedModelsMap.get(DLFileEntryType.class.getSimpleName());
-
-		Assert.assertEquals(
-			dlFileEntryTypesDependentStagedModels.toString(), 1,
-			dlFileEntryTypesDependentStagedModels.size());
 
 		DLFileEntryType dlFileEntryType =
 			(DLFileEntryType)dlFileEntryTypesDependentStagedModels.get(0);
@@ -409,17 +405,21 @@ public class FolderStagedModelDataHandlerTest
 		DLFileEntryTypeLocalServiceUtil.getDLFileEntryTypeByUuidAndGroupId(
 			dlFileEntryType.getUuid(), group.getGroupId());
 
+		Assert.assertEquals(
+			dlFileEntryTypesDependentStagedModels.toString(), 1,
+			dlFileEntryTypesDependentStagedModels.size());
+
 		List<StagedModel> folderDependentStagedModels =
 			dependentStagedModelsMap.get(DLFolder.class.getSimpleName());
-
-		Assert.assertEquals(
-			folderDependentStagedModels.toString(), 1,
-			folderDependentStagedModels.size());
 
 		Folder parentFolder = (Folder)folderDependentStagedModels.get(0);
 
 		DLFolderLocalServiceUtil.getDLFolderByUuidAndGroupId(
 			parentFolder.getUuid(), group.getGroupId());
+
+		Assert.assertEquals(
+			folderDependentStagedModels.toString(), 1,
+			folderDependentStagedModels.size());
 	}
 
 	@Override

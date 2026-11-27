@@ -262,9 +262,6 @@ public class UpgradeProcessFactoryTest {
 
 		UpgradeStep[] upgradeSteps = upgradeProcess.getUpgradeSteps();
 
-		Assert.assertEquals(
-			Arrays.toString(upgradeSteps), 4, upgradeSteps.length);
-
 		_assertUpgrade(
 			upgradeProcess.getClass(),
 			StringBundler.concat(
@@ -287,6 +284,9 @@ public class UpgradeProcessFactoryTest {
 				" to alter the name of the column newColumn to ",
 				"newColumnModified"),
 			(UpgradeProcess)upgradeSteps[3]);
+
+		Assert.assertEquals(
+			Arrays.toString(upgradeSteps), 4, upgradeSteps.length);
 
 		Assert.assertTrue(
 			_dbInspector.hasColumnType(
@@ -315,9 +315,6 @@ public class UpgradeProcessFactoryTest {
 
 		UpgradeStep[] upgradeSteps = upgradeProcess.getUpgradeSteps();
 
-		Assert.assertEquals(
-			Arrays.toString(upgradeSteps), 3, upgradeSteps.length);
-
 		_assertUpgrade(
 			upgradeProcess.getClass(),
 			StringBundler.concat(
@@ -330,6 +327,9 @@ public class UpgradeProcessFactoryTest {
 				"Modifying table ", _TABLE_NAME_1,
 				" to drop the columns [typeDate]"),
 			(UpgradeProcess)upgradeSteps[1]);
+
+		Assert.assertEquals(
+			Arrays.toString(upgradeSteps), 3, upgradeSteps.length);
 
 		upgradeProcess.upgrade();
 

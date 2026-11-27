@@ -355,7 +355,6 @@ public class OpenAPIResourceTest {
 					JSONArray jsonArray = openAPIJSONObject.getJSONArray(
 						companyObjectDefinition.getRESTContextPath());
 
-					Assert.assertEquals(1, jsonArray.length());
 					Assert.assertEquals(
 						StringBundler.concat(
 							"http://www.able.com:",
@@ -363,6 +362,8 @@ public class OpenAPIResourceTest {
 							companyObjectDefinition.getRESTContextPath(),
 							"/openapi.yaml"),
 						jsonArray.get(0));
+
+					Assert.assertEquals(1, jsonArray.length());
 				}
 			);
 		}

@@ -895,13 +895,13 @@ public class AccountEntryUserRelLocalServiceTest {
 				getAccountEntryUserRelsByAccountEntryId(accountEntryId),
 			AccountEntryUserRelModel::getAccountUserId);
 
-		Assert.assertEquals(
-			Arrays.toString(actualUserIds), expectedUserIds.length,
-			actualUserIds.length);
-
 		for (int i = 0; i < expectedUserIds.length; i++) {
 			Assert.assertEquals(expectedUserIds[i], actualUserIds[i]);
 		}
+
+		Assert.assertEquals(
+			Arrays.toString(actualUserIds), expectedUserIds.length,
+			actualUserIds.length);
 	}
 
 	private void _testAddAccountEntryUserRel2(
@@ -927,8 +927,9 @@ public class AccountEntryUserRelLocalServiceTest {
 
 		List<User> users = baseModelSearchResult.getBaseModels();
 
-		Assert.assertEquals(users.toString(), 1, users.size());
 		Assert.assertEquals(users.get(0), user);
+
+		Assert.assertEquals(users.toString(), 1, users.size());
 	}
 
 	private void _testDeleteAccountEntryUserRelsByAccountEntryId(

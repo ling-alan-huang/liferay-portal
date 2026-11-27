@@ -353,13 +353,13 @@ public class WikiPageStagedModelDataHandlerTest
 		List<StagedModel> dependentStagedModels = dependentStagedModelsMap.get(
 			WikiNode.class.getSimpleName());
 
-		Assert.assertEquals(
-			dependentStagedModels.toString(), 1, dependentStagedModels.size());
-
 		WikiNode node = (WikiNode)dependentStagedModels.get(0);
 
 		WikiNodeLocalServiceUtil.getWikiNodeByUuidAndGroupId(
 			node.getUuid(), group.getGroupId());
+
+		Assert.assertEquals(
+			dependentStagedModels.toString(), 1, dependentStagedModels.size());
 	}
 
 	@Override

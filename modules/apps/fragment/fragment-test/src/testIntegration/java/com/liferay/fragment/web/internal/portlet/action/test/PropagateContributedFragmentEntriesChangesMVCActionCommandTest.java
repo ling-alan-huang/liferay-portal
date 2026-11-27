@@ -72,8 +72,6 @@ public class PropagateContributedFragmentEntriesChangesMVCActionCommandTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Throwable throwable = logEntry.getThrowable();
@@ -83,6 +81,8 @@ public class PropagateContributedFragmentEntriesChangesMVCActionCommandTest {
 				"Invalid scope primary key for company " +
 					TestPropsValues.getCompanyId(),
 				throwable.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 
 		FragmentServiceConfiguration fragmentServiceConfiguration =
@@ -123,14 +123,14 @@ public class PropagateContributedFragmentEntriesChangesMVCActionCommandTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Throwable throwable = logEntry.getThrowable();
 
 			Assert.assertEquals(
 				PrincipalException.MustBeOmniadmin.class, throwable.getClass());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 
 		FragmentServiceConfiguration fragmentServiceConfiguration =

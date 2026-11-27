@@ -97,9 +97,10 @@ public class SegmentsEntryRetrieverTest {
 			Constants.PREVIEW, SegmentsEntryConstants.ID_DEFAULT);
 
 		Assert.assertEquals(
-			Arrays.toString(segmentsEntryIds), 1, segmentsEntryIds.length);
-		Assert.assertEquals(
 			SegmentsEntryConstants.ID_DEFAULT, segmentsEntryIds[0]);
+
+		Assert.assertEquals(
+			Arrays.toString(segmentsEntryIds), 1, segmentsEntryIds.length);
 	}
 
 	@Test
@@ -128,9 +129,10 @@ public class SegmentsEntryRetrieverTest {
 			Constants.VIEW, RandomTestUtil.randomLong());
 
 		Assert.assertEquals(
-			Arrays.toString(segmentsEntryIds), 1, segmentsEntryIds.length);
-		Assert.assertEquals(
 			SegmentsEntryConstants.ID_DEFAULT, segmentsEntryIds[0]);
+
+		Assert.assertEquals(
+			Arrays.toString(segmentsEntryIds), 1, segmentsEntryIds.length);
 	}
 
 	@Test
@@ -139,9 +141,10 @@ public class SegmentsEntryRetrieverTest {
 			_group.getGroupId(), _user.getUserId(), null);
 
 		Assert.assertEquals(
-			Arrays.toString(segmentsEntryIds), 1, segmentsEntryIds.length);
-		Assert.assertEquals(
 			SegmentsEntryConstants.ID_DEFAULT, segmentsEntryIds[0]);
+
+		Assert.assertEquals(
+			Arrays.toString(segmentsEntryIds), 1, segmentsEntryIds.length);
 	}
 
 	private SegmentsEntry _addSegmentsEntry(User user) throws Exception {

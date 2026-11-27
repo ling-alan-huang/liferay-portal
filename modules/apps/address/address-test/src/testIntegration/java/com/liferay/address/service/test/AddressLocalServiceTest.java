@@ -505,13 +505,13 @@ public class AddressLocalServiceTest {
 
 		List<Address> actualAddresses = baseModelSearchResult.getBaseModels();
 
-		Assert.assertEquals(
-			actualAddresses.toString(), end - start, actualAddresses.size());
-
 		for (int i = 0; i < (end - start); i++) {
 			Assert.assertEquals(
 				expectedAddresses.get(start + i), actualAddresses.get(i));
 		}
+
+		Assert.assertEquals(
+			actualAddresses.toString(), end - start, actualAddresses.size());
 	}
 
 	private LinkedHashMap<String, Object> _getLinkedHashMap(

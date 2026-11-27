@@ -366,8 +366,6 @@ public class ObjectEntryResourceFilterByRelatedObjectEntriesTest
 
 		JSONArray itemsJSONArray = jsonObject.getJSONArray("items");
 
-		Assert.assertEquals(1, itemsJSONArray.length());
-
 		JSONObject itemJSONObject = itemsJSONArray.getJSONObject(0);
 
 		String objectEntry1ExternalReferenceCode =
@@ -376,6 +374,8 @@ public class ObjectEntryResourceFilterByRelatedObjectEntriesTest
 		Assert.assertEquals(
 			objectEntry1ExternalReferenceCode,
 			itemJSONObject.getString(objectRelationshipERCObjectFieldName));
+
+		Assert.assertEquals(1, itemsJSONArray.length());
 
 		// Comparison operators
 
@@ -757,9 +757,6 @@ public class ObjectEntryResourceFilterByRelatedObjectEntriesTest
 
 		JSONArray itemsJSONArray = jsonObject.getJSONArray("items");
 
-		Assert.assertEquals(
-			itemsJSONArray.toString(), 1, itemsJSONArray.length());
-
 		JSONObject itemJSONObject = itemsJSONArray.getJSONObject(0);
 
 		Assert.assertEquals(
@@ -770,6 +767,9 @@ public class ObjectEntryResourceFilterByRelatedObjectEntriesTest
 		Assert.assertEquals(
 			expectedObjectFieldValue,
 			itemJSONObject.getString(OBJECT_FIELD_NAME_TEXT));
+
+		Assert.assertEquals(
+			itemsJSONArray.toString(), 1, itemsJSONArray.length());
 	}
 
 	private void
@@ -2381,12 +2381,12 @@ public class ObjectEntryResourceFilterByRelatedObjectEntriesTest
 
 		JSONArray itemsJSONArray = jsonObject.getJSONArray("items");
 
-		Assert.assertEquals(1, itemsJSONArray.length());
-
 		JSONObject itemJSONObject = itemsJSONArray.getJSONObject(0);
 
 		Assert.assertEquals(
 			objectEntry.getObjectEntryId(), itemJSONObject.getLong("id"));
+
+		Assert.assertEquals(1, itemsJSONArray.length());
 	}
 
 	private void _testFilterObjectEntriesByRelatedSystemObjectEntriesFields(

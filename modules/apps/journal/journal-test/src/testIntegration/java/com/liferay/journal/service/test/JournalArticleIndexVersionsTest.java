@@ -331,13 +331,13 @@ public class JournalArticleIndexVersionsTest {
 
 		List<JournalArticle> articles = _journalHelper.getArticles(results);
 
-		Assert.assertEquals(
-			articles.toString(), expectedCount, articles.size());
-
 		JournalArticle searchArticle = articles.get(0);
 
 		Assert.assertEquals(
 			searchArticle.toString(), article.getId(), searchArticle.getId());
+
+		Assert.assertEquals(
+			articles.toString(), expectedCount, articles.size());
 	}
 
 	protected void assertSearchCount(long expectedCount, boolean head)

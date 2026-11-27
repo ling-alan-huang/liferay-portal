@@ -69,8 +69,6 @@ public class ViewProjectsSectionDisplayContextTest
 		List<DropdownItem> dropdownItems = (List<DropdownItem>)creationMenu.get(
 			"primaryItems");
 
-		Assert.assertEquals(dropdownItems.toString(), 1, dropdownItems.size());
-
 		DropdownItem dropdownItem = dropdownItems.get(0);
 
 		Assert.assertEquals("createProject", getValue(dropdownItem, "action"));
@@ -88,16 +86,14 @@ public class ViewProjectsSectionDisplayContextTest
 				themeDisplay.getURLCurrent()),
 			getValue(dropdownItem, "redirect"));
 		Assert.assertEquals("Project", getValue(dropdownItem, "title"));
+
+		Assert.assertEquals(dropdownItems.toString(), 1, dropdownItems.size());
 	}
 
 	@Test
 	public void testGetFDSActionDropdownItems() throws Exception {
 		List<FDSActionDropdownItem> fdsActionDropdownItems =
 			getFDSActionDropdownItems(null);
-
-		Assert.assertEquals(
-			fdsActionDropdownItems.toString(), 6,
-			fdsActionDropdownItems.size());
 
 		FrontendDataSetTestUtil.assertFDSActionDropdownItem(
 			"pencil", "edit", "Edit", "get", fdsActionDropdownItems.get(0));
@@ -114,13 +110,15 @@ public class ViewProjectsSectionDisplayContextTest
 			fdsActionDropdownItems.get(4));
 		FrontendDataSetTestUtil.assertFDSActionDropdownItem(
 			"trash", "delete", "Delete", null, fdsActionDropdownItems.get(5));
+
+		Assert.assertEquals(
+			fdsActionDropdownItems.toString(), 6,
+			fdsActionDropdownItems.size());
 	}
 
 	@Test
 	public void testGetFDSFilters() throws Exception {
 		List<FDSFilter> fdsFilters = getFDSFilters(null);
-
-		Assert.assertEquals(fdsFilters.toString(), 5, fdsFilters.size());
 
 		assertFDSFilter(
 			FDSEntityFieldTypes.DATE_TIME, "cmpDueDate", "due-date",
@@ -135,6 +133,8 @@ public class ViewProjectsSectionDisplayContextTest
 			FDSEntityFieldTypes.STRING, "cmpState", "state", fdsFilters.get(3));
 		assertFDSFilter(
 			FDSEntityFieldTypes.STRING, "keywords", "tag", fdsFilters.get(4));
+
+		Assert.assertEquals(fdsFilters.toString(), 5, fdsFilters.size());
 	}
 
 	@Override

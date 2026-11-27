@@ -99,10 +99,11 @@ public class SXPParameterDataCreatorUtilTest {
 
 		String[] generatedArray = (String[])sxpParameter.getValue();
 
-		Assert.assertEquals(
-			Arrays.toString(generatedArray), 2, generatedArray.length);
 		Assert.assertEquals(_PARAMETER_VALUE_1, generatedArray[0]);
 		Assert.assertEquals(_PARAMETER_VALUE_2, generatedArray[1]);
+
+		Assert.assertEquals(
+			Arrays.toString(generatedArray), 2, generatedArray.length);
 	}
 
 	private static final String _PARAMETER_NAME = RandomTestUtil.randomString();

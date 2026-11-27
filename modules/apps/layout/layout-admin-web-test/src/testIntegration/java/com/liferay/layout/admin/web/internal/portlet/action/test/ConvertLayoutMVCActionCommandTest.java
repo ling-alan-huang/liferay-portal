@@ -215,9 +215,6 @@ public class ConvertLayoutMVCActionCommandTest {
 			_fragmentEntryLinkLocalService.getFragmentEntryLinksByPlid(
 				_group.getGroupId(), convertedLayout.getPlid());
 
-		Assert.assertEquals(
-			fragmentEntryLinks.toString(), 1, fragmentEntryLinks.size());
-
 		FragmentEntryLink fragmentEntryLink = fragmentEntryLinks.get(0);
 
 		JSONObject editableValuesJSONObject =
@@ -237,6 +234,9 @@ public class ConvertLayoutMVCActionCommandTest {
 			"borderless",
 			portletPreferences.getValue(
 				"portletSetupPortletDecoratorId", StringPool.BLANK));
+
+		Assert.assertEquals(
+			fragmentEntryLinks.toString(), 1, fragmentEntryLinks.size());
 	}
 
 	@Test
@@ -460,8 +460,6 @@ public class ConvertLayoutMVCActionCommandTest {
 
 		List<String> rootItemIds = rootLayoutStructureItem.getChildrenItemIds();
 
-		Assert.assertEquals(rootItemIds.toString(), 1, rootItemIds.size());
-
 		LayoutStructureItem containerLayoutStructureItem =
 			layoutStructure.getLayoutStructureItem(rootItemIds.get(0));
 
@@ -476,9 +474,6 @@ public class ConvertLayoutMVCActionCommandTest {
 		List<String> containerItemIds =
 			containerLayoutStructureItem.getChildrenItemIds();
 
-		Assert.assertEquals(
-			containerItemIds.toString(), 1, containerItemIds.size());
-
 		LayoutStructureItem rowLayoutStructureItem =
 			layoutStructure.getLayoutStructureItem(containerItemIds.get(0));
 
@@ -490,8 +485,6 @@ public class ConvertLayoutMVCActionCommandTest {
 			LayoutDataItemTypeConstants.TYPE_ROW);
 
 		List<String> rowItemIds = rowLayoutStructureItem.getChildrenItemIds();
-
-		Assert.assertEquals(rowItemIds.toString(), 1, rowItemIds.size());
 
 		LayoutStructureItem columnLayoutStructureItem =
 			layoutStructure.getLayoutStructureItem(rowItemIds.get(0));
@@ -507,6 +500,13 @@ public class ConvertLayoutMVCActionCommandTest {
 			columnLayoutStructureItem.getChildrenItemIds();
 
 		Assert.assertEquals(columnItemIds.toString(), 0, columnItemIds.size());
+
+		Assert.assertEquals(rowItemIds.toString(), 1, rowItemIds.size());
+
+		Assert.assertEquals(
+			containerItemIds.toString(), 1, containerItemIds.size());
+
+		Assert.assertEquals(rootItemIds.toString(), 1, rootItemIds.size());
 
 		Layout persistedPublishedLayout = _layoutLocalService.getLayout(
 			originalLayout.getPlid());

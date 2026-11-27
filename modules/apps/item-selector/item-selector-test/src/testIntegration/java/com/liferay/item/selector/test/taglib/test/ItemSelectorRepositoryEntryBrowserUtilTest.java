@@ -88,12 +88,12 @@ public class ItemSelectorRepositoryEntryBrowserUtilTest {
 		List<BreadcrumbEntry> breadcrumbEntries = _getBreadcrumbEntries(
 			dlFolder.getFolderId());
 
-		Assert.assertEquals(
-			breadcrumbEntries.toString(), 3, breadcrumbEntries.size());
-
 		BreadcrumbEntry breadcrumbEntry = breadcrumbEntries.get(2);
 
 		Assert.assertEquals(dlFolder.getName(), breadcrumbEntry.getTitle());
+
+		Assert.assertEquals(
+			breadcrumbEntries.toString(), 3, breadcrumbEntries.size());
 	}
 
 	@Test

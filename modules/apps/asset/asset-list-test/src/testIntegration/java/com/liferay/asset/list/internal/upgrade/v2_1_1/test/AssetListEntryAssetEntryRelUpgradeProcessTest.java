@@ -269,10 +269,6 @@ public class AssetListEntryAssetEntryRelUpgradeProcessTest {
 					_assetListEntry.getAssetListEntryId(), segmentsEntryId,
 					QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 
-		Assert.assertEquals(
-			assetListEntryAssetEntryRels.toString(), journalArticles.length,
-			assetListEntryAssetEntryRels.size());
-
 		for (int i = 0; i < assetListEntryAssetEntryRels.size(); i++) {
 			AssetListEntryAssetEntryRel assetListEntryAssetEntryRel =
 				assetListEntryAssetEntryRels.get(i);
@@ -291,6 +287,10 @@ public class AssetListEntryAssetEntryRelUpgradeProcessTest {
 			Assert.assertEquals(
 				journalArticle.getResourcePrimKey(), assetEntry.getClassPK());
 		}
+
+		Assert.assertEquals(
+			assetListEntryAssetEntryRels.toString(), journalArticles.length,
+			assetListEntryAssetEntryRels.size());
 	}
 
 	private void _assertAssetListEntryAssetEntryRelsSize(int expected) {

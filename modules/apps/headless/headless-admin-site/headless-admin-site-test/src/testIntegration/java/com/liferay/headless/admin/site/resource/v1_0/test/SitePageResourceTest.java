@@ -908,10 +908,6 @@ public class SitePageResourceTest extends BaseSitePageResourceTestCase {
 		FragmentEditableElement[] fragmentEditableElements =
 			fragmentInstance.getFragmentEditableElements();
 
-		Assert.assertEquals(
-			fragmentEditableElements.toString(), 1,
-			fragmentEditableElements.length);
-
 		FragmentEditableElement fragmentEditableElement =
 			fragmentEditableElements[0];
 
@@ -924,6 +920,10 @@ public class SitePageResourceTest extends BaseSitePageResourceTestCase {
 
 		Assert.assertEquals(
 			fragmentImageValue, fragmentImage.getFragmentImageValue());
+
+		Assert.assertEquals(
+			fragmentEditableElements.toString(), 1,
+			fragmentEditableElements.length);
 	}
 
 	private void _assertFragmentImageValues(
@@ -1089,12 +1089,12 @@ public class SitePageResourceTest extends BaseSitePageResourceTestCase {
 	private void _assertMapEquals(
 		Map<String, String> expectedMap, Map<String, String> map) {
 
-		Assert.assertEquals(
-			MapUtil.toString(map), expectedMap.size(), map.size());
-
 		for (Map.Entry<String, String> entry : expectedMap.entrySet()) {
 			Assert.assertEquals(entry.getValue(), map.get(entry.getKey()));
 		}
+
+		Assert.assertEquals(
+			MapUtil.toString(map), expectedMap.size(), map.size());
 	}
 
 	private void _assertNestedFields(SitePage sitePage) throws Exception {
@@ -2596,14 +2596,14 @@ public class SitePageResourceTest extends BaseSitePageResourceTestCase {
 
 		List<SitePage> sitePages = new ArrayList<>(sitePagesPage.getItems());
 
-		Assert.assertEquals(sitePages.toString(), 1, sitePages.size());
-
 		SitePage sitePage = sitePages.get(0);
 
 		_assertPageSpecificationVersions(
 			_layoutLocalService.getLayoutByExternalReferenceCode(
 				sitePage.getExternalReferenceCode(), testGroup.getGroupId()),
 			sitePage.getPageSpecificationVersions());
+
+		Assert.assertEquals(sitePages.toString(), 1, sitePages.size());
 	}
 
 	private void _testGetSiteSitePageSitePagesPageWithPermissions()
@@ -4259,13 +4259,13 @@ public class SitePageResourceTest extends BaseSitePageResourceTestCase {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			String message = logEntry.getMessage();
 
 			Assert.assertTrue(message.contains("LayoutPageTemplateEntry"));
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 
 		_testPostSiteSitePage(_getRandomSitePageWithWidgetPageTemplate(true));
@@ -4497,9 +4497,6 @@ public class SitePageResourceTest extends BaseSitePageResourceTestCase {
 			_fragmentEntryLinkLocalService.getFragmentEntryLinksByPlid(
 				testGroup.getGroupId(), layout.getPlid());
 
-		Assert.assertEquals(
-			fragmentEntryLinks.toString(), 1, fragmentEntryLinks.size());
-
 		FragmentEntryLink fragmentEntryLink = fragmentEntryLinks.get(0);
 
 		_fragmentEntryLinkCache.putFragmentEntryLinkContent(
@@ -4525,6 +4522,9 @@ public class SitePageResourceTest extends BaseSitePageResourceTestCase {
 		Assert.assertNull(
 			_fragmentEntryLinkCache.getFragmentEntryLinkContent(
 				fragmentEntryLink, locale));
+
+		Assert.assertEquals(
+			fragmentEntryLinks.toString(), 1, fragmentEntryLinks.size());
 	}
 
 	private void _testPutSiteSitePageWithContentPageSpecification()
@@ -5076,10 +5076,6 @@ public class SitePageResourceTest extends BaseSitePageResourceTestCase {
 		TaxonomyCategoryBrief[] putTaxonomyCategoryBriefs =
 			putSitePage.getTaxonomyCategoryBriefs();
 
-		Assert.assertEquals(
-			Arrays.toString(putTaxonomyCategoryBriefs), 1,
-			putTaxonomyCategoryBriefs.length);
-
 		TaxonomyCategoryBrief putTaxonomyCategoryBrief =
 			putTaxonomyCategoryBriefs[0];
 
@@ -5093,6 +5089,10 @@ public class SitePageResourceTest extends BaseSitePageResourceTestCase {
 			taxonomyCategoryBrief3.getTaxonomyCategoryExternalReferenceCode(),
 			putTaxonomyCategoryBrief.
 				getTaxonomyCategoryExternalReferenceCode());
+
+		Assert.assertEquals(
+			Arrays.toString(putTaxonomyCategoryBriefs), 1,
+			putTaxonomyCategoryBriefs.length);
 	}
 
 	private void _testPutSiteSitePageWithPageElements() throws Exception {

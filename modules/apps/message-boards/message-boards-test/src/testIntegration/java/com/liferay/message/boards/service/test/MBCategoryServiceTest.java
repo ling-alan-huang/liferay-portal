@@ -184,15 +184,16 @@ public class MBCategoryServiceTest {
 					MBCategoryConstants.DEFAULT_PARENT_CATEGORY_ID,
 					WorkflowConstants.STATUS_APPROVED);
 
-			Assert.assertEquals(
-				categoriesAndThreads.toString(), 4,
-				categoriesAndThreads.size());
 			Assert.assertEquals(category1, categoriesAndThreads.get(0));
 			Assert.assertEquals(category2, categoriesAndThreads.get(1));
 			Assert.assertEquals(
 				message1.getThread(), categoriesAndThreads.get(2));
 			Assert.assertEquals(
 				message2.getThread(), categoriesAndThreads.get(3));
+
+			Assert.assertEquals(
+				categoriesAndThreads.toString(), 4,
+				categoriesAndThreads.size());
 		}
 	}
 
@@ -215,11 +216,12 @@ public class MBCategoryServiceTest {
 					MBCategoryConstants.DEFAULT_PARENT_CATEGORY_ID,
 					WorkflowConstants.STATUS_APPROVED);
 
+			Assert.assertEquals(category1, categoriesAndThreads.get(0));
+			Assert.assertEquals(category2, categoriesAndThreads.get(1));
+
 			Assert.assertEquals(
 				categoriesAndThreads.toString(), 2,
 				categoriesAndThreads.size());
-			Assert.assertEquals(category1, categoriesAndThreads.get(0));
-			Assert.assertEquals(category2, categoriesAndThreads.get(1));
 		}
 	}
 
@@ -243,12 +245,13 @@ public class MBCategoryServiceTest {
 					WorkflowConstants.STATUS_APPROVED);
 
 			Assert.assertEquals(
-				categoriesAndThreads.toString(), 2,
-				categoriesAndThreads.size());
-			Assert.assertEquals(
 				message1.getThread(), categoriesAndThreads.get(0));
 			Assert.assertEquals(
 				message2.getThread(), categoriesAndThreads.get(1));
+
+			Assert.assertEquals(
+				categoriesAndThreads.toString(), 2,
+				categoriesAndThreads.size());
 		}
 	}
 
@@ -270,10 +273,11 @@ public class MBCategoryServiceTest {
 					_group.getGroupId(), category1.getCategoryId(),
 					WorkflowConstants.STATUS_APPROVED);
 
+			Assert.assertEquals(subcategory1, categoriesAndThreads.get(0));
+
 			Assert.assertEquals(
 				categoriesAndThreads.toString(), 1,
 				categoriesAndThreads.size());
-			Assert.assertEquals(subcategory1, categoriesAndThreads.get(0));
 		}
 	}
 
@@ -303,9 +307,6 @@ public class MBCategoryServiceTest {
 					MBCategoryConstants.DEFAULT_PARENT_CATEGORY_ID,
 					WorkflowConstants.STATUS_APPROVED);
 
-			Assert.assertEquals(
-				categoriesAndThreads.toString(), 4,
-				categoriesAndThreads.size());
 			Assert.assertEquals(category1, categoriesAndThreads.get(0));
 			Assert.assertEquals(
 				priorityMessage.getThread(), categoriesAndThreads.get(1));
@@ -313,6 +314,10 @@ public class MBCategoryServiceTest {
 				message1.getThread(), categoriesAndThreads.get(2));
 			Assert.assertEquals(
 				message2.getThread(), categoriesAndThreads.get(3));
+
+			Assert.assertEquals(
+				categoriesAndThreads.toString(), 4,
+				categoriesAndThreads.size());
 		}
 	}
 
@@ -402,9 +407,9 @@ public class MBCategoryServiceTest {
 			_group.getGroupId(), MBCategoryConstants.DEFAULT_PARENT_CATEGORY_ID,
 			queryDefinition);
 
-		Assert.assertEquals(categories.toString(), 1, categories.size());
-
 		Assert.assertEquals(category2, categories.get(0));
+
+		Assert.assertEquals(categories.toString(), 1, categories.size());
 	}
 
 	@Test
@@ -433,9 +438,9 @@ public class MBCategoryServiceTest {
 			_group.getGroupId(), MBCategoryConstants.DEFAULT_PARENT_CATEGORY_ID,
 			queryDefinition);
 
-		Assert.assertEquals(categories.toString(), 1, categories.size());
-
 		Assert.assertEquals(category2, categories.get(0));
+
+		Assert.assertEquals(categories.toString(), 1, categories.size());
 	}
 
 	@Test
@@ -464,9 +469,9 @@ public class MBCategoryServiceTest {
 			_group.getGroupId(), MBCategoryConstants.DEFAULT_PARENT_CATEGORY_ID,
 			queryDefinition);
 
-		Assert.assertEquals(categories.toString(), 1, categories.size());
-
 		Assert.assertEquals(category1, categories.get(0));
+
+		Assert.assertEquals(categories.toString(), 1, categories.size());
 	}
 
 	@Test

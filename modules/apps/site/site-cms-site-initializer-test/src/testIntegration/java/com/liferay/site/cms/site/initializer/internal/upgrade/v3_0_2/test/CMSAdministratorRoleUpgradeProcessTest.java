@@ -67,8 +67,6 @@ public class CMSAdministratorRoleUpgradeProcessTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals(
@@ -79,6 +77,8 @@ public class CMSAdministratorRoleUpgradeProcessTest {
 					cmsAdministratorRole.getCompanyId(),
 					" because another role already uses it"),
 				logEntry.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 
 		cmsAdministratorRole = _roleLocalService.getRole(

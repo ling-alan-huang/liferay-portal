@@ -157,9 +157,6 @@ public class ConfigurationOmniSearchResultProviderTest {
 		List<OmniSearchResult> omniSearchResults = _getOmniSearchResults(
 			"elasticsearch");
 
-		Assert.assertEquals(
-			omniSearchResults.toString(), 1, omniSearchResults.size());
-
 		OmniSearchResult sectionOmniSearchResult = omniSearchResults.get(0);
 
 		Assert.assertEquals("cog", sectionOmniSearchResult.getIcon());
@@ -170,10 +167,6 @@ public class ConfigurationOmniSearchResultProviderTest {
 
 		List<OmniSearchResult> entryOmniSearchResults =
 			sectionOmniSearchResult.getOmniSearchResults();
-
-		Assert.assertEquals(
-			entryOmniSearchResults.toString(), 1,
-			entryOmniSearchResults.size());
 
 		OmniSearchResult entryOmniSearchResult = entryOmniSearchResults.get(0);
 
@@ -186,6 +179,13 @@ public class ConfigurationOmniSearchResultProviderTest {
 			OmniSearchResult.Type.ENTRY, entryOmniSearchResult.getType());
 		Assert.assertEquals(
 			String.valueOf(_liferayPortletURL), entryOmniSearchResult.getURL());
+
+		Assert.assertEquals(
+			entryOmniSearchResults.toString(), 1,
+			entryOmniSearchResults.size());
+
+		Assert.assertEquals(
+			omniSearchResults.toString(), 1, omniSearchResults.size());
 	}
 
 	@Test
@@ -203,9 +203,6 @@ public class ConfigurationOmniSearchResultProviderTest {
 		List<OmniSearchResult> omniSearchResults = _getOmniSearchResults(
 			"analytics cloud");
 
-		Assert.assertEquals(
-			omniSearchResults.toString(), 1, omniSearchResults.size());
-
 		OmniSearchResult sectionOmniSearchResult = omniSearchResults.get(0);
 
 		Assert.assertEquals(
@@ -214,16 +211,19 @@ public class ConfigurationOmniSearchResultProviderTest {
 		List<OmniSearchResult> entryOmniSearchResults =
 			sectionOmniSearchResult.getOmniSearchResults();
 
-		Assert.assertEquals(
-			entryOmniSearchResults.toString(), 1,
-			entryOmniSearchResults.size());
-
 		OmniSearchResult entryOmniSearchResult = entryOmniSearchResults.get(0);
 
 		Assert.assertEquals(
 			"analytics", entryOmniSearchResult.getDescription());
 		Assert.assertEquals(
 			"Analytics Cloud Connection", entryOmniSearchResult.getTitle());
+
+		Assert.assertEquals(
+			entryOmniSearchResults.toString(), 1,
+			entryOmniSearchResults.size());
+
+		Assert.assertEquals(
+			omniSearchResults.toString(), 1, omniSearchResults.size());
 
 		Mockito.verify(
 			_liferayPortletURL

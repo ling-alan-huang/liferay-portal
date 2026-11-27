@@ -331,10 +331,6 @@ public class CommerceSubscriptionEntryTest {
 						false));
 
 		if (cpDefinitionSubscriptionEnabled && cpInstanceSubscriptionEnabled) {
-			Assert.assertEquals(
-				commerceSubscriptionEntries.toString(), 2,
-				commerceSubscriptionEntries.size());
-
 			CommerceSubscriptionEntry commerceSubscriptionEntry1 =
 				commerceSubscriptionEntries.get(0);
 			CommerceSubscriptionEntry commerceSubscriptionEntry2 =
@@ -359,6 +355,10 @@ public class CommerceSubscriptionEntryTest {
 			Assert.assertEquals(
 				cpInstanceMaxSubscriptionCycles,
 				commerceSubscriptionEntry2.getMaxSubscriptionCycles());
+
+			Assert.assertEquals(
+				commerceSubscriptionEntries.toString(), 2,
+				commerceSubscriptionEntries.size());
 		}
 		else if (!cpDefinitionSubscriptionEnabled &&
 				 !cpInstanceSubscriptionEnabled) {
@@ -368,10 +368,6 @@ public class CommerceSubscriptionEntryTest {
 				commerceSubscriptionEntries.size());
 		}
 		else {
-			Assert.assertEquals(
-				commerceSubscriptionEntries.toString(), 1,
-				commerceSubscriptionEntries.size());
-
 			CommerceSubscriptionEntry commerceSubscriptionEntry =
 				commerceSubscriptionEntries.get(0);
 
@@ -397,6 +393,10 @@ public class CommerceSubscriptionEntryTest {
 					cpDefinitionMaxSubscriptionCycles,
 					commerceSubscriptionEntry.getMaxSubscriptionCycles());
 			}
+
+			Assert.assertEquals(
+				commerceSubscriptionEntries.toString(), 1,
+				commerceSubscriptionEntries.size());
 		}
 	}
 

@@ -1201,11 +1201,11 @@ public class CTTableMapperTest {
 				rightPrimaryKey, 1, 2, null);
 		}
 
-		Assert.assertEquals(lefts.toString(), 1, lefts.size());
-
 		Left left3 = lefts.get(0);
 
 		Assert.assertEquals(leftPrimaryKey2, left3.getPrimaryKeyObj());
+
+		Assert.assertEquals(lefts.toString(), 1, lefts.size());
 
 		// No such model exception
 
@@ -1474,11 +1474,11 @@ public class CTTableMapperTest {
 				leftPrimaryKey, 1, 2, null);
 		}
 
-		Assert.assertEquals(rights.toString(), 1, rights.size());
-
 		Right right3 = rights.get(0);
 
 		Assert.assertEquals(rightPrimaryKey2, right3.getPrimaryKeyObj());
+
+		Assert.assertEquals(rights.toString(), 1, rights.size());
 
 		// No such model exception
 
@@ -1898,8 +1898,6 @@ public class CTTableMapperTest {
 
 		@Override
 		public int update(Object... params) {
-			Assert.assertEquals(Arrays.toString(params), 5, params.length);
-
 			Assert.assertSame(Long.class, params[0].getClass());
 			Assert.assertSame(Long.class, params[1].getClass());
 			Assert.assertSame(Long.class, params[2].getClass());
@@ -1927,6 +1925,8 @@ public class CTTableMapperTest {
 
 			_put(leftPrimaryKey, rightPrimaryKey, ctCollectionId, ctChangeType);
 
+			Assert.assertEquals(Arrays.toString(params), 5, params.length);
+
 			return 1;
 		}
 
@@ -1942,8 +1942,6 @@ public class CTTableMapperTest {
 
 		@Override
 		public int update(Object... params) {
-			Assert.assertEquals(Arrays.toString(params), 3, params.length);
-
 			Assert.assertSame(Long.class, params[0].getClass());
 			Assert.assertSame(Long.class, params[1].getClass());
 			Assert.assertSame(Long.class, params[2].getClass());
@@ -1960,6 +1958,8 @@ public class CTTableMapperTest {
 			}
 
 			_put(leftPrimaryKey, rightPrimaryKey, 0L, null);
+
+			Assert.assertEquals(Arrays.toString(params), 3, params.length);
 
 			return 1;
 		}
@@ -1982,8 +1982,6 @@ public class CTTableMapperTest {
 
 		@Override
 		public List<Integer> execute(Object... params) {
-			Assert.assertEquals(Arrays.toString(params), 6, params.length);
-
 			Assert.assertSame(Long.class, params[0].getClass());
 			Assert.assertSame(Long.class, params[1].getClass());
 			Assert.assertSame(Long.class, params[2].getClass());
@@ -2012,6 +2010,8 @@ public class CTTableMapperTest {
 
 				return Collections.singletonList(1);
 			}
+
+			Assert.assertEquals(Arrays.toString(params), 6, params.length);
 
 			return Collections.singletonList(0);
 		}
@@ -2048,8 +2048,6 @@ public class CTTableMapperTest {
 
 		@Override
 		public List<Integer> execute(Object... params) {
-			Assert.assertEquals(Arrays.toString(params), 2, params.length);
-
 			Assert.assertSame(Long.class, params[0].getClass());
 			Assert.assertSame(Long.class, params[1].getClass());
 
@@ -2067,6 +2065,8 @@ public class CTTableMapperTest {
 			if (_containsKey(leftPrimaryKey, rightPrimaryKey, 0L)) {
 				return Collections.singletonList(1);
 			}
+
+			Assert.assertEquals(Arrays.toString(params), 2, params.length);
 
 			return Collections.singletonList(0);
 		}
@@ -2098,8 +2098,6 @@ public class CTTableMapperTest {
 
 		@Override
 		public int update(Object... params) {
-			Assert.assertEquals(Arrays.toString(params), 1, params.length);
-
 			Assert.assertSame(Long.class, params[0].getClass());
 
 			Long leftPrimaryKey = (Long)params[0];
@@ -2112,6 +2110,8 @@ public class CTTableMapperTest {
 				mappingKey ->
 					(leftPrimaryKey == mappingKey._leftPrimaryKey) &&
 					(mappingKey._ctCollectionId == 0));
+
+			Assert.assertEquals(Arrays.toString(params), 1, params.length);
 
 			return size - mappingKeys.size();
 		}
@@ -2131,8 +2131,6 @@ public class CTTableMapperTest {
 
 		@Override
 		public int update(Object... params) {
-			Assert.assertEquals(Arrays.toString(params), 1, params.length);
-
 			Assert.assertSame(Long.class, params[0].getClass());
 
 			Long rightPrimaryKey = (Long)params[0];
@@ -2145,6 +2143,8 @@ public class CTTableMapperTest {
 				mappingKey ->
 					(rightPrimaryKey == mappingKey._rightPrimaryKey) &&
 					(mappingKey._ctCollectionId == 0));
+
+			Assert.assertEquals(Arrays.toString(params), 1, params.length);
 
 			return size - mappingKeys.size();
 		}
@@ -2163,8 +2163,6 @@ public class CTTableMapperTest {
 
 		@Override
 		public int update(Object... params) {
-			Assert.assertEquals(Arrays.toString(params), 2, params.length);
-
 			Assert.assertSame(Long.class, params[0].getClass());
 			Assert.assertSame(Long.class, params[1].getClass());
 
@@ -2176,6 +2174,8 @@ public class CTTableMapperTest {
 
 				return 1;
 			}
+
+			Assert.assertEquals(Arrays.toString(params), 2, params.length);
 
 			return 0;
 		}
@@ -2196,8 +2196,6 @@ public class CTTableMapperTest {
 
 		@Override
 		public List<Long> execute(Object... params) {
-			Assert.assertEquals(Arrays.toString(params), 4, params.length);
-
 			Assert.assertSame(Long.class, params[0].getClass());
 			Assert.assertSame(Long.class, params[1].getClass());
 			Assert.assertSame(Long.class, params[2].getClass());
@@ -2234,6 +2232,8 @@ public class CTTableMapperTest {
 				leftPrimaryKeysList.add(leftPrimaryKey);
 			}
 
+			Assert.assertEquals(Arrays.toString(params), 4, params.length);
+
 			return leftPrimaryKeysList;
 		}
 
@@ -2264,8 +2264,6 @@ public class CTTableMapperTest {
 
 		@Override
 		public List<Long> execute(Object... params) {
-			Assert.assertEquals(Arrays.toString(params), 4, params.length);
-
 			Assert.assertSame(Long.class, params[0].getClass());
 			Assert.assertSame(Long.class, params[1].getClass());
 			Assert.assertSame(Long.class, params[2].getClass());
@@ -2302,6 +2300,8 @@ public class CTTableMapperTest {
 				rightPrimaryKeysList.add(rightPrimaryKey);
 			}
 
+			Assert.assertEquals(Arrays.toString(params), 4, params.length);
+
 			return rightPrimaryKeysList;
 		}
 
@@ -2332,8 +2332,6 @@ public class CTTableMapperTest {
 
 		@Override
 		public List<Long> execute(Object... params) {
-			Assert.assertEquals(Arrays.toString(params), 1, params.length);
-
 			Assert.assertSame(Long.class, params[0].getClass());
 
 			Long rightPrimaryKey = (Long)params[0];
@@ -2349,6 +2347,8 @@ public class CTTableMapperTest {
 
 				leftPrimaryKeysList.add(mappingKey._leftPrimaryKey);
 			}
+
+			Assert.assertEquals(Arrays.toString(params), 1, params.length);
 
 			return leftPrimaryKeysList;
 		}
@@ -2370,8 +2370,6 @@ public class CTTableMapperTest {
 
 		@Override
 		public List<Long> execute(Object... params) {
-			Assert.assertEquals(Arrays.toString(params), 1, params.length);
-
 			Assert.assertSame(Long.class, params[0].getClass());
 
 			Long leftPrimaryKey = (Long)params[0];
@@ -2387,6 +2385,8 @@ public class CTTableMapperTest {
 
 				rightPrimaryKeysList.add(mappingKey._rightPrimaryKey);
 			}
+
+			Assert.assertEquals(Arrays.toString(params), 1, params.length);
 
 			return rightPrimaryKeysList;
 		}
@@ -2408,8 +2408,6 @@ public class CTTableMapperTest {
 
 		@Override
 		public int update(Object... params) {
-			Assert.assertEquals(Arrays.toString(params), 4, params.length);
-
 			Assert.assertSame(Boolean.class, params[0].getClass());
 			Assert.assertSame(Long.class, params[1].getClass());
 			Assert.assertSame(Long.class, params[2].getClass());
@@ -2433,6 +2431,8 @@ public class CTTableMapperTest {
 					return 1;
 				}
 			}
+
+			Assert.assertEquals(Arrays.toString(params), 4, params.length);
 
 			return 0;
 		}

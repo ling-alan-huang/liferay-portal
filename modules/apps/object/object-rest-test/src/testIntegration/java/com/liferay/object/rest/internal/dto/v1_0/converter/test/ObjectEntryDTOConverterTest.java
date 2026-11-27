@@ -123,7 +123,6 @@ public class ObjectEntryDTOConverterTest {
 		List<ListEntry> listEntries = (List<ListEntry>)properties.get(
 			"multiselectPicklist");
 
-		Assert.assertEquals(listEntries.toString(), 2, listEntries.size());
 		Assert.assertEquals(
 			"listTypeEntryKey1",
 			listEntries.get(
@@ -134,6 +133,8 @@ public class ObjectEntryDTOConverterTest {
 			listEntries.get(
 				1
 			).getKey());
+
+		Assert.assertEquals(listEntries.toString(), 2, listEntries.size());
 
 		ListEntry listEntry = (ListEntry)properties.get("picklist");
 

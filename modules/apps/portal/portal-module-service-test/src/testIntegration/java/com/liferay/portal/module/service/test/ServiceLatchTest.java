@@ -107,7 +107,6 @@ public class ServiceLatchTest {
 
 			serviceLatch.openOn(openCounter::incrementAndGet);
 
-			Assert.assertEquals(serviceAs.toString(), 1, serviceAs.size());
 			Assert.assertSame(serviceA1, serviceAs.get(0));
 			Assert.assertEquals(serviceBs.toString(), 0, serviceBs.size());
 			Assert.assertEquals(0, openCounter.get());
@@ -120,14 +119,19 @@ public class ServiceLatchTest {
 
 			try {
 				Assert.assertEquals(1, openCounter.get());
-				Assert.assertEquals(serviceAs.toString(), 1, serviceAs.size());
 				Assert.assertSame(serviceA1, serviceAs.get(0));
-				Assert.assertEquals(serviceBs.toString(), 1, serviceBs.size());
+
+				Assert.assertEquals(serviceAs.toString(), 1, serviceAs.size());
+
 				Assert.assertSame(serviceB, serviceBs.get(0));
+
+				Assert.assertEquals(serviceBs.toString(), 1, serviceBs.size());
 			}
 			finally {
 				serviceRegistration3.unregister();
 			}
+
+			Assert.assertEquals(serviceAs.toString(), 1, serviceAs.size());
 		}
 		finally {
 			serviceRegistration1.unregister();
@@ -164,7 +168,6 @@ public class ServiceLatchTest {
 			_bundleContext.registerService(ServiceA.class, serviceA2, null);
 
 		try {
-			Assert.assertEquals(serviceAs.toString(), 1, serviceAs.size());
 			Assert.assertSame(serviceA1, serviceAs.get(0));
 			Assert.assertEquals(0, openCounter.get());
 
@@ -176,14 +179,19 @@ public class ServiceLatchTest {
 
 			try {
 				Assert.assertEquals(1, openCounter.get());
-				Assert.assertEquals(serviceAs.toString(), 1, serviceAs.size());
 				Assert.assertSame(serviceA1, serviceAs.get(0));
-				Assert.assertEquals(serviceBs.toString(), 1, serviceBs.size());
+
+				Assert.assertEquals(serviceAs.toString(), 1, serviceAs.size());
+
 				Assert.assertSame(serviceB, serviceBs.get(0));
+
+				Assert.assertEquals(serviceBs.toString(), 1, serviceBs.size());
 			}
 			finally {
 				serviceRegistration3.unregister();
 			}
+
+			Assert.assertEquals(serviceAs.toString(), 1, serviceAs.size());
 		}
 		finally {
 			serviceRegistration2.unregister();

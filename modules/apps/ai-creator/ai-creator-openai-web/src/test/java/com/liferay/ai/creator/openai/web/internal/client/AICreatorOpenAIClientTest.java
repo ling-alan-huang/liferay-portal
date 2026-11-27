@@ -298,8 +298,6 @@ public class AICreatorOpenAIClientTest {
 			"messages");
 
 		Assert.assertNotNull(contentJSONObject.toString(), messagesJSONArray);
-		Assert.assertEquals(
-			messagesJSONArray.toString(), 2, messagesJSONArray.length());
 
 		JSONObject messageJSONObject1 = messagesJSONArray.getJSONObject(0);
 
@@ -309,6 +307,9 @@ public class AICreatorOpenAIClientTest {
 
 		Assert.assertEquals(content, messageJSONObject2.getString("content"));
 		Assert.assertEquals("user", messageJSONObject2.getString("role"));
+
+		Assert.assertEquals(
+			messagesJSONArray.toString(), 2, messagesJSONArray.length());
 	}
 
 	private void _assertMessageRoleSystemContent(
@@ -329,9 +330,10 @@ public class AICreatorOpenAIClientTest {
 
 		String[] arguments = argumentCaptor.getValue();
 
-		Assert.assertEquals(arguments.toString(), 2, arguments.length);
 		Assert.assertEquals(String.valueOf(words), arguments[0]);
 		Assert.assertEquals(tone, arguments[1]);
+
+		Assert.assertEquals(arguments.toString(), 2, arguments.length);
 	}
 
 	private void _assertOptions(String apiKey, String location)

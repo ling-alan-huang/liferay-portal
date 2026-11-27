@@ -492,10 +492,6 @@ public class DLFolderServiceTest {
 				QueryUtil.ALL_POS,
 				new RepositoryModelReadCountComparator<>(true));
 
-		Assert.assertEquals(
-			actualFoldersAndFileEntriesAndFileShortcuts.toString(), 5,
-			actualFoldersAndFileEntriesAndFileShortcuts.size());
-
 		for (int i = 0; i < 5; i++) {
 			if (expectedFoldersAndFileEntriesAndFileShortcuts.get(i) instanceof
 					FileEntry) {
@@ -524,6 +520,10 @@ public class DLFolderServiceTest {
 					actualDLFileShortcut.getFileShortcutId());
 			}
 		}
+
+		Assert.assertEquals(
+			actualFoldersAndFileEntriesAndFileShortcuts.toString(), 5,
+			actualFoldersAndFileEntriesAndFileShortcuts.size());
 	}
 
 	@Test
@@ -568,10 +568,6 @@ public class DLFolderServiceTest {
 				QueryUtil.ALL_POS,
 				new RepositoryModelTitleComparator<FileEntry>(true));
 
-		Assert.assertEquals(
-			actualFoldersAndFileEntriesAndFileShortcuts.toString(), 3,
-			actualFoldersAndFileEntriesAndFileShortcuts.size());
-
 		for (int i = 0; i < 3; i++) {
 			FileEntry expectedFileEntry = expectedFileEntries.get(i);
 			DLFileEntry actualDLFileEntry =
@@ -581,6 +577,10 @@ public class DLFolderServiceTest {
 				expectedFileEntry.getFileEntryId(),
 				actualDLFileEntry.getFileEntryId());
 		}
+
+		Assert.assertEquals(
+			actualFoldersAndFileEntriesAndFileShortcuts.toString(), 3,
+			actualFoldersAndFileEntriesAndFileShortcuts.size());
 	}
 
 	@Test

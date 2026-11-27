@@ -196,12 +196,12 @@ public class DDMFormValuesFactoryTest {
 		List<DDMFormFieldValue> actualDDMFormFieldValues =
 			actualDDMFormValues.getDDMFormFieldValues();
 
+		assertEquals("Joe", actualDDMFormFieldValues.get(0), LocaleUtil.US);
+		assertEquals("true", actualDDMFormFieldValues.get(1), LocaleUtil.US);
+
 		Assert.assertEquals(
 			actualDDMFormFieldValues.toString(), 2,
 			actualDDMFormFieldValues.size());
-
-		assertEquals("Joe", actualDDMFormFieldValues.get(0), LocaleUtil.US);
-		assertEquals("true", actualDDMFormFieldValues.get(1), LocaleUtil.US);
 	}
 
 	@Test
@@ -661,10 +661,6 @@ public class DDMFormValuesFactoryTest {
 		List<DDMFormFieldValue> actualDDMFormFieldValues =
 			actualDDMFormValues.getDDMFormFieldValues();
 
-		Assert.assertEquals(
-			actualDDMFormFieldValues.toString(), 2,
-			actualDDMFormFieldValues.size());
-
 		DDMFormFieldValue fieldset1DDMFormFieldValue =
 			actualDDMFormFieldValues.get(0);
 
@@ -686,6 +682,10 @@ public class DDMFormValuesFactoryTest {
 			"Bob", fieldset2NestedDDMFormFieldValues.get(0), LocaleUtil.US);
 		assertEquals(
 			"false", fieldset2NestedDDMFormFieldValues.get(1), LocaleUtil.US);
+
+		Assert.assertEquals(
+			actualDDMFormFieldValues.toString(), 2,
+			actualDDMFormFieldValues.size());
 	}
 
 	@Test
@@ -812,12 +812,12 @@ public class DDMFormValuesFactoryTest {
 		List<DDMFormFieldValue> actualDDMFormFieldValues =
 			actualDDMFormValues.getDDMFormFieldValues();
 
+		assertEquals("Joe", actualDDMFormFieldValues.get(0), LocaleUtil.US);
+		assertEquals("false", actualDDMFormFieldValues.get(1), LocaleUtil.US);
+
 		Assert.assertEquals(
 			actualDDMFormFieldValues.toString(), 2,
 			actualDDMFormFieldValues.size());
-
-		assertEquals("Joe", actualDDMFormFieldValues.get(0), LocaleUtil.US);
-		assertEquals("false", actualDDMFormFieldValues.get(1), LocaleUtil.US);
 	}
 
 	@Test
@@ -835,12 +835,12 @@ public class DDMFormValuesFactoryTest {
 		List<DDMFormFieldValue> ddmFormFieldValues =
 			ddmFormValues.getDDMFormFieldValues();
 
-		Assert.assertEquals(
-			ddmFormFieldValues.toString(), 1, ddmFormFieldValues.size());
-
 		DDMFormFieldValue ddmFormFieldValue = ddmFormFieldValues.get(0);
 
 		Assert.assertEquals("Paragraph", ddmFormFieldValue.getName());
+
+		Assert.assertEquals(
+			ddmFormFieldValues.toString(), 1, ddmFormFieldValues.size());
 	}
 
 	@Test
@@ -888,12 +888,12 @@ public class DDMFormValuesFactoryTest {
 		List<DDMFormFieldValue> actualDDMFormFieldValues =
 			actualDDMFormValues.getDDMFormFieldValues();
 
+		assertEquals("false", actualDDMFormFieldValues.get(0), LocaleUtil.US);
+		assertEquals("Baz", actualDDMFormFieldValues.get(1), LocaleUtil.US);
+
 		Assert.assertEquals(
 			actualDDMFormFieldValues.toString(), 2,
 			actualDDMFormFieldValues.size());
-
-		assertEquals("false", actualDDMFormFieldValues.get(0), LocaleUtil.US);
-		assertEquals("Baz", actualDDMFormFieldValues.get(1), LocaleUtil.US);
 	}
 
 	protected void assertEquals(

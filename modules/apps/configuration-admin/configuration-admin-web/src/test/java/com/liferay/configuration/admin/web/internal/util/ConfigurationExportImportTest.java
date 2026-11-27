@@ -84,9 +84,10 @@ public class ConfigurationExportImportTest {
 		Dictionary<String, Object> dictionary = _exportImportProperties(
 			_dictionary);
 
-		Assert.assertEquals(dictionary.toString(), 1, dictionary.size());
 		Assert.assertArrayEquals(
 			arrayValues, (String[])dictionary.get(arrayKey));
+
+		Assert.assertEquals(dictionary.toString(), 1, dictionary.size());
 	}
 
 	@SuppressWarnings("unchecked")

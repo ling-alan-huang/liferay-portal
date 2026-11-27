@@ -73,11 +73,11 @@ public class EditVocabularySettingsDisplayContextTest {
 		long[] selectedClassNameIds =
 			editVocabularySettingsDisplayContext.getSelectedClassNameIds();
 
+		Assert.assertEquals(existingClassNameId, selectedClassNameIds[0]);
+
 		Assert.assertEquals(
 			Arrays.toString(selectedClassNameIds), 1,
 			selectedClassNameIds.length);
-
-		Assert.assertEquals(existingClassNameId, selectedClassNameIds[0]);
 	}
 
 	private static final MockedStatic<ClassNameLocalServiceUtil>

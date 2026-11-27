@@ -167,10 +167,6 @@ public class MCPServerProfileToolObjectEntryModelListenerTest {
 			MCPServerTestUtil.getMCPServerProfileToolObjectEntries(
 				mcpServerProfileObjectEntry);
 
-		Assert.assertEquals(
-			mcpServerProfileToolObjectEntries.toString(), 2,
-			mcpServerProfileToolObjectEntries.size());
-
 		_objectEntryLocalService.deleteObjectEntry(
 			mcpServerProfileToolObjectEntries.get(0));
 
@@ -179,6 +175,10 @@ public class MCPServerProfileToolObjectEntryModelListenerTest {
 
 		_objectEntryLocalService.deleteObjectEntry(
 			mcpServerProfileToolObjectEntries.get(1));
+
+		Assert.assertEquals(
+			mcpServerProfileToolObjectEntries.toString(), 2,
+			mcpServerProfileToolObjectEntries.size());
 
 		Assert.assertEquals(
 			"inactive", _getProfileStatus(mcpServerProfileObjectEntry));

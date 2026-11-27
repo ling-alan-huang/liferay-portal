@@ -275,12 +275,12 @@ public class
 			_ratingsEntryLocalService.getEntries(
 				className, fileEntry1.getFileEntryId());
 
-		Assert.assertEquals(
-			ratingsEntries1.toString(), 1, ratingsEntries1.size());
-
 		RatingsEntry ratingsEntry1 = ratingsEntries1.get(0);
 
 		Assert.assertEquals(score, ratingsEntry1.getScore(), 0.1);
+
+		Assert.assertEquals(
+			ratingsEntries1.toString(), 1, ratingsEntries1.size());
 
 		FileEntry fileEntry2 = dlAppService.copyFileEntry(
 			fileEntry1.getFileEntryId(), _newParentFolder.getFolderId(),
@@ -294,12 +294,12 @@ public class
 			_ratingsEntryLocalService.getEntries(
 				className, fileEntry2.getFileEntryId());
 
-		Assert.assertEquals(
-			ratingsEntries2.toString(), 1, ratingsEntries2.size());
-
 		RatingsEntry ratingsEntry2 = ratingsEntries2.get(0);
 
 		Assert.assertEquals(score, ratingsEntry2.getScore(), 0.1);
+
+		Assert.assertEquals(
+			ratingsEntries2.toString(), 1, ratingsEntries2.size());
 	}
 
 	@Test
@@ -417,8 +417,6 @@ public class
 		List<FileEntry> fileEntries = dlAppService.getFileEntries(
 			_childGroup.getGroupId(), folder.getFolderId());
 
-		Assert.assertEquals(fileEntries.toString(), 1, fileEntries.size());
-
 		FileEntry fileEntry2 = fileEntries.get(0);
 
 		String className = DLFileEntryConstants.getClassName();
@@ -434,6 +432,8 @@ public class
 				className, fileEntry1.getFileEntryId()),
 			_assetTagLocalService.getTagNames(
 				className, fileEntry2.getFileEntryId()));
+
+		Assert.assertEquals(fileEntries.toString(), 1, fileEntries.size());
 	}
 
 	@Test
@@ -467,8 +467,6 @@ public class
 		List<FileEntry> fileEntries = dlAppService.getFileEntries(
 			group.getGroupId(), folder.getFolderId());
 
-		Assert.assertEquals(fileEntries.toString(), 1, fileEntries.size());
-
 		FileEntry fileEntry2 = fileEntries.get(0);
 
 		String className = DLFileEntryConstants.getClassName();
@@ -484,6 +482,8 @@ public class
 				className, fileEntry1.getFileEntryId()),
 			_assetTagLocalService.getTagNames(
 				className, fileEntry2.getFileEntryId()));
+
+		Assert.assertEquals(fileEntries.toString(), 1, fileEntries.size());
 	}
 
 	@Test
@@ -512,12 +512,12 @@ public class
 			_ratingsEntryLocalService.getEntries(
 				className, fileEntry1.getFileEntryId());
 
-		Assert.assertEquals(
-			ratingsEntries1.toString(), 1, ratingsEntries1.size());
-
 		RatingsEntry ratingsEntry1 = ratingsEntries1.get(0);
 
 		Assert.assertEquals(score, ratingsEntry1.getScore(), 0.1);
+
+		Assert.assertEquals(
+			ratingsEntries1.toString(), 1, ratingsEntries1.size());
 
 		Folder folder = dlAppService.copyFolder(
 			group.getGroupId(), parentFolder.getFolderId(), group.getGroupId(),
@@ -528,20 +528,20 @@ public class
 		List<FileEntry> fileEntries = dlAppService.getFileEntries(
 			group.getGroupId(), folder.getFolderId());
 
-		Assert.assertEquals(fileEntries.toString(), 1, fileEntries.size());
-
 		FileEntry fileEntry2 = fileEntries.get(0);
 
 		List<RatingsEntry> ratingsEntries2 =
 			_ratingsEntryLocalService.getEntries(
 				className, fileEntry2.getFileEntryId());
 
-		Assert.assertEquals(
-			ratingsEntries2.toString(), 1, ratingsEntries2.size());
-
 		RatingsEntry ratingsEntry2 = ratingsEntries2.get(0);
 
 		Assert.assertEquals(score, ratingsEntry2.getScore(), 0.1);
+
+		Assert.assertEquals(
+			ratingsEntries2.toString(), 1, ratingsEntries2.size());
+
+		Assert.assertEquals(fileEntries.toString(), 1, fileEntries.size());
 	}
 
 	@Test
@@ -560,12 +560,12 @@ public class
 			_ratingsEntryLocalService.getEntries(
 				className, parentFolder.getFolderId());
 
-		Assert.assertEquals(
-			ratingsEntries1.toString(), 1, ratingsEntries1.size());
-
 		RatingsEntry ratingsEntry1 = ratingsEntries1.get(0);
 
 		Assert.assertEquals(score, ratingsEntry1.getScore(), 0.1);
+
+		Assert.assertEquals(
+			ratingsEntries1.toString(), 1, ratingsEntries1.size());
 
 		Folder folder = dlAppService.copyFolder(
 			group.getGroupId(), parentFolder.getFolderId(), group.getGroupId(),
@@ -577,12 +577,12 @@ public class
 			_ratingsEntryLocalService.getEntries(
 				className, folder.getFolderId());
 
-		Assert.assertEquals(
-			ratingsEntries2.toString(), 1, ratingsEntries2.size());
-
 		RatingsEntry ratingsEntry2 = ratingsEntries2.get(0);
 
 		Assert.assertEquals(score, ratingsEntry2.getScore(), 0.1);
+
+		Assert.assertEquals(
+			ratingsEntries2.toString(), 1, ratingsEntries2.size());
 	}
 
 	@Test
@@ -618,8 +618,6 @@ public class
 		List<FileEntry> fileEntries = dlAppService.getFileEntries(
 			targetGroup.getGroupId(), folder.getFolderId());
 
-		Assert.assertEquals(fileEntries.toString(), 1, fileEntries.size());
-
 		FileEntry fileEntry = fileEntries.get(0);
 
 		String className = DLFileEntryConstants.getClassName();
@@ -633,6 +631,8 @@ public class
 			ArrayUtil.isEmpty(
 				_assetTagLocalService.getTagNames(
 					className, fileEntry.getFileEntryId())));
+
+		Assert.assertEquals(fileEntries.toString(), 1, fileEntries.size());
 	}
 
 	private AssetCategory _assetCategory;

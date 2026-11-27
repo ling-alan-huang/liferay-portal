@@ -72,14 +72,14 @@ public class LayoutReportsIssueTest {
 		List<LayoutReportsIssue.Detail> details =
 			layoutReportsIssue.getDetails();
 
-		Assert.assertEquals(details.toString(), 1, details.size());
-
 		LayoutReportsIssue.Detail detail = details.get(0);
 
 		Assert.assertEquals(
 			LayoutReportsIssue.Detail.Key.MISSING_IMG_ALT_ATTRIBUTES,
 			detail.getKey());
 		Assert.assertEquals(100, detail.getTotal());
+
+		Assert.assertEquals(details.toString(), 1, details.size());
 
 		Assert.assertEquals(
 			LayoutReportsIssue.Key.SEO, layoutReportsIssue.getKey());
@@ -167,8 +167,6 @@ public class LayoutReportsIssueTest {
 
 		JSONArray detailsJSONArray = jsonObject.getJSONArray("details");
 
-		Assert.assertEquals(1, detailsJSONArray.length());
-
 		JSONObject detailJSONObject = detailsJSONArray.getJSONObject(0);
 
 		Assert.assertEquals(
@@ -179,6 +177,8 @@ public class LayoutReportsIssueTest {
 		Assert.assertEquals(
 			StringPool.BLANK, detailJSONObject.getString("tips"));
 		Assert.assertEquals(100, detailJSONObject.getLong("total"));
+
+		Assert.assertEquals(1, detailsJSONArray.length());
 
 		Assert.assertEquals(
 			LayoutReportsIssue.Key.SEO.toString(), jsonObject.getString("key"));

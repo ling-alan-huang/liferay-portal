@@ -148,16 +148,16 @@ public class AddContentLayoutMVCActionCommandCopyClientExtensionEntryTest {
 			_clientExtensionEntryRelLocalService.getClientExtensionEntryRels(
 				_portal.getClassNameId(Layout.class), layout.getPlid(), type);
 
-		Assert.assertEquals(
-			globalCSSClientExtensionEntryRels.toString(), 1,
-			globalCSSClientExtensionEntryRels.size());
-
 		ClientExtensionEntryRel clientExtensionEntryRel =
 			globalCSSClientExtensionEntryRels.get(0);
 
 		Assert.assertEquals(
 			expectedCETExternalReferenceCode,
 			clientExtensionEntryRel.getCETExternalReferenceCode());
+
+		Assert.assertEquals(
+			globalCSSClientExtensionEntryRels.toString(), 1,
+			globalCSSClientExtensionEntryRels.size());
 	}
 
 	private MockLiferayPortletActionRequest

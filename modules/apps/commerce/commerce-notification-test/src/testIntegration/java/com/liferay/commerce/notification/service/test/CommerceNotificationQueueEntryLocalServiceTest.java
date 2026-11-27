@@ -104,12 +104,12 @@ public class CommerceNotificationQueueEntryLocalServiceTest {
 				commerceNotificationQueueEntry.getPrimaryKey(),
 				SystemEventConstants.TYPE_DELETE);
 
-		Assert.assertEquals(systemEvents.toString(), 1, systemEvents.size());
-
 		SystemEvent systemEvent = systemEvents.get(0);
 
 		Assert.assertEquals(
 			SystemEventConstants.TYPE_DELETE, systemEvent.getType());
+
+		Assert.assertEquals(systemEvents.toString(), 1, systemEvents.size());
 	}
 
 	@Inject

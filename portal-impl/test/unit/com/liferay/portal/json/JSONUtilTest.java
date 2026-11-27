@@ -144,8 +144,9 @@ public class JSONUtilTest {
 			_createJSONObject("{\"able\": [0, 1, 2, 3]}"), "JSONArray/able");
 
 		Assert.assertNotNull(jsonArray);
-		Assert.assertEquals(4, jsonArray.length());
 		Assert.assertEquals("2", jsonArray.getString(2));
+
+		Assert.assertEquals(4, jsonArray.length());
 	}
 
 	@Test
@@ -275,8 +276,9 @@ public class JSONUtilTest {
 
 		JSONArray jsonArray2 = JSONUtil.put("alpha");
 
-		Assert.assertEquals(jsonArray1.length(), jsonArray2.length());
 		Assert.assertEquals(jsonArray1.get(0), jsonArray2.get(0));
+
+		Assert.assertEquals(jsonArray1.length(), jsonArray2.length());
 	}
 
 	@Test

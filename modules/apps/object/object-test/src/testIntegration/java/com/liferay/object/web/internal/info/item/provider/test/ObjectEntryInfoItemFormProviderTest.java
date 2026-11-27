@@ -388,13 +388,13 @@ public class ObjectEntryInfoItemFormProviderTest {
 			(List<OptionInfoFieldType>)infoField.getAttribute(
 				SelectInfoFieldType.OPTIONS);
 
-		Assert.assertEquals(
-			optionInfoFieldTypes.toString(), 2, optionInfoFieldTypes.size());
-
 		_assertOptionInfoFieldType(
 			listTypeEntryKeys[0], optionInfoFieldTypes.get(0));
 		_assertOptionInfoFieldType(
 			listTypeEntryKeys[1], optionInfoFieldTypes.get(1));
+
+		Assert.assertEquals(
+			optionInfoFieldTypes.toString(), 2, optionInfoFieldTypes.size());
 	}
 
 	private ObjectFieldSetting _createObjectFieldSetting(

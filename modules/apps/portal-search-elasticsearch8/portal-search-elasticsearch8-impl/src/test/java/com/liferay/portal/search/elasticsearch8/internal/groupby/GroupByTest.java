@@ -260,16 +260,16 @@ public class GroupByTest extends BaseGroupByTestCase {
 						List<GroupByResponse> groupByResponses =
 							searchResponse.getGroupByResponses();
 
-						Assert.assertEquals(
-							groupByResponses.toString(), 1,
-							groupByResponses.size());
-
 						GroupByResponse groupByResponse = groupByResponses.get(
 							0);
 
 						assertGroupsOrdered(
 							orderedResults, groupByResponse.getHitsMap(),
 							indexingTestHelper);
+
+						Assert.assertEquals(
+							groupByResponses.toString(), 1,
+							groupByResponses.size());
 					});
 			});
 	}

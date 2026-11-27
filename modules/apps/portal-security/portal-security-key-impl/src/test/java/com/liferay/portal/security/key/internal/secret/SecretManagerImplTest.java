@@ -130,13 +130,13 @@ public class SecretManagerImplTest {
 		List<KeyReference> keyReferences = _secretManagerImpl.getKeyReferences(
 			RandomTestUtil.randomLong(), StringPool.STAR);
 
-		Assert.assertEquals(keyReferences.toString(), 1, keyReferences.size());
-
 		KeyReference keyReference = keyReferences.get(0);
 
 		Assert.assertEquals(secretIdentifier, keyReference.getIdentifier());
 		Assert.assertEquals(secretProviderId, keyReference.getProviderId());
 		Assert.assertEquals(KeyReference.Type.SECRET, keyReference.getType());
+
+		Assert.assertEquals(keyReferences.toString(), 1, keyReferences.size());
 	}
 
 	@Test

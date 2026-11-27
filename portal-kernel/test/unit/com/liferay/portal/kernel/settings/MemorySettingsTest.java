@@ -37,9 +37,10 @@ public class MemorySettingsTest {
 
 		String[] values = _memorySettings.getValues("key", null);
 
-		Assert.assertEquals(Arrays.toString(values), 2, values.length);
 		Assert.assertEquals("value1", values[0]);
 		Assert.assertEquals("value2", values[1]);
+
+		Assert.assertEquals(Arrays.toString(values), 2, values.length);
 
 		Assert.assertEquals("value1", _memorySettings.getValue("key", null));
 	}

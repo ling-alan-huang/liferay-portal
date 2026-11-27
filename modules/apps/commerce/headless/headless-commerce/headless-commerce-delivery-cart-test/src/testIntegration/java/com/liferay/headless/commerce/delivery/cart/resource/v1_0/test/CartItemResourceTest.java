@@ -608,11 +608,11 @@ public class CartItemResourceTest extends BaseCartItemResourceTestCase {
 
 		cartItems = (List<CartItem>)cartItemsPage.getItems();
 
-		Assert.assertEquals(cartItems.toString(), 1, cartItems.size());
-
 		CartItem cartItem = cartItems.get(0);
 
 		assertEquals(postCartItem, cartItem);
+
+		Assert.assertEquals(cartItems.toString(), 1, cartItems.size());
 	}
 
 	private void _testGetCartItemPriceOnApplication() throws Exception {
@@ -711,11 +711,11 @@ public class CartItemResourceTest extends BaseCartItemResourceTestCase {
 
 		cartItems = (List<CartItem>)cartItemsPage.getItems();
 
-		Assert.assertEquals(cartItems.toString(), 1, cartItems.size());
-
 		CartItem cartItem = cartItems.get(0);
 
 		assertEquals(postCartItem, cartItem);
+
+		Assert.assertEquals(cartItems.toString(), 1, cartItems.size());
 	}
 
 	private void _testPatchCartItemWithGuestAccountEntry() throws Exception {

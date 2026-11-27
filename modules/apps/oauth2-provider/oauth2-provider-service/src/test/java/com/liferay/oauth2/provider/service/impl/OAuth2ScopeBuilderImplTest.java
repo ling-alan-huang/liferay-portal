@@ -219,16 +219,16 @@ public class OAuth2ScopeBuilderImplTest {
 
 		// Assert the result is identical
 
-		Assert.assertEquals(
-			simpeEntryScopeAliases2.toString(), simpeEntryScopeAliases1.size(),
-			simpeEntryScopeAliases2.size());
-
 		for (Map.Entry<Map.Entry<String, String>, Set<String>> entry :
 				simpeEntryScopeAliases1.entrySet()) {
 
 			Assert.assertEquals(
 				entry.getValue(), simpeEntryScopeAliases2.get(entry.getKey()));
 		}
+
+		Assert.assertEquals(
+			simpeEntryScopeAliases2.toString(), simpeEntryScopeAliases1.size(),
+			simpeEntryScopeAliases2.size());
 
 		// Test separate calls result in each scope mapping to a different scope
 		// alias

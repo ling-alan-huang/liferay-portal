@@ -217,12 +217,12 @@ public class CPDefinitionLocalServiceTest {
 				cpDefinition.getCPDefinitionId(), WorkflowConstants.STATUS_ANY,
 				QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 
-		Assert.assertEquals(cpInstances.toString(), 1, cpInstances.size());
-
 		CPInstance cpInstance = cpInstances.get(0);
 
 		Assert.assertEquals(
 			WorkflowConstants.STATUS_INACTIVE, cpInstance.getStatus());
+
+		Assert.assertEquals(cpInstances.toString(), 1, cpInstances.size());
 	}
 
 	@Test
@@ -614,10 +614,6 @@ public class CPDefinitionLocalServiceTest {
 			_cpConfigurationEntryLocalService.getCPConfigurationEntries(
 				classNameId, newCPDefinition2.getCPDefinitionId());
 
-		Assert.assertEquals(
-			newCPConfigurationEntries.toString(), 1,
-			newCPConfigurationEntries.size());
-
 		CPConfigurationEntry newCPConfigurationEntry =
 			newCPConfigurationEntries.get(0);
 
@@ -637,6 +633,10 @@ public class CPDefinitionLocalServiceTest {
 
 		_assertCPConfigurationEntry(
 			masterCPConfigurationEntry, newCPConfigurationEntry);
+
+		Assert.assertEquals(
+			newCPConfigurationEntries.toString(), 1,
+			newCPConfigurationEntries.size());
 
 		_cpDefinitionLocalService.deleteCPDefinition(newCPDefinition2);
 
@@ -829,9 +829,9 @@ public class CPDefinitionLocalServiceTest {
 			_cpInstanceLocalService.getCPDefinitionApprovedCPInstances(
 				cpDefinition.getCPDefinitionId());
 
-		Assert.assertEquals(cpInstances.toString(), 1, cpInstances.size());
-
 		_cpInstanceLocalService.deleteCPInstance(cpInstances.get(0));
+
+		Assert.assertEquals(cpInstances.toString(), 1, cpInstances.size());
 
 		cpDefinition = _cpDefinitionLocalService.getCPDefinition(
 			cpDefinition.getCPDefinitionId());
@@ -878,12 +878,12 @@ public class CPDefinitionLocalServiceTest {
 				cpDefinition.getCPDefinitionId(),
 				SystemEventConstants.TYPE_DELETE);
 
-		Assert.assertEquals(systemEvents.toString(), 1, systemEvents.size());
-
 		SystemEvent systemEvent = systemEvents.get(0);
 
 		Assert.assertEquals(
 			SystemEventConstants.TYPE_DELETE, systemEvent.getType());
+
+		Assert.assertEquals(systemEvents.toString(), 1, systemEvents.size());
 	}
 
 	@Test
@@ -962,13 +962,13 @@ public class CPDefinitionLocalServiceTest {
 				new Date(time),
 				new QueryDefinition(WorkflowConstants.STATUS_APPROVED));
 
-		Assert.assertEquals(cpDefinitions.toString(), 1, cpDefinitions.size());
-
 		CPDefinition cpDefinition2 = cpDefinitions.get(0);
 
 		Assert.assertEquals(
 			cpDefinition1.getCPDefinitionId(),
 			cpDefinition2.getCPDefinitionId());
+
+		Assert.assertEquals(cpDefinitions.toString(), 1, cpDefinitions.size());
 	}
 
 	@Test
@@ -1319,10 +1319,6 @@ public class CPDefinitionLocalServiceTest {
 		List<CPDefinitionOptionRel> cpDefinitionOptionRels =
 			targetCPDefinition.getCPDefinitionOptionRels();
 
-		Assert.assertEquals(
-			cpDefinitionOptionRels.toString(), 1,
-			cpDefinitionOptionRels.size());
-
 		CPDefinitionOptionRel targetCPDefinitionOptionRel =
 			cpDefinitionOptionRels.get(0);
 
@@ -1352,6 +1348,10 @@ public class CPDefinitionLocalServiceTest {
 		Assert.assertEquals(
 			externalReferenceCodes.toString(), externalReferenceCodes.size(),
 			externalReferenceCodesSet.size());
+
+		Assert.assertEquals(
+			cpDefinitionOptionRels.toString(), 1,
+			cpDefinitionOptionRels.size());
 	}
 
 	private CPDefinition _cloneAndPublishCPDefinition(CPDefinition cpDefinition)

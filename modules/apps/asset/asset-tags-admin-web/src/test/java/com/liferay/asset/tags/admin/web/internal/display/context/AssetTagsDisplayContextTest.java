@@ -181,15 +181,15 @@ public class AssetTagsDisplayContextTest {
 			assetTagsDisplayContext.getAssetTagActionDropdownItems(
 				_getAssetTag());
 
-		Assert.assertEquals(
-			assetTagActionDropdownItems.toString(), 3,
-			assetTagActionDropdownItems.size());
-
 		_assertEmptyDropdownItemList(assetTagActionDropdownItems.get(0));
 		_assertEmptyDropdownItemList(assetTagActionDropdownItems.get(1));
 
 		_assertDropdownItem(
 			assetTagActionDropdownItems.get(2), "trash", "delete");
+
+		Assert.assertEquals(
+			assetTagActionDropdownItems.toString(), 3,
+			assetTagActionDropdownItems.size());
 	}
 
 	private void _testGetAssetTagActionDropdownItemsInStagingGroup() {
@@ -200,15 +200,16 @@ public class AssetTagsDisplayContextTest {
 			assetTagsDisplayContext.getAssetTagActionDropdownItems(
 				_getAssetTag());
 
-		Assert.assertEquals(
-			assetTagActionDropdownItems.toString(), 3,
-			assetTagActionDropdownItems.size());
 		_assertDropdownItem(
 			assetTagActionDropdownItems.get(0), "pencil", "edit");
 		_assertDropdownItem(
 			assetTagActionDropdownItems.get(1), "merge", "merge");
 		_assertDropdownItem(
 			assetTagActionDropdownItems.get(2), "trash", "delete");
+
+		Assert.assertEquals(
+			assetTagActionDropdownItems.toString(), 3,
+			assetTagActionDropdownItems.size());
 	}
 
 	private static final MockedStatic<StagingGroupHelperUtil>

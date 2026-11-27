@@ -128,9 +128,6 @@ public class AutocompleteAssigneeMVCResourceCommandTest {
 
 		JSONArray itemsJSONArray = jsonObject.getJSONArray("items");
 
-		Assert.assertEquals(
-			itemsJSONArray.toString(), 1, itemsJSONArray.length());
-
 		JSONAssert.assertEquals(
 			JSONUtil.put(
 				"externalReferenceCode",
@@ -155,6 +152,9 @@ public class AutocompleteAssigneeMVCResourceCommandTest {
 			).toString(),
 			String.valueOf(itemsJSONArray.getJSONObject(0)),
 			JSONCompareMode.LENIENT);
+
+		Assert.assertEquals(
+			itemsJSONArray.toString(), 1, itemsJSONArray.length());
 	}
 
 	private JSONObject _getJSONObject(String search) throws Exception {

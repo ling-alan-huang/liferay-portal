@@ -60,8 +60,6 @@ public class FIPSFederationTokenAuditTest extends BaseTokenEndpointTestCase {
 
 				messages = _getFederationTokenRejectedMessages(logCapture);
 
-				Assert.assertEquals(messages.toString(), 1, messages.size());
-
 				String message = messages.get(0);
 
 				FIPSApplicationState fipsApplicationState =
@@ -77,6 +75,8 @@ public class FIPSFederationTokenAuditTest extends BaseTokenEndpointTestCase {
 				Assert.assertTrue(
 					message.contains("token-issuer=" + TEST_CLIENT_ID_2));
 				Assert.assertTrue(message.contains("token-type=JWT"));
+
+				Assert.assertEquals(messages.toString(), 1, messages.size());
 			}
 		}
 	}

@@ -234,13 +234,13 @@ public class AutoBatchPreparedStatementUtilTest {
 
 			Throwable[] throwables = throwable.getSuppressed();
 
-			Assert.assertEquals(
-				Arrays.toString(throwables), 1, throwables.length);
-
 			Throwable firstThrowable = throwables[0];
 
 			Assert.assertSame(
 				CancellationException.class, firstThrowable.getClass());
+
+			Assert.assertEquals(
+				Arrays.toString(throwables), 1, throwables.length);
 
 			return;
 		}
@@ -294,12 +294,13 @@ public class AutoBatchPreparedStatementUtilTest {
 
 			Throwable[] suppressedThrowables = throwable.getSuppressed();
 
-			Assert.assertEquals(
-				Arrays.toString(suppressedThrowables), 1,
-				suppressedThrowables.length);
 			Assert.assertTrue(
 				throwables.toString(),
 				throwables.contains(suppressedThrowables[0]));
+
+			Assert.assertEquals(
+				Arrays.toString(suppressedThrowables), 1,
+				suppressedThrowables.length);
 
 			return;
 		}

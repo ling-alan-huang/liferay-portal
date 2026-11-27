@@ -156,14 +156,14 @@ public class UpdateItemConfigMVCActionCommandTest {
 		JSONArray fragmentEntriesJSONArray =
 			dropZoneLayoutStructureItem.getFragmentEntriesJSONArray();
 
-		Assert.assertEquals(1, fragmentEntriesJSONArray.length());
-
 		JSONObject fragmentJSONObject = fragmentEntriesJSONArray.getJSONObject(
 			0);
 
 		Assert.assertEquals(
 			fragmentEntry.getExternalReferenceCode(),
 			fragmentJSONObject.getString("fragmentEntryERC"));
+
+		Assert.assertEquals(1, fragmentEntriesJSONArray.length());
 	}
 
 	@Test

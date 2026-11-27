@@ -67,8 +67,9 @@ public class JiraTicketResolverUtilTest {
 		List<String> lpdKeys = JiraTicketResolverUtil.getRelatedLPDKeys(
 			issueJSONObject);
 
-		Assert.assertEquals(lpdKeys.toString(), 1, lpdKeys.size());
 		Assert.assertEquals("LPD-9", lpdKeys.get(0));
+
+		Assert.assertEquals(lpdKeys.toString(), 1, lpdKeys.size());
 	}
 
 	@Test
@@ -83,9 +84,10 @@ public class JiraTicketResolverUtilTest {
 		List<String> lpdKeys = JiraTicketResolverUtil.getRelatedLPDKeys(
 			issueJSONObject);
 
-		Assert.assertEquals(lpdKeys.toString(), 2, lpdKeys.size());
 		Assert.assertEquals("LPD-1", lpdKeys.get(0));
 		Assert.assertEquals("LPD-2", lpdKeys.get(1));
+
+		Assert.assertEquals(lpdKeys.toString(), 2, lpdKeys.size());
 	}
 
 	@Test
@@ -105,8 +107,9 @@ public class JiraTicketResolverUtilTest {
 						JiraConstants.LINK_TYPE_RELATIONSHIP, "LPD-100",
 						null))));
 
-		Assert.assertEquals(lpdKeys.toString(), 1, lpdKeys.size());
 		Assert.assertEquals("LPD-100", lpdKeys.get(0));
+
+		Assert.assertEquals(lpdKeys.toString(), 1, lpdKeys.size());
 	}
 
 	@Test
@@ -138,8 +141,9 @@ public class JiraTicketResolverUtilTest {
 		List<String> lpdKeys = JiraTicketResolverUtil.getRelatedLPDKeys(
 			_createIssueJSONObject(issueLinksJSONArray));
 
-		Assert.assertEquals(lpdKeys.toString(), 1, lpdKeys.size());
 		Assert.assertEquals("LPD-7", lpdKeys.get(0));
+
+		Assert.assertEquals(lpdKeys.toString(), 1, lpdKeys.size());
 	}
 
 	@Test
@@ -199,8 +203,9 @@ public class JiraTicketResolverUtilTest {
 						JiraConstants.LINK_TYPE_RELATIONSHIP, null,
 						"LPD-200"))));
 
-		Assert.assertEquals(lpdKeys.toString(), 1, lpdKeys.size());
 		Assert.assertEquals("LPD-200", lpdKeys.get(0));
+
+		Assert.assertEquals(lpdKeys.toString(), 1, lpdKeys.size());
 	}
 
 	@Test
@@ -208,9 +213,10 @@ public class JiraTicketResolverUtilTest {
 		List<String> resolvedTickets = JiraTicketResolverUtil.resolveTickets(
 			_patcherConfiguration, "LPD-1,LPD-1");
 
+		Assert.assertEquals("LPD-1", resolvedTickets.get(0));
+
 		Assert.assertEquals(
 			resolvedTickets.toString(), 1, resolvedTickets.size());
-		Assert.assertEquals("LPD-1", resolvedTickets.get(0));
 	}
 
 	@Test
@@ -220,10 +226,11 @@ public class JiraTicketResolverUtilTest {
 		List<String> resolvedTickets = JiraTicketResolverUtil.resolveTickets(
 			_patcherConfiguration, "LPD-1,LPS-2");
 
-		Assert.assertEquals(
-			resolvedTickets.toString(), 2, resolvedTickets.size());
 		Assert.assertEquals("LPD-1", resolvedTickets.get(0));
 		Assert.assertEquals("LPS-2", resolvedTickets.get(1));
+
+		Assert.assertEquals(
+			resolvedTickets.toString(), 2, resolvedTickets.size());
 	}
 
 	@Test
@@ -241,9 +248,10 @@ public class JiraTicketResolverUtilTest {
 		List<String> resolvedTickets = JiraTicketResolverUtil.resolveTickets(
 			_patcherConfiguration, "LPE-123");
 
+		Assert.assertEquals("LPD-500", resolvedTickets.get(0));
+
 		Assert.assertEquals(
 			resolvedTickets.toString(), 1, resolvedTickets.size());
-		Assert.assertEquals("LPD-500", resolvedTickets.get(0));
 	}
 
 	@Test
@@ -304,10 +312,11 @@ public class JiraTicketResolverUtilTest {
 		List<String> resolvedTickets = JiraTicketResolverUtil.resolveTickets(
 			_patcherConfiguration, " LPD-1 , , LPD-2 ,");
 
-		Assert.assertEquals(
-			resolvedTickets.toString(), 2, resolvedTickets.size());
 		Assert.assertEquals("LPD-1", resolvedTickets.get(0));
 		Assert.assertEquals("LPD-2", resolvedTickets.get(1));
+
+		Assert.assertEquals(
+			resolvedTickets.toString(), 2, resolvedTickets.size());
 	}
 
 	private JSONObject _createIssueJSONObject(JSONArray issueLinksJSONArray) {

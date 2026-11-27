@@ -1254,13 +1254,13 @@ public class TaxonomyCategoryResourceTest
 					item.getTaxonomyVocabularyId(),
 					assetVocabulary2.getVocabularyId()));
 
-		Assert.assertEquals(items.toString(), 1, items.size());
-
 		TaxonomyCategory taxonomyCategory = items.get(0);
 
 		Assert.assertEquals(
 			String.valueOf(assetCategory.getCategoryId()),
 			taxonomyCategory.getId());
+
+		Assert.assertEquals(items.toString(), 1, items.size());
 
 		_assetVocabularyLocalService.deleteVocabulary(assetVocabulary1);
 		_assetVocabularyLocalService.deleteVocabulary(assetVocabulary2);
@@ -2041,13 +2041,13 @@ public class TaxonomyCategoryResourceTest
 					assetVocabulary.getVocabularyId(),
 					DepotConstants.TYPE_SPACE);
 
-		Assert.assertEquals(
-			assetVocabularyGroupRels.toString(), 1,
-			assetVocabularyGroupRels.size());
-
 		assetVocabularyGroupRel = assetVocabularyGroupRels.get(0);
 
 		Assert.assertEquals(-1L, assetVocabularyGroupRel.getGroupId());
+
+		Assert.assertEquals(
+			assetVocabularyGroupRels.toString(), 1,
+			assetVocabularyGroupRels.size());
 
 		irrelevantGroup = originalIrrelevantGroup;
 		testGroup = originalTestGroup;

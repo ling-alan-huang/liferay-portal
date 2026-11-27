@@ -133,8 +133,6 @@ public class ColumnNameEntryTest {
 				_columnNameEntryPersistence, "_sessionFactory", sessionFactory);
 		}
 
-		Assert.assertEquals(queryStrings.toString(), 1, queryStrings.size());
-
 		Assert.assertEquals(
 			StringBundler.concat(
 				"SELECT columnNameEntry FROM ColumnNameEntry columnNameEntry ",
@@ -142,6 +140,8 @@ public class ColumnNameEntryTest {
 				columnNameEntry1.getPrimaryKey(), ",",
 				columnNameEntry2.getPrimaryKey(), ")"),
 			queryStrings.get(0));
+
+		Assert.assertEquals(queryStrings.toString(), 1, queryStrings.size());
 
 		Assert.assertEquals(
 			columnNameEntry1,

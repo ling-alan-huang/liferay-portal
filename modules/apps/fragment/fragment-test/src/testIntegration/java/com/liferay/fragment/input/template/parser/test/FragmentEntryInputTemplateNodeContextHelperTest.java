@@ -1094,16 +1094,16 @@ public class FragmentEntryInputTemplateNodeContextHelperTest {
 			Map<String, String> actualValueI18nMap =
 				inputTemplateNode.getValueI18n();
 
-			Assert.assertEquals(
-				MapUtil.toString(actualValueI18nMap), valueI18nMap.size(),
-				actualValueI18nMap.size());
-
 			for (Map.Entry<Locale, Object> curEntry : valueI18nMap.entrySet()) {
 				Assert.assertEquals(
 					curEntry.getValue(),
 					actualValueI18nMap.get(
 						LocaleUtil.toLanguageId(curEntry.getKey())));
 			}
+
+			Assert.assertEquals(
+				MapUtil.toString(actualValueI18nMap), valueI18nMap.size(),
+				actualValueI18nMap.size());
 		}
 	}
 

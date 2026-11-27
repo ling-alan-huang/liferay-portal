@@ -705,8 +705,6 @@ public class ExportProcessResourceTest
 		List<FileEntry> fileEntries =
 			backgroundTask.getAttachmentsFileEntries();
 
-		Assert.assertEquals(fileEntries.toString(), 1, fileEntries.size());
-
 		FileEntry larFileEntry = fileEntries.get(0);
 
 		JSONAssert.assertEquals(
@@ -719,6 +717,8 @@ public class ExportProcessResourceTest
 				ExportImportTestUtil.getExportedJSONArray(
 					fileNamePrefix, groupId, larFileEntry.getContentStream())),
 			JSONCompareMode.LENIENT);
+
+		Assert.assertEquals(fileEntries.toString(), 1, fileEntries.size());
 	}
 
 	private void _assertExportedLayouts(
@@ -968,8 +968,6 @@ public class ExportProcessResourceTest
 		List<FileEntry> fileEntries =
 			backgroundTask.getAttachmentsFileEntries();
 
-		Assert.assertEquals(fileEntries.toString(), 1, fileEntries.size());
-
 		Assert.assertEquals(
 			Arrays.asList(
 				testDepotEntryGroup.getExternalReferenceCode(),
@@ -977,6 +975,8 @@ public class ExportProcessResourceTest
 			TransformUtil.transform(
 				_exportImportHelper.getExportImportGroups(fileEntries.get(0)),
 				ExportImportGroup::getExternalReferenceCode));
+
+		Assert.assertEquals(fileEntries.toString(), 1, fileEntries.size());
 
 		_testPostExportProcessWhenFeatureFlagIsDisabled(
 			"LPD-41307", instanceExportProcessRequest);
@@ -1234,14 +1234,14 @@ public class ExportProcessResourceTest
 					true)),
 			groupId, objectDefinition);
 
-		Assert.assertEquals(objectEntries.length, jsonArray.length());
-
 		for (int i = 0; i < jsonArray.length(); i++) {
 			JSONObject jsonObject = jsonArray.getJSONObject(i);
 
 			Assert.assertTrue(
 				jsonObject.toString(), jsonObject.has("permissions"));
 		}
+
+		Assert.assertEquals(objectEntries.length, jsonArray.length());
 	}
 
 	private void _testPostExportProcessWithPortletDataHandlers(
@@ -1453,13 +1453,13 @@ public class ExportProcessResourceTest
 		List<FileEntry> fileEntries =
 			backgroundTask.getAttachmentsFileEntries();
 
-		Assert.assertEquals(fileEntries.toString(), 1, fileEntries.size());
-
 		Assert.assertEquals(
 			Collections.singletonList(testGroup.getExternalReferenceCode()),
 			TransformUtil.transform(
 				_exportImportHelper.getExportImportGroups(fileEntries.get(0)),
 				ExportImportGroup::getExternalReferenceCode));
+
+		Assert.assertEquals(fileEntries.toString(), 1, fileEntries.size());
 	}
 
 	private void _testPostSiteExportProcessWithLayoutSetPrototypeGroup()

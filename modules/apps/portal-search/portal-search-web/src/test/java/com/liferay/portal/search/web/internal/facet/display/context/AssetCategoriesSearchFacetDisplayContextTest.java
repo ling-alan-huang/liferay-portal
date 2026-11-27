@@ -330,9 +330,6 @@ public class AssetCategoriesSearchFacetDisplayContextTest
 		List<BucketDisplayContext> bucketDisplayContexts =
 			facetDisplayContext.getBucketDisplayContexts();
 
-		Assert.assertEquals(
-			bucketDisplayContexts.toString(), 1, bucketDisplayContexts.size());
-
 		BucketDisplayContext bucketDisplayContext = bucketDisplayContexts.get(
 			0);
 
@@ -345,6 +342,9 @@ public class AssetCategoriesSearchFacetDisplayContextTest
 		Assert.assertEquals(frequency, bucketDisplayContext.getFrequency());
 		Assert.assertTrue(bucketDisplayContext.isFrequencyVisible());
 		Assert.assertFalse(bucketDisplayContext.isSelected());
+
+		Assert.assertEquals(
+			bucketDisplayContexts.toString(), 1, bucketDisplayContexts.size());
 
 		Assert.assertEquals(
 			facetParam, facetDisplayContext.getParameterValue());
@@ -369,9 +369,6 @@ public class AssetCategoriesSearchFacetDisplayContextTest
 		List<BucketDisplayContext> bucketDisplayContexts =
 			facetDisplayContext.getBucketDisplayContexts();
 
-		Assert.assertEquals(
-			bucketDisplayContexts.toString(), 1, bucketDisplayContexts.size());
-
 		BucketDisplayContext bucketDisplayContext = bucketDisplayContexts.get(
 			0);
 
@@ -384,6 +381,9 @@ public class AssetCategoriesSearchFacetDisplayContextTest
 		Assert.assertEquals(frequency, bucketDisplayContext.getFrequency());
 		Assert.assertTrue(bucketDisplayContext.isFrequencyVisible());
 		Assert.assertTrue(bucketDisplayContext.isSelected());
+
+		Assert.assertEquals(
+			bucketDisplayContexts.toString(), 1, bucketDisplayContexts.size());
 
 		Assert.assertEquals(
 			assetCategoryId,

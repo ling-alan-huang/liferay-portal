@@ -89,10 +89,6 @@ public class ViewContentsSectionDisplayContextTest
 				"post", bulkActionDropdownItems.remove(8));
 		}
 
-		Assert.assertEquals(
-			bulkActionDropdownItems.toString(), 15,
-			bulkActionDropdownItems.size());
-
 		FrontendDataSetTestUtil.assertFDSActionDropdownItem(
 			"trash", "delete", "Delete", null, bulkActionDropdownItems.get(0));
 		FrontendDataSetTestUtil.assertFDSActionDropdownItem(
@@ -137,16 +133,16 @@ public class ViewContentsSectionDisplayContextTest
 			"password-policies", "reset-to-default-permissions",
 			"Reset to Default Permissions", null,
 			bulkActionDropdownItems.get(14));
+
+		Assert.assertEquals(
+			bulkActionDropdownItems.toString(), 15,
+			bulkActionDropdownItems.size());
 	}
 
 	@Test
 	public void testGetFDSActionDropdownItems() throws Exception {
 		List<FDSActionDropdownItem> fdsActionDropdownItems =
 			getFDSActionDropdownItems();
-
-		Assert.assertEquals(
-			fdsActionDropdownItems.toString(), 17,
-			fdsActionDropdownItems.size());
 
 		FrontendDataSetTestUtil.assertFDSActionDropdownItem(
 			"pencil", "editFolder", "Edit", "get",
@@ -194,15 +190,15 @@ public class ViewContentsSectionDisplayContextTest
 		List<FDSActionDropdownItem> copyFDSActionDropdownItems =
 			(List<FDSActionDropdownItem>)copyFDSActionDropdownItem.get("items");
 
-		Assert.assertEquals(
-			copyFDSActionDropdownItems.toString(), 2,
-			copyFDSActionDropdownItems.size());
-
 		FrontendDataSetTestUtil.assertFDSActionDropdownItem(
 			"copy", "copy", "Copy To", null, copyFDSActionDropdownItems.get(0));
 		FrontendDataSetTestUtil.assertFDSActionDropdownItem(
 			"copy", "duplicate", "Duplicate", null,
 			copyFDSActionDropdownItems.get(1));
+
+		Assert.assertEquals(
+			copyFDSActionDropdownItems.toString(), 2,
+			copyFDSActionDropdownItems.size());
 
 		FrontendDataSetTestUtil.assertFDSActionDropdownItem(
 			"upload", "export-for-translation", "Export for Translation", null,
@@ -223,10 +219,6 @@ public class ViewContentsSectionDisplayContextTest
 		List<FDSActionDropdownItem> permissionsFDSActionDropdownItems =
 			(List<FDSActionDropdownItem>)permissionsFDSActionDropdownItem.get(
 				"items");
-
-		Assert.assertEquals(
-			permissionsFDSActionDropdownItems.toString(), 4,
-			permissionsFDSActionDropdownItems.size());
 
 		FrontendDataSetTestUtil.assertFDSActionDropdownItem(
 			"password-policies", "permissions", "Permissions", "get",
@@ -250,8 +242,16 @@ public class ViewContentsSectionDisplayContextTest
 			"Reset to Default Permissions", null,
 			permissionsFDSActionDropdownItems.get(3));
 
+		Assert.assertEquals(
+			permissionsFDSActionDropdownItems.toString(), 4,
+			permissionsFDSActionDropdownItems.size());
+
 		FrontendDataSetTestUtil.assertFDSActionDropdownItem(
 			"trash", "delete", "Delete", null, fdsActionDropdownItems.get(16));
+
+		Assert.assertEquals(
+			fdsActionDropdownItems.toString(), 17,
+			fdsActionDropdownItems.size());
 	}
 
 	@FeatureFlag("LPD-72278")
@@ -263,15 +263,15 @@ public class ViewContentsSectionDisplayContextTest
 		List<FDSActionDropdownItem> fdsActionDropdownItems =
 			getFDSActionDropdownItems();
 
-		Assert.assertEquals(
-			fdsActionDropdownItems.toString(), 18,
-			fdsActionDropdownItems.size());
-
 		FrontendDataSetTestUtil.assertFDSActionDropdownItem(
 			"rocket", "addToLaunch", "Add to Launch", "get",
 			fdsActionDropdownItems.get(7));
 		FrontendDataSetTestUtil.assertFDSActionDropdownItem(
 			"time", "expire", "Expire", "post", fdsActionDropdownItems.get(8));
+
+		Assert.assertEquals(
+			fdsActionDropdownItems.toString(), 18,
+			fdsActionDropdownItems.size());
 	}
 
 	@Override

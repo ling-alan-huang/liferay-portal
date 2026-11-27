@@ -415,13 +415,13 @@ public class PageTemplateSetResourceTest
 
 		List<Permission> permissions = (List<Permission>)page.getItems();
 
-		Assert.assertEquals(permissions.toString(), 1, permissions.size());
-
 		Permission permission = permissions.get(0);
 
 		Assert.assertArrayEquals(
 			new String[] {"VIEW"}, permission.getActionIds());
 		Assert.assertEquals(role.getName(), permission.getRoleName());
+
+		Assert.assertEquals(permissions.toString(), 1, permissions.size());
 
 		_testPutDesignLibraryPageTemplateSetPermissionsPageWithSiteExternalReferenceCodeProblemException(
 			role);
@@ -941,14 +941,14 @@ public class PageTemplateSetResourceTest
 
 			FailedItem[] failedItems = completedImportTask.getFailedItems();
 
-			Assert.assertEquals(
-				Arrays.toString(failedItems), 1, failedItems.length);
-
 			FailedItem failedItem = failedItems[0];
 
 			Assert.assertEquals(
 				"A name is required for the page template set",
 				failedItem.getMessage());
+
+			Assert.assertEquals(
+				Arrays.toString(failedItems), 1, failedItems.length);
 		}
 
 		Assert.assertNotNull(

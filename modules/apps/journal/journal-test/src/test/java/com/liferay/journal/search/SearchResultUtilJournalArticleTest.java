@@ -112,14 +112,14 @@ public class SearchResultUtilJournalArticleTest
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals(
 				"Search index is stale and contains entry {" +
 					document.get(Field.ENTRY_CLASS_PK) + "}",
 				logEntry.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 	}
 

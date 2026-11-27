@@ -104,8 +104,6 @@ public class MBMessageIndexerTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 2, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals(
@@ -114,6 +112,8 @@ public class MBMessageIndexerTest {
 					"category ID ", MBCategoryConstants.DISCUSSION_CATEGORY_ID,
 					" and group ID ", _group.getGroupId()),
 				logEntry.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 2, logEntries.size());
 		}
 	}
 
@@ -146,8 +146,6 @@ public class MBMessageIndexerTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals(
@@ -157,6 +155,8 @@ public class MBMessageIndexerTest {
 					MBCategoryConstants.DEFAULT_PARENT_CATEGORY_ID,
 					" and group ID ", _group.getGroupId()),
 				logEntry.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 	}
 

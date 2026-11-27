@@ -3906,13 +3906,13 @@ public class HeadlessBuilderResourceTest extends BaseTestCase {
 
 		JSONArray itemsJSONArray = jsonObject.getJSONArray("items");
 
-		Assert.assertEquals(1, itemsJSONArray.length());
-
 		JSONObject itemJSONObject = itemsJSONArray.getJSONObject(0);
 
 		Assert.assertEquals(
 			String.valueOf(expectedObjectFieldValue),
 			String.valueOf(itemJSONObject.get(expectedObjectFieldName)));
+
+		Assert.assertEquals(1, itemsJSONArray.length());
 	}
 
 	private JSONObject _createAPIEndpoint(

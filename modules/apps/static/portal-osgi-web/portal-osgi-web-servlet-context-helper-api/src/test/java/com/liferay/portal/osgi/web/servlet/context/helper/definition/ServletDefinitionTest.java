@@ -44,11 +44,11 @@ public class ServletDefinitionTest {
 
 		urlPatterns = _servletDefinition.getURLPatterns();
 
-		Assert.assertEquals(urlPatterns.toString(), 10, urlPatterns.size());
-
 		for (int i = 0; i < 10; i++) {
 			Assert.assertEquals(urlPattern + "/" + i, urlPatterns.get(i));
 		}
+
+		Assert.assertEquals(urlPatterns.toString(), 10, urlPatterns.size());
 	}
 
 	@Test
@@ -59,8 +59,9 @@ public class ServletDefinitionTest {
 
 		List<String> urlPatterns = _servletDefinition.getURLPatterns();
 
-		Assert.assertEquals(urlPatterns.toString(), 1, urlPatterns.size());
 		Assert.assertEquals(urlPattern, urlPatterns.get(0));
+
+		Assert.assertEquals(urlPatterns.toString(), 1, urlPatterns.size());
 	}
 
 	@Test
@@ -75,15 +76,15 @@ public class ServletDefinitionTest {
 
 		initParameters = _servletDefinition.getInitParameters();
 
-		Assert.assertEquals(
-			initParameters.toString(), 10, initParameters.size());
-
 		for (int i = 0; i < 10; i++) {
 			String expectedValue = String.valueOf(i);
 			String value = initParameters.get("parameter-" + i);
 
 			Assert.assertEquals(expectedValue, value);
 		}
+
+		Assert.assertEquals(
+			initParameters.toString(), 10, initParameters.size());
 	}
 
 	@Test
@@ -114,9 +115,10 @@ public class ServletDefinitionTest {
 		Map<String, String> initParameters =
 			_servletDefinition.getInitParameters();
 
+		Assert.assertEquals(value, initParameters.get(key));
+
 		Assert.assertEquals(
 			initParameters.toString(), 1, initParameters.size());
-		Assert.assertEquals(value, initParameters.get(key));
 	}
 
 	private final ServletDefinition _servletDefinition =

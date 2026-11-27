@@ -110,15 +110,12 @@ public class DDMFormFieldTemplateContextFactoryTest {
 
 		List<Object> fields = ddmFormFieldTemplateContextFactory.create();
 
-		Assert.assertEquals(fields.toString(), 1, fields.size());
-
 		Map<String, Object> fieldTemplateContext =
 			(Map<String, Object>)fields.get(0);
 
 		List<Object> nestedFields = (List<Object>)fieldTemplateContext.get(
 			"nestedFields");
 
-		Assert.assertEquals(nestedFields.toString(), 3, nestedFields.size());
 		Assert.assertEquals(
 			"textField1",
 			MapUtil.getString(
@@ -131,6 +128,10 @@ public class DDMFormFieldTemplateContextFactoryTest {
 			"textField3",
 			MapUtil.getString(
 				(Map<String, Object>)nestedFields.get(2), "fieldName"));
+
+		Assert.assertEquals(nestedFields.toString(), 3, nestedFields.size());
+
+		Assert.assertEquals(fields.toString(), 1, fields.size());
 	}
 
 	@Test
@@ -184,12 +185,12 @@ public class DDMFormFieldTemplateContextFactoryTest {
 
 		List<Object> fields = ddmFormFieldTemplateContextFactory.create();
 
-		Assert.assertEquals(fields.toString(), 1, fields.size());
-
 		Map<String, Object> fieldTemplateContext =
 			(Map<String, Object>)fields.get(0);
 
 		Assert.assertTrue(MapUtil.getBoolean(fieldTemplateContext, "readOnly"));
+
+		Assert.assertEquals(fields.toString(), 1, fields.size());
 	}
 
 	@Test
@@ -243,12 +244,12 @@ public class DDMFormFieldTemplateContextFactoryTest {
 
 		List<Object> fields = ddmFormFieldTemplateContextFactory.create();
 
-		Assert.assertEquals(fields.toString(), 1, fields.size());
-
 		Map<String, Object> fieldTemplateContext =
 			(Map<String, Object>)fields.get(0);
 
 		Assert.assertTrue(MapUtil.getBoolean(fieldTemplateContext, "readOnly"));
+
+		Assert.assertEquals(fields.toString(), 1, fields.size());
 	}
 
 	@Test
@@ -313,8 +314,6 @@ public class DDMFormFieldTemplateContextFactoryTest {
 
 		List<Object> fields = ddmFormFieldTemplateContextFactory.create();
 
-		Assert.assertEquals(fields.toString(), 1, fields.size());
-
 		Map<String, Object> fieldTemplateContext =
 			(Map<String, Object>)fields.get(0);
 
@@ -346,6 +345,8 @@ public class DDMFormFieldTemplateContextFactoryTest {
 
 		Assert.assertEquals(
 			expectedName, MapUtil.getString(fieldTemplateContext, "name"));
+
+		Assert.assertEquals(fields.toString(), 1, fields.size());
 	}
 
 	protected static void setUpLanguageUtil() {

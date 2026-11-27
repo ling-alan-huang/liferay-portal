@@ -174,14 +174,14 @@ public class ServletPathsTest {
 
 			Assert.assertNull(servletPaths.getContent());
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Throwable throwable = logEntry.getThrowable();
 
 			Assert.assertSame(
 				FileNotFoundException.class, throwable.getClass());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 
 			servletPaths = new ServletPaths(servletContext, file2.getName());
 

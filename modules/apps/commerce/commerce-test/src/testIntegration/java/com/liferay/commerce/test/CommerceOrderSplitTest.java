@@ -256,8 +256,6 @@ public class CommerceOrderSplitTest {
 
 		List<CPInstance> cpInstances = cpDefinition.getCPInstances();
 
-		Assert.assertEquals(cpInstances.toString(), 1, cpInstances.size());
-
 		CPInstance cpInstance3 = cpInstances.get(0);
 
 		CommercePriceList commercePriceList =
@@ -291,6 +289,8 @@ public class CommerceOrderSplitTest {
 		_assertCommerceOrder(
 			commerceOrders, 3, BigDecimal.valueOf(11), _cpInstance1,
 			_cpInstance2, cpInstance3);
+
+		Assert.assertEquals(cpInstances.toString(), 1, cpInstances.size());
 
 		CommerceOrderItem commerceOrderItem = _getCommerceOrderItem(
 			commerceOrders, _cpInstance1, 1);
@@ -733,9 +733,6 @@ public class CommerceOrderSplitTest {
 				commerceOrderItem.getCommerceOrderItemId(), QueryUtil.ALL_POS,
 				QueryUtil.ALL_POS);
 
-		Assert.assertEquals(
-			commerceOrderItems.toString(), 1, commerceOrderItems.size());
-
 		commerceOrderItem = commerceOrderItems.get(0);
 
 		List<CommerceShipmentItem> commerceShipmentItems =
@@ -750,6 +747,9 @@ public class CommerceOrderSplitTest {
 			commerceShipmentItem.getCommerceShipmentId());
 
 		Assert.assertEquals(trackingURL, commerceShipment.getTrackingURL());
+
+		Assert.assertEquals(
+			commerceOrderItems.toString(), 1, commerceOrderItems.size());
 	}
 
 	private AccountEntry _addAccountEntry() throws Exception {

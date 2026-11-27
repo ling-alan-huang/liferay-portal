@@ -433,11 +433,11 @@ public class LayoutCTTest {
 			TestPropsValues.getCompanyId(), _group.getGroupId(),
 			LocaleUtil.getDefault());
 
-		Assert.assertEquals(lockedLayouts.toString(), 1, lockedLayouts.size());
-
 		LockedLayout lockedLayout = lockedLayouts.get(0);
 
 		Assert.assertEquals(draftLayout.getPlid(), lockedLayout.getPlid());
+
+		Assert.assertEquals(lockedLayouts.toString(), 1, lockedLayouts.size());
 	}
 
 	@Test
@@ -498,11 +498,11 @@ public class LayoutCTTest {
 			List<Layout> layouts = _layoutLocalService.getLayouts(
 				_group.getGroupId(), layout.isPrivateLayout(), 0, 2, null);
 
-			Assert.assertEquals(layouts.toString(), 1, layouts.size());
-
 			layout = layouts.get(0);
 
 			Assert.assertEquals(ctDescription, layout.getDescription());
+
+			Assert.assertEquals(layouts.toString(), 1, layouts.size());
 		}
 
 		List<Layout> layouts = _layoutLocalService.getLayouts(
@@ -524,9 +524,9 @@ public class LayoutCTTest {
 				_group.getGroupId(), layout.isPrivateLayout(), 1, 2,
 				OrderByComparatorFactoryUtil.create("Layout", "plid", true));
 
-			Assert.assertEquals(layouts.toString(), 1, layouts.size());
-
 			Assert.assertEquals(newLayout, layouts.get(0));
+
+			Assert.assertEquals(layouts.toString(), 1, layouts.size());
 		}
 	}
 
@@ -769,12 +769,12 @@ public class LayoutCTTest {
 		assetTags = _assetTagLocalService.getEntryTags(
 			assetEntry1.getEntryId());
 
-		Assert.assertEquals(assetTags.toString(), 1, assetTags.size());
-
 		assetTag = assetTags.get(0);
 
 		Assert.assertEquals(tagName2, assetTag.getName());
 		Assert.assertEquals(1, assetTag.getAssetCount());
+
+		Assert.assertEquals(assetTags.toString(), 1, assetTags.size());
 	}
 
 	@Test
@@ -808,12 +808,12 @@ public class LayoutCTTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals(
 				"Unable to execute background task", logEntry.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 
 		try (SafeCloseable safeCloseable =
@@ -1077,8 +1077,6 @@ public class LayoutCTTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Throwable throwable = logEntry.getThrowable();
@@ -1088,6 +1086,8 @@ public class LayoutCTTest {
 			String message = throwable.toString();
 
 			Assert.assertTrue(message, message.contains("Unable to publish "));
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 	}
 
@@ -1462,14 +1462,14 @@ public class LayoutCTTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals(
 				"Caught unexpected exception " +
 					CTRequiredModelException.class.getName(),
 				logEntry.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 		catch (Exception exception) {
 			Assert.assertTrue(

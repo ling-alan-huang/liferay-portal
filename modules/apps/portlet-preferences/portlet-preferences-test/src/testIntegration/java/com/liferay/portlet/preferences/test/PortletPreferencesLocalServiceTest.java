@@ -513,13 +513,13 @@ public class PortletPreferencesLocalServiceTest
 				testLayout.getGroupId(), PortletKeys.PREFS_OWNER_TYPE_GROUP,
 				testPortlet.getPortletId(), false);
 
-		Assert.assertEquals(
-			portletPreferencesList.toString(), 1,
-			portletPreferencesList.size());
-
 		PortletPreferences portletPreferences = portletPreferencesList.get(0);
 
 		Assert.assertEquals(testLayout.getPlid(), portletPreferences.getPlid());
+
+		Assert.assertEquals(
+			portletPreferencesList.toString(), 1,
+			portletPreferencesList.size());
 	}
 
 	@Test
@@ -564,14 +564,14 @@ public class PortletPreferencesLocalServiceTest
 				PortletKeys.PREFS_OWNER_TYPE_GROUP, testLayout.getPlid(),
 				testPortlet.getPortletId());
 
-		Assert.assertEquals(
-			portletPreferencesList.toString(), 1,
-			portletPreferencesList.size());
-
 		PortletPreferencesImpl portletPreferencesImpl =
 			_toPortletPreferencesImpl(portletPreferencesList.get(0));
 
 		assertOwner(testLayout.getGroup(), portletPreferencesImpl);
+
+		Assert.assertEquals(
+			portletPreferencesList.toString(), 1,
+			portletPreferencesList.size());
 	}
 
 	@Test
@@ -753,14 +753,14 @@ public class PortletPreferencesLocalServiceTest
 				PortletKeys.PREFS_OWNER_TYPE_LAYOUT, testPortlet.getPortletId(),
 				false);
 
-		Assert.assertEquals(
-			portletPreferencesList.toString(), 2,
-			portletPreferencesList.size());
-
 		PortletPreferences portletPreferences = portletPreferencesList.get(0);
 
 		Assert.assertEquals(
 			testPortlet.getPortletId(), portletPreferences.getPortletId());
+
+		Assert.assertEquals(
+			portletPreferencesList.toString(), 2,
+			portletPreferencesList.size());
 	}
 
 	@Test
@@ -774,14 +774,14 @@ public class PortletPreferencesLocalServiceTest
 				PortletKeys.PREFS_OWNER_TYPE_LAYOUT, testLayout.getPlid(),
 				testPortlet.getPortletId());
 
-		Assert.assertEquals(
-			portletPreferencesList.toString(), 1,
-			portletPreferencesList.size());
-
 		PortletPreferencesImpl portletPreferencesImpl =
 			_toPortletPreferencesImpl(portletPreferencesList.get(0));
 
 		assertOwner(testLayout, portletPreferencesImpl);
+
+		Assert.assertEquals(
+			portletPreferencesList.toString(), 1,
+			portletPreferencesList.size());
 	}
 
 	@Test
@@ -1080,16 +1080,16 @@ public class PortletPreferencesLocalServiceTest
 				PortletKeys.PREFS_OWNER_TYPE_LAYOUT, testLayout.getPlid(),
 				testPortlet.getPortletId());
 
-		Assert.assertEquals(
-			portletPreferencesList.toString(), 1,
-			portletPreferencesList.size());
-
 		PortletPreferencesImpl portletPreferencesImpl =
 			_toPortletPreferencesImpl(portletPreferencesList.get(0));
 
 		assertOwner(testLayout, portletPreferencesImpl);
 
 		addLayoutPortletPreferences(_createNewLayout(false), testPortlet);
+
+		Assert.assertEquals(
+			portletPreferencesList.toString(), 1,
+			portletPreferencesList.size());
 
 		Assert.assertEquals(
 			portletPreferencesList.toString(), 1,
@@ -1191,15 +1191,15 @@ public class PortletPreferencesLocalServiceTest
 			portletPreferencesLocalService.getPortletPreferences(
 				testLayout.getPlid(), testPortlet.getPortletId());
 
-		Assert.assertEquals(
-			portletPreferencesList.toString(), 1,
-			portletPreferencesList.size());
-
 		PortletPreferences portletPreferences = portletPreferencesList.get(0);
 
 		Assert.assertEquals(testLayout.getPlid(), portletPreferences.getPlid());
 		Assert.assertEquals(
 			testPortlet.getPortletId(), portletPreferences.getPortletId());
+
+		Assert.assertEquals(
+			portletPreferencesList.toString(), 1,
+			portletPreferencesList.size());
 	}
 
 	@Test

@@ -1,0 +1,336 @@
+/**
+ * SPDX-FileCopyrightText: (c) 2026 Liferay, Inc. https://liferay.com
+ * SPDX-License-Identifier: LGPL-2.1-or-later OR LicenseRef-Liferay-DXP-EULA-2.0.0-2023-06
+ */
+
+package com.liferay.source.formatter.dependencies;
+
+import java.util.List;
+import java.util.Map;
+
+import org.junit.Assert;
+import org.junit.Test;
+
+/**
+ * @author Alan Huang
+ */
+public class SizeAssertionOrderTest {
+
+	@Test
+	public void testAddName() throws Exception {
+		List<String> names = _getNames();
+
+		Assert.assertEquals(names.toString(), 1, names.size());
+
+		String name = names.get(0);
+
+		names.add(name + "2");
+
+		Assert.assertEquals("alpha", name);
+	}
+
+	@Test
+	public void testGetAccountLifecycleStages() throws Exception {
+		AccountLifecycleStage[] accountLifecycleStages =
+			_getAccountLifecycleStages();
+
+		Assert.assertEquals(
+			accountLifecycleStages.toString(), 2,
+			accountLifecycleStages.length);
+
+		AccountLifecycleStage accountLifecycleStage = accountLifecycleStages[0];
+
+		Assert.assertEquals("alpha", accountLifecycleStage.getName());
+
+		_assertAccountLifecycleStage(accountLifecycleStages[1], "beta");
+
+		Assert.assertTrue(_isIndexed());
+	}
+
+	@Test
+	public void testGetActions() throws Exception {
+		Map<String, Object> actions = _getActions();
+
+		Assert.assertEquals(actions.toString(), 2, actions.size());
+		Assert.assertTrue(actions.containsKey("delete"));
+		Assert.assertTrue(actions.containsKey("get"));
+	}
+
+	@Test
+	public void testGetExpectedValues() throws Exception {
+		String[] expectedValues = _getExpectedValues();
+
+		List<String> values = _getValues();
+
+		Assert.assertEquals(
+			values.toString(), expectedValues.length, values.size());
+
+		String value = values.get(0);
+
+		Assert.assertEquals(expectedValues[0], value);
+	}
+
+	@Test
+	public void testGetFileEntries() throws Exception {
+		List<CPDVirtualSettingFileEntry> cpdVirtualSettingFileEntries =
+			_getCPDVirtualSettingFileEntries();
+
+		Assert.assertEquals(
+			cpdVirtualSettingFileEntries.toString(), 1,
+			cpdVirtualSettingFileEntries.size());
+
+		CPDVirtualSettingFileEntry cpdVirtualSettingFileEntry =
+			cpdVirtualSettingFileEntries.get(0);
+
+		Assert.assertEquals(
+			_fileEntry.getFileEntryId(),
+			cpdVirtualSettingFileEntry.getFileEntryId());
+	}
+
+	@Test
+	public void testGetGroup() throws Exception {
+		Group group = _getGroup();
+
+		Assert.assertEquals("Guest", group.getName());
+
+		UnicodeProperties typeSettingsUnicodeProperties =
+			group.getTypeSettingsProperties();
+
+		Assert.assertEquals(
+			"true", typeSettingsUnicodeProperties.getProperty("inherit"));
+	}
+
+	@Test
+	public void testGetIncludeAndOverrides() throws Exception {
+		String[] includeAndOverrides = _getIncludeAndOverrides();
+
+		Assert.assertEquals(
+			"a.properties",
+			includeAndOverrides[includeAndOverrides.length - 2]);
+		Assert.assertEquals(
+			"b.properties",
+			includeAndOverrides[includeAndOverrides.length - 1]);
+	}
+
+	@Test
+	public void testGetItems() throws Exception {
+		List<Item> items = _getItems();
+
+		Assert.assertEquals(items.toString(), 2, items.size());
+
+		Item item = items.get(0);
+
+		Assert.assertEquals("alpha", item.getName());
+
+		_assertItem(items.get(1), "beta");
+
+		Assert.assertTrue(_isIndexed());
+	}
+
+	@Test
+	public void testGetLogEntries() throws Exception {
+		List<LogEntry> logEntries = _getLogEntries();
+
+		Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
+
+		LogEntry logEntry = logEntries.get(0);
+
+		Assert.assertTrue(
+			logEntry.getThrowable() instanceof PrincipalException);
+	}
+
+	@Test
+	public void testGetMappingTypes() throws Exception {
+		JSONArray mappingTypesJSONArray = _getMappingTypesJSONArray();
+
+		Assert.assertEquals(
+			mappingTypesJSONArray.toString(), 1,
+			mappingTypesJSONArray.length());
+
+		JSONObject mappingTypeJSONObject = mappingTypesJSONArray.getJSONObject(
+			0);
+
+		Assert.assertEquals("id", mappingTypeJSONObject.getString("id"));
+
+		JSONArray subtypesJSONArray = mappingTypeJSONObject.getJSONArray(
+			"subtypes");
+
+		Assert.assertEquals(
+			subtypesJSONArray.toString(), 1, subtypesJSONArray.length());
+
+		JSONObject subtypeJSONObject = subtypesJSONArray.getJSONObject(0);
+
+		Assert.assertEquals("label", subtypeJSONObject.getString("label"));
+	}
+
+	@Test
+	public void testGetMessages() throws Exception {
+		List<Message> messages = _getMessages();
+
+		Assert.assertEquals(messages.toString(), 1, messages.size());
+
+		Message message = messages.get(0);
+
+		Assert.assertEquals("alpha", message.getText());
+
+		messages = _getMessages();
+
+		Assert.assertTrue(messages.toString(), messages.isEmpty());
+	}
+
+	@Test
+	public void testGetNames() throws Exception {
+		List<String> names = _getNames();
+
+		Assert.assertEquals(names.toString(), 2, names.size());
+
+		String name = names.get(0);
+
+		Assert.assertNotNull(name);
+		Assert.assertEquals("alpha", name);
+
+		_deleteNames();
+	}
+
+	@Test
+	public void testGetPrimaryDropdownItems() throws Exception {
+		List<DropdownItem> primaryDropdownItems = _getPrimaryDropdownItems();
+
+		if (_featureFlagEnabled) {
+			Assert.assertEquals(
+				primaryDropdownItems.toString(), 2,
+				primaryDropdownItems.size());
+
+			DropdownItem primaryDropdownItem = primaryDropdownItems.get(1);
+
+			Assert.assertEquals(
+				Boolean.TRUE, primaryDropdownItem.get("deprecated"));
+		}
+		else {
+			Assert.assertEquals(
+				primaryDropdownItems.toString(), 1,
+				primaryDropdownItems.size());
+		}
+	}
+
+	@Test
+	public void testGetRoles() throws Exception {
+		List<Role> roles = _getRoles();
+
+		Role role = roles.get(0);
+
+		Assert.assertEquals("Administrator", role.getName());
+
+		Assert.assertEquals(roles.toString(), 1, roles.size());
+	}
+
+	@Test
+	public void testGetTags() throws Exception {
+		List<Tag> tags = _getTags();
+
+		Assert.assertEquals(tags.toString(), 1, tags.size());
+
+		Tag tag = tags.get(0);
+
+		Assert.assertEquals("alpha", tag.getName());
+
+		if (tags.contains(tag) && !tags.isEmpty()) {
+			_deleteTag(tag);
+		}
+	}
+
+	@Test
+	public void testGetThrowable() throws Exception {
+		List<LogEntry> logEntries = _getLogEntries();
+
+		LogEntry logEntry = logEntries.get(0);
+
+		Throwable throwable = logEntry.getThrowable();
+
+		Assert.assertEquals(
+			StringBundler.concat(
+				"No FileEntry exists with the key {fileEntryId=", _fileEntryId,
+				"}"),
+			throwable.getMessage());
+
+		Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
+
+		Assert.assertSame(NoSuchFileEntryException.class, throwable.getClass());
+	}
+
+	@Test
+	public void testGetUsersByName() throws Exception {
+		List<User> users = _getUsers();
+
+		User user1 = users.get(0);
+
+		Assert.assertEquals("alpha", user1.getScreenName());
+
+		User user2 = users.get(1);
+
+		Assert.assertEquals("beta", user2.getScreenName());
+	}
+
+	@Test
+	public void testGetValues() throws Exception {
+		List<String> values = _getValues();
+
+		Assert.assertEquals(values.toString(), 1, values.size());
+
+		String value = values.get(0);
+
+		Assert.assertEquals("alpha", value);
+
+		Assert.assertEquals(_expectedValues, values);
+	}
+
+	@Test
+	public void testReadBuffer() throws Exception {
+		char[] buffer = new char[8];
+
+		int read = _read(buffer);
+
+		Assert.assertEquals(buffer.length, read);
+
+		for (int i = 0; i < read; i++) {
+			Assert.assertEquals('a', buffer[i]);
+		}
+	}
+
+	@Test
+	public void testReassignRole() throws Exception {
+		Role role = _addRole();
+
+		Assert.assertEquals("Guest", role.getName());
+
+		List<Role> roles = _getRoles();
+
+		role = roles.get(0);
+
+		Assert.assertEquals(roles.toString(), 1, roles.size());
+
+		Assert.assertEquals("Administrator", role.getName());
+	}
+
+	@Test
+	public void testRegisterItem() throws Exception {
+		List<Item> items = _getItems();
+
+		Assert.assertEquals(items.toString(), 0, items.size());
+
+		_registerItem();
+
+		Item item = items.get(0);
+
+		Assert.assertEquals("alpha", item.getName());
+	}
+
+	protected Item getItem() throws Exception {
+		List<Item> items = _getItems();
+
+		Assert.assertEquals(items.toString(), 1, items.size());
+
+		return items.get(0);
+	}
+
+}

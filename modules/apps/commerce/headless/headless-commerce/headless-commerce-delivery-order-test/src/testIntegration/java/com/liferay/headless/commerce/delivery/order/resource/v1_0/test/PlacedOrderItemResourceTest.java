@@ -428,12 +428,12 @@ public class PlacedOrderItemResourceTest
 		placedOrderItems =
 			(List<PlacedOrderItem>)placedOrderItemsPage.getItems();
 
-		Assert.assertEquals(
-			placedOrderItems.toString(), 1, placedOrderItems.size());
-
 		PlacedOrderItem placedOrderItem = placedOrderItems.get(0);
 
 		assertEquals(postPlacedOrderItem, placedOrderItem);
+
+		Assert.assertEquals(
+			placedOrderItems.toString(), 1, placedOrderItems.size());
 	}
 
 	private void _testGetPlacedOrderPlacedOrderItemsPage() throws Exception {
@@ -469,12 +469,12 @@ public class PlacedOrderItemResourceTest
 		placedOrderItems =
 			(List<PlacedOrderItem>)placedOrderItemsPage.getItems();
 
-		Assert.assertEquals(
-			placedOrderItems.toString(), 1, placedOrderItems.size());
-
 		PlacedOrderItem placedOrderItem = placedOrderItems.get(0);
 
 		assertEquals(postPlacedOrderItem, placedOrderItem);
+
+		Assert.assertEquals(
+			placedOrderItems.toString(), 1, placedOrderItems.size());
 	}
 
 	private PlacedOrderItem _toPlacedOrderItem(CPDefinition cpDefinition) {

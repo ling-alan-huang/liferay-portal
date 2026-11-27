@@ -151,9 +151,6 @@ public class PerformanceAssetConsumptionResourceTest
 					getPerformanceAssetConsumptionItems();
 
 			Assert.assertEquals(
-				Arrays.toString(performanceAssetConsumptionItems), 2,
-				performanceAssetConsumptionItems.length);
-			Assert.assertEquals(
 				30L, (long)performanceAssetConsumptionItems[0].getCount());
 			Assert.assertEquals(
 				basicWebContentObjectDefinition.getExternalReferenceCode(),
@@ -170,6 +167,10 @@ public class PerformanceAssetConsumptionResourceTest
 			Assert.assertEquals(
 				blogObjectDefinition.getLabel(LocaleUtil.getDefault()),
 				performanceAssetConsumptionItems[1].getTitle());
+
+			Assert.assertEquals(
+				Arrays.toString(performanceAssetConsumptionItems), 2,
+				performanceAssetConsumptionItems.length);
 
 			Assert.assertEquals(
 				2L,
@@ -233,9 +234,6 @@ public class PerformanceAssetConsumptionResourceTest
 					getPerformanceAssetConsumptionItems();
 
 			Assert.assertEquals(
-				Arrays.toString(performanceAssetConsumptionItems), 2,
-				performanceAssetConsumptionItems.length);
-			Assert.assertEquals(
 				10L, (long)performanceAssetConsumptionItems[0].getCount());
 			Assert.assertEquals(
 				key1, performanceAssetConsumptionItems[0].getKey());
@@ -247,6 +245,10 @@ public class PerformanceAssetConsumptionResourceTest
 				key2, performanceAssetConsumptionItems[1].getKey());
 			Assert.assertEquals(
 				title2, performanceAssetConsumptionItems[1].getTitle());
+
+			Assert.assertEquals(
+				Arrays.toString(performanceAssetConsumptionItems), 2,
+				performanceAssetConsumptionItems.length);
 
 			Assert.assertEquals(
 				2L,
@@ -468,15 +470,16 @@ public class PerformanceAssetConsumptionResourceTest
 					getPerformanceAssetConsumptionItems();
 
 			Assert.assertEquals(
-				Arrays.toString(performanceAssetConsumptionItems), 1,
-				performanceAssetConsumptionItems.length);
-			Assert.assertEquals(
 				Long.valueOf(10),
 				performanceAssetConsumptionItems[0].getCount());
 			Assert.assertEquals(
 				key, performanceAssetConsumptionItems[0].getKey());
 			Assert.assertEquals(
 				title, performanceAssetConsumptionItems[0].getTitle());
+
+			Assert.assertEquals(
+				Arrays.toString(performanceAssetConsumptionItems), 1,
+				performanceAssetConsumptionItems.length);
 
 			Assert.assertEquals(
 				Long.valueOf(10), performanceAssetConsumption.getTotalCount());

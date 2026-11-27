@@ -25,16 +25,16 @@ public class PrimitiveLongListTest {
 			primitiveLongList.add(l);
 		}
 
-		Assert.assertEquals(expected.length, primitiveLongList.size());
-
 		long[] actual = primitiveLongList.getArray();
-
-		Assert.assertEquals(
-			Arrays.toString(actual), expected.length, actual.length);
 
 		for (int i = 0; i < actual.length; i++) {
 			Assert.assertEquals(expected[i], actual[i]);
 		}
+
+		Assert.assertEquals(
+			Arrays.toString(actual), expected.length, actual.length);
+
+		Assert.assertEquals(expected.length, primitiveLongList.size());
 	}
 
 	@Test
@@ -45,16 +45,16 @@ public class PrimitiveLongListTest {
 
 		primitiveLongList.addAll(expected);
 
-		Assert.assertEquals(expected.length, primitiveLongList.size());
-
 		long[] actual = primitiveLongList.getArray();
-
-		Assert.assertEquals(
-			Arrays.toString(actual), expected.length, actual.length);
 
 		for (int i = 0; i < actual.length; i++) {
 			Assert.assertEquals(expected[i], actual[i]);
 		}
+
+		Assert.assertEquals(
+			Arrays.toString(actual), expected.length, actual.length);
+
+		Assert.assertEquals(expected.length, primitiveLongList.size());
 	}
 
 }

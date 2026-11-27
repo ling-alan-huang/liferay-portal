@@ -82,10 +82,6 @@ public class EventMetricDTOConverterTest {
 		List<GetWorkspaceGroupChannelEventMetricsResponse.HistogramMetric>
 			responseHistogramMetrics = responseHistogram.getMetrics();
 
-		Assert.assertEquals(
-			Arrays.toString(histogramBuckets), responseHistogramMetrics.size(),
-			histogramBuckets.length);
-
 		for (int i = 0; i < histogramBuckets.length; i++) {
 			GetWorkspaceGroupChannelEventMetricsResponse.HistogramMetric
 				responseHistogramMetric = responseHistogramMetrics.get(i);
@@ -96,6 +92,10 @@ public class EventMetricDTOConverterTest {
 				responseHistogramMetric.getValue(),
 				histogramBuckets[i].getValue());
 		}
+
+		Assert.assertEquals(
+			Arrays.toString(histogramBuckets), responseHistogramMetrics.size(),
+			histogramBuckets.length);
 
 		Metric totalSessionsMetric = eventMetric.getTotalSessions();
 

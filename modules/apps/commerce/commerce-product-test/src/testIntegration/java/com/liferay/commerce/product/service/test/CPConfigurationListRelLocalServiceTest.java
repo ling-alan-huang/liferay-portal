@@ -259,13 +259,13 @@ public class CPConfigurationListRelLocalServiceTest {
 
 		List<Document> documents = searchResponse.getDocuments();
 
-		Assert.assertEquals(documents.toString(), 1, documents.size());
-
 		Document document = documents.get(0);
 
 		Assert.assertEquals(
 			expectedCommerceAccountGroupIds,
 			document.getLongs("commerceAccountGroupIds"));
+
+		Assert.assertEquals(documents.toString(), 1, documents.size());
 	}
 
 	@DeleteAfterTestRun

@@ -289,10 +289,6 @@ public class BlogsEntryContentDashboardItemTest {
 			contentDashboardItem.getLatestContentDashboardItemVersions(
 				LocaleUtil.US);
 
-		Assert.assertEquals(
-			latestContentDashboardItemVersions.toString(), 1,
-			latestContentDashboardItemVersions.size());
-
 		ContentDashboardItemVersion contentDashboardItemVersion =
 			latestContentDashboardItemVersions.get(0);
 
@@ -310,6 +306,10 @@ public class BlogsEntryContentDashboardItemTest {
 			blogsEntry.getUserName(),
 			contentDashboardItemVersion.getUserName());
 		Assert.assertEquals("1.0", contentDashboardItemVersion.getVersion());
+
+		Assert.assertEquals(
+			latestContentDashboardItemVersions.toString(), 1,
+			latestContentDashboardItemVersions.size());
 	}
 
 	@Test
@@ -353,14 +353,14 @@ public class BlogsEntryContentDashboardItemTest {
 		List<ContentDashboardItem.SpecificInformation<?>> specificInformations =
 			contentDashboardItem.getSpecificInformationList(LocaleUtil.US);
 
-		Assert.assertEquals(
-			specificInformations.toString(), 1, specificInformations.size());
-
 		ContentDashboardItem.SpecificInformation<?> specificInformation =
 			specificInformations.get(0);
 
 		Assert.assertEquals(
 			specificInformation.getValue(), blogsEntry.getDisplayDate());
+
+		Assert.assertEquals(
+			specificInformations.toString(), 1, specificInformations.size());
 	}
 
 	@Test

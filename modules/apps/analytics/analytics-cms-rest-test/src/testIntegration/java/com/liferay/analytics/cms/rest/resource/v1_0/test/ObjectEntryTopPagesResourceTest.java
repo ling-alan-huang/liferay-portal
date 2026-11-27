@@ -165,8 +165,6 @@ public class ObjectEntryTopPagesResourceTest
 
 			TopPage[] topPages = objectEntryTopPages.getTopPages();
 
-			Assert.assertEquals(Arrays.toString(topPages), 3, topPages.length);
-
 			TopPage topPage1 = topPages[0];
 
 			Assert.assertEquals(
@@ -205,6 +203,8 @@ public class ObjectEntryTopPagesResourceTest
 
 			Assert.assertEquals("Title 3", topPage3.getPageTitle());
 			Assert.assertEquals("Site 1", topPage3.getSiteName());
+
+			Assert.assertEquals(Arrays.toString(topPages), 3, topPages.length);
 		}
 	}
 

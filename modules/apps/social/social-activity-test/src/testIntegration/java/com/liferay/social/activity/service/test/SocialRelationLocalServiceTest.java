@@ -317,8 +317,6 @@ public class SocialRelationLocalServiceTest {
 			SocialRelationConstants.TYPE_BI_FRIEND, QueryUtil.ALL_POS,
 			QueryUtil.ALL_POS, UserScreenNameComparator.getInstance(true));
 
-		Assert.assertEquals(users.toString(), 3, users.size());
-
 		User user1 = users.get(0);
 
 		Assert.assertEquals("dlc3", user1.getScreenName());
@@ -330,6 +328,8 @@ public class SocialRelationLocalServiceTest {
 		User user3 = users.get(2);
 
 		Assert.assertEquals("dlc5", user3.getScreenName());
+
+		Assert.assertEquals(users.toString(), 3, users.size());
 	}
 
 	@Test
@@ -367,11 +367,11 @@ public class SocialRelationLocalServiceTest {
 			SocialRelationConstants.TYPE_UNI_CHILD, QueryUtil.ALL_POS,
 			QueryUtil.ALL_POS, UserScreenNameComparator.getInstance(true));
 
-		Assert.assertEquals(users.toString(), 1, users.size());
-
 		user1 = users.get(0);
 
 		Assert.assertEquals("fra1", user1.getScreenName());
+
+		Assert.assertEquals(users.toString(), 1, users.size());
 	}
 
 	@Test
@@ -385,8 +385,6 @@ public class SocialRelationLocalServiceTest {
 			dlc1User.getUserId(), SocialRelationConstants.TYPE_UNI_ENEMY,
 			StringPool.NOT_EQUAL, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 			UserScreenNameComparator.getInstance(true));
-
-		Assert.assertEquals(users.toString(), 8, users.size());
 
 		User user1 = users.get(0);
 
@@ -419,6 +417,8 @@ public class SocialRelationLocalServiceTest {
 		User user8 = users.get(7);
 
 		Assert.assertEquals("dlc9", user8.getScreenName());
+
+		Assert.assertEquals(users.toString(), 8, users.size());
 	}
 
 	@Test

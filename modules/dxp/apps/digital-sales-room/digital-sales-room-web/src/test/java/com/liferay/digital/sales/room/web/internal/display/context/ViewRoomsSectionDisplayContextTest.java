@@ -383,13 +383,13 @@ public class ViewRoomsSectionDisplayContextTest {
 		fdsActionDropdownItems =
 			viewRoomsSectionDisplayContext.getFDSActionDropdownItems();
 
-		Assert.assertEquals(
-			fdsActionDropdownItems.toString(), 8,
-			fdsActionDropdownItems.size());
-
 		_assertFDSActionDropdownItem(
 			"#", "copy", "duplicate", "Duplicate", null, "update", null,
 			fdsActionDropdownItems.get(2));
+
+		Assert.assertEquals(
+			fdsActionDropdownItems.toString(), 8,
+			fdsActionDropdownItems.size());
 	}
 
 	@Test
@@ -490,8 +490,6 @@ public class ViewRoomsSectionDisplayContextTest {
 		List<DropdownItem> dropdownItems = (List<DropdownItem>)creationMenu.get(
 			"primaryItems");
 
-		Assert.assertEquals(dropdownItems.toString(), 1, dropdownItems.size());
-
 		DropdownItem dropdownItem = dropdownItems.get(0);
 
 		Assert.assertEquals("forms", dropdownItem.get("icon"));
@@ -509,6 +507,8 @@ public class ViewRoomsSectionDisplayContextTest {
 		Assert.assertEquals(
 			_objectDefinition.getLabel(LocaleUtil.ENGLISH),
 			dropdownItemData.get("title"));
+
+		Assert.assertEquals(dropdownItems.toString(), 1, dropdownItems.size());
 	}
 
 	private void _testGetCreationMenuWhenLicenseIsExpired() throws Exception {

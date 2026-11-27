@@ -227,32 +227,32 @@ public class SharingDLViewFileVersionDisplayContextTest {
 		List<DropdownItem> actionDropdownItems =
 			dlViewFileVersionDisplayContext.getActionDropdownItems();
 
-		Assert.assertEquals(
-			actionDropdownItems.toString(), 1, actionDropdownItems.size());
-
 		DropdownItem groupDropdownItem = actionDropdownItems.get(0);
 
 		DropdownItemList groupDropdownItemList =
 			(DropdownItemList)groupDropdownItem.get("items");
-
-		Assert.assertEquals(
-			groupDropdownItemList.toString(), 2, groupDropdownItemList.size());
 
 		DropdownItem sharingDropdownItem = groupDropdownItemList.get(0);
 
 		DropdownItemList sharingDropdownItemList =
 			(DropdownItemList)sharingDropdownItem.get("items");
 
+		_assertShareDropdownItem(sharingDropdownItemList.get(0), fileEntry);
+		_assertCopyLinkDropdownItem(sharingDropdownItemList.get(1), fileEntry);
+
 		Assert.assertEquals(
 			sharingDropdownItemList.toString(), 2,
 			sharingDropdownItemList.size());
 
-		_assertShareDropdownItem(sharingDropdownItemList.get(0), fileEntry);
-		_assertCopyLinkDropdownItem(sharingDropdownItemList.get(1), fileEntry);
-
 		editDropdownItem = groupDropdownItemList.get(1);
 
 		Assert.assertEquals(DLUIItemKeys.EDIT, editDropdownItem.get("key"));
+
+		Assert.assertEquals(
+			groupDropdownItemList.toString(), 2, groupDropdownItemList.size());
+
+		Assert.assertEquals(
+			actionDropdownItems.toString(), 1, actionDropdownItems.size());
 	}
 
 	private void _testGetActionDropdownItemsWithSharingDisabled(
@@ -262,10 +262,10 @@ public class SharingDLViewFileVersionDisplayContextTest {
 		List<DropdownItem> actionDropdownItems = _getDropdownItems(
 			fileEntry, false);
 
+		_assertCopyLinkDropdownItem(actionDropdownItems.get(0), fileEntry);
+
 		Assert.assertEquals(
 			actionDropdownItems.toString(), 1, actionDropdownItems.size());
-
-		_assertCopyLinkDropdownItem(actionDropdownItems.get(0), fileEntry);
 	}
 
 	private void _testGetActionDropdownItemsWithSharingEnabled(
@@ -275,19 +275,19 @@ public class SharingDLViewFileVersionDisplayContextTest {
 		List<DropdownItem> actionDropdownItems = _getDropdownItems(
 			fileEntry, true);
 
-		Assert.assertEquals(
-			actionDropdownItems.toString(), 1, actionDropdownItems.size());
-
 		DropdownItem dropdownItem = actionDropdownItems.get(0);
 
 		DropdownItemList dropdownItemList = (DropdownItemList)dropdownItem.get(
 			"items");
 
+		_assertShareDropdownItem(dropdownItemList.get(0), fileEntry);
+		_assertCopyLinkDropdownItem(dropdownItemList.get(1), fileEntry);
+
 		Assert.assertEquals(
 			dropdownItemList.toString(), 2, dropdownItemList.size());
 
-		_assertShareDropdownItem(dropdownItemList.get(0), fileEntry);
-		_assertCopyLinkDropdownItem(dropdownItemList.get(1), fileEntry);
+		Assert.assertEquals(
+			actionDropdownItems.toString(), 1, actionDropdownItems.size());
 	}
 
 	@Inject

@@ -340,8 +340,6 @@ public class AddFragmentEntryLinkMVCActionCommandTest {
 				new Class<?>[] {ActionRequest.class, Exception.class},
 				mockLiferayPortletActionRequest, modelListenerException);
 
-			Assert.assertEquals(jsonObject.toString(), 1, jsonObject.length());
-
 			Assert.assertEquals(
 				_language.format(
 					_portal.getSiteDefaultLocale(_group),
@@ -349,6 +347,8 @@ public class AddFragmentEntryLinkMVCActionCommandTest {
 						"widget-x-that-can-only-appear-once-on-the-page",
 					"Noninstanciable Test"),
 				jsonObject.getString("error"));
+
+			Assert.assertEquals(jsonObject.toString(), 1, jsonObject.length());
 		}
 
 		List<PortletPreferences> portletPreferences =
@@ -377,15 +377,15 @@ public class AddFragmentEntryLinkMVCActionCommandTest {
 				_layout.getPlid()),
 			originalPortletPreferencesList);
 
-		Assert.assertEquals(
-			portletPreferencesList.toString(), 1,
-			portletPreferencesList.size());
-
 		PortletPreferences portletPreferences = portletPreferencesList.get(0);
 
 		Assert.assertEquals(
 			_getPortletId(fragmentEntryLink, instanceId, portletId, namespaced),
 			portletPreferences.getPortletId());
+
+		Assert.assertEquals(
+			portletPreferencesList.toString(), 1,
+			portletPreferencesList.size());
 	}
 
 	private FragmentEntry _getFragmentEntry(long groupId) throws Exception {

@@ -87,9 +87,6 @@ public class RedirectURLConfigurationUpgradeProcessTest {
 
 		Configuration[] configurations = _getConfigurations();
 
-		Assert.assertEquals(
-			Arrays.toString(configurations), 1, configurations.length);
-
 		Configuration configuration = configurations[0];
 
 		Dictionary<String, Object> properties = configuration.getProperties();
@@ -98,16 +95,21 @@ public class RedirectURLConfigurationUpgradeProcessTest {
 
 		String[] allowedDomains = (String[])properties.get("allowedDomains");
 
+		Assert.assertEquals(allowedDomain, allowedDomains[0]);
+
 		Assert.assertEquals(
 			Arrays.toString(allowedDomains), 1, allowedDomains.length);
-		Assert.assertEquals(allowedDomain, allowedDomains[0]);
 
 		String[] allowedIPs = (String[])properties.get("allowedIPs");
 
-		Assert.assertEquals(Arrays.toString(allowedIPs), 1, allowedIPs.length);
 		Assert.assertEquals(allowedIP, allowedIPs[0]);
 
+		Assert.assertEquals(Arrays.toString(allowedIPs), 1, allowedIPs.length);
+
 		Assert.assertEquals(securityMode, properties.get("securityMode"));
+
+		Assert.assertEquals(
+			Arrays.toString(configurations), 1, configurations.length);
 	}
 
 	private Configuration[] _getConfigurations() throws Exception {

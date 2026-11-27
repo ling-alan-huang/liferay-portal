@@ -331,9 +331,10 @@ public class DDMFormRuleToDDMFormRuleModelConverterTest
 			_ddmFormRuleConverterImpl.convert(ddmFormRules),
 			_spiDDMFormRuleSerializerContext);
 
+		Assert.assertEquals(ddmFormRules.get(1), newDDMFormRules.get(0));
+
 		Assert.assertEquals(
 			newDDMFormRules.toString(), 1, newDDMFormRules.size());
-		Assert.assertEquals(ddmFormRules.get(1), newDDMFormRules.get(0));
 	}
 
 	protected List<DDMFormRule> convert(String fileName) throws Exception {

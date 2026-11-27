@@ -309,10 +309,6 @@ public class JournalArticleContentDashboardItemTest {
 				versionableContentDashboardItem.
 					getAllContentDashboardItemVersions(httpServletRequest);
 
-			Assert.assertEquals(
-				contentDashboardItemVersions.toString(), 1,
-				contentDashboardItemVersions.size());
-
 			ContentDashboardItemVersion contentDashboardItemVersion =
 				contentDashboardItemVersions.get(0);
 
@@ -324,6 +320,10 @@ public class JournalArticleContentDashboardItemTest {
 			Assert.assertTrue(
 				contentDashboardItemVersionActions.contains(
 					testJournalArticleContentDashboardItemVersionAction));
+
+			Assert.assertEquals(
+				contentDashboardItemVersions.toString(), 1,
+				contentDashboardItemVersions.size());
 		}
 		finally {
 			serviceRegistration.unregister();
@@ -568,10 +568,6 @@ public class JournalArticleContentDashboardItemTest {
 			contentDashboardItem.getLatestContentDashboardItemVersions(
 				LocaleUtil.US);
 
-		Assert.assertEquals(
-			contentDashboardItemVersions.toString(), 2,
-			contentDashboardItemVersions.size());
-
 		ContentDashboardItemVersion contentDashboardItemVersion =
 			contentDashboardItemVersions.get(0);
 
@@ -590,6 +586,10 @@ public class JournalArticleContentDashboardItemTest {
 		Assert.assertEquals(
 			String.valueOf(latestJournalArticle.getVersion()),
 			contentDashboardItemVersion.getVersion());
+
+		Assert.assertEquals(
+			contentDashboardItemVersions.toString(), 2,
+			contentDashboardItemVersions.size());
 	}
 
 	@Test
@@ -854,10 +854,6 @@ public class JournalArticleContentDashboardItemTest {
 			versionableContentDashboardItem.
 				getLatestContentDashboardItemVersions(LocaleUtil.US);
 
-		Assert.assertEquals(
-			contentDashboardItemVersions.toString(), 1,
-			contentDashboardItemVersions.size());
-
 		ContentDashboardItemVersion contentDashboardItemVersion =
 			contentDashboardItemVersions.get(0);
 
@@ -865,6 +861,10 @@ public class JournalArticleContentDashboardItemTest {
 			_language.get(LocaleUtil.US, WorkflowConstants.LABEL_APPROVED),
 			contentDashboardItemVersion.getLabel());
 		Assert.assertEquals("success", contentDashboardItemVersion.getStyle());
+
+		Assert.assertEquals(
+			contentDashboardItemVersions.toString(), 1,
+			contentDashboardItemVersions.size());
 	}
 
 	@Test
@@ -893,10 +893,6 @@ public class JournalArticleContentDashboardItemTest {
 			versionableContentDashboardItem.
 				getLatestContentDashboardItemVersions(LocaleUtil.US);
 
-		Assert.assertEquals(
-			contentDashboardItemVersions.toString(), 2,
-			contentDashboardItemVersions.size());
-
 		ContentDashboardItemVersion contentDashboardItemVersion1 =
 			contentDashboardItemVersions.get(0);
 
@@ -913,6 +909,10 @@ public class JournalArticleContentDashboardItemTest {
 			contentDashboardItemVersion2.getLabel());
 		Assert.assertEquals(
 			"secondary", contentDashboardItemVersion2.getStyle());
+
+		Assert.assertEquals(
+			contentDashboardItemVersions.toString(), 2,
+			contentDashboardItemVersions.size());
 	}
 
 	@Test
@@ -955,10 +955,6 @@ public class JournalArticleContentDashboardItemTest {
 				versionableContentDashboardItem.
 					getAllContentDashboardItemVersions(httpServletRequest);
 
-			Assert.assertEquals(
-				contentDashboardItemVersions.toString(), 1,
-				contentDashboardItemVersions.size());
-
 			ContentDashboardItemVersion contentDashboardItemVersion =
 				contentDashboardItemVersions.get(0);
 
@@ -970,6 +966,10 @@ public class JournalArticleContentDashboardItemTest {
 			Assert.assertFalse(
 				contentDashboardItemVersionActions.contains(
 					testJournalArticleContentDashboardItemVersionAction));
+
+			Assert.assertEquals(
+				contentDashboardItemVersions.toString(), 1,
+				contentDashboardItemVersions.size());
 		}
 		finally {
 			serviceRegistration.unregister();

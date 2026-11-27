@@ -1592,13 +1592,13 @@ public class LayoutLocalServiceTest {
 			_group.getGroupId(), false, keyword, searchOnlyByName,
 			new String[] {LayoutConstants.TYPE_CONTENT}, -1, -1, null);
 
-		Assert.assertEquals(layouts.toString(), count, layouts.size());
-
 		if (count == 1) {
 			Layout layout = layouts.get(0);
 
 			Assert.assertEquals(layout.getName(LocaleUtil.getDefault()), name);
 		}
+
+		Assert.assertEquals(layouts.toString(), count, layouts.size());
 	}
 
 	private ServiceContext _getServiceContext(Group group) throws Exception {

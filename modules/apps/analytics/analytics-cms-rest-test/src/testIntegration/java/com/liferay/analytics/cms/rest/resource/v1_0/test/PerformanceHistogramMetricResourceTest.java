@@ -134,9 +134,6 @@ public class PerformanceHistogramMetricResourceTest
 
 			Histogram[] histograms = performanceHistogramMetric.getHistograms();
 
-			Assert.assertEquals(
-				Arrays.toString(histograms), 1, histograms.length);
-
 			Histogram histogram = histograms[0];
 
 			Assert.assertEquals("downloadsMetric", histogram.getMetricName());
@@ -146,6 +143,9 @@ public class PerformanceHistogramMetricResourceTest
 			Metric[] metrics = histogram.getMetrics();
 
 			Assert.assertEquals(Arrays.toString(metrics), 2, metrics.length);
+
+			Assert.assertEquals(
+				Arrays.toString(histograms), 1, histograms.length);
 
 			DepotEntryTestUtil.assertGroupIds(
 				_depotEntries, analyticsCloudHttpServer.getLocation());
@@ -311,9 +311,6 @@ public class PerformanceHistogramMetricResourceTest
 
 			Histogram[] histograms = performanceHistogramMetric.getHistograms();
 
-			Assert.assertEquals(
-				Arrays.toString(histograms), 1, histograms.length);
-
 			Histogram histogram = histograms[0];
 
 			Assert.assertEquals("viewsMetric", histogram.getMetricName());
@@ -322,10 +319,13 @@ public class PerformanceHistogramMetricResourceTest
 
 			Metric[] metrics = histogram.getMetrics();
 
-			Assert.assertEquals(Arrays.toString(metrics), 1, metrics.length);
-
 			Assert.assertEquals(1, metrics[0].getValue(), 0);
 			Assert.assertEquals("2025-07-24T00:00", metrics[0].getValueKey());
+
+			Assert.assertEquals(Arrays.toString(metrics), 1, metrics.length);
+
+			Assert.assertEquals(
+				Arrays.toString(histograms), 1, histograms.length);
 
 			DepotEntryTestUtil.assertCMPProjectId(
 				objectEntry, analyticsCloudHttpServer.getLocation());

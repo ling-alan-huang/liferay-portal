@@ -213,11 +213,12 @@ public class TextEmbeddingRetrieverTest {
 
 		Assert.assertNotNull(embeddingProviderStatuses);
 		Assert.assertEquals(
-			Arrays.toString(embeddingProviderStatuses), 1,
-			embeddingProviderStatuses.length);
-		Assert.assertEquals(
 			Arrays.toString(embeddingProviderStatuses), _TEST_PROVIDER_NAME,
 			embeddingProviderStatuses[0].getProviderName());
+
+		Assert.assertEquals(
+			Arrays.toString(embeddingProviderStatuses), 1,
+			embeddingProviderStatuses.length);
 	}
 
 	@Test
@@ -236,12 +237,13 @@ public class TextEmbeddingRetrieverTest {
 				getTextEmbeddingProviderConfigurationJSONs();
 
 		Assert.assertNotNull(textEmbeddingProviderConfigurationJSONs);
-		Assert.assertEquals(
-			Arrays.toString(textEmbeddingProviderConfigurationJSONs), 1,
-			textEmbeddingProviderConfigurationJSONs.length);
 		Assert.assertTrue(
 			textEmbeddingProviderConfigurationJSONs[0].contains(
 				_TEST_PROVIDER_NAME));
+
+		Assert.assertEquals(
+			Arrays.toString(textEmbeddingProviderConfigurationJSONs), 1,
+			textEmbeddingProviderConfigurationJSONs.length);
 	}
 
 	@Test

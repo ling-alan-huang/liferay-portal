@@ -376,10 +376,6 @@ public class DeleteContentItemCommentStrutsActionTest {
 			UserNotificationEventTestUtil.getUserNotificationEvents(
 				user.getUserId());
 
-		Assert.assertEquals(
-			userNotificationEvents.toString(), 1,
-			userNotificationEvents.size());
-
 		UserNotificationFeedEntry userNotificationFeedEntry =
 			UserNotificationManagerUtil.interpret(
 				StringPool.BLANK, userNotificationEvents.get(0),
@@ -389,6 +385,10 @@ public class DeleteContentItemCommentStrutsActionTest {
 			jsonObject.getString("commentId"),
 			HttpComponentsUtil.getParameter(
 				userNotificationFeedEntry.getLink(), "messageId", false));
+
+		Assert.assertEquals(
+			userNotificationEvents.toString(), 1,
+			userNotificationEvents.size());
 
 		_layoutLocalService.deleteLayout(layout);
 		_objectDefinitionLocalService.deleteObjectDefinition(objectDefinition);

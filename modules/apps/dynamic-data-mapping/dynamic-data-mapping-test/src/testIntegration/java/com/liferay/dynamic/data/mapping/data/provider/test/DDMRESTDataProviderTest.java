@@ -219,12 +219,12 @@ public class DDMRESTDataProviderTest {
 		List<KeyValuePair> keyValuePairs = ddmDataProviderResponse.getOutput(
 			outputParameterId, List.class);
 
-		Assert.assertEquals(keyValuePairs.toString(), 1, keyValuePairs.size());
-
 		KeyValuePair keyValuePair = keyValuePairs.get(0);
 
 		Assert.assertEquals("brazil", keyValuePair.getKey());
 		Assert.assertEquals("Brazil", keyValuePair.getValue());
+
+		Assert.assertEquals(keyValuePairs.toString(), 1, keyValuePairs.size());
 	}
 
 	@Test
@@ -248,12 +248,12 @@ public class DDMRESTDataProviderTest {
 		List<KeyValuePair> keyValuePairs = ddmDataProviderResponse.getOutput(
 			outputParameterId, List.class);
 
-		Assert.assertEquals(keyValuePairs.toString(), 1, keyValuePairs.size());
-
 		KeyValuePair keyValuePair = keyValuePairs.get(0);
 
 		Assert.assertEquals("Brazil", keyValuePair.getKey());
 		Assert.assertEquals("Brazil", keyValuePair.getValue());
+
+		Assert.assertEquals(keyValuePairs.toString(), 1, keyValuePairs.size());
 	}
 
 	@Test
@@ -278,12 +278,12 @@ public class DDMRESTDataProviderTest {
 		List<KeyValuePair> keyValuePairs = ddmDataProviderResponse.getOutput(
 			outputParameterId, List.class);
 
-		Assert.assertEquals(keyValuePairs.toString(), 1, keyValuePairs.size());
-
 		KeyValuePair keyValuePair = keyValuePairs.get(0);
 
 		Assert.assertEquals("Brazil", keyValuePair.getKey());
 		Assert.assertEquals("Brazil", keyValuePair.getValue());
+
+		Assert.assertEquals(keyValuePairs.toString(), 1, keyValuePairs.size());
 
 		String firstName = RandomTestUtil.randomString();
 		String lastName = RandomTestUtil.randomString();
@@ -458,12 +458,12 @@ public class DDMRESTDataProviderTest {
 		List<KeyValuePair> keyValuePairs = ddmDataProviderResponse.getOutput(
 			outputParameterId, List.class);
 
-		Assert.assertEquals(keyValuePairs.toString(), 1, keyValuePairs.size());
-
 		KeyValuePair keyValuePair = keyValuePairs.get(0);
 
 		Assert.assertEquals("canada", keyValuePair.getKey());
 		Assert.assertEquals("Canada", keyValuePair.getValue());
+
+		Assert.assertEquals(keyValuePairs.toString(), 1, keyValuePairs.size());
 	}
 
 	@Test

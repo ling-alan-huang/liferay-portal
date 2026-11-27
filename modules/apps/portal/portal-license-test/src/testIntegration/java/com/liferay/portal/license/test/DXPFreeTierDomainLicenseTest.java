@@ -151,8 +151,6 @@ public class DXPFreeTierDomainLicenseTest extends BaseLicenseTestCase {
 		catch (LogEntriesException logEntriesException) {
 			List<LogEntry> logEntries = logEntriesException.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Throwable throwable = logEntry.getThrowable();
@@ -161,6 +159,8 @@ public class DXPFreeTierDomainLicenseTest extends BaseLicenseTestCase {
 				throwable.getMessage(),
 				"Current domain is not allowed, allowed domains are: " +
 					StringUtil.merge(new String[] {domain, "localhost"}));
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 	}
 

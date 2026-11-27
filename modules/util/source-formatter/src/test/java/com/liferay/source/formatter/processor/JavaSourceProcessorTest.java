@@ -1389,6 +1389,71 @@ public class JavaSourceProcessorTest extends BaseSourceProcessorTestCase {
 	}
 
 	@Test
+	public void testSizeAssertionOrder() throws Exception {
+		test(
+			SourceProcessorTestParameters.create(
+				"SizeAssertionOrderTest.testjava"
+			).addExpectedMessage(
+				"Move the size assertion of \"accountLifecycleStages\" at " +
+					"line \"37\" after line \"45\", where its elements are " +
+						"last used",
+				37
+			).addExpectedMessage(
+				"Move the size assertion of \"values\" at line \"65\" after " +
+					"line \"70\", where its elements are last used",
+				65
+			).addExpectedMessage(
+				"Move the size assertion of \"cpdVirtualSettingFileEntries\" " +
+					"at line \"78\" after line \"87\", where its elements " +
+						"are last used",
+				78
+			).addExpectedMessage(
+				"Move the size assertion of \"items\" at line \"119\" after " +
+					"line \"125\", where its elements are last used",
+				119
+			).addExpectedMessage(
+				"Move the size assertion of \"logEntries\" at line \"134\" " +
+					"after line \"139\", where its elements are last used",
+				134
+			).addExpectedMessage(
+				"Move the size assertion of \"mappingTypesJSONArray\" at " +
+					"line \"146\" after line \"163\", where its elements are " +
+						"last used",
+				146
+			).addExpectedMessage(
+				"Move the size assertion of \"subtypesJSONArray\" at line " +
+					"\"158\" after line \"163\", where its elements are last " +
+						"used",
+				158
+			).addExpectedMessage(
+				"Move the size assertion of \"names\" at line \"185\" after " +
+					"line \"190\", where its elements are last used",
+				185
+			).addExpectedMessage(
+				"Move the size assertion of \"primaryDropdownItems\" at line " +
+					"\"200\" after line \"207\", where its elements are last " +
+						"used",
+				200
+			).addExpectedMessage(
+				"Move the size assertion of \"tags\" at line \"231\" after " +
+					"line \"239\", where its elements are last used",
+				231
+			).addExpectedMessage(
+				"Move the size assertion of \"logEntries\" at line \"256\" " +
+					"after line \"258\", where its elements are last used",
+				256
+			).addExpectedMessage(
+				"Move the size assertion of \"values\" at line \"278\" after " +
+					"line \"282\", where its elements are last used",
+				278
+			).addExpectedMessage(
+				"Move the size assertion of \"roles\" at line \"310\" after " +
+					"line \"312\", where its elements are last used",
+				310
+			));
+	}
+
+	@Test
 	public void testSizeIsZero() throws Exception {
 		test(
 			SourceProcessorTestParameters.create(

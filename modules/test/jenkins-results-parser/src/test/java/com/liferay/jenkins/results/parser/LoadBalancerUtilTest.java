@@ -72,9 +72,6 @@ public class LoadBalancerUtilTest
 			selectionCounts.put(masterURL, selectionCount + 1);
 		}
 
-		Assert.assertEquals(
-			selectionCounts.toString(), 4, selectionCounts.size());
-
 		for (int i = 1; i <= 4; i++) {
 			String masterURL = "http://test-9-" + i;
 
@@ -83,6 +80,9 @@ public class LoadBalancerUtilTest
 		}
 
 		Assert.assertNull(selectionCounts.get("http://test-9-5"));
+
+		Assert.assertEquals(
+			selectionCounts.toString(), 4, selectionCounts.size());
 	}
 
 	private List<String> _getJenkinsMasterNames(

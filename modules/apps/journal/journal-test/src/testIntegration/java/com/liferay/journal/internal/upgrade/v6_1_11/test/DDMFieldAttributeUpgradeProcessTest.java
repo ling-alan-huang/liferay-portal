@@ -189,12 +189,12 @@ public class DDMFieldAttributeUpgradeProcessTest {
 	private void _assertLogEntries(LogCapture logCapture, String url) {
 		List<LogEntry> logEntries = logCapture.getLogEntries();
 
-		Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 		LogEntry logEntry = logEntries.get(0);
 
 		Assert.assertEquals(
 			"Unable to get file entry from URL " + url, logEntry.getMessage());
+
+		Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 	}
 
 	private String _getImageGalleryURL(String uuid) {

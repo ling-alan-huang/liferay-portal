@@ -76,8 +76,6 @@ public class BannedKeyLicenseTest extends BaseLicenseTestCase {
 		String[] bannedKeys = ArrayUtil.toStringArray(
 			(Set<String>)_bannedKeysField.get(getValidateClass()));
 
-		Assert.assertEquals(Arrays.toString(bannedKeys), 88, bannedKeys.length);
-
 		String bannedKey = bannedKeys[bannedKeys.length - 1];
 
 		try (SafeCloseable safeCloseable1 = setVersionWithSafeCloseable(
@@ -95,8 +93,6 @@ public class BannedKeyLicenseTest extends BaseLicenseTestCase {
 		catch (LogEntriesException logEntriesException) {
 			List<LogEntry> logEntries = logEntriesException.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			String message = logEntry.getMessage();
@@ -105,7 +101,11 @@ public class BannedKeyLicenseTest extends BaseLicenseTestCase {
 				message,
 				message.startsWith(
 					"Corrupt license file. License was not registered"));
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
+
+		Assert.assertEquals(Arrays.toString(bannedKeys), 88, bannedKeys.length);
 	}
 
 	@Test
@@ -130,8 +130,6 @@ public class BannedKeyLicenseTest extends BaseLicenseTestCase {
 		catch (LogEntriesException logEntriesException) {
 			List<LogEntry> logEntries = logEntriesException.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			String message = logEntry.getMessage();
@@ -140,6 +138,8 @@ public class BannedKeyLicenseTest extends BaseLicenseTestCase {
 				message,
 				message.startsWith(
 					"Corrupt license file. License was not registered"));
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 
 		try (SafeCloseable safeCloseable1 = setVersionWithSafeCloseable(

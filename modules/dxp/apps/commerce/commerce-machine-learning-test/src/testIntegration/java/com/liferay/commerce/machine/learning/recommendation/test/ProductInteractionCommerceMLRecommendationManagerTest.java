@@ -127,10 +127,6 @@ public class ProductInteractionCommerceMLRecommendationManagerTest {
 		int expectedRecommendationsSize = Math.min(
 			10, expectedProductInteractionCommerceMLRecommendations.size());
 
-		Assert.assertEquals(
-			"Recommendation list size", expectedRecommendationsSize,
-			productInteractionCommerceMLRecommendations.size());
-
 		for (int i = 0; i < expectedRecommendationsSize; i++) {
 			ProductInteractionCommerceMLRecommendation
 				expectedProductInteractionCommerceMLRecommendation =
@@ -149,6 +145,10 @@ public class ProductInteractionCommerceMLRecommendationManagerTest {
 				expectedProductInteractionCommerceMLRecommendation.getRank(),
 				productInteractionCommerceMLRecommendation.getRank());
 		}
+
+		Assert.assertEquals(
+			"Recommendation list size", expectedRecommendationsSize,
+			productInteractionCommerceMLRecommendations.size());
 	}
 
 	private ProductInteractionCommerceMLRecommendation

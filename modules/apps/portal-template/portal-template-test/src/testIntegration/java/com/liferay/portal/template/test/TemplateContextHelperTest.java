@@ -134,13 +134,13 @@ public class TemplateContextHelperTest {
 						Objects.equals(methodName, "URLtoInputStream") ||
 						Objects.equals(methodName, "URLtoString")) {
 
-						Assert.assertEquals(1, args.length);
-
 						Assert.assertTrue(args[0] instanceof Http.Options);
 
 						Http.Options options = (Http.Options)args[0];
 
 						Assert.assertFalse(options.isFollowRedirects());
+
+						Assert.assertEquals(1, args.length);
 
 						if (Objects.equals(methodName, "URLtoByteArray")) {
 							return expectedByteArray;

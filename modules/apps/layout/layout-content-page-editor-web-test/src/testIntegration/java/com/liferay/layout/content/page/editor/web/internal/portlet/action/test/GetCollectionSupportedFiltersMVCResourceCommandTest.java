@@ -182,10 +182,11 @@ public class GetCollectionSupportedFiltersMVCResourceCommandTest {
 		JSONArray supportedFiltersJSONArray = jsonObject.getJSONArray(
 			collectionId);
 
-		Assert.assertEquals(1, supportedFiltersJSONArray.length());
 		Assert.assertEquals(
 			CategoriesInfoFilter.FILTER_TYPE_NAME,
 			supportedFiltersJSONArray.get(0));
+
+		Assert.assertEquals(1, supportedFiltersJSONArray.length());
 	}
 
 	private ThemeDisplay _getThemeDisplay() throws Exception {

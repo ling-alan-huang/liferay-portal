@@ -248,9 +248,6 @@ public class FrontendTokenDefinitionRegistryTest {
 		List<FrontendTokenMapping> frontendTokenMappings = new ArrayList<>(
 			frontendToken.getFrontendTokenMappings());
 
-		Assert.assertEquals(
-			frontendTokenMappings.toString(), 1, frontendTokenMappings.size());
-
 		FrontendTokenMapping frontendTokenMapping = frontendTokenMappings.get(
 			0);
 
@@ -261,6 +258,9 @@ public class FrontendTokenDefinitionRegistryTest {
 					"JSONObject/0")),
 			String.valueOf(
 				frontendTokenMapping.getJSONObject(LocaleUtil.ENGLISH)));
+
+		Assert.assertEquals(
+			frontendTokenMappings.toString(), 1, frontendTokenMappings.size());
 
 		Assert.assertEquals(
 			expectedFrontendTokenDefinitionThemeId,

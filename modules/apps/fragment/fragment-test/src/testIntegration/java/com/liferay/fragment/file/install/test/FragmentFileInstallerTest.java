@@ -91,25 +91,25 @@ public class FragmentFileInstallerTest {
 			_fragmentEntryLocalService.getFragmentEntries(
 				fragmentCollection.getFragmentCollectionId());
 
-		Assert.assertEquals(
-			fragmentEntries.toString(), 1, fragmentEntries.size());
-
 		FragmentEntry fragmentEntry = fragmentEntries.get(0);
 
 		Assert.assertEquals("Card", fragmentEntry.getName());
+
+		Assert.assertEquals(
+			fragmentEntries.toString(), 1, fragmentEntries.size());
 	}
 
 	private void _assertLogEntries(
 		List<LogEntry> logEntries, String... messages) {
-
-		Assert.assertEquals(
-			logEntries.toString(), messages.length, logEntries.size());
 
 		for (int i = 0; i < logEntries.size(); i++) {
 			LogEntry logEntry = logEntries.get(i);
 
 			Assert.assertEquals(messages[i], logEntry.getMessage());
 		}
+
+		Assert.assertEquals(
+			logEntries.toString(), messages.length, logEntries.size());
 	}
 
 	private File _generateZipFile() throws Exception {

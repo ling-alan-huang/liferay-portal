@@ -433,7 +433,6 @@ public class TestEntityResourceTest extends BaseTestEntityResourceTestCase {
 			JSONArray failedItemsJSONArray = jsonObject.getJSONArray(
 				"failedItems");
 
-			Assert.assertEquals(2, failedItemsJSONArray.length());
 			Assert.assertTrue(
 				failedItemsJSONArray.getJSONObject(
 					0
@@ -451,6 +450,8 @@ public class TestEntityResourceTest extends BaseTestEntityResourceTestCase {
 				).contains(
 					"missing type id property 'type'"
 				));
+
+			Assert.assertEquals(2, failedItemsJSONArray.length());
 		}
 	}
 

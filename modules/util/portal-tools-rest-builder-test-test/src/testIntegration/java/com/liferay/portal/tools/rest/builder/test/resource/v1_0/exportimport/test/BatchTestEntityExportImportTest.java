@@ -412,10 +412,6 @@ public class BatchTestEntityExportImportTest {
 				TestPropsValues.getCompanyId(),
 				exportImportConfiguration.getExportImportConfigurationId());
 
-		Assert.assertEquals(
-			exportImportReportEntries.toString(), 2,
-			exportImportReportEntries.size());
-
 		_assertEquals(
 			com.liferay.portal.tools.rest.builder.test.dto.v1_0.
 				CompanyTestEntity.class.getName(),
@@ -430,6 +426,10 @@ public class BatchTestEntityExportImportTest {
 				externalReferenceCode2, "CompanyTestEntity"),
 			externalReferenceCode2, ExportImportReportEntryConstants.TYPE_EMPTY,
 			exportImportReportEntries.get(1));
+
+		Assert.assertEquals(
+			exportImportReportEntries.toString(), 2,
+			exportImportReportEntries.size());
 	}
 
 	@Test
@@ -554,10 +554,6 @@ public class BatchTestEntityExportImportTest {
 				TestPropsValues.getCompanyId(),
 				exportImportConfiguration.getExportImportConfigurationId());
 
-		Assert.assertEquals(
-			exportImportReportEntries.toString(), 2,
-			exportImportReportEntries.size());
-
 		_assertEquals(
 			com.liferay.portal.tools.rest.builder.test.dto.v1_0.
 				CompanyTestEntity.class.getName(),
@@ -569,6 +565,10 @@ public class BatchTestEntityExportImportTest {
 			_CLASS_NAME, errorMessage, externalReferenceCode2,
 			ExportImportReportEntryConstants.TYPE_ERROR,
 			exportImportReportEntries.get(1));
+
+		Assert.assertEquals(
+			exportImportReportEntries.toString(), 2,
+			exportImportReportEntries.size());
 	}
 
 	@Test
@@ -642,15 +642,15 @@ public class BatchTestEntityExportImportTest {
 				TestPropsValues.getCompanyId(),
 				exportImportConfiguration.getExportImportConfigurationId());
 
-		Assert.assertEquals(
-			exportImportReportEntries.toString(), 1,
-			exportImportReportEntries.size());
-
 		_assertEquals(
 			_CLASS_NAME, "The properties [" + propertyName + "] are required",
 			batchTestEntity.getExternalReferenceCode(),
 			ExportImportReportEntryConstants.TYPE_ERROR,
 			exportImportReportEntries.get(0));
+
+		Assert.assertEquals(
+			exportImportReportEntries.toString(), 1,
+			exportImportReportEntries.size());
 	}
 
 	@Test
@@ -974,15 +974,15 @@ public class BatchTestEntityExportImportTest {
 				TestPropsValues.getCompanyId(),
 				exportImportConfiguration.getExportImportConfigurationId());
 
-		Assert.assertEquals(
-			exportImportReportEntries.toString(), 1,
-			exportImportReportEntries.size());
-
 		_assertEquals(
 			_CLASS_NAME, errorMessage,
 			batchTestEntity.getExternalReferenceCode(),
 			ExportImportReportEntryConstants.TYPE_ERROR,
 			exportImportReportEntries.get(0));
+
+		Assert.assertEquals(
+			exportImportReportEntries.toString(), 1,
+			exportImportReportEntries.size());
 	}
 
 	private void _assertEquals(

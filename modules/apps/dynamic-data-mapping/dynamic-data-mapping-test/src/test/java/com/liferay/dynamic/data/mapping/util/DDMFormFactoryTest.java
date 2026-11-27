@@ -141,8 +141,6 @@ public class DDMFormFactoryTest {
 
 		List<DDMFormRule> ddmFormRules = ddmForm.getDDMFormRules();
 
-		Assert.assertEquals(ddmFormRules.toString(), 2, ddmFormRules.size());
-
 		DDMFormRule ddmFormRule = ddmFormRules.get(0);
 
 		Assert.assertEquals("condition1", ddmFormRule.getCondition());
@@ -164,6 +162,8 @@ public class DDMFormFactoryTest {
 			ddmFormRuleActions.toString(), 1, ddmFormRuleActions.size());
 		Assert.assertArrayEquals(
 			new String[] {"action1"}, ddmFormRuleActions.toArray());
+
+		Assert.assertEquals(ddmFormRules.toString(), 2, ddmFormRules.size());
 	}
 
 	@Test
@@ -181,8 +181,6 @@ public class DDMFormFactoryTest {
 
 		List<DDMFormField> ddmFormFields = ddmForm.getDDMFormFields();
 
-		Assert.assertEquals(ddmFormFields.toString(), 1, ddmFormFields.size());
-
 		DDMFormField ddmFormField = ddmFormFields.get(0);
 
 		Assert.assertEquals("parameters", ddmFormField.getName());
@@ -194,9 +192,6 @@ public class DDMFormFactoryTest {
 		List<DDMFormField> nestedDDMFormFields =
 			ddmFormField.getNestedDDMFormFields();
 
-		Assert.assertEquals(
-			nestedDDMFormFields.toString(), 2, nestedDDMFormFields.size());
-
 		DDMFormField nestedDDMFormField1 = nestedDDMFormFields.get(0);
 
 		Assert.assertEquals("parameterName", nestedDDMFormField1.getName());
@@ -206,6 +201,11 @@ public class DDMFormFactoryTest {
 
 		Assert.assertEquals("parameterValue", nestedDDMFormField2.getName());
 		Assert.assertEquals("text", nestedDDMFormField2.getType());
+
+		Assert.assertEquals(
+			nestedDDMFormFields.toString(), 2, nestedDDMFormFields.size());
+
+		Assert.assertEquals(ddmFormFields.toString(), 1, ddmFormFields.size());
 	}
 
 	protected static void setUpLanguageUtil() {

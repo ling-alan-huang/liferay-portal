@@ -215,8 +215,9 @@ public class PortalLog4jTest {
 
 			Map<String, String> context = ThreadContext.getContext();
 
-			Assert.assertEquals(context.toString(), 1, context.size());
 			Assert.assertEquals(value2, context.get(key2));
+
+			Assert.assertEquals(context.toString(), 1, context.size());
 		}
 		finally {
 			ThreadContext.remove(key2);

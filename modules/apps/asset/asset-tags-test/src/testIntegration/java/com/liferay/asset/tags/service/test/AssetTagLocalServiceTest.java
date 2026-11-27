@@ -196,9 +196,6 @@ public class AssetTagLocalServiceTest {
 		List<AssetTag> assetTags = _assetTagLocalService.checkTags(
 			TestPropsValues.getUserId(), _group, tagNames);
 
-		Assert.assertEquals(
-			assetTags.toString(), tagNames.length, assetTags.size());
-
 		for (int i = 0; i < assetTags.size(); i++) {
 			AssetTag assetTag = assetTags.get(i);
 
@@ -207,6 +204,9 @@ public class AssetTagLocalServiceTest {
 			Assert.assertEquals(
 				TestPropsValues.getUserId(), assetTag.getUserId());
 		}
+
+		Assert.assertEquals(
+			assetTags.toString(), tagNames.length, assetTags.size());
 	}
 
 	@Test

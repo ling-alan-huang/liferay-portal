@@ -48,8 +48,6 @@ public class UpgradeStepRegistryTest {
 
 		List<UpgradeInfo> upgradeInfos = upgradeStepRegistry.getUpgradeInfos();
 
-		Assert.assertEquals(upgradeInfos.toString(), 1, upgradeInfos.size());
-
 		UpgradeInfo upgradeInfo = upgradeInfos.get(0);
 
 		Assert.assertEquals("0.0.0", upgradeInfo.getFromSchemaVersionString());
@@ -60,6 +58,8 @@ public class UpgradeStepRegistryTest {
 				testUpgradeStep),
 			ReflectionTestUtil.getFieldValue(
 				upgradeInfo.getUpgradeStep(), "arg$1"));
+
+		Assert.assertEquals(upgradeInfos.toString(), 1, upgradeInfos.size());
 	}
 
 	@Test
@@ -85,10 +85,11 @@ public class UpgradeStepRegistryTest {
 
 		List<UpgradeInfo> upgradeInfos = upgradeStepRegistry.getUpgradeInfos();
 
-		Assert.assertEquals(upgradeInfos.toString(), 1, upgradeInfos.size());
 		Assert.assertEquals(
 			new UpgradeInfo("0.0.0", "1.0.0", testUpgradeStep),
 			upgradeInfos.get(0));
+
+		Assert.assertEquals(upgradeInfos.toString(), 1, upgradeInfos.size());
 	}
 
 	@Test
@@ -121,14 +122,14 @@ public class UpgradeStepRegistryTest {
 
 		List<UpgradeInfo> upgradeInfos = upgradeStepRegistry.getUpgradeInfos();
 
-		Assert.assertEquals(upgradeInfos.toString(), 1, upgradeInfos.size());
-
 		UpgradeInfo upgradeInfo = upgradeInfos.get(0);
 
 		Assert.assertEquals("0.0.0", upgradeInfo.getFromSchemaVersionString());
 		Assert.assertEquals("1.0.0", upgradeInfo.getToSchemaVersionString());
 		Assert.assertTrue(
 			upgradeInfo.getUpgradeStep() instanceof DummyUpgradeStep);
+
+		Assert.assertEquals(upgradeInfos.toString(), 1, upgradeInfos.size());
 	}
 
 	@Test
@@ -142,14 +143,14 @@ public class UpgradeStepRegistryTest {
 
 		List<UpgradeInfo> upgradeInfos = upgradeStepRegistry.getUpgradeInfos();
 
-		Assert.assertEquals(upgradeInfos.toString(), 2, upgradeInfos.size());
-
 		UpgradeInfo upgradeInfo = upgradeInfos.get(0);
 
 		Assert.assertEquals("0.0.0", upgradeInfo.getFromSchemaVersionString());
 		Assert.assertEquals("2.0.0", upgradeInfo.getToSchemaVersionString());
 		Assert.assertTrue(
 			upgradeInfo.getUpgradeStep() instanceof DummyUpgradeStep);
+
+		Assert.assertEquals(upgradeInfos.toString(), 2, upgradeInfos.size());
 	}
 
 	@Test
@@ -165,10 +166,11 @@ public class UpgradeStepRegistryTest {
 
 		List<UpgradeInfo> upgradeInfos = upgradeStepRegistry.getUpgradeInfos();
 
-		Assert.assertEquals(upgradeInfos.toString(), 1, upgradeInfos.size());
 		Assert.assertEquals(
 			new UpgradeInfo("1.0.0", "2.0.0", testUpgradeStep),
 			upgradeInfos.get(0));
+
+		Assert.assertEquals(upgradeInfos.toString(), 1, upgradeInfos.size());
 	}
 
 	@Test
@@ -231,8 +233,6 @@ public class UpgradeStepRegistryTest {
 
 		List<UpgradeInfo> upgradeInfos = upgradeStepRegistry.getUpgradeInfos();
 
-		Assert.assertEquals(upgradeInfos.toString(), 1, upgradeInfos.size());
-
 		UpgradeInfo upgradeInfo = upgradeInfos.get(0);
 
 		Assert.assertEquals("0.0.0", upgradeInfo.getFromSchemaVersionString());
@@ -241,6 +241,8 @@ public class UpgradeStepRegistryTest {
 			Arrays.asList(sortedUpgradeSteps),
 			ReflectionTestUtil.getFieldValue(
 				upgradeInfo.getUpgradeStep(), "arg$1"));
+
+		Assert.assertEquals(upgradeInfos.toString(), 1, upgradeInfos.size());
 	}
 
 	private static class TestUpgradeStep implements UpgradeStep {

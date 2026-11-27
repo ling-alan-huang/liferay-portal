@@ -98,11 +98,6 @@ public class CopyFormInstanceFormInstanceMVCActionCommandTest {
 		List<DDMFormFieldValue> copiedFormInstanceSettingsDDMFormFieldValues =
 			copiedFormInstanceSettingsDDMFormValues.getDDMFormFieldValues();
 
-		Assert.assertEquals(
-			copiedFormInstanceSettingsDDMFormFieldValues.toString(),
-			_getDDMFormFieldsSize(formInstanceSettingsDDMForm),
-			copiedFormInstanceSettingsDDMFormFieldValues.size());
-
 		for (int i = 0; i < copiedFormInstanceSettingsDDMFormFieldValues.size();
 			 i++) {
 
@@ -128,6 +123,11 @@ public class CopyFormInstanceFormInstanceMVCActionCommandTest {
 					valueCopy.getString(LocaleUtil.US));
 			}
 		}
+
+		Assert.assertEquals(
+			copiedFormInstanceSettingsDDMFormFieldValues.toString(),
+			_getDDMFormFieldsSize(formInstanceSettingsDDMForm),
+			copiedFormInstanceSettingsDDMFormFieldValues.size());
 	}
 
 	protected static void setUpLanguageUtil() {

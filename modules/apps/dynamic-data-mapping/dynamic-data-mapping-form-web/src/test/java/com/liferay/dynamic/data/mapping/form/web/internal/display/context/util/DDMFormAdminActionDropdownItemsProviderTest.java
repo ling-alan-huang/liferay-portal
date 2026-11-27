@@ -101,9 +101,9 @@ public class DDMFormAdminActionDropdownItemsProviderTest {
 
 		dropdownItems = _getDropdownGroupItems(actionDropdownItems, 3);
 
-		Assert.assertEquals(dropdownItems.toString(), 1, dropdownItems.size());
-
 		_assertActionDropdownItemDelete(dropdownItems.get(0));
+
+		Assert.assertEquals(dropdownItems.toString(), 1, dropdownItems.size());
 	}
 
 	@Test

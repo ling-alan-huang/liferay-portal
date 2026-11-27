@@ -157,9 +157,6 @@ public class AddFormInstanceRecordMVCCommandUtilTest {
 		List<DDMFormFieldValue> ddmFormFieldValues =
 			ddmFormValues.getDDMFormFieldValues();
 
-		Assert.assertEquals(
-			ddmFormFieldValues.toString(), 2, ddmFormFieldValues.size());
-
 		DDMFormFieldValue ddmFormFieldValue = ddmFormFieldValues.get(0);
 
 		_assertDDMFormFieldValue("value1", ddmFormFieldValue);
@@ -167,14 +164,17 @@ public class AddFormInstanceRecordMVCCommandUtilTest {
 		List<DDMFormFieldValue> nestedDDMFormFieldValues =
 			ddmFormFieldValue.getNestedDDMFormFieldValues();
 
+		_assertDDMFormFieldValue(
+			"nestedValue", nestedDDMFormFieldValues.get(0));
+
 		Assert.assertEquals(
 			nestedDDMFormFieldValues.toString(), 1,
 			nestedDDMFormFieldValues.size());
 
-		_assertDDMFormFieldValue(
-			"nestedValue", nestedDDMFormFieldValues.get(0));
-
 		_assertDDMFormFieldValue("value2", ddmFormFieldValues.get(1));
+
+		Assert.assertEquals(
+			ddmFormFieldValues.toString(), 2, ddmFormFieldValues.size());
 	}
 
 	@Test(expected = FormInstanceExpiredException.class)

@@ -415,10 +415,6 @@ public class CopyLayoutMVCActionCommandTest {
 			_layoutClassedModelUsageLocalService.
 				getLayoutClassedModelUsagesByPlid(plid);
 
-		Assert.assertEquals(
-			layoutClassedModelUsages.toString(), count,
-			layoutClassedModelUsages.size());
-
 		for (int i = 0; i < count; i++) {
 			LayoutClassedModelUsage layoutClassedModelUsage =
 				layoutClassedModelUsages.get(i);
@@ -450,6 +446,10 @@ public class CopyLayoutMVCActionCommandTest {
 
 			Assert.assertEquals(plid, layoutPageTemplateStructure.getPlid());
 		}
+
+		Assert.assertEquals(
+			layoutClassedModelUsages.toString(), count,
+			layoutClassedModelUsages.size());
 	}
 
 	private void _assertViewResourcePermission(

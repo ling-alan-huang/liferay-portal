@@ -78,19 +78,19 @@ public class DDMImplTest extends BaseDDMTestCase {
 		List<DDMFormLayoutPage> ddmFormLayoutPages =
 			ddmFormLayout.getDDMFormLayoutPages();
 
-		Assert.assertEquals(
-			ddmFormLayoutPages.toString(), 1, ddmFormLayoutPages.size());
-
 		DDMFormLayoutPage ddmFormLayoutPage = ddmFormLayoutPages.get(0);
 
 		List<DDMFormLayoutRow> ddmFormLayoutRows =
 			ddmFormLayoutPage.getDDMFormLayoutRows();
 
+		assertDefaultDDMFormLayoutRow("Text1", ddmFormLayoutRows.get(0));
+		assertDefaultDDMFormLayoutRow("Text2", ddmFormLayoutRows.get(1));
+
 		Assert.assertEquals(
 			ddmFormLayoutRows.toString(), 2, ddmFormLayoutRows.size());
 
-		assertDefaultDDMFormLayoutRow("Text1", ddmFormLayoutRows.get(0));
-		assertDefaultDDMFormLayoutRow("Text2", ddmFormLayoutRows.get(1));
+		Assert.assertEquals(
+			ddmFormLayoutPages.toString(), 1, ddmFormLayoutPages.size());
 	}
 
 	@Test
@@ -647,10 +647,6 @@ public class DDMImplTest extends BaseDDMTestCase {
 		List<DDMFormLayoutColumn> actualDDMFormLayoutColumns =
 			actualDDMFormLayoutRow.getDDMFormLayoutColumns();
 
-		Assert.assertEquals(
-			actualDDMFormLayoutColumns.toString(), 1,
-			actualDDMFormLayoutColumns.size());
-
 		DDMFormLayoutColumn actualDDMFormLayoutColumn =
 			actualDDMFormLayoutColumns.get(0);
 
@@ -662,6 +658,10 @@ public class DDMImplTest extends BaseDDMTestCase {
 
 		Assert.assertEquals(
 			DDMFormLayoutColumn.FULL, actualDDMFormLayoutColumn.getSize());
+
+		Assert.assertEquals(
+			actualDDMFormLayoutColumns.toString(), 1,
+			actualDDMFormLayoutColumns.size());
 	}
 
 	protected DDMForm deserialize(String content) {
@@ -705,23 +705,23 @@ public class DDMImplTest extends BaseDDMTestCase {
 	protected void testValues(
 		List<Serializable> actualValues, String... expectedValues) {
 
-		Assert.assertEquals(
-			actualValues.toString(), expectedValues.length,
-			actualValues.size());
-
 		for (int i = 0; i < expectedValues.length; i++) {
 			Assert.assertEquals(expectedValues[i], actualValues.get(i));
 		}
+
+		Assert.assertEquals(
+			actualValues.toString(), expectedValues.length,
+			actualValues.size());
 	}
 
 	protected void testValues(String[] actualValues, String... expectedValues) {
-		Assert.assertEquals(
-			Arrays.toString(actualValues), expectedValues.length,
-			actualValues.length);
-
 		for (int i = 0; i < expectedValues.length; i++) {
 			Assert.assertEquals(expectedValues[i], actualValues[i]);
 		}
+
+		Assert.assertEquals(
+			Arrays.toString(actualValues), expectedValues.length,
+			actualValues.length);
 	}
 
 	private final DDMFormValuesDeserializer _ddmFormValuesDeserializer =

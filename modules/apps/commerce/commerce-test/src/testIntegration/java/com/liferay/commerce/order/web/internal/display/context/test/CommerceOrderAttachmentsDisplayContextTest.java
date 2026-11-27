@@ -576,11 +576,11 @@ public class CommerceOrderAttachmentsDisplayContextTest {
 
 		jsonArray = (JSONArray)addDSRequestModalProps.get("accountEntryUsers");
 
-		Assert.assertEquals(jsonArray.toString(), 1, jsonArray.length());
-
 		JSONObject jsonObject = jsonArray.getJSONObject(0);
 
 		Assert.assertEquals(user1.getUserId(), jsonObject.getLong("userId"));
+
+		Assert.assertEquals(jsonArray.toString(), 1, jsonArray.length());
 	}
 
 	@Inject

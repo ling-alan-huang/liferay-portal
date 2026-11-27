@@ -160,10 +160,6 @@ public class
 				getLayoutPageTemplateStructureRelElementVariations(
 					layout.getPlid());
 
-		Assert.assertEquals(
-			layoutPageTemplateStructureRelElementVariations.toString(), 1,
-			layoutPageTemplateStructureRelElementVariations.size());
-
 		layoutPageTemplateStructureRelElementVariation =
 			layoutPageTemplateStructureRelElementVariations.get(0);
 
@@ -179,6 +175,10 @@ public class
 		Assert.assertEquals(
 			updatedTargetElement,
 			layoutPageTemplateStructureRelElementVariation.getTargetElement());
+
+		Assert.assertEquals(
+			layoutPageTemplateStructureRelElementVariations.toString(), 1,
+			layoutPageTemplateStructureRelElementVariations.size());
 	}
 
 	private void _assertAudienceEntryERCs(

@@ -622,8 +622,6 @@ public class CopyItemsMVCActionCommandTest {
 		JSONObject copiedJSONObject =
 			copiedFragmentEntryLink.getEditableValuesJSONObject();
 
-		Assert.assertEquals(jsonObject.length(), copiedJSONObject.length());
-
 		for (String key : jsonObject.keySet()) {
 			if (Objects.equals(key, "instanceId") &&
 				Objects.equals(
@@ -645,6 +643,8 @@ public class CopyItemsMVCActionCommandTest {
 					jsonObject.get(key), copiedJSONObject.get(key));
 			}
 		}
+
+		Assert.assertEquals(jsonObject.length(), copiedJSONObject.length());
 	}
 
 	private void _assertCopiedFragmentEntryLink(
@@ -846,8 +846,9 @@ public class CopyItemsMVCActionCommandTest {
 				new Class<?>[] {ActionRequest.class, Exception.class},
 				mockLiferayPortletActionRequest, exception);
 
-			Assert.assertEquals(jsonObject.toString(), 1, jsonObject.length());
 			Assert.assertEquals(error, jsonObject.getString("error"));
+
+			Assert.assertEquals(jsonObject.toString(), 1, jsonObject.length());
 		}
 
 		layoutStructure = _layoutStructureProvider.getLayoutStructure(

@@ -187,8 +187,6 @@ public class AssetUsageResourceTest extends BaseAssetUsageResourceTestCase {
 
 		items = ListUtil.fromCollection(page.getItems());
 
-		Assert.assertEquals(items.toString(), 2, items.size());
-
 		if (name.compareTo(assetUsage2.getName()) < 0) {
 			Assert.assertTrue(equals(assetUsage1, items.get(1)));
 			Assert.assertTrue(equals(assetUsage2, items.get(0)));
@@ -197,6 +195,8 @@ public class AssetUsageResourceTest extends BaseAssetUsageResourceTestCase {
 			Assert.assertTrue(equals(assetUsage1, items.get(0)));
 			Assert.assertTrue(equals(assetUsage2, items.get(1)));
 		}
+
+		Assert.assertEquals(items.toString(), 2, items.size());
 	}
 
 	@Override

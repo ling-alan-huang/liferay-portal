@@ -197,11 +197,11 @@ public class DisplayPageTemplateFolderResourceTest
 
 		List<Permission> permissions = (List<Permission>)page.getItems();
 
-		Assert.assertEquals(permissions.toString(), 1, permissions.size());
-
 		Permission permission = permissions.get(0);
 
 		Assert.assertEquals(RoleConstants.GUEST, permission.getRoleName());
+
+		Assert.assertEquals(permissions.toString(), 1, permissions.size());
 
 		_assertActionHref(
 			page.getActions(),
@@ -461,13 +461,13 @@ public class DisplayPageTemplateFolderResourceTest
 
 		List<Permission> permissions = (List<Permission>)page.getItems();
 
-		Assert.assertEquals(permissions.toString(), 1, permissions.size());
-
 		Permission permission = permissions.get(0);
 
 		Assert.assertArrayEquals(
 			new String[] {"VIEW"}, permission.getActionIds());
 		Assert.assertEquals(role.getName(), permission.getRoleName());
+
+		Assert.assertEquals(permissions.toString(), 1, permissions.size());
 
 		ProblemExceptionTestUtil.assertProblemException(
 			"NOT_FOUND", null,

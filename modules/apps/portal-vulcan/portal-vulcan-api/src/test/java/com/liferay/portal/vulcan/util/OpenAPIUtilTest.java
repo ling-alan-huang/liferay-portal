@@ -232,8 +232,6 @@ public class OpenAPIUtilTest {
 
 		fields = OpenAPIUtil.getDTOEntityFields("Test", _openAPIYAML);
 
-		Assert.assertEquals(fields.toString(), 3, fields.size());
-
 		_assertField(
 			Field.AccessType.READ, "Read only property",
 			"readOnlyPropertySchema", fields.get("readOnlyPropertySchema"),
@@ -246,6 +244,8 @@ public class OpenAPIUtilTest {
 			Field.AccessType.WRITE, "Write only property",
 			"writeOnlyPropertySchema", fields.get("writeOnlyPropertySchema"),
 			false, "integer");
+
+		Assert.assertEquals(fields.toString(), 3, fields.size());
 	}
 
 	@Test

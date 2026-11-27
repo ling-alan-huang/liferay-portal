@@ -151,12 +151,12 @@ public class CETItemSelectorViewDescriptorTest {
 
 		List<CET> cets = searchContainer.getResults();
 
-		Assert.assertEquals(cets.toString(), 1, cets.size());
-
 		CET cet3 = cets.get(0);
 
 		Assert.assertEquals(
 			"", ReflectionTestUtil.invoke(cet3, "getScope", null));
+
+		Assert.assertEquals(cets.toString(), 1, cets.size());
 	}
 
 	private static CETItemSelectorCriterion _cetItemSelectorCriterion;

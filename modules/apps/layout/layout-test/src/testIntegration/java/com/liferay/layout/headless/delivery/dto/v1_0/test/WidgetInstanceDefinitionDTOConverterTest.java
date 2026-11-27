@@ -213,18 +213,18 @@ public class WidgetInstanceDefinitionDTOConverterTest {
 		WidgetPermission[] widgetPermissions =
 			widgetInstance.getWidgetPermissions();
 
-		Assert.assertEquals(
-			Arrays.toString(widgetPermissions), 1, widgetPermissions.length);
-
 		WidgetPermission widgetPermission = widgetPermissions[0];
 
 		Assert.assertEquals(role.getName(), widgetPermission.getRoleKey());
 
 		String[] actionKeys = widgetPermission.getActionKeys();
 
+		Assert.assertEquals("VIEW", actionKeys[0]);
+
 		Assert.assertEquals(Arrays.toString(actionKeys), 1, actionKeys.length);
 
-		Assert.assertEquals("VIEW", actionKeys[0]);
+		Assert.assertEquals(
+			Arrays.toString(widgetPermissions), 1, widgetPermissions.length);
 
 		_layoutService.deleteLayout(layout.getPlid(), _serviceContext);
 		_resourceActionLocalService.deleteResourceAction(

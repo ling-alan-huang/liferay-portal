@@ -199,9 +199,6 @@ public class OpenSearchSearchEngineAdapterIndexRequestTest
 		List<AnalyzeIndexResponse.DetailsTokenFilter> detailsTokenFilters =
 			analyzeIndexResponse.getDetailsTokenFilters();
 
-		Assert.assertEquals(
-			detailsTokenFilters.toString(), 1, detailsTokenFilters.size());
-
 		AnalyzeIndexResponse.DetailsTokenFilter detailsTokenFilter =
 			detailsTokenFilters.get(0);
 
@@ -211,6 +208,9 @@ public class OpenSearchSearchEngineAdapterIndexRequestTest
 		_assertAnalysisIndexResponseTokens(
 			detailsTokenFilter.getAnalysisIndexResponseTokens(),
 			"THE 2 QUICK BROWN-FOXES JUMPED OVER THE LAZY DOG'S BONE.");
+
+		Assert.assertEquals(
+			detailsTokenFilters.toString(), 1, detailsTokenFilters.size());
 	}
 
 	@Test
@@ -408,8 +408,9 @@ public class OpenSearchSearchEngineAdapterIndexRequestTest
 
 		String[] indexNames = getIndexIndexResponse.getIndexNames();
 
-		Assert.assertEquals(Arrays.toString(indexNames), 1, indexNames.length);
 		Assert.assertEquals(TEST_INDEX_NAME, indexNames[0]);
+
+		Assert.assertEquals(Arrays.toString(indexNames), 1, indexNames.length);
 
 		Map<String, String> indexMappings =
 			getIndexIndexResponse.getIndexMappings();

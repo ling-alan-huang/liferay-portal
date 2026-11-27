@@ -163,10 +163,6 @@ public class UpdateFragmentsHighlightedConfigurationMVCActionCommandTest {
 		JSONArray highlightedFragmentsJSONArray = jsonObject.getJSONArray(
 			"highlightedFragments");
 
-		Assert.assertEquals(
-			expectedHighlightedFragmentEntryKeys.length,
-			highlightedFragmentsJSONArray.length());
-
 		for (int i = 0; i < highlightedFragmentsJSONArray.length(); i++) {
 			JSONObject fragmentEntryJSONObject =
 				highlightedFragmentsJSONArray.getJSONObject(i);
@@ -176,6 +172,10 @@ public class UpdateFragmentsHighlightedConfigurationMVCActionCommandTest {
 					expectedHighlightedFragmentEntryKeys,
 					fragmentEntryJSONObject.getString("fragmentEntryKey")));
 		}
+
+		Assert.assertEquals(
+			expectedHighlightedFragmentEntryKeys.length,
+			highlightedFragmentsJSONArray.length());
 	}
 
 	private MockLiferayPortletActionRequest _getMockLiferayPortletActionRequest(

@@ -358,8 +358,6 @@ public class DDMExpressionModelTest {
 			functionCallExpression.getParameterExpressions();
 
 		Assert.assertNotNull(parameterExpressions);
-		Assert.assertEquals(
-			parameterExpressions.toString(), 2, parameterExpressions.size());
 
 		Expression parameterExpression = parameterExpressions.get(0);
 
@@ -376,6 +374,9 @@ public class DDMExpressionModelTest {
 		term = (Term)parameterExpression;
 
 		Assert.assertEquals("Var2", term.getValue());
+
+		Assert.assertEquals(
+			parameterExpressions.toString(), 2, parameterExpressions.size());
 	}
 
 	@Test
@@ -468,9 +469,6 @@ public class DDMExpressionModelTest {
 		List<Expression> parameterExpressions1 =
 			functionCallExpression1.getParameterExpressions();
 
-		Assert.assertEquals(
-			parameterExpressions1.toString(), 2, parameterExpressions1.size());
-
 		Expression parameterExpression1 = parameterExpressions1.get(0);
 
 		Assert.assertEquals(Term.class, parameterExpression1.getClass());
@@ -493,9 +491,6 @@ public class DDMExpressionModelTest {
 		List<Expression> parameterExpressions2 =
 			functionCallExpression2.getParameterExpressions();
 
-		Assert.assertEquals(
-			parameterExpressions2.toString(), 2, parameterExpressions2.size());
-
 		Expression parameterExpression3 = parameterExpressions2.get(0);
 
 		Assert.assertEquals(Term.class, parameterExpression3.getClass());
@@ -511,6 +506,12 @@ public class DDMExpressionModelTest {
 		term = (Term)parameterExpression4;
 
 		Assert.assertEquals("Var4", term.getValue());
+
+		Assert.assertEquals(
+			parameterExpressions2.toString(), 2, parameterExpressions2.size());
+
+		Assert.assertEquals(
+			parameterExpressions1.toString(), 2, parameterExpressions1.size());
 	}
 
 	private static DDMExpressionFunctionRegistry _ddmExpressionFunctionRegistry;
