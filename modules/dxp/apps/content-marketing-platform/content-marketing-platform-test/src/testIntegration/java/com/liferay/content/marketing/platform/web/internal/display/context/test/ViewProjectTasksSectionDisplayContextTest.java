@@ -144,8 +144,6 @@ public class ViewProjectTasksSectionDisplayContextTest
 
 		fdsFilters = getFDSFilters(assetEntry);
 
-		Assert.assertEquals(fdsFilters.toString(), 6, fdsFilters.size());
-
 		assertFDSFilter(
 			FDSEntityFieldTypes.STRING, "cmpAssignTo", "assignee",
 			fdsFilters.get(0));
@@ -162,6 +160,8 @@ public class ViewProjectTasksSectionDisplayContextTest
 		assertFDSFilter(
 			FDSEntityFieldTypes.BOOLEAN, "cmpSubtask", "type",
 			fdsFilters.get(5));
+
+		Assert.assertEquals(fdsFilters.toString(), 6, fdsFilters.size());
 	}
 
 	@FeatureFlag(enable = false, value = "LPD-107678")
@@ -190,8 +190,6 @@ public class ViewProjectTasksSectionDisplayContextTest
 
 		fdsFilters = getFDSFilters(assetEntry);
 
-		Assert.assertEquals(fdsFilters.toString(), 5, fdsFilters.size());
-
 		assertFDSFilter(
 			FDSEntityFieldTypes.STRING, "cmpAssignTo", "assignee",
 			fdsFilters.get(0));
@@ -205,6 +203,8 @@ public class ViewProjectTasksSectionDisplayContextTest
 			FDSEntityFieldTypes.STRING, "cmpState", "state", fdsFilters.get(3));
 		assertFDSFilter(
 			FDSEntityFieldTypes.STRING, "keywords", "tag", fdsFilters.get(4));
+
+		Assert.assertEquals(fdsFilters.toString(), 5, fdsFilters.size());
 	}
 
 	@Test

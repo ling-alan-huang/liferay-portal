@@ -109,15 +109,15 @@ public class CommerceShipmentContentDisplayContextTest {
 		List<CommerceShipmentItem> commerceShipmentItems =
 			searchContainer.getResults();
 
-		Assert.assertEquals(
-			commerceShipmentItems.toString(), 1, commerceShipmentItems.size());
-
 		CommerceShipmentItem commerceShipmentItem = commerceShipmentItems.get(
 			0);
 
 		Assert.assertEquals(
 			_commerceShipment1.getCommerceShipmentId(),
 			commerceShipmentItem.getCommerceShipmentId());
+
+		Assert.assertEquals(
+			commerceShipmentItems.toString(), 1, commerceShipmentItems.size());
 	}
 
 	@Test
