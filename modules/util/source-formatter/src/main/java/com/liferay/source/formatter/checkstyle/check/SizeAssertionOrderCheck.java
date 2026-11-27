@@ -139,17 +139,17 @@ public class SizeAssertionOrderCheck extends BaseCheck {
 	private String _getSizeVariableName(DetailAST detailAST) {
 		DetailAST elistDetailAST = detailAST.findFirstToken(TokenTypes.ELIST);
 
-		DetailAST lastArgumentDetailAST = elistDetailAST.getLastChild();
+		DetailAST childDetailAST = elistDetailAST.getLastChild();
 
-		if (lastArgumentDetailAST == null) {
+		if (childDetailAST == null) {
 			return null;
 		}
 
-		DetailAST argumentDetailAST = lastArgumentDetailAST.getFirstChild();
+		childDetailAST = childDetailAST.getFirstChild();
 
-		if (argumentDetailAST.getType() == TokenTypes.DOT) {
-			DetailAST firstChildDetailAST = argumentDetailAST.getFirstChild();
-			DetailAST lastChildDetailAST = argumentDetailAST.getLastChild();
+		if (childDetailAST.getType() == TokenTypes.DOT) {
+			DetailAST firstChildDetailAST = childDetailAST.getFirstChild();
+			DetailAST lastChildDetailAST = childDetailAST.getLastChild();
 
 			if ((firstChildDetailAST.getType() == TokenTypes.IDENT) &&
 				Objects.equals(lastChildDetailAST.getText(), "length")) {
@@ -157,11 +157,11 @@ public class SizeAssertionOrderCheck extends BaseCheck {
 				return firstChildDetailAST.getText();
 			}
 		}
-		else if (argumentDetailAST.getType() == TokenTypes.METHOD_CALL) {
-			String methodName = getMethodName(argumentDetailAST);
+		else if (childDetailAST.getType() == TokenTypes.METHOD_CALL) {
+			String methodName = getMethodName(childDetailAST);
 
 			if (methodName.equals("length") || methodName.equals("size")) {
-				return getClassOrVariableName(argumentDetailAST);
+				return getClassOrVariableName(childDetailAST);
 			}
 		}
 
