@@ -1039,11 +1039,11 @@ public class ObjectEntryResourceNestedObjectEntriesTest
 			JSONArray nestedObjectEntriesJSONArray = jsonObject.getJSONArray(
 				objectRelationship.getName());
 
-			Assert.assertEquals(1, nestedObjectEntriesJSONArray.length());
-
 			_assertObjectEntryField(
 				nestedObjectEntriesJSONArray.getJSONObject(0),
 				OBJECT_FIELD_NAME_2, NEW_OBJECT_FIELD_VALUE_1);
+
+			Assert.assertEquals(1, nestedObjectEntriesJSONArray.length());
 		}
 	}
 
@@ -1175,11 +1175,11 @@ public class ObjectEntryResourceNestedObjectEntriesTest
 		nestedObjectEntriesJSONArray = jsonObject.getJSONArray(
 			objectRelationship.getName());
 
-		Assert.assertEquals(1, nestedObjectEntriesJSONArray.length());
-
 		_assertObjectEntryField(
 			nestedObjectEntriesJSONArray.getJSONObject(0), OBJECT_FIELD_NAME_2,
 			NEW_OBJECT_FIELD_VALUE_1);
+
+		Assert.assertEquals(1, nestedObjectEntriesJSONArray.length());
 	}
 
 }

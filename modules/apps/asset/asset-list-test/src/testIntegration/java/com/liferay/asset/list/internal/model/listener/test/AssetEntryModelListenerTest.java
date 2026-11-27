@@ -120,10 +120,6 @@ public class AssetEntryModelListenerTest {
 					_assetListEntry.getAssetListEntryId(), QueryUtil.ALL_POS,
 					QueryUtil.ALL_POS);
 
-		Assert.assertEquals(
-			assetListEntryAssetEntryRels.toString(), journalArticles.length,
-			assetListEntryAssetEntryRels.size());
-
 		for (int i = 0; i < assetListEntryAssetEntryRels.size(); i++) {
 			AssetListEntryAssetEntryRel assetListEntryAssetEntryRel =
 				assetListEntryAssetEntryRels.get(i);
@@ -142,6 +138,10 @@ public class AssetEntryModelListenerTest {
 			Assert.assertEquals(
 				journalArticle.getResourcePrimKey(), assetEntry.getClassPK());
 		}
+
+		Assert.assertEquals(
+			assetListEntryAssetEntryRels.toString(), journalArticles.length,
+			assetListEntryAssetEntryRels.size());
 	}
 
 	@Inject

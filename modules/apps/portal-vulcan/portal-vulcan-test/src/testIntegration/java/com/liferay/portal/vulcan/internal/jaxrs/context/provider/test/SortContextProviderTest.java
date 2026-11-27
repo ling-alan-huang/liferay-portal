@@ -99,12 +99,12 @@ public class SortContextProviderTest {
 				clazz.getMethod(MockResource.METHOD_NAME, String.class),
 				_mockResource));
 
-		Assert.assertEquals(Arrays.toString(sorts), 1, sorts.length);
-
 		Sort sort = sorts[0];
 
 		Assert.assertEquals("internalTitle", sort.getFieldName());
 		Assert.assertTrue(sort.isReverse());
+
+		Assert.assertEquals(Arrays.toString(sorts), 1, sorts.length);
 	}
 
 	@Test(expected = InvalidSortException.class)
@@ -152,12 +152,12 @@ public class SortContextProviderTest {
 				clazz.getMethod(MockResource.METHOD_NAME, String.class),
 				_mockResource));
 
-		Assert.assertEquals(Arrays.toString(sorts), 1, sorts.length);
-
 		Sort sort = sorts[0];
 
 		Assert.assertEquals("internalTitle", sort.getFieldName());
 		Assert.assertTrue(sort.isReverse());
+
+		Assert.assertEquals(Arrays.toString(sorts), 1, sorts.length);
 
 		// POST method
 

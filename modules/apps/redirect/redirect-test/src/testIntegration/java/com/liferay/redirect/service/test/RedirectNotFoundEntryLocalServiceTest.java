@@ -211,10 +211,11 @@ public class RedirectNotFoundEntryLocalServiceTest {
 				QueryUtil.ALL_POS, null);
 
 		Assert.assertEquals(
+			activeRedirectNotFoundEntry, activeRedirectNotFoundEntries.get(0));
+
+		Assert.assertEquals(
 			activeRedirectNotFoundEntries.toString(), 1,
 			activeRedirectNotFoundEntries.size());
-		Assert.assertEquals(
-			activeRedirectNotFoundEntry, activeRedirectNotFoundEntries.get(0));
 	}
 
 	@Test
@@ -230,14 +231,14 @@ public class RedirectNotFoundEntryLocalServiceTest {
 				QueryUtil.ALL_POS, null);
 
 		Assert.assertEquals(
-			allRedirectNotFoundEntries.toString(), 2,
-			allRedirectNotFoundEntries.size());
-
-		Assert.assertEquals(
 			activeRedirectNotFoundEntry, allRedirectNotFoundEntries.get(0));
 
 		Assert.assertEquals(
 			ignoredRedirectNotFoundEntry, allRedirectNotFoundEntries.get(1));
+
+		Assert.assertEquals(
+			allRedirectNotFoundEntries.toString(), 2,
+			allRedirectNotFoundEntries.size());
 	}
 
 	@Test
@@ -253,12 +254,12 @@ public class RedirectNotFoundEntryLocalServiceTest {
 				QueryUtil.ALL_POS, null);
 
 		Assert.assertEquals(
-			ignoredRedirectNotFoundEntries.toString(), 1,
-			ignoredRedirectNotFoundEntries.size());
-
-		Assert.assertEquals(
 			ignoredRedirectNotFoundEntry,
 			ignoredRedirectNotFoundEntries.get(0));
+
+		Assert.assertEquals(
+			ignoredRedirectNotFoundEntries.toString(), 1,
+			ignoredRedirectNotFoundEntries.size());
 	}
 
 	@Test
@@ -281,11 +282,11 @@ public class RedirectNotFoundEntryLocalServiceTest {
 				QueryUtil.ALL_POS, null);
 
 		Assert.assertEquals(
-			redirectNotFoundEntries.toString(), 1,
-			redirectNotFoundEntries.size());
+			redirectNotFoundEntry, redirectNotFoundEntries.get(0));
 
 		Assert.assertEquals(
-			redirectNotFoundEntry, redirectNotFoundEntries.get(0));
+			redirectNotFoundEntries.toString(), 1,
+			redirectNotFoundEntries.size());
 	}
 
 	@Test
@@ -316,11 +317,11 @@ public class RedirectNotFoundEntryLocalServiceTest {
 				QueryUtil.ALL_POS, null);
 
 		Assert.assertEquals(
-			redirectNotFoundEntries.toString(), 1,
-			redirectNotFoundEntries.size());
+			redirectNotFoundEntry, redirectNotFoundEntries.get(0));
 
 		Assert.assertEquals(
-			redirectNotFoundEntry, redirectNotFoundEntries.get(0));
+			redirectNotFoundEntries.toString(), 1,
+			redirectNotFoundEntries.size());
 	}
 
 	private RedirectNotFoundEntry _addOrUpdateRedirectNotFoundEntry(

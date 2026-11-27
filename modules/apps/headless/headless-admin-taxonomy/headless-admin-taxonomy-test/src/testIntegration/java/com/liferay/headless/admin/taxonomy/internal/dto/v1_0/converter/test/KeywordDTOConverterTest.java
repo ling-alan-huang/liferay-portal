@@ -85,9 +85,6 @@ public class KeywordDTOConverterTest {
 
 		AssetLibrary[] assetLibraries = keyword.getAssetLibraries();
 
-		Assert.assertEquals(
-			Arrays.toString(assetLibraries), 1, assetLibraries.length);
-
 		AssetLibrary assetLibrary = assetLibraries[0];
 
 		Assert.assertEquals(
@@ -95,6 +92,9 @@ public class KeywordDTOConverterTest {
 		Assert.assertEquals(
 			_depotEntryGroup.getExternalReferenceCode(),
 			assetLibrary.getExternalReferenceCode());
+
+		Assert.assertEquals(
+			Arrays.toString(assetLibraries), 1, assetLibraries.length);
 	}
 
 	@Test
@@ -121,8 +121,6 @@ public class KeywordDTOConverterTest {
 
 		Project[] projects = keyword.getProjects();
 
-		Assert.assertEquals(Arrays.toString(projects), 1, projects.length);
-
 		Project project = projects[0];
 
 		Assert.assertEquals(
@@ -130,6 +128,8 @@ public class KeywordDTOConverterTest {
 		Assert.assertEquals(
 			projectDepotEntryGroup.getExternalReferenceCode(),
 			project.getExternalReferenceCode());
+
+		Assert.assertEquals(Arrays.toString(projects), 1, projects.length);
 	}
 
 	private DepotEntry _addDepotEntry(int depotEntryType) throws Exception {

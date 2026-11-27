@@ -238,8 +238,9 @@ public class AccountUserRetrieverTest {
 
 		users = baseModelSearchResult.getBaseModels();
 
-		Assert.assertEquals(users.toString(), 4, users.size());
 		Assert.assertEquals(expectedUsers.get(3), users.get(0));
+
+		Assert.assertEquals(users.toString(), 4, users.size());
 	}
 
 	@Test

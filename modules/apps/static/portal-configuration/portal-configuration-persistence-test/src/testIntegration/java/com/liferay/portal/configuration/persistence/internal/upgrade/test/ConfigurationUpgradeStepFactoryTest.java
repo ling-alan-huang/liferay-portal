@@ -184,9 +184,6 @@ public class ConfigurationUpgradeStepFactoryTest {
 				"should exist"),
 			configurations);
 
-		Assert.assertEquals(
-			configurations.toString(), 1, configurations.length);
-
 		Configuration configuration = configurations[0];
 
 		String existentPid = configuration.getPid();
@@ -237,6 +234,9 @@ public class ConfigurationUpgradeStepFactoryTest {
 		URI uri = existentConfigFile.toURI();
 
 		Assert.assertEquals(uri.toString(), fileName);
+
+		Assert.assertEquals(
+			configurations.toString(), 1, configurations.length);
 	}
 
 	private File _getConfigFile(String pid, boolean factory) {

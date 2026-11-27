@@ -404,10 +404,6 @@ public class AnnotationLocatorTest {
 
 		List<Annotation> actualAnnotations = AnnotationLocator.locate(clazz);
 
-		Assert.assertEquals(
-			clazz.getName(), expectedAnnotations.size(),
-			actualAnnotations.size());
-
 		for (int i = 0; i < expectedAnnotations.size(); i++) {
 			Annotation expectedAnnotation = expectedAnnotations.get(i);
 			Annotation actualAnnotation = actualAnnotations.get(i);
@@ -432,6 +428,10 @@ public class AnnotationLocatorTest {
 					"@Type : ", expectedType.value(), actualType.value());
 			}
 		}
+
+		Assert.assertEquals(
+			clazz.getName(), expectedAnnotations.size(),
+			actualAnnotations.size());
 	}
 
 	private void _classSingleLocate(
@@ -538,10 +538,6 @@ public class AnnotationLocatorTest {
 
 				actualAnnotations = AnnotationLocator.locate(method, null);
 
-				Assert.assertEquals(
-					method.getName() + "()@" + clazz.getName(),
-					expectedAnnotations.length, actualAnnotations.size());
-
 				for (int j = 0; j < expectedAnnotations.length; j++) {
 					Annotation expectedAnnotation = expectedAnnotations[j];
 					Annotation actualAnnotation = actualAnnotations.get(j);
@@ -584,6 +580,10 @@ public class AnnotationLocatorTest {
 							expectedType.value(), actualType.value());
 					}
 				}
+
+				Assert.assertEquals(
+					method.getName() + "()@" + clazz.getName(),
+					expectedAnnotations.length, actualAnnotations.size());
 			}
 			catch (Exception exception) {
 			}

@@ -162,10 +162,6 @@ public class InfoFieldItemSelectorViewDescriptorTest {
 						object, RandomTestUtil.randomLong(),
 						RandomTestUtil.nextInt())));
 
-		Assert.assertEquals(
-			resultRowSplitterEntries.toString(), 3,
-			resultRowSplitterEntries.size());
-
 		ResultRowSplitterEntry resultRowSplitterEntry1 =
 			resultRowSplitterEntries.get(0);
 
@@ -188,6 +184,10 @@ public class InfoFieldItemSelectorViewDescriptorTest {
 				objectRelationship.getLabel(LocaleUtil.getSiteDefault()), " (",
 				_objectDefinition2.getLabel(LocaleUtil.getSiteDefault()), ")"),
 			resultRowSplitterEntry3.getTitle());
+
+		Assert.assertEquals(
+			resultRowSplitterEntries.toString(), 3,
+			resultRowSplitterEntries.size());
 	}
 
 	@Test

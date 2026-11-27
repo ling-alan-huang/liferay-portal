@@ -425,10 +425,6 @@ public class JournalArticleInfoItemFormProviderTest {
 
 		List<InfoField<?>> infoFields = infoFieldSet.getAllInfoFields();
 
-		Assert.assertEquals(
-			infoFields.toString(), expectedInfoFieldLabels.length,
-			infoFields.size());
-
 		for (int i = 0; i < expectedInfoFieldLabels.length; i++) {
 			InfoField<?> infoField = infoFields.get(i);
 
@@ -436,6 +432,10 @@ public class JournalArticleInfoItemFormProviderTest {
 				expectedInfoFieldLabels[i],
 				infoField.getLabel(LocaleUtil.getSiteDefault()));
 		}
+
+		Assert.assertEquals(
+			infoFields.toString(), expectedInfoFieldLabels.length,
+			infoFields.size());
 	}
 
 	private JournalArticle _getJournalArticle() throws Exception {

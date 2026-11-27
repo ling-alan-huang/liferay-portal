@@ -110,8 +110,6 @@ public class FileSizeContentDashboardItemFilterProviderTest {
 		List<Document> documents = _getDocuments(
 			_getMockHttpServletRequest(fileSize));
 
-		Assert.assertEquals(documents.toString(), 1, documents.size());
-
 		Document document = documents.get(0);
 
 		Assert.assertEquals(
@@ -119,6 +117,8 @@ public class FileSizeContentDashboardItemFilterProviderTest {
 		Assert.assertEquals(
 			String.valueOf(fileEntry.getFileEntryId()),
 			document.get(Field.ENTRY_CLASS_PK));
+
+		Assert.assertEquals(documents.toString(), 1, documents.size());
 	}
 
 	private List<Document> _getDocuments(HttpServletRequest httpServletRequest)

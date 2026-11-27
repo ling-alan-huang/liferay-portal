@@ -282,9 +282,6 @@ public class CMSPlanningAndTasksPagesUpgradeProcessTest {
 		List<String> childrenItemIds =
 			mainLayoutStructureItem.getChildrenItemIds();
 
-		Assert.assertEquals(
-			childrenItemIds.toString(), 1, childrenItemIds.size());
-
 		FragmentStyledLayoutStructureItem fragmentStyledLayoutStructureItem =
 			(FragmentStyledLayoutStructureItem)
 				layoutStructure.getLayoutStructureItem(childrenItemIds.get(0));
@@ -299,6 +296,9 @@ public class CMSPlanningAndTasksPagesUpgradeProcessTest {
 			fragmentEntryLink.getRendererKey());
 		Assert.assertEquals(
 			FragmentConstants.TYPE_COMPONENT, fragmentEntryLink.getType());
+
+		Assert.assertEquals(
+			childrenItemIds.toString(), 1, childrenItemIds.size());
 	}
 
 	private void _deleteLayoutByFriendlyURL(Group group, String friendlyURL)

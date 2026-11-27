@@ -450,12 +450,12 @@ public class DLFileEntryTrashHandlerTest
 
 		Document[] documents = hits.getDocs();
 
-		Assert.assertEquals(Arrays.toString(documents), 1, documents.length);
-
 		Document document = documents[0];
 
 		Assert.assertEquals(
 			String.valueOf(fileEntryId), document.get(Field.ENTRY_CLASS_PK));
+
+		Assert.assertEquals(Arrays.toString(documents), 1, documents.length);
 	}
 
 	private void _assertRestoredFileEntryVisible(long fileEntryId)

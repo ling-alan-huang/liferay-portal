@@ -45,8 +45,9 @@ public class GetIndexIndexRequestExecutorTest extends BaseOpenSearchTestCase {
 
 		List<String> indices = getIndexRequest.index();
 
-		Assert.assertEquals(String.join(", ", indices), 1, indices.size());
 		Assert.assertEquals(TEST_INDEX_NAME, indices.get(0));
+
+		Assert.assertEquals(String.join(", ", indices), 1, indices.size());
 	}
 
 }

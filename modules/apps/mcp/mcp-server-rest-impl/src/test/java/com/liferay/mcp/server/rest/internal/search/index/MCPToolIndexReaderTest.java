@@ -264,8 +264,6 @@ public class MCPToolIndexReaderTest {
 				"processId", "processes"
 			).build());
 
-		Assert.assertEquals(prerequisites.toString(), 2, prerequisites.size());
-
 		Prerequisite prerequisite = prerequisites.get(0);
 
 		Assert.assertNotNull(prerequisite.getNote());
@@ -281,6 +279,8 @@ public class MCPToolIndexReaderTest {
 			"processExternalReferenceCode", prerequisite.getParameter());
 		Assert.assertNull(prerequisite.getToolName());
 		Assert.assertNull(prerequisite.getToolSetName());
+
+		Assert.assertEquals(prerequisites.toString(), 2, prerequisites.size());
 	}
 
 	private Query _addAllowedToolKeys(

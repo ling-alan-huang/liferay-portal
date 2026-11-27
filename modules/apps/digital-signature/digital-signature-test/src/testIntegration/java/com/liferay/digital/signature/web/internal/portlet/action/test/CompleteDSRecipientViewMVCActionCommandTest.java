@@ -418,13 +418,13 @@ public class CompleteDSRecipientViewMVCActionCommandTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals(
 				"Redirect URL https://example.com is not allowed",
 				logEntry.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 		finally {
 			ServiceContextThreadLocal.popServiceContext();

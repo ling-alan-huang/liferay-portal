@@ -61,8 +61,6 @@ public class ColumnValuesExtractorTest {
 
 		Object[] values2 = values1.get(0);
 
-		Assert.assertEquals(values2.toString(), 3, values2.length);
-
 		CSVRecord csvRecord = _toCSVRecord((String)values2[0]);
 
 		Assert.assertEquals(5, csvRecord.size());
@@ -76,11 +74,13 @@ public class ColumnValuesExtractorTest {
 
 		csvRecord = _toCSVRecord((String)values2[2]);
 
-		Assert.assertEquals(5, csvRecord.size());
-
 		for (int i = 0; i < arraysAggregator.length; i++) {
 			Assert.assertEquals(arraysAggregator.strings[i], csvRecord.get(i));
 		}
+
+		Assert.assertEquals(5, csvRecord.size());
+
+		Assert.assertEquals(values2.toString(), 3, values2.length);
 	}
 
 	@Test
@@ -130,11 +130,11 @@ public class ColumnValuesExtractorTest {
 
 		csvRecord = _toCSVRecord((String)values2[2]);
 
-		Assert.assertEquals(5, csvRecord.size());
-
 		for (int i = 0; i < arraysAggregator.length; i++) {
 			Assert.assertEquals(arraysAggregator.strings[i], csvRecord.get(i));
 		}
+
+		Assert.assertEquals(5, csvRecord.size());
 	}
 
 	@Test
@@ -164,23 +164,23 @@ public class ColumnValuesExtractorTest {
 
 		Object[] values2 = values1.get(0);
 
-		Assert.assertEquals(values2.toString(), 4, values2.length);
-
 		Assert.assertEquals(testObjectEntry._id, values2[0]);
 		Assert.assertEquals(testObjectEntry._name, values2[1]);
 		Assert.assertEquals(
 			testObjectEntry._properties.get("propertyString"), values2[2]);
 		Assert.assertEquals(
 			testObjectEntry._properties.get("propertyLong"), values2[3]);
+
+		Assert.assertEquals(values2.toString(), 4, values2.length);
 	}
 
 	private void _assertHeaders(String[] expected, String[] actual) {
-		Assert.assertEquals(
-			Arrays.toString(actual), expected.length, actual.length);
-
 		for (int i = 0; i < expected.length; i++) {
 			Assert.assertEquals(expected[i], actual[i]);
 		}
+
+		Assert.assertEquals(
+			Arrays.toString(actual), expected.length, actual.length);
 	}
 
 	private CSVRecord _toCSVRecord(String value) throws Exception {

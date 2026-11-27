@@ -427,10 +427,11 @@ public class ObjectRelationshipExtensionProviderTest {
 						}
 					});
 
-			Assert.assertEquals(
-				extendedProperties.toString(), 1, extendedProperties.size());
 			Assert.assertNotNull(
 				extendedProperties.get(objectRelationship.getName()));
+
+			Assert.assertEquals(
+				extendedProperties.toString(), 1, extendedProperties.size());
 		}
 		finally {
 			ObjectRelationshipLocalServiceUtil.
@@ -487,10 +488,11 @@ public class ObjectRelationshipExtensionProviderTest {
 			TestPropsValues.getCompanyId(), TestPropsValues.getUserId(),
 			UserAccount.class.getName(), userAccount);
 
-		Assert.assertEquals(
-			extendedProperties.toString(), 1, extendedProperties.size());
 		Assert.assertNotNull(
 			extendedProperties.get(_objectRelationship.getName()));
+
+		Assert.assertEquals(
+			extendedProperties.toString(), 1, extendedProperties.size());
 	}
 
 	private static final String _OBJECT_FIELD_NAME =

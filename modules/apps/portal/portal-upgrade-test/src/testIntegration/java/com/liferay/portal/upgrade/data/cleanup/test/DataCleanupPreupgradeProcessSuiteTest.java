@@ -171,13 +171,13 @@ public class DataCleanupPreupgradeProcessSuiteTest
 				logEntries.add(logEntry);
 			}
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals(
 				"Skipping blacklisted data cleanup process: " + className,
 				logEntry.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 	}
 

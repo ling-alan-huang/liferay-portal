@@ -806,14 +806,14 @@ public class SearchResultResourceTest extends BaseSearchResultResourceTestCase {
 		List<com.liferay.portal.search.rest.client.dto.v1_0.SearchResult>
 			searchResults = ListUtil.fromCollection(page.getItems());
 
-		Assert.assertEquals(searchResults.toString(), 1, searchResults.size());
-
 		com.liferay.portal.search.rest.client.dto.v1_0.SearchResult
 			searchResult = searchResults.get(0);
 
 		Assert.assertEquals(
 			String.valueOf(LayoutPageTemplateEntryTypeConstants.DISPLAY_PAGE),
 			searchResult.getType());
+
+		Assert.assertEquals(searchResults.toString(), 1, searchResults.size());
 	}
 
 	private void _testGetSearchPageTypeNotIndexed() throws Exception {
@@ -1036,9 +1036,6 @@ public class SearchResultResourceTest extends BaseSearchResultResourceTestCase {
 					"JSONObject/embedded")),
 			"key");
 
-		Assert.assertEquals(
-			embeddedJSONObjects.toString(), 4, embeddedJSONObjects.size());
-
 		_assertEmbeddedJSONObject(
 			JSONUtil.put("type", "ContentPageTemplate"),
 			embeddedJSONObjects.get(
@@ -1064,6 +1061,9 @@ public class SearchResultResourceTest extends BaseSearchResultResourceTestCase {
 			embeddedJSONObjects.get(
 				layoutPageTemplateEntry4.getLayoutPageTemplateEntryKey()),
 			layoutPageTemplateEntry4);
+
+		Assert.assertEquals(
+			embeddedJSONObjects.toString(), 4, embeddedJSONObjects.size());
 	}
 
 	private void _testPostSearchPageWithEmbeddedNestedFieldsInObjectEntry()
@@ -1238,8 +1238,6 @@ public class SearchResultResourceTest extends BaseSearchResultResourceTestCase {
 
 		searchResults = ListUtil.fromCollection(searchPage.getItems());
 
-		Assert.assertEquals(searchResults.toString(), 1, searchResults.size());
-
 		searchResult = searchResults.get(0);
 
 		searchResultJSONObject = _jsonFactory.createJSONObject(
@@ -1257,6 +1255,8 @@ public class SearchResultResourceTest extends BaseSearchResultResourceTestCase {
 				searchResultJSONObject, "JSONObject/embedded",
 				"JSONArray/" + objectRelationship.getName(), "JSONObject/0",
 				"Object/testField2"));
+
+		Assert.assertEquals(searchResults.toString(), 1, searchResults.size());
 
 		_objectEntryManager.deleteObjectEntry(
 			testCompany.getCompanyId(), dtoConverterContext,

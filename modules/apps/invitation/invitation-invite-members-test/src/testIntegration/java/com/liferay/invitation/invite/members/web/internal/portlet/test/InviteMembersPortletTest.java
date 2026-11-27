@@ -110,12 +110,12 @@ public class InviteMembersPortletTest {
 
 		JSONArray jsonArray = jsonObject.getJSONArray("users");
 
-		Assert.assertEquals(1, jsonArray.length());
-
 		JSONObject userJSONObject = jsonArray.getJSONObject(0);
 
 		Assert.assertEquals(
 			_user.getUserId(), userJSONObject.getLong("userId"));
+
+		Assert.assertEquals(1, jsonArray.length());
 	}
 
 	private void _testGetAvailableUsersWithoutPermission() throws Exception {

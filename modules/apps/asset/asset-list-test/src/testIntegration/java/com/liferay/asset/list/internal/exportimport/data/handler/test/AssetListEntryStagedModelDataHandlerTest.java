@@ -433,10 +433,6 @@ public class AssetListEntryStagedModelDataHandlerTest
 					audienceEntryERC, SegmentsEntryConstants.ID_DEFAULT,
 					QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 
-		Assert.assertEquals(
-			assetListEntryAssetEntryRels.toString(), 1,
-			assetListEntryAssetEntryRels.size());
-
 		AssetListEntryAssetEntryRel assetListEntryAssetEntryRel =
 			assetListEntryAssetEntryRels.get(0);
 
@@ -447,6 +443,10 @@ public class AssetListEntryStagedModelDataHandlerTest
 			assetEntry.getClassUuid(), importedAssetEntry.getClassUuid());
 		Assert.assertEquals(
 			liveGroup.getGroupId(), importedAssetEntry.getGroupId());
+
+		Assert.assertEquals(
+			assetListEntryAssetEntryRels.toString(), 1,
+			assetListEntryAssetEntryRels.size());
 	}
 
 	private void _testExportImportAssetListEntryWithAudienceVariations()

@@ -435,8 +435,9 @@ public class StringUtilTest {
 		StringUtil.readLines(
 			new ByteArrayInputStream(" Test ".getBytes()), lines);
 
-		Assert.assertEquals(lines.toString(), 3, lines.size());
 		Assert.assertEquals(" Test ", lines.get(2));
+
+		Assert.assertEquals(lines.toString(), 3, lines.size());
 	}
 
 	@Test
@@ -771,12 +772,13 @@ public class StringUtilTest {
 
 		lines = StringUtil.splitLines(splitByMix);
 
-		Assert.assertEquals(Arrays.toString(lines), 5, lines.length);
 		Assert.assertEquals("abcd", lines[0]);
 		Assert.assertEquals("efg", lines[1]);
 		Assert.assertEquals("hijk", lines[2]);
 		Assert.assertEquals("", lines[3]);
 		Assert.assertEquals("lmn", lines[4]);
+
+		Assert.assertEquals(Arrays.toString(lines), 5, lines.length);
 	}
 
 	@Test(timeout = 1000)

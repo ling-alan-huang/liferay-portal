@@ -87,8 +87,6 @@ public class ViewProjectMembersSummarySectionDisplayContextTest
 		List<DropdownItem> dropdownItems = (List<DropdownItem>)creationMenu.get(
 			"primaryItems");
 
-		Assert.assertEquals(dropdownItems.toString(), 1, dropdownItems.size());
-
 		DropdownItem dropdownItem = dropdownItems.get(0);
 
 		Assert.assertEquals("addMembers", getValue(dropdownItem, "action"));
@@ -108,6 +106,8 @@ public class ViewProjectMembersSummarySectionDisplayContextTest
 			"true", getValue(dropdownItem, "hasAssignMembersPermission"));
 		Assert.assertEquals("Add Members", dropdownItem.get("label"));
 		Assert.assertEquals("Members (1)", getValue(dropdownItem, "title"));
+
+		Assert.assertEquals(dropdownItems.toString(), 1, dropdownItems.size());
 	}
 
 	@Test

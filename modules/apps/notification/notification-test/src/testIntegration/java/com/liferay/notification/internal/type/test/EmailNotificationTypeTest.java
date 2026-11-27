@@ -2161,10 +2161,6 @@ public class EmailNotificationTypeTest extends BaseNotificationTypeTest {
 				NotificationConstants.TYPE_EMAIL,
 				NotificationQueueEntryConstants.STATUS_SENT);
 
-		Assert.assertEquals(
-			notificationQueueEntries.toString(), 1,
-			notificationQueueEntries.size());
-
 		NotificationQueueEntry notificationQueueEntry =
 			notificationQueueEntries.get(0);
 
@@ -2173,6 +2169,10 @@ public class EmailNotificationTypeTest extends BaseNotificationTypeTest {
 
 		notificationQueueEntryLocalService.deleteNotificationQueueEntry(
 			notificationQueueEntry);
+
+		Assert.assertEquals(
+			notificationQueueEntries.toString(), 1,
+			notificationQueueEntries.size());
 	}
 
 	private void _clearObjectEntryIdsMap() {
@@ -2452,10 +2452,6 @@ public class EmailNotificationTypeTest extends BaseNotificationTypeTest {
 				NotificationConstants.TYPE_EMAIL,
 				NotificationQueueEntryConstants.STATUS_SENT);
 
-		Assert.assertEquals(
-			notificationQueueEntries.toString(), 1,
-			notificationQueueEntries.size());
-
 		Map<String, Object> notificationRecipientSettingsMap =
 			NotificationRecipientSettingUtil.
 				getNotificationRecipientSettingsMap(
@@ -2470,6 +2466,10 @@ public class EmailNotificationTypeTest extends BaseNotificationTypeTest {
 
 		notificationQueueEntryLocalService.deleteNotificationQueueEntry(
 			notificationQueueEntries.get(0));
+
+		Assert.assertEquals(
+			notificationQueueEntries.toString(), 1,
+			notificationQueueEntries.size());
 	}
 
 	private void _updateObjectAction(

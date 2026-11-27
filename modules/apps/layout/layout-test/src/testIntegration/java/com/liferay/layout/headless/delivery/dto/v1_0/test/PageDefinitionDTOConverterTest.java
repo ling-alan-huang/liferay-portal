@@ -160,9 +160,6 @@ public class PageDefinitionDTOConverterTest {
 
 		PageElement[] pageElements = rootPageElement.getPageElements();
 
-		Assert.assertEquals(
-			Arrays.toString(pageElements), 1, pageElements.length);
-
 		PageElement dropZonePageElement = pageElements[0];
 
 		Assert.assertEquals(
@@ -179,9 +176,6 @@ public class PageDefinitionDTOConverterTest {
 			"allowedFragments");
 
 		Assert.assertEquals(
-			Arrays.toString(allowedFragments), 3, allowedFragments.length);
-
-		Assert.assertEquals(
 			"BASIC_COMPONENT-button", allowedFragments[0].getKey());
 		Assert.assertEquals(
 			"BASIC_COMPONENT-card", allowedFragments[1].getKey());
@@ -189,6 +183,12 @@ public class PageDefinitionDTOConverterTest {
 			"com.liferay.fragment.internal.renderer." +
 				"ContentObjectFragmentRenderer",
 			allowedFragments[2].getKey());
+
+		Assert.assertEquals(
+			Arrays.toString(allowedFragments), 3, allowedFragments.length);
+
+		Assert.assertEquals(
+			Arrays.toString(pageElements), 1, pageElements.length);
 	}
 
 	@Test
@@ -207,9 +207,6 @@ public class PageDefinitionDTOConverterTest {
 
 		PageElement[] pageElements = rootPageElement.getPageElements();
 
-		Assert.assertEquals(
-			Arrays.toString(pageElements), 1, pageElements.length);
-
 		PageElement dropZonePageElement = pageElements[0];
 
 		Assert.assertEquals(
@@ -226,9 +223,6 @@ public class PageDefinitionDTOConverterTest {
 			"unallowedFragments");
 
 		Assert.assertEquals(
-			Arrays.toString(unallowedFragments), 3, unallowedFragments.length);
-
-		Assert.assertEquals(
 			"BASIC_COMPONENT-button", unallowedFragments[0].getKey());
 		Assert.assertEquals(
 			"BASIC_COMPONENT-card", unallowedFragments[1].getKey());
@@ -236,6 +230,12 @@ public class PageDefinitionDTOConverterTest {
 			"com.liferay.fragment.internal.renderer." +
 				"ContentObjectFragmentRenderer",
 			unallowedFragments[2].getKey());
+
+		Assert.assertEquals(
+			Arrays.toString(unallowedFragments), 3, unallowedFragments.length);
+
+		Assert.assertEquals(
+			Arrays.toString(pageElements), 1, pageElements.length);
 	}
 
 	@Test
@@ -460,9 +460,6 @@ public class PageDefinitionDTOConverterTest {
 
 		PageElement[] pageElements = rootPageElement.getPageElements();
 
-		Assert.assertEquals(
-			Arrays.toString(pageElements), 1, pageElements.length);
-
 		PageElement rowPageElement = pageElements[0];
 
 		Assert.assertEquals(PageElement.Type.ROW, rowPageElement.getType());
@@ -476,9 +473,6 @@ public class PageDefinitionDTOConverterTest {
 			Integer.valueOf(2), pageRowDefinition.getNumberOfColumns());
 
 		PageElement[] columnPageElements = rowPageElement.getPageElements();
-
-		Assert.assertEquals(
-			Arrays.toString(columnPageElements), 2, columnPageElements.length);
 
 		Assert.assertEquals(
 			PageElement.Type.COLUMN, columnPageElements[0].getType());
@@ -497,6 +491,12 @@ public class PageDefinitionDTOConverterTest {
 			Integer.valueOf(5), pageColumnDefinition1.getSize());
 		Assert.assertEquals(
 			Integer.valueOf(7), pageColumnDefinition2.getSize());
+
+		Assert.assertEquals(
+			Arrays.toString(columnPageElements), 2, columnPageElements.length);
+
+		Assert.assertEquals(
+			Arrays.toString(pageElements), 1, pageElements.length);
 	}
 
 	@Test
@@ -510,9 +510,6 @@ public class PageDefinitionDTOConverterTest {
 		Assert.assertEquals(PageElement.Type.ROOT, rootPageElement.getType());
 
 		PageElement[] pageElements = rootPageElement.getPageElements();
-
-		Assert.assertEquals(
-			Arrays.toString(pageElements), 2, pageElements.length);
 
 		PageElement sectionPageElement1 = pageElements[0];
 
@@ -575,6 +572,9 @@ public class PageDefinitionDTOConverterTest {
 		Assert.assertEquals(
 			"http://myexample2.com/myexample2.png",
 			urlFragmentInlineValue2.getValue());
+
+		Assert.assertEquals(
+			Arrays.toString(pageElements), 2, pageElements.length);
 	}
 
 	private FragmentField _getFragmentField(

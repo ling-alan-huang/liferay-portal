@@ -80,11 +80,11 @@ public class ObjectEntryLocalServiceImplTest {
 
 			sortDSLQueryVisitors = mockedConstruction.constructed();
 
+			_assertSort(Field.CREATE_DATE, true, sortDSLQueryVisitors.get(0));
+
 			Assert.assertEquals(
 				sortDSLQueryVisitors.toString(), 1,
 				sortDSLQueryVisitors.size());
-
-			_assertSort(Field.CREATE_DATE, true, sortDSLQueryVisitors.get(0));
 		}
 	}
 

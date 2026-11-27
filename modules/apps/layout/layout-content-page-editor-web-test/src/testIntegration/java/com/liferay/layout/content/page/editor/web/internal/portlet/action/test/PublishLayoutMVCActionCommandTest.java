@@ -169,9 +169,6 @@ public class PublishLayoutMVCActionCommandTest {
 		List<String> childrenItemIds =
 			dropZoneFragmentStyledLayoutStructureItem.getChildrenItemIds();
 
-		Assert.assertEquals(
-			childrenItemIds.toString(), 1, childrenItemIds.size());
-
 		FragmentDropZoneLayoutStructureItem
 			fragmentDropZoneLayoutStructureItem =
 				(FragmentDropZoneLayoutStructureItem)
@@ -268,6 +265,9 @@ public class PublishLayoutMVCActionCommandTest {
 		Assert.assertNull(
 			_fragmentEntryLinkLocalService.fetchFragmentEntryLink(
 				publishedLayoutFragmentEntryLink.getFragmentEntryLinkId()));
+
+		Assert.assertEquals(
+			childrenItemIds.toString(), 1, childrenItemIds.size());
 
 		Assert.assertEquals(
 			count,

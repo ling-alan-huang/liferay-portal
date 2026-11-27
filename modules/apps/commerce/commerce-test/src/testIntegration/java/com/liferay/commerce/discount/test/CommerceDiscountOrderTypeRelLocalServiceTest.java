@@ -126,13 +126,13 @@ public class CommerceDiscountOrderTypeRelLocalServiceTest {
 
 		List<Document> documents = searchResponse.getDocuments();
 
-		Assert.assertEquals(documents.toString(), 1, documents.size());
-
 		Document document = documents.get(0);
 
 		Assert.assertEquals(
 			expectedCommerceOrderTypeIds,
 			document.getLongs("commerceOrderTypeId"));
+
+		Assert.assertEquals(documents.toString(), 1, documents.size());
 	}
 
 	private CommerceDiscount _commerceDiscount;

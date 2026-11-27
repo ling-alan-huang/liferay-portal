@@ -130,9 +130,6 @@ public class GroupExportImportTest {
 		List<ExportImportGroup> exportImportGroups = _getExportImportGroups(
 			file);
 
-		Assert.assertEquals(
-			exportImportGroups.toString(), 1, exportImportGroups.size());
-
 		ExportImportGroup exportImportGroup = exportImportGroups.get(0);
 
 		Assert.assertEquals(
@@ -155,6 +152,9 @@ public class GroupExportImportTest {
 			path.endsWith(
 				_group.getDescriptiveName(
 					LocaleUtil.fromLanguageId(_group.getDefaultLanguageId()))));
+
+		Assert.assertEquals(
+			exportImportGroups.toString(), 1, exportImportGroups.size());
 	}
 
 	@Test

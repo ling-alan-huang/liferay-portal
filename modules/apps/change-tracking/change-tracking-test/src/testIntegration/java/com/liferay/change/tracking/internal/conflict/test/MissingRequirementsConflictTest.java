@@ -184,14 +184,14 @@ public class MissingRequirementsConflictTest {
 
 		Assert.assertNotNull(conflictInfos);
 
-		Assert.assertEquals(conflictInfos.toString(), 1, conflictInfos.size());
-
 		ConflictInfo conflictInfo = conflictInfos.get(0);
 
 		Assert.assertEquals(
 			childFolder.getFolderId(), conflictInfo.getSourcePrimaryKey());
 
 		Assert.assertFalse(conflictInfo.isResolved());
+
+		Assert.assertEquals(conflictInfos.toString(), 1, conflictInfos.size());
 
 		Assert.assertTrue(conflictsMap.toString(), conflictsMap.isEmpty());
 	}

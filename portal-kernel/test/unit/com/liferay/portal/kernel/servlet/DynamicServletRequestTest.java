@@ -36,9 +36,10 @@ public class DynamicServletRequestTest {
 		Map<String, String[]> parameterMap =
 			httpServletRequest.getParameterMap();
 
-		Assert.assertEquals(parameterMap.toString(), 1, parameterMap.size());
 		Assert.assertArrayEquals(
 			new String[] {"15"}, parameterMap.get("p_p_id"));
+
+		Assert.assertEquals(parameterMap.toString(), 1, parameterMap.size());
 	}
 
 	@Test
@@ -54,7 +55,6 @@ public class DynamicServletRequestTest {
 		Map<String, String[]> parameterMap =
 			httpServletRequest.getParameterMap();
 
-		Assert.assertEquals(parameterMap.toString(), 4, parameterMap.size());
 		Assert.assertArrayEquals(
 			new String[] {"15"}, parameterMap.get("p_p_id"));
 		Assert.assertArrayEquals(
@@ -63,6 +63,8 @@ public class DynamicServletRequestTest {
 			new String[] {"value2"}, parameterMap.get("_15_param2"));
 		Assert.assertArrayEquals(
 			new String[] {"value3"}, parameterMap.get("_15_param3"));
+
+		Assert.assertEquals(parameterMap.toString(), 4, parameterMap.size());
 	}
 
 }

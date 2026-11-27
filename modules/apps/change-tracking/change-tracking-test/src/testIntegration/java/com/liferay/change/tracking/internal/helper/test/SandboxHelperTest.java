@@ -217,10 +217,6 @@ public class SandboxHelperTest {
 				UserNotificationEventTestUtil.getUserNotificationEvents(
 					publisherUser.getUserId());
 
-			Assert.assertEquals(
-				userNotificationEvents.toString(), 1,
-				userNotificationEvents.size());
-
 			UserNotificationEvent userNotificationEvent =
 				userNotificationEvents.get(0);
 
@@ -234,6 +230,10 @@ public class SandboxHelperTest {
 				PublicationRoleConstants.ROLE_PUBLISHER,
 				jsonObject.getInt("roleValue"));
 			Assert.assertEquals(user.getUserId(), jsonObject.getLong("userId"));
+
+			Assert.assertEquals(
+				userNotificationEvents.toString(), 1,
+				userNotificationEvents.size());
 
 			Assert.assertEquals(1, MailServiceTestUtil.getInboxSize());
 

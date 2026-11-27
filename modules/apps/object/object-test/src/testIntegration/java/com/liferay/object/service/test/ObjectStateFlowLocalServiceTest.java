@@ -445,10 +445,6 @@ public class ObjectStateFlowLocalServiceTest {
 			List<ObjectState> objectStates1, List<ObjectState> objectStates2)
 		throws Exception {
 
-		Assert.assertEquals(
-			objectStates1.toString(), objectStates1.size(),
-			objectStates2.size());
-
 		for (int i = 0; i < objectStates1.size(); i++) {
 			ObjectState objectState1 = objectStates1.get(i);
 			ObjectState objectState2 = objectStates2.get(i);
@@ -464,10 +460,6 @@ public class ObjectStateFlowLocalServiceTest {
 					getObjectStateObjectStateTransitions(
 						objectState2.getObjectStateId());
 
-			Assert.assertEquals(
-				objectStateTransitions1.toString(),
-				objectStateTransitions1.size(), objectStateTransitions2.size());
-
 			for (int j = 0; j < objectStateTransitions1.size(); j++) {
 				ObjectStateTransition objectStateTransition1 =
 					objectStateTransitions1.get(j);
@@ -481,7 +473,15 @@ public class ObjectStateFlowLocalServiceTest {
 					objectStateTransition1.getTargetObjectStateId(),
 					objectStateTransition2.getTargetObjectStateId());
 			}
+
+			Assert.assertEquals(
+				objectStateTransitions1.toString(),
+				objectStateTransitions1.size(), objectStateTransitions2.size());
 		}
+
+		Assert.assertEquals(
+			objectStates1.toString(), objectStates1.size(),
+			objectStates2.size());
 	}
 
 	private void _assertNextObjectStates(

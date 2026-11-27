@@ -118,8 +118,6 @@ public class ExpandoUtilTest {
 	private void _assertLog(LogCapture logCapture, String name, Locale locale) {
 		List<LogEntry> logEntries = logCapture.getLogEntries();
 
-		Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 		LogEntry logEntry = logEntries.get(0);
 
 		Assert.assertEquals(LoggerTestUtil.WARN, logEntry.getPriority());
@@ -129,13 +127,12 @@ public class ExpandoUtilTest {
 		Assert.assertTrue(message, message.contains(name));
 		Assert.assertTrue(
 			message, message.contains(LocaleUtil.toLanguageId(locale)));
+
+		Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 	}
 
 	private void _assertWarningMessages(
 		List<String> warningMessages, String name, Locale locale) {
-
-		Assert.assertEquals(
-			warningMessages.toString(), 1, warningMessages.size());
 
 		String warningMessage = warningMessages.get(0);
 
@@ -143,6 +140,9 @@ public class ExpandoUtilTest {
 		Assert.assertTrue(
 			warningMessage,
 			warningMessage.contains(LocaleUtil.toLanguageId(locale)));
+
+		Assert.assertEquals(
+			warningMessages.toString(), 1, warningMessages.size());
 	}
 
 	private Map<String, Serializable> _attributesOf(

@@ -733,13 +733,13 @@ public class CartResourceTest extends BaseCartResourceTestCase {
 			_commerceOrderItemLocalService.getCommerceOrderItems(
 				commerceOrderId, QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 
-		Assert.assertEquals(
-			commerceOrderItems.toString(), 1, commerceOrderItems.size());
-
 		CommerceOrderItem commerceOrderItem = commerceOrderItems.get(0);
 
 		Assert.assertEquals(
 			shippingAddressId, commerceOrderItem.getShippingAddressId());
+
+		Assert.assertEquals(
+			commerceOrderItems.toString(), 1, commerceOrderItems.size());
 	}
 
 	private void _assertProblemException(

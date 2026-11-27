@@ -824,13 +824,13 @@ public class SiteResourceTest extends BaseSiteResourceTestCase {
 
 		List<Site> sites = (List<Site>)sitesPage.getItems();
 
-		Assert.assertEquals(sites.toString(), 1, sites.size());
-
 		Site site = sites.get(0);
 
 		Assert.assertEquals(
 			postIncludedSite.getExternalReferenceCode(),
 			site.getExternalReferenceCode());
+
+		Assert.assertEquals(sites.toString(), 1, sites.size());
 	}
 
 	private void _testGetSitesPageWithInactiveSites() throws Exception {
@@ -886,8 +886,6 @@ public class SiteResourceTest extends BaseSiteResourceTestCase {
 			sites.put(site.getExternalReferenceCode(), site);
 		}
 
-		Assert.assertEquals(sites.toString(), 2, sites.size());
-
 		Site childSite = sites.get(childGroup.getExternalReferenceCode());
 
 		Assert.assertEquals(
@@ -897,6 +895,8 @@ public class SiteResourceTest extends BaseSiteResourceTestCase {
 		Site parentSite = sites.get(parentGroup.getExternalReferenceCode());
 
 		Assert.assertEquals(parentOrganization.getName(), parentSite.getName());
+
+		Assert.assertEquals(sites.toString(), 2, sites.size());
 	}
 
 	private void _testGetSitesPageWithSearch() throws Exception {
@@ -913,9 +913,9 @@ public class SiteResourceTest extends BaseSiteResourceTestCase {
 
 		List<Site> items = (List<Site>)sitesPage.getItems();
 
-		Assert.assertEquals(items.toString(), 1, items.size());
-
 		assertEquals(postSite, items.get(0));
+
+		Assert.assertEquals(items.toString(), 1, items.size());
 	}
 
 	private void _testGetSitesPageWithUser(Site site, User user)

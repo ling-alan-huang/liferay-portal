@@ -251,10 +251,6 @@ public class ObjectLayoutLocalServiceTest {
 				_customObjectDefinition.getClassName(),
 				TestPropsValues.getUser(), null);
 
-		Assert.assertEquals(
-			screenNavigationCategories.toString(), objectLayoutTabs.size(),
-			screenNavigationCategories.size());
-
 		for (int i = 0; i < objectLayoutTabs.size(); i++) {
 			ObjectLayoutTab objectLayoutTab = objectLayoutTabs.get(i);
 
@@ -265,6 +261,10 @@ public class ObjectLayoutLocalServiceTest {
 				String.valueOf(objectLayoutTab.getObjectLayoutTabId()),
 				screenNavigationCategory.getCategoryKey());
 		}
+
+		Assert.assertEquals(
+			screenNavigationCategories.toString(), objectLayoutTabs.size(),
+			screenNavigationCategories.size());
 	}
 
 	@Test

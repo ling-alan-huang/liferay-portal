@@ -68,8 +68,6 @@ public class ResourceRequestPortletContainerTest
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 2, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals(
@@ -84,6 +82,8 @@ public class ResourceRequestPortletContainerTest
 					" on '\"><script>alert(1)</script>: Invalid portlet ID ",
 					"'\"><script>alert(1)</script>"),
 				logEntry.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 2, logEntries.size());
 
 			Assert.assertEquals(403, response.getCode());
 		}

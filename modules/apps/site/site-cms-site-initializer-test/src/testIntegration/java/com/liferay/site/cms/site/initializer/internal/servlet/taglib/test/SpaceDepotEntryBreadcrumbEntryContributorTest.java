@@ -195,12 +195,12 @@ public class SpaceDepotEntryBreadcrumbEntryContributorTest {
 			BreadcrumbEntryContributorUtil.contribute(
 				originalBreadcrumbEntries, mockHttpServletRequest);
 
+		_assertSpaceDepotEntryBreadcrumbEntry(
+			breadcrumbEntries.get(0), depotEntry, mockHttpServletRequest);
+
 		Assert.assertEquals(
 			breadcrumbEntries.toString(), originalBreadcrumbEntries.size() + 1,
 			breadcrumbEntries.size());
-
-		_assertSpaceDepotEntryBreadcrumbEntry(
-			breadcrumbEntries.get(0), depotEntry, mockHttpServletRequest);
 
 		Assert.assertEquals(
 			breadcrumbEntries.subList(1, breadcrumbEntries.size()),
@@ -222,9 +222,6 @@ public class SpaceDepotEntryBreadcrumbEntryContributorTest {
 			BreadcrumbEntryContributorUtil.contribute(
 				Collections.emptyList(), mockHttpServletRequest);
 
-		Assert.assertEquals(
-			breadcrumbEntries.toString(), 2, breadcrumbEntries.size());
-
 		_assertSpaceDepotEntryBreadcrumbEntry(
 			breadcrumbEntries.get(0), depotEntry, mockHttpServletRequest);
 
@@ -237,6 +234,9 @@ public class SpaceDepotEntryBreadcrumbEntryContributorTest {
 
 		_assertBreadcrumbEntryNotBrowsable(
 			breadcrumbEntries.get(breadcrumbEntries.size() - 1));
+
+		Assert.assertEquals(
+			breadcrumbEntries.toString(), 2, breadcrumbEntries.size());
 	}
 
 	@Inject

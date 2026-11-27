@@ -155,12 +155,12 @@ public class AssetTagGroupRelLocalServiceTest {
 				getAssetTagGroupRelsByTagIdAndDepotEntryType(
 					_assetTag.getTagId(), DepotConstants.TYPE_SPACE);
 
-		Assert.assertEquals(
-			assetTagGroupRels.toString(), 1, assetTagGroupRels.size());
-
 		_assertAssetTagGroupRel(
 			assetTagGroupRels.get(0), _assetTag.getTagId(),
 			group2.getGroupId());
+
+		Assert.assertEquals(
+			assetTagGroupRels.toString(), 1, assetTagGroupRels.size());
 
 		Group projectGroup = GroupTestUtil.addGroup();
 
@@ -201,11 +201,11 @@ public class AssetTagGroupRelLocalServiceTest {
 				getAssetTagGroupRelsByGroupIdAndDepotEntryType(
 					group.getGroupId(), depotEntryType);
 
-		Assert.assertEquals(
-			assetTagGroupRels.toString(), 1, assetTagGroupRels.size());
-
 		_assertAssetTagGroupRel(
 			assetTagGroupRels.get(0), assetTag.getTagId(), group.getGroupId());
+
+		Assert.assertEquals(
+			assetTagGroupRels.toString(), 1, assetTagGroupRels.size());
 	}
 
 	private void _assertAssetTagGroupRelByTagId(
@@ -217,11 +217,11 @@ public class AssetTagGroupRelLocalServiceTest {
 				getAssetTagGroupRelsByTagIdAndDepotEntryType(
 					assetTag.getTagId(), depotEntryType);
 
-		Assert.assertEquals(
-			assetTagGroupRels.toString(), 1, assetTagGroupRels.size());
-
 		_assertAssetTagGroupRel(
 			assetTagGroupRels.get(0), assetTag.getTagId(), group.getGroupId());
+
+		Assert.assertEquals(
+			assetTagGroupRels.toString(), 1, assetTagGroupRels.size());
 	}
 
 	private AssetTag _assetTag;

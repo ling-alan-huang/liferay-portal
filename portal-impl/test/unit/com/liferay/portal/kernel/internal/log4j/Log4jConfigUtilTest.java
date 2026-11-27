@@ -221,8 +221,6 @@ public class Log4jConfigUtilTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Throwable throwable = logEntry.getThrowable();
@@ -237,8 +235,6 @@ public class Log4jConfigUtilTest {
 
 			Log4jConfigUtil.configureLog4J(xmlContent);
 
-			Assert.assertEquals(logEntries.toString(), 2, logEntries.size());
-
 			logEntry = logEntries.get(1);
 
 			Assert.assertEquals(
@@ -248,12 +244,16 @@ public class Log4jConfigUtilTest {
 			Log4jConfigUtil.configureLog4J(
 				_generateLog4j1XMLConfigurationContent());
 
-			Assert.assertEquals(logEntries.toString(), 3, logEntries.size());
-
 			logEntry = logEntries.get(2);
 
 			Assert.assertEquals(
 				"Log4J 2 <Configuration> is required", logEntry.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
+
+			Assert.assertEquals(logEntries.toString(), 2, logEntries.size());
+
+			Assert.assertEquals(logEntries.toString(), 3, logEntries.size());
 		}
 	}
 

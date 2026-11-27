@@ -148,8 +148,6 @@ public class DDMFieldUpgradeProcessTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			String message = logEntry.getMessage();
@@ -159,6 +157,8 @@ public class DDMFieldUpgradeProcessTest {
 				message.startsWith(
 					"Replaced duplicate instance ID \"ABCD\" of field " +
 						"\"field2\" in storage " + _contentId));
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 
 		_entityCache.clearCache();

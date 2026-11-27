@@ -679,9 +679,6 @@ public class DynamicQueryEntryTest {
 		List<?> results = _dynamicQueryEntryLocalService.dynamicQuery(
 			dynamicQuery);
 
-		Assert.assertEquals(
-			results.toString(), expectedResults.length, results.size());
-
 		for (int i = 0; i < expectedResults.length; i++) {
 			Object result = results.get(i);
 
@@ -701,6 +698,9 @@ public class DynamicQueryEntryTest {
 					results.toString(), expectedResults[i], result);
 			}
 		}
+
+		Assert.assertEquals(
+			results.toString(), expectedResults.length, results.size());
 	}
 
 	private void _testDynamicQueryWithAlias(String alias) {

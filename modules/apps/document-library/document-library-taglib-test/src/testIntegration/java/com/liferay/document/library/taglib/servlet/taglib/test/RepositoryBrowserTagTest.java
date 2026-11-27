@@ -155,9 +155,6 @@ public class RepositoryBrowserTagTest {
 		DropdownItemList dropdownItemList = (DropdownItemList)creationMenu.get(
 			"primaryItems");
 
-		Assert.assertEquals(
-			dropdownItemList.toString(), 2, dropdownItemList.size());
-
 		DropdownItem dropdownItem = dropdownItemList.get(1);
 
 		Map<String, String> data = (Map<String, String>)dropdownItem.get(
@@ -165,6 +162,9 @@ public class RepositoryBrowserTagTest {
 
 		Assert.assertEquals(
 			expectedViewableByGuestValue, data.get("viewableByGuest"));
+
+		Assert.assertEquals(
+			dropdownItemList.toString(), 2, dropdownItemList.size());
 
 		Map<String, Object> repositoryBrowserComponentContext =
 			ReflectionTestUtil.invoke(

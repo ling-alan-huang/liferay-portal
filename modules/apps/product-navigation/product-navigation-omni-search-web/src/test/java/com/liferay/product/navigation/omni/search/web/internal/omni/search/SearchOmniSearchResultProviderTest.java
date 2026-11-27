@@ -194,9 +194,6 @@ public class SearchOmniSearchResultProviderTest {
 
 		List<OmniSearchResult> omniSearchResults = _getOmniSearchResults();
 
-		Assert.assertEquals(
-			omniSearchResults.toString(), 1, omniSearchResults.size());
-
 		OmniSearchResult sectionOmniSearchResult = omniSearchResults.get(0);
 
 		Assert.assertEquals("search", sectionOmniSearchResult.getIcon());
@@ -208,10 +205,6 @@ public class SearchOmniSearchResultProviderTest {
 
 		List<OmniSearchResult> entryOmniSearchResults =
 			sectionOmniSearchResult.getOmniSearchResults();
-
-		Assert.assertEquals(
-			entryOmniSearchResults.toString(), 1,
-			entryOmniSearchResults.size());
 
 		OmniSearchResult entryOmniSearchResult = entryOmniSearchResults.get(0);
 
@@ -225,6 +218,13 @@ public class SearchOmniSearchResultProviderTest {
 			OmniSearchResult.Type.ENTRY, entryOmniSearchResult.getType());
 		Assert.assertEquals(
 			String.valueOf(editPortletURL), entryOmniSearchResult.getURL());
+
+		Assert.assertEquals(
+			entryOmniSearchResults.toString(), 1,
+			entryOmniSearchResults.size());
+
+		Assert.assertEquals(
+			omniSearchResults.toString(), 1, omniSearchResults.size());
 	}
 
 	@Test

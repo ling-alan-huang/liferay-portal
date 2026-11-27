@@ -72,12 +72,12 @@ public class LoggingOutputProcessorTest extends BaseOutputProcessorTestCase {
 			loggingOutputProcessor.processStdOut(
 				new UnsyncByteArrayInputStream(stdOutBytes)));
 
-		Assert.assertEquals(logRecords.toString(), 1, logRecords.size());
-
 		logRecord = logRecords.get(0);
 
 		Assert.assertFalse(logRecord.toString(), logRecord.getKey());
 		Assert.assertEquals(stdOutString, logRecord.getValue());
+
+		Assert.assertEquals(logRecords.toString(), 1, logRecords.size());
 	}
 
 }

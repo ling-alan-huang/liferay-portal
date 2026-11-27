@@ -145,9 +145,6 @@ public class ItemSelectorImplTest {
 		List<ItemSelectorCriterion> itemSelectorCriteria =
 			_itemSelectorImpl.getItemSelectorCriteria(itemSelectorURL);
 
-		Assert.assertEquals(
-			itemSelectorCriteria.toString(), 2, itemSelectorCriteria.size());
-
 		MediaItemSelectorCriterion mediaItemSelectorCriterion =
 			(MediaItemSelectorCriterion)itemSelectorCriteria.get(0);
 
@@ -158,9 +155,6 @@ public class ItemSelectorImplTest {
 		List<ItemSelectorReturnType> desiredItemSelectorReturnTypes =
 			mediaItemSelectorCriterion.getDesiredItemSelectorReturnTypes();
 
-		Assert.assertEquals(
-			desiredItemSelectorReturnTypes.toString(), 2,
-			desiredItemSelectorReturnTypes.size());
 		Assert.assertTrue(
 			desiredItemSelectorReturnTypes.get(0) instanceof
 				TestFileEntryItemSelectorReturnType);
@@ -168,8 +162,15 @@ public class ItemSelectorImplTest {
 			desiredItemSelectorReturnTypes.get(1) instanceof
 				TestURLItemSelectorReturnType);
 
+		Assert.assertEquals(
+			desiredItemSelectorReturnTypes.toString(), 2,
+			desiredItemSelectorReturnTypes.size());
+
 		Assert.assertTrue(
 			itemSelectorCriteria.get(1) instanceof FlickrItemSelectorCriterion);
+
+		Assert.assertEquals(
+			itemSelectorCriteria.toString(), 2, itemSelectorCriteria.size());
 	}
 
 	@Test

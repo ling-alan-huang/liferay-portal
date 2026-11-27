@@ -195,8 +195,9 @@ public class LocalizationImplTest {
 		Map<Locale, String> map = LocalizationUtil.getMap(
 			new LocalizedValuesMap("defaultValue"));
 
-		Assert.assertEquals(map.toString(), 1, map.size());
 		Assert.assertEquals("defaultValue", map.get(LocaleUtil.getDefault()));
+
+		Assert.assertEquals(map.toString(), 1, map.size());
 	}
 
 	@Test
@@ -213,9 +214,10 @@ public class LocalizationImplTest {
 
 		Map<Locale, String> map = LocalizationUtil.getMap(localizedValuesMap);
 
-		Assert.assertEquals(map.toString(), locales.size(), map.size());
 		Assert.assertEquals(_GERMAN_HELLO, map.get(LocaleUtil.GERMANY));
 		Assert.assertEquals(_ENGLISH_HELLO, map.get(LocaleUtil.US));
+
+		Assert.assertEquals(map.toString(), locales.size(), map.size());
 	}
 
 	@Test

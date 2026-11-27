@@ -123,19 +123,12 @@ public class FieldsToDDMFormValuesConverterTest extends BaseDDMTestCase {
 		List<DDMFormFieldValue> ddmFormFieldValues =
 			ddmFormValues.getDDMFormFieldValues();
 
-		Assert.assertEquals(
-			ddmFormFieldValues.toString(), 2, ddmFormFieldValues.size());
-
 		DDMFormFieldValue paulDDMFormFieldValue = ddmFormFieldValues.get(0);
 
 		testDDMFormFieldValue("rztm", "Paul", "Paulo", paulDDMFormFieldValue);
 
 		List<DDMFormFieldValue> paulNestedDDMFormFieldValues =
 			paulDDMFormFieldValue.getNestedDDMFormFieldValues();
-
-		Assert.assertEquals(
-			paulNestedDDMFormFieldValues.toString(), 2,
-			paulNestedDDMFormFieldValues.size());
 
 		testDDMFormFieldValue(
 			"ovho", "Paul's Phone 1", "Telefone de Paulo 1",
@@ -145,16 +138,16 @@ public class FieldsToDDMFormValuesConverterTest extends BaseDDMTestCase {
 			"krvx", "Paul's Phone 2", "Telefone de Paulo 2",
 			paulNestedDDMFormFieldValues.get(1));
 
+		Assert.assertEquals(
+			paulNestedDDMFormFieldValues.toString(), 2,
+			paulNestedDDMFormFieldValues.size());
+
 		DDMFormFieldValue joeDDMFormFieldValue = ddmFormFieldValues.get(1);
 
 		testDDMFormFieldValue("rght", "Joe", "João", joeDDMFormFieldValue);
 
 		List<DDMFormFieldValue> joeNestedDDMFormFieldValues =
 			joeDDMFormFieldValue.getNestedDDMFormFieldValues();
-
-		Assert.assertEquals(
-			joeNestedDDMFormFieldValues.toString(), 3,
-			joeNestedDDMFormFieldValues.size());
 
 		testDDMFormFieldValue(
 			"latb", "Joe's Phone 1", "Telefone de João 1",
@@ -165,6 +158,13 @@ public class FieldsToDDMFormValuesConverterTest extends BaseDDMTestCase {
 		testDDMFormFieldValue(
 			"mkar", "Joe's Phone 3", "Telefone de João 3",
 			joeNestedDDMFormFieldValues.get(2));
+
+		Assert.assertEquals(
+			joeNestedDDMFormFieldValues.toString(), 3,
+			joeNestedDDMFormFieldValues.size());
+
+		Assert.assertEquals(
+			ddmFormFieldValues.toString(), 2, ddmFormFieldValues.size());
 	}
 
 	@Test
@@ -193,15 +193,15 @@ public class FieldsToDDMFormValuesConverterTest extends BaseDDMTestCase {
 		List<DDMFormFieldValue> ddmFormFieldValues =
 			ddmFormValues.getDDMFormFieldValues();
 
-		Assert.assertEquals(
-			ddmFormFieldValues.toString(), 3, ddmFormFieldValues.size());
-
 		testDDMFormFieldValue(
 			"rztm", "Name 1", "Nome 1", ddmFormFieldValues.get(0));
 		testDDMFormFieldValue(
 			"ovho", "Name 2", "Nome 2", ddmFormFieldValues.get(1));
 		testDDMFormFieldValue(
 			"iubr", "Name 3", "Nome 3", ddmFormFieldValues.get(2));
+
+		Assert.assertEquals(
+			ddmFormFieldValues.toString(), 3, ddmFormFieldValues.size());
 	}
 
 	@Test
@@ -237,15 +237,15 @@ public class FieldsToDDMFormValuesConverterTest extends BaseDDMTestCase {
 		List<DDMFormFieldValue> ddmFormFieldValues =
 			ddmFormValues.getDDMFormFieldValues();
 
-		Assert.assertEquals(
-			ddmFormFieldValues.toString(), 2, ddmFormFieldValues.size());
-
 		testDDMFormFieldValue(
 			"rztm", "Title Example", "Titulo Exemplo",
 			ddmFormFieldValues.get(0));
 		testDDMFormFieldValue(
 			"ovho", "Content Example", "Conteudo Exemplo",
 			ddmFormFieldValues.get(1));
+
+		Assert.assertEquals(
+			ddmFormFieldValues.toString(), 2, ddmFormFieldValues.size());
 	}
 
 	protected void testDDMFormFieldValue(

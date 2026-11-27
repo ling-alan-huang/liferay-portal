@@ -481,9 +481,6 @@ public class PageElementResourceTest extends BasePageElementResourceTestCase {
 		PageElement[] collectionDisplayChildPageElements =
 			pageElement.getPageElements();
 
-		Assert.assertEquals(
-			Arrays.toString(collectionDisplayChildPageElements), 1,
-			collectionDisplayChildPageElements.length);
 		Assert.assertNotNull(
 			collectionDisplayChildPageElements[0].getExternalReferenceCode());
 
@@ -495,6 +492,10 @@ public class PageElementResourceTest extends BasePageElementResourceTestCase {
 		Assert.assertEquals(
 			PageElementDefinition.Type.COLLECTION_ITEM,
 			collectionItemPageElementDefinition.getType());
+
+		Assert.assertEquals(
+			Arrays.toString(collectionDisplayChildPageElements), 1,
+			collectionDisplayChildPageElements.length);
 	}
 
 	@Override
@@ -3025,9 +3026,10 @@ public class PageElementResourceTest extends BasePageElementResourceTestCase {
 			widgetInstance.getWidgetPermissions();
 
 		Assert.assertEquals(
-			Arrays.toString(widgetPermissions), 1, widgetPermissions.length);
-		Assert.assertEquals(
 			RoleConstants.GUEST, widgetPermissions[0].getRoleName());
+
+		Assert.assertEquals(
+			Arrays.toString(widgetPermissions), 1, widgetPermissions.length);
 
 		Role guestRole = _roleLocalService.getRole(
 			TestPropsValues.getCompanyId(), RoleConstants.GUEST);
@@ -4611,8 +4613,6 @@ public class PageElementResourceTest extends BasePageElementResourceTestCase {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals(
@@ -4620,6 +4620,8 @@ public class PageElementResourceTest extends BasePageElementResourceTestCase {
 					"Invalid configuration value \"", invalidSelectValue,
 					"\" for field \"", selectFieldName, "\""),
 				logEntry.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 	}
 

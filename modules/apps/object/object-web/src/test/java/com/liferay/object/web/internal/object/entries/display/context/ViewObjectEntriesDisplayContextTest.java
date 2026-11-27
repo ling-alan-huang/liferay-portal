@@ -110,10 +110,6 @@ public class ViewObjectEntriesDisplayContextTest {
 		List<FDSActionDropdownItem> fdsActionDropdownItems =
 			viewObjectEntriesDisplayContext.getFDSActionDropdownItems();
 
-		Assert.assertEquals(
-			fdsActionDropdownItems.toString(), 6,
-			fdsActionDropdownItems.size());
-
 		_assertFDSActionDropdownItem(
 			fdsActionDropdownItems.get(0), null, "view", "view", "view", "get",
 			"item");
@@ -141,6 +137,10 @@ public class ViewObjectEntriesDisplayContextTest {
 				"/o", restContextPath, "/by-external-reference-code",
 				"/{externalReferenceCode}/unsubscribe"),
 			"bell-off", "unsubscribe", "unsubscribe", "post", "item");
+
+		Assert.assertEquals(
+			fdsActionDropdownItems.toString(), 6,
+			fdsActionDropdownItems.size());
 	}
 
 	private static void _setUpPortletURLUtil() throws Exception {

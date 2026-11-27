@@ -1219,9 +1219,10 @@ public class ContentDashboardAdminPortletTest {
 			List<AssetCategory> assetCategories = ReflectionTestUtil.invoke(
 				results.get(0), "getAssetCategories", new Class<?>[0]);
 
+			Assert.assertEquals(assetCategory, assetCategories.get(0));
+
 			Assert.assertEquals(
 				String.valueOf(assetCategories), 1, assetCategories.size());
-			Assert.assertEquals(assetCategory, assetCategories.get(0));
 		}
 		finally {
 			_assetCategoryLocalService.deleteCategory(
@@ -1266,7 +1267,6 @@ public class ContentDashboardAdminPortletTest {
 			results.get(0), "getLatestContentDashboardItemVersions",
 			new Class<?>[] {Locale.class}, LocaleUtil.US);
 
-		Assert.assertEquals(versions.toString(), 2, versions.size());
 		Assert.assertEquals(
 			"Approved",
 			ReflectionTestUtil.invoke(
@@ -1275,6 +1275,8 @@ public class ContentDashboardAdminPortletTest {
 			"Draft",
 			ReflectionTestUtil.invoke(
 				versions.get(1), "getLabel", new Class<?>[0]));
+
+		Assert.assertEquals(versions.toString(), 2, versions.size());
 	}
 
 	@Test

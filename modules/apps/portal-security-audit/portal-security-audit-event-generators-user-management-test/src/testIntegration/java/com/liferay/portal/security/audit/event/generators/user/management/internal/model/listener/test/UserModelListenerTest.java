@@ -208,9 +208,6 @@ public class UserModelListenerTest extends BaseModelListenerTestCase {
 			updateAuditMessages.add(auditMessage);
 		}
 
-		Assert.assertEquals(
-			updateAuditMessages.toString(), 1, updateAuditMessages.size());
-
 		AuditMessage auditMessage = updateAuditMessages.get(0);
 
 		Assert.assertEquals(
@@ -239,6 +236,9 @@ public class UserModelListenerTest extends BaseModelListenerTestCase {
 		JSONObject additionalInfoJSONObject = auditMessage.getAdditionalInfo();
 
 		Assert.assertFalse(additionalInfoJSONObject.has("doAsUserId"));
+
+		Assert.assertEquals(
+			updateAuditMessages.toString(), 1, updateAuditMessages.size());
 	}
 
 	private AuditRequestContext _createAuditRequestContext() throws Exception {

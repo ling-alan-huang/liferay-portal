@@ -80,9 +80,6 @@ public class AccessibilitySettingsUtilTest {
 				AccessibilitySettingConstants.
 					ACCESSIBILITY_SETTING_HIGH_CONTRAST));
 
-		Assert.assertEquals(
-			accessibilitySettings.toString(), 1, accessibilitySettings.size());
-
 		AccessibilitySetting accessibilitySetting = accessibilitySettings.get(
 			0);
 
@@ -91,6 +88,9 @@ public class AccessibilitySettingsUtilTest {
 		Assert.assertEquals("more", accessibilitySetting.getAttributeValue());
 		Assert.assertNull(accessibilitySetting.getCssClass());
 		Assert.assertFalse(accessibilitySetting.getDefaultValue());
+
+		Assert.assertEquals(
+			accessibilitySettings.toString(), 1, accessibilitySettings.size());
 	}
 
 	private HttpServletRequest _httpServletRequest;

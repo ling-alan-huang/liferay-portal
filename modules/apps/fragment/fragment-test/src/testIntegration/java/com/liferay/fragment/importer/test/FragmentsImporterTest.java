@@ -142,9 +142,6 @@ public class FragmentsImporterTest {
 			_fragmentCollectionLocalService.getFragmentCollections(
 				_group.getGroupId(), QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 
-		Assert.assertEquals(
-			fragmentCollections.toString(), 1, fragmentCollections.size());
-
 		FragmentCollection fragmentCollection = fragmentCollections.get(0);
 
 		List<FragmentEntry> fragmentEntries =
@@ -152,6 +149,9 @@ public class FragmentsImporterTest {
 				fragmentCollection.getFragmentCollectionId());
 
 		Assert.assertFalse(fragmentEntries.isEmpty());
+
+		Assert.assertEquals(
+			fragmentCollections.toString(), 1, fragmentCollections.size());
 	}
 
 	@Test
@@ -176,9 +176,6 @@ public class FragmentsImporterTest {
 			_fragmentCollectionLocalService.getFragmentCollections(
 				_group.getGroupId(), QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 
-		Assert.assertEquals(
-			fragmentCollections.toString(), 1, fragmentCollections.size());
-
 		FragmentCollection fragmentCollection = fragmentCollections.get(0);
 
 		List<FragmentEntry> filteredFragmentEntries = ListUtil.filter(
@@ -186,10 +183,6 @@ public class FragmentsImporterTest {
 				fragmentCollection.getFragmentCollectionId()),
 			fragmentEntry -> Objects.equals(
 				fragmentEntry.getName(), "Fragment With Field Sets"));
-
-		Assert.assertEquals(
-			filteredFragmentEntries.toString(), 1,
-			filteredFragmentEntries.size());
 
 		FragmentEntry fragmentEntry = filteredFragmentEntries.get(0);
 
@@ -204,6 +197,13 @@ public class FragmentsImporterTest {
 		Assert.assertEquals(
 			"{SimpleInputField} from @liferay/fragment-impl/api",
 			fieldSetJSONObject.getString("customComponentModule"));
+
+		Assert.assertEquals(
+			filteredFragmentEntries.toString(), 1,
+			filteredFragmentEntries.size());
+
+		Assert.assertEquals(
+			fragmentCollections.toString(), 1, fragmentCollections.size());
 	}
 
 	@Test
@@ -260,10 +260,6 @@ public class FragmentsImporterTest {
 			_fragmentCollectionLocalService.getFragmentCollections(
 				CompanyConstants.SYSTEM, QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 
-		Assert.assertEquals(
-			fragmentCollections.toString(), initialFragmentCollectionsCount + 1,
-			fragmentCollections.size());
-
 		FragmentCollection fragmentCollection = fragmentCollections.get(0);
 
 		List<FragmentEntry> fragmentEntries =
@@ -271,6 +267,10 @@ public class FragmentsImporterTest {
 				fragmentCollection.getFragmentCollectionId());
 
 		Assert.assertFalse(fragmentEntries.isEmpty());
+
+		Assert.assertEquals(
+			fragmentCollections.toString(), initialFragmentCollectionsCount + 1,
+			fragmentCollections.size());
 	}
 
 	@Test
@@ -374,9 +374,6 @@ public class FragmentsImporterTest {
 			_fragmentCollectionLocalService.getFragmentCollections(
 				_group.getGroupId(), QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 
-		Assert.assertEquals(
-			fragmentCollections.toString(), 1, fragmentCollections.size());
-
 		FragmentCollection fragmentCollection = fragmentCollections.get(0);
 
 		List<FragmentEntry> filteredFragmentEntries = ListUtil.filter(
@@ -385,13 +382,16 @@ public class FragmentsImporterTest {
 			fragmentEntry -> Objects.equals(
 				fragmentEntry.getName(), "Fragment With Icon"));
 
+		FragmentEntry headingFragmentEntry = filteredFragmentEntries.get(0);
+
+		Assert.assertEquals("heading", headingFragmentEntry.getIcon());
+
 		Assert.assertEquals(
 			filteredFragmentEntries.toString(), 1,
 			filteredFragmentEntries.size());
 
-		FragmentEntry headingFragmentEntry = filteredFragmentEntries.get(0);
-
-		Assert.assertEquals("heading", headingFragmentEntry.getIcon());
+		Assert.assertEquals(
+			fragmentCollections.toString(), 1, fragmentCollections.size());
 	}
 
 	@Test
@@ -415,13 +415,13 @@ public class FragmentsImporterTest {
 				fragmentEntry.getName(),
 				"Fragment With Invalid Configuration"));
 
-		Assert.assertEquals(
-			filteredFragmentEntries.toString(), 1,
-			filteredFragmentEntries.size());
-
 		FragmentEntry fragmentEntry = filteredFragmentEntries.get(0);
 
 		Assert.assertTrue(fragmentEntry.isDraft());
+
+		Assert.assertEquals(
+			filteredFragmentEntries.toString(), 1,
+			filteredFragmentEntries.size());
 	}
 
 	@Test
@@ -442,13 +442,13 @@ public class FragmentsImporterTest {
 			fragmentEntry -> Objects.equals(
 				fragmentEntry.getName(), "Fragment With Invalid HTML"));
 
-		Assert.assertEquals(
-			filteredFragmentEntries.toString(), 1,
-			filteredFragmentEntries.size());
-
 		FragmentEntry fragmentEntry = filteredFragmentEntries.get(0);
 
 		Assert.assertTrue(fragmentEntry.isDraft());
+
+		Assert.assertEquals(
+			filteredFragmentEntries.toString(), 1,
+			filteredFragmentEntries.size());
 	}
 
 	@Test
@@ -464,10 +464,6 @@ public class FragmentsImporterTest {
 					fragmentsImporterResultEntry.getName(),
 					"React Fragment With Invalid Configuration"));
 
-		Assert.assertEquals(
-			filteredFragmentsImporterResultEntries.toString(), 1,
-			filteredFragmentsImporterResultEntries.size());
-
 		FragmentsImporterResultEntry fragmentsImporterResultEntry =
 			filteredFragmentsImporterResultEntries.get(0);
 
@@ -477,6 +473,10 @@ public class FragmentsImporterTest {
 		Assert.assertEquals(
 			FragmentsImporterResultEntry.Type.FRAGMENT,
 			fragmentsImporterResultEntry.getType());
+
+		Assert.assertEquals(
+			filteredFragmentsImporterResultEntries.toString(), 1,
+			filteredFragmentsImporterResultEntries.size());
 	}
 
 	@Test
@@ -532,9 +532,6 @@ public class FragmentsImporterTest {
 			_fragmentCollectionLocalService.getFragmentCollections(
 				_group.getGroupId(), QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 
-		Assert.assertEquals(
-			fragmentCollections.toString(), 1, fragmentCollections.size());
-
 		fragmentCollection = fragmentCollections.get(0);
 
 		filteredFragmentEntries = ListUtil.filter(
@@ -543,14 +540,17 @@ public class FragmentsImporterTest {
 			fragmentEntry -> Objects.equals(
 				fragmentEntry.getName(), "Fragment One Updated"));
 
-		Assert.assertEquals(
-			filteredFragmentEntries.toString(), 1,
-			filteredFragmentEntries.size());
-
 		filteredFragmentEntry = filteredFragmentEntries.get(0);
 
 		Assert.assertEquals(
 			fragmentEntryKey, filteredFragmentEntry.getFragmentEntryKey());
+
+		Assert.assertEquals(
+			filteredFragmentEntries.toString(), 1,
+			filteredFragmentEntries.size());
+
+		Assert.assertEquals(
+			fragmentCollections.toString(), 1, fragmentCollections.size());
 	}
 
 	@Test
@@ -720,12 +720,12 @@ public class FragmentsImporterTest {
 
 		fileEntries = fragmentCollection.getResources();
 
-		Assert.assertEquals(fileEntries.toString(), 1, fileEntries.size());
-
 		FileEntry reimportedFileEntry = fileEntries.get(0);
 
 		Assert.assertEquals(
 			fileEntry.getFileEntryId(), reimportedFileEntry.getFileEntryId());
+
+		Assert.assertEquals(fileEntries.toString(), 1, fileEntries.size());
 
 		List<FragmentEntry> fragmentEntries =
 			_fragmentEntryLocalService.getFragmentEntries(
@@ -794,8 +794,6 @@ public class FragmentsImporterTest {
 
 			resources = fragmentCollection.getResources();
 
-			Assert.assertEquals(resources.toString(), 1, resources.size());
-
 			FileEntry reimportedFileEntry = resources.get(0);
 
 			Assert.assertEquals(
@@ -806,6 +804,8 @@ public class FragmentsImporterTest {
 			Assert.assertEquals(
 				originalFileEntry.getFileEntryId(),
 				reimportedFileEntry.getFileEntryId());
+
+			Assert.assertEquals(resources.toString(), 1, resources.size());
 		}
 	}
 
@@ -828,9 +828,6 @@ public class FragmentsImporterTest {
 			_fragmentCollectionLocalService.getFragmentCollections(
 				_group.getGroupId(), QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 
-		Assert.assertEquals(
-			fragmentCollections.toString(), 1, fragmentCollections.size());
-
 		FragmentCollection fragmentCollection = fragmentCollections.get(0);
 
 		List<FragmentEntry> filteredFragmentEntries = ListUtil.filter(
@@ -838,10 +835,6 @@ public class FragmentsImporterTest {
 				fragmentCollection.getFragmentCollectionId()),
 			fragmentEntry -> Objects.equals(
 				fragmentEntry.getName(), "Input Fragment With Type Options"));
-
-		Assert.assertEquals(
-			filteredFragmentEntries.toString(), 1,
-			filteredFragmentEntries.size());
 
 		FragmentEntry fragmentEntry = filteredFragmentEntries.get(0);
 
@@ -853,11 +846,19 @@ public class FragmentsImporterTest {
 		JSONArray jsonArray = jsonObject.getJSONArray("fieldTypes");
 
 		Assert.assertNotNull(jsonArray);
-		Assert.assertEquals(1, jsonArray.length());
 
 		String fieldType = jsonArray.getString(0);
 
 		Assert.assertEquals("string", fieldType);
+
+		Assert.assertEquals(1, jsonArray.length());
+
+		Assert.assertEquals(
+			filteredFragmentEntries.toString(), 1,
+			filteredFragmentEntries.size());
+
+		Assert.assertEquals(
+			fragmentCollections.toString(), 1, fragmentCollections.size());
 	}
 
 	@Test
@@ -874,10 +875,6 @@ public class FragmentsImporterTest {
 					fragmentsImporterResultEntry.getName(),
 					"Fragment./Composition"));
 
-		Assert.assertEquals(
-			filteredFragmentsImporterResultEntries.toString(), 1,
-			filteredFragmentsImporterResultEntries.size());
-
 		FragmentsImporterResultEntry fragmentsImporterResultEntry =
 			filteredFragmentsImporterResultEntries.get(0);
 
@@ -887,6 +884,10 @@ public class FragmentsImporterTest {
 		Assert.assertEquals(
 			FragmentsImporterResultEntry.Type.COMPOSITION,
 			fragmentsImporterResultEntry.getType());
+
+		Assert.assertEquals(
+			filteredFragmentsImporterResultEntries.toString(), 1,
+			filteredFragmentsImporterResultEntries.size());
 	}
 
 	private void _addFragmentEntryType(JSONObject jsonObject) {
@@ -1143,10 +1144,6 @@ public class FragmentsImporterTest {
 		Map<String, FileEntry> resourcesMap =
 			fragmentCollection.getResourcesMap();
 
-		Assert.assertEquals(
-			resourcesMap.toString(), expectedResourcesMap.size(),
-			resourcesMap.size());
-
 		for (Map.Entry<String, String> entry :
 				expectedResourcesMap.entrySet()) {
 
@@ -1155,6 +1152,10 @@ public class FragmentsImporterTest {
 			Assert.assertNotNull(fileEntry);
 			Assert.assertEquals(entry.getValue(), fileEntry.getTitle());
 		}
+
+		Assert.assertEquals(
+			resourcesMap.toString(), expectedResourcesMap.size(),
+			resourcesMap.size());
 	}
 
 	private void _testImportFragmentEntriesWithFolderResources(

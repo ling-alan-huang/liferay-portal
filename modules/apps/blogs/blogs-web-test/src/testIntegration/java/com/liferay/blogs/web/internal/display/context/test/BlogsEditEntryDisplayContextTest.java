@@ -137,9 +137,6 @@ public class BlogsEditEntryDisplayContextTest {
 				"getAvailableFriendlyURLAssetCategoriesJSONArray",
 				new Class<?>[0]);
 
-		Assert.assertEquals(
-			2, availableFriendlyURLAssetCategoriesJSONArray.length());
-
 		JSONObject jsonObject1 =
 			(JSONObject)availableFriendlyURLAssetCategoriesJSONArray.get(0);
 
@@ -151,6 +148,9 @@ public class BlogsEditEntryDisplayContextTest {
 
 		Assert.assertEquals(
 			_assetCategoryIds[2], GetterUtil.getLong(jsonObject2.get("value")));
+
+		Assert.assertEquals(
+			2, availableFriendlyURLAssetCategoriesJSONArray.length());
 	}
 
 	@Test
@@ -251,9 +251,6 @@ public class BlogsEditEntryDisplayContextTest {
 				"getCurrentFriendlyURLAssetCategoriesJSONArray",
 				new Class<?>[0]);
 
-		Assert.assertEquals(
-			2, currentFriendlyURLAssetCategoriesJSONArray.length());
-
 		JSONObject jsonObject1 =
 			(JSONObject)currentFriendlyURLAssetCategoriesJSONArray.get(0);
 
@@ -265,6 +262,9 @@ public class BlogsEditEntryDisplayContextTest {
 
 		Assert.assertEquals(
 			_assetCategoryIds[2], GetterUtil.getLong(jsonObject2.get("value")));
+
+		Assert.assertEquals(
+			2, currentFriendlyURLAssetCategoriesJSONArray.length());
 	}
 
 	@Test
@@ -291,9 +291,6 @@ public class BlogsEditEntryDisplayContextTest {
 				"getCurrentFriendlyURLAssetCategoriesJSONArray",
 				new Class<?>[0]);
 
-		Assert.assertEquals(
-			3, currentFriendlyURLAssetCategoriesJSONArray.length());
-
 		JSONObject jsonObject1 =
 			(JSONObject)currentFriendlyURLAssetCategoriesJSONArray.get(0);
 
@@ -311,6 +308,9 @@ public class BlogsEditEntryDisplayContextTest {
 
 		Assert.assertEquals(
 			_assetCategoryIds[0], GetterUtil.getLong(jsonObject3.get("value")));
+
+		Assert.assertEquals(
+			3, currentFriendlyURLAssetCategoriesJSONArray.length());
 	}
 
 	@Test

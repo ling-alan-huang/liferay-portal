@@ -139,14 +139,14 @@ public class BreadcrumbComponentSectionFragmentRendererTest {
 	private void _assertLabelsEquals(
 		JSONArray jsonArray, String... expectedLabels) {
 
-		Assert.assertEquals(expectedLabels.length, jsonArray.length());
-
 		for (int i = 0; i < expectedLabels.length; i++) {
 			JSONObject jsonObject = jsonArray.getJSONObject(i);
 
 			Assert.assertEquals(
 				expectedLabels[i], jsonObject.getString("label"));
 		}
+
+		Assert.assertEquals(expectedLabels.length, jsonArray.length());
 	}
 
 	private void _testGetProps(

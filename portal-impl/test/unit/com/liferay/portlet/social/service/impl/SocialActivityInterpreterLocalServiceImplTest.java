@@ -75,15 +75,15 @@ public class SocialActivityInterpreterLocalServiceImplTest {
 			_socialActivityInterpreterLocalServiceImpl.getActivityInterpreters(
 				_SELECTOR);
 
-		Assert.assertEquals(
-			activityInterpreters.toString(), 1, activityInterpreters.size());
-
 		SocialActivityInterpreter socialActivityInterpreter =
 			activityInterpreters.get(0);
 
 		Assert.assertSame(_SELECTOR, socialActivityInterpreter.getSelector());
 		Assert.assertSame(
 			_CLASS_NAMES, socialActivityInterpreter.getClassNames());
+
+		Assert.assertEquals(
+			activityInterpreters.toString(), 1, activityInterpreters.size());
 	}
 
 	private static final String[] _CLASS_NAMES = {

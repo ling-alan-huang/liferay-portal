@@ -234,9 +234,6 @@ public class FunctionCaptchaImplTest {
 				Assert.assertTrue(
 					captchaException instanceof CaptchaConfigurationException);
 
-				Assert.assertEquals(
-					logEntries.toString(), 1, logEntries.size());
-
 				LogEntry logEntry = logEntries.get(0);
 
 				Assert.assertTrue(
@@ -244,6 +241,9 @@ public class FunctionCaptchaImplTest {
 						logEntry.getMessage(),
 						_functionCaptchaImplConfiguration.captchaName() +
 							" encountered an error: "));
+
+				Assert.assertEquals(
+					logEntries.toString(), 1, logEntries.size());
 			}
 		}
 	}

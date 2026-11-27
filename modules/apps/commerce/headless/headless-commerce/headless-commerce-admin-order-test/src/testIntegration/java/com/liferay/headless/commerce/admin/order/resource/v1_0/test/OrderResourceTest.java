@@ -233,10 +233,11 @@ public class OrderResourceTest extends BaseOrderResourceTestCase {
 
 		OrderItem[] actualOrderItems = actualOrder.getOrderItems();
 
+		Assert.assertNotNull(actualOrderItems[0].getShippingAddress());
+
 		Assert.assertEquals(
 			Arrays.toString(actualOrderItems), expectedOrderItems.length,
 			actualOrderItems.length);
-		Assert.assertNotNull(actualOrderItems[0].getShippingAddress());
 	}
 
 	@Override
@@ -544,13 +545,13 @@ public class OrderResourceTest extends BaseOrderResourceTestCase {
 			_commerceOrderItemLocalService.getCommerceOrderItems(
 				commerceOrderId, QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 
-		Assert.assertEquals(
-			commerceOrderItems.toString(), 1, commerceOrderItems.size());
-
 		CommerceOrderItem commerceOrderItem = commerceOrderItems.get(0);
 
 		Assert.assertEquals(
 			shippingAddressId, commerceOrderItem.getShippingAddressId());
+
+		Assert.assertEquals(
+			commerceOrderItems.toString(), 1, commerceOrderItems.size());
 	}
 
 	private void _assertProblemException(

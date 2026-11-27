@@ -276,10 +276,10 @@ public class AddDSRequestMVCResourceCommandTest {
 
 		List<DSRecipient> dsRecipients = dsEnvelope.getDSRecipients();
 
-		Assert.assertEquals(dsRecipients.toString(), 2, dsRecipients.size());
-
 		_assertDSRecipient(dsRecipients.get(0), 1, accountUser);
 		_assertDSRecipient(dsRecipients.get(1), 2, TestPropsValues.getUser());
+
+		Assert.assertEquals(dsRecipients.toString(), 2, dsRecipients.size());
 
 		DSRequest dsRequest = _dsRequestManager.fetchLatestFileEntryDSRequest(
 			_group.getCompanyId(), _commerceOrderAttachment.getFileEntryId());
@@ -654,10 +654,10 @@ public class AddDSRequestMVCResourceCommandTest {
 
 		List<DSRecipient> dsRecipients = dsEnvelope.getDSRecipients();
 
-		Assert.assertEquals(dsRecipients.toString(), 2, dsRecipients.size());
-
 		_assertDSRecipient(dsRecipients.get(0), 1, TestPropsValues.getUser());
 		_assertDSRecipient(dsRecipients.get(1), 1, user);
+
+		Assert.assertEquals(dsRecipients.toString(), 2, dsRecipients.size());
 	}
 
 	@Inject

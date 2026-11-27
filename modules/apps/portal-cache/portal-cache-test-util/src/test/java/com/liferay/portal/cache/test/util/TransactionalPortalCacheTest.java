@@ -1738,10 +1738,10 @@ public class TransactionalPortalCacheTest {
 
 				Throwable[] throwables = exception.getSuppressed();
 
+				Assert.assertSame(runtimeException, throwables[0]);
+
 				Assert.assertEquals(
 					Arrays.toString(throwables), 1, throwables.length);
-
-				Assert.assertSame(runtimeException, throwables[0]);
 			}
 		}
 	}

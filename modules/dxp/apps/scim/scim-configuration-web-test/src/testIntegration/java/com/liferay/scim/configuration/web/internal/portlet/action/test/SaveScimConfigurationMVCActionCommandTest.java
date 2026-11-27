@@ -170,9 +170,6 @@ public class SaveScimConfigurationMVCActionCommandTest {
 				oAuth2Application.getOAuth2ApplicationId(), QueryUtil.ALL_POS,
 				QueryUtil.ALL_POS, null);
 
-		Assert.assertEquals(
-			oAuth2Authorizations.toString(), 2, oAuth2Authorizations.size());
-
 		OAuth2Authorization oAuth2Authorization = oAuth2Authorizations.get(0);
 
 		Assert.assertEquals(
@@ -192,6 +189,9 @@ public class SaveScimConfigurationMVCActionCommandTest {
 				oAuth2Authorization.getCreateDate()));
 		Assert.assertEquals(
 			adminUser.getUserId(), oAuth2Authorization.getUserId());
+
+		Assert.assertEquals(
+			oAuth2Authorizations.toString(), 2, oAuth2Authorizations.size());
 
 		_processAction("reset", companyAdminUser);
 

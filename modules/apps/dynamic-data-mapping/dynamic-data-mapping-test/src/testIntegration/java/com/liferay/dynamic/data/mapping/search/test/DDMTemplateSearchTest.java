@@ -178,8 +178,9 @@ public class DDMTemplateSearchTest {
 			StringPool.BLANK, StringPool.BLANK, WorkflowConstants.STATUS_ANY,
 			QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 
-		Assert.assertEquals(ddmTemplates.toString(), 1, ddmTemplates.size());
 		Assert.assertEquals(ddmTemplates.get(0), _ddmTemplate);
+
+		Assert.assertEquals(ddmTemplates.toString(), 1, ddmTemplates.size());
 	}
 
 	@DeleteAfterTestRun

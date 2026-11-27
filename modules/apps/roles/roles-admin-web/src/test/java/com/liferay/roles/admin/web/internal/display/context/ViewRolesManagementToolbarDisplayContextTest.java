@@ -175,8 +175,6 @@ public class ViewRolesManagementToolbarDisplayContextTest {
 			labelItems =
 				viewRolesManagementToolbarDisplayContext.getFilterLabelItems();
 
-			Assert.assertEquals(labelItems.toString(), 1, labelItems.size());
-
 			LabelItem labelItem = labelItems.get(0);
 
 			Assert.assertEquals(Boolean.TRUE, labelItem.get("closeable"));
@@ -187,6 +185,8 @@ public class ViewRolesManagementToolbarDisplayContextTest {
 
 			Assert.assertTrue(
 				data.toString(), data.containsKey("removeLabelURL"));
+
+			Assert.assertEquals(labelItems.toString(), 1, labelItems.size());
 		}
 	}
 

@@ -89,10 +89,6 @@ public class ItemSelectorCriterionSerializerTest {
 					deserializedItemSelectorCriterion.
 						getDesiredItemSelectorReturnTypes();
 
-			Assert.assertEquals(
-				deserializedDesiredItemSelectorReturnTypes.toString(), 1,
-				deserializedDesiredItemSelectorReturnTypes.size());
-
 			ItemSelectorReturnType deserializedItemSelectorReturnType =
 				deserializedDesiredItemSelectorReturnTypes.get(0);
 
@@ -107,6 +103,10 @@ public class ItemSelectorCriterionSerializerTest {
 			Assert.assertEquals(
 				expectedItemSelectorReturnTypeClass.getName(),
 				deserializedItemSelectorReturnTypeClass.getName());
+
+			Assert.assertEquals(
+				deserializedDesiredItemSelectorReturnTypes.toString(), 1,
+				deserializedDesiredItemSelectorReturnTypes.size());
 		}
 		finally {
 			_unregister(serviceRegistrations);

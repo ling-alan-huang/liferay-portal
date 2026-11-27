@@ -229,16 +229,16 @@ public class DynamicDataSourceTest {
 				Assert.assertTrue(logEntries.toString(), logEntries.isEmpty());
 			}
 			else {
-				Assert.assertEquals(
-					logEntries.toString(), expectedLogMessages.size(),
-					logEntries.size());
-
 				for (int i = 0; i < expectedLogMessages.size(); i++) {
 					LogEntry logEntry = logEntries.get(i);
 
 					Assert.assertEquals(
 						expectedLogMessages.get(i), logEntry.getMessage());
 				}
+
+				Assert.assertEquals(
+					logEntries.toString(), expectedLogMessages.size(),
+					logEntries.size());
 			}
 		}
 	}

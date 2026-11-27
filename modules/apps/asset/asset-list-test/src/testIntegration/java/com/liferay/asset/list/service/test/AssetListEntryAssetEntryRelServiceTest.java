@@ -185,15 +185,15 @@ public class AssetListEntryAssetEntryRelServiceTest {
 					assetListEntry.getAssetListEntryId(), audienceEntryERC, 0,
 					QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 
-		Assert.assertEquals(
-			assetListEntryAssetEntryRels.toString(), 1,
-			assetListEntryAssetEntryRels.size());
-
 		assetListEntryAssetEntryRel = assetListEntryAssetEntryRels.get(0);
 
 		Assert.assertEquals(
 			assetEntry2.getEntryId(),
 			assetListEntryAssetEntryRel.getAssetEntryId());
+
+		Assert.assertEquals(
+			assetListEntryAssetEntryRels.toString(), 1,
+			assetListEntryAssetEntryRels.size());
 	}
 
 	@Test(

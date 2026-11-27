@@ -157,6 +157,7 @@ public class SaveVariantSegmentsExperienceMVCActionCommandTest {
 						_group.getGroupId(),
 						segmentsExperience.getSegmentsExperienceId(),
 						_draftLayout.getPlid());
+
 		List<FragmentEntryLink>
 			variantSegmentsExperienceLayoutFragmentEntryLinks =
 				_fragmentEntryLinkLocalService.
@@ -164,11 +165,6 @@ public class SaveVariantSegmentsExperienceMVCActionCommandTest {
 						_group.getGroupId(),
 						segmentsExperience.getSegmentsExperienceId(),
 						_layout.getPlid());
-
-		Assert.assertEquals(
-			variantSegmentsExperienceLayoutFragmentEntryLinks.toString(),
-			variantSegmentsExperienceDraftLayoutFragmentEntryLinks.size(),
-			variantSegmentsExperienceLayoutFragmentEntryLinks.size());
 
 		FragmentEntryLink publishLayoutFragmentEntryLink =
 			variantSegmentsExperienceLayoutFragmentEntryLinks.get(0);
@@ -197,6 +193,11 @@ public class SaveVariantSegmentsExperienceMVCActionCommandTest {
 		Assert.assertEquals(
 			draftLayoutFragmentEntryLink.getPosition(),
 			publishLayoutFragmentEntryLink.getPosition());
+
+		Assert.assertEquals(
+			variantSegmentsExperienceLayoutFragmentEntryLinks.toString(),
+			variantSegmentsExperienceDraftLayoutFragmentEntryLinks.size(),
+			variantSegmentsExperienceLayoutFragmentEntryLinks.size());
 	}
 
 	private FragmentEntryLink _addFragmentEntryLink(

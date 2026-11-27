@@ -177,8 +177,6 @@ public class GetPreviewDataStrutsActionTest {
 		JSONArray jsonArray = _jsonFactory.createJSONArray(
 			mockHttpServletResponse.getContentAsString());
 
-		Assert.assertEquals(2, jsonArray.length());
-
 		JSONObject groupJSONObject = jsonArray.getJSONObject(0);
 
 		Assert.assertEquals(
@@ -204,12 +202,14 @@ public class GetPreviewDataStrutsActionTest {
 		displayPageTemplatesJSONArray = groupJSONObject.getJSONArray(
 			"displayPageTemplates");
 
-		Assert.assertEquals(1, displayPageTemplatesJSONArray.length());
-
 		JSONObject jsonObject = displayPageTemplatesJSONArray.getJSONObject(0);
 
 		Assert.assertEquals(
 			layoutPageTemplateEntry2.getPlid(), jsonObject.getLong("plid"));
+
+		Assert.assertEquals(1, displayPageTemplatesJSONArray.length());
+
+		Assert.assertEquals(2, jsonArray.length());
 	}
 
 	private static Company _company;

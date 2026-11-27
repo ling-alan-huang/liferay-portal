@@ -277,10 +277,11 @@ public class MappedProductResourceTest
 				mappedProduct.getSkuUnitOfMeasures();
 
 			Assert.assertEquals(
+				unitOfMeasureKey, skuUnitOfMeasures[0].getKey());
+
+			Assert.assertEquals(
 				Arrays.toString(skuUnitOfMeasures), 1,
 				skuUnitOfMeasures.length);
-			Assert.assertEquals(
-				unitOfMeasureKey, skuUnitOfMeasures[0].getKey());
 		}
 	}
 

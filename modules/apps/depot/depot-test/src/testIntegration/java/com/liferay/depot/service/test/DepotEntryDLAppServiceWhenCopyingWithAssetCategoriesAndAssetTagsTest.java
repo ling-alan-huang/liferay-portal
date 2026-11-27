@@ -310,8 +310,6 @@ public class
 		List<FileEntry> fileEntries = _dlAppService.getFileEntries(
 			_group.getGroupId(), folder.getFolderId());
 
-		Assert.assertEquals(fileEntries.toString(), 1, fileEntries.size());
-
 		FileEntry fileEntry2 = fileEntries.get(0);
 
 		String className = DLFileEntryConstants.getClassName();
@@ -327,6 +325,8 @@ public class
 				className, fileEntry1.getFileEntryId()),
 			_assetTagLocalService.getTagNames(
 				className, fileEntry2.getFileEntryId()));
+
+		Assert.assertEquals(fileEntries.toString(), 1, fileEntries.size());
 	}
 
 	@Test
@@ -364,8 +364,6 @@ public class
 		List<FileEntry> fileEntries = _dlAppService.getFileEntries(
 			_group.getGroupId(), folder.getFolderId());
 
-		Assert.assertEquals(fileEntries.toString(), 1, fileEntries.size());
-
 		FileEntry fileEntry = fileEntries.get(0);
 
 		String className = DLFileEntryConstants.getClassName();
@@ -379,6 +377,8 @@ public class
 			ArrayUtil.isEmpty(
 				_assetTagLocalService.getTagNames(
 					className, fileEntry.getFileEntryId())));
+
+		Assert.assertEquals(fileEntries.toString(), 1, fileEntries.size());
 	}
 
 	private void _addAssetTag(long groupId, String assetTagName)

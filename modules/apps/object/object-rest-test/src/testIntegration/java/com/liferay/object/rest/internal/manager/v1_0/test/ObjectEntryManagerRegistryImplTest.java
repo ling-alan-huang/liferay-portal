@@ -89,8 +89,6 @@ public class ObjectEntryManagerRegistryImplTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals(LoggerTestUtil.ERROR, logEntry.getPriority());
@@ -100,6 +98,8 @@ public class ObjectEntryManagerRegistryImplTest {
 			Throwable throwable = logEntry.getThrowable();
 
 			Assert.assertEquals(RuntimeException.class, throwable.getClass());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 
 		TestObjectEntryManager testObjectEntryManager2 =

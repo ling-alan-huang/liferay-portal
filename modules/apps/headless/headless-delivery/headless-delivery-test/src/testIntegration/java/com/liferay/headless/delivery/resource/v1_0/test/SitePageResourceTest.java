@@ -1658,12 +1658,12 @@ public class SitePageResourceTest extends BaseSitePageResourceTestCase {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals(
 				"Unable to get parent layout", logEntry.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 	}
 
@@ -1790,8 +1790,6 @@ public class SitePageResourceTest extends BaseSitePageResourceTestCase {
 
 		Assert.assertNotNull(pageElements);
 
-		Assert.assertEquals(pageElements.toString(), 1, pageElements.length);
-
 		PageElement actualFragmentPageElement = pageElements[0];
 
 		JSONObject originalDefinitionJSONObject =
@@ -1801,6 +1799,8 @@ public class SitePageResourceTest extends BaseSitePageResourceTestCase {
 			_objectMapper.readTree(originalDefinitionJSONObject.toString()),
 			_objectMapper.readTree(
 				(String)actualFragmentPageElement.getDefinition()));
+
+		Assert.assertEquals(pageElements.toString(), 1, pageElements.length);
 	}
 
 	private void _testPostSiteSitePageSuccessPageDefinitionSettingsClientExtensionEntries()

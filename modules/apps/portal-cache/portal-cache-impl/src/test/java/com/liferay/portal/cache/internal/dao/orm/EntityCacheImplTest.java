@@ -154,9 +154,10 @@ public class EntityCacheImplTest {
 		Map<String, PortalCache<Serializable, Serializable>> portalCaches =
 			ReflectionTestUtil.getFieldValue(entityCacheImpl, "_portalCaches");
 
-		Assert.assertEquals(portalCaches.toString(), 1, portalCaches.size());
 		Assert.assertSame(
 			portalCache, portalCaches.get(EntityCacheImplTest.class.getName()));
+
+		Assert.assertEquals(portalCaches.toString(), 1, portalCaches.size());
 
 		entityCacheImpl.notifyPortalCacheRemoved(
 			portalCache.getPortalCacheName());

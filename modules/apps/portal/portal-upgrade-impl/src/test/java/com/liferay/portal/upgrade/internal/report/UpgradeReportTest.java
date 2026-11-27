@@ -307,10 +307,11 @@ public class UpgradeReportTest {
 		Map<String, Long> tableCounts = ReflectionTestUtil.invoke(
 			new UpgradeReport(), "_getTableCounts", new Class<?>[0]);
 
-		Assert.assertEquals(tableCounts.toString(), 1, tableCounts.size());
 		Assert.assertEquals(
 			tableCounts.toString(), Long.valueOf(3000000000L),
 			tableCounts.get("HugeTable"));
+
+		Assert.assertEquals(tableCounts.toString(), 1, tableCounts.size());
 	}
 
 	@Test

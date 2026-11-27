@@ -284,10 +284,6 @@ public class AddItemMVCActionCommandTest {
 		List<String> columnsItemIds =
 			rowStyledLayoutStructureItem.getChildrenItemIds();
 
-		Assert.assertEquals(
-			columnsItemIds.toString(), _DEFAULT_ROW_COLUMNS,
-			columnsItemIds.size());
-
 		for (int i = 0; i < _DEFAULT_ROW_COLUMNS; i++) {
 			String columnItemId = columnsItemIds.get(i);
 
@@ -306,6 +302,10 @@ public class AddItemMVCActionCommandTest {
 			Assert.assertEquals(
 				12, mobileLandscapeConfigJSONObject.get("size"));
 		}
+
+		Assert.assertEquals(
+			columnsItemIds.toString(), _DEFAULT_ROW_COLUMNS,
+			columnsItemIds.size());
 	}
 
 	private JSONObject _getCollectionItemConfigJSONObject() throws Exception {

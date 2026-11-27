@@ -91,12 +91,15 @@ public class VulcanCRUDItemDelegateTest {
 		Assert.assertTrue(_debugMessages.isEmpty());
 		Assert.assertTrue(_debugThrowables.isEmpty());
 		Assert.assertEquals(
-			_errorMessages.toString(), 1, _errorMessages.size());
-		Assert.assertEquals(
 			"Unable to find item with id " + id, _errorMessages.get(0));
+
+		Assert.assertEquals(
+			_errorMessages.toString(), 1, _errorMessages.size());
+
+		Assert.assertSame(exception, _errorThrowables.get(0));
+
 		Assert.assertEquals(
 			_errorThrowables.toString(), 1, _errorThrowables.size());
-		Assert.assertSame(exception, _errorThrowables.get(0));
 	}
 
 	@Test
@@ -111,12 +114,16 @@ public class VulcanCRUDItemDelegateTest {
 		Assert.assertNull(vulcanCRUDItemDelegate.fetchItem(id));
 
 		Assert.assertEquals(
-			_debugMessages.toString(), 1, _debugMessages.size());
-		Assert.assertEquals(
 			"Unable to find item with id " + id, _debugMessages.get(0));
+
+		Assert.assertEquals(
+			_debugMessages.toString(), 1, _debugMessages.size());
+
+		Assert.assertSame(noSuchModelException, _debugThrowables.get(0));
+
 		Assert.assertEquals(
 			_debugThrowables.toString(), 1, _debugThrowables.size());
-		Assert.assertSame(noSuchModelException, _debugThrowables.get(0));
+
 		Assert.assertTrue(_errorMessages.isEmpty());
 		Assert.assertTrue(_errorThrowables.isEmpty());
 	}
@@ -133,12 +140,16 @@ public class VulcanCRUDItemDelegateTest {
 		Assert.assertNull(vulcanCRUDItemDelegate.fetchItem(id));
 
 		Assert.assertEquals(
-			_debugMessages.toString(), 1, _debugMessages.size());
-		Assert.assertEquals(
 			"Unable to find item with id " + id, _debugMessages.get(0));
+
+		Assert.assertEquals(
+			_debugMessages.toString(), 1, _debugMessages.size());
+
+		Assert.assertSame(notFoundException, _debugThrowables.get(0));
+
 		Assert.assertEquals(
 			_debugThrowables.toString(), 1, _debugThrowables.size());
-		Assert.assertSame(notFoundException, _debugThrowables.get(0));
+
 		Assert.assertTrue(_errorMessages.isEmpty());
 		Assert.assertTrue(_errorThrowables.isEmpty());
 	}

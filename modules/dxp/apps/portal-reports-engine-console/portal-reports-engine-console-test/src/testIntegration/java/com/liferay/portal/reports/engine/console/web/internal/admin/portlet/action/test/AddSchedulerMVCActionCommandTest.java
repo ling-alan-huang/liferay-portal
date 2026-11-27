@@ -144,8 +144,6 @@ public class AddSchedulerMVCActionCommandTest {
 		List<Entry> entries = _entryLocalService.getEntries(
 			QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 
-		Assert.assertEquals(entries.toString(), 1, entries.size());
-
 		Entry entry = entries.get(0);
 
 		_entryLocalService.unscheduleEntry(entry.getEntryId());
@@ -184,6 +182,8 @@ public class AddSchedulerMVCActionCommandTest {
 				)
 			).toString(),
 			entry.getReportParameters());
+
+		Assert.assertEquals(entries.toString(), 1, entries.size());
 	}
 
 	private void _addDateParameters(String parameterNamePrefix, String value)

@@ -4139,10 +4139,6 @@ public class ObjectEntryLocalServiceTest {
 				objectValidationRuleEngineException.
 					getObjectValidationRuleResults();
 
-			Assert.assertEquals(
-				objectValidationRuleResults.toString(), 6,
-				objectValidationRuleResults.size());
-
 			_assertObjectValidationRuleResult(
 				objectValidationRule2.getErrorLabel(LocaleUtil.getDefault()),
 				null, objectValidationRuleResults.get(0));
@@ -4161,6 +4157,10 @@ public class ObjectEntryLocalServiceTest {
 			_assertObjectValidationRuleResult(
 				objectValidationRule9.getErrorLabel(LocaleUtil.getDefault()),
 				null, objectValidationRuleResults.get(5));
+
+			Assert.assertEquals(
+				objectValidationRuleResults.toString(), 6,
+				objectValidationRuleResults.size());
 		}
 
 		// Disable object validation rule 9
@@ -6500,10 +6500,6 @@ public class ObjectEntryLocalServiceTest {
 						TestPropsValues.getCompanyId(),
 						exportImportConfigurationId);
 
-			Assert.assertEquals(
-				exportImportReportEntries.toString(), 1,
-				exportImportReportEntries.size());
-
 			ExportImportReportEntry exportImportReportEntry =
 				exportImportReportEntries.get(0);
 
@@ -6527,6 +6523,10 @@ public class ObjectEntryLocalServiceTest {
 			Assert.assertEquals(
 				ExportImportReportEntryConstants.STATUS_UNRESOLVED,
 				exportImportReportEntry.getStatus());
+
+			Assert.assertEquals(
+				exportImportReportEntries.toString(), 1,
+				exportImportReportEntries.size());
 
 			ExportImportThreadLocal.setPortletImportInProcess(false);
 
@@ -7246,14 +7246,14 @@ public class ObjectEntryLocalServiceTest {
 			_objectDefinition.getObjectDefinitionId(), null, null,
 			QueryUtil.ALL_POS, QueryUtil.ALL_POS, sorts);
 
-		Assert.assertEquals(valuesList.toString(), 3, valuesList.size());
-
 		_assertObjectEntryValues(
 			24, values1, valuesList.get(0), selectedObjectFieldNames);
 		_assertObjectEntryValues(
 			24, values2, valuesList.get(1), selectedObjectFieldNames);
 		_assertObjectEntryValues(
 			24, values3, valuesList.get(2), selectedObjectFieldNames);
+
+		Assert.assertEquals(valuesList.toString(), 3, valuesList.size());
 	}
 
 	@Test
@@ -11855,13 +11855,13 @@ public class ObjectEntryLocalServiceTest {
 			objectValidationRuleEngineException.
 				getObjectValidationRuleResults();
 
-		Assert.assertEquals(
-			objectValidationRuleResults.toString(), 1,
-			objectValidationRuleResults.size());
-
 		_assertObjectValidationRuleResult(
 			objectValidationRule.getErrorLabel(LocaleUtil.getDefault()), null,
 			objectValidationRuleResults.get(0));
+
+		Assert.assertEquals(
+			objectValidationRuleResults.toString(), 1,
+			objectValidationRuleResults.size());
 	}
 
 	private void _assertFriendlyURLEntries(
@@ -12132,14 +12132,14 @@ public class ObjectEntryLocalServiceTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals(
 				"Use cached values for object entry " +
 					objectEntry.getObjectEntryId(),
 				logEntry.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 	}
 
@@ -12359,14 +12359,14 @@ public class ObjectEntryLocalServiceTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals(
 				logEntry.getMessage(),
 				"Use cached values for object entry " +
 					objectEntry.getObjectEntryId());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 
 		return values;
@@ -12386,14 +12386,14 @@ public class ObjectEntryLocalServiceTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals(
 				logEntry.getMessage(),
 				"Get values for object entry " +
 					objectEntry.getObjectEntryId());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 
 		return values;

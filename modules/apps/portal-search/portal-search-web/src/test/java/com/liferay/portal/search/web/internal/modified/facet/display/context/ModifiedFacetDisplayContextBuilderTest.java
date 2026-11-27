@@ -107,9 +107,6 @@ public class ModifiedFacetDisplayContextBuilderTest
 		List<BucketDisplayContext> bucketDisplayContexts =
 			modifiedFacetDisplayContext.getBucketDisplayContexts();
 
-		Assert.assertEquals(
-			bucketDisplayContexts.toString(), 2, bucketDisplayContexts.size());
-
 		BucketDisplayContext bucketDisplayContext = bucketDisplayContexts.get(
 			0);
 
@@ -119,6 +116,9 @@ public class ModifiedFacetDisplayContextBuilderTest
 
 		Assert.assertEquals(
 			"some-time-ago", bucketDisplayContext.getBucketText());
+
+		Assert.assertEquals(
+			bucketDisplayContexts.toString(), 2, bucketDisplayContexts.size());
 	}
 
 	@Test

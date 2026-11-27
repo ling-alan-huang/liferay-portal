@@ -881,11 +881,6 @@ public class ObjectEntryVersionLocalServiceTest {
 			List<ObjectEntryVersion> actualObjectEntryVersions)
 		throws Exception {
 
-		Assert.assertEquals(
-			actualObjectEntryVersions.toString(),
-			expectedObjectEntryVersions.size(),
-			actualObjectEntryVersions.size());
-
 		for (int i = 0; i < expectedObjectEntryVersions.size(); i++) {
 			ObjectEntryVersion expectedObjectEntryVersion =
 				expectedObjectEntryVersions.get(i);
@@ -924,6 +919,11 @@ public class ObjectEntryVersionLocalServiceTest {
 				expectedObjectEntryVersion.getStatus(),
 				actualObjectEntryVersion.getStatus());
 		}
+
+		Assert.assertEquals(
+			actualObjectEntryVersions.toString(),
+			expectedObjectEntryVersions.size(),
+			actualObjectEntryVersions.size());
 	}
 
 	private ObjectEntryVersion _createObjectEntryVersion(

@@ -132,12 +132,12 @@ public class FIPSAuditNDJSONLayoutTest {
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject(
 			_toSerializable(fipsAuditLogEntry));
 
-		Assert.assertEquals(fipsAuditLogEntry.size(), jsonObject.length());
-
 		for (Map.Entry<String, Object> entry : fipsAuditLogEntry.entrySet()) {
 			Assert.assertEquals(
 				entry.getValue(), jsonObject.getString(entry.getKey()));
 		}
+
+		Assert.assertEquals(fipsAuditLogEntry.size(), jsonObject.length());
 	}
 
 	@Test

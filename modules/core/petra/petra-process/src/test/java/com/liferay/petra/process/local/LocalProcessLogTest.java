@@ -97,12 +97,12 @@ public class LocalProcessLogTest {
 		Constructor<?>[] constructors =
 			LocalProcessLog.class.getDeclaredConstructors();
 
-		Assert.assertEquals(
-			Arrays.toString(constructors), 1, constructors.length);
-
 		Constructor<?> constructor = constructors[0];
 
 		Assert.assertEquals(0, constructor.getModifiers());
+
+		Assert.assertEquals(
+			Arrays.toString(constructors), 1, constructors.length);
 	}
 
 	@Test

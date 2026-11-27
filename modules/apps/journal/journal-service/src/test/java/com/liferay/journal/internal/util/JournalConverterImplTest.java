@@ -239,16 +239,16 @@ public class JournalConverterImplTest {
 		List<Element> dynamicContentElements = rootElement.elements(
 			"dynamic-content");
 
-		Assert.assertEquals(
-			dynamicContentElements.toString(), 1,
-			dynamicContentElements.size());
-
 		Element dynamicContentElement = dynamicContentElements.get(0);
 
 		Assert.assertEquals(
 			StringPool.BLANK, dynamicContentElement.getStringValue());
 
 		_assertDynamicContentElement(dynamicContentElement, null);
+
+		Assert.assertEquals(
+			dynamicContentElements.toString(), 1,
+			dynamicContentElements.size());
 	}
 
 	private void _assertDynamicContentElement(
@@ -263,16 +263,16 @@ public class JournalConverterImplTest {
 			return;
 		}
 
-		Assert.assertEquals(
-			optionReferenceElements.toString(), expectedReferences.size(),
-			optionReferenceElements.size());
-
 		for (int i = 0; i < expectedReferences.size(); i++) {
 			Element optionReferenceElement = optionReferenceElements.get(i);
 
 			Assert.assertEquals(
 				expectedReferences.get(i), optionReferenceElement.getText());
 		}
+
+		Assert.assertEquals(
+			optionReferenceElements.toString(), expectedReferences.size(),
+			optionReferenceElements.size());
 	}
 
 	private DDMFormField _createDDMFormField(
@@ -334,13 +334,13 @@ public class JournalConverterImplTest {
 		List<Element> dynamicContentElements = rootElement.elements(
 			"dynamic-content");
 
-		Assert.assertEquals(
-			dynamicContentElements.toString(), 2,
-			dynamicContentElements.size());
-
 		_assertDynamicContentElement(
 			dynamicContentElements.get(0), optionReferences.get(0));
 		_assertDynamicContentElement(dynamicContentElements.get(1), null);
+
+		Assert.assertEquals(
+			dynamicContentElements.toString(), 2,
+			dynamicContentElements.size());
 	}
 
 	private void _testUpdateContentDynamicElementWithOptions() {
@@ -365,10 +365,6 @@ public class JournalConverterImplTest {
 		List<Element> dynamicContentElements = rootElement.elements(
 			"dynamic-content");
 
-		Assert.assertEquals(
-			dynamicContentElements.toString(), 3,
-			dynamicContentElements.size());
-
 		_assertDynamicContentElement(
 			dynamicContentElements.get(0),
 			Collections.singletonList(optionReferences.get(0)));
@@ -378,6 +374,10 @@ public class JournalConverterImplTest {
 		_assertDynamicContentElement(
 			dynamicContentElements.get(2),
 			Collections.singletonList(optionReferences.get(2)));
+
+		Assert.assertEquals(
+			dynamicContentElements.toString(), 3,
+			dynamicContentElements.size());
 	}
 
 	private void _updateContentDynamicElement(

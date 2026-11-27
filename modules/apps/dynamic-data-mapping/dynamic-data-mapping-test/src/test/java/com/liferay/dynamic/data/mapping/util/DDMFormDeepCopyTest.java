@@ -66,9 +66,6 @@ public class DDMFormDeepCopyTest extends BaseDDMTestCase {
 
 		List<DDMFormField> copyDDMFormFields = copyDDMForm.getDDMFormFields();
 
-		Assert.assertEquals(
-			copyDDMFormFields.toString(), 1, copyDDMFormFields.size());
-
 		DDMFormField copyDDMFormField = copyDDMFormFields.get(0);
 
 		Assert.assertEquals("Name", copyDDMFormField.getName());
@@ -76,10 +73,6 @@ public class DDMFormDeepCopyTest extends BaseDDMTestCase {
 
 		List<DDMFormField> copyNestedDDMFormFields =
 			copyDDMFormField.getNestedDDMFormFields();
-
-		Assert.assertEquals(
-			copyNestedDDMFormFields.toString(), 2,
-			copyNestedDDMFormFields.size());
 
 		DDMFormField copyNestedDDMFormField = copyNestedDDMFormFields.get(0);
 
@@ -94,13 +87,20 @@ public class DDMFormDeepCopyTest extends BaseDDMTestCase {
 		List<DDMFormField> nestedDDMFormFields =
 			copyNestedDDMFormField.getNestedDDMFormFields();
 
-		Assert.assertEquals(
-			nestedDDMFormFields.toString(), 1, nestedDDMFormFields.size());
-
 		copyNestedDDMFormField = nestedDDMFormFields.get(0);
 
 		Assert.assertEquals("ZipCode", copyNestedDDMFormField.getName());
 		Assert.assertEquals("text", copyNestedDDMFormField.getType());
+
+		Assert.assertEquals(
+			nestedDDMFormFields.toString(), 1, nestedDDMFormFields.size());
+
+		Assert.assertEquals(
+			copyNestedDDMFormFields.toString(), 2,
+			copyNestedDDMFormFields.size());
+
+		Assert.assertEquals(
+			copyDDMFormFields.toString(), 1, copyDDMFormFields.size());
 	}
 
 	@Test
@@ -218,9 +218,6 @@ public class DDMFormDeepCopyTest extends BaseDDMTestCase {
 
 		List<DDMFormField> copyDDMFormFields = copyDDMForm.getDDMFormFields();
 
-		Assert.assertEquals(
-			copyDDMFormFields.toString(), 2, copyDDMFormFields.size());
-
 		DDMFormField copyDDMFormField = copyDDMFormFields.get(0);
 
 		Assert.assertEquals("Name", copyDDMFormField.getName());
@@ -230,6 +227,9 @@ public class DDMFormDeepCopyTest extends BaseDDMTestCase {
 
 		Assert.assertEquals("Phone", copyDDMFormField.getName());
 		Assert.assertEquals("text", copyDDMFormField.getType());
+
+		Assert.assertEquals(
+			copyDDMFormFields.toString(), 2, copyDDMFormFields.size());
 	}
 
 	@Test

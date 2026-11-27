@@ -424,13 +424,13 @@ public class DiscountResourceTest extends BaseDiscountResourceTestCase {
 				_classNameLocalService.getClassNameId(CommerceDiscount.class),
 				discount.getId(), SystemEventConstants.TYPE_DELETE);
 
-		Assert.assertEquals(systemEvents.toString(), 1, systemEvents.size());
-
 		SystemEvent systemEvent = systemEvents.get(0);
 
 		Assert.assertEquals(
 			discount.getExternalReferenceCode(),
 			systemEvent.getClassExternalReferenceCode());
+
+		Assert.assertEquals(systemEvents.toString(), 1, systemEvents.size());
 	}
 
 	private void _testGetDiscountsPageWithChannelFilter() throws Exception {
@@ -846,13 +846,13 @@ public class DiscountResourceTest extends BaseDiscountResourceTestCase {
 				commerceDiscount.getCommerceDiscountId(),
 				CPInstance.class.getName());
 
-		Assert.assertEquals(
-			commerceDiscountRels.toString(), 1, commerceDiscountRels.size());
-
 		CommerceDiscountRel commerceDiscountRel = commerceDiscountRels.get(0);
 
 		Assert.assertEquals(
 			cpInstance.getCPInstanceId(), commerceDiscountRel.getClassPK());
+
+		Assert.assertEquals(
+			commerceDiscountRels.toString(), 1, commerceDiscountRels.size());
 
 		List<CommerceChannelRel> commerceChannelRels =
 			_commerceChannelRelLocalService.getCommerceChannelRels(
@@ -860,14 +860,14 @@ public class DiscountResourceTest extends BaseDiscountResourceTestCase {
 				commerceDiscount.getCommerceDiscountId(), QueryUtil.ALL_POS,
 				QueryUtil.ALL_POS, null);
 
-		Assert.assertEquals(
-			commerceChannelRels.toString(), 1, commerceChannelRels.size());
-
 		CommerceChannelRel commerceChannelRel = commerceChannelRels.get(0);
 
 		Assert.assertEquals(
 			commerceChannel.getCommerceChannelId(),
 			commerceChannelRel.getCommerceChannelId());
+
+		Assert.assertEquals(
+			commerceChannelRels.toString(), 1, commerceChannelRels.size());
 
 		List<CommerceDiscountOrderTypeRel> commerceDiscountOrderTypeRels =
 			_commerceDiscountOrderTypeRelLocalService.
@@ -900,9 +900,6 @@ public class DiscountResourceTest extends BaseDiscountResourceTestCase {
 				commerceDiscount.getCommerceDiscountId(), QueryUtil.ALL_POS,
 				QueryUtil.ALL_POS, null);
 
-		Assert.assertEquals(
-			commerceDiscountRules.toString(), 1, commerceDiscountRules.size());
-
 		CommerceDiscountRule commerceDiscountRule = commerceDiscountRules.get(
 			0);
 
@@ -913,6 +910,9 @@ public class DiscountResourceTest extends BaseDiscountResourceTestCase {
 			discountRule.getName(), commerceDiscountRule.getName());
 		Assert.assertEquals(
 			discountRule.getType(), commerceDiscountRule.getType());
+
+		Assert.assertEquals(
+			commerceDiscountRules.toString(), 1, commerceDiscountRules.size());
 
 		_commerceDiscountLocalService.deleteCommerceDiscount(commerceDiscount);
 	}

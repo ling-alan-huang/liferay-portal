@@ -1163,8 +1163,6 @@ public class StructuredContentResourceTest
 			List<StructuredContent> items =
 				(List<StructuredContent>)page.getItems();
 
-			Assert.assertEquals(items.toString(), 1, items.size());
-
 			StructuredContent structuredContent = items.get(0);
 
 			Assert.assertEquals(
@@ -1173,6 +1171,8 @@ public class StructuredContentResourceTest
 
 			structuredContentResource.deleteStructuredContent(
 				structuredContent.getId());
+
+			Assert.assertEquals(items.toString(), 1, items.size());
 		}
 		finally {
 			LocaleThreadLocal.setSiteDefaultLocale(currentLocale);
@@ -2034,8 +2034,6 @@ public class StructuredContentResourceTest
 		List<StructuredContent> items =
 			(List<StructuredContent>)page.getItems();
 
-		Assert.assertEquals(items.toString(), 1, items.size());
-
 		StructuredContent structuredContent = items.get(0);
 
 		Assert.assertEquals(
@@ -2044,6 +2042,8 @@ public class StructuredContentResourceTest
 
 		structuredContentResource.deleteStructuredContent(
 			structuredContent.getId());
+
+		Assert.assertEquals(items.toString(), 1, items.size());
 	}
 
 	private void _testGetSiteStructuredContentsPageByDefaultPriority()
@@ -2742,13 +2742,13 @@ public class StructuredContentResourceTest
 
 		relatedContents = getStructuredContent.getRelatedContents();
 
-		Assert.assertEquals(
-			Arrays.toString(relatedContents), 1, relatedContents.length);
-
 		RelatedContent relatedContent = relatedContents[0];
 
 		Assert.assertEquals(
 			Long.valueOf(_blogsEntry.getEntryId()), relatedContent.getId());
+
+		Assert.assertEquals(
+			Arrays.toString(relatedContents), 1, relatedContents.length);
 	}
 
 	private void _testGetStructuredContentWithRelatedContentsWithDeletedEntry()
@@ -2788,13 +2788,13 @@ public class StructuredContentResourceTest
 		RelatedContent[] relatedContents =
 			getStructuredContent.getRelatedContents();
 
-		Assert.assertEquals(
-			Arrays.toString(relatedContents), 1, relatedContents.length);
-
 		RelatedContent relatedContent = relatedContents[0];
 
 		Assert.assertEquals(
 			Long.valueOf(_blogsEntry.getEntryId()), relatedContent.getId());
+
+		Assert.assertEquals(
+			Arrays.toString(relatedContents), 1, relatedContents.length);
 	}
 
 	private void _testGetStructuredContentWithRoleAdministrator()

@@ -287,14 +287,14 @@ public class CheckObjectEntrySchedulerJobConfigurationTest {
 			_objectEntryVersionLocalService.getObjectEntryVersions(
 				objectEntry.getObjectEntryId());
 
-		Assert.assertEquals(
-			objectEntryVersions.toString(), 1, objectEntryVersions.size());
-
 		objectEntryVersion = objectEntryVersions.get(0);
 
 		Assert.assertEquals(
 			WorkflowConstants.STATUS_APPROVED, objectEntryVersion.getStatus());
 		Assert.assertEquals(1, objectEntryVersion.getVersion());
+
+		Assert.assertEquals(
+			objectEntryVersions.toString(), 1, objectEntryVersions.size());
 
 		_objectDefinitionLocalService.deleteObjectDefinition(objectDefinition);
 	}
@@ -583,8 +583,6 @@ public class CheckObjectEntrySchedulerJobConfigurationTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals(
@@ -596,6 +594,8 @@ public class CheckObjectEntrySchedulerJobConfigurationTest {
 			Throwable throwable = logEntry.getThrowable();
 
 			Assert.assertSame(NoSuchUserException.class, throwable.getClass());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 
 		Assert.assertEquals(1, _getReviewNotificationCount(objectEntry1));

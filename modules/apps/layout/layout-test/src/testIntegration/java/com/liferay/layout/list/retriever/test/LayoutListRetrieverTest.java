@@ -232,8 +232,6 @@ public class LayoutListRetrieverTest {
 
 		List<Object> list = (List<Object>)infoPage.getPageItems();
 
-		Assert.assertEquals(list.toString(), 2, list.size());
-
 		AssetTag assetTag1 = (AssetTag)list.get(0);
 
 		Assert.assertEquals("tag1", assetTag1.getName());
@@ -241,6 +239,8 @@ public class LayoutListRetrieverTest {
 		AssetTag assetTag2 = (AssetTag)list.get(1);
 
 		Assert.assertEquals("tag2", assetTag2.getName());
+
+		Assert.assertEquals(list.toString(), 2, list.size());
 
 		serviceRegistration.unregister();
 	}
@@ -272,9 +272,10 @@ public class LayoutListRetrieverTest {
 
 		List<Object> list = (List<Object>)infoPage.getPageItems();
 
-		Assert.assertEquals(list.toString(), 1, list.size());
 		Assert.assertEquals(
 			TestInfoCollectionProvider.class.getName(), list.get(0));
+
+		Assert.assertEquals(list.toString(), 1, list.size());
 
 		serviceRegistration.unregister();
 	}
@@ -296,15 +297,15 @@ public class LayoutListRetrieverTest {
 
 		List<Object> list = (List<Object>)infoPage.getPageItems();
 
-		Assert.assertEquals(
-			list.toString(), resourcePrimKeys.length, list.size());
-
 		for (int i = 0; i < resourcePrimKeys.length; i++) {
 			JournalArticle journalArticle = (JournalArticle)list.get(i);
 
 			Assert.assertEquals(
 				resourcePrimKeys[i], journalArticle.getResourcePrimKey());
 		}
+
+		Assert.assertEquals(
+			list.toString(), resourcePrimKeys.length, list.size());
 	}
 
 	@Inject

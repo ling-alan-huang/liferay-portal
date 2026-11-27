@@ -97,8 +97,6 @@ public class StyleBookEntryThemeIdUpgradeProcessTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals(
@@ -107,6 +105,8 @@ public class StyleBookEntryThemeIdUpgradeProcessTest {
 					orphanedStyleBookEntry.getStyleBookEntryId(),
 					" because group ", groupId, " does not exist"),
 				logEntry.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 
 		EntityCacheUtil.clearCache();

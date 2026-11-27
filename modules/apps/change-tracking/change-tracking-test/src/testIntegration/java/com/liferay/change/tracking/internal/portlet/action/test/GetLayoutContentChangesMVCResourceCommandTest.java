@@ -145,9 +145,6 @@ public class GetLayoutContentChangesMVCResourceCommandTest {
 
 		JSONArray jsonArray = jsonObject.getJSONArray("layoutContentChanges");
 
-		Assert.assertEquals(
-			fragmentEntryLinkCTEntryIds.length, jsonArray.length());
-
 		for (int i = 0; i < jsonArray.length(); i++) {
 			JSONObject jsonArrayJSONObject = jsonArray.getJSONObject(i);
 
@@ -167,6 +164,9 @@ public class GetLayoutContentChangesMVCResourceCommandTest {
 				_getTitle(ctEntryId, locale),
 				jsonArrayJSONObject.getString("title"));
 		}
+
+		Assert.assertEquals(
+			fragmentEntryLinkCTEntryIds.length, jsonArray.length());
 	}
 
 	private FragmentEntryLink _addFragmentEntryLinkToLayout(Layout layout)

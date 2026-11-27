@@ -110,13 +110,14 @@ public class GetCollectionVariationsMVCResourceCommandTest {
 
 		JSONArray jsonArray = _getCollectionVariationsJSONArray();
 
-		Assert.assertEquals(4, jsonArray.length());
 		Assert.assertEquals(audiencesEntry1.getName(), jsonArray.getString(0));
 		Assert.assertEquals(audiencesEntry2.getName(), jsonArray.getString(1));
 		Assert.assertEquals(audienceEntryERC, jsonArray.getString(2));
 		Assert.assertEquals(
 			SegmentsEntryConstants.getDefaultSegmentsEntryName(LocaleUtil.US),
 			jsonArray.getString(3));
+
+		Assert.assertEquals(4, jsonArray.length());
 	}
 
 	@FeatureFlag(enable = false, value = "LPD-109242")
@@ -131,12 +132,13 @@ public class GetCollectionVariationsMVCResourceCommandTest {
 
 		JSONArray jsonArray = _getCollectionVariationsJSONArray();
 
-		Assert.assertEquals(2, jsonArray.length());
 		Assert.assertEquals(
 			SegmentsEntryConstants.getDefaultSegmentsEntryName(LocaleUtil.US),
 			jsonArray.getString(0));
 		Assert.assertEquals(
 			segmentsEntry.getName(LocaleUtil.US), jsonArray.getString(1));
+
+		Assert.assertEquals(2, jsonArray.length());
 	}
 
 	@FeatureFlags(
@@ -155,12 +157,13 @@ public class GetCollectionVariationsMVCResourceCommandTest {
 
 		JSONArray jsonArray = _getCollectionVariationsJSONArray();
 
-		Assert.assertEquals(2, jsonArray.length());
 		Assert.assertEquals(
 			SegmentsEntryConstants.getDefaultSegmentsEntryName(LocaleUtil.US),
 			jsonArray.getString(0));
 		Assert.assertEquals(
 			segmentsEntry.getName(LocaleUtil.US), jsonArray.getString(1));
+
+		Assert.assertEquals(2, jsonArray.length());
 	}
 
 	@FeatureFlags(

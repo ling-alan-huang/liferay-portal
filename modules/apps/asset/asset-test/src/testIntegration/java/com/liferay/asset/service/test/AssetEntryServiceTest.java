@@ -182,14 +182,14 @@ public class AssetEntryServiceTest {
 		List<AssetEntry> assetEntries = _assetEntryLocalService.getEntries(
 			assetEntryQuery);
 
-		Assert.assertEquals(
-			assetEntries.toString(), initialAssetEntries.size() + 1,
-			assetEntries.size());
-
 		AssetEntry assetEntry = assetEntries.get(0);
 
 		Assert.assertTrue(
 			assetEntries.toString(), assetEntries.contains(assetEntry));
+
+		Assert.assertEquals(
+			assetEntries.toString(), initialAssetEntries.size() + 1,
+			assetEntries.size());
 	}
 
 	@Test
@@ -498,10 +498,6 @@ public class AssetEntryServiceTest {
 		List<AssetEntry> expectedAssetEntries,
 		List<AssetEntry> actualAssetEntries) {
 
-		Assert.assertEquals(
-			actualAssetEntries.toString(), expectedAssetEntries.size(),
-			actualAssetEntries.size());
-
 		for (int i = 0; i < expectedAssetEntries.size(); i++) {
 			AssetEntry expectedAssetEntry = expectedAssetEntries.get(i);
 			AssetEntry actualAssetEntry = actualAssetEntries.get(i);
@@ -509,6 +505,10 @@ public class AssetEntryServiceTest {
 			Assert.assertEquals(
 				expectedAssetEntry.getEntryId(), actualAssetEntry.getEntryId());
 		}
+
+		Assert.assertEquals(
+			actualAssetEntries.toString(), expectedAssetEntries.size(),
+			actualAssetEntries.size());
 	}
 
 	@Inject

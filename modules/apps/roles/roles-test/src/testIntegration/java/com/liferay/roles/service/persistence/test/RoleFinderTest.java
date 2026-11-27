@@ -115,9 +115,9 @@ public class RoleFinderTest {
 				null, _TYPES, null, 0, _user.getGroupId(), QueryUtil.ALL_POS,
 				QueryUtil.ALL_POS);
 
-			Assert.assertEquals(roles.toString(), 1, roles.size());
-
 			Assert.assertEquals(_roleWithViewPermission, roles.get(0));
+
+			Assert.assertEquals(roles.toString(), 1, roles.size());
 		}
 	}
 
@@ -135,8 +135,9 @@ public class RoleFinderTest {
 			TestPropsValues.getCompanyId(), null, null, title, null, _TYPES,
 			null, 0, 0, QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 
-		Assert.assertEquals(roles.toString(), 1, roles.size());
 		Assert.assertEquals(_role, roles.get(0));
+
+		Assert.assertEquals(roles.toString(), 1, roles.size());
 	}
 
 	private List<String> _getExistingRoleNames() throws Exception {

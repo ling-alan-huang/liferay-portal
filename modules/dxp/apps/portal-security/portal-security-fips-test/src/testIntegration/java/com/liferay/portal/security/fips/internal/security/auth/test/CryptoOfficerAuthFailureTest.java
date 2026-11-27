@@ -176,8 +176,6 @@ public class CryptoOfficerAuthFailureTest {
 
 		List<JSONObject> jsonObjects = _getAuthAttemptFailureJSONObjects(user);
 
-		Assert.assertEquals(jsonObjects.toString(), 3, jsonObjects.size());
-
 		for (int i = 0; i < jsonObjects.size(); i++) {
 			JSONObject jsonObject = jsonObjects.get(i);
 
@@ -195,6 +193,8 @@ public class CryptoOfficerAuthFailureTest {
 			Assert.assertEquals(
 				"bad-credential", fieldsJSONObject.getString("failure-reason"));
 		}
+
+		Assert.assertEquals(jsonObjects.toString(), 3, jsonObjects.size());
 	}
 
 	private void _testOnFailureByEmailAddressWhenLockedOut() throws Exception {
@@ -207,14 +207,14 @@ public class CryptoOfficerAuthFailureTest {
 
 		List<JSONObject> jsonObjects = _getAuthAttemptFailureJSONObjects(user);
 
-		Assert.assertEquals(jsonObjects.toString(), 1, jsonObjects.size());
-
 		JSONObject jsonObject = jsonObjects.get(0);
 
 		JSONObject fieldsJSONObject = jsonObject.getJSONObject("fields");
 
 		Assert.assertEquals(
 			"locked", fieldsJSONObject.getString("failure-reason"));
+
+		Assert.assertEquals(jsonObjects.toString(), 1, jsonObjects.size());
 	}
 
 	private void _testOnFailureByEmailAddressWithoutCryptoOfficerRole()

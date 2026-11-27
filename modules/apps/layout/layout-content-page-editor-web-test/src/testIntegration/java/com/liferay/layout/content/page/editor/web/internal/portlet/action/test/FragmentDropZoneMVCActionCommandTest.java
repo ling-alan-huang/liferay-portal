@@ -152,14 +152,14 @@ public class FragmentDropZoneMVCActionCommandTest {
 		List<String> childrenItemIds =
 			fragmentFayoutStructureItem.getChildrenItemIds();
 
-		Assert.assertEquals(
-			childrenItemIds.toString(), 1, childrenItemIds.size());
-
 		LayoutStructureItem layoutStructureItem =
 			layoutStructure.getLayoutStructureItem(childrenItemIds.get(0));
 
 		Assert.assertTrue(
 			layoutStructureItem instanceof FragmentDropZoneLayoutStructureItem);
+
+		Assert.assertEquals(
+			childrenItemIds.toString(), 1, childrenItemIds.size());
 	}
 
 	@Test
@@ -345,9 +345,6 @@ public class FragmentDropZoneMVCActionCommandTest {
 
 		childrenItemIds = fragmentFayoutStructureItem.getChildrenItemIds();
 
-		Assert.assertEquals(
-			childrenItemIds.toString(), 2, childrenItemIds.size());
-
 		layoutStructureItem = layoutStructure.getLayoutStructureItem(
 			childrenItemIds.get(0));
 
@@ -359,6 +356,9 @@ public class FragmentDropZoneMVCActionCommandTest {
 
 		Assert.assertTrue(
 			layoutStructureItem instanceof FragmentDropZoneLayoutStructureItem);
+
+		Assert.assertEquals(
+			childrenItemIds.toString(), 2, childrenItemIds.size());
 	}
 
 	private FragmentEntry _addFragmentEntry() throws Exception {

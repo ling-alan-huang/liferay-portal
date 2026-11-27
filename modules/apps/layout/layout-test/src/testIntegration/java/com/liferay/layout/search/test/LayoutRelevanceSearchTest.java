@@ -70,11 +70,12 @@ public class LayoutRelevanceSearchTest {
 			QueryUtil.ALL_POS, LayoutRelevanceComparator.getInstance(true));
 
 		Assert.assertNotNull(barSearchLayouts);
-		Assert.assertEquals(
-			barSearchLayouts.toString(), 2, barSearchLayouts.size());
 
 		Assert.assertEquals(fooSearchLayouts.get(0), barSearchLayouts.get(1));
 		Assert.assertEquals(fooSearchLayouts.get(1), barSearchLayouts.get(0));
+
+		Assert.assertEquals(
+			barSearchLayouts.toString(), 2, barSearchLayouts.size());
 	}
 
 	private void _setUpLayoutFixture() {

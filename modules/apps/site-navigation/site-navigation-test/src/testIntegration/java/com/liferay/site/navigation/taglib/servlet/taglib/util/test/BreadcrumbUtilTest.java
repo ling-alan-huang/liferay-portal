@@ -83,15 +83,15 @@ public class BreadcrumbUtilTest {
 			BreadcrumbUtil.getLayoutBreadcrumbEntries(
 				_mockHttpServletRequest, _themeDisplay);
 
-		Assert.assertEquals(
-			breadcrumbEntries.toString(), 1, breadcrumbEntries.size());
-
 		BreadcrumbEntry breadcrumbEntry = breadcrumbEntries.get(0);
 
 		Assert.assertFalse(breadcrumbEntry.isBrowsable());
 
 		Assert.assertEquals(
 			layout.getName(_locale), breadcrumbEntry.getTitle());
+
+		Assert.assertEquals(
+			breadcrumbEntries.toString(), 1, breadcrumbEntries.size());
 	}
 
 	@Test
@@ -120,12 +120,12 @@ public class BreadcrumbUtilTest {
 			BreadcrumbUtil.getLayoutBreadcrumbEntries(
 				_mockHttpServletRequest, _themeDisplay);
 
-		Assert.assertEquals(
-			breadcrumbEntries.toString(), 1, breadcrumbEntries.size());
-
 		_assertBreadcrumbEntry(
 			breadcrumbEntries.get(0), _layout.getName(_locale),
 			_portal.getLayoutFullURL(_layout, _themeDisplay));
+
+		Assert.assertEquals(
+			breadcrumbEntries.toString(), 1, breadcrumbEntries.size());
 	}
 
 	@Test
@@ -163,12 +163,12 @@ public class BreadcrumbUtilTest {
 			breadcrumbEntries = BreadcrumbUtil.getParentGroupBreadcrumbEntries(
 				_themeDisplay);
 
-			Assert.assertEquals(
-				breadcrumbEntries.toString(), 1, breadcrumbEntries.size());
-
 			_assertBreadcrumbEntry(
 				breadcrumbEntries.get(0), _group.getDescriptiveName(_locale),
 				null);
+
+			Assert.assertEquals(
+				breadcrumbEntries.toString(), 1, breadcrumbEntries.size());
 		}
 		finally {
 			PermissionThreadLocal.setPermissionChecker(

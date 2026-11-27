@@ -396,10 +396,6 @@ public class ParameterMapUtilTest {
 		PortletDataHandler[] portletDataHandlers =
 			reversedPublishProcessRequest.getPortletDataHandlers();
 
-		Assert.assertEquals(
-			Arrays.toString(portletDataHandlers), 1,
-			portletDataHandlers.length);
-
 		PortletDataHandler portletDataHandler = portletDataHandlers[0];
 
 		Assert.assertEquals(
@@ -407,10 +403,6 @@ public class ParameterMapUtilTest {
 
 		PortletDataHandlerControl[] portletDataHandlerControls =
 			portletDataHandler.getPortletDataHandlerControls();
-
-		Assert.assertEquals(
-			Arrays.toString(portletDataHandlerControls), 3,
-			portletDataHandlerControls.length);
 
 		PortletDataHandlerBoolean portletDataHandlerBoolean =
 			(PortletDataHandlerBoolean)portletDataHandlerControls[0];
@@ -462,6 +454,14 @@ public class ParameterMapUtilTest {
 			new String[] {"a"},
 			reversedPortletDataHandlerTreeSelection.
 				getSubtreeExternalReferenceCodes());
+
+		Assert.assertEquals(
+			Arrays.toString(portletDataHandlerControls), 3,
+			portletDataHandlerControls.length);
+
+		Assert.assertEquals(
+			Arrays.toString(portletDataHandlers), 1,
+			portletDataHandlers.length);
 	}
 
 	@Test

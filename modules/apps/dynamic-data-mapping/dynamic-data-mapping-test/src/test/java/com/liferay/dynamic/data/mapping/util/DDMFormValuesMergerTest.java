@@ -82,10 +82,6 @@ public class DDMFormValuesMergerTest {
 		List<DDMFormFieldValue> mergedDDMFormFieldValues =
 			mergedDDMFormValues.getDDMFormFieldValues();
 
-		Assert.assertEquals(
-			mergedDDMFormFieldValues.toString(), 2,
-			mergedDDMFormFieldValues.size());
-
 		DDMFormFieldValue mergedText1DDMFormFieldValue =
 			mergedDDMFormFieldValues.get(0);
 
@@ -101,6 +97,10 @@ public class DDMFormValuesMergerTest {
 
 		Assert.assertEquals(
 			text2StringValue, mergedText2Value.getString(LocaleUtil.US));
+
+		Assert.assertEquals(
+			mergedDDMFormFieldValues.toString(), 2,
+			mergedDDMFormFieldValues.size());
 	}
 
 	@Test
@@ -145,10 +145,6 @@ public class DDMFormValuesMergerTest {
 		List<DDMFormFieldValue> mergedDDMFormFieldValues =
 			mergedFormValues.getDDMFormFieldValues();
 
-		Assert.assertEquals(
-			mergedDDMFormFieldValues.toString(), 1,
-			mergedDDMFormFieldValues.size());
-
 		DDMFormFieldValue mergedDDMFormFieldValue =
 			mergedDDMFormFieldValues.get(0);
 
@@ -158,6 +154,10 @@ public class DDMFormValuesMergerTest {
 			enStringValue, mergedValue.getString(LocaleUtil.US));
 		Assert.assertEquals(
 			ptStringValue, mergedValue.getString(LocaleUtil.BRAZIL));
+
+		Assert.assertEquals(
+			mergedDDMFormFieldValues.toString(), 1,
+			mergedDDMFormFieldValues.size());
 	}
 
 	@Test
@@ -252,10 +252,6 @@ public class DDMFormValuesMergerTest {
 		List<DDMFormFieldValue> mergedDDMFormFieldValues =
 			mergedFormValues.getDDMFormFieldValues();
 
-		Assert.assertEquals(
-			mergedDDMFormFieldValues.toString(), 1,
-			mergedDDMFormFieldValues.size());
-
 		DDMFormFieldValue mergedDDMFormFieldValue =
 			mergedDDMFormFieldValues.get(0);
 
@@ -265,6 +261,10 @@ public class DDMFormValuesMergerTest {
 			newEnStringValue, mergedValue.getString(LocaleUtil.US));
 		Assert.assertEquals(
 			newPtStringValue, mergedValue.getString(LocaleUtil.BRAZIL));
+
+		Assert.assertEquals(
+			mergedDDMFormFieldValues.toString(), 1,
+			mergedDDMFormFieldValues.size());
 	}
 
 	@Test
@@ -309,10 +309,6 @@ public class DDMFormValuesMergerTest {
 		List<DDMFormFieldValue> mergedDDMFormFieldValues =
 			mergedFormValues.getDDMFormFieldValues();
 
-		Assert.assertEquals(
-			mergedDDMFormFieldValues.toString(), 1,
-			mergedDDMFormFieldValues.size());
-
 		DDMFormFieldValue mergedDDMFormFieldValue =
 			mergedDDMFormFieldValues.get(0);
 
@@ -320,6 +316,10 @@ public class DDMFormValuesMergerTest {
 
 		Assert.assertEquals(
 			newEnStringValue, mergedValue.getString(LocaleUtil.US));
+
+		Assert.assertEquals(
+			mergedDDMFormFieldValues.toString(), 1,
+			mergedDDMFormFieldValues.size());
 	}
 
 	protected DDMFormValues createDDMFormValues(

@@ -563,15 +563,15 @@ public class DDMFormValuesExportImportContentProcessorTest {
 			_portletDataContextExport.getMissingReferencesElement(
 			).elements();
 
-		Assert.assertEquals(
-			missingReferenceElements.toString(), 1,
-			missingReferenceElements.size());
-
 		Element missingReferenceElement = missingReferenceElements.get(0);
 
 		Assert.assertEquals(
 			PortletDataContext.REFERENCE_TYPE_LAZY,
 			missingReferenceElement.attributeValue("type"));
+
+		Assert.assertEquals(
+			missingReferenceElements.toString(), 1,
+			missingReferenceElements.size());
 	}
 
 	@Test

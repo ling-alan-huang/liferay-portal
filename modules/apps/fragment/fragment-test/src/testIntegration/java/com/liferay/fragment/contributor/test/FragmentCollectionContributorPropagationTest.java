@@ -279,12 +279,12 @@ public class FragmentCollectionContributorPropagationTest {
 		Map<Long, String> companyIdsMap =
 			testFragmentEntryProcessor.getCompanyIdsMap();
 
-		Assert.assertEquals(
-			companyIdsMap.toString(), companiesCount, companyIdsMap.size());
-
 		_companyLocalService.forEachCompanyId(
 			companyId -> Assert.assertEquals(
 				companyIdsMap.get(companyId), modifiedHTML));
+
+		Assert.assertEquals(
+			companyIdsMap.toString(), companiesCount, companyIdsMap.size());
 	}
 
 	private void _addFragmentEntryLinks(String fragmentEntryKey)

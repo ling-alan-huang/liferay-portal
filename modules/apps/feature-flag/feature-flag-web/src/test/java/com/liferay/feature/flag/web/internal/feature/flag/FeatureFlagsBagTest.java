@@ -66,12 +66,12 @@ public class FeatureFlagsBagTest {
 		actualFeatureFlags = _featureFlagsBag.getFeatureFlags(
 			FeatureFlagType.BETA.getPredicate());
 
-		Assert.assertEquals(
-			actualFeatureFlags.toString(), 1, actualFeatureFlags.size());
-
 		FeatureFlag featureFlag = actualFeatureFlags.get(0);
 
 		Assert.assertEquals(_betaFeatureFlag.getKey(), featureFlag.getKey());
+
+		Assert.assertEquals(
+			actualFeatureFlags.toString(), 1, actualFeatureFlags.size());
 	}
 
 	@Test

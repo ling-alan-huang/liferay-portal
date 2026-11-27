@@ -161,8 +161,6 @@ public class FileInstallConfigTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals(
@@ -170,6 +168,8 @@ public class FileInstallConfigTest {
 					"Unable to install .cfg file ", configPathDeprecated,
 					", please use .config file instead."),
 				logEntry.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 
 			Configuration configurationDeprecated =
 				_configurationAdmin.getConfiguration(

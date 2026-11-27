@@ -133,8 +133,6 @@ public class CookiesManagerImplTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 2, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals(
@@ -149,6 +147,8 @@ public class CookiesManagerImplTest {
 					"previously. Use the API with explicitly declared " +
 						"consent type.",
 				logEntry.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 2, logEntries.size());
 		}
 	}
 
@@ -180,8 +180,6 @@ public class CookiesManagerImplTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals(
@@ -192,6 +190,8 @@ public class CookiesManagerImplTest {
 					" and will now be modified to consent type ",
 					CookiesConstants.CONSENT_TYPE_FUNCTIONAL),
 				logEntry.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 	}
 
@@ -501,8 +501,6 @@ public class CookiesManagerImplTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 2, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals(
@@ -516,6 +514,8 @@ public class CookiesManagerImplTest {
 				"The cookie will be deleted. Use the API with explicitly " +
 					"declared consent type.",
 				logEntry.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 2, logEntries.size());
 		}
 	}
 

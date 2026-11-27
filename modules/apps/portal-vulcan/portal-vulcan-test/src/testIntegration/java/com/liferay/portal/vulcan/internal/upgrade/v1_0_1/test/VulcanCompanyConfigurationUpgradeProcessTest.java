@@ -77,9 +77,6 @@ public class VulcanCompanyConfigurationUpgradeProcessTest {
 				"=", companyId, ")(path=", path, ")(service.factoryPid=",
 				factoryPid, "))"));
 
-		Assert.assertEquals(
-			Arrays.toString(configurations), 1, configurations.length);
-
 		configuration = configurations[0];
 
 		Dictionary<String, Object> dictionary = configuration.getProperties();
@@ -90,6 +87,9 @@ public class VulcanCompanyConfigurationUpgradeProcessTest {
 		Assert.assertTrue(value instanceof Long);
 
 		Assert.assertEquals(companyId, value);
+
+		Assert.assertEquals(
+			Arrays.toString(configurations), 1, configurations.length);
 	}
 
 	private void _runUpgrade() throws Exception {

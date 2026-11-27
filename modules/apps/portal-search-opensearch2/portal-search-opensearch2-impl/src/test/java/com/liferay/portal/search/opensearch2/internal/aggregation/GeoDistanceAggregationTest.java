@@ -87,11 +87,11 @@ public class GeoDistanceAggregationTest
 				List<Bucket> buckets = new ArrayList<>(
 					geoDistanceAggregationResult.getBuckets());
 
-				Assert.assertEquals(buckets.toString(), 3, buckets.size());
-
 				assertBucket(buckets.get(0), "*-100000.0", 3);
 				assertBucket(buckets.get(1), "100000.0-300000.0", 1);
 				assertBucket(buckets.get(2), "300000.0-1000000.0", 2);
+
+				Assert.assertEquals(buckets.toString(), 3, buckets.size());
 			});
 	}
 

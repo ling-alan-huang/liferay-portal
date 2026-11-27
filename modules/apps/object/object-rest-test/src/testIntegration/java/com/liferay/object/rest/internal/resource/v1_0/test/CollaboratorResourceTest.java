@@ -879,11 +879,11 @@ public class CollaboratorResourceTest {
 			objectEntry.getObjectEntryId(),
 			TicketConstants.TYPE_INVITE_COLLABORATOR);
 
-		Assert.assertEquals(tickets.toString(), 1, tickets.size());
-
 		Ticket ticket2 = tickets.get(0);
 
 		Assert.assertEquals(ticket1.getTicketId(), ticket2.getTicketId());
+
+		Assert.assertEquals(tickets.toString(), 1, tickets.size());
 
 		User user1 = _addUser(emailAddress1);
 
@@ -1427,14 +1427,14 @@ public class CollaboratorResourceTest {
 	private void _assertEquals(
 		JSONArray actualJSONArray, JSONArray expectedJSONArray) {
 
-		Assert.assertEquals(
-			expectedJSONArray.length(), actualJSONArray.length());
-
 		for (int i = 0; i < expectedJSONArray.length(); i++) {
 			_assertEquals(
 				actualJSONArray.getJSONObject(i),
 				expectedJSONArray.getJSONObject(i));
 		}
+
+		Assert.assertEquals(
+			expectedJSONArray.length(), actualJSONArray.length());
 	}
 
 	private void _assertEquals(JSONObject jsonObject1, JSONObject jsonObject2) {

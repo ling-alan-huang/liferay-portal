@@ -270,8 +270,6 @@ public class DLAppServiceWhenCopyingWithDLFileEntryTypeTest
 		List<FileEntry> fileEntries = dlAppService.getFileEntries(
 			_childGroup.getGroupId(), folder.getFolderId());
 
-		Assert.assertEquals(fileEntries.toString(), 1, fileEntries.size());
-
 		FileEntry fileEntry2 = fileEntries.get(0);
 
 		DLFileEntry dlFileEntry2 = (DLFileEntry)fileEntry2.getModel();
@@ -279,6 +277,8 @@ public class DLAppServiceWhenCopyingWithDLFileEntryTypeTest
 		Assert.assertEquals(
 			dlFileEntry1.getFileEntryTypeId(),
 			dlFileEntry2.getFileEntryTypeId());
+
+		Assert.assertEquals(fileEntries.toString(), 1, fileEntries.size());
 	}
 
 	@Test
@@ -303,8 +303,6 @@ public class DLAppServiceWhenCopyingWithDLFileEntryTypeTest
 		List<FileEntry> fileEntries = dlAppService.getFileEntries(
 			targetGroup.getGroupId(), folder.getFolderId());
 
-		Assert.assertEquals(fileEntries.toString(), 1, fileEntries.size());
-
 		FileEntry fileEntry2 = fileEntries.get(0);
 
 		DLFileEntry dlFileEntry2 = (DLFileEntry)fileEntry2.getModel();
@@ -312,6 +310,8 @@ public class DLAppServiceWhenCopyingWithDLFileEntryTypeTest
 		Assert.assertEquals(
 			DLFileEntryTypeConstants.FILE_ENTRY_TYPE_ID_BASIC_DOCUMENT,
 			dlFileEntry2.getFileEntryTypeId());
+
+		Assert.assertEquals(fileEntries.toString(), 1, fileEntries.size());
 	}
 
 	private FileEntry _addFileEntry(long groupId, long parentFolder)

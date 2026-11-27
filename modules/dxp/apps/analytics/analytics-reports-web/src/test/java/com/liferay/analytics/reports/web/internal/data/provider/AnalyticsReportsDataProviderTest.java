@@ -83,8 +83,6 @@ public class AnalyticsReportsDataProviderTest {
 				RandomTestUtil.randomString());
 
 		Assert.assertEquals(
-			acquisitionChannels.toString(), 5, acquisitionChannels.size());
-		Assert.assertEquals(
 			String.valueOf(new AcquisitionChannel("direct", 5847L, 43.64D)),
 			String.valueOf(acquisitionChannels.get("direct")));
 		Assert.assertEquals(
@@ -99,6 +97,9 @@ public class AnalyticsReportsDataProviderTest {
 		Assert.assertEquals(
 			String.valueOf(new AcquisitionChannel("social", 735L, 5.49D)),
 			String.valueOf(acquisitionChannels.get("social")));
+
+		Assert.assertEquals(
+			acquisitionChannels.toString(), 5, acquisitionChannels.size());
 	}
 
 	@Test
@@ -126,7 +127,6 @@ public class AnalyticsReportsDataProviderTest {
 				RandomTestUtil.randomLong(), null, timeRange,
 				RandomTestUtil.randomString());
 
-		Assert.assertEquals(referringURLS.toString(), 3, referringURLS.size());
 		Assert.assertEquals(
 			String.valueOf(new ReferringURL(1, "liferay.com")),
 			String.valueOf(referringURLS.get(0)));
@@ -136,6 +136,8 @@ public class AnalyticsReportsDataProviderTest {
 		Assert.assertEquals(
 			String.valueOf(new ReferringURL(3, "abc.com")),
 			String.valueOf(referringURLS.get(2)));
+
+		Assert.assertEquals(referringURLS.toString(), 3, referringURLS.size());
 	}
 
 	@Test
@@ -173,9 +175,6 @@ public class AnalyticsReportsDataProviderTest {
 		List<HistogramMetric> histogramMetrics =
 			historicalMetric.getHistogramMetrics();
 
-		Assert.assertEquals(
-			histogramMetrics.toString(), 1, histogramMetrics.size());
-
 		HistogramMetric histogramMetric = histogramMetrics.get(0);
 
 		Assert.assertEquals(5.0, histogramMetric.getValue(), 0.0);
@@ -187,6 +186,9 @@ public class AnalyticsReportsDataProviderTest {
 		ZonedDateTime zonedDateTime = instant.atZone(ZoneId.systemDefault());
 
 		Assert.assertEquals(localDate, zonedDateTime.toLocalDate());
+
+		Assert.assertEquals(
+			histogramMetrics.toString(), 1, histogramMetrics.size());
 	}
 
 	@Test
@@ -214,9 +216,6 @@ public class AnalyticsReportsDataProviderTest {
 			analyticsReportsDataProvider.getPageExperiences(
 				RandomTestUtil.randomLong(), RandomTestUtil.randomString());
 
-		Assert.assertEquals(
-			pageExperiences.toString(), 2, pageExperiences.size());
-
 		PageExperience pageExperience1 = pageExperiences.get(0);
 
 		Assert.assertEquals("exp1", pageExperience1.getId());
@@ -226,6 +225,9 @@ public class AnalyticsReportsDataProviderTest {
 
 		Assert.assertEquals("exp2", pageExperience2.getId());
 		Assert.assertEquals("Experience 2", pageExperience2.getName());
+
+		Assert.assertEquals(
+			pageExperiences.toString(), 2, pageExperiences.size());
 	}
 
 	@Test
@@ -255,7 +257,6 @@ public class AnalyticsReportsDataProviderTest {
 				RandomTestUtil.randomLong(), null, timeRange,
 				RandomTestUtil.randomString());
 
-		Assert.assertEquals(referringURLS.toString(), 3, referringURLS.size());
 		Assert.assertEquals(
 			String.valueOf(
 				new ReferringURL(
@@ -272,6 +273,8 @@ public class AnalyticsReportsDataProviderTest {
 			String.valueOf(
 				new ReferringURL(6, "https://slickdeals.net/computer-deals")),
 			String.valueOf(referringURLS.get(2)));
+
+		Assert.assertEquals(referringURLS.toString(), 3, referringURLS.size());
 	}
 
 	@Test
@@ -300,9 +303,6 @@ public class AnalyticsReportsDataProviderTest {
 				RandomTestUtil.randomString());
 
 		Assert.assertEquals(
-			referringSocialMediaList.toString(), 3,
-			referringSocialMediaList.size());
-		Assert.assertEquals(
 			String.valueOf(new ReferringSocialMedia("facebook", 6)),
 			String.valueOf(referringSocialMediaList.get(0)));
 		Assert.assertEquals(
@@ -311,6 +311,10 @@ public class AnalyticsReportsDataProviderTest {
 		Assert.assertEquals(
 			String.valueOf(new ReferringSocialMedia("linkedin", 1)),
 			String.valueOf(referringSocialMediaList.get(2)));
+
+		Assert.assertEquals(
+			referringSocialMediaList.toString(), 3,
+			referringSocialMediaList.size());
 	}
 
 	@Test

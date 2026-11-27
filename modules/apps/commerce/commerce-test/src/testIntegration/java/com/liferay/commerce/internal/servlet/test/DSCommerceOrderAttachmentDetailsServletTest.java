@@ -196,9 +196,6 @@ public class DSCommerceOrderAttachmentDetailsServletTest {
 
 		JSONArray historyJSONArray = jsonObject.getJSONArray("history");
 
-		Assert.assertEquals(
-			historyJSONArray.toString(), 1, historyJSONArray.length());
-
 		JSONObject historyJSONObject = historyJSONArray.getJSONObject(0);
 
 		Assert.assertEquals(
@@ -208,10 +205,10 @@ public class DSCommerceOrderAttachmentDetailsServletTest {
 			DSRequestConstants.STATUS_VOIDED,
 			historyJSONObject.getString("status"));
 
-		JSONArray recipientsJSONArray = jsonObject.getJSONArray("recipients");
-
 		Assert.assertEquals(
-			recipientsJSONArray.toString(), 1, recipientsJSONArray.length());
+			historyJSONArray.toString(), 1, historyJSONArray.length());
+
+		JSONArray recipientsJSONArray = jsonObject.getJSONArray("recipients");
 
 		JSONObject recipientJSONObject = recipientsJSONArray.getJSONObject(0);
 
@@ -221,6 +218,9 @@ public class DSCommerceOrderAttachmentDetailsServletTest {
 		Assert.assertEquals(
 			DSRequestConstants.STATUS_SENT,
 			recipientJSONObject.getString("status"));
+
+		Assert.assertEquals(
+			recipientsJSONArray.toString(), 1, recipientsJSONArray.length());
 
 		_assertNotFound(
 			_commerceOrderAttachment.getCommerceOrderAttachmentId(),

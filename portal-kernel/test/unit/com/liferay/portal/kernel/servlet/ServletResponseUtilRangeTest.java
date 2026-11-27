@@ -117,12 +117,13 @@ public class ServletResponseUtilRangeTest {
 			new Class<?>[] {HttpServletRequest.class, long.class},
 			_httpServletRequest, 1000);
 
-		Assert.assertEquals(ranges.toString(), 5, ranges.size());
 		assertRange(ranges.get(0), 1, 3, 3);
 		assertRange(ranges.get(1), 3, 8, 6);
 		assertRange(ranges.get(2), 9, 11, 3);
 		assertRange(ranges.get(3), 12, 12, 1);
 		assertRange(ranges.get(4), 30, 999, 970);
+
+		Assert.assertEquals(ranges.toString(), 5, ranges.size());
 	}
 
 	@Test
@@ -190,9 +191,10 @@ public class ServletResponseUtilRangeTest {
 			new Class<?>[] {HttpServletRequest.class, long.class},
 			_httpServletRequest, length);
 
-		Assert.assertEquals(ranges.toString(), 2, ranges.size());
 		assertRange(ranges.get(0), 500, 700, 201);
 		assertRange(ranges.get(1), 601, 999, 399);
+
+		Assert.assertEquals(ranges.toString(), 2, ranges.size());
 	}
 
 	@Test
@@ -204,8 +206,9 @@ public class ServletResponseUtilRangeTest {
 			new Class<?>[] {HttpServletRequest.class, long.class},
 			_httpServletRequest, 1000);
 
-		Assert.assertEquals(ranges.toString(), 1, ranges.size());
 		assertRange(ranges.get(0), 0, 999, 1000);
+
+		Assert.assertEquals(ranges.toString(), 1, ranges.size());
 	}
 
 	@Test
@@ -288,9 +291,6 @@ public class ServletResponseUtilRangeTest {
 
 		String[] responseBodies = StringUtil.split(responseBody, boundary);
 
-		Assert.assertEquals(
-			Arrays.toString(responseBodies), ranges.size() + 2,
-			responseBodies.length);
 		Assert.assertEquals(StringPool.DOUBLE_DASH, responseBodies[0]);
 		Assert.assertEquals(
 			StringPool.DOUBLE_DASH, responseBodies[ranges.size() + 1]);
@@ -315,6 +315,10 @@ public class ServletResponseUtilRangeTest {
 
 			Assert.assertEquals(StringPool.DOUBLE_DASH, lines[4]);
 		}
+
+		Assert.assertEquals(
+			Arrays.toString(responseBodies), ranges.size() + 2,
+			responseBodies.length);
 	}
 
 	private static final String _CONTENT_TYPE_BOUNDARY_PREFACE =

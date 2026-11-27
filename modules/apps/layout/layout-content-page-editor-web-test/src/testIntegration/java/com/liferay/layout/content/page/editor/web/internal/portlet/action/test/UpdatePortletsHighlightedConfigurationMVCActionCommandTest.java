@@ -202,10 +202,6 @@ public class UpdatePortletsHighlightedConfigurationMVCActionCommandTest {
 		JSONArray highlightedPortletsJSONArray = jsonObject.getJSONArray(
 			"highlightedPortlets");
 
-		Assert.assertEquals(
-			expectedHighlightedPortletIds.length,
-			highlightedPortletsJSONArray.length());
-
 		for (int i = 0; i < highlightedPortletsJSONArray.length(); i++) {
 			JSONObject portletJSONObject =
 				highlightedPortletsJSONArray.getJSONObject(i);
@@ -215,6 +211,10 @@ public class UpdatePortletsHighlightedConfigurationMVCActionCommandTest {
 					expectedHighlightedPortletIds,
 					portletJSONObject.getString("portletId")));
 		}
+
+		Assert.assertEquals(
+			expectedHighlightedPortletIds.length,
+			highlightedPortletsJSONArray.length());
 	}
 
 	private String[] _getDefaultHighlightedPortletIds() {

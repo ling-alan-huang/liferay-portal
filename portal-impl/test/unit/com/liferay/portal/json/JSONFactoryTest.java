@@ -130,8 +130,6 @@ public class JSONFactoryTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertTrue(
@@ -140,6 +138,8 @@ public class JSONFactoryTest {
 					logEntry.getMessage(),
 					"Unable to deserialize " +
 						JSONFactoryTest.class.getName()));
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 	}
 
@@ -254,8 +254,9 @@ public class JSONFactoryTest {
 		map = (Map<?, ?>)map.get("jsonFactory");
 
 		Assert.assertNotNull(map);
-		Assert.assertEquals(map.toString(), 1, map.size());
 		Assert.assertEquals(JSONFactoryImpl.class.getName(), map.get("class"));
+
+		Assert.assertEquals(map.toString(), 1, map.size());
 	}
 
 	@Test

@@ -127,8 +127,9 @@ public class KaleoLogLocalServiceTest extends BaseKaleoLocalServiceTestCase {
 				_workflowComparatorFactory.getLogCreateDateComparator(false),
 				_kaleoWorkflowModelConverter));
 
-		Assert.assertEquals(kaleoLogs.toString(), 1, kaleoLogs.size());
 		Assert.assertEquals(exitKaleoLog, kaleoLogs.get(0));
+
+		Assert.assertEquals(kaleoLogs.toString(), 1, kaleoLogs.size());
 	}
 
 	@Test
@@ -201,8 +202,9 @@ public class KaleoLogLocalServiceTest extends BaseKaleoLocalServiceTestCase {
 				_workflowComparatorFactory.getLogCreateDateComparator(false),
 				_kaleoWorkflowModelConverter));
 
-		Assert.assertEquals(kaleoLogs.toString(), 1, kaleoLogs.size());
 		Assert.assertEquals(assignmentKaleoLog, kaleoLogs.get(0));
+
+		Assert.assertEquals(kaleoLogs.toString(), 1, kaleoLogs.size());
 	}
 
 	@Test

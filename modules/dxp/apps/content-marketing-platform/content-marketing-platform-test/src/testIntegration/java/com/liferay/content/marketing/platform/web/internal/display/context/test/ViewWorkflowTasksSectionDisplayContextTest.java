@@ -64,10 +64,6 @@ public class ViewWorkflowTasksSectionDisplayContextTest
 		List<DropdownItem> bulkActionDropdownItems = getBulkActionDropdownItems(
 			null);
 
-		Assert.assertEquals(
-			bulkActionDropdownItems.toString(), 3,
-			bulkActionDropdownItems.size());
-
 		FDSActionDropdownItem updateDueDateFDSActionDropdownItem =
 			(FDSActionDropdownItem)bulkActionDropdownItems.get(0);
 
@@ -100,6 +96,10 @@ public class ViewWorkflowTasksSectionDisplayContextTest
 		Assert.assertEquals(
 			"changeTransition",
 			getValue(updateStateFDSActionDropdownItem, "permissionKey"));
+
+		Assert.assertEquals(
+			bulkActionDropdownItems.toString(), 3,
+			bulkActionDropdownItems.size());
 	}
 
 	@Override
@@ -125,10 +125,6 @@ public class ViewWorkflowTasksSectionDisplayContextTest
 		List<FDSActionDropdownItem> groupFDSActionDropdownItems =
 			getFDSActionDropdownItems(null);
 
-		Assert.assertEquals(
-			groupFDSActionDropdownItems.toString(), 2,
-			groupFDSActionDropdownItems.size());
-
 		FDSActionDropdownItem groupFDSActionDropdownItem =
 			groupFDSActionDropdownItems.get(0);
 
@@ -149,10 +145,6 @@ public class ViewWorkflowTasksSectionDisplayContextTest
 		fdsActionDropdownItems =
 			(List<FDSActionDropdownItem>)groupFDSActionDropdownItem.get(
 				"items");
-
-		Assert.assertEquals(
-			fdsActionDropdownItems.toString(), 4,
-			fdsActionDropdownItems.size());
 
 		FrontendDataSetTestUtil.assertFDSActionDropdownItem(
 			"view", "actionLinkWorkflowTask", "View", null,
@@ -185,14 +177,20 @@ public class ViewWorkflowTasksSectionDisplayContextTest
 				"entryClassName", CLASS_NAME_KALEO_TASK_INSTANCE_TOKEN
 			).build(),
 			fdsActionDropdownItems.get(3));
+
+		Assert.assertEquals(
+			fdsActionDropdownItems.toString(), 4,
+			fdsActionDropdownItems.size());
+
+		Assert.assertEquals(
+			groupFDSActionDropdownItems.toString(), 2,
+			groupFDSActionDropdownItems.size());
 	}
 
 	@Override
 	@Test
 	public void testGetFDSFilters() throws Exception {
 		List<FDSFilter> fdsFilters = getFDSFilters(null);
-
-		Assert.assertEquals(fdsFilters.toString(), 3, fdsFilters.size());
 
 		assertFDSFilter(
 			FDSEntityFieldTypes.STRING, "cmpAssignTo", "assignee",
@@ -203,6 +201,8 @@ public class ViewWorkflowTasksSectionDisplayContextTest
 		assertFDSFilter(
 			FDSEntityFieldTypes.BOOLEAN, "completed", "status",
 			fdsFilters.get(2));
+
+		Assert.assertEquals(fdsFilters.toString(), 3, fdsFilters.size());
 	}
 
 	@Override

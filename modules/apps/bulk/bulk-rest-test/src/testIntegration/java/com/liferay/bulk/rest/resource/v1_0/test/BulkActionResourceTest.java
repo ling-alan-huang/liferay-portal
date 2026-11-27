@@ -537,8 +537,6 @@ public class BulkActionResourceTest extends BaseBulkActionResourceTestCase {
 
 		List<BulkActionItem> items2 = ListUtil.fromCollection(page2.getItems());
 
-		Assert.assertEquals(items2.toString(), 2, items2.size());
-
 		_assertBulkActionItem(
 			items2.get(0), objectEntryFolder.getObjectEntryFolderId(),
 			expectedDeletionType, expectedItemsCount, null,
@@ -547,6 +545,8 @@ public class BulkActionResourceTest extends BaseBulkActionResourceTestCase {
 			items2.get(1), objectEntry.getObjectEntryId(), expectedDeletionType,
 			null, "basic-web-content", objectEntry.getTitleValue(_LANGUAGE_ID),
 			"ASSET", 1L);
+
+		Assert.assertEquals(items2.toString(), 2, items2.size());
 	}
 
 	private void _testPostBulkActionItemPreviewPageWithFetchChildrenEnabled(
@@ -601,8 +601,6 @@ public class BulkActionResourceTest extends BaseBulkActionResourceTestCase {
 
 		List<BulkActionItem> items2 = ListUtil.fromCollection(page2.getItems());
 
-		Assert.assertEquals(items2.toString(), 2, items2.size());
-
 		_assertBulkActionItem(
 			items2.get(0), objectEntry.getObjectEntryId(), expectedDeletionType,
 			null, "basic-web-content", objectEntry.getTitleValue(_LANGUAGE_ID),
@@ -611,6 +609,8 @@ public class BulkActionResourceTest extends BaseBulkActionResourceTestCase {
 			items2.get(1), objectEntryFolder2.getObjectEntryFolderId(),
 			expectedDeletionType, 0L, null, objectEntryFolder2.getName(),
 			"FOLDER", null);
+
+		Assert.assertEquals(items2.toString(), 2, items2.size());
 	}
 
 	private void _testPostBulkActionItemPreviewPageWithNonexistentClassPK()
@@ -671,12 +671,12 @@ public class BulkActionResourceTest extends BaseBulkActionResourceTestCase {
 
 		List<BulkActionItem> items = ListUtil.fromCollection(page.getItems());
 
-		Assert.assertEquals(items.toString(), 1, items.size());
-
 		_assertBulkActionItem(
 			items.get(0), objectEntryFolder2.getObjectEntryFolderId(),
 			expectedDeletionType, 0L, null, objectEntryFolder2.getName(),
 			"FOLDER", null);
+
+		Assert.assertEquals(items.toString(), 1, items.size());
 	}
 
 	private void _testPostBulkActionItemPreviewPageWithTrashedItems()
@@ -739,8 +739,6 @@ public class BulkActionResourceTest extends BaseBulkActionResourceTestCase {
 
 		List<BulkActionItem> items = ListUtil.fromCollection(page.getItems());
 
-		Assert.assertEquals(items.toString(), 2, items.size());
-
 		_assertBulkActionItem(
 			items.get(0), objectEntryFolder.getObjectEntryFolderId(),
 			"PERMANENT_DELETION", 0L, null, objectEntryFolder.getName(),
@@ -749,6 +747,8 @@ public class BulkActionResourceTest extends BaseBulkActionResourceTestCase {
 			items.get(1), objectEntry.getObjectEntryId(), "PERMANENT_DELETION",
 			null, "basic-web-content", objectEntry.getTitleValue(_LANGUAGE_ID),
 			"ASSET", 1L);
+
+		Assert.assertEquals(items.toString(), 2, items.size());
 	}
 
 	private void _testPostBulkActionWithTypeAssignStructureDefaultWorkflow()

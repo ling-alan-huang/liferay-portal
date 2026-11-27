@@ -72,15 +72,11 @@ public class DocumentLibraryDDMFormFieldTypeSettingsTest
 
 		List<DDMFormRule> ddmFormRules = ddmForm.getDDMFormRules();
 
-		Assert.assertEquals(ddmFormRules.toString(), 1, ddmFormRules.size());
-
 		DDMFormRule ddmFormRule = ddmFormRules.get(0);
 
 		Assert.assertEquals("TRUE", ddmFormRule.getCondition());
 
 		List<String> actions = ddmFormRule.getActions();
-
-		Assert.assertEquals(actions.toString(), 3, actions.size());
 
 		Assert.assertEquals("setVisible('dataType', false)", actions.get(0));
 		Assert.assertEquals(
@@ -88,6 +84,10 @@ public class DocumentLibraryDDMFormFieldTypeSettingsTest
 		Assert.assertEquals(
 			"setVisible('requiredErrorMessage', getValue('required'))",
 			actions.get(2));
+
+		Assert.assertEquals(actions.toString(), 3, actions.size());
+
+		Assert.assertEquals(ddmFormRules.toString(), 1, ddmFormRules.size());
 	}
 
 	@Test

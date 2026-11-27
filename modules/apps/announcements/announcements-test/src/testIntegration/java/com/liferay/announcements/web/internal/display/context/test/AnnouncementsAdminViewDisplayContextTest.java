@@ -130,10 +130,6 @@ public class AnnouncementsAdminViewDisplayContextTest {
 		List<AnnouncementsEntry> announcementsEntries =
 			searchContainer.getResults();
 
-		Assert.assertEquals(
-			announcementsEntries.toString(),
-			expectedAnnouncementsEntries.size(), announcementsEntries.size());
-
 		for (int i = 0; i < expectedAnnouncementsEntries.size(); i++) {
 			AnnouncementsEntry expectedAnnouncementsEntry =
 				expectedAnnouncementsEntries.get(i);
@@ -143,6 +139,10 @@ public class AnnouncementsAdminViewDisplayContextTest {
 				expectedAnnouncementsEntry.getTitle(),
 				announcementsEntry.getTitle());
 		}
+
+		Assert.assertEquals(
+			announcementsEntries.toString(),
+			expectedAnnouncementsEntries.size(), announcementsEntries.size());
 	}
 
 	private HttpServletRequest _getHttpServletRequest(String orderByType)

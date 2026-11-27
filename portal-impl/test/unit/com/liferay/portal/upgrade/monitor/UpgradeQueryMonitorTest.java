@@ -263,8 +263,6 @@ public class UpgradeQueryMonitorTest {
 
 		_poll(_scheduledExecutorService);
 
-		Assert.assertEquals(logEntries.toString(), 3, logEntries.size());
-
 		LogEntry logEntry1 = logEntries.get(0);
 
 		Assert.assertEquals(
@@ -291,6 +289,8 @@ public class UpgradeQueryMonitorTest {
 				" in schema \"", schema3,
 				"\" has been running for 810 seconds"),
 			logEntry3.getMessage());
+
+		Assert.assertEquals(logEntries.toString(), 3, logEntries.size());
 	}
 
 	private void _testPollLongRunningWithNoQueries(
@@ -334,8 +334,6 @@ public class UpgradeQueryMonitorTest {
 
 		_poll(_scheduledExecutorService);
 
-		Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 		LogEntry logEntry = logEntries.get(0);
 
 		Assert.assertEquals(
@@ -344,6 +342,8 @@ public class UpgradeQueryMonitorTest {
 				" in schema \"", schema, "\" has been running for 630 seconds"),
 			logEntry.getMessage());
 		Assert.assertEquals("INFO", logEntry.getPriority());
+
+		Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 	}
 
 	private void _testPollWithMultipleLockedQueries(
@@ -381,8 +381,6 @@ public class UpgradeQueryMonitorTest {
 
 		_poll(_scheduledExecutorService);
 
-		Assert.assertEquals(logEntries.toString(), 3, logEntries.size());
-
 		LogEntry logEntry1 = logEntries.get(0);
 
 		Assert.assertEquals(
@@ -406,6 +404,8 @@ public class UpgradeQueryMonitorTest {
 				"Locked query \"", query3, "\" with ID ", id3, " in schema \"",
 				schema3, "\" has been running for 900 seconds"),
 			logEntry3.getMessage());
+
+		Assert.assertEquals(logEntries.toString(), 3, logEntries.size());
 	}
 
 	private void _testPollWithNoLockedQueries(
@@ -449,8 +449,6 @@ public class UpgradeQueryMonitorTest {
 
 		_poll(_scheduledExecutorService);
 
-		Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 		LogEntry logEntry = logEntries.get(0);
 
 		Assert.assertEquals(
@@ -459,6 +457,8 @@ public class UpgradeQueryMonitorTest {
 				schema, "\" has been running for 30 seconds"),
 			logEntry.getMessage());
 		Assert.assertEquals("WARN", logEntry.getPriority());
+
+		Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 	}
 
 	private void _testPollWithSQLException(
@@ -480,13 +480,13 @@ public class UpgradeQueryMonitorTest {
 		Assert.assertThrows(
 			SQLException.class, () -> _poll(_scheduledExecutorService));
 
-		Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 		LogEntry logEntry = logEntries.get(0);
 
 		Assert.assertEquals(
 			"Upgrade query monitoring is disabled: " + message,
 			logEntry.getMessage());
+
+		Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 	}
 
 	private void _testPollWithSQLExceptionWhileStopping(

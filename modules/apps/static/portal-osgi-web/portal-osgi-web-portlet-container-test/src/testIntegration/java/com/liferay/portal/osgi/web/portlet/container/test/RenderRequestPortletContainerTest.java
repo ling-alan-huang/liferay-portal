@@ -70,9 +70,6 @@ public class RenderRequestPortletContainerTest
 
 			int totalExpectedEvents = 2;
 
-			Assert.assertEquals(
-				logEntries.toString(), totalExpectedEvents, logEntries.size());
-
 			for (int i = 0; i < totalExpectedEvents; i++) {
 				LogEntry logEntry = logEntries.get(i);
 
@@ -80,6 +77,9 @@ public class RenderRequestPortletContainerTest
 					"Invalid portlet ID '\"><script>alert(1)</script>",
 					logEntry.getMessage());
 			}
+
+			Assert.assertEquals(
+				logEntries.toString(), totalExpectedEvents, logEntries.size());
 
 			Assert.assertEquals(200, response.getCode());
 		}

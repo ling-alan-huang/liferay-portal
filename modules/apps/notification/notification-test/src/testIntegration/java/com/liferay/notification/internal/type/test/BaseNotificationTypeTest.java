@@ -668,10 +668,6 @@ public class BaseNotificationTypeTest {
 			notificationQueueEntryLocalService.getNotificationQueueEntries(
 				QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 
-		Assert.assertEquals(
-			notificationQueueEntries.toString(), 1,
-			notificationQueueEntries.size());
-
 		NotificationQueueEntry notificationQueueEntry =
 			notificationQueueEntries.get(0);
 
@@ -679,19 +675,23 @@ public class BaseNotificationTypeTest {
 
 		notificationQueueEntryLocalService.deleteNotificationQueueEntry(
 			notificationQueueEntry);
+
+		Assert.assertEquals(
+			notificationQueueEntries.toString(), 1,
+			notificationQueueEntries.size());
 	}
 
 	protected void assertTermValues(
 		List<String> expectedTermValues, List<String> actualTermValues) {
 
-		Assert.assertEquals(
-			expectedTermValues.toString(), expectedTermValues.size(),
-			actualTermValues.size());
-
 		for (int i = 0; i < actualTermValues.size(); i++) {
 			Assert.assertEquals(
 				expectedTermValues.get(i), actualTermValues.get(i));
 		}
+
+		Assert.assertEquals(
+			expectedTermValues.toString(), expectedTermValues.size(),
+			actualTermValues.size());
 	}
 
 	protected void executeNotificationObjectAction(

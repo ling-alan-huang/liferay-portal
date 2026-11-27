@@ -550,18 +550,19 @@ public class UtilityPageResourceTest extends BaseUtilityPageResourceTestCase {
 			friendlyURLMap = layout.getFriendlyURLMap();
 		}
 
-		Assert.assertEquals(
-			jsonObject.toString(), friendlyURLMap.size(), jsonObject.length());
-
 		for (Map.Entry<Locale, String> entry : friendlyURLMap.entrySet()) {
 			String key = LocaleUtil.toBCP47LanguageId(entry.getKey());
 
 			JSONArray jsonArray = jsonObject.getJSONArray(key);
 
-			Assert.assertEquals(jsonArray.toString(), 1, jsonArray.length());
 			Assert.assertEquals(
 				jsonArray.toString(), entry.getValue(), jsonArray.getString(0));
+
+			Assert.assertEquals(jsonArray.toString(), 1, jsonArray.length());
 		}
+
+		Assert.assertEquals(
+			jsonObject.toString(), friendlyURLMap.size(), jsonObject.length());
 
 		PageSpecificationsTestUtil.assertPageSpecifications(
 			layout, utilityPage.getPageSpecifications());
@@ -1179,13 +1180,13 @@ public class UtilityPageResourceTest extends BaseUtilityPageResourceTestCase {
 
 			FailedItem[] failedItems = completedImportTask.getFailedItems();
 
-			Assert.assertEquals(
-				Arrays.toString(failedItems), 1, failedItems.length);
-
 			FailedItem failedItem = failedItems[0];
 
 			Assert.assertEquals(
 				"A utility page type is required", failedItem.getMessage());
+
+			Assert.assertEquals(
+				Arrays.toString(failedItems), 1, failedItems.length);
 		}
 
 		Assert.assertNotNull(

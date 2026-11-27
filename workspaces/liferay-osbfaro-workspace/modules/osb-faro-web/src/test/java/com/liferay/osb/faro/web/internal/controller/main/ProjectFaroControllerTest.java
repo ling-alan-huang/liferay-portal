@@ -146,9 +146,6 @@ public class ProjectFaroControllerTest {
 		List<OSBOfferingEntry> osbOfferingEntries =
 			osbAccountEntry.getOfferingEntries();
 
-		Assert.assertEquals(
-			osbOfferingEntries.toString(), 1, osbOfferingEntries.size());
-
 		OSBOfferingEntry osbOfferingEntry = osbOfferingEntries.get(0);
 
 		Assert.assertEquals(
@@ -156,6 +153,9 @@ public class ProjectFaroControllerTest {
 			osbOfferingEntry.getProductEntryId());
 		Assert.assertEquals(1, osbOfferingEntry.getQuantity());
 		Assert.assertNotNull(osbOfferingEntry.getStartDate());
+
+		Assert.assertEquals(
+			osbOfferingEntries.toString(), 1, osbOfferingEntries.size());
 	}
 
 	@Test
@@ -171,14 +171,14 @@ public class ProjectFaroControllerTest {
 		List<OSBOfferingEntry> osbOfferingEntries =
 			osbAccountEntry.getOfferingEntries();
 
-		Assert.assertEquals(
-			osbOfferingEntries.toString(), 1, osbOfferingEntries.size());
-
 		OSBOfferingEntry osbOfferingEntry = osbOfferingEntries.get(0);
 
 		Assert.assertEquals(
 			ProductConstants.SALESFORCE_PRODUCT_ID_DATA_PLATFORM_PRIVATE_BETA,
 			osbOfferingEntry.getProductEntryId());
+
+		Assert.assertEquals(
+			osbOfferingEntries.toString(), 1, osbOfferingEntries.size());
 	}
 
 	@Test
@@ -256,14 +256,14 @@ public class ProjectFaroControllerTest {
 		List<OSBOfferingEntry> osbOfferingEntries =
 			osbAccountEntry.getOfferingEntries();
 
-		Assert.assertEquals(
-			osbOfferingEntries.toString(), 1, osbOfferingEntries.size());
-
 		osbOfferingEntry = osbOfferingEntries.get(0);
 
 		Assert.assertEquals(
 			ProductConstants.SALESFORCE_PRODUCT_ID_ENTERPRISE,
 			osbOfferingEntry.getProductEntryId());
+
+		Assert.assertEquals(
+			osbOfferingEntries.toString(), 1, osbOfferingEntries.size());
 	}
 
 	@Test
@@ -678,9 +678,6 @@ public class ProjectFaroControllerTest {
 		List<OSBOfferingEntry> osbOfferingEntries =
 			osbAccountEntry.getOfferingEntries();
 
-		Assert.assertEquals(
-			osbOfferingEntries.toString(), 1, osbOfferingEntries.size());
-
 		OSBOfferingEntry osbOfferingEntry = osbOfferingEntries.get(0);
 
 		Assert.assertEquals(
@@ -690,6 +687,9 @@ public class ProjectFaroControllerTest {
 		Assert.assertEquals(
 			ProductConstants.OSB_OFFERING_ENTRY_STATUS_ACTIVE,
 			osbOfferingEntry.getStatus());
+
+		Assert.assertEquals(
+			osbOfferingEntries.toString(), 1, osbOfferingEntries.size());
 	}
 
 	private void _assertGetProjectDisplay(String salesforceAccountId)

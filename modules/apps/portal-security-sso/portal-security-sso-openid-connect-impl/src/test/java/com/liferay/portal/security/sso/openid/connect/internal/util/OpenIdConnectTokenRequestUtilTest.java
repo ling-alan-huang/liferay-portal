@@ -206,12 +206,12 @@ public class OpenIdConnectTokenRequestUtilTest {
 
 			List<String> messages = logCapture.getMessages();
 
-			Assert.assertEquals(messages.toString(), 1, messages.size());
-
 			Assert.assertEquals(
 				"Requesting tokens from http://localhost:63636 with grant " +
 					"type \"refresh_token\"",
 				messages.get(0));
+
+			Assert.assertEquals(messages.toString(), 1, messages.size());
 		}
 
 		try {

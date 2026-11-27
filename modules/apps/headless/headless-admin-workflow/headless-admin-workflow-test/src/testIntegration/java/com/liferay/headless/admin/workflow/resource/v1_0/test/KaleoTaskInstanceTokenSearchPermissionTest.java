@@ -77,8 +77,6 @@ public class KaleoTaskInstanceTokenSearchPermissionTest {
 		List<WorkflowTask> workflowTasks =
 			WorkflowTaskTestUtil.getWorkflowTasks(_workflowInstance.getId());
 
-		Assert.assertEquals(workflowTasks.toString(), 3, workflowTasks.size());
-
 		WorkflowTask workflowTask = workflowTasks.get(0);
 
 		long accessibleWorkflowTaskId = workflowTask.getId();
@@ -107,21 +105,23 @@ public class KaleoTaskInstanceTokenSearchPermissionTest {
 					null, null, false, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 					null, serviceContext);
 
-			Assert.assertEquals(
-				kaleoTaskInstanceTokens.toString(), 1,
-				kaleoTaskInstanceTokens.size());
-
 			KaleoTaskInstanceToken kaleoTaskInstanceToken =
 				kaleoTaskInstanceTokens.get(0);
 
 			Assert.assertEquals(
 				accessibleWorkflowTaskId,
 				kaleoTaskInstanceToken.getKaleoTaskInstanceTokenId());
+
+			Assert.assertEquals(
+				kaleoTaskInstanceTokens.toString(), 1,
+				kaleoTaskInstanceTokens.size());
 		}
 		finally {
 			PermissionThreadLocal.setPermissionChecker(
 				originalPermissionChecker);
 		}
+
+		Assert.assertEquals(workflowTasks.toString(), 3, workflowTasks.size());
 	}
 
 	private static WorkflowDefinition _workflowDefinition;

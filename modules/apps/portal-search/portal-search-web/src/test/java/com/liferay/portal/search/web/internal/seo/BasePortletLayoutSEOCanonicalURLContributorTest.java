@@ -108,9 +108,10 @@ public class BasePortletLayoutSEOCanonicalURLContributorTest {
 			_basePortletLayoutSEOCanonicalURLContributor.
 				contributeURLParameters(httpServletRequest, 1, "PORTLET_ID");
 
-		Assert.assertEquals(parameters.toString(), 1, parameters.size());
 		Assert.assertArrayEquals(
 			new String[] {"100", "200"}, parameters.get("categoryId"));
+
+		Assert.assertEquals(parameters.toString(), 1, parameters.size());
 	}
 
 	@Test

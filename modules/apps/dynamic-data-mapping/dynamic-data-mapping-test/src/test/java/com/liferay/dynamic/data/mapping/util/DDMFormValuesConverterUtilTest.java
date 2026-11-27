@@ -59,17 +59,10 @@ public class DDMFormValuesConverterUtilTest extends BaseDDMTestCase {
 					"Text3", Collections.singletonList(text3DDMFormFieldValue)
 				).build());
 
-		Assert.assertEquals(
-			ddmFormFieldValues.toString(), 1, ddmFormFieldValues.size());
-
 		_assertDDMFormFieldValueName(ddmFormFieldValues.get(0), "Fieldset1");
 
 		List<DDMFormFieldValue> fieldset1NestedDDMFormFieldValues =
 			_getNestedDDMFormFieldValues(ddmFormFieldValues.get(0));
-
-		Assert.assertEquals(
-			fieldset1NestedDDMFormFieldValues.toString(), 3,
-			fieldset1NestedDDMFormFieldValues.size());
 
 		_assertDDMFormFieldValueName(
 			fieldset1NestedDDMFormFieldValues.get(0), "Text1");
@@ -85,15 +78,22 @@ public class DDMFormValuesConverterUtilTest extends BaseDDMTestCase {
 			_getNestedDDMFormFieldValues(
 				fieldset1NestedDDMFormFieldValues.get(2));
 
-		Assert.assertEquals(
-			fieldset2NestedDDMFormFieldValues.toString(), 1,
-			fieldset2NestedDDMFormFieldValues.size());
-
 		_assertDDMFormFieldValueName(
 			fieldset2NestedDDMFormFieldValues.get(0), "Text3");
 
 		Assert.assertEquals(
 			fieldset2NestedDDMFormFieldValues.get(0), text3DDMFormFieldValue);
+
+		Assert.assertEquals(
+			fieldset2NestedDDMFormFieldValues.toString(), 1,
+			fieldset2NestedDDMFormFieldValues.size());
+
+		Assert.assertEquals(
+			fieldset1NestedDDMFormFieldValues.toString(), 3,
+			fieldset1NestedDDMFormFieldValues.size());
+
+		Assert.assertEquals(
+			ddmFormFieldValues.toString(), 1, ddmFormFieldValues.size());
 	}
 
 	@Test
@@ -134,9 +134,6 @@ public class DDMFormValuesConverterUtilTest extends BaseDDMTestCase {
 					"Text", ListUtil.fromArray(textDDMFormFieldValue)
 				).build());
 
-		Assert.assertEquals(
-			ddmFormFieldValues.toString(), 1, ddmFormFieldValues.size());
-
 		DDMFormFieldValue ddmFormFieldValue = ddmFormFieldValues.get(0);
 
 		Assert.assertEquals("Fieldset", ddmFormFieldValue.getName());
@@ -145,10 +142,14 @@ public class DDMFormValuesConverterUtilTest extends BaseDDMTestCase {
 			ddmFormFieldValue.getNestedDDMFormFieldValues();
 
 		Assert.assertEquals(
+			nestedDDMFormFieldValues.get(0), textDDMFormFieldValue);
+
+		Assert.assertEquals(
 			nestedDDMFormFieldValues.toString(), 1,
 			nestedDDMFormFieldValues.size());
+
 		Assert.assertEquals(
-			nestedDDMFormFieldValues.get(0), textDDMFormFieldValue);
+			ddmFormFieldValues.toString(), 1, ddmFormFieldValues.size());
 	}
 
 	private void _assertDDMFormFieldValueName(

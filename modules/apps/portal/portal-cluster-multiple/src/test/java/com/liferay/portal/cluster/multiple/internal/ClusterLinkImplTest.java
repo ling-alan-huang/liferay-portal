@@ -52,9 +52,6 @@ public class ClusterLinkImplTest extends BaseClusterTestCase {
 		List<TestClusterChannel> clusterChannels =
 			TestClusterChannel.getClusterChannels();
 
-		Assert.assertEquals(
-			clusterChannels.toString(), 1, clusterChannels.size());
-
 		TestClusterChannel clusterChannel = clusterChannels.get(0);
 
 		ExecutorService executorService = clusterLinkImpl.getExecutorService();
@@ -65,6 +62,10 @@ public class ClusterLinkImplTest extends BaseClusterTestCase {
 		clusterLinkImpl.deactivate();
 
 		Assert.assertTrue(clusterChannel.isClosed());
+
+		Assert.assertEquals(
+			clusterChannels.toString(), 1, clusterChannels.size());
+
 		Assert.assertTrue(executorService.isShutdown());
 	}
 
@@ -144,13 +145,13 @@ public class ClusterLinkImplTest extends BaseClusterTestCase {
 				Assert.fail();
 			}
 			catch (IllegalStateException illegalStateException) {
-				Assert.assertEquals(
-					logEntries.toString(), 1, logEntries.size());
-
 				LogEntry logEntry = logEntries.get(0);
 
 				Assert.assertEquals(
 					"Unable to initialize channels", logEntry.getMessage());
+
+				Assert.assertEquals(
+					logEntries.toString(), 1, logEntries.size());
 
 				Assert.assertEquals(
 					"java.lang.IllegalArgumentException: Channel count must " +
@@ -229,14 +230,15 @@ public class ClusterLinkImplTest extends BaseClusterTestCase {
 
 		Assert.assertTrue(
 			multicastMessages.toString(), multicastMessages.isEmpty());
-		Assert.assertEquals(
-			unicastMessages.toString(), 1, unicastMessages.size());
 
 		ObjectValuePair<Serializable, Address> unicastMessage =
 			unicastMessages.get(0);
 
 		Assert.assertSame(message, unicastMessage.getKey());
 		Assert.assertSame(address, unicastMessage.getValue());
+
+		Assert.assertEquals(
+			unicastMessages.toString(), 1, unicastMessages.size());
 	}
 
 	private ClusterLinkImpl _getClusterLinkImpl(int channels) {

@@ -165,9 +165,6 @@ public class ProductRelationshipsDisplayContextTest {
 			dropdownItems = _getPrimaryDropdownItems(
 				productRelationshipsDisplayContext.getCreationMenu());
 
-			Assert.assertEquals(
-				dropdownItems.toString(), 1, dropdownItems.size());
-
 			DropdownItem dropdownItem = dropdownItems.get(0);
 
 			Assert.assertEquals("New", dropdownItem.get("label"));
@@ -200,6 +197,9 @@ public class ProductRelationshipsDisplayContextTest {
 				searchAPIURL, searchAPIURL.contains("{relatedObjectEntryIds}"));
 
 			Assert.assertEquals("Product Title", data.get("title"));
+
+			Assert.assertEquals(
+				dropdownItems.toString(), 1, dropdownItems.size());
 		}
 	}
 
@@ -297,10 +297,6 @@ public class ProductRelationshipsDisplayContextTest {
 			fdsActionDropdownItems =
 				productRelationshipsDisplayContext.getFDSActionDropdownItems();
 
-			Assert.assertEquals(
-				fdsActionDropdownItems.toString(), 4,
-				fdsActionDropdownItems.size());
-
 			FDSActionDropdownItem fdsActionDropdownItem =
 				fdsActionDropdownItems.get(0);
 
@@ -372,6 +368,10 @@ public class ProductRelationshipsDisplayContextTest {
 			Assert.assertEquals("delete", data.get("id"));
 			Assert.assertNull(data.get("method"));
 			Assert.assertEquals("delete", data.get("permissionKey"));
+
+			Assert.assertEquals(
+				fdsActionDropdownItems.toString(), 4,
+				fdsActionDropdownItems.size());
 		}
 	}
 

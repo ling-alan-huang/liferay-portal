@@ -49,8 +49,6 @@ public class DateTimeDDMFormFieldTypeSettingsTest
 
 		List<DDMFormRule> ddmFormRules = ddmForm.getDDMFormRules();
 
-		Assert.assertEquals(ddmFormRules.toString(), 2, ddmFormRules.size());
-
 		DDMFormRule ddmFormRule0 = ddmFormRules.get(0);
 
 		Assert.assertEquals(
@@ -69,7 +67,6 @@ public class DateTimeDDMFormFieldTypeSettingsTest
 
 		actions = ddmFormRule1.getActions();
 
-		Assert.assertEquals(actions.toString(), 3, actions.size());
 		Assert.assertEquals(
 			"setEnabled('required', not(hasObjectField(" +
 				"getValue('objectFieldName'))))",
@@ -79,7 +76,11 @@ public class DateTimeDDMFormFieldTypeSettingsTest
 			"setVisible('requiredErrorMessage', getValue('required'))",
 			actions.get(2));
 
+		Assert.assertEquals(actions.toString(), 3, actions.size());
+
 		Assert.assertEquals("TRUE", ddmFormRule1.getCondition());
+
+		Assert.assertEquals(ddmFormRules.toString(), 2, ddmFormRules.size());
 	}
 
 	@Test

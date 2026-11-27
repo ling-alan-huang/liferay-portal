@@ -88,15 +88,11 @@ public class GridDDMFormFieldTypeSettingsTest
 
 		List<DDMFormRule> ddmFormRules = ddmForm.getDDMFormRules();
 
-		Assert.assertEquals(ddmFormRules.toString(), 1, ddmFormRules.size());
-
 		DDMFormRule ddmFormRule = ddmFormRules.get(0);
 
 		List<String> actions = ddmFormRule.getActions();
 
 		Assert.assertEquals("TRUE", ddmFormRule.getCondition());
-
-		Assert.assertEquals(actions.toString(), 4, actions.size());
 
 		Assert.assertEquals("setVisible('indexType', false)", actions.get(0));
 		Assert.assertEquals(
@@ -105,6 +101,10 @@ public class GridDDMFormFieldTypeSettingsTest
 		Assert.assertEquals(
 			"setVisible('requiredErrorMessage', getValue('required'))",
 			actions.get(3));
+
+		Assert.assertEquals(actions.toString(), 4, actions.size());
+
+		Assert.assertEquals(ddmFormRules.toString(), 1, ddmFormRules.size());
 	}
 
 	@Test

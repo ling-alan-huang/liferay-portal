@@ -220,13 +220,13 @@ public class AssetVocabularyGroupRelLocalServiceTest {
 				getAssetVocabularyGroupRelsByVocabularyId(
 					_assetVocabulary.getVocabularyId());
 
-		Assert.assertEquals(
-			assetVocabularyGroupRels.toString(), 1,
-			assetVocabularyGroupRels.size());
-
 		_assertAssetVocabularyGroupRel(
 			assetVocabularyGroupRels.get(0), _assetVocabulary.getVocabularyId(),
 			group2.getGroupId());
+
+		Assert.assertEquals(
+			assetVocabularyGroupRels.toString(), 1,
+			assetVocabularyGroupRels.size());
 	}
 
 	private void _testSetAssetVocabularyGroupRelsSystem() throws Exception {

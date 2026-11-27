@@ -123,8 +123,6 @@ public class OpenSearchSearchEngineAdapterSnapshotRequestTest
 
 		List<SnapshotInfo> snapshotInfos = _getSnapshotInfo(snapshotName);
 
-		Assert.assertEquals("Expected 1 SnapshotInfo", 1, snapshotInfos.size());
-
 		SnapshotInfo snapshotInfo = snapshotInfos.get(0);
 
 		List<String> indices = snapshotInfo.indices();
@@ -133,6 +131,8 @@ public class OpenSearchSearchEngineAdapterSnapshotRequestTest
 			snapshotName, createSnapshotRequest.getSnapshotName());
 		Assert.assertArrayEquals(
 			createSnapshotRequest.getIndexNames(), indices.toArray());
+
+		Assert.assertEquals("Expected 1 SnapshotInfo", 1, snapshotInfos.size());
 
 		_deleteSnapshot(_REPOSITORY_NAME, snapshotName);
 	}
@@ -214,10 +214,6 @@ public class OpenSearchSearchEngineAdapterSnapshotRequestTest
 		List<SnapshotRepositoryDetails> snapshotRepositoryDetailsList =
 			getSnapshotRepositoriesResponse.getSnapshotRepositoryDetails();
 
-		Assert.assertEquals(
-			"Expected 1 SnapshotRepositoryDetails", 1,
-			snapshotRepositoryDetailsList.size());
-
 		SnapshotRepositoryDetails snapshotRepositoryDetails =
 			snapshotRepositoryDetailsList.get(0);
 
@@ -226,6 +222,10 @@ public class OpenSearchSearchEngineAdapterSnapshotRequestTest
 		Assert.assertEquals(
 			SnapshotRepositoryDetails.FS_REPOSITORY_TYPE,
 			snapshotRepositoryDetails.getType());
+
+		Assert.assertEquals(
+			"Expected 1 SnapshotRepositoryDetails", 1,
+			snapshotRepositoryDetailsList.size());
 	}
 
 	@Test
@@ -246,15 +246,15 @@ public class OpenSearchSearchEngineAdapterSnapshotRequestTest
 		List<SnapshotDetails> snapshotDetailsList =
 			getSnapshotsResponse.getSnapshotDetails();
 
-		Assert.assertEquals(
-			"Expected 1 SnapshotDetails", 1, snapshotDetailsList.size());
-
 		SnapshotDetails snapshotDetails = snapshotDetailsList.get(0);
 
 		Assert.assertArrayEquals(
 			new String[] {TEST_INDEX_NAME}, snapshotDetails.getIndexNames());
 		Assert.assertEquals(
 			SnapshotState.SUCCESS, snapshotDetails.getSnapshotState());
+
+		Assert.assertEquals(
+			"Expected 1 SnapshotDetails", 1, snapshotDetailsList.size());
 
 		_deleteSnapshot(_REPOSITORY_NAME, snapshotName);
 	}

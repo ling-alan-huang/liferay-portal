@@ -128,8 +128,6 @@ public class ObjectDefinitionsDetailsDisplayContextTest {
 		JSONArray jsonArray =
 			objectDefinitionsDetailsDisplayContext.getScopeJSONArray(_SCOPE);
 
-		Assert.assertEquals(jsonArray.toString(), 1, jsonArray.length());
-
 		JSONObject jsonObject = jsonArray.getJSONObject(0);
 
 		Assert.assertEquals(
@@ -146,14 +144,17 @@ public class ObjectDefinitionsDetailsDisplayContextTest {
 				itemJSONObject.getString("label"));
 		}
 
-		Assert.assertEquals(
-			panelCategoryLabels.toString(), 2, panelCategoryLabels.size());
+		Assert.assertEquals(jsonArray.toString(), 1, jsonArray.length());
+
 		Assert.assertEquals(
 			_getLabel(_OTHER_PANEL_CATEGORY_KEY),
 			panelCategoryLabels.get(_OTHER_PANEL_CATEGORY_KEY));
 		Assert.assertEquals(
 			_getLabel(_PANEL_CATEGORY_KEY),
 			panelCategoryLabels.get(_PANEL_CATEGORY_KEY));
+
+		Assert.assertEquals(
+			panelCategoryLabels.toString(), 2, panelCategoryLabels.size());
 	}
 
 	private static String _getLabel(String panelCategoryKey) {

@@ -587,8 +587,6 @@ public class ObjectEntryResourceNestedFieldsTest
 
 		JSONArray itemsJSONArray = jsonObject.getJSONArray("items");
 
-		Assert.assertEquals(1, itemsJSONArray.length());
-
 		_assertNestedFieldsFieldsInRelationships(
 			0, nestedFieldDepth, itemsJSONArray.getJSONObject(0),
 			new String[] {
@@ -604,6 +602,8 @@ public class ObjectEntryResourceNestedFieldsTest
 				Type.ONE_TO_MANY, Type.MANY_TO_MANY, Type.ONE_TO_MANY,
 				Type.MANY_TO_MANY, Type.ONE_TO_MANY
 			});
+
+		Assert.assertEquals(1, itemsJSONArray.length());
 
 		// Without fields, many to many relationship
 
@@ -847,9 +847,6 @@ public class ObjectEntryResourceNestedFieldsTest
 
 		JSONArray itemsJSONArray = jsonObject.getJSONArray("items");
 
-		Assert.assertEquals(
-			itemsJSONArray.toString(), 1, itemsJSONArray.length());
-
 		JSONObject objectEntryJSONObject = itemsJSONArray.getJSONObject(0);
 
 		Assert.assertNull(
@@ -874,6 +871,9 @@ public class ObjectEntryResourceNestedFieldsTest
 			objectDefinition.getObjectFolderExternalReferenceCode(),
 			objectDefinitionBriefJSONObject.getString(
 				"objectFolderExternalReferenceCode"));
+
+		Assert.assertEquals(
+			itemsJSONArray.toString(), 1, itemsJSONArray.length());
 	}
 
 	@Test

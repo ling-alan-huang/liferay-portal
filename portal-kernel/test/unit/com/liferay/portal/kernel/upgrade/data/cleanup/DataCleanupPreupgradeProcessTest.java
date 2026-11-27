@@ -91,19 +91,16 @@ public class DataCleanupPreupgradeProcessTest {
 					getLayeredDataCleanupPreupgradeProcesses(
 						dataCleanupPreupgradeProcessesMap);
 
-		Assert.assertEquals(
-			dataCleanupPreupgradeProcessesList.toString(), 3,
-			dataCleanupPreupgradeProcessesList.size());
-
 		List<DataCleanupPreupgradeProcess> dataCleanupPreupgradeProcesses1 =
 			dataCleanupPreupgradeProcessesList.get(0);
+
+		Assert.assertSame(
+			dataCleanupPreupgradeProcess1,
+			dataCleanupPreupgradeProcesses1.get(0));
 
 		Assert.assertEquals(
 			dataCleanupPreupgradeProcesses1.toString(), 1,
 			dataCleanupPreupgradeProcesses1.size());
-		Assert.assertSame(
-			dataCleanupPreupgradeProcess1,
-			dataCleanupPreupgradeProcesses1.get(0));
 
 		List<DataCleanupPreupgradeProcess> dataCleanupPreupgradeProcesses2 =
 			dataCleanupPreupgradeProcessesList.get(1);
@@ -121,12 +118,17 @@ public class DataCleanupPreupgradeProcessTest {
 		List<DataCleanupPreupgradeProcess> dataCleanupPreupgradeProcesses3 =
 			dataCleanupPreupgradeProcessesList.get(2);
 
-		Assert.assertEquals(
-			dataCleanupPreupgradeProcesses3.toString(), 1,
-			dataCleanupPreupgradeProcesses3.size());
 		Assert.assertSame(
 			dataCleanupPreupgradeProcess4,
 			dataCleanupPreupgradeProcesses3.get(0));
+
+		Assert.assertEquals(
+			dataCleanupPreupgradeProcesses3.toString(), 1,
+			dataCleanupPreupgradeProcesses3.size());
+
+		Assert.assertEquals(
+			dataCleanupPreupgradeProcessesList.toString(), 3,
+			dataCleanupPreupgradeProcessesList.size());
 	}
 
 	@Test
@@ -244,16 +246,16 @@ public class DataCleanupPreupgradeProcessTest {
 					getLayeredDataCleanupPreupgradeProcesses(
 						dataCleanupPreupgradeProcessesMap);
 
-		Assert.assertEquals(
-			dataCleanupPreupgradeProcessesList.toString(), 1,
-			dataCleanupPreupgradeProcessesList.size());
-
 		List<DataCleanupPreupgradeProcess> dataCleanupPreupgradeProcesses1 =
 			dataCleanupPreupgradeProcessesList.get(0);
 
 		Assert.assertEquals(
 			dataCleanupPreupgradeProcesses1.toString(), 3,
 			dataCleanupPreupgradeProcesses1.size());
+
+		Assert.assertEquals(
+			dataCleanupPreupgradeProcessesList.toString(), 1,
+			dataCleanupPreupgradeProcessesList.size());
 	}
 
 	private DataCleanupPreupgradeProcess _createDataCleanupPreupgradeProcess() {

@@ -114,9 +114,10 @@ public class StyleBookEntryProviderUtilTest {
 			_group.getCompanyId(), _group.getGroupId(), "Beta", themeId, 0, 10,
 			StyleBookEntryNameComparator.getInstance(true));
 
+		Assert.assertEquals(styleBookEntry2, styleBookEntries.get(0));
+
 		Assert.assertEquals(
 			styleBookEntries.toString(), 1, styleBookEntries.size());
-		Assert.assertEquals(styleBookEntry2, styleBookEntries.get(0));
 	}
 
 	@FeatureFlag("LPD-57283")

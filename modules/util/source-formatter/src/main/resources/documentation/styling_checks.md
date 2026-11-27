@@ -172,6 +172,7 @@ PythonWhitespaceCheck | .py | Finds missing and unnecessary whitespace. |
 SQLEmptyLinesCheck | .sql | Finds missing and unnecessary empty lines. |
 SQLStylingCheck | .sql | Applies rules to enforce consistency in code style. |
 SemiColonCheck | .java, .jsp, .jspf, .jspx, .tag, .tpl, or .vm | Finds cases of unnecessary semicolon. |
+SizeAssertionOrderCheck | .java | Checks that a size assertion in a test comes after the last statement that uses the elements it guards. |
 SizeIsZeroCheck | .java, .jsp, .jspf, .jspx, .tag, .tpl, or .vm | Finds cases of calls like `list.size() == 0` (use `list.isEmpty()` instead). |
 SlantedQuotesCheck | | Finds `slanted quote` (`\u201a`, `\u201b`, `\u201c`, `\u201d`, `\u201e`, `\u201f`, `\u2018` or `\u2019`) characters. |
 SoyEmptyLinesCheck | .soy | Finds missing and unnecessary empty lines. |

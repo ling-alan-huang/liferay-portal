@@ -305,10 +305,11 @@ public class DynamicRegistrationServiceTest extends BaseClientTestCase {
 		JSONArray grantTypesJSONArray =
 			addAdditionalInfoJSONObject.getJSONArray("grantTypes");
 
-		Assert.assertEquals(1, grantTypesJSONArray.length());
 		Assert.assertEquals(
 			OAuthConstants.AUTHORIZATION_CODE_GRANT,
 			grantTypesJSONArray.getString(0));
+
+		Assert.assertEquals(1, grantTypesJSONArray.length());
 
 		Assert.assertEquals(
 			"authenticated", addAdditionalInfoJSONObject.getString("mode"));

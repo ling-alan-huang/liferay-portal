@@ -355,8 +355,6 @@ public class UpgradeRecorderTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals(LoggerTestUtil.WARN, logEntry.getPriority());
@@ -364,6 +362,8 @@ public class UpgradeRecorderTest {
 				"Verify if the errors during the execution are related to " +
 					"the upgrade",
 				logEntry.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 
 		Assert.assertEquals("success", _getResult());
@@ -405,8 +405,6 @@ public class UpgradeRecorderTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals(
@@ -417,6 +415,8 @@ public class UpgradeRecorderTest {
 					" in bundle com.liferay.portal.upgrade.test.bundle has ",
 					"unsatisfied references upgradeRecorderTestReference"),
 				logEntry.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 		finally {
 			bundle.uninstall();

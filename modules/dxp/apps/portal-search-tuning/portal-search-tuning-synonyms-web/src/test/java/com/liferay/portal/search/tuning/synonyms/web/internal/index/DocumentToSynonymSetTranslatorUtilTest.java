@@ -60,12 +60,12 @@ public class DocumentToSynonymSetTranslatorUtilTest
 			DocumentToSynonymSetTranslatorUtil.translateAll(
 				searchHits.getSearchHits());
 
-		Assert.assertEquals(synonymSets.toString(), 1, synonymSets.size());
-
 		SynonymSet synonymSet = synonymSets.get(0);
 
 		Assert.assertEquals("car,automobile", synonymSet.getSynonyms());
 		Assert.assertEquals("id", synonymSet.getSynonymSetDocumentId());
+
+		Assert.assertEquals(synonymSets.toString(), 1, synonymSets.size());
 	}
 
 }

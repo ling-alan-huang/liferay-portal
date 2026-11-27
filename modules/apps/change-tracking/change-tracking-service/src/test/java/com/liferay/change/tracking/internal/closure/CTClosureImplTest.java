@@ -203,9 +203,9 @@ public class CTClosureImplTest {
 			new Class<?>[] {Collection.class, Map.class}, nodes,
 			Collections.emptyMap());
 
-		Assert.assertEquals(nodeMap.toString(), 1, nodeMap.size());
-
 		Assert.assertEquals(nodes, nodeMap.get(new Node(0, 0)));
+
+		Assert.assertEquals(nodeMap.toString(), 1, nodeMap.size());
 	}
 
 	@Test

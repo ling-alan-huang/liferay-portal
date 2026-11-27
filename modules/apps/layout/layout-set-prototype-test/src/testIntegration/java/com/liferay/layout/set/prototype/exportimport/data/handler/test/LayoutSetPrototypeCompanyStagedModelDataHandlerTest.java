@@ -111,11 +111,11 @@ public class LayoutSetPrototypeCompanyStagedModelDataHandlerTest
 		List<LayoutFriendlyURL> layoutLayoutFriendlyURLs =
 			LayoutFriendlyURLLocalServiceUtil.getLayoutFriendlyURLs(plid);
 
+		layoutFriendlyURLs.add(layoutLayoutFriendlyURLs.get(0));
+
 		Assert.assertEquals(
 			layoutLayoutFriendlyURLs.toString(), 1,
 			layoutLayoutFriendlyURLs.size());
-
-		layoutFriendlyURLs.add(layoutLayoutFriendlyURLs.get(0));
 	}
 
 	protected LayoutPrototype addLayoutPrototype(
@@ -132,8 +132,6 @@ public class LayoutSetPrototypeCompanyStagedModelDataHandlerTest
 			_layoutPrototype.getGroupId(), true,
 			LayoutConstants.DEFAULT_PARENT_LAYOUT_ID);
 
-		Assert.assertEquals(layouts.toString(), 1, layouts.size());
-
 		Layout layout = layouts.get(0);
 
 		addDependentStagedModel(dependentStagedModelsMap, Layout.class, layout);
@@ -144,14 +142,16 @@ public class LayoutSetPrototypeCompanyStagedModelDataHandlerTest
 			LayoutFriendlyURLLocalServiceUtil.getLayoutFriendlyURLs(
 				layout.getPlid());
 
-		Assert.assertEquals(
-			layoutFriendlyURLs.toString(), 1, layoutFriendlyURLs.size());
-
 		addDependentStagedModel(
 			dependentStagedModelsMap, LayoutFriendlyURL.class,
 			layoutFriendlyURLs.get(0));
 
+		Assert.assertEquals(
+			layoutFriendlyURLs.toString(), 1, layoutFriendlyURLs.size());
+
 		addLayoutFriendlyURLs(LayoutPrototype.class, layout.getPlid());
+
+		Assert.assertEquals(layouts.toString(), 1, layouts.size());
 
 		return _layoutPrototype;
 	}
@@ -169,12 +169,12 @@ public class LayoutSetPrototypeCompanyStagedModelDataHandlerTest
 			_layoutSetPrototype.getGroupId(), true,
 			LayoutConstants.DEFAULT_PARENT_LAYOUT_ID);
 
-		Assert.assertEquals(layouts.toString(), 1, layouts.size());
-
 		Layout layout = layouts.get(0);
 
 		addLayout(LayoutSetPrototype.class, layout);
 		addLayoutFriendlyURLs(LayoutSetPrototype.class, layout.getPlid());
+
+		Assert.assertEquals(layouts.toString(), 1, layouts.size());
 
 		LayoutPrototype layoutPrototype = addLayoutPrototype(
 			dependentStagedModelsMap);

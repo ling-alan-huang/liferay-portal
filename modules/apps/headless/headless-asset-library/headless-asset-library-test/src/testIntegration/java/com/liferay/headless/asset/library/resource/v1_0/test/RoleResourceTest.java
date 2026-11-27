@@ -726,14 +726,14 @@ public class RoleResourceTest extends BaseRoleResourceTestCase {
 			_userGroupGroupRoleLocalService.getUserGroupGroupRoles(
 				_userGroup.getUserGroupId(), group.getGroupId());
 
-		Assert.assertEquals(
-			userGroupGroupRoles.toString(), 1, userGroupGroupRoles.size());
-
 		UserGroupGroupRole userGroupGroupRole = userGroupGroupRoles.get(0);
 
 		Assert.assertEquals(
 			assetLibraryMemberServiceBuilderRole.getRoleId(),
 			userGroupGroupRole.getRoleId());
+
+		Assert.assertEquals(
+			userGroupGroupRoles.toString(), 1, userGroupGroupRoles.size());
 	}
 
 	private void _testPutRolesPage(

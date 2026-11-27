@@ -254,28 +254,28 @@ public class DDMFormInstanceRecordStagedModelDataHandlerTest
 		List<StagedModel> ddmStructureDependentStagedModels =
 			dependentStagedModelsMap.get(DDMStructure.class.getSimpleName());
 
-		Assert.assertEquals(
-			ddmStructureDependentStagedModels.toString(), 1,
-			ddmStructureDependentStagedModels.size());
-
 		DDMStructure ddmStructure =
 			(DDMStructure)ddmStructureDependentStagedModels.get(0);
 
 		DDMStructureLocalServiceUtil.getDDMStructureByUuidAndGroupId(
 			ddmStructure.getUuid(), group.getGroupId());
 
+		Assert.assertEquals(
+			ddmStructureDependentStagedModels.toString(), 1,
+			ddmStructureDependentStagedModels.size());
+
 		List<StagedModel> formInstanceDependentStagedModels =
 			dependentStagedModelsMap.get(DDMFormInstance.class.getSimpleName());
-
-		Assert.assertEquals(
-			formInstanceDependentStagedModels.toString(), 1,
-			formInstanceDependentStagedModels.size());
 
 		DDMFormInstance formInstance =
 			(DDMFormInstance)formInstanceDependentStagedModels.get(0);
 
 		DDMFormInstanceLocalServiceUtil.getDDMFormInstanceByUuidAndGroupId(
 			formInstance.getUuid(), group.getGroupId());
+
+		Assert.assertEquals(
+			formInstanceDependentStagedModels.toString(), 1,
+			formInstanceDependentStagedModels.size());
 	}
 
 	@Override

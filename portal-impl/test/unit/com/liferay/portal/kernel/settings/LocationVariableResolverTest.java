@@ -173,9 +173,10 @@ public class LocationVariableResolverTest {
 		List<String> requestedLocations =
 			_mockResourceManager.getRequestedLocations();
 
+		Assert.assertEquals("template.ftl", requestedLocations.get(0));
+
 		Assert.assertEquals(
 			requestedLocations.toString(), 1, requestedLocations.size());
-		Assert.assertEquals("template.ftl", requestedLocations.get(0));
 	}
 
 	@Test

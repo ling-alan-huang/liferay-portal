@@ -84,9 +84,6 @@ public class ExpressionVisitorImplTest {
 		List<BooleanClause<Filter>> booleanClauses =
 			booleanFilter.getMustBooleanClauses();
 
-		Assert.assertEquals(
-			booleanClauses.toString(), 2, booleanClauses.size());
-
 		BooleanClause<Filter> queryBooleanClause1 = booleanClauses.get(0);
 
 		Assert.assertEquals(leftTermFilter, queryBooleanClause1.getClause());
@@ -100,6 +97,9 @@ public class ExpressionVisitorImplTest {
 		Assert.assertEquals(
 			BooleanClauseOccur.MUST,
 			queryBooleanClause2.getBooleanClauseOccur());
+
+		Assert.assertEquals(
+			booleanClauses.toString(), 2, booleanClauses.size());
 	}
 
 	@SuppressWarnings("unchecked")
@@ -141,9 +141,6 @@ public class ExpressionVisitorImplTest {
 		List<BooleanClause<Filter>> booleanClauses =
 			booleanFilter.getMustNotBooleanClauses();
 
-		Assert.assertEquals(
-			booleanClauses.toString(), 1, booleanClauses.size());
-
 		BooleanClause<Filter> queryBooleanClause = booleanClauses.get(0);
 
 		QueryFilter queryFilter = (QueryFilter)queryBooleanClause.getClause();
@@ -154,6 +151,9 @@ public class ExpressionVisitorImplTest {
 
 		Assert.assertEquals(entityField.getName(), queryTerm.getField());
 		Assert.assertEquals("*", queryTerm.getValue());
+
+		Assert.assertEquals(
+			booleanClauses.toString(), 1, booleanClauses.size());
 	}
 
 	@Test
@@ -173,15 +173,15 @@ public class ExpressionVisitorImplTest {
 		List<BooleanClause<Filter>> booleanClauses =
 			booleanFilter.getMustNotBooleanClauses();
 
-		Assert.assertEquals(
-			booleanClauses.toString(), 1, booleanClauses.size());
-
 		BooleanClause<Filter> queryBooleanClause = booleanClauses.get(0);
 
 		ExistsFilter existsFilter =
 			(ExistsFilter)queryBooleanClause.getClause();
 
 		Assert.assertEquals(entityField.getName(), existsFilter.getField());
+
+		Assert.assertEquals(
+			booleanClauses.toString(), 1, booleanClauses.size());
 	}
 
 	@Test
@@ -201,15 +201,15 @@ public class ExpressionVisitorImplTest {
 		List<BooleanClause<Filter>> booleanClauses =
 			booleanFilter.getMustNotBooleanClauses();
 
-		Assert.assertEquals(
-			booleanClauses.toString(), 1, booleanClauses.size());
-
 		BooleanClause<Filter> queryBooleanClause = booleanClauses.get(0);
 
 		ExistsFilter existsFilter =
 			(ExistsFilter)queryBooleanClause.getClause();
 
 		Assert.assertEquals(entityField.getName(), existsFilter.getField());
+
+		Assert.assertEquals(
+			booleanClauses.toString(), 1, booleanClauses.size());
 	}
 
 	@SuppressWarnings("unchecked")
@@ -389,9 +389,6 @@ public class ExpressionVisitorImplTest {
 		List<BooleanClause<Filter>> booleanClauses =
 			booleanFilter.getMustNotBooleanClauses();
 
-		Assert.assertEquals(
-			booleanClauses.toString(), 1, booleanClauses.size());
-
 		BooleanClause<Filter> queryBooleanClause = booleanClauses.get(0);
 
 		Assert.assertEquals(
@@ -406,6 +403,9 @@ public class ExpressionVisitorImplTest {
 
 		Assert.assertEquals(entityField.getName(), queryTerm.getField());
 		Assert.assertEquals(value, queryTerm.getValue());
+
+		Assert.assertEquals(
+			booleanClauses.toString(), 1, booleanClauses.size());
 	}
 
 	@Test
@@ -472,9 +472,6 @@ public class ExpressionVisitorImplTest {
 		List<BooleanClause<Filter>> booleanClauses =
 			booleanFilter.getShouldBooleanClauses();
 
-		Assert.assertEquals(
-			booleanClauses.toString(), 2, booleanClauses.size());
-
 		BooleanClause<Filter> queryBooleanClause1 = booleanClauses.get(0);
 
 		Assert.assertEquals(leftTermFilter, queryBooleanClause1.getClause());
@@ -488,6 +485,9 @@ public class ExpressionVisitorImplTest {
 		Assert.assertEquals(
 			BooleanClauseOccur.SHOULD,
 			queryBooleanClause2.getBooleanClauseOccur());
+
+		Assert.assertEquals(
+			booleanClauses.toString(), 2, booleanClauses.size());
 	}
 
 	@Test
@@ -855,15 +855,15 @@ public class ExpressionVisitorImplTest {
 		List<BooleanClause<Filter>> booleanClauses =
 			booleanFilter.getMustNotBooleanClauses();
 
-		Assert.assertEquals(
-			booleanClauses.toString(), 1, booleanClauses.size());
-
 		BooleanClause<Filter> queryBooleanClause = booleanClauses.get(0);
 
 		Assert.assertEquals(filter, queryBooleanClause.getClause());
 		Assert.assertEquals(
 			BooleanClauseOccur.MUST_NOT,
 			queryBooleanClause.getBooleanClauseOccur());
+
+		Assert.assertEquals(
+			booleanClauses.toString(), 1, booleanClauses.size());
 	}
 
 	protected static final NestedFieldQueryHelper nestedFieldQueryHelper =

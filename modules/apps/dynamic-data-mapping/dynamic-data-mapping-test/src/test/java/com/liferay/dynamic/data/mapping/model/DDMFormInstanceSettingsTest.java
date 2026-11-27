@@ -33,8 +33,6 @@ public class DDMFormInstanceSettingsTest
 
 		List<DDMFormRule> ddmFormRules = ddmForm.getDDMFormRules();
 
-		Assert.assertEquals(ddmFormRules.toString(), 4, ddmFormRules.size());
-
 		DDMFormRule ddmFormRule0 = ddmFormRules.get(0);
 
 		Assert.assertEquals("TRUE", ddmFormRule0.getCondition());
@@ -112,9 +110,12 @@ public class DDMFormInstanceSettingsTest
 
 		actions = ddmFormRule3.getActions();
 
-		Assert.assertEquals(actions.toString(), 1, actions.size());
 		Assert.assertEquals(
 			"setEnabled('autosaveEnabled', TRUE)", actions.get(0));
+
+		Assert.assertEquals(actions.toString(), 1, actions.size());
+
+		Assert.assertEquals(ddmFormRules.toString(), 4, ddmFormRules.size());
 	}
 
 }

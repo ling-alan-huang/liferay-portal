@@ -820,8 +820,9 @@ public class UserODataRetrieverTest {
 			"contains(jobTitle, '" + jobTitlePrefix + "')",
 			LocaleUtil.getDefault(), 0, 2);
 
-		Assert.assertEquals(users.toString(), 1, users.size());
 		Assert.assertEquals(_user1, users.get(0));
+
+		Assert.assertEquals(users.toString(), 1, users.size());
 	}
 
 	@Test

@@ -39,9 +39,10 @@ public class AssetVocabularySettingsHelperTest {
 		classNameIds = vocabularySettingsHelper.getClassNameIds();
 
 		Assert.assertNotNull(classNameIds);
+		Assert.assertEquals(1, classNameIds[0]);
+
 		Assert.assertEquals(
 			Arrays.toString(classNameIds), 1, classNameIds.length);
-		Assert.assertEquals(1, classNameIds[0]);
 	}
 
 	@Test
@@ -63,9 +64,10 @@ public class AssetVocabularySettingsHelperTest {
 
 		Assert.assertNotNull(classTypePKs);
 		Assert.assertEquals(
-			Arrays.toString(classTypePKs), 1, classTypePKs.length);
-		Assert.assertEquals(
 			AssetCategoryConstants.ALL_CLASS_TYPE_PK, classTypePKs[0]);
+
+		Assert.assertEquals(
+			Arrays.toString(classTypePKs), 1, classTypePKs.length);
 	}
 
 	@Test
@@ -97,9 +99,10 @@ public class AssetVocabularySettingsHelperTest {
 		classNameIds = vocabularySettingsHelper.getRequiredClassNameIds();
 
 		Assert.assertNotNull(classNameIds);
+		Assert.assertEquals(1, classNameIds[0]);
+
 		Assert.assertEquals(
 			Arrays.toString(classNameIds), 1, classNameIds.length);
-		Assert.assertEquals(1, classNameIds[0]);
 	}
 
 	@Test
@@ -111,9 +114,10 @@ public class AssetVocabularySettingsHelperTest {
 			vocabularySettingsHelper.getRequiredClassTypePKs();
 
 		Assert.assertNotNull(classTypePKs);
+		Assert.assertEquals(2, classTypePKs[0]);
+
 		Assert.assertEquals(
 			Arrays.toString(classTypePKs), 1, classTypePKs.length);
-		Assert.assertEquals(2, classTypePKs[0]);
 	}
 
 	@Test

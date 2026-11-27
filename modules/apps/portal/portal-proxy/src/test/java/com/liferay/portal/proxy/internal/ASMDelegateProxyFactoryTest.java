@@ -148,15 +148,16 @@ public class ASMDelegateProxyFactoryTest {
 		Assert.assertTrue(asmWrapper.equals(null));
 		Assert.assertEquals(0, asmWrapper.hashCode());
 		Assert.assertEquals("test", asmWrapper.toString());
+
+		for (int i = 0; i < expectedMethods.length; i++) {
+			_assertEquals(expectedMethods[i], actualMethods[i]);
+		}
+
 		Assert.assertEquals(
 			StringBundler.concat(
 				"Expected: ", Arrays.toString(expectedMethods), ", actual: ",
 				Arrays.toString(actualMethods)),
 			expectedMethods.length, actualMethods.length);
-
-		for (int i = 0; i < expectedMethods.length; i++) {
-			_assertEquals(expectedMethods[i], actualMethods[i]);
-		}
 	}
 
 	@NewEnv(type = NewEnv.Type.CLASSLOADER)

@@ -155,9 +155,6 @@ public class FIPSApplicationStateMachineUtilTest {
 			FIPSApplicationState.POWER_OFF,
 			FIPSApplicationStateMachineUtil.getFIPSApplicationState());
 
-		Assert.assertEquals(
-			_fipsAuditLogEntries.toString(), 3, _fipsAuditLogEntries.size());
-
 		_assertEnvelope(
 			_fipsAuditLogEntries.get(1), "severity",
 			FIPSAuditEvent.Severity.CRITICAL.name());
@@ -169,6 +166,9 @@ public class FIPSApplicationStateMachineUtilTest {
 		_assertField(
 			_fipsAuditLogEntries.get(1), "to-state",
 			FIPSApplicationState.ERROR.name());
+
+		Assert.assertEquals(
+			_fipsAuditLogEntries.toString(), 3, _fipsAuditLogEntries.size());
 	}
 
 	@Test
@@ -230,9 +230,6 @@ public class FIPSApplicationStateMachineUtilTest {
 			FIPSApplicationState.POWER_OFF,
 			FIPSApplicationStateMachineUtil.getFIPSApplicationState());
 
-		Assert.assertEquals(
-			_fipsAuditLogEntries.toString(), 1, _fipsAuditLogEntries.size());
-
 		_assertEnvelope(
 			_fipsAuditLogEntries.get(0), "severity",
 			FIPSAuditEvent.Severity.INFO.name());
@@ -245,6 +242,9 @@ public class FIPSApplicationStateMachineUtilTest {
 		_assertField(
 			_fipsAuditLogEntries.get(0), "to-state",
 			FIPSApplicationState.POWER_OFF.name());
+
+		Assert.assertEquals(
+			_fipsAuditLogEntries.toString(), 1, _fipsAuditLogEntries.size());
 	}
 
 	@Test
@@ -293,9 +293,6 @@ public class FIPSApplicationStateMachineUtilTest {
 			FIPSApplicationState.POWER_OFF,
 			FIPSApplicationStateMachineUtil.getFIPSApplicationState());
 
-		Assert.assertEquals(
-			_fipsAuditLogEntries.toString(), 4, _fipsAuditLogEntries.size());
-
 		_assertEnvelope(
 			_fipsAuditLogEntries.get(1), "event-type",
 			"pre-operational-health-failure");
@@ -322,6 +319,9 @@ public class FIPSApplicationStateMachineUtilTest {
 		_assertField(
 			_fipsAuditLogEntries.get(2), "to-state",
 			FIPSApplicationState.ERROR.name());
+
+		Assert.assertEquals(
+			_fipsAuditLogEntries.toString(), 4, _fipsAuditLogEntries.size());
 	}
 
 	@Test
@@ -337,9 +337,6 @@ public class FIPSApplicationStateMachineUtilTest {
 			FIPSApplicationState.QUIESCENT,
 			FIPSApplicationStateMachineUtil.getFIPSApplicationState());
 
-		Assert.assertEquals(
-			_fipsAuditLogEntries.toString(), 1, _fipsAuditLogEntries.size());
-
 		_assertEnvelope(
 			_fipsAuditLogEntries.get(0), "severity",
 			FIPSAuditEvent.Severity.INFO.name());
@@ -353,6 +350,9 @@ public class FIPSApplicationStateMachineUtilTest {
 		_assertField(
 			_fipsAuditLogEntries.get(0), "to-state",
 			FIPSApplicationState.QUIESCENT.name());
+
+		Assert.assertEquals(
+			_fipsAuditLogEntries.toString(), 1, _fipsAuditLogEntries.size());
 	}
 
 	@Test
@@ -402,9 +402,6 @@ public class FIPSApplicationStateMachineUtilTest {
 			FIPSApplicationState.OPERATIONAL,
 			FIPSApplicationStateMachineUtil.getFIPSApplicationState());
 
-		Assert.assertEquals(
-			_fipsAuditLogEntries.toString(), 2, _fipsAuditLogEntries.size());
-
 		_assertField(
 			_fipsAuditLogEntries.get(0), "crypto-officer-user-id",
 			cryptoOfficerUserId);
@@ -419,6 +416,9 @@ public class FIPSApplicationStateMachineUtilTest {
 		_assertField(
 			_fipsAuditLogEntries.get(1), "to-state",
 			FIPSApplicationState.OPERATIONAL.name());
+
+		Assert.assertEquals(
+			_fipsAuditLogEntries.toString(), 2, _fipsAuditLogEntries.size());
 	}
 
 	@Test
@@ -448,11 +448,12 @@ public class FIPSApplicationStateMachineUtilTest {
 
 		Throwable[] suppressedThrowables1 = securityException1.getSuppressed();
 
+		Assert.assertSame(
+			IllegalStateException.class, suppressedThrowables1[0].getClass());
+
 		Assert.assertEquals(
 			ArrayUtil.toString(suppressedThrowables1, ""), 1,
 			suppressedThrowables1.length);
-		Assert.assertSame(
-			IllegalStateException.class, suppressedThrowables1[0].getClass());
 
 		_fipsAuditLogEntries.clear();
 
@@ -496,20 +497,21 @@ public class FIPSApplicationStateMachineUtilTest {
 			FIPSApplicationState.POWER_OFF,
 			FIPSApplicationStateMachineUtil.getFIPSApplicationState());
 
-		Assert.assertEquals(
-			_fipsAuditLogEntries.toString(), 3, _fipsAuditLogEntries.size());
-
 		_assertField(
 			_fipsAuditLogEntries.get(1), "to-state",
 			FIPSApplicationState.ERROR.name());
 
+		Assert.assertEquals(
+			_fipsAuditLogEntries.toString(), 3, _fipsAuditLogEntries.size());
+
 		Throwable[] suppressedThrowables2 = securityException2.getSuppressed();
+
+		Assert.assertSame(
+			RuntimeException.class, suppressedThrowables2[0].getClass());
 
 		Assert.assertEquals(
 			ArrayUtil.toString(suppressedThrowables2, ""), 1,
 			suppressedThrowables2.length);
-		Assert.assertSame(
-			RuntimeException.class, suppressedThrowables2[0].getClass());
 	}
 
 	private void _assertEnvelope(
@@ -631,9 +633,6 @@ public class FIPSApplicationStateMachineUtilTest {
 			FIPSApplicationState.POWER_OFF,
 			FIPSApplicationStateMachineUtil.getFIPSApplicationState());
 
-		Assert.assertEquals(
-			_fipsAuditLogEntries.toString(), 2, _fipsAuditLogEntries.size());
-
 		_assertEnvelope(
 			_fipsAuditLogEntries.get(0), "event-type", "fips-state-transition");
 		_assertEnvelope(
@@ -657,6 +656,9 @@ public class FIPSApplicationStateMachineUtilTest {
 		_assertField(
 			_fipsAuditLogEntries.get(1), "to-state",
 			FIPSApplicationState.POWER_OFF.name());
+
+		Assert.assertEquals(
+			_fipsAuditLogEntries.toString(), 2, _fipsAuditLogEntries.size());
 
 		Mockito.verify(
 			_log
@@ -709,9 +711,6 @@ public class FIPSApplicationStateMachineUtilTest {
 			FIPSApplicationState.OPERATIONAL,
 			FIPSApplicationStateMachineUtil.getFIPSApplicationState());
 
-		Assert.assertEquals(
-			_fipsAuditLogEntries.toString(), 2, _fipsAuditLogEntries.size());
-
 		_assertEnvelope(
 			_fipsAuditLogEntries.get(0), "severity",
 			FIPSAuditEvent.Severity.INFO.name());
@@ -735,6 +734,9 @@ public class FIPSApplicationStateMachineUtilTest {
 		_assertField(
 			_fipsAuditLogEntries.get(1), "to-state",
 			FIPSApplicationState.OPERATIONAL.name());
+
+		Assert.assertEquals(
+			_fipsAuditLogEntries.toString(), 2, _fipsAuditLogEntries.size());
 	}
 
 	private void _testKeyCSPEntryWithIllegalState(
@@ -763,9 +765,6 @@ public class FIPSApplicationStateMachineUtilTest {
 			FIPSApplicationState.OPERATIONAL,
 			FIPSApplicationStateMachineUtil.getFIPSApplicationState());
 
-		Assert.assertEquals(
-			_fipsAuditLogEntries.toString(), 1, _fipsAuditLogEntries.size());
-
 		_assertEnvelope(
 			_fipsAuditLogEntries.get(0), "severity",
 			FIPSAuditEvent.Severity.INFO.name());
@@ -779,6 +778,9 @@ public class FIPSApplicationStateMachineUtilTest {
 		_assertField(
 			_fipsAuditLogEntries.get(0), "to-state",
 			FIPSApplicationState.OPERATIONAL.name());
+
+		Assert.assertEquals(
+			_fipsAuditLogEntries.toString(), 1, _fipsAuditLogEntries.size());
 	}
 
 	private void _testOperationalWithIllegalState(
@@ -803,9 +805,6 @@ public class FIPSApplicationStateMachineUtilTest {
 			FIPSApplicationState.POWER_OFF,
 			FIPSApplicationStateMachineUtil.getFIPSApplicationState());
 
-		Assert.assertEquals(
-			_fipsAuditLogEntries.toString(), 1, _fipsAuditLogEntries.size());
-
 		_assertEnvelope(
 			_fipsAuditLogEntries.get(0), "severity",
 			FIPSAuditEvent.Severity.INFO.name());
@@ -817,6 +816,9 @@ public class FIPSApplicationStateMachineUtilTest {
 		_assertField(
 			_fipsAuditLogEntries.get(0), "to-state",
 			FIPSApplicationState.POWER_OFF.name());
+
+		Assert.assertEquals(
+			_fipsAuditLogEntries.toString(), 1, _fipsAuditLogEntries.size());
 	}
 
 	private void _testQuiescentWithIllegalState(
@@ -841,9 +843,6 @@ public class FIPSApplicationStateMachineUtilTest {
 			FIPSApplicationState.OPERATIONAL,
 			FIPSApplicationStateMachineUtil.getFIPSApplicationState());
 
-		Assert.assertEquals(
-			_fipsAuditLogEntries.toString(), 2, _fipsAuditLogEntries.size());
-
 		_assertField(
 			_fipsAuditLogEntries.get(0), "from-state",
 			fipsApplicationState.name());
@@ -859,6 +858,9 @@ public class FIPSApplicationStateMachineUtilTest {
 		_assertField(
 			_fipsAuditLogEntries.get(1), "to-state",
 			FIPSApplicationState.OPERATIONAL.name());
+
+		Assert.assertEquals(
+			_fipsAuditLogEntries.toString(), 2, _fipsAuditLogEntries.size());
 	}
 
 	private void _testSelfTestWithFailure(RuntimeException runtimeException) {
@@ -902,13 +904,14 @@ public class FIPSApplicationStateMachineUtilTest {
 		_assertField(
 			_fipsAuditLogEntries.get(2), "to-state",
 			FIPSApplicationState.ERROR.name());
-		Assert.assertEquals(
-			_fipsAuditLogEntries.toString(), 4, _fipsAuditLogEntries.size());
 
 		_assertField(_fipsAuditLogEntries.get(3), "initiating-actor", "Portal");
 		_assertField(
 			_fipsAuditLogEntries.get(3), "to-state",
 			FIPSApplicationState.POWER_OFF.name());
+
+		Assert.assertEquals(
+			_fipsAuditLogEntries.toString(), 4, _fipsAuditLogEntries.size());
 	}
 
 	private void _testSelfTestWithIllegalState(

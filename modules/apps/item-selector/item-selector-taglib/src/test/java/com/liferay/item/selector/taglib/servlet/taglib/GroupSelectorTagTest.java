@@ -152,13 +152,13 @@ public class GroupSelectorTagTest {
 		List<Group> actualGroups = (ArrayList)httpServletRequest.getAttribute(
 			"liferay-item-selector:group-selector:groups");
 
-		Assert.assertEquals(
-			actualGroups.toString(), expectedGroups.size(),
-			actualGroups.size());
-
 		for (int i = 0; i < expectedGroups.size(); i++) {
 			Assert.assertEquals(expectedGroups.get(i), actualGroups.get(i));
 		}
+
+		Assert.assertEquals(
+			actualGroups.toString(), expectedGroups.size(),
+			actualGroups.size());
 
 		long actualGroupsCount = GetterUtil.getLong(
 			httpServletRequest.getAttribute(

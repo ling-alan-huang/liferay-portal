@@ -149,8 +149,6 @@ public class ExtRepositoryAdapterTest {
 				DLFolderConstants.DEFAULT_PARENT_FOLDER_ID, QueryUtil.ALL_POS,
 				QueryUtil.ALL_POS, null);
 
-			Assert.assertEquals(fileEntries.toString(), 1, fileEntries.size());
-
 			ExtRepositoryFileEntryAdapter extRepositoryFileEntryAdapter =
 				(ExtRepositoryFileEntryAdapter)fileEntries.get(0);
 
@@ -158,9 +156,9 @@ public class ExtRepositoryAdapterTest {
 				extRepositoryFileEntry2,
 				extRepositoryFileEntryAdapter.getExtRepositoryModel());
 
-			List<LogEntry> logEntries = logCapture.getLogEntries();
+			Assert.assertEquals(fileEntries.toString(), 1, fileEntries.size());
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
+			List<LogEntry> logEntries = logCapture.getLogEntries();
 
 			LogEntry logEntry = logEntries.get(0);
 
@@ -168,6 +166,8 @@ public class ExtRepositoryAdapterTest {
 				"Unable to get external repository object " +
 					extRepositoryFileEntry1.getExtRepositoryModelKey(),
 				logEntry.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 	}
 

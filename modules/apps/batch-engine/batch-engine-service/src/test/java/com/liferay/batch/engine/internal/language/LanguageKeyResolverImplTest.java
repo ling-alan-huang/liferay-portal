@@ -96,9 +96,11 @@ public class LanguageKeyResolverImplTest {
 
 		_languageKeyResolver.expand(_COMPANY_ID, map);
 
-		Assert.assertEquals(map.toString(), 2, map.size());
 		Assert.assertEquals("Welcome", map.get("en_US"));
 		Assert.assertEquals("Bem-vindo", map.get("pt_BR"));
+
+		Assert.assertEquals(map.toString(), 2, map.size());
+
 		Assert.assertFalse(map.containsKey("es_ES"));
 	}
 
@@ -115,10 +117,11 @@ public class LanguageKeyResolverImplTest {
 		_languageKeyResolver.expand(_COMPANY_ID, map);
 
 		Assert.assertFalse(map.containsKey(_FOR_EACH_LANGUAGE_ID));
-		Assert.assertEquals(map.toString(), 3, map.size());
 		Assert.assertEquals("Welcome", map.get("en_US"));
 		Assert.assertEquals("Bienvenido", map.get("es_ES"));
 		Assert.assertEquals("Bem-vindo", map.get("pt_BR"));
+
+		Assert.assertEquals(map.toString(), 3, map.size());
 	}
 
 	@Test
@@ -166,10 +169,11 @@ public class LanguageKeyResolverImplTest {
 					).build())
 			).build());
 
-		Assert.assertEquals(valueI18nMap.toString(), 3, valueI18nMap.size());
 		Assert.assertEquals("Welcome", valueI18nMap.get("en_US"));
 		Assert.assertEquals("Bienvenido", valueI18nMap.get("es_ES"));
 		Assert.assertEquals("Bem-vindo", valueI18nMap.get("pt_BR"));
+
+		Assert.assertEquals(valueI18nMap.toString(), 3, valueI18nMap.size());
 	}
 
 	@Test
@@ -220,9 +224,10 @@ public class LanguageKeyResolverImplTest {
 
 		_languageKeyResolver.expand(_COMPANY_ID, map);
 
-		Assert.assertEquals(map.toString(), 1, map.size());
 		Assert.assertEquals(
 			"welcome-to-liferay", map.get(_FOR_EACH_LANGUAGE_ID));
+
+		Assert.assertEquals(map.toString(), 1, map.size());
 	}
 
 	@Test
@@ -233,8 +238,9 @@ public class LanguageKeyResolverImplTest {
 
 		_languageKeyResolver.expand(_COMPANY_ID, map);
 
-		Assert.assertEquals(map.toString(), 1, map.size());
 		Assert.assertEquals("Welcome", map.get("en_US"));
+
+		Assert.assertEquals(map.toString(), 1, map.size());
 	}
 
 	private void _whenTranslation(

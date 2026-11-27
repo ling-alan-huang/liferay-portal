@@ -463,8 +463,6 @@ public class SitemapManagerTest {
 
 			List<Element> urlElements = rootElement.elements("url");
 
-			Assert.assertEquals(xml, 1, urlElements.size());
-
 			Element urlElement = urlElements.get(0);
 
 			Element locElement = urlElement.element("loc");
@@ -481,6 +479,8 @@ public class SitemapManagerTest {
 				locElementText.contains(
 					_getObjectEntryFriendlyURL(
 						excludedObjectEntry, _excludedObjectDefinition)));
+
+			Assert.assertEquals(xml, 1, urlElements.size());
 		}
 	}
 
@@ -1811,13 +1811,13 @@ public class SitemapManagerTest {
 						return null;
 					});
 
-				Assert.assertEquals(locs.toString(), 3, locs.size());
-
 				for (int i = 0; i < locs.size(); i++) {
 					String loc = locs.get(i);
 
 					Assert.assertTrue(loc.contains("&page=" + (i + 1)));
 				}
+
+				Assert.assertEquals(locs.toString(), 3, locs.size());
 			}
 			finally {
 				ReflectionTestUtil.setFieldValue(

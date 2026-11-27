@@ -361,10 +361,6 @@ public class ExportImportDisplayPagesTest {
 
 		Assert.assertNotNull(layoutsImporterResultEntries);
 
-		Assert.assertEquals(
-			layoutsImporterResultEntries.toString(), 1,
-			layoutsImporterResultEntries.size());
-
 		LayoutsImporterResultEntry layoutsImporterResultEntry =
 			layoutsImporterResultEntries.get(0);
 
@@ -445,6 +441,10 @@ public class ExportImportDisplayPagesTest {
 				layoutStructure1.getMainLayoutStructureItem(),
 			(RootLayoutStructureItem)
 				layoutStructure2.getMainLayoutStructureItem());
+
+		Assert.assertEquals(
+			layoutsImporterResultEntries.toString(), 1,
+			layoutsImporterResultEntries.size());
 	}
 
 	private void _assertExportImportDisplayPageWithInfoItemFormVariation(

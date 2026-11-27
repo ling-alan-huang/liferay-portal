@@ -480,8 +480,9 @@ public class GroupServiceTest {
 
 		groups = _groupLocalService.getRoleGroups(roleId);
 
-		Assert.assertEquals(groups.toString(), 1, groups.size());
 		Assert.assertEquals(_group, groups.get(0));
+
+		Assert.assertEquals(groups.toString(), 1, groups.size());
 	}
 
 	@Test

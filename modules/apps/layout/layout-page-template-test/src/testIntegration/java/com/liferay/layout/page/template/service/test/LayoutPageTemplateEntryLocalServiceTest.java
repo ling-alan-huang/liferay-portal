@@ -760,16 +760,16 @@ public class LayoutPageTemplateEntryLocalServiceTest {
 				_portal.getClassNameId(LayoutPageTemplateEntry.class),
 				layoutPageTemplateEntry.getLayoutPageTemplateEntryId());
 
-		Assert.assertEquals(
-			ddmStructureLinks.toString(), expectedStructureIds.length,
-			ddmStructureLinks.size());
-
 		for (int i = 0; i < expectedStructureIds.length; i++) {
 			DDMStructureLink ddmStructureLink = ddmStructureLinks.get(i);
 
 			Assert.assertEquals(
 				expectedStructureIds[i], ddmStructureLink.getStructureId());
 		}
+
+		Assert.assertEquals(
+			ddmStructureLinks.toString(), expectedStructureIds.length,
+			ddmStructureLinks.size());
 	}
 
 	private void _assertExternalReferenceCodes(

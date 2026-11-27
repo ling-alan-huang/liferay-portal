@@ -115,8 +115,6 @@ public class FileEntryAMImageURLItemSelectorReturnTypeResolverTest {
 
 		JSONArray sourcesJSONArray = jsonObject.getJSONArray("sources");
 
-		Assert.assertEquals(3, sourcesJSONArray.length());
-
 		_assertHDSrcSource(
 			sourcesJSONArray.getJSONObject(0), fileEntry.getFileEntryId(),
 			"uuid0", "uuid1", fileEntry.getTitle());
@@ -130,6 +128,8 @@ public class FileEntryAMImageURLItemSelectorReturnTypeResolverTest {
 		_assertAttibutes(sourcesJSONArray.getJSONObject(0), 50, 0);
 		_assertAttibutes(sourcesJSONArray.getJSONObject(1), 100, 50);
 		_assertAttibutes(sourcesJSONArray.getJSONObject(2), 300, 100);
+
+		Assert.assertEquals(3, sourcesJSONArray.length());
 	}
 
 	@Test
@@ -156,8 +156,6 @@ public class FileEntryAMImageURLItemSelectorReturnTypeResolverTest {
 
 		JSONArray sourcesJSONArray = jsonObject.getJSONArray("sources");
 
-		Assert.assertEquals(4, sourcesJSONArray.length());
-
 		_assertSrcSource(
 			sourcesJSONArray.getJSONObject(0), fileEntry.getFileEntryId(),
 			"uuid0", fileEntry.getTitle());
@@ -175,6 +173,8 @@ public class FileEntryAMImageURLItemSelectorReturnTypeResolverTest {
 		_assertAttibutes(sourcesJSONArray.getJSONObject(1), 200, 50);
 		_assertAttibutes(sourcesJSONArray.getJSONObject(2), 280, 200);
 		_assertAttibutes(sourcesJSONArray.getJSONObject(3), 330, 280);
+
+		Assert.assertEquals(4, sourcesJSONArray.length());
 	}
 
 	@Test
@@ -201,8 +201,6 @@ public class FileEntryAMImageURLItemSelectorReturnTypeResolverTest {
 
 		JSONArray sourcesJSONArray = jsonObject.getJSONArray("sources");
 
-		Assert.assertEquals(2, sourcesJSONArray.length());
-
 		_assertHDSrcSource(
 			sourcesJSONArray.getJSONObject(0), fileEntry.getFileEntryId(),
 			"uuid0", "uuid1", fileEntry.getTitle());
@@ -212,6 +210,8 @@ public class FileEntryAMImageURLItemSelectorReturnTypeResolverTest {
 
 		_assertAttibutes(sourcesJSONArray.getJSONObject(0), 50, 0);
 		_assertAttibutes(sourcesJSONArray.getJSONObject(1), 100, 50);
+
+		Assert.assertEquals(2, sourcesJSONArray.length());
 	}
 
 	@Test
@@ -238,8 +238,6 @@ public class FileEntryAMImageURLItemSelectorReturnTypeResolverTest {
 
 		JSONArray sourcesJSONArray = jsonObject.getJSONArray("sources");
 
-		Assert.assertEquals(2, sourcesJSONArray.length());
-
 		_assertHDSrcSource(
 			sourcesJSONArray.getJSONObject(0), fileEntry.getFileEntryId(),
 			"uuid0", "uuid1", fileEntry.getTitle());
@@ -249,6 +247,8 @@ public class FileEntryAMImageURLItemSelectorReturnTypeResolverTest {
 
 		_assertAttibutes(sourcesJSONArray.getJSONObject(0), 50, 0);
 		_assertAttibutes(sourcesJSONArray.getJSONObject(1), 100, 50);
+
+		Assert.assertEquals(2, sourcesJSONArray.length());
 	}
 
 	@Test
@@ -275,8 +275,6 @@ public class FileEntryAMImageURLItemSelectorReturnTypeResolverTest {
 
 		JSONArray sourcesJSONArray = jsonObject.getJSONArray("sources");
 
-		Assert.assertEquals(2, sourcesJSONArray.length());
-
 		_assertHDSrcSource(
 			sourcesJSONArray.getJSONObject(0), fileEntry.getFileEntryId(),
 			"uuid0", "uuid1", fileEntry.getTitle());
@@ -286,6 +284,8 @@ public class FileEntryAMImageURLItemSelectorReturnTypeResolverTest {
 
 		_assertAttibutes(sourcesJSONArray.getJSONObject(0), 50, 0);
 		_assertAttibutes(sourcesJSONArray.getJSONObject(1), 99, 50);
+
+		Assert.assertEquals(2, sourcesJSONArray.length());
 	}
 
 	@Test
@@ -312,8 +312,6 @@ public class FileEntryAMImageURLItemSelectorReturnTypeResolverTest {
 
 		JSONArray sourcesJSONArray = jsonObject.getJSONArray("sources");
 
-		Assert.assertEquals(2, sourcesJSONArray.length());
-
 		_assertHDSrcSource(
 			sourcesJSONArray.getJSONObject(0), fileEntry.getFileEntryId(),
 			"uuid0", "uuid1", fileEntry.getTitle());
@@ -323,6 +321,8 @@ public class FileEntryAMImageURLItemSelectorReturnTypeResolverTest {
 
 		_assertAttibutes(sourcesJSONArray.getJSONObject(0), 50, 0);
 		_assertAttibutes(sourcesJSONArray.getJSONObject(1), 101, 50);
+
+		Assert.assertEquals(2, sourcesJSONArray.length());
 	}
 
 	@Test
@@ -349,8 +349,6 @@ public class FileEntryAMImageURLItemSelectorReturnTypeResolverTest {
 
 		JSONArray sourcesJSONArray = jsonObject.getJSONArray("sources");
 
-		Assert.assertEquals(2, sourcesJSONArray.length());
-
 		_assertSrcSource(
 			sourcesJSONArray.getJSONObject(0), fileEntry.getFileEntryId(),
 			"uuid0", fileEntry.getTitle());
@@ -360,6 +358,8 @@ public class FileEntryAMImageURLItemSelectorReturnTypeResolverTest {
 
 		_assertAttibutes(sourcesJSONArray.getJSONObject(0), 50, 0);
 		_assertAttibutes(sourcesJSONArray.getJSONObject(1), 200, 50);
+
+		Assert.assertEquals(2, sourcesJSONArray.length());
 	}
 
 	@Test
@@ -386,8 +386,6 @@ public class FileEntryAMImageURLItemSelectorReturnTypeResolverTest {
 
 		JSONArray sourcesJSONArray = jsonObject.getJSONArray("sources");
 
-		Assert.assertEquals(2, sourcesJSONArray.length());
-
 		_assertSrcSource(
 			sourcesJSONArray.getJSONObject(0), fileEntry.getFileEntryId(),
 			"uuid0", fileEntry.getTitle());
@@ -397,6 +395,8 @@ public class FileEntryAMImageURLItemSelectorReturnTypeResolverTest {
 
 		_assertAttibutes(sourcesJSONArray.getJSONObject(0), 50, 0);
 		_assertAttibutes(sourcesJSONArray.getJSONObject(1), 200, 50);
+
+		Assert.assertEquals(2, sourcesJSONArray.length());
 	}
 
 	@Test
@@ -423,8 +423,6 @@ public class FileEntryAMImageURLItemSelectorReturnTypeResolverTest {
 
 		JSONArray sourcesJSONArray = jsonObject.getJSONArray("sources");
 
-		Assert.assertEquals(2, sourcesJSONArray.length());
-
 		_assertSrcSource(
 			sourcesJSONArray.getJSONObject(0), fileEntry.getFileEntryId(),
 			"uuid0", fileEntry.getTitle());
@@ -434,6 +432,8 @@ public class FileEntryAMImageURLItemSelectorReturnTypeResolverTest {
 
 		_assertAttibutes(sourcesJSONArray.getJSONObject(0), 50, 0);
 		_assertAttibutes(sourcesJSONArray.getJSONObject(1), 98, 50);
+
+		Assert.assertEquals(2, sourcesJSONArray.length());
 	}
 
 	@Test
@@ -460,8 +460,6 @@ public class FileEntryAMImageURLItemSelectorReturnTypeResolverTest {
 
 		JSONArray sourcesJSONArray = jsonObject.getJSONArray("sources");
 
-		Assert.assertEquals(2, sourcesJSONArray.length());
-
 		_assertSrcSource(
 			sourcesJSONArray.getJSONObject(0), fileEntry.getFileEntryId(),
 			"uuid0", fileEntry.getTitle());
@@ -471,6 +469,8 @@ public class FileEntryAMImageURLItemSelectorReturnTypeResolverTest {
 
 		_assertAttibutes(sourcesJSONArray.getJSONObject(0), 50, 0);
 		_assertAttibutes(sourcesJSONArray.getJSONObject(1), 102, 50);
+
+		Assert.assertEquals(2, sourcesJSONArray.length());
 	}
 
 	private FileEntry _addImageFileEntry(ServiceContext serviceContext)

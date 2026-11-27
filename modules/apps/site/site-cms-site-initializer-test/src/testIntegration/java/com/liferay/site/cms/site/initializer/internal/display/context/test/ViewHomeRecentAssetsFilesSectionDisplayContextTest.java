@@ -86,10 +86,6 @@ public class ViewHomeRecentAssetsFilesSectionDisplayContextTest
 		List<FDSActionDropdownItem> fdsActionDropdownItems =
 			getFDSActionDropdownItems();
 
-		Assert.assertEquals(
-			fdsActionDropdownItems.toString(), 19,
-			fdsActionDropdownItems.size());
-
 		FrontendDataSetTestUtil.assertFDSActionDropdownItem(
 			"pencil", "editFolder", "Edit", "get",
 			HashMapBuilder.<String, Object>put(
@@ -142,15 +138,15 @@ public class ViewHomeRecentAssetsFilesSectionDisplayContextTest
 		List<FDSActionDropdownItem> copyFDSActionDropdownItems =
 			(List<FDSActionDropdownItem>)copyFDSActionDropdownItem.get("items");
 
-		Assert.assertEquals(
-			copyFDSActionDropdownItems.toString(), 2,
-			copyFDSActionDropdownItems.size());
-
 		FrontendDataSetTestUtil.assertFDSActionDropdownItem(
 			"copy", "copy", "Copy To", null, copyFDSActionDropdownItems.get(0));
 		FrontendDataSetTestUtil.assertFDSActionDropdownItem(
 			"copy", "duplicate", "Duplicate", null,
 			copyFDSActionDropdownItems.get(1));
+
+		Assert.assertEquals(
+			copyFDSActionDropdownItems.toString(), 2,
+			copyFDSActionDropdownItems.size());
 
 		FrontendDataSetTestUtil.assertFDSActionDropdownItem(
 			"upload", "export-for-translation", "Export for Translation", null,
@@ -171,10 +167,6 @@ public class ViewHomeRecentAssetsFilesSectionDisplayContextTest
 		List<FDSActionDropdownItem> permissionsFDSActionDropdownItems =
 			(List<FDSActionDropdownItem>)permissionsFDSActionDropdownItem.get(
 				"items");
-
-		Assert.assertEquals(
-			permissionsFDSActionDropdownItems.toString(), 4,
-			permissionsFDSActionDropdownItems.size());
 
 		FrontendDataSetTestUtil.assertFDSActionDropdownItem(
 			"password-policies", "permissions", "Permissions", "get",
@@ -198,8 +190,16 @@ public class ViewHomeRecentAssetsFilesSectionDisplayContextTest
 			"Reset to Default Permissions", null,
 			permissionsFDSActionDropdownItems.get(3));
 
+		Assert.assertEquals(
+			permissionsFDSActionDropdownItems.toString(), 4,
+			permissionsFDSActionDropdownItems.size());
+
 		FrontendDataSetTestUtil.assertFDSActionDropdownItem(
 			"trash", "delete", "Delete", null, fdsActionDropdownItems.get(18));
+
+		Assert.assertEquals(
+			fdsActionDropdownItems.toString(), 19,
+			fdsActionDropdownItems.size());
 	}
 
 	@Override

@@ -394,8 +394,6 @@ public class DBPartitionMigrationValidatorTest extends BaseTestCase {
 
 		File[] files = outputDirectory.listFiles();
 
-		Assert.assertEquals(Arrays.toString(files), 1, files.length);
-
 		String content = _read(files[0]);
 
 		JSONAssert.assertEquals(
@@ -436,6 +434,8 @@ public class DBPartitionMigrationValidatorTest extends BaseTestCase {
 				"tableNames", new JSONArray(Arrays.asList("Table1", "Table2"))
 			).toString(),
 			content, false);
+
+		Assert.assertEquals(Arrays.toString(files), 1, files.length);
 	}
 
 	private void _testHelp(

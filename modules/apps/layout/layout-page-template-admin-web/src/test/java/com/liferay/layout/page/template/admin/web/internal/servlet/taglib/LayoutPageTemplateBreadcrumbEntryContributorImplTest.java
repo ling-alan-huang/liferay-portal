@@ -206,9 +206,6 @@ public class LayoutPageTemplateBreadcrumbEntryContributorImplTest {
 					Collections.singletonList(originalBreadcrumbEntry),
 					_mockHttpServletRequest);
 
-		Assert.assertEquals(
-			breadcrumbEntries.toString(), 3, breadcrumbEntries.size());
-
 		BreadcrumbEntry breadcrumbEntry = breadcrumbEntries.get(0);
 
 		Assert.assertEquals(
@@ -221,6 +218,9 @@ public class LayoutPageTemplateBreadcrumbEntryContributorImplTest {
 			layoutPageTemplateCollection.getName(), breadcrumbEntry.getTitle());
 
 		Assert.assertSame(originalBreadcrumbEntry, breadcrumbEntries.get(2));
+
+		Assert.assertEquals(
+			breadcrumbEntries.toString(), 3, breadcrumbEntries.size());
 
 		Mockito.verify(
 			_portletURL, Mockito.times(2)

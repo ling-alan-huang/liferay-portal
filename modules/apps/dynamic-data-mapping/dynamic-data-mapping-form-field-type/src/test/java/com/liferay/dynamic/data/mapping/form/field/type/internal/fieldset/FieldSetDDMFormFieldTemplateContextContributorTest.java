@@ -88,8 +88,6 @@ public class FieldSetDDMFormFieldTemplateContextContributorTest
 			_fieldSetDDMFormFieldTemplateContextContributor.getRowsJSONArray(
 				ddmFormLayoutDefinition);
 
-		Assert.assertEquals(2, rowsJSONArray.length());
-
 		JSONObject row0JSONObject = rowsJSONArray.getJSONObject(0);
 
 		Assert.assertTrue(row0JSONObject.has("columns"));
@@ -118,8 +116,9 @@ public class FieldSetDDMFormFieldTemplateContextContributorTest
 		JSONArray secondColumnFieldsJSONArray =
 			secondColumnJSONObject.getJSONArray("fields");
 
-		Assert.assertEquals(1, secondColumnFieldsJSONArray.length());
 		Assert.assertEquals("field2", secondColumnFieldsJSONArray.getString(0));
+
+		Assert.assertEquals(1, secondColumnFieldsJSONArray.length());
 
 		Assert.assertTrue(secondColumnJSONObject.has("size"));
 		Assert.assertEquals(6, secondColumnJSONObject.getInt("size"));
@@ -130,8 +129,6 @@ public class FieldSetDDMFormFieldTemplateContextContributorTest
 
 		columnsJSONArray = row1JSONObject.getJSONArray("columns");
 
-		Assert.assertEquals(1, columnsJSONArray.length());
-
 		firstColumnJSONObject = columnsJSONArray.getJSONObject(0);
 
 		Assert.assertTrue(firstColumnJSONObject.has("fields"));
@@ -139,13 +136,18 @@ public class FieldSetDDMFormFieldTemplateContextContributorTest
 		firstColumnFieldsJSONArray = firstColumnJSONObject.getJSONArray(
 			"fields");
 
-		Assert.assertEquals(3, firstColumnFieldsJSONArray.length());
 		Assert.assertEquals("field3", firstColumnFieldsJSONArray.getString(0));
 		Assert.assertEquals("field4", firstColumnFieldsJSONArray.getString(1));
 		Assert.assertEquals("field5", firstColumnFieldsJSONArray.getString(2));
 
+		Assert.assertEquals(3, firstColumnFieldsJSONArray.length());
+
 		Assert.assertTrue(firstColumnJSONObject.has("size"));
 		Assert.assertEquals(12, firstColumnJSONObject.getInt("size"));
+
+		Assert.assertEquals(1, columnsJSONArray.length());
+
+		Assert.assertEquals(2, rowsJSONArray.length());
 	}
 
 	private String _read(String fileName) throws Exception {

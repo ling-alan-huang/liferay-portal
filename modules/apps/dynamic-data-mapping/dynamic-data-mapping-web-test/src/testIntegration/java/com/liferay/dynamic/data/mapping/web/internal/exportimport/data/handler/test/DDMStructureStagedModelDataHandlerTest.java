@@ -513,23 +513,19 @@ public class DDMStructureStagedModelDataHandlerTest
 		List<StagedModel> ddmStructureDependentStagedModels =
 			dependentStagedModelsMap.get(DDMStructure.class.getSimpleName());
 
-		Assert.assertEquals(
-			ddmStructureDependentStagedModels.toString(), 1,
-			ddmStructureDependentStagedModels.size());
-
 		DDMStructure ddmStructure =
 			(DDMStructure)ddmStructureDependentStagedModels.get(0);
 
 		DDMStructureLocalServiceUtil.getDDMStructureByUuidAndGroupId(
 			ddmStructure.getUuid(), group.getGroupId());
 
+		Assert.assertEquals(
+			ddmStructureDependentStagedModels.toString(), 1,
+			ddmStructureDependentStagedModels.size());
+
 		List<StagedModel> ddmDataProviderInstanceDependentStagedModels =
 			dependentStagedModelsMap.get(
 				DDMDataProviderInstance.class.getSimpleName());
-
-		Assert.assertEquals(
-			ddmDataProviderInstanceDependentStagedModels.toString(), 1,
-			ddmDataProviderInstanceDependentStagedModels.size());
 
 		DDMDataProviderInstance dataProviderInstance =
 			(DDMDataProviderInstance)
@@ -538,6 +534,10 @@ public class DDMStructureStagedModelDataHandlerTest
 		DDMDataProviderInstanceLocalServiceUtil.
 			getDDMDataProviderInstanceByUuidAndGroupId(
 				dataProviderInstance.getUuid(), group.getGroupId());
+
+		Assert.assertEquals(
+			ddmDataProviderInstanceDependentStagedModels.toString(), 1,
+			ddmDataProviderInstanceDependentStagedModels.size());
 	}
 
 	@Override
@@ -657,15 +657,15 @@ public class DDMStructureStagedModelDataHandlerTest
 					PortalUtil.getClassNameId(DDMStructure.class.getName()),
 					ddmStructure.getStructureId());
 
-		Assert.assertEquals(
-			deDataDefinitionFieldLinks.toString(), 1,
-			deDataDefinitionFieldLinks.size());
-
 		DEDataDefinitionFieldLink deDataDefinitionFieldLink =
 			deDataDefinitionFieldLinks.get(0);
 
 		Assert.assertEquals(
 			structureId, deDataDefinitionFieldLink.getDdmStructureId());
+
+		Assert.assertEquals(
+			deDataDefinitionFieldLinks.toString(), 1,
+			deDataDefinitionFieldLinks.size());
 	}
 
 	private void _exportStructure(Group exportGroup, DDMStructure structure)

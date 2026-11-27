@@ -185,14 +185,14 @@ public class UnicodePropertiesTest {
 		String[] expectedValues, String[] keys,
 		UnicodeProperties unicodeProperties) {
 
-		Assert.assertEquals(
-			MapUtil.toString(unicodeProperties), expectedValues.length,
-			unicodeProperties.size());
-
 		for (int i = 0; i < keys.length; i++) {
 			Assert.assertEquals(
 				expectedValues[i], unicodeProperties.get(keys[i]));
 		}
+
+		Assert.assertEquals(
+			MapUtil.toString(unicodeProperties), expectedValues.length,
+			unicodeProperties.size());
 	}
 
 	private void _testLoad(
@@ -264,13 +264,13 @@ public class UnicodePropertiesTest {
 
 			List<LogEntry> logEntries = logCapture.getLogEntries();
 
-			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
-
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals(
 				"Invalid property on line " + _TEST_KEY_1,
 				logEntry.getMessage());
+
+			Assert.assertEquals(logEntries.toString(), 1, logEntries.size());
 		}
 
 		unicodeProperties.put("");

@@ -43,13 +43,14 @@ public class DDLRecordDDMFormValuesReaderTest {
 			ddmFormValuesReader.getDDMFormFieldValues("text");
 
 		Assert.assertEquals(
-			ddmFormFieldValues.toString(), 3, ddmFormFieldValues.size());
-		Assert.assertEquals(
 			"Text", getDDMFormFieldValueName(ddmFormFieldValues.get(0)));
 		Assert.assertEquals(
 			"NestedText", getDDMFormFieldValueName(ddmFormFieldValues.get(1)));
 		Assert.assertEquals(
 			"NestedText", getDDMFormFieldValueName(ddmFormFieldValues.get(2)));
+
+		Assert.assertEquals(
+			ddmFormFieldValues.toString(), 3, ddmFormFieldValues.size());
 	}
 
 	protected DDMForm createDDMForm() {

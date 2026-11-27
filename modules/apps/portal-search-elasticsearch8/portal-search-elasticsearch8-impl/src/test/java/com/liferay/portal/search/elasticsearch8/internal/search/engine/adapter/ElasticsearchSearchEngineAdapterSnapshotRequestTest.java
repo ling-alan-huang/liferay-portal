@@ -129,14 +129,14 @@ public class ElasticsearchSearchEngineAdapterSnapshotRequestTest {
 
 		List<SnapshotInfo> snapshotInfos = _getSnapshotInfo(snapshotName);
 
-		Assert.assertEquals("Expected 1 SnapshotInfo", 1, snapshotInfos.size());
-
 		SnapshotInfo snapshotInfo = snapshotInfos.get(0);
 
 		List<String> indices = snapshotInfo.indices();
 
 		Assert.assertArrayEquals(
 			createSnapshotRequest.getIndexNames(), indices.toArray());
+
+		Assert.assertEquals("Expected 1 SnapshotInfo", 1, snapshotInfos.size());
 
 		Assert.assertEquals(
 			snapshotName, createSnapshotRequest.getSnapshotName());
@@ -224,10 +224,6 @@ public class ElasticsearchSearchEngineAdapterSnapshotRequestTest {
 		List<SnapshotRepositoryDetails> snapshotRepositoryDetailsList =
 			getSnapshotRepositoriesResponse.getSnapshotRepositoryDetails();
 
-		Assert.assertEquals(
-			"Expected 1 SnapshotRepositoryDetails", 1,
-			snapshotRepositoryDetailsList.size());
-
 		SnapshotRepositoryDetails snapshotRepositoryDetails =
 			snapshotRepositoryDetailsList.get(0);
 
@@ -236,6 +232,10 @@ public class ElasticsearchSearchEngineAdapterSnapshotRequestTest {
 		Assert.assertEquals(
 			SnapshotRepositoryDetails.FS_REPOSITORY_TYPE,
 			snapshotRepositoryDetails.getType());
+
+		Assert.assertEquals(
+			"Expected 1 SnapshotRepositoryDetails", 1,
+			snapshotRepositoryDetailsList.size());
 	}
 
 	@Test
@@ -256,15 +256,15 @@ public class ElasticsearchSearchEngineAdapterSnapshotRequestTest {
 		List<SnapshotDetails> snapshotDetailsList =
 			getSnapshotsResponse.getSnapshotDetails();
 
-		Assert.assertEquals(
-			"Expected 1 SnapshotDetails", 1, snapshotDetailsList.size());
-
 		SnapshotDetails snapshotDetails = snapshotDetailsList.get(0);
 
 		Assert.assertArrayEquals(
 			new String[] {_INDEX_NAME}, snapshotDetails.getIndexNames());
 		Assert.assertEquals(
 			SnapshotState.SUCCESS, snapshotDetails.getSnapshotState());
+
+		Assert.assertEquals(
+			"Expected 1 SnapshotDetails", 1, snapshotDetailsList.size());
 
 		_deleteSnapshot(_TEST_REPOSITORY_NAME, snapshotName);
 	}
